@@ -5,9 +5,9 @@ import { useEffect, useRef } from "react";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "Our Work", href: "/#s-mission" },
+  { label: "About", href: "/about" },
   { label: "Programs", href: "/our-programs" },
-  { label: "Impact", href: "/#s-stats" },
+  { label: "Impact", href: "/impact" },
   { label: "Get Involved", href: "/get-involved" },
 ];
 

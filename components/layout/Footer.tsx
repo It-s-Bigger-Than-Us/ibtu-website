@@ -22,17 +22,19 @@ export default function Footer() {
         501(c)(3) &nbsp;·&nbsp; EIN: 85-3136505
         <br />
         <br />
-        <Link href="/our-programs" style={{ color: "#fff" }}>
-          Programs
-        </Link>
+        <Link href="/about" style={{ color: "#fff" }}>About</Link>
         &nbsp;·&nbsp;
-        <Link href="/events" style={{ color: "#fff" }}>
-          Events
-        </Link>
+        <Link href="/our-programs" style={{ color: "#fff" }}>Programs</Link>
         &nbsp;·&nbsp;
-        <Link href="/get-involved" style={{ color: "#fff" }}>
-          Get Involved
-        </Link>
+        <Link href="/impact" style={{ color: "#fff" }}>Impact</Link>
+        &nbsp;·&nbsp;
+        <Link href="/awards" style={{ color: "#fff" }}>Awards</Link>
+        &nbsp;·&nbsp;
+        <Link href="/partners" style={{ color: "#fff" }}>Partners</Link>
+        &nbsp;·&nbsp;
+        <Link href="/get-involved" style={{ color: "#fff" }}>Get Involved</Link>
+        &nbsp;·&nbsp;
+        <Link href="/contact" style={{ color: "#fff" }}>Contact</Link>
       </div>
 
       <div className="foot-right">
