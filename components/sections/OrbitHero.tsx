@@ -219,86 +219,15 @@ export default function OrbitHero() {
                 </div>
               </div>
             ))}
-            {/* 3D Flowing Ribbon — "Community is the Infrastructure" with programs on the back */}
+            {/* Ribbon — "Community is the Infrastructure." at 300° */}
             <div className="ribbon-orbital">
-              {/* Multi-segment wave ribbon */}
-              {[
-                { rotY: -30, rotX: 12, text: "COMM" },
-                { rotY: -15, rotX: -8, text: "UNITY" },
-                { rotY: 0, rotX: 5, text: " IS " },
-                { rotY: 15, rotX: -10, text: "THE " },
-                { rotY: 30, rotX: 8, text: "INFR" },
-                { rotY: 45, rotX: -5, text: "ASTR" },
-                { rotY: 60, rotX: 12, text: "UCTU" },
-                { rotY: 75, rotX: -8, text: "RE." },
-              ].map((seg, i) => (
-                <div
-                  key={i}
-                  className="ribbon-wave-seg"
-                  style={{
-                    position: "absolute",
-                    width: 110,
-                    height: 70,
-                    top: -35,
-                    left: i * 95 - 380,
-                    transformStyle: "preserve-3d",
-                    transform: `rotateY(${seg.rotY}deg) rotateX(${seg.rotX}deg) translateZ(var(--ring-r))`,
-                    backfaceVisibility: "visible",
-                  }}
-                >
-                  {/* Front face — gold with text */}
-                  <div style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "var(--gold)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backfaceVisibility: "hidden",
-                    overflow: "hidden",
-                  }}>
-                    <span style={{
-                      fontFamily: "LOT, Poppins, sans-serif",
-                      fontSize: "clamp(16px, 1.8vw, 24px)",
-                      fontWeight: 700,
-                      color: "#000",
-                      letterSpacing: 2,
-                      textTransform: "uppercase",
-                      whiteSpace: "nowrap",
-                    }}>
-                      {seg.text}
-                    </span>
-                  </div>
-                  {/* Back face — dark with program pill */}
-                  <div style={{
-                    position: "absolute",
-                    inset: 0,
-                    background: "rgba(30,30,30,0.95)",
-                    border: "1px solid rgba(255,199,0,0.3)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    transform: "rotateY(180deg)",
-                    backfaceVisibility: "hidden",
-                    overflow: "hidden",
-                  }}>
-                    <span style={{
-                      fontFamily: "Poppins, sans-serif",
-                      fontSize: 9,
-                      fontWeight: 700,
-                      color: "var(--gold)",
-                      letterSpacing: 1.5,
-                      textTransform: "uppercase",
-                      padding: "4px 10px",
-                      border: "1px solid rgba(255,199,0,0.4)",
-                      borderRadius: 20,
-                      whiteSpace: "nowrap",
-                    }}>
-                      {["Fire Relief", "B2S", "Youth", "Coastal", "Wellness", "Health", "Giving", "Link-Ups"][i]}
-                    </span>
-                  </div>
-                </div>
-              ))}
+              <div className="ribbon-seg">
+                <span className="ribbon-text">
+                  Community is
+                  <br />
+                  the Infrastructure.
+                </span>
+              </div>
             </div>
             <div className="orbit-line orbit-line-equatorial" />
           </div>
