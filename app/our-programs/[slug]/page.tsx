@@ -3,20 +3,20 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { programs, getProgramBySlug } from "@/lib/data/programs";
-import { getEventsByProgram } from "@/lib/data/events";
+import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/fetch";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return programs.map((p) => ({ slug: p.slug }));
+  const programs = await getPrograms();
+  return programs.map((p: { slug: string }) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const program = getProgramBySlug(slug);
+  const program = await getProgramBySlug(slug);
   if (!program) return {};
   return {
     title: `${program.title} | IBTU`,
@@ -26,14 +26,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProgramPage({ params }: Props) {
   const { slug } = await params;
-  const program = getProgramBySlug(slug);
+  const program = await getProgramBySlug(slug);
   if (!program) notFound();
 
-  const events = getEventsByProgram(slug);
-  const upcomingEvents = events.filter((e) => e.status === "Upcoming" || e.status === "Active");
-  const pastEvents = events.filter((e) => e.status === "Closed");
+  const events = await getEventsByProgram(slug);
+  const upcomingEvents = events.filter((e: any) => e.status === "Upcoming" || e.status === "Active");
+  const pastEvents = events.filter((e: any) => e.status === "Closed");
 
-  const stats = program.proofStats.split("|").map((s) => s.trim());
+  const stats = program.proofStats.split("|").map((s: any) => s.trim());
 
   return (
     <>
@@ -178,7 +178,7 @@ export default async function ProgramPage({ params }: Props) {
             gap: "40px 60px",
           }}
         >
-          {stats.map((stat, i) => (
+          {stats.map((stat: any, i: number) => (
             <div key={i}>
               <span
                 style={{
@@ -238,7 +238,7 @@ export default async function ProgramPage({ params }: Props) {
                   UPCOMING
                 </h2>
                 <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 60 }}>
-                  {upcomingEvents.map((ev, i) => (
+                  {upcomingEvents.map((ev: any, i: number) => (
                     <div
                       key={i}
                       style={{
@@ -319,7 +319,7 @@ export default async function ProgramPage({ params }: Props) {
                   PAST EVENTS
                 </h2>
                 <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                  {pastEvents.map((ev, i) => (
+                  {pastEvents.map((ev: any, i: number) => (
                     <div
                       key={i}
                       style={{

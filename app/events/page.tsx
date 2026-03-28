@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { events, getUpcomingEvents } from "@/lib/data/events";
-import { programs } from "@/lib/data/programs";
+import { getAllEvents, getUpcomingEvents, getPrograms } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
   title: "Events | IBTU — It's Bigger Than Us",
@@ -17,11 +16,17 @@ const STATUS_COLORS: Record<string, string> = {
   Closed: "rgba(255,255,255,0.35)",
 };
 
-export default function EventsPage() {
-  const upcoming = getUpcomingEvents();
-  const allByProgram = programs.map((p) => ({
+export default async function EventsPage() {
+  const [events, upcoming, programs] = await Promise.all([
+    getAllEvents(),
+    getUpcomingEvents(),
+    getPrograms(),
+  ]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const allByProgram = programs.map((p: any) => ({
     program: p,
-    events: events.filter((e) => e.programSlug === p.slug),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    events: events.filter((e: any) => e.programSlug === p.slug),
   }));
 
   return (
@@ -76,8 +81,8 @@ export default function EventsPage() {
               HAPPENING NOW & UPCOMING
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              {upcoming.map((ev, i) => {
-                const prog = programs.find((p) => p.slug === ev.programSlug);
+              {upcoming.map((ev: any, i: number) => {
+                const prog = programs.find((p: any) => p.slug === ev.programSlug);
                 return (
                   <Link
                     key={i}
@@ -164,7 +169,7 @@ export default function EventsPage() {
             ALL EVENTS BY PROGRAM
           </h2>
 
-          {allByProgram.map(({ program: prog, events: progEvents }) => (
+          {allByProgram.map(({ program: prog, events: progEvents }: any) => (
             <div key={prog.slug} style={{ marginBottom: 60 }}>
               <div
                 style={{
@@ -202,7 +207,7 @@ export default function EventsPage() {
                 </Link>
               </div>
 
-              {progEvents.map((ev, i) => (
+              {progEvents.map((ev: any, i: number) => (
                 <div
                   key={i}
                   style={{

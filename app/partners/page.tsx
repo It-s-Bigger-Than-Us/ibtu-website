@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { getPartnersByCategory } from "@/lib/data/partners";
+import { getPartners } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
   title: "Partners | IBTU",
@@ -9,8 +9,16 @@ export const metadata: Metadata = {
     "300+ organizations, brands, government agencies, and community groups that power IBTU's community infrastructure across Los Angeles.",
 };
 
-export default function PartnersPage() {
-  const grouped = getPartnersByCategory();
+export default async function PartnersPage() {
+  const partners = await getPartners();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const grouped: Record<string, any[]> = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  for (const p of partners as any[]) {
+    const cat = p.category || "Other";
+    if (!grouped[cat]) grouped[cat] = [];
+    grouped[cat].push(p);
+  }
   const categories = Object.keys(grouped);
 
   return (
@@ -93,7 +101,7 @@ export default function PartnersPage() {
                   gap: 12,
                 }}
               >
-                {grouped[category].map((partner, i) => (
+                {grouped[category].map((partner: any, i: number) => (
                   <span
                     key={i}
                     style={{

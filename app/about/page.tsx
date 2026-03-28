@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { orgTimeline } from "@/lib/data/org-timeline";
+import { getTimeline } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
   title: "About Us | IBTU — It's Bigger Than Us",
@@ -10,7 +10,8 @@ export const metadata: Metadata = {
     "Since 2020, IBTU has grown from a pandemic-era response team into permanent community infrastructure serving Los Angeles and beyond.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const orgTimeline = await getTimeline();
   return (
     <>
       <Nav />
@@ -123,7 +124,8 @@ export default function AboutPage() {
             TIMELINE
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            {orgTimeline.map((entry, i) => (
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {orgTimeline.map((entry: any, i: number) => (
               <div
                 key={i}
                 style={{

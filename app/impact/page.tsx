@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { impactStats, digitalReach } from "@/lib/data/impact-stats";
+import { getImpactStats } from "@/sanity/lib/fetch";
+import { digitalReach } from "@/lib/data/impact-stats";
 
 export const metadata: Metadata = {
   title: "Impact | IBTU",
@@ -10,14 +11,11 @@ export const metadata: Metadata = {
     "The numbers behind IBTU's community impact — 62,475+ students, 875,500+ lbs of food, 300+ partners, and six consecutive years of service across Los Angeles.",
 };
 
-export default function ImpactPage() {
-  const stats2025 = impactStats
-    .filter((s) => s.year === "2025")
-    .sort((a, b) => a.sortOrder - b.sortOrder);
-
-  const statsCumulative = impactStats
-    .filter((s) => s.year === "Cumulative")
-    .sort((a, b) => a.sortOrder - b.sortOrder);
+export default async function ImpactPage() {
+  const [stats2025, statsCumulative] = await Promise.all([
+    getImpactStats("2025"),
+    getImpactStats("Cumulative"),
+  ]);
 
   const digitalItems = [
     { value: digitalReach.reach, label: "Total Reach" },
@@ -101,7 +99,7 @@ export default function ImpactPage() {
               gap: 40,
             }}
           >
-            {stats2025.map((stat, i) => (
+            {stats2025.map((stat: any, i: number) => (
               <div key={i}>
                 <span
                   style={{
@@ -152,7 +150,7 @@ export default function ImpactPage() {
               gap: 40,
             }}
           >
-            {statsCumulative.map((stat, i) => (
+            {statsCumulative.map((stat: any, i: number) => (
               <div key={i}>
                 <span
                   style={{

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { awards } from "@/lib/data/awards";
+import { getAwards } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
   title: "Awards & Recognition | IBTU",
@@ -9,9 +9,12 @@ export const metadata: Metadata = {
     "23 awards and recognitions from the U.S. Congress, California Legislature, City of Los Angeles, and community institutions — honoring IBTU's impact since 2020.",
 };
 
-export default function AwardsPage() {
-  const awards2025 = awards.filter((a) => a.year === 2025);
-  const awards2024 = awards.filter((a) => a.year === 2024);
+export default async function AwardsPage() {
+  const awards = await getAwards();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const awards2025 = awards.filter((a: any) => a.year === 2025);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const awards2024 = awards.filter((a: any) => a.year === 2024);
 
   const yearGroups = [
     { year: 2025, items: awards2025 },
@@ -80,7 +83,7 @@ export default function AwardsPage() {
                 {group.year}
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-                {group.items.map((award, i) => (
+                {group.items.map((award: any, i: number) => (
                   <div
                     key={i}
                     style={{

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { programs } from "@/lib/data/programs";
+import { getPrograms } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
   title: "Get Involved | IBTU — It's Bigger Than Us",
@@ -47,8 +47,10 @@ const SPONSOR_TIERS = [
   { name: "Backer", amount: "$500", description: "Community recognition" },
 ];
 
-export default function GetInvolvedPage() {
-  const programsWithVol = programs.filter((p) => p.volunteerUrl);
+export default async function GetInvolvedPage() {
+  const programs = await getPrograms();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const programsWithVol = programs.filter((p: any) => p.volunteerUrl);
 
   return (
     <>
@@ -202,7 +204,7 @@ export default function GetInvolvedPage() {
             VOLUNTEER BY PROGRAM
           </h3>
           <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {programsWithVol.map((prog) => (
+            {programsWithVol.map((prog: any) => (
               <a
                 key={prog.slug}
                 href={prog.volunteerUrl!}

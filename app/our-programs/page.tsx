@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { programs } from "@/lib/data/programs";
+import { getPrograms } from "@/sanity/lib/fetch";
 
 export const metadata: Metadata = {
   title: "Our Programs | IBTU — It's Bigger Than Us",
@@ -10,7 +10,8 @@ export const metadata: Metadata = {
     "7 community programs across Crisis & Disaster Stabilization, School & Youth Stability, and Community Health & Resource Access. Built for Los Angeles.",
 };
 
-export default function ProgramsPage() {
+export default async function ProgramsPage() {
+  const programs = await getPrograms();
   return (
     <>
       <Nav />
@@ -71,7 +72,7 @@ export default function ProgramsPage() {
             padding: 2,
           }}
         >
-          {programs.map((prog) => (
+          {programs.map((prog: any) => (
             <Link
               key={prog.slug}
               href={`/our-programs/${prog.slug}`}
