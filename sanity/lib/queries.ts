@@ -69,3 +69,20 @@ export const pillarsQuery = `*[_type == "pillar"] | order(sortOrder asc) {
 export const siteContentQuery = `*[_type == "siteContent" && page == $page] {
   _id, page, section, headline, subheadline, body, ctaText, ctaHref
 }`;
+
+export const sponsorPackagesByProgramQuery = `*[_type == "programSponsorPackage" && program->slug.current == $slug && active == true] | order(sortOrder asc) {
+  _id, tierName, tierGroup, price, priceDisplay, deliverables,
+  boothSize, maxSponsors, bloomerangFormUrl, sortOrder, featured
+}`;
+
+export const allSponsorPackagesQuery = `*[_type == "programSponsorPackage" && active == true] | order(sortOrder asc) {
+  _id, tierName, tierGroup, price, priceDisplay, deliverables,
+  boothSize, featured,
+  "programTitle": program->title,
+  "programSlug": program->slug.current
+}`;
+
+export const eventGalleryQuery = `*[_type == "event" && program->slug.current == $slug && status == "Closed" && displayOnWebsite == true && defined(galleryImages)] | order(year desc) {
+  _id, title, year, dateStart, location, shortDescription,
+  proofStats, galleryImages
+}`;

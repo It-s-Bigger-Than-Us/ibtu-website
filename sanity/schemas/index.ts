@@ -8,6 +8,7 @@ import partner from "./partner";
 import sponsorTier from "./sponsorTier";
 import newsMedia from "./newsMedia";
 import siteContent from "./siteContent";
+import programSponsorPackage from "./programSponsorPackage";
 
 export const schemaTypes = [
   program,
@@ -20,4 +21,5 @@ export const schemaTypes = [
   sponsorTier,
   newsMedia,
   siteContent,
+  programSponsorPackage,
 ];

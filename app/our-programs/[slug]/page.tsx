@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/fetch";
+import { getPrograms, getProgramBySlug, getEventsByProgram, getSponsorPackages } from "@/sanity/lib/fetch";
+import SponsorshipSection from "@/components/sections/SponsorshipSection";
+import EventGallery from "@/components/sections/EventGallery";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -29,7 +31,10 @@ export default async function ProgramPage({ params }: Props) {
   const program = await getProgramBySlug(slug);
   if (!program) notFound();
 
-  const events = await getEventsByProgram(slug);
+  const [events, sponsorPackages] = await Promise.all([
+    getEventsByProgram(slug),
+    getSponsorPackages(slug),
+  ]);
   const upcomingEvents = events.filter((e: any) => e.status === "Upcoming" || e.status === "Active");
   const pastEvents = events.filter((e: any) => e.status === "Closed");
 
@@ -305,69 +310,13 @@ export default async function ProgramPage({ params }: Props) {
               </>
             )}
 
-            {pastEvents.length > 0 && (
-              <>
-                <h2
-                  style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
-                    fontSize: "clamp(32px, 4vw, 56px)",
-                    color: "#fff",
-                    marginBottom: 32,
-                    lineHeight: 0.95,
-                  }}
-                >
-                  PAST EVENTS
-                </h2>
-                <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-                  {pastEvents.map((ev: any, i: number) => (
-                    <div
-                      key={i}
-                      style={{
-                        background: "#0a0a0a",
-                        borderBottom: "1px solid rgba(255,255,255,0.07)",
-                        padding: "24px 32px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "flex-start",
-                        gap: 24,
-                      }}
-                    >
-                      <div style={{ flex: 1 }}>
-                        <div
-                          style={{
-                            fontFamily: "LOT, Poppins, sans-serif",
-                            fontSize: "clamp(16px, 1.6vw, 22px)",
-                            color: "#fff",
-                            fontWeight: 700,
-                            marginBottom: 6,
-                          }}
-                        >
-                          {ev.title}
-                        </div>
-                        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.45)" }}>
-                          {ev.location}
-                          {ev.proofStats && (
-                            <> &nbsp;·&nbsp; {ev.proofStats}</>
-                          )}
-                        </div>
-                      </div>
-                      <div
-                        style={{
-                          textAlign: "right",
-                          whiteSpace: "nowrap",
-                          fontSize: 13,
-                          color: "rgba(255,255,255,0.45)",
-                        }}
-                      >
-                        {ev.dateStart}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
+            {/* Past Events — Gallery Popup */}
+            <EventGallery events={pastEvents} />
           </div>
         )}
+
+        {/* Sponsorship Packages */}
+        <SponsorshipSection packages={sponsorPackages} programTitle={program.title} />
 
         {/* Partners */}
         {program.keyPartners && (

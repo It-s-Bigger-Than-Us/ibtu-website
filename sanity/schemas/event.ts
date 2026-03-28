@@ -19,6 +19,18 @@ export default defineType({
     defineField({ name: "category", title: "Category", type: "string" }),
     defineField({ name: "featured", title: "Featured", type: "boolean", initialValue: false }),
     defineField({ name: "displayOnWebsite", title: "Display on Website", type: "boolean", initialValue: true }),
+    defineField({ name: "shortDescription", title: "Short Description (gallery)", type: "text", rows: 2, description: "2-3 sentences for the gallery popup" }),
+    defineField({
+      name: "galleryImages",
+      title: "Gallery Images",
+      type: "array",
+      of: [{
+        type: "image",
+        options: { hotspot: true },
+        fields: [{ name: "caption", title: "Caption", type: "string" }],
+      }],
+    }),
+    defineField({ name: "rsvpUrl", title: "RSVP / Get Involved URL", type: "url" }),
   ],
   orderings: [
     { title: "Year (newest)", name: "yearDesc", by: [{ field: "year", direction: "desc" }] },
