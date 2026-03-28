@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const SITE_PASSWORD = "1369";
+const SITE_PASSWORD = process.env.SITE_PASSWORD || "1369";
 
 export function middleware(request: NextRequest) {
   // Skip password for Sanity Studio and API routes

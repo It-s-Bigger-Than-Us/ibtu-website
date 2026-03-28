@@ -40,7 +40,7 @@ export default async function ImpactPage() {
               textTransform: "uppercase",
               color: "var(--gold)",
               marginBottom: 20,
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
             }}
           >
@@ -85,7 +85,7 @@ export default async function ImpactPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               marginBottom: 48,
             }}
@@ -136,7 +136,7 @@ export default async function ImpactPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               marginBottom: 48,
             }}
@@ -194,7 +194,7 @@ export default async function ImpactPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               marginBottom: 32,
             }}
@@ -281,7 +281,7 @@ export default async function ImpactPage() {
               background: "#000",
               color: "var(--gold)",
               padding: "18px 48px",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: 13,
               letterSpacing: "3px",
               textTransform: "uppercase",

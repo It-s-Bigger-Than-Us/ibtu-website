@@ -31,6 +31,13 @@ export default defineType({
       }],
     }),
     defineField({ name: "rsvpUrl", title: "RSVP / Get Involved URL", type: "url" }),
+    // ── PRIVATE FIELDS — never exposed in website GROQ queries ──
+    defineField({ name: "internalBudget", title: "INTERNAL: Budget", type: "number", description: "PRIVATE — never shown on website" }),
+    defineField({ name: "internalNotes", title: "INTERNAL: Notes", type: "text", rows: 4, description: "PRIVATE — internal team notes" }),
+    defineField({ name: "internalComms", title: "INTERNAL: Communications Log", type: "text", rows: 4, description: "PRIVATE — email/slack references" }),
+    defineField({ name: "contractStatus", title: "INTERNAL: Contract Status", type: "string", description: "PRIVATE", options: { list: ["New", "Quote Sent", "Follow Up needed", "Invoiced", "PO Issued", "Accepted-In Procurement", "Complete / Archive", "Pass", "Evaluating", "Cancelled"] } }),
+    defineField({ name: "poNumber", title: "INTERNAL: PO Number", type: "string", description: "PRIVATE — never shown on website" }),
+    defineField({ name: "contractAmount", title: "INTERNAL: Contract Amount", type: "number", description: "PRIVATE — never shown on website" }),
   ],
   orderings: [
     { title: "Year (newest)", name: "yearDesc", by: [{ field: "year", direction: "desc" }] },

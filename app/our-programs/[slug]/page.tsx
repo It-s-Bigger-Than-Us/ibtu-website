@@ -89,7 +89,7 @@ export default async function ProgramPage({ params }: Props) {
                 textTransform: "uppercase",
                 color: "var(--gold)",
                 marginBottom: 20,
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
                 textDecoration: "none",
               }}
@@ -103,7 +103,7 @@ export default async function ProgramPage({ params }: Props) {
                 textTransform: "uppercase",
                 color: "rgba(255,255,255,0.5)",
                 marginBottom: 16,
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
               }}
             >
@@ -141,7 +141,7 @@ export default async function ProgramPage({ params }: Props) {
                   background: "var(--gold)",
                   color: "#000",
                   padding: "16px 36px",
-                  fontFamily: "LOT, Poppins, sans-serif",
+                  fontFamily: "Poppins, sans-serif",
                   fontSize: 13,
                   letterSpacing: "3px",
                   textTransform: "uppercase",
@@ -160,7 +160,7 @@ export default async function ProgramPage({ params }: Props) {
                 border: "1px solid rgba(255,255,255,0.5)",
                 color: "#fff",
                 padding: "16px 36px",
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontSize: 13,
                 letterSpacing: "3px",
                 textTransform: "uppercase",
@@ -267,7 +267,7 @@ export default async function ProgramPage({ params }: Props) {
                             fontWeight: 700,
                             padding: "4px 10px",
                             marginBottom: 12,
-                            fontFamily: "LOT, Poppins, sans-serif",
+                            fontFamily: "Poppins, sans-serif",
                             textTransform: "uppercase",
                           }}
                         >
@@ -381,7 +381,7 @@ export default async function ProgramPage({ params }: Props) {
                   background: "#000",
                   color: "var(--gold)",
                   padding: "18px 40px",
-                  fontFamily: "LOT, Poppins, sans-serif",
+                  fontFamily: "Poppins, sans-serif",
                   fontSize: 13,
                   letterSpacing: "3px",
                   textTransform: "uppercase",
@@ -399,7 +399,7 @@ export default async function ProgramPage({ params }: Props) {
                 border: "2px solid #000",
                 color: "#000",
                 padding: "18px 40px",
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontSize: 13,
                 letterSpacing: "3px",
                 textTransform: "uppercase",

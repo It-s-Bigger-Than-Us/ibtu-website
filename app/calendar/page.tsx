@@ -37,7 +37,7 @@ export default async function CalendarPage() {
 
         {/* Hero */}
         <div style={{ padding: "140px 80px 80px 80px", borderBottom: "1px solid rgba(255,199,0,0.2)" }}>
-          <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, fontFamily: "LOT, Poppins, sans-serif", fontWeight: 700 }}>
+          <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
             Community Calendar · Los Angeles
           </span>
           <h1 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(60px, 9vw, 140px)", lineHeight: 0.9, color: "#fff", marginBottom: 32 }}>
@@ -78,11 +78,11 @@ export default async function CalendarPage() {
                   >
                     <div>
                       <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
-                        <span style={{ display: "inline-block", background: ev.status === "Active" ? "#22c55e" : "var(--gold)", color: "#000", fontSize: 10, letterSpacing: "2px", fontWeight: 700, padding: "4px 10px", fontFamily: "LOT, Poppins, sans-serif", textTransform: "uppercase" }}>
+                        <span style={{ display: "inline-block", background: ev.status === "Active" ? "#22c55e" : "var(--gold)", color: "#000", fontSize: 10, letterSpacing: "2px", fontWeight: 700, padding: "4px 10px", fontFamily: "Poppins, sans-serif", textTransform: "uppercase" }}>
                           {ev.status}
                         </span>
                         {ev.programTitle && (
-                          <span style={{ display: "inline-block", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.5)", fontSize: 10, letterSpacing: "2px", fontWeight: 700, padding: "4px 10px", fontFamily: "LOT, Poppins, sans-serif", textTransform: "uppercase" }}>
+                          <span style={{ display: "inline-block", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.5)", fontSize: 10, letterSpacing: "2px", fontWeight: 700, padding: "4px 10px", fontFamily: "Poppins, sans-serif", textTransform: "uppercase" }}>
                             {ev.programTitle}
                           </span>
                         )}
@@ -99,7 +99,7 @@ export default async function CalendarPage() {
                       <span style={{ fontSize: 15, color: "var(--gold)", fontWeight: 600 }}>
                         {ev.dateStart}{ev.dateEnd && ` – ${ev.dateEnd}`}
                       </span>
-                      <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "LOT, Poppins, sans-serif", fontWeight: 700 }}>
+                      <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
                         Get Involved →
                       </span>
                     </div>
@@ -191,7 +191,7 @@ export default async function CalendarPage() {
               Volunteer, sponsor, or just show up. Every person counts.
             </p>
           </div>
-          <Link href="/get-involved" style={{ display: "inline-block", background: "#000", color: "var(--gold)", padding: "18px 48px", fontFamily: "LOT, Poppins, sans-serif", fontSize: 13, letterSpacing: "3px", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>
+          <Link href="/get-involved" style={{ display: "inline-block", background: "#000", color: "var(--gold)", padding: "18px 48px", fontFamily: "Poppins, sans-serif", fontSize: 13, letterSpacing: "3px", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>
             Get Involved →
           </Link>
         </div>

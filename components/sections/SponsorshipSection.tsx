@@ -36,7 +36,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
           textTransform: "uppercase",
           color: "var(--gold)",
           marginBottom: 20,
-          fontFamily: "LOT, Poppins, sans-serif",
+          fontFamily: "Poppins, sans-serif",
           fontWeight: 700,
         }}
       >
@@ -58,7 +58,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
         <div key={groupName} style={{ marginBottom: 40 }}>
           <h3
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(18px, 2vw, 26px)",
               color: "rgba(255,255,255,0.5)",
               marginBottom: 16,
@@ -171,7 +171,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                           letterSpacing: "2px",
                           textTransform: "uppercase",
                           color: pkg.featured ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.4)",
-                          fontFamily: "LOT, Poppins, sans-serif",
+                          fontFamily: "Poppins, sans-serif",
                         }}
                       >
                         Click to see deliverables
@@ -188,7 +188,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                           background: pkg.featured ? "#000" : "var(--gold)",
                           color: pkg.featured ? "var(--gold)" : "#000",
                           padding: "14px 32px",
-                          fontFamily: "LOT, Poppins, sans-serif",
+                          fontFamily: "Poppins, sans-serif",
                           fontSize: 12,
                           letterSpacing: "3px",
                           textTransform: "uppercase",

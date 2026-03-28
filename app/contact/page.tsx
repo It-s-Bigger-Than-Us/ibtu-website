@@ -42,7 +42,7 @@ export default function ContactPage() {
               textTransform: "uppercase",
               color: "var(--gold)",
               marginBottom: 20,
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
             }}
           >
@@ -91,7 +91,7 @@ export default function ContactPage() {
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "var(--gold)",
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
                 marginBottom: 32,
               }}
@@ -156,7 +156,7 @@ export default function ContactPage() {
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "var(--gold)",
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
                 marginBottom: 32,
               }}
@@ -311,7 +311,7 @@ export default function ContactPage() {
                   background: "var(--gold)",
                   color: "#000",
                   padding: "18px 48px",
-                  fontFamily: "LOT, Poppins, sans-serif",
+                  fontFamily: "Poppins, sans-serif",
                   fontSize: 13,
                   letterSpacing: "3px",
                   textTransform: "uppercase",

@@ -36,7 +36,7 @@ export default async function AwardsPage() {
               textTransform: "uppercase",
               color: "rgba(0,0,0,0.5)",
               marginBottom: 20,
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
             }}
           >
@@ -101,7 +101,7 @@ export default async function AwardsPage() {
                           display: "inline-block",
                           background: "var(--gold)",
                           color: "#000",
-                          fontFamily: "LOT, Poppins, sans-serif",
+                          fontFamily: "Poppins, sans-serif",
                           fontSize: 13,
                           fontWeight: 700,
                           padding: "6px 12px",
@@ -114,7 +114,7 @@ export default async function AwardsPage() {
                     <div>
                       <h3
                         style={{
-                          fontFamily: "LOT, Poppins, sans-serif",
+                          fontFamily: "Poppins, sans-serif",
                           fontSize: "clamp(16px, 1.8vw, 24px)",
                           color: "#fff",
                           fontWeight: 700,
@@ -167,7 +167,7 @@ export default async function AwardsPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               marginBottom: 20,
             }}

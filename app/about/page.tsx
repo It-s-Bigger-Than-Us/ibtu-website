@@ -19,7 +19,7 @@ export default async function AboutPage() {
 
         {/* Hero */}
         <div style={{ padding: "140px 80px 100px 80px" }}>
-          <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, fontFamily: "LOT, Poppins, sans-serif", fontWeight: 700 }}>
+          <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
             Founded 2020 · Los Angeles
           </span>
           <h1 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(60px, 9vw, 140px)", lineHeight: 0.9, color: "#fff", marginBottom: 32 }}>
@@ -40,7 +40,7 @@ export default async function AboutPage() {
         <div style={{ background: "var(--gold)", padding: "100px 80px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
             <div>
-              <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: "LOT, Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
+              <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
                 How It Started
               </span>
               <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(36px, 4.5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 28 }}>
@@ -60,7 +60,7 @@ export default async function AboutPage() {
               </p>
             </div>
             <div>
-              <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: "LOT, Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
+              <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
                 How It Works
               </span>
               <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(36px, 4.5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 28 }}>
@@ -81,7 +81,7 @@ export default async function AboutPage() {
 
         {/* Mission & Vision */}
         <div style={{ padding: "100px 80px", maxWidth: 800 }}>
-          <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "LOT, Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
+          <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
             Mission
           </span>
           <p style={{ fontSize: "clamp(18px, 1.8vw, 26px)", color: "#fff", lineHeight: 1.65, marginBottom: 60 }}>
@@ -91,7 +91,7 @@ export default async function AboutPage() {
             community, and built to last.
           </p>
 
-          <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "LOT, Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
+          <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
             Vision
           </span>
           <p style={{ fontSize: "clamp(18px, 1.8vw, 26px)", color: "#fff", lineHeight: 1.65 }}>
@@ -110,7 +110,7 @@ export default async function AboutPage() {
           ].map((p) => (
             <Link key={p.tag} href={p.href} style={{ textDecoration: "none" }}>
               <div style={{ background: "var(--gold)", padding: "60px 44px", minHeight: 280, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-                <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", fontFamily: "LOT, Poppins, sans-serif", fontWeight: 700, marginBottom: 14 }}>{p.tag}</span>
+                <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 14 }}>{p.tag}</span>
                 <h3 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(28px, 3vw, 44px)", lineHeight: 0.95, color: "#000", marginBottom: 16 }}>{p.title.toUpperCase()}</h3>
                 <p style={{ fontSize: 14, color: "#000", lineHeight: 1.6 }}>{p.desc}</p>
               </div>
@@ -166,7 +166,7 @@ export default async function AboutPage() {
             Every volunteer shift, every sponsorship dollar, every shared post
             expands the reach of community-built infrastructure.
           </p>
-          <Link href="/get-involved" style={{ display: "inline-block", background: "#000", color: "var(--gold)", padding: "18px 48px", fontFamily: "LOT, Poppins, sans-serif", fontSize: 13, letterSpacing: "3px", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>
+          <Link href="/get-involved" style={{ display: "inline-block", background: "#000", color: "var(--gold)", padding: "18px 48px", fontFamily: "Poppins, sans-serif", fontSize: 13, letterSpacing: "3px", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>
             Get Involved →
           </Link>
         </div>

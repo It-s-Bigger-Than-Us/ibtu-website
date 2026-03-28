@@ -110,7 +110,7 @@ export default function FireReliefPage() {
                 textTransform: "uppercase",
                 color: "var(--gold)",
                 marginBottom: 20,
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
               }}
             >
@@ -153,7 +153,7 @@ export default function FireReliefPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               marginBottom: 20,
             }}
@@ -187,7 +187,7 @@ export default function FireReliefPage() {
                 <div>
                   <span
                     style={{
-                      fontFamily: "LOT, Poppins, sans-serif",
+                      fontFamily: "Poppins, sans-serif",
                       fontWeight: 700,
                       fontSize: 13,
                       letterSpacing: "3px",
@@ -245,7 +245,7 @@ export default function FireReliefPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               marginBottom: 20,
             }}
@@ -300,7 +300,7 @@ export default function FireReliefPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               marginBottom: 20,
             }}
@@ -357,7 +357,7 @@ export default function FireReliefPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               marginBottom: 20,
             }}
@@ -449,7 +449,7 @@ export default function FireReliefPage() {
                 background: "#000",
                 color: "var(--gold)",
                 padding: "18px 48px",
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontSize: 13,
                 letterSpacing: "3px",
                 textTransform: "uppercase",
@@ -468,7 +468,7 @@ export default function FireReliefPage() {
                 background: "transparent",
                 color: "#000",
                 padding: "18px 48px",
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontSize: 13,
                 letterSpacing: "3px",
                 textTransform: "uppercase",

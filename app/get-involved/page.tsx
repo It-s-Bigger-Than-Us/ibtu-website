@@ -70,7 +70,7 @@ export default async function GetInvolvedPage() {
               textTransform: "uppercase",
               color: "var(--gold)",
               marginBottom: 20,
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
             }}
           >
@@ -173,7 +173,7 @@ export default async function GetInvolvedPage() {
                       letterSpacing: "3px",
                       textTransform: "uppercase",
                       color: "var(--gold)",
-                      fontFamily: "LOT, Poppins, sans-serif",
+                      fontFamily: "Poppins, sans-serif",
                       fontWeight: 700,
                     }}
                   >
@@ -226,7 +226,7 @@ export default async function GetInvolvedPage() {
                   <div>
                     <div
                       style={{
-                        fontFamily: "LOT, Poppins, sans-serif",
+                        fontFamily: "Poppins, sans-serif",
                         fontSize: "clamp(16px, 1.8vw, 24px)",
                         color: "#fff",
                         fontWeight: 700,
@@ -243,7 +243,7 @@ export default async function GetInvolvedPage() {
                       fontSize: 11,
                       letterSpacing: "3px",
                       color: "var(--gold)",
-                      fontFamily: "LOT, Poppins, sans-serif",
+                      fontFamily: "Poppins, sans-serif",
                       fontWeight: 700,
                       textTransform: "uppercase",
                     }}
@@ -294,7 +294,7 @@ export default async function GetInvolvedPage() {
               background: "#000",
               color: "var(--gold)",
               padding: "18px 48px",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: 13,
               letterSpacing: "3px",
               textTransform: "uppercase",
@@ -386,7 +386,7 @@ export default async function GetInvolvedPage() {
                 background: "var(--gold)",
                 color: "#000",
                 padding: "18px 48px",
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontSize: 13,
                 letterSpacing: "3px",
                 textTransform: "uppercase",
@@ -440,7 +440,7 @@ export default async function GetInvolvedPage() {
               border: "1px solid rgba(255,199,0,0.6)",
               color: "var(--gold)",
               padding: "18px 48px",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: 13,
               letterSpacing: "3px",
               textTransform: "uppercase",
@@ -467,7 +467,7 @@ export default async function GetInvolvedPage() {
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.4)",
               textDecoration: "none",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
             }}
           >

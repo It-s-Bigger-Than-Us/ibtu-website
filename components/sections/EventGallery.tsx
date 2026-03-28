@@ -82,7 +82,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 </span>
                 <div
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(16px, 1.6vw, 22px)",
                     color: "#fff",
                     fontWeight: 700,
@@ -105,7 +105,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   color: "var(--gold)",
-                  fontFamily: "LOT, Poppins, sans-serif",
+                  fontFamily: "Poppins, sans-serif",
                   fontWeight: 700,
                 }}
               >
@@ -158,7 +158,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 color: "rgba(255,255,255,0.5)",
                 fontSize: 24,
                 cursor: "pointer",
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
               }}
             >
               ×
@@ -173,7 +173,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 textTransform: "uppercase",
                 color: "var(--gold)",
                 marginBottom: 16,
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
               }}
             >
@@ -214,7 +214,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                     letterSpacing: "2px",
                     textTransform: "uppercase",
                     color: "rgba(0,0,0,0.5)",
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontWeight: 700,
                     display: "block",
                     marginBottom: 8,

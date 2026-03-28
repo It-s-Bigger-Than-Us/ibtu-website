@@ -36,7 +36,7 @@ export default async function PartnersPage() {
               textTransform: "uppercase",
               color: "var(--gold)",
               marginBottom: 20,
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
             }}
           >
@@ -87,7 +87,7 @@ export default async function PartnersPage() {
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   color: "var(--gold)",
-                  fontFamily: "LOT, Poppins, sans-serif",
+                  fontFamily: "Poppins, sans-serif",
                   fontWeight: 700,
                   marginBottom: 24,
                 }}
@@ -156,7 +156,7 @@ export default async function PartnersPage() {
               background: "#000",
               color: "var(--gold)",
               padding: "18px 48px",
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: 13,
               letterSpacing: "3px",
               textTransform: "uppercase",

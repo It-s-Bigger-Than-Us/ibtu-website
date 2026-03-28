@@ -31,7 +31,7 @@ export default async function ProgramsPage() {
               textTransform: "uppercase",
               color: "var(--gold)",
               marginBottom: 20,
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
             }}
           >
@@ -104,7 +104,7 @@ export default async function ProgramsPage() {
                     background: "#000",
                     color: "var(--gold)",
                     padding: "5px 12px",
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontWeight: 700,
                   }}
                 >
@@ -119,7 +119,7 @@ export default async function ProgramsPage() {
                     color: "rgba(0,0,0,0.5)",
                     marginBottom: 14,
                     fontWeight: 700,
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                   }}
                 >
                   {prog.pillar}
@@ -161,7 +161,7 @@ export default async function ProgramsPage() {
                       fontSize: 11,
                       letterSpacing: "3px",
                       textTransform: "uppercase",
-                      fontFamily: "LOT, Poppins, sans-serif",
+                      fontFamily: "Poppins, sans-serif",
                       color: "#000",
                       fontWeight: 700,
                       borderBottom: "2px solid #000",

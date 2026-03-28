@@ -44,7 +44,7 @@ export default async function EventsPage() {
               textTransform: "uppercase",
               color: "var(--gold)",
               marginBottom: 20,
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
             }}
           >
@@ -112,7 +112,7 @@ export default async function EventsPage() {
                             fontWeight: 700,
                             padding: "3px 10px",
                             marginBottom: 10,
-                            fontFamily: "LOT, Poppins, sans-serif",
+                            fontFamily: "Poppins, sans-serif",
                             textTransform: "uppercase",
                           }}
                         >
@@ -129,6 +129,7 @@ export default async function EventsPage() {
                           }}
                         >
                           {ev.title}
+
                         </div>
                         <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
                           {prog?.title} · {ev.location}
@@ -199,7 +200,7 @@ export default async function EventsPage() {
                     textTransform: "uppercase",
                     color: "rgba(255,255,255,0.5)",
                     textDecoration: "none",
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontWeight: 700,
                   }}
                 >
