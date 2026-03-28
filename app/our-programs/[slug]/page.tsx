@@ -5,7 +5,7 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { getPrograms, getProgramBySlug, getEventsByProgram, getSponsorPackages } from "@/sanity/lib/fetch";
 import SponsorshipSection from "@/components/sections/SponsorshipSection";
-import EventGallery from "@/components/sections/EventGallery";
+import EventGallery3D from "@/components/sections/EventGallery3D";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -310,8 +310,8 @@ export default async function ProgramPage({ params }: Props) {
               </>
             )}
 
-            {/* Past Events — Gallery Popup */}
-            <EventGallery events={pastEvents} />
+            {/* Past Events — 3D Glass Gallery */}
+            <EventGallery3D events={pastEvents} />
           </div>
         )}
 
