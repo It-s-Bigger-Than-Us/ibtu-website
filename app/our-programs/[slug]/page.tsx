@@ -38,337 +38,552 @@ export default async function ProgramPage({ params }: Props) {
   const upcomingEvents = events.filter((e: any) => e.status === "Upcoming" || e.status === "Active");
   const pastEvents = events.filter((e: any) => e.status === "Closed");
 
-  const stats = program.proofStats.split("|").map((s: any) => s.trim());
+  const stats = program.proofStats
+    ? program.proofStats.split("|").map((s: any) => s.trim())
+    : [];
+
+  const heroSrc = program.heroImage?.asset?._ref
+    ? `https://cdn.sanity.io/images/0m4ngfcw/production/${program.heroImage.asset._ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}`
+    : null;
+
+  const VIDEO_1 = "https://video.wixstatic.com/video/a11c28_22a0fdd69fb348d4a65cc8b7e81e1f81/720p/mp4/file.mp4";
+  const VIDEO_2 = "https://video.wixstatic.com/video/a11c28_22a0fdd69fb348d4a65cc8b7e81e1f81/720p/mp4/file.mp4";
 
   return (
     <>
       <Nav />
       <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
 
-        {/* Hero */}
-        <div
+        {/* ──────────────────────────────────────────────
+            1. FULL-SCREEN HERO
+        ────────────────────────────────────────────── */}
+        <section
           style={{
-            minHeight: "70vh",
+            minHeight: "100vh",
             position: "relative",
             overflow: "hidden",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
-            padding: "120px 80px 80px 80px",
+            padding: "160px 80px 100px 80px",
           }}
         >
-          {/* Background image */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={program.heroImage}
-            alt={program.title}
+          {/* Hero background image */}
+          {heroSrc && (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={heroSrc}
+                alt={program.title}
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  opacity: 0.3,
+                }}
+              />
+            </>
+          )}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to top, #000 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.2) 100%)",
+            }}
+          />
+
+          <div style={{ position: "relative", zIndex: 1 }}>
+            {/* Back link */}
+            <Link
+              href="/our-programs"
+              style={{
+                display: "inline-block",
+                fontSize: 12,
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                color: "#FFC700",
+                marginBottom: 40,
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 600,
+                textDecoration: "none",
+              }}
+            >
+              ← Our Programs
+            </Link>
+
+            {/* Pillar eyebrow */}
+            <div
+              style={{
+                fontSize: 11,
+                letterSpacing: "4px",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.45)",
+                marginBottom: 20,
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 600,
+              }}
+            >
+              {program.pillar}
+            </div>
+
+            {/* Program title — massive LOT */}
+            <h1
+              style={{
+                fontFamily: "LOT, Poppins, sans-serif",
+                fontSize: "clamp(60px, 10vw, 140px)",
+                lineHeight: 0.88,
+                color: "#FFF",
+                marginBottom: 36,
+                maxWidth: "14ch",
+              }}
+            >
+              {program.title.toUpperCase()}
+            </h1>
+
+            {/* Tagline */}
+            <p
+              style={{
+                fontSize: "clamp(17px, 1.5vw, 22px)",
+                color: "rgba(255,255,255,0.8)",
+                maxWidth: 700,
+                lineHeight: 1.7,
+                marginBottom: 48,
+                fontFamily: "Poppins, sans-serif",
+              }}
+            >
+              {program.tagline}
+            </p>
+
+            {/* CTA buttons */}
+            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+              {program.volunteerUrl && (
+                <a
+                  href={program.volunteerUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-block",
+                    background: "#FFC700",
+                    color: "#000",
+                    padding: "18px 40px",
+                    fontFamily: "Poppins, sans-serif",
+                    fontSize: 12,
+                    letterSpacing: "3px",
+                    textTransform: "uppercase",
+                    fontWeight: 700,
+                    textDecoration: "none",
+                  }}
+                >
+                  Volunteer →
+                </a>
+              )}
+              <Link
+                href="/get-involved"
+                style={{
+                  display: "inline-block",
+                  border: "1px solid rgba(255,255,255,0.4)",
+                  color: "#FFF",
+                  padding: "18px 40px",
+                  fontFamily: "Poppins, sans-serif",
+                  fontSize: 12,
+                  letterSpacing: "3px",
+                  textTransform: "uppercase",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                }}
+              >
+                {program.ctaText}
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ──────────────────────────────────────────────
+            2. STATS STRIP — Gold bar, horizontal scroll
+        ────────────────────────────────────────────── */}
+        {stats.length > 0 && (
+          <section
+            style={{
+              background: "#FFC700",
+              padding: "48px 80px",
+              overflowX: "auto",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                gap: 60,
+                minWidth: "max-content",
+              }}
+            >
+              {stats.map((stat: any, i: number) => {
+                const parts = stat.split(" ");
+                const number = parts[0];
+                const label = parts.slice(1).join(" ");
+                return (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      borderRight: i < stats.length - 1 ? "1px solid rgba(0,0,0,0.15)" : "none",
+                      paddingRight: i < stats.length - 1 ? 60 : 0,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "Poppins, sans-serif",
+                        fontWeight: 900,
+                        fontSize: "clamp(32px, 4vw, 56px)",
+                        color: "#000",
+                        letterSpacing: "-1px",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {number}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "Poppins, sans-serif",
+                        fontSize: 13,
+                        color: "#000",
+                        fontWeight: 600,
+                        marginTop: 6,
+                        textTransform: "uppercase",
+                        letterSpacing: "1px",
+                      }}
+                    >
+                      {label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        {/* ──────────────────────────────────────────────
+            3. FULL-FRAME VIDEO — 100vh
+        ────────────────────────────────────────────── */}
+        <section
+          style={{
+            position: "relative",
+            height: "100vh",
+            overflow: "hidden",
+            background: "#000",
+          }}
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
             style={{
               position: "absolute",
               inset: 0,
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              opacity: 0.35,
             }}
-          />
+          >
+            <source src={VIDEO_1} type="video/mp4" />
+          </video>
           <div
             style={{
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.3) 70%, transparent 100%)",
+                "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%)",
             }}
           />
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <Link
-              href="/our-programs"
-              style={{
-                display: "inline-block",
-                fontSize: 11,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "var(--gold)",
-                marginBottom: 20,
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 700,
-                textDecoration: "none",
-              }}
-            >
-              ← Our Programs
-            </Link>
-            <div
-              style={{
-                fontSize: 11,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.5)",
-                marginBottom: 16,
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 700,
-              }}
-            >
-              {program.pillar} · {program.scheduleType}
-            </div>
-            <h1
-              style={{
-                fontFamily: "LOT, Poppins, sans-serif",
-                fontSize: "clamp(52px, 8vw, 120px)",
-                lineHeight: 0.9,
-                color: "#fff",
-                marginBottom: 32,
-              }}
-            >
-              {program.title.toUpperCase()}
-            </h1>
-            <p
-              style={{
-                fontSize: "clamp(16px, 1.5vw, 22px)",
-                color: "rgba(255,255,255,0.85)",
-                maxWidth: 700,
-                lineHeight: 1.7,
-                marginBottom: 40,
-              }}
-            >
-              {program.tagline}
-            </p>
-            {program.volunteerUrl ? (
-              <a
-                href={program.volunteerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-block",
-                  background: "var(--gold)",
-                  color: "#000",
-                  padding: "16px 36px",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: 13,
-                  letterSpacing: "3px",
-                  textTransform: "uppercase",
-                  fontWeight: 700,
-                  textDecoration: "none",
-                  marginRight: 16,
-                }}
-              >
-                Volunteer →
-              </a>
-            ) : null}
-            <Link
-              href="/get-involved"
-              style={{
-                display: "inline-block",
-                border: "1px solid rgba(255,255,255,0.5)",
-                color: "#fff",
-                padding: "16px 36px",
-                fontFamily: "Poppins, sans-serif",
-                fontSize: 13,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                fontWeight: 700,
-                textDecoration: "none",
-              }}
-            >
-              {program.ctaText}
-            </Link>
-          </div>
-        </div>
-
-        {/* Proof Stats Bar */}
-        <div
-          style={{
-            background: "var(--gold)",
-            padding: "52px 80px",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "40px 60px",
-          }}
-        >
-          {stats.map((stat: any, i: number) => (
-            <div key={i}>
-              <span
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 900,
-                  fontSize: "clamp(28px, 3.5vw, 52px)",
-                  color: "#000",
-                  letterSpacing: -1,
-                  display: "block",
-                  lineHeight: 1,
-                }}
-              >
-                {stat.split(" ")[0]}
-              </span>
-              <span
-                style={{
-                  fontSize: 13,
-                  color: "#000",
-                  fontWeight: 600,
-                  display: "block",
-                  marginTop: 4,
-                }}
-              >
-                {stat.split(" ").slice(1).join(" ")}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Description */}
-        <div style={{ padding: "80px 80px 60px 80px", maxWidth: 800 }}>
-          <p
-            style={{
-              fontSize: "clamp(17px, 1.5vw, 22px)",
-              color: "rgba(255,255,255,0.85)",
-              lineHeight: 1.8,
-            }}
-          >
-            {program.description}
-          </p>
-        </div>
-
-        {/* Events */}
-        {events.length > 0 && (
-          <div style={{ padding: "0 80px 80px 80px" }}>
-            {upcomingEvents.length > 0 && (
-              <>
-                <h2
-                  style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
-                    fontSize: "clamp(32px, 4vw, 56px)",
-                    color: "var(--gold)",
-                    marginBottom: 32,
-                    lineHeight: 0.95,
-                  }}
-                >
-                  UPCOMING
-                </h2>
-                <div style={{ display: "flex", flexDirection: "column", gap: 2, marginBottom: 60 }}>
-                  {upcomingEvents.map((ev: any, i: number) => (
-                    <div
-                      key={i}
-                      style={{
-                        background: "#111",
-                        border: "1px solid rgba(255,199,0,0.2)",
-                        padding: "28px 32px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "flex-start",
-                        gap: 24,
-                      }}
-                    >
-                      <div style={{ flex: 1 }}>
-                        <span
-                          style={{
-                            display: "inline-block",
-                            background: "var(--gold)",
-                            color: "#000",
-                            fontSize: 11,
-                            letterSpacing: "2px",
-                            fontWeight: 700,
-                            padding: "4px 10px",
-                            marginBottom: 12,
-                            fontFamily: "Poppins, sans-serif",
-                            textTransform: "uppercase",
-                          }}
-                        >
-                          {ev.status}
-                        </span>
-                        <div
-                          style={{
-                            fontFamily: "LOT, Poppins, sans-serif",
-                            fontSize: "clamp(18px, 2vw, 26px)",
-                            color: "#fff",
-                            fontWeight: 700,
-                            lineHeight: 1.1,
-                            marginBottom: 8,
-                          }}
-                        >
-                          {ev.title}
-                        </div>
-                        <div style={{ fontSize: 14, color: "rgba(255,255,255,0.55)" }}>
-                          {ev.location}
-                          {ev.proofStats && (
-                            <> · {ev.proofStats}</>
-                          )}
-                        </div>
-                      </div>
-                      <div
-                        style={{
-                          textAlign: "right",
-                          whiteSpace: "nowrap",
-                          fontSize: 13,
-                          color: "var(--gold)",
-                          fontWeight: 600,
-                        }}
-                      >
-                        {ev.dateStart}
-                        {ev.dateEnd && <> – {ev.dateEnd}</>}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-
-            {/* Past Events — 3D Glass Gallery */}
-            <EventGallery3D events={pastEvents} />
-          </div>
-        )}
-
-        {/* Sponsorship Packages */}
-        <SponsorshipSection packages={sponsorPackages} programTitle={program.title} />
-
-        {/* Partners */}
-        {program.keyPartners && (
           <div
             style={{
-              padding: "60px 80px",
-              borderTop: "1px solid rgba(255,255,255,0.08)",
+              position: "absolute",
+              bottom: 48,
+              left: 80,
+              zIndex: 1,
             }}
           >
-            <h3
+            <p
               style={{
-                fontFamily: "LOT, Poppins, sans-serif",
-                fontSize: "clamp(24px, 2.5vw, 36px)",
-                color: "#fff",
-                marginBottom: 20,
+                fontFamily: "Poppins, sans-serif",
+                fontSize: 13,
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.5)",
               }}
             >
-              KEY PARTNERS
-            </h3>
-            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.55)", lineHeight: 1.7 }}>
-              {program.keyPartners}
+              {program.title} — In Action
             </p>
           </div>
-        )}
+        </section>
 
-        {/* CTA */}
-        <div
+        {/* ──────────────────────────────────────────────
+            4. DESCRIPTION — Editorial, spacious
+        ────────────────────────────────────────────── */}
+        <section
           style={{
-            background: "var(--gold)",
-            padding: "80px 80px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 40,
-            flexWrap: "wrap",
+            background: "#000",
+            padding: "120px 80px",
           }}
         >
-          <div>
+          <div style={{ maxWidth: 800 }}>
+            <p
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                fontSize: "clamp(18px, 1.6vw, 22px)",
+                color: "rgba(255,255,255,0.85)",
+                lineHeight: 1.8,
+                letterSpacing: "0.2px",
+              }}
+            >
+              {program.description}
+            </p>
+          </div>
+        </section>
+
+        {/* ──────────────────────────────────────────────
+            5. SECOND FULL-FRAME VIDEO
+        ────────────────────────────────────────────── */}
+        <section
+          style={{
+            position: "relative",
+            height: "100vh",
+            overflow: "hidden",
+            background: "#000",
+          }}
+        >
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          >
+            <source src={VIDEO_2} type="video/mp4" />
+          </video>
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%)",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: 48,
+              left: 80,
+              zIndex: 1,
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                fontSize: 13,
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.5)",
+              }}
+            >
+              {program.title} — Community Impact
+            </p>
+          </div>
+        </section>
+
+        {/* ──────────────────────────────────────────────
+            6. UPCOMING EVENTS
+        ────────────────────────────────────────────── */}
+        {upcomingEvents.length > 0 && (
+          <section style={{ padding: "120px 80px 80px 80px" }}>
             <h2
               style={{
                 fontFamily: "LOT, Poppins, sans-serif",
-                fontSize: "clamp(36px, 5vw, 72px)",
+                fontSize: "clamp(36px, 5vw, 64px)",
+                color: "#FFC700",
+                marginBottom: 48,
                 lineHeight: 0.95,
+              }}
+            >
+              UPCOMING
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              {upcomingEvents.map((ev: any, i: number) => (
+                <div
+                  key={i}
+                  style={{
+                    background: "#0A0A0A",
+                    border: "1px solid rgba(255,199,0,0.12)",
+                    padding: "36px 40px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    gap: 32,
+                  }}
+                >
+                  <div style={{ flex: 1 }}>
+                    <span
+                      style={{
+                        display: "inline-block",
+                        background: "#FFC700",
+                        color: "#000",
+                        fontSize: 10,
+                        letterSpacing: "2px",
+                        fontWeight: 700,
+                        padding: "5px 12px",
+                        marginBottom: 16,
+                        fontFamily: "Poppins, sans-serif",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {ev.status}
+                    </span>
+                    <div
+                      style={{
+                        fontFamily: "LOT, Poppins, sans-serif",
+                        fontSize: "clamp(20px, 2.2vw, 28px)",
+                        color: "#FFF",
+                        fontWeight: 700,
+                        lineHeight: 1.1,
+                        marginBottom: 10,
+                      }}
+                    >
+                      {ev.title}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "Poppins, sans-serif",
+                        fontSize: 14,
+                        color: "rgba(255,255,255,0.45)",
+                        lineHeight: 1.5,
+                      }}
+                    >
+                      {ev.location}
+                      {ev.proofStats && <> · {ev.proofStats}</>}
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      textAlign: "right",
+                      whiteSpace: "nowrap",
+                      fontFamily: "Poppins, sans-serif",
+                      fontSize: 13,
+                      color: "#FFC700",
+                      fontWeight: 600,
+                      paddingTop: 4,
+                    }}
+                  >
+                    {ev.dateStart}
+                    {ev.dateEnd && <> – {ev.dateEnd}</>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* ──────────────────────────────────────────────
+            7. PAST EVENTS — 3D Gallery
+        ────────────────────────────────────────────── */}
+        {pastEvents.length > 0 && (
+          <section style={{ padding: "40px 80px 120px 80px" }}>
+            <EventGallery3D events={pastEvents} />
+          </section>
+        )}
+
+        {/* ──────────────────────────────────────────────
+            8. SPONSORSHIP PACKAGES
+        ────────────────────────────────────────────── */}
+        <SponsorshipSection packages={sponsorPackages} programTitle={program.title} />
+
+        {/* ──────────────────────────────────────────────
+            9. KEY PARTNERS
+        ────────────────────────────────────────────── */}
+        {program.keyPartners && (
+          <section
+            style={{
+              padding: "100px 80px",
+              borderTop: "1px solid rgba(255,255,255,0.06)",
+            }}
+          >
+            <div
+              style={{
+                fontSize: 11,
+                letterSpacing: "4px",
+                textTransform: "uppercase",
+                color: "#FFC700",
+                marginBottom: 20,
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 600,
+              }}
+            >
+              Key Partners
+            </div>
+            <p
+              style={{
+                fontFamily: "Poppins, sans-serif",
+                fontSize: 16,
+                color: "rgba(255,255,255,0.5)",
+                lineHeight: 1.8,
+                maxWidth: 700,
+              }}
+            >
+              {program.keyPartners}
+            </p>
+          </section>
+        )}
+
+        {/* ──────────────────────────────────────────────
+            10. CTA BANNER — Gold
+        ────────────────────────────────────────────── */}
+        <section
+          style={{
+            background: "#FFC700",
+            padding: "100px 80px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 48,
+            flexWrap: "wrap",
+          }}
+        >
+          <div style={{ flex: 1, minWidth: 280 }}>
+            <h2
+              style={{
+                fontFamily: "LOT, Poppins, sans-serif",
+                fontSize: "clamp(40px, 6vw, 80px)",
+                lineHeight: 0.92,
                 color: "#000",
-                marginBottom: 12,
+                marginBottom: 16,
               }}
             >
               {program.ctaText.toUpperCase()}
             </h2>
-            <p style={{ fontSize: 16, color: "#000", maxWidth: 480 }}>
-              {program.allTimeServed}
-            </p>
+            {program.allTimeServed && (
+              <p
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  fontSize: 16,
+                  color: "#000",
+                  maxWidth: 500,
+                  lineHeight: 1.6,
+                }}
+              >
+                {program.allTimeServed}
+              </p>
+            )}
           </div>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             {program.volunteerUrl && (
@@ -379,10 +594,10 @@ export default async function ProgramPage({ params }: Props) {
                 style={{
                   display: "inline-block",
                   background: "#000",
-                  color: "var(--gold)",
-                  padding: "18px 40px",
+                  color: "#FFC700",
+                  padding: "18px 44px",
                   fontFamily: "Poppins, sans-serif",
-                  fontSize: 13,
+                  fontSize: 12,
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
@@ -398,9 +613,9 @@ export default async function ProgramPage({ params }: Props) {
                 display: "inline-block",
                 border: "2px solid #000",
                 color: "#000",
-                padding: "18px 40px",
+                padding: "18px 44px",
                 fontFamily: "Poppins, sans-serif",
-                fontSize: 13,
+                fontSize: 12,
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 fontWeight: 700,
@@ -410,7 +625,8 @@ export default async function ProgramPage({ params }: Props) {
               Get Involved
             </Link>
           </div>
-        </div>
+        </section>
+
       </main>
       <Footer />
     </>

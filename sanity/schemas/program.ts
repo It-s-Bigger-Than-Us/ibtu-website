@@ -24,6 +24,22 @@ export default defineType({
     defineField({ name: "icon", title: "Icon Key", type: "string", options: { list: ["fire", "school", "youth", "beach", "gift", "wellness", "food"] } }),
     defineField({ name: "keyPartners", title: "Key Partners", type: "text", rows: 3 }),
     defineField({ name: "notableParticipants", title: "Notable Participants", type: "text", rows: 3 }),
+    defineField({
+      name: "videos",
+      title: "Program Videos",
+      type: "array",
+      of: [{
+        type: "object",
+        fields: [
+          { name: "title", title: "Video Title", type: "string" },
+          { name: "url", title: "Video URL (MP4 or embed)", type: "url" },
+          { name: "caption", title: "Caption", type: "string" },
+        ],
+      }],
+      description: "Full-frame videos displayed on the program page",
+    }),
+    defineField({ name: "howItWorks", title: "How It Works", type: "text", rows: 6, description: "Operational detail for the program page" }),
+    defineField({ name: "impactStory", title: "Impact Story", type: "text", rows: 6, description: "A narrative impact story for the program page" }),
   ],
   orderings: [{ title: "Sort Order", name: "sortOrder", by: [{ field: "sortOrder", direction: "asc" }] }],
 });
