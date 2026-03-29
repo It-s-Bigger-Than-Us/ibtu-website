@@ -7,8 +7,7 @@ import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/
 import EventGallery3D from "@/components/sections/EventGallery3D";
 import ScrollText from "@/components/ui/ScrollText";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
-// ImageTile available for future tiled image sections
-// import ImageTile from "@/components/ui/ImageTile";
+import StickyFlipbook from "@/components/ui/StickyFlipbook";
 
 export const revalidate = 60;
 
@@ -334,6 +333,22 @@ export default async function ProgramPage({ params }: Props) {
             </div>
           </RevealOnScroll>
         </section>
+
+        {/* ──────────────────────────────────────────────
+            4b. STICKY FLIPBOOK — program photos
+        ────────────────────────────────────────────── */}
+        {program.cardImages && program.cardImages.length > 0 && (
+          <StickyFlipbook
+            images={program.cardImages.map((img: any, i: number) => ({
+              src: img?.asset?._ref
+                ? `https://cdn.sanity.io/images/0m4ngfcw/production/${img.asset._ref.replace("image-", "").replace(/-(\w+)$/, ".$1")}?w=1600`
+                : "",
+              alt: `${program.title} photo ${i + 1}`,
+              caption: i === 0 ? program.tagline : undefined,
+            })).filter((img: any) => img.src)}
+            height="300vh"
+          />
+        )}
 
         {/* ──────────────────────────────────────────────
             5. UPCOMING EVENTS — staggered reveal cards

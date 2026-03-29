@@ -10,6 +10,19 @@ import GetInvolvedSection from "@/components/sections/GetInvolvedSection";
 import ScrollText from "@/components/ui/ScrollText";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import ImageTile from "@/components/ui/ImageTile";
+import StickyFlipbook from "@/components/ui/StickyFlipbook";
+
+// Curated photos from Sanity CDN — mix of all programs
+const FLIPBOOK_IMAGES = [
+  { src: "https://cdn.sanity.io/images/0m4ngfcw/production/632cd4ff54c9edaf0a15a4c6e6f4a5762112f3a6-5674x3783.jpg?w=1600", alt: "Back 2 School Festival", caption: "18,550+ backpacks distributed across 6 years of Back 2 School Festivals." },
+  { src: "https://cdn.sanity.io/images/0m4ngfcw/production/ade49221a64fe868c66d596336ac5f2582b98f28-3763x3010.jpg?w=1600", alt: "Youth Programming", caption: "28,025 students served across 34 school sites in 2025." },
+  { src: "https://cdn.sanity.io/images/0m4ngfcw/production/a094389f86e390c4449847533d6f13f86482cae8-4819x3377.jpg?w=1600", alt: "Coastal Care", caption: "20,463+ items removed from Venice Beach coastline." },
+  { src: "https://cdn.sanity.io/images/0m4ngfcw/production/be4abc3126994ff67875669d99476ae58d5d7c62-6240x4160.jpg?w=1600", alt: "Wellness & Health", caption: "Removing barriers to health and wellness in the places people already are." },
+  { src: "https://cdn.sanity.io/images/0m4ngfcw/production/ea3cfe071b64caafd03f990a331de54e78d47961-6240x4160.jpg?w=1600", alt: "Fire Relief", caption: "5,000+ families stabilized. 15,000+ meals. The Hub is permanent infrastructure." },
+  { src: "https://cdn.sanity.io/images/0m4ngfcw/production/c4e58bf5b5868b375ca344ef0476076e72afb5b0-6240x4160.jpg?w=1600", alt: "Community Health", caption: "875,500+ lbs of food distributed across 389+ events since 2020." },
+  { src: "https://cdn.sanity.io/images/0m4ngfcw/production/8b2e4f4af515095c32feb931a08b715564e4b205-1536x1167.jpg?w=1600", alt: "Volunteers", caption: "10,000+ Community Builders powering the work." },
+  { src: "https://cdn.sanity.io/images/0m4ngfcw/production/483a9f8a06cbe8d28e43c7de9dcc20f4ff18a328-5669x3779.jpg?w=1600", alt: "Community", caption: "Community is the infrastructure." },
+];
 
 export default function HomePage() {
   return (
@@ -97,7 +110,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 4. Stats Section */}
+        {/* 4. Sticky Flipbook — photos flip in as you scroll */}
+        <StickyFlipbook images={FLIPBOOK_IMAGES} height="500vh" />
+
+        {/* 5. Stats Section */}
         <StatsSection />
 
         {/* 5. Mission Text — editorial paragraph */}
