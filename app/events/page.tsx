@@ -4,6 +4,8 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { getAllEvents, getUpcomingEvents, getPrograms } from "@/sanity/lib/fetch";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Events | IBTU — It's Bigger Than Us",
   description:

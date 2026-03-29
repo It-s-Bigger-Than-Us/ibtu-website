@@ -5,6 +5,8 @@ import Footer from "@/components/layout/Footer";
 import { getPrograms } from "@/sanity/lib/fetch";
 import DonationEmbed from "@/components/sections/DonationEmbed";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Get Involved | IBTU — It's Bigger Than Us",
   description:

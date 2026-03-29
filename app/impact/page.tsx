@@ -5,6 +5,8 @@ import Footer from "@/components/layout/Footer";
 import { getImpactStats } from "@/sanity/lib/fetch";
 import { digitalReach } from "@/lib/data/impact-stats";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Impact | IBTU",
   description:

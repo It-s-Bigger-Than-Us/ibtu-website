@@ -6,6 +6,8 @@ import Footer from "@/components/layout/Footer";
 import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/fetch";
 import EventGallery3D from "@/components/sections/EventGallery3D";
 
+export const revalidate = 60;
+
 interface Props {
   params: Promise<{ slug: string }>;
 }

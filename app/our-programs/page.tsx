@@ -4,6 +4,8 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { getPrograms } from "@/sanity/lib/fetch";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Our Programs | IBTU — It's Bigger Than Us",
   description:

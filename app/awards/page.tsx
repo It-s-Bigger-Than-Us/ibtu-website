@@ -3,6 +3,8 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { getAwards } from "@/sanity/lib/fetch";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Awards & Recognition | IBTU",
   description:

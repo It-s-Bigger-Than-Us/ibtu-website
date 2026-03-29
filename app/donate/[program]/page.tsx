@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import DonationForm from "@/components/sections/DonationForm";
 import { getProgramBySlug, getSponsorPackages, getPrograms } from "@/sanity/lib/fetch";
+
+export const revalidate = 60;
 
 interface Props {
   params: Promise<{ program: string }>;
@@ -96,66 +97,6 @@ export default async function DonatePage({ params }: Props) {
             </h1>
             <p style={{ fontSize: "clamp(16px, 1.4vw, 20px)", color: "rgba(255,255,255,0.7)", maxWidth: 600, lineHeight: 1.7 }}>
               {program.tagline}
-            </p>
-          </div>
-        </section>
-
-        {/* Two-column layout: Donation Form + Impact */}
-        <section
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 0,
-            minHeight: "60vh",
-          }}
-        >
-          {/* Left: Donation Form */}
-          <div style={{ background: "#0a0a0a", padding: "60px 60px", borderRight: "1px solid rgba(255,199,0,0.1)" }}>
-            <h2
-              style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(28px, 3vw, 44px)", color: "#fff", marginBottom: 8 }}
-            >
-              MAKE A GIFT
-            </h2>
-            <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginBottom: 32, fontFamily: "Poppins, sans-serif" }}>
-              Every dollar goes directly to {program.title.toLowerCase()}.
-            </p>
-            <DonationForm
-              programTitle={program.title}
-              programSlug={slug}
-              qgivUrl={qgivUrl}
-              sponsorPackages={sponsorPackages.map((pkg: any) => ({
-                _id: pkg._id,
-                tierName: pkg.tierName,
-                price: pkg.price,
-                priceDisplay: pkg.priceDisplay,
-              }))}
-            />
-          </div>
-
-          {/* Right: Impact stats + why donate */}
-          <div style={{ background: "#000", padding: "60px 60px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 28, display: "block" }}>
-              Your Impact
-            </span>
-
-            {program.proofStats && program.proofStats.split("|").slice(0, 4).map((stat: string, i: number) => {
-              const parts = stat.trim().split(" ");
-              const num = parts[0];
-              const label = parts.slice(1).join(" ");
-              return (
-                <div key={i} style={{ marginBottom: 28, borderBottom: "1px solid rgba(255,255,255,0.06)", paddingBottom: 28 }}>
-                  <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 900, fontSize: "clamp(32px, 4vw, 52px)", color: "#FFC700", letterSpacing: -1, lineHeight: 1, display: "block" }}>
-                    {num}
-                  </span>
-                  <span style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", display: "block", marginTop: 4, fontFamily: "Poppins, sans-serif" }}>
-                    {label}
-                  </span>
-                </div>
-              );
-            })}
-
-            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.5)", lineHeight: 1.7, marginTop: 12 }}>
-              {program.allTimeServed}
             </p>
           </div>
         </section>
