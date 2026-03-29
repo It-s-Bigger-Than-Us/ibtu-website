@@ -7,6 +7,7 @@ export default defineConfig({
   title: "IBTU — It's Bigger Than Us",
   projectId: "0m4ngfcw",
   dataset: "production",
+  basePath: "/studio",
   plugins: [structureTool()],
   schema: { types: schemaTypes },
 });
