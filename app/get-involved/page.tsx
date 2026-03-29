@@ -3,6 +3,7 @@ import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { getPrograms } from "@/sanity/lib/fetch";
+import DonationEmbed from "@/components/sections/DonationEmbed";
 
 export const metadata: Metadata = {
   title: "Get Involved | IBTU — It's Bigger Than Us",
@@ -256,55 +257,13 @@ export default async function GetInvolvedPage() {
           </div>
         </div>
 
-        {/* Donate */}
-        <div
-          id="donate"
-          style={{ background: "var(--gold)", padding: "80px 80px" }}
-        >
-          <h2
-            style={{
-              fontFamily: "LOT, Poppins, sans-serif",
-              fontSize: "clamp(44px, 6vw, 96px)",
-              lineHeight: 0.9,
-              color: "#000",
-              marginBottom: 28,
-            }}
-          >
-            DONATE
-          </h2>
-          <p
-            style={{
-              fontSize: "clamp(16px, 1.5vw, 22px)",
-              color: "#000",
-              maxWidth: 580,
-              lineHeight: 1.7,
-              marginBottom: 40,
-            }}
-          >
-            Your donation sustains community infrastructure. From fire relief to
-            food access to school programming — every dollar goes directly to
-            programs built for Los Angeles.
-          </p>
-          <a
-            href="https://bloomerang.co/ibtu"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              background: "#000",
-              color: "var(--gold)",
-              padding: "18px 48px",
-              fontFamily: "Poppins, sans-serif",
-              fontSize: 13,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              fontWeight: 700,
-              textDecoration: "none",
-              marginRight: 16,
-            }}
-          >
-            Donate Today →
-          </a>
+        {/* Donate — Embedded Bloomerang/Qgiv Form */}
+        <div id="donate">
+          <DonationEmbed
+            formUrl="https://secure.qgiv.com/for/firerelief"
+            title="DONATE"
+            description="Your donation sustains community infrastructure. From fire relief to food access to school programming — every dollar goes directly to programs built for Los Angeles."
+          />
         </div>
 
         {/* Sponsor */}
