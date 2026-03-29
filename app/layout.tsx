@@ -24,6 +24,38 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "NonprofitOrganization"],
+  name: "It's Bigger Than Us",
+  alternateName: "IBTU",
+  url: "https://ibtu.la",
+  logo: "https://ibtu.la/favicon.ico",
+  description:
+    "IBTU builds trusted, place-based programs for Los Angeles communities — from fire relief and youth programming to back-to-school festivals and food access. Designed with dignity.",
+  foundingDate: "2020",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Baldwin Hills Crenshaw Plaza, Suite 224-226, 3650 W. Martin Luther King Jr. Blvd",
+    addressLocality: "Los Angeles",
+    addressRegion: "CA",
+    postalCode: "90008",
+    addressCountry: "US",
+  },
+  telephone: "+1-323-207-0221",
+  email: "info@itsbiggerthanusla.org",
+  sameAs: [
+    "https://instagram.com/itsbiggerthanus",
+  ],
+  nonprofitStatus: "Nonprofit501c3",
+  taxID: "85-3136505",
+  areaServed: {
+    "@type": "City",
+    name: "Los Angeles",
+  },
+  slogan: "Community is the infrastructure.",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,6 +63,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={poppins.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <FloatingNav />
         {children}

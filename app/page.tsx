@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import OrbitHero from "@/components/sections/OrbitHero";
@@ -9,16 +7,16 @@ import MissionSection from "@/components/sections/MissionSection";
 import PillarsSection from "@/components/sections/PillarsSection";
 import ProgramsGrid from "@/components/sections/ProgramsGrid";
 import GetInvolvedSection from "@/components/sections/GetInvolvedSection";
-import IntroSequence from "@/components/3d/IntroSequence";
+
+export const metadata: Metadata = {
+  title: "It's Bigger Than Us (IBTU) | Community is the Infrastructure",
+  description:
+    "IBTU builds trusted, place-based programs for Los Angeles communities — from fire relief and youth programming to back-to-school festivals and food access. Designed with dignity.",
+};
 
 export default function HomePage() {
-  const [introComplete, setIntroComplete] = useState(false);
-
   return (
     <>
-      {!introComplete && (
-        <IntroSequence onComplete={() => setIntroComplete(true)} />
-      )}
       <Nav />
       <main>
         <OrbitHero />

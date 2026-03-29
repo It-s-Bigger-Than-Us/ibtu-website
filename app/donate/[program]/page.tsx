@@ -62,7 +62,7 @@ export default async function DonatePage({ params }: Props) {
       <Nav />
       <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
 
-        {/* Hero */}
+        {/* Hero — full opacity image */}
         <section
           style={{
             minHeight: "60vh",
@@ -87,7 +87,7 @@ export default async function DonatePage({ params }: Props) {
               href={`/our-programs/${slug}`}
               style={{ display: "inline-block", fontSize: 12, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", marginBottom: 32, fontFamily: "Poppins, sans-serif", fontWeight: 600, textDecoration: "none" }}
             >
-              ← Back to {program.title}
+              &larr; Back to {program.title}
             </Link>
             <h1
               style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(48px, 8vw, 100px)", lineHeight: 0.9, color: "#fff", marginBottom: 20 }}
@@ -123,6 +123,12 @@ export default async function DonatePage({ params }: Props) {
               programTitle={program.title}
               programSlug={slug}
               qgivUrl={qgivUrl}
+              sponsorPackages={sponsorPackages.map((pkg: any) => ({
+                _id: pkg._id,
+                tierName: pkg.tierName,
+                price: pkg.price,
+                priceDisplay: pkg.priceDisplay,
+              }))}
             />
           </div>
 
@@ -229,7 +235,7 @@ export default async function DonatePage({ params }: Props) {
                           borderRadius: 4,
                         }}
                       >
-                        Sponsor Now →
+                        Sponsor Now &rarr;
                       </a>
                     </div>
                   ))}
@@ -254,7 +260,7 @@ export default async function DonatePage({ params }: Props) {
               href="mailto:partnerships@itsbiggerthanusla.org"
               style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "18px 40px", fontFamily: "Poppins, sans-serif", fontSize: 12, letterSpacing: "3px", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", borderRadius: 4 }}
             >
-              Email Us →
+              Email Us &rarr;
             </a>
             <Link
               href="/get-involved"

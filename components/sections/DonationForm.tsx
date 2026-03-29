@@ -1,35 +1,79 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
-const PRESET_AMOUNTS = [25, 50, 100, 250, 500, 1000];
+interface SponsorPackage {
+  _id: string;
+  tierName: string;
+  price: number;
+  priceDisplay: string;
+}
+
+const DEFAULT_AMOUNTS = [25, 50, 100, 250, 500, 1000];
 
 export default function DonationForm({
   programTitle,
   programSlug,
   qgivUrl,
+  sponsorPackages,
 }: {
   programTitle: string;
   programSlug: string;
   qgivUrl?: string;
+  sponsorPackages?: SponsorPackage[];
 }) {
   const [amount, setAmount] = useState<number | null>(100);
   const [customAmount, setCustomAmount] = useState("");
   const [frequency, setFrequency] = useState<"one-time" | "monthly">("one-time");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [showEmbed, setShowEmbed] = useState(false);
+  const embedRef = useRef<HTMLDivElement>(null);
+
+  // Build preset amounts: merge sponsor package prices with defaults
+  const sponsorAmounts = (sponsorPackages || [])
+    .map((pkg) => pkg.price)
+    .filter((p) => p > 0);
+  const allAmounts = Array.from(new Set([...DEFAULT_AMOUNTS, ...sponsorAmounts]))
+    .sort((a, b) => a - b);
+  // Show at most 9 preset buttons to keep layout clean
+  const presetAmounts = allAmounts.slice(0, 9);
 
   const finalAmount = amount || Number(customAmount) || 0;
+
+  // Load Qgiv embed when user submits
+  useEffect(() => {
+    if (!showEmbed || !qgivUrl || !embedRef.current) return;
+
+    // Clear any previous embed
+    embedRef.current.innerHTML = "";
+
+    // Create the Qgiv embed container
+    const embedDiv = document.createElement("div");
+    embedDiv.className = "qgiv-embed-container qgiv-form-embed";
+    embedDiv.setAttribute("data-qgiv-embed", "true");
+    embedDiv.setAttribute("data-embed-id", "");
+    embedDiv.setAttribute("data-embed", `${qgivUrl}/embed`);
+    embedRef.current.appendChild(embedDiv);
+
+    // Load the Qgiv embed script
+    if (!document.getElementById("qgiv-embedjs")) {
+      const script = document.createElement("script");
+      script.id = "qgiv-embedjs";
+      script.src = "https://secure.qgiv.com/resources/core/js/embed.js";
+      document.body.appendChild(script);
+    } else {
+      // Re-trigger if script already loaded
+      const event = new Event("qgiv-embed-reload");
+      window.dispatchEvent(event);
+    }
+  }, [showEmbed, qgivUrl]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (finalAmount <= 0) return;
 
-    // If Qgiv URL exists, redirect to their secure payment page with amount pre-filled
+    // Show the Qgiv embedded form on ibtu.la instead of redirecting
     if (qgivUrl) {
-      window.open(`${qgivUrl}?amount=${finalAmount}`, "_blank");
-      setSubmitted(true);
+      setShowEmbed(true);
       return;
     }
 
@@ -39,45 +83,93 @@ export default function DonationForm({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
-          email,
           amount: finalAmount,
           frequency,
           program: programSlug,
         }),
       });
-      setSubmitted(true);
+      setShowEmbed(true);
     } catch {
-      // Still redirect to Qgiv as fallback
-      if (qgivUrl) window.open(qgivUrl, "_blank");
+      // Open external form as last resort
+      if (qgivUrl) setShowEmbed(true);
     }
   };
 
-  if (submitted) {
+  if (showEmbed && qgivUrl) {
     return (
-      <div
-        style={{
-          padding: "80px 40px",
-          textAlign: "center",
-          background: "#0a0a0a",
-          border: "1px solid rgba(255,199,0,0.2)",
-          borderRadius: 6,
-        }}
-      >
-        <div style={{ fontSize: 48, marginBottom: 20 }}>Thank you.</div>
-        <h3
+      <div>
+        <div
           style={{
-            fontFamily: "LOT, Poppins, sans-serif",
-            fontSize: "clamp(28px, 3vw, 44px)",
-            color: "#FFC700",
-            marginBottom: 16,
+            marginBottom: 20,
+            padding: "16px 20px",
+            background: "rgba(255,199,0,0.08)",
+            border: "1px solid rgba(255,199,0,0.2)",
+            borderRadius: 4,
           }}
         >
-          YOUR SUPPORT MATTERS
-        </h3>
-        <p style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", maxWidth: 400, margin: "0 auto", lineHeight: 1.7 }}>
-          Your ${finalAmount} {frequency === "monthly" ? "monthly " : ""}donation to {programTitle} helps build
-          community infrastructure that lasts.
+          <p style={{ fontSize: 14, color: "#FFC700", fontFamily: "Poppins, sans-serif", fontWeight: 600, margin: 0 }}>
+            Complete your ${finalAmount.toLocaleString()} {frequency === "monthly" ? "monthly " : ""}gift to {programTitle} below.
+          </p>
+        </div>
+
+        {/* Qgiv embed loads here */}
+        <div
+          ref={embedRef}
+          style={{
+            minHeight: 500,
+            background: "#111",
+            border: "1px solid rgba(255,199,0,0.15)",
+            borderRadius: 6,
+            overflow: "hidden",
+          }}
+        />
+
+        {/* Fallback link */}
+        <a
+          href={`${qgivUrl}?amount=${finalAmount}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-block",
+            marginTop: 16,
+            fontSize: 13,
+            color: "rgba(255,255,255,0.4)",
+            textDecoration: "none",
+            fontFamily: "Poppins, sans-serif",
+          }}
+        >
+          Having trouble? Open donation form in new window &rarr;
+        </a>
+
+        <button
+          type="button"
+          onClick={() => setShowEmbed(false)}
+          style={{
+            display: "block",
+            marginTop: 12,
+            fontSize: 12,
+            color: "rgba(255,255,255,0.3)",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            fontFamily: "Poppins, sans-serif",
+            textDecoration: "underline",
+          }}
+        >
+          &larr; Change amount
+        </button>
+
+        {/* Security note */}
+        <p
+          style={{
+            fontSize: 11,
+            color: "rgba(255,255,255,0.3)",
+            textAlign: "center",
+            marginTop: 16,
+            lineHeight: 1.5,
+          }}
+        >
+          501(c)(3) &middot; EIN: 85-3136505 &middot; Secure payment processing via Qgiv
         </p>
       </div>
     );
@@ -112,6 +204,13 @@ export default function DonationForm({
         ))}
       </div>
 
+      {/* Sponsor tier label if packages exist */}
+      {sponsorPackages && sponsorPackages.length > 0 && (
+        <p style={{ fontSize: 11, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", fontFamily: "Poppins, sans-serif", fontWeight: 600, marginBottom: 12 }}>
+          Choose an amount or match a sponsor tier
+        </p>
+      )}
+
       {/* Amount buttons */}
       <div
         style={{
@@ -121,30 +220,49 @@ export default function DonationForm({
           marginBottom: 16,
         }}
       >
-        {PRESET_AMOUNTS.map((a) => (
-          <button
-            key={a}
-            type="button"
-            onClick={() => {
-              setAmount(a);
-              setCustomAmount("");
-            }}
-            style={{
-              padding: "18px 16px",
-              background: amount === a ? "#FFC700" : "#111",
-              color: amount === a ? "#000" : "#fff",
-              border: `1px solid ${amount === a ? "#FFC700" : "rgba(255,199,0,0.2)"}`,
-              fontFamily: "Poppins, sans-serif",
-              fontSize: 18,
-              fontWeight: 900,
-              cursor: "pointer",
-              transition: "all 0.15s",
-              borderRadius: 4,
-            }}
-          >
-            ${a.toLocaleString()}
-          </button>
-        ))}
+        {presetAmounts.map((a) => {
+          const matchingTier = (sponsorPackages || []).find((pkg) => pkg.price === a);
+          return (
+            <button
+              key={a}
+              type="button"
+              onClick={() => {
+                setAmount(a);
+                setCustomAmount("");
+              }}
+              style={{
+                padding: "18px 16px",
+                background: amount === a ? "#FFC700" : "#111",
+                color: amount === a ? "#000" : "#fff",
+                border: `1px solid ${amount === a ? "#FFC700" : "rgba(255,199,0,0.2)"}`,
+                fontFamily: "Poppins, sans-serif",
+                fontSize: matchingTier ? 14 : 18,
+                fontWeight: 900,
+                cursor: "pointer",
+                transition: "all 0.15s",
+                borderRadius: 4,
+                textAlign: "center",
+              }}
+            >
+              ${a.toLocaleString()}
+              {matchingTier && (
+                <span
+                  style={{
+                    display: "block",
+                    fontSize: 9,
+                    fontWeight: 600,
+                    letterSpacing: "1px",
+                    textTransform: "uppercase",
+                    marginTop: 4,
+                    color: amount === a ? "rgba(0,0,0,0.6)" : "rgba(255,199,0,0.5)",
+                  }}
+                >
+                  {matchingTier.tierName}
+                </span>
+              )}
+            </button>
+          );
+        })}
       </div>
 
       {/* Custom amount */}
@@ -186,44 +304,6 @@ export default function DonationForm({
         />
       </div>
 
-      {/* Name + Email */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 24 }}>
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          style={{
-            padding: "16px",
-            background: "#111",
-            border: "1px solid rgba(255,199,0,0.15)",
-            color: "#fff",
-            fontFamily: "Poppins, sans-serif",
-            fontSize: 14,
-            outline: "none",
-            borderRadius: 4,
-          }}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={{
-            padding: "16px",
-            background: "#111",
-            border: "1px solid rgba(255,199,0,0.15)",
-            color: "#fff",
-            fontFamily: "Poppins, sans-serif",
-            fontSize: 14,
-            outline: "none",
-            borderRadius: 4,
-          }}
-        />
-      </div>
-
       {/* Submit */}
       <button
         type="submit"
@@ -245,7 +325,7 @@ export default function DonationForm({
         }}
       >
         {finalAmount > 0
-          ? `Donate $${finalAmount.toLocaleString()} ${frequency === "monthly" ? "/ month" : ""} →`
+          ? `Donate $${finalAmount.toLocaleString()} ${frequency === "monthly" ? "/ month" : ""} \u2192`
           : "Select an amount"}
       </button>
 
@@ -259,7 +339,7 @@ export default function DonationForm({
           lineHeight: 1.5,
         }}
       >
-        501(c)(3) · EIN: 85-3136505 · Secure payment processing via Bloomerang
+        501(c)(3) &middot; EIN: 85-3136505 &middot; Secure payment via Qgiv on ibtu.la
       </p>
     </form>
   );

@@ -3,8 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import { getPrograms, getProgramBySlug, getEventsByProgram, getSponsorPackages } from "@/sanity/lib/fetch";
-import SponsorshipSection from "@/components/sections/SponsorshipSection";
+import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/fetch";
 import EventGallery3D from "@/components/sections/EventGallery3D";
 
 interface Props {
@@ -31,10 +30,7 @@ export default async function ProgramPage({ params }: Props) {
   const program = await getProgramBySlug(slug);
   if (!program) notFound();
 
-  const [events, sponsorPackages] = await Promise.all([
-    getEventsByProgram(slug),
-    getSponsorPackages(slug),
-  ]);
+  const events = await getEventsByProgram(slug);
   const upcomingEvents = events.filter((e: any) => e.status === "Upcoming" || e.status === "Active");
   const pastEvents = events.filter((e: any) => e.status === "Closed");
 
@@ -45,9 +41,6 @@ export default async function ProgramPage({ params }: Props) {
   const heroSrc = program.heroImage?.asset?._ref
     ? `https://cdn.sanity.io/images/0m4ngfcw/production/${program.heroImage.asset._ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}`
     : null;
-
-  const VIDEO_1 = "https://video.wixstatic.com/video/a11c28_22a0fdd69fb348d4a65cc8b7e81e1f81/720p/mp4/file.mp4";
-  const VIDEO_2 = "https://video.wixstatic.com/video/a11c28_22a0fdd69fb348d4a65cc8b7e81e1f81/720p/mp4/file.mp4";
 
   return (
     <>
@@ -68,22 +61,19 @@ export default async function ProgramPage({ params }: Props) {
             padding: "160px 80px 100px 80px",
           }}
         >
-          {/* Hero background image */}
+          {/* Hero background image — full opacity */}
           {heroSrc && (
-            <>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={heroSrc}
-                alt={program.title}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
-            </>
+            <img
+              src={heroSrc}
+              alt={program.title}
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           )}
           <div
             style={{
@@ -110,7 +100,7 @@ export default async function ProgramPage({ params }: Props) {
                 textDecoration: "none",
               }}
             >
-              ← Our Programs
+              &larr; Our Programs
             </Link>
 
             {/* Pillar eyebrow */}
@@ -128,7 +118,7 @@ export default async function ProgramPage({ params }: Props) {
               {program.pillar}
             </div>
 
-            {/* Program title — massive LOT */}
+            {/* Program title */}
             <h1
               style={{
                 fontFamily: "LOT, Poppins, sans-serif",
@@ -176,11 +166,11 @@ export default async function ProgramPage({ params }: Props) {
                     textDecoration: "none",
                   }}
                 >
-                  Volunteer →
+                  Volunteer &rarr;
                 </a>
               )}
               <Link
-                href="/get-involved"
+                href={`/donate/${slug}`}
                 style={{
                   display: "inline-block",
                   border: "1px solid rgba(255,255,255,0.4)",
@@ -201,7 +191,7 @@ export default async function ProgramPage({ params }: Props) {
         </section>
 
         {/* ──────────────────────────────────────────────
-            2. STATS STRIP — Gold bar, horizontal scroll
+            2. STATS STRIP
         ────────────────────────────────────────────── */}
         {stats.length > 0 && (
           <section
@@ -267,63 +257,7 @@ export default async function ProgramPage({ params }: Props) {
         )}
 
         {/* ──────────────────────────────────────────────
-            3. FULL-FRAME VIDEO — 100vh
-        ────────────────────────────────────────────── */}
-        <section
-          style={{
-            position: "relative",
-            height: "100vh",
-            overflow: "hidden",
-            background: "#000",
-          }}
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          >
-            <source src={VIDEO_1} type="video/mp4" />
-          </video>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              bottom: 48,
-              left: 80,
-              zIndex: 1,
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: 13,
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.5)",
-              }}
-            >
-              {program.title} — In Action
-            </p>
-          </div>
-        </section>
-
-        {/* ──────────────────────────────────────────────
-            4. DESCRIPTION — Editorial, spacious
+            3. DESCRIPTION
         ────────────────────────────────────────────── */}
         <section
           style={{
@@ -347,63 +281,7 @@ export default async function ProgramPage({ params }: Props) {
         </section>
 
         {/* ──────────────────────────────────────────────
-            5. SECOND FULL-FRAME VIDEO
-        ────────────────────────────────────────────── */}
-        <section
-          style={{
-            position: "relative",
-            height: "100vh",
-            overflow: "hidden",
-            background: "#000",
-          }}
-        >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          >
-            <source src={VIDEO_2} type="video/mp4" />
-          </video>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%)",
-            }}
-          />
-          <div
-            style={{
-              position: "absolute",
-              bottom: 48,
-              left: 80,
-              zIndex: 1,
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: 13,
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.5)",
-              }}
-            >
-              {program.title} — Community Impact
-            </p>
-          </div>
-        </section>
-
-        {/* ──────────────────────────────────────────────
-            6. UPCOMING EVENTS
+            4. UPCOMING EVENTS
         ────────────────────────────────────────────── */}
         {upcomingEvents.length > 0 && (
           <section style={{ padding: "120px 80px 80px 80px" }}>
@@ -470,7 +348,7 @@ export default async function ProgramPage({ params }: Props) {
                       }}
                     >
                       {ev.location}
-                      {ev.proofStats && <> · {ev.proofStats}</>}
+                      {ev.proofStats && <> &middot; {ev.proofStats}</>}
                     </div>
                   </div>
                   <div
@@ -485,7 +363,7 @@ export default async function ProgramPage({ params }: Props) {
                     }}
                   >
                     {ev.dateStart}
-                    {ev.dateEnd && <> – {ev.dateEnd}</>}
+                    {ev.dateEnd && <> &ndash; {ev.dateEnd}</>}
                   </div>
                 </div>
               ))}
@@ -494,7 +372,7 @@ export default async function ProgramPage({ params }: Props) {
         )}
 
         {/* ──────────────────────────────────────────────
-            7. PAST EVENTS — 3D Gallery
+            5. PAST EVENTS — 3D Gallery
         ────────────────────────────────────────────── */}
         {pastEvents.length > 0 && (
           <section style={{ padding: "40px 80px 120px 80px" }}>
@@ -503,12 +381,7 @@ export default async function ProgramPage({ params }: Props) {
         )}
 
         {/* ──────────────────────────────────────────────
-            8. SPONSORSHIP PACKAGES
-        ────────────────────────────────────────────── */}
-        <SponsorshipSection packages={sponsorPackages} programTitle={program.title} />
-
-        {/* ──────────────────────────────────────────────
-            9. KEY PARTNERS
+            6. KEY PARTNERS
         ────────────────────────────────────────────── */}
         {program.keyPartners && (
           <section
@@ -545,7 +418,7 @@ export default async function ProgramPage({ params }: Props) {
         )}
 
         {/* ──────────────────────────────────────────────
-            10. CTA BANNER — Gold
+            7. CTA BANNER
         ────────────────────────────────────────────── */}
         <section
           style={{
@@ -603,11 +476,11 @@ export default async function ProgramPage({ params }: Props) {
                   textDecoration: "none",
                 }}
               >
-                Volunteer →
+                Volunteer &rarr;
               </a>
             )}
             <Link
-              href="/get-involved"
+              href={`/donate/${slug}`}
               style={{
                 display: "inline-block",
                 border: "2px solid #000",
@@ -621,7 +494,7 @@ export default async function ProgramPage({ params }: Props) {
                 textDecoration: "none",
               }}
             >
-              Get Involved
+              Support This Program
             </Link>
           </div>
         </section>
