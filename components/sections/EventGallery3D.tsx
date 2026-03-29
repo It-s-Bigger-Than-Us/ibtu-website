@@ -16,23 +16,8 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
   const [selectedEvent, setSelectedEvent] = useState<GalleryEvent | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
-  const [supports3D, setSupports3D] = useState(true);
-
-  useEffect(() => {
-    // Detect if 3D transforms are supported and container has dimensions
-    try {
-      const el = document.createElement("div");
-      el.style.transform = "perspective(500px) rotateY(5deg)";
-      document.body.appendChild(el);
-      const computed = getComputedStyle(el).transform;
-      document.body.removeChild(el);
-      if (computed === "none" || !computed) {
-        setSupports3D(false);
-      }
-    } catch {
-      setSupports3D(false);
-    }
-  }, []);
+  // Use grid layout — 3D perspective has cross-browser issues in this context
+  const supports3D = false;
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!containerRef.current) return;
