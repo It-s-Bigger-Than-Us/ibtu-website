@@ -1,31 +1,226 @@
-import type { Metadata } from "next";
+"use client";
+
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import OrbitHero from "@/components/sections/OrbitHero";
 import StatsSection from "@/components/sections/StatsSection";
-import MissionSection from "@/components/sections/MissionSection";
 import PillarsSection from "@/components/sections/PillarsSection";
 import ProgramsGrid from "@/components/sections/ProgramsGrid";
 import GetInvolvedSection from "@/components/sections/GetInvolvedSection";
-
-export const metadata: Metadata = {
-  title: "It's Bigger Than Us (IBTU) | Community is the Infrastructure",
-  description:
-    "IBTU builds trusted, place-based programs for Los Angeles communities — from fire relief and youth programming to back-to-school festivals and food access. Designed with dignity.",
-};
+import ScrollText from "@/components/ui/ScrollText";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import ImageTile from "@/components/ui/ImageTile";
 
 export default function HomePage() {
   return (
     <>
       <Nav />
       <main>
+        {/* 1. Orbit Hero — unchanged */}
         <OrbitHero />
+
+        {/* 2. Big Parallax Text Section */}
+        <section
+          style={{
+            background: "#000",
+            padding: "200px 0",
+            overflow: "hidden",
+          }}
+        >
+          <ScrollText
+            direction="left"
+            speed={0.4}
+            color="#FFC700"
+            size="clamp(48px, 10vw, 160px)"
+          >
+            COMMUNITY IS THE INFRASTRUCTURE
+          </ScrollText>
+          <div style={{ height: "60px" }} />
+          <ScrollText
+            direction="right"
+            speed={0.35}
+            color="#FFF"
+            size="clamp(40px, 8vw, 130px)"
+          >
+            WE LISTEN. WE BUILD. WE STAY.
+          </ScrollText>
+        </section>
+
+        {/* 3. Tiled Image Grid — asymmetric layout */}
+        <section
+          style={{
+            background: "#000",
+            padding: "80px 40px",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              maxWidth: "1400px",
+              margin: "0 auto",
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gridTemplateRows: "auto auto",
+              gap: "20px",
+            }}
+          >
+            {/* Tall left image — spans 2 rows */}
+            <div style={{ gridRow: "1 / 3" }}>
+              <ImageTile
+                src="https://cdn.sanity.io/images/0m4ngfcw/production/632cd4ff54c9edaf0a15a4c6e6f4a5762112f3a6-5674x3783.jpg?w=800"
+                alt="IBTU volunteers working with the community"
+                height="700px"
+                parallaxSpeed={0.2}
+                style={{ borderRadius: "0" }}
+              />
+            </div>
+            {/* Top right — shorter */}
+            <div>
+              <ImageTile
+                src="https://cdn.sanity.io/images/0m4ngfcw/production/ade49221a64fe868c66d596336ac5f2582b98f28-3763x3010.jpg?w=800"
+                alt="Community event organized by IBTU"
+                height="340px"
+                parallaxSpeed={0.12}
+                style={{ borderRadius: "0" }}
+              />
+            </div>
+            {/* Bottom right — shorter */}
+            <div>
+              <ImageTile
+                src="https://cdn.sanity.io/images/0m4ngfcw/production/a094389f86e390c4449847533d6f13f86482cae8-4819x3377.jpg?w=800"
+                alt="Youth programming and education support"
+                height="340px"
+                parallaxSpeed={0.25}
+                style={{ borderRadius: "0" }}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Stats Section */}
         <StatsSection />
-        <MissionSection />
+
+        {/* 5. Mission Text — editorial paragraph */}
+        <section
+          style={{
+            background: "#FFF",
+            padding: "160px 40px",
+          }}
+        >
+          <div
+            style={{
+              maxWidth: "700px",
+              margin: "0 auto",
+            }}
+          >
+            <RevealOnScroll delay={0}>
+              <p
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  fontWeight: 900,
+                  fontSize: "14px",
+                  letterSpacing: "3px",
+                  textTransform: "uppercase",
+                  color: "#FFC700",
+                  marginBottom: "24px",
+                }}
+              >
+                OUR MISSION
+              </p>
+            </RevealOnScroll>
+            <RevealOnScroll delay={0.15} y={40}>
+              <p
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "24px",
+                  lineHeight: 1.6,
+                  color: "#000",
+                  margin: 0,
+                }}
+              >
+                It&rsquo;s Bigger Than Us builds trusted, place-based programs
+                that support youth, families, and neighborhoods through
+                education, health access, and crisis response&nbsp;&mdash;
+                designed with dignity, informed by community, and built to last.
+              </p>
+            </RevealOnScroll>
+          </div>
+        </section>
+
+        {/* 6. Full-Bleed Image */}
+        <section
+          style={{
+            position: "relative",
+            width: "100%",
+            height: "100vh",
+            overflow: "hidden",
+            background: "#000",
+          }}
+        >
+          <ImageTile
+            src="https://cdn.sanity.io/images/0m4ngfcw/production/be4abc3126994ff67875669d99476ae58d5d7c62-6240x4160.jpg?w=1600"
+            alt="It's Bigger Than Us community in action"
+            width="100%"
+            height="100%"
+            parallaxSpeed={0.15}
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </section>
+
+        {/* 7. Three Pillars */}
         <PillarsSection />
+
+        {/* 8. Impact Numbers — parallax text */}
+        <section
+          style={{
+            background: "#000",
+            padding: "200px 0",
+            overflow: "hidden",
+          }}
+        >
+          <ScrollText
+            direction="left"
+            speed={0.35}
+            color="#FFC700"
+            size="clamp(50px, 10vw, 150px)"
+          >
+            62,475+ STUDENTS
+          </ScrollText>
+          <div style={{ height: "50px" }} />
+          <ScrollText
+            direction="right"
+            speed={0.3}
+            color="#FFF"
+            size="clamp(50px, 10vw, 150px)"
+          >
+            875,500+ LBS FOOD
+          </ScrollText>
+          <div style={{ height: "50px" }} />
+          <ScrollText
+            direction="left"
+            speed={0.4}
+            color="#FFC700"
+            size="clamp(50px, 10vw, 150px)"
+          >
+            300+ PARTNERS
+          </ScrollText>
+        </section>
+
+        {/* 9. Programs Grid */}
         <ProgramsGrid />
+
+        {/* 10. Get Involved */}
         <GetInvolvedSection />
       </main>
+
+      {/* 11. Footer */}
       <Footer />
     </>
   );

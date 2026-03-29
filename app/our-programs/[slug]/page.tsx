@@ -5,6 +5,10 @@ import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/fetch";
 import EventGallery3D from "@/components/sections/EventGallery3D";
+import ScrollText from "@/components/ui/ScrollText";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
+// ImageTile available for future tiled image sections
+// import ImageTile from "@/components/ui/ImageTile";
 
 export const revalidate = 60;
 
@@ -50,11 +54,11 @@ export default async function ProgramPage({ params }: Props) {
       <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
 
         {/* ──────────────────────────────────────────────
-            1. FULL-SCREEN HERO
+            1. FULL-BLEED HERO IMAGE (100vh)
         ────────────────────────────────────────────── */}
         <section
           style={{
-            minHeight: "100vh",
+            height: "100vh",
             position: "relative",
             overflow: "hidden",
             display: "flex",
@@ -63,7 +67,7 @@ export default async function ProgramPage({ params }: Props) {
             padding: "160px 80px 100px 80px",
           }}
         >
-          {/* Hero background image — full opacity */}
+          {/* Hero background — full bleed, no tint, no overlay */}
           {heroSrc && (
             <img
               src={heroSrc}
@@ -77,12 +81,18 @@ export default async function ProgramPage({ params }: Props) {
               }}
             />
           )}
+
+          {/* Bottom gradient only — transparent to black for text readability */}
           <div
             style={{
               position: "absolute",
-              inset: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: "60%",
               background:
-                "linear-gradient(to top, #000 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.2) 100%)",
+                "linear-gradient(to top, #000 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.4) 60%, transparent 100%)",
+              pointerEvents: "none",
             }}
           />
 
@@ -96,7 +106,7 @@ export default async function ProgramPage({ params }: Props) {
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "#FFC700",
-                marginBottom: 40,
+                marginBottom: 48,
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 600,
                 textDecoration: "none",
@@ -111,7 +121,7 @@ export default async function ProgramPage({ params }: Props) {
                 fontSize: 11,
                 letterSpacing: "4px",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.45)",
+                color: "rgba(255,255,255,0.5)",
                 marginBottom: 20,
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 600,
@@ -120,29 +130,33 @@ export default async function ProgramPage({ params }: Props) {
               {program.pillar}
             </div>
 
-            {/* Program title */}
+            {/* Program title — Poppins Black */}
             <h1
               style={{
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 900,
                 fontSize: "clamp(60px, 10vw, 140px)",
                 lineHeight: 0.88,
+                letterSpacing: "-2px",
                 color: "#FFF",
                 marginBottom: 36,
                 maxWidth: "14ch",
+                textTransform: "uppercase",
               }}
             >
-              {program.title.toUpperCase()}
+              {program.title}
             </h1>
 
             {/* Tagline */}
             <p
               style={{
                 fontSize: "clamp(17px, 1.5vw, 22px)",
-                color: "rgba(255,255,255,0.8)",
+                color: "rgba(255,255,255,0.85)",
                 maxWidth: 700,
                 lineHeight: 1.7,
                 marginBottom: 48,
                 fontFamily: "Poppins, sans-serif",
+                fontWeight: 400,
               }}
             >
               {program.tagline}
@@ -193,7 +207,27 @@ export default async function ProgramPage({ params }: Props) {
         </section>
 
         {/* ──────────────────────────────────────────────
-            2. STATS STRIP
+            2. PARALLAX PROGRAM TITLE — editorial impact
+        ────────────────────────────────────────────── */}
+        <section
+          style={{
+            background: "#000",
+            padding: "120px 0",
+            overflow: "hidden",
+          }}
+        >
+          <ScrollText
+            speed={0.4}
+            direction="left"
+            color="#FFC700"
+            size="clamp(80px, 15vw, 220px)"
+          >
+            {program.title}
+          </ScrollText>
+        </section>
+
+        {/* ──────────────────────────────────────────────
+            3. STATS STRIP — gold bar
         ────────────────────────────────────────────── */}
         {stats.length > 0 && (
           <section
@@ -259,122 +293,148 @@ export default async function ProgramPage({ params }: Props) {
         )}
 
         {/* ──────────────────────────────────────────────
-            3. DESCRIPTION
+            4. DESCRIPTION — editorial paragraph
         ────────────────────────────────────────────── */}
         <section
           style={{
             background: "#000",
-            padding: "120px 80px",
+            padding: "140px 80px",
           }}
         >
-          <div style={{ maxWidth: 800 }}>
-            <p
-              style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "clamp(18px, 1.6vw, 22px)",
-                color: "rgba(255,255,255,0.85)",
-                lineHeight: 1.8,
-                letterSpacing: "0.2px",
-              }}
-            >
-              {program.description}
-            </p>
-          </div>
+          <RevealOnScroll y={60} delay={0}>
+            <div style={{ maxWidth: 800 }}>
+              <p
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  fontWeight: 400,
+                  fontSize: 22,
+                  color: "rgba(255,255,255,0.85)",
+                  lineHeight: 1.8,
+                  letterSpacing: "0.2px",
+                  marginBottom: 48,
+                }}
+              >
+                {program.description}
+              </p>
+              <Link
+                href={`/donate/${slug}`}
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  fontWeight: 600,
+                  fontSize: 16,
+                  color: "#FFC700",
+                  textDecoration: "none",
+                  letterSpacing: "0.5px",
+                  borderBottom: "2px solid #FFC700",
+                  paddingBottom: 4,
+                }}
+              >
+                Support This Program &rarr;
+              </Link>
+            </div>
+          </RevealOnScroll>
         </section>
 
         {/* ──────────────────────────────────────────────
-            4. UPCOMING EVENTS
+            5. UPCOMING EVENTS — staggered reveal cards
         ────────────────────────────────────────────── */}
         {upcomingEvents.length > 0 && (
           <section style={{ padding: "120px 80px 80px 80px" }}>
-            <h2
-              style={{
-                fontFamily: "LOT, Poppins, sans-serif",
-                fontSize: "clamp(36px, 5vw, 64px)",
-                color: "#FFC700",
-                marginBottom: 48,
-                lineHeight: 0.95,
-              }}
-            >
-              UPCOMING
-            </h2>
+            <RevealOnScroll y={40} delay={0}>
+              <h2
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  fontWeight: 900,
+                  fontSize: "clamp(36px, 5vw, 64px)",
+                  color: "#FFC700",
+                  marginBottom: 48,
+                  lineHeight: 0.95,
+                  letterSpacing: "-1px",
+                  textTransform: "uppercase",
+                }}
+              >
+                Upcoming
+              </h2>
+            </RevealOnScroll>
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
               {upcomingEvents.map((ev: any, i: number) => (
-                <div
-                  key={i}
-                  style={{
-                    background: "#0A0A0A",
-                    border: "1px solid rgba(255,199,0,0.12)",
-                    padding: "36px 40px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start",
-                    gap: 32,
-                  }}
-                >
-                  <div style={{ flex: 1 }}>
-                    <span
-                      style={{
-                        display: "inline-block",
-                        background: "#FFC700",
-                        color: "#000",
-                        fontSize: 10,
-                        letterSpacing: "2px",
-                        fontWeight: 700,
-                        padding: "5px 12px",
-                        marginBottom: 16,
-                        fontFamily: "Poppins, sans-serif",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {ev.status}
-                    </span>
-                    <div
-                      style={{
-                        fontFamily: "LOT, Poppins, sans-serif",
-                        fontSize: "clamp(20px, 2.2vw, 28px)",
-                        color: "#FFF",
-                        fontWeight: 700,
-                        lineHeight: 1.1,
-                        marginBottom: 10,
-                      }}
-                    >
-                      {ev.title}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: 14,
-                        color: "rgba(255,255,255,0.45)",
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {ev.location}
-                      {ev.proofStats && <> &middot; {ev.proofStats}</>}
-                    </div>
-                  </div>
+                <RevealOnScroll key={i} y={50} delay={i * 0.12}>
                   <div
                     style={{
-                      textAlign: "right",
-                      whiteSpace: "nowrap",
-                      fontFamily: "Poppins, sans-serif",
-                      fontSize: 13,
-                      color: "#FFC700",
-                      fontWeight: 600,
-                      paddingTop: 4,
+                      background: "#0A0A0A",
+                      border: "1px solid rgba(255,199,0,0.12)",
+                      padding: "36px 40px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      gap: 32,
                     }}
                   >
-                    {ev.dateStart}
-                    {ev.dateEnd && <> &ndash; {ev.dateEnd}</>}
+                    <div style={{ flex: 1 }}>
+                      <span
+                        style={{
+                          display: "inline-block",
+                          background: "#FFC700",
+                          color: "#000",
+                          fontSize: 10,
+                          letterSpacing: "2px",
+                          fontWeight: 700,
+                          padding: "5px 12px",
+                          marginBottom: 16,
+                          fontFamily: "Poppins, sans-serif",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {ev.status}
+                      </span>
+                      <div
+                        style={{
+                          fontFamily: "Poppins, sans-serif",
+                          fontWeight: 900,
+                          fontSize: "clamp(20px, 2.2vw, 28px)",
+                          color: "#FFF",
+                          lineHeight: 1.1,
+                          marginBottom: 10,
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {ev.title}
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "Poppins, sans-serif",
+                          fontSize: 14,
+                          color: "rgba(255,255,255,0.45)",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {ev.location}
+                        {ev.proofStats && <> &middot; {ev.proofStats}</>}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        textAlign: "right",
+                        whiteSpace: "nowrap",
+                        fontFamily: "Poppins, sans-serif",
+                        fontSize: 13,
+                        color: "#FFC700",
+                        fontWeight: 600,
+                        paddingTop: 4,
+                      }}
+                    >
+                      {ev.dateStart}
+                      {ev.dateEnd && <> &ndash; {ev.dateEnd}</>}
+                    </div>
                   </div>
-                </div>
+                </RevealOnScroll>
               ))}
             </div>
           </section>
         )}
 
         {/* ──────────────────────────────────────────────
-            5. PAST EVENTS — 3D Gallery
+            6. PAST EVENTS — 3D Gallery
         ────────────────────────────────────────────── */}
         {pastEvents.length > 0 && (
           <section style={{ padding: "40px 80px 120px 80px" }}>
@@ -383,7 +443,7 @@ export default async function ProgramPage({ params }: Props) {
         )}
 
         {/* ──────────────────────────────────────────────
-            6. KEY PARTNERS
+            7. KEY PARTNERS
         ────────────────────────────────────────────── */}
         {program.keyPartners && (
           <section
@@ -392,35 +452,37 @@ export default async function ProgramPage({ params }: Props) {
               borderTop: "1px solid rgba(255,255,255,0.06)",
             }}
           >
-            <div
-              style={{
-                fontSize: 11,
-                letterSpacing: "4px",
-                textTransform: "uppercase",
-                color: "#FFC700",
-                marginBottom: 20,
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 600,
-              }}
-            >
-              Key Partners
-            </div>
-            <p
-              style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: 16,
-                color: "rgba(255,255,255,0.5)",
-                lineHeight: 1.8,
-                maxWidth: 700,
-              }}
-            >
-              {program.keyPartners}
-            </p>
+            <RevealOnScroll y={40} delay={0}>
+              <div
+                style={{
+                  fontSize: 11,
+                  letterSpacing: "4px",
+                  textTransform: "uppercase",
+                  color: "#FFC700",
+                  marginBottom: 20,
+                  fontFamily: "Poppins, sans-serif",
+                  fontWeight: 600,
+                }}
+              >
+                Key Partners
+              </div>
+              <p
+                style={{
+                  fontFamily: "Poppins, sans-serif",
+                  fontSize: 16,
+                  color: "rgba(255,255,255,0.5)",
+                  lineHeight: 1.8,
+                  maxWidth: 700,
+                }}
+              >
+                {program.keyPartners}
+              </p>
+            </RevealOnScroll>
           </section>
         )}
 
         {/* ──────────────────────────────────────────────
-            7. CTA BANNER
+            8. CTA — gold section
         ────────────────────────────────────────────── */}
         <section
           style={{
@@ -436,14 +498,17 @@ export default async function ProgramPage({ params }: Props) {
           <div style={{ flex: 1, minWidth: 280 }}>
             <h2
               style={{
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 900,
                 fontSize: "clamp(40px, 6vw, 80px)",
                 lineHeight: 0.92,
+                letterSpacing: "-2px",
                 color: "#000",
                 marginBottom: 16,
+                textTransform: "uppercase",
               }}
             >
-              {program.ctaText.toUpperCase()}
+              {program.ctaText}
             </h2>
             {program.allTimeServed && (
               <p
