@@ -113,54 +113,6 @@ export default function JobsPage() {
           </p>
         </section>
 
-        {/* ── HACLA WORKFORCE DEVELOPMENT ── */}
-        <section
-          style={{
-            padding: "120px 80px",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
-          }}
-        >
-          <span
-            style={{
-              display: "block",
-              fontSize: 11,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "#FFC700",
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 700,
-              marginBottom: 20,
-            }}
-          >
-            Workforce Development
-          </span>
-          <h2
-            style={{
-              fontFamily: "LOT, Poppins, sans-serif",
-              fontSize: "clamp(36px, 4vw, 64px)",
-              lineHeight: 0.95,
-              color: "#fff",
-              marginBottom: 24,
-            }}
-          >
-            HACLA PARTNERSHIP
-          </h2>
-          <p
-            style={{
-              fontSize: 16,
-              color: "rgba(255,255,255,0.6)",
-              lineHeight: 1.8,
-              fontFamily: "Poppins, sans-serif",
-              maxWidth: 700,
-            }}
-          >
-            IBTU partners with the Housing Authority of the City of Los Angeles (HACLA)
-            to employ fire-impacted community members as W2 staff at the Relief Resource Hub.
-            This isn&rsquo;t just aid — it&rsquo;s employment. The people affected by the crisis
-            are the ones leading the recovery.
-          </p>
-        </section>
-
         {/* ── CTA — INTERESTED? ── */}
         <section style={{ background: "#FFC700", padding: "100px 80px", textAlign: "center" }}>
           <h2
