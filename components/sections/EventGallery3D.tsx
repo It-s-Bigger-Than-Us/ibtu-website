@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 
 interface GalleryEvent {
   _id: string;
@@ -16,10 +16,28 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
   const [selectedEvent, setSelectedEvent] = useState<GalleryEvent | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+  const [supports3D, setSupports3D] = useState(true);
+
+  useEffect(() => {
+    // Detect if 3D transforms are supported and container has dimensions
+    try {
+      const el = document.createElement("div");
+      el.style.transform = "perspective(500px) rotateY(5deg)";
+      document.body.appendChild(el);
+      const computed = getComputedStyle(el).transform;
+      document.body.removeChild(el);
+      if (computed === "none" || !computed) {
+        setSupports3D(false);
+      }
+    } catch {
+      setSupports3D(false);
+    }
+  }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
     setMousePos({
       x: (e.clientX - rect.left) / rect.width,
       y: (e.clientY - rect.top) / rect.height,
@@ -33,9 +51,153 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
   const rotateX = (mousePos.y - 0.5) * -8;
   const rotateY = (mousePos.x - 0.5) * 12;
 
+  // Shared card content renderer
+  const renderCardContent = (ev: GalleryEvent) => (
+    <>
+      {/* Year badge */}
+      <div
+        style={{
+          position: "absolute",
+          top: 20,
+          right: 20,
+          fontFamily: "Poppins, sans-serif",
+          fontWeight: 900,
+          fontSize: 42,
+          color: "rgba(255, 199, 0, 0.12)",
+          lineHeight: 1,
+          pointerEvents: "none",
+        }}
+      >
+        {ev.year}
+      </div>
+
+      {/* Gold accent line */}
+      <div
+        style={{
+          width: 32,
+          height: 2,
+          background: "#FFC700",
+          marginBottom: 14,
+          opacity: 0.7,
+        }}
+      />
+
+      <div
+        style={{
+          fontFamily: "LOT, Poppins, sans-serif",
+          fontSize: "clamp(16px, 1.4vw, 22px)",
+          color: "#fff",
+          fontWeight: 700,
+          lineHeight: 1.1,
+          marginBottom: 8,
+        }}
+      >
+        {ev.title}
+      </div>
+
+      {ev.location && (
+        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginBottom: 6 }}>
+          {ev.location}
+        </div>
+      )}
+
+      {ev.dateStart && (
+        <div style={{ fontSize: 12, color: "#FFC700", opacity: 0.7 }}>
+          {ev.dateStart}
+        </div>
+      )}
+
+      {ev.proofStats && (
+        <div
+          style={{
+            fontSize: 11,
+            color: "rgba(255,255,255,0.35)",
+            marginTop: 10,
+            lineHeight: 1.5,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: "vertical",
+          }}
+        >
+          {ev.proofStats}
+        </div>
+      )}
+    </>
+  );
+
+  // Fallback: simple responsive grid
+  if (!supports3D) {
+    return (
+      <>
+        <div style={{ padding: "0 0 40px 0" }}>
+          <h2
+            style={{
+              fontFamily: "LOT, Poppins, sans-serif",
+              fontSize: "clamp(32px, 4vw, 56px)",
+              color: "#fff",
+              marginBottom: 16,
+              lineHeight: 0.95,
+            }}
+          >
+            PAST EVENTS
+          </h2>
+          <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginBottom: 40, fontFamily: "Poppins, sans-serif" }}>
+            Click any card to view details
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: 20,
+            marginBottom: 40,
+          }}
+        >
+          {displayEvents.map((ev) => (
+            <div
+              key={ev._id}
+              onClick={() => setSelectedEvent(ev)}
+              style={{
+                position: "relative",
+                padding: "28px 24px",
+                minHeight: 280,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                cursor: "pointer",
+                borderRadius: 6,
+                background: "rgba(20, 20, 20, 0.6)",
+                border: "1px solid rgba(255, 199, 0, 0.15)",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
+                transition: "border-color 0.2s, box-shadow 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "rgba(255, 199, 0, 0.4)";
+                e.currentTarget.style.boxShadow = "0 8px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 199, 0, 0.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(255, 199, 0, 0.15)";
+                e.currentTarget.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.4)";
+              }}
+            >
+              {renderCardContent(ev)}
+            </div>
+          ))}
+        </div>
+
+        {/* Modal */}
+        {selectedEvent && renderModal(selectedEvent, () => setSelectedEvent(null))}
+      </>
+    );
+  }
+
+  // 3D perspective gallery
   return (
     <>
-      <div style={{ padding: "0 80px 40px 80px" }}>
+      <div style={{ padding: "0 0 40px 0" }}>
         <h2
           style={{
             fontFamily: "LOT, Poppins, sans-serif",
@@ -47,7 +209,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
         >
           PAST EVENTS
         </h2>
-        <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginBottom: 40 }}>
+        <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginBottom: 40, fontFamily: "Poppins, sans-serif" }}>
           Click any card to view details
         </p>
       </div>
@@ -57,10 +219,12 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
         onMouseMove={handleMouseMove}
         style={{
           position: "relative",
+          width: "100%",
           height: "clamp(500px, 60vh, 700px)",
+          minHeight: 500,
           perspective: "1200px",
           perspectiveOrigin: "50% 50%",
-          overflow: "hidden",
+          overflow: "visible",
           cursor: "pointer",
           marginBottom: 40,
         }}
@@ -104,7 +268,6 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
                   cursor: "pointer",
                   borderRadius: 6,
                   overflow: "hidden",
-                  // Glass effect
                   background: "rgba(20, 20, 20, 0.6)",
                   backdropFilter: "blur(12px)",
                   WebkitBackdropFilter: "blur(12px)",
@@ -163,76 +326,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
                     padding: "28px 24px",
                   }}
                 >
-                  {/* Year badge */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: 20,
-                      right: 20,
-                      fontFamily: "Poppins, sans-serif",
-                      fontWeight: 900,
-                      fontSize: 42,
-                      color: "rgba(255, 199, 0, 0.12)",
-                      lineHeight: 1,
-                      pointerEvents: "none",
-                    }}
-                  >
-                    {ev.year}
-                  </div>
-
-                  {/* Gold accent line */}
-                  <div
-                    style={{
-                      width: 32,
-                      height: 2,
-                      background: "var(--gold)",
-                      marginBottom: 14,
-                      opacity: 0.7,
-                    }}
-                  />
-
-                  <div
-                    style={{
-                      fontFamily: "LOT, Poppins, sans-serif",
-                      fontSize: "clamp(16px, 1.4vw, 22px)",
-                      color: "#fff",
-                      fontWeight: 700,
-                      lineHeight: 1.1,
-                      marginBottom: 8,
-                    }}
-                  >
-                    {ev.title}
-                  </div>
-
-                  {ev.location && (
-                    <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginBottom: 6 }}>
-                      {ev.location}
-                    </div>
-                  )}
-
-                  {ev.dateStart && (
-                    <div style={{ fontSize: 12, color: "var(--gold)", opacity: 0.7 }}>
-                      {ev.dateStart}
-                    </div>
-                  )}
-
-                  {ev.proofStats && (
-                    <div
-                      style={{
-                        fontSize: 11,
-                        color: "rgba(255,255,255,0.35)",
-                        marginTop: 10,
-                        lineHeight: 1.5,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        display: "-webkit-box",
-                        WebkitLineClamp: 2,
-                        WebkitBoxOrient: "vertical",
-                      }}
-                    >
-                      {ev.proofStats}
-                    </div>
-                  )}
+                  {renderCardContent(ev)}
                 </div>
               </div>
             );
@@ -241,120 +335,124 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
       </div>
 
       {/* Modal */}
-      {selectedEvent && (
-        <div
-          onClick={() => setSelectedEvent(null)}
+      {selectedEvent && renderModal(selectedEvent, () => setSelectedEvent(null))}
+    </>
+  );
+}
+
+function renderModal(event: { _id: string; title: string; year: number; dateStart?: string; location?: string; shortDescription?: string; proofStats?: string }, onClose: () => void) {
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.92)",
+        backdropFilter: "blur(8px)",
+        zIndex: 9999,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 40,
+        cursor: "pointer",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: "rgba(20,20,20,0.9)",
+          backdropFilter: "blur(20px)",
+          border: "1px solid rgba(255,199,0,0.25)",
+          maxWidth: 700,
+          width: "100%",
+          maxHeight: "85vh",
+          overflowY: "auto",
+          padding: "48px 44px",
+          position: "relative",
+          cursor: "default",
+          borderRadius: 6,
+        }}
+      >
+        <button
+          onClick={onClose}
           style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.92)",
-            backdropFilter: "blur(8px)",
-            zIndex: 9999,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 40,
+            position: "absolute",
+            top: 16,
+            right: 20,
+            background: "none",
+            border: "none",
+            color: "rgba(255,255,255,0.5)",
+            fontSize: 24,
             cursor: "pointer",
+            fontFamily: "Poppins, sans-serif",
           }}
         >
+          ×
+        </button>
+
+        <span
+          style={{
+            display: "block",
+            fontSize: 11,
+            letterSpacing: "3px",
+            textTransform: "uppercase",
+            color: "#FFC700",
+            marginBottom: 16,
+            fontFamily: "Poppins, sans-serif",
+            fontWeight: 700,
+          }}
+        >
+          {event.year} · {event.dateStart}
+        </span>
+        <h3
+          style={{
+            fontFamily: "LOT, Poppins, sans-serif",
+            fontSize: "clamp(28px, 3.5vw, 48px)",
+            color: "#fff",
+            lineHeight: 0.95,
+            marginBottom: 12,
+          }}
+        >
+          {event.title.toUpperCase()}
+        </h3>
+        {event.location && (
+          <div style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", marginBottom: 20 }}>
+            {event.location}
+          </div>
+        )}
+        {event.shortDescription && (
+          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24 }}>
+            {event.shortDescription}
+          </p>
+        )}
+        {event.proofStats && (
           <div
-            onClick={(e) => e.stopPropagation()}
             style={{
-              background: "rgba(20,20,20,0.9)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,199,0,0.25)",
-              maxWidth: 700,
-              width: "100%",
-              maxHeight: "85vh",
-              overflowY: "auto",
-              padding: "48px 44px",
-              position: "relative",
-              cursor: "default",
-              borderRadius: 6,
+              background: "#FFC700",
+              padding: "20px 24px",
+              borderRadius: 4,
             }}
           >
-            <button
-              onClick={() => setSelectedEvent(null)}
-              style={{
-                position: "absolute",
-                top: 16,
-                right: 20,
-                background: "none",
-                border: "none",
-                color: "rgba(255,255,255,0.5)",
-                fontSize: 24,
-                cursor: "pointer",
-                fontFamily: "Poppins, sans-serif",
-              }}
-            >
-              ×
-            </button>
-
             <span
               style={{
-                display: "block",
                 fontSize: 11,
-                letterSpacing: "3px",
+                letterSpacing: "2px",
                 textTransform: "uppercase",
-                color: "var(--gold)",
-                marginBottom: 16,
+                color: "rgba(0,0,0,0.5)",
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
+                display: "block",
+                marginBottom: 8,
               }}
             >
-              {selectedEvent.year} · {selectedEvent.dateStart}
+              Impact
             </span>
-            <h3
-              style={{
-                fontFamily: "LOT, Poppins, sans-serif",
-                fontSize: "clamp(28px, 3.5vw, 48px)",
-                color: "#fff",
-                lineHeight: 0.95,
-                marginBottom: 12,
-              }}
-            >
-              {selectedEvent.title.toUpperCase()}
-            </h3>
-            {selectedEvent.location && (
-              <div style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", marginBottom: 20 }}>
-                {selectedEvent.location}
-              </div>
-            )}
-            {selectedEvent.shortDescription && (
-              <p style={{ fontSize: 16, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24 }}>
-                {selectedEvent.shortDescription}
-              </p>
-            )}
-            {selectedEvent.proofStats && (
-              <div
-                style={{
-                  background: "var(--gold)",
-                  padding: "20px 24px",
-                  borderRadius: 4,
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: 11,
-                    letterSpacing: "2px",
-                    textTransform: "uppercase",
-                    color: "rgba(0,0,0,0.5)",
-                    fontFamily: "Poppins, sans-serif",
-                    fontWeight: 700,
-                    display: "block",
-                    marginBottom: 8,
-                  }}
-                >
-                  Impact
-                </span>
-                <div style={{ fontSize: 15, color: "#000", fontWeight: 600, lineHeight: 1.6 }}>
-                  {selectedEvent.proofStats}
-                </div>
-              </div>
-            )}
+            <div style={{ fontSize: 15, color: "#000", fontWeight: 600, lineHeight: 1.6 }}>
+              {event.proofStats}
+            </div>
           </div>
-        </div>
-      )}
-    </>
+        )}
+      </div>
+    </div>
   );
 }

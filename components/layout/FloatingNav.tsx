@@ -59,21 +59,8 @@ export default function FloatingNav() {
             transform: menuOpen ? "rotate(90deg)" : "rotate(0deg)",
           }}
         >
-          {/* IBTU logo mark — simplified */}
-          <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-            <circle cx="16" cy="16" r="14" stroke="#000" strokeWidth="2" />
-            <text
-              x="16"
-              y="20"
-              textAnchor="middle"
-              fontFamily="Poppins, sans-serif"
-              fontSize="10"
-              fontWeight="900"
-              fill="#000"
-            >
-              IBTU
-            </text>
-          </svg>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/ibtu-logo.svg" alt="IBTU" style={{ width: 32, height: 32, filter: "brightness(0)" }} />
         </button>
       </div>
 

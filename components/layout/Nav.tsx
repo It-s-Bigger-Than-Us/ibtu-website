@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
@@ -13,12 +13,16 @@ const NAV_ITEMS = [
 
 export default function Nav() {
   const navRef = useRef<HTMLElement>(null);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     const tabs = navRef.current?.querySelectorAll(".nav-tab");
     if (!tabs) return;
 
     const handleScroll = () => {
+      // Hide sidenav when floating nav appears (same threshold)
+      setHidden(window.scrollY > window.innerHeight * 0.8);
+
       const sections = [
         { id: "hero", label: "Home" },
         { id: "s-stats", label: "Impact" },
@@ -45,7 +49,15 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav id="sidenav" ref={navRef}>
+    <nav
+      id="sidenav"
+      ref={navRef}
+      style={{
+        opacity: hidden ? 0 : 1,
+        pointerEvents: hidden ? "none" : "auto",
+        transition: "opacity 0.4s ease",
+      }}
+    >
       {NAV_ITEMS.map(({ label, href }) => (
         <Link key={label} href={href} className="nav-tab">
           {label}
