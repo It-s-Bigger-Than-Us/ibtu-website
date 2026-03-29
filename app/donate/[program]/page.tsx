@@ -78,7 +78,7 @@ export default async function DonatePage({ params }: Props) {
             <img
               src={heroSrc}
               alt={program.title}
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.2 }}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
             />
           )}
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.3) 100%)" }} />
