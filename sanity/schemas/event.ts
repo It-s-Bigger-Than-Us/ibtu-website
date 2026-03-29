@@ -31,6 +31,7 @@ export default defineType({
       }],
     }),
     defineField({ name: "rsvpUrl", title: "RSVP / Get Involved URL", type: "url" }),
+    defineField({ name: "waysToGetInvolved", title: "Ways to Get Involved", type: "string", options: { list: ["Volunteer", "Donate", "Sponsor", "Attend", "Lunchtime Takeover", "Resource Fair", "Parent Empowerment Workshop", "Parent Empowerment Series", "Professional Development", "Staff Appreciation", "Young Community Builder Program Series", "Building Community Builders Workshop & Retreat"] } }),
     // ── PRIVATE FIELDS — never exposed in website GROQ queries ──
     defineField({ name: "internalBudget", title: "INTERNAL: Budget", type: "number", description: "PRIVATE — never shown on website" }),
     defineField({ name: "internalNotes", title: "INTERNAL: Notes", type: "text", rows: 4, description: "PRIVATE — internal team notes" }),
