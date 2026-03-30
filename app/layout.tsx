@@ -22,6 +22,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "It's Bigger Than Us (IBTU)",
+    description: "Community is the infrastructure. Trusted, place-based programs in Los Angeles.",
+  },
+  metadataBase: new URL("https://ibtu.la"),
 };
 
 const jsonLd = {
@@ -30,7 +36,7 @@ const jsonLd = {
   name: "It's Bigger Than Us",
   alternateName: "IBTU",
   url: "https://ibtu.la",
-  logo: "https://ibtu.la/favicon.ico",
+  logo: "https://ibtu.la/icon.svg",
   description:
     "IBTU builds trusted, place-based programs for Los Angeles communities — from fire relief and youth programming to back-to-school festivals and food access. Designed with dignity.",
   foundingDate: "2020",
