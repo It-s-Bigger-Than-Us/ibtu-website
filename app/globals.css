@@ -217,6 +217,10 @@ body {
   transform: rotate(45deg);
   animation: scrollBounce 2s ease-in-out infinite;
 }
+@keyframes coinSpin {
+  0% { transform: perspective(600px) rotateY(0deg); }
+  100% { transform: perspective(600px) rotateY(360deg); }
+}
 @keyframes scrollBounce {
   0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.5; }
   50% { transform: rotate(45deg) translateY(6px); opacity: 1; }

@@ -34,7 +34,7 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
 
   const itemCount = items.length
   const angleStep = 360 / Math.max(itemCount, 1)
-  const radius = Math.max(350, itemCount * 45) // Responsive radius
+  const radius = Math.max(250, itemCount * 30) // Tighter orbit — photos closer together
 
   // Auto-rotate when not dragging
   useEffect(() => {
@@ -75,7 +75,8 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
         height: '100vh',
         minHeight: '700px',
         overflow: 'hidden',
-        background: 'linear-gradient(180deg, #1a0800 0%, #0d0400 25%, #060200 50%, #000 100%)',
+        /* Sky background — deep warm gradient with golden horizon */
+        background: 'radial-gradient(ellipse at 50% 80%, #2a1500 0%, #150a00 25%, #0a0400 45%, #000 70%)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -119,17 +120,33 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
             transition: isDragging ? 'none' : 'transform 0.05s linear',
           }}
         >
-          {/* Gold center sphere */}
+          {/* IBTU 3D logo center — gold with depth */}
           <div style={{
             position: 'absolute',
             top: '50%', left: '50%',
-            width: '60px', height: '60px',
+            width: '100px', height: '100px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle at 30% 30%, #ffe066, #FFC700, #cc9e00)',
+            background: 'radial-gradient(circle at 35% 35%, #ffe680, #FFC700, #b38600)',
             transform: 'translate(-50%, -50%)',
-            boxShadow: '0 0 40px rgba(255, 199, 0, 0.4)',
+            boxShadow: '0 0 60px rgba(255, 199, 0, 0.5), inset 0 -4px 12px rgba(0,0,0,0.3)',
             zIndex: 1,
-          }} />
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '3px solid rgba(255, 199, 0, 0.8)',
+          }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/ibtu-logo.svg"
+              alt="IBTU"
+              style={{
+                width: '60px',
+                height: '60px',
+                filter: 'brightness(0)',
+                animation: 'coinSpin 6s linear infinite',
+              }}
+            />
+          </div>
 
           {/* Orbiting image cards */}
           {items.map((item, i) => {
@@ -160,64 +177,67 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
                   cursor: 'pointer',
                 }}
               >
-                {isHovered ? (
-                  /* Hover state: gold with program info */
-                  <Link
-                    href={item.programSlug ? `/our-programs/${item.programSlug}` : '/our-programs'}
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '100%',
-                      height: '100%',
-                      background: '#FFC700',
-                      textDecoration: 'none',
-                      padding: '16px',
-                    }}
-                    onClick={(e) => e.stopPropagation()}
-                  >
+                {/* Photo — always visible */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: 'saturate(1.15)',
+                    display: 'block',
+                    opacity: isHovered ? 0 : 1,
+                    transition: 'opacity 0.3s',
+                  }}
+                />
+                {/* Hover overlay: gold with program name — counter-rotated so text reads left-to-right */}
+                <Link
+                  href={item.programSlug ? `/our-programs/${item.programSlug}` : '/our-programs'}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: '#FFC700',
+                    textDecoration: 'none',
+                    padding: '16px',
+                    opacity: isHovered ? 1 : 0,
+                    transition: 'opacity 0.3s',
+                    /* Counter-rotate so text is always readable left-to-right */
+                    transform: `rotateY(${angleStep * i}deg)`,
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <span style={{
+                    fontFamily: "'Poppins', sans-serif",
+                    fontSize: 'clamp(13px, 1.1vw, 16px)',
+                    fontWeight: 800,
+                    color: '#000',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px',
+                    textAlign: 'center',
+                    lineHeight: 1.2,
+                  }}>
+                    {item.title}
+                  </span>
+                  {item.program && (
                     <span style={{
                       fontFamily: "'Poppins', sans-serif",
-                      fontSize: 'clamp(14px, 1.2vw, 18px)',
-                      fontWeight: 800,
+                      fontSize: '10px',
+                      fontWeight: 700,
                       color: '#000',
+                      letterSpacing: '3px',
                       textTransform: 'uppercase',
-                      letterSpacing: '1px',
-                      textAlign: 'center',
-                      lineHeight: 1.2,
+                      marginTop: '8px',
                     }}>
-                      {item.title}
+                      {item.program} →
                     </span>
-                    {item.program && (
-                      <span style={{
-                        fontFamily: "'Poppins', sans-serif",
-                        fontSize: '10px',
-                        fontWeight: 700,
-                        color: '#000',
-                        letterSpacing: '3px',
-                        textTransform: 'uppercase',
-                        marginTop: '8px',
-                      }}>
-                        {item.program} →
-                      </span>
-                    )}
-                  </Link>
-                ) : (
-                  /* Default state: photo */
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      filter: 'saturate(1.15)',
-                      display: 'block',
-                    }}
-                  />
-                )}
+                  )}
+                </Link>
               </div>
             )
           })}
