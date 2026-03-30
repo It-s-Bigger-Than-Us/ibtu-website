@@ -28,6 +28,9 @@ export async function getAllImpactStats() {
 export async function getTimeline() {
   return client.fetch(q.orgTimelineQuery);
 }
+export async function getPillars() {
+  return client.fetch(q.pillarsQuery);
+}
 export async function getPartners() {
   return client.fetch(q.partnersByCategoryQuery);
 }

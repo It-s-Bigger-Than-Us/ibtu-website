@@ -46,10 +46,10 @@ export const programs: Program[] = [
     keyPartners:
       "SoLa Impact, One Church, HACLA, Baby2Baby, Khalsa Aid, UTLA, Liberty Dental, lululemon, Nike, Apple, Google, FOX, BET+, TBWA\\Chiat\\Day, Shell, L'OCCITANE, LA28, Target",
     heroImage:
-      "https://static.wixstatic.com/media/a11c28_c252e60a91f34fba9d020d2fc20b45bd~mv2.jpg",
+      "",
     cardImages: [
-      "https://static.wixstatic.com/media/a11c28_c252e60a91f34fba9d020d2fc20b45bd~mv2.jpg",
-      "https://static.wixstatic.com/media/a11c28_d30b9d68051b4a61b205d5e8b7c77faa~mv2.jpg",
+      "",
+      "",
     ],
     cardStat: "324 active clients",
     icon: "fire",
@@ -78,10 +78,10 @@ export const programs: Program[] = [
     keyPartners:
       "lululemon, Baby2Baby, Supreme, Adidas, Bombas, Nike, Apple, Google, Target, LA Rams, Pepsi, LA84 Foundation, LAUSD",
     heroImage:
-      "https://static.wixstatic.com/media/a11c28_cee919754fbe4c13811ddbe0ca0d0d25~mv2.jpg",
+      "",
     cardImages: [
-      "https://static.wixstatic.com/media/a11c28_cee919754fbe4c13811ddbe0ca0d0d25~mv2.jpg",
-      "https://static.wixstatic.com/media/a11c28_530bc140592243ce9880d5adf69d7122~mv2.jpg",
+      "",
+      "",
     ],
     cardStat: "18,550+ backpacks",
     icon: "school",
@@ -108,10 +108,10 @@ export const programs: Program[] = [
     keyPartners:
       "Alliance College-Ready Public Schools (25 campuses), LAUSD, Inglewood USD, Sol de Janeiro ($1.9M), Iovine & Young Center",
     heroImage:
-      "https://static.wixstatic.com/media/a11c28_4a04e6873c9e4858ba9b0621e40c9bd0~mv2.jpg",
+      "",
     cardImages: [
-      "https://static.wixstatic.com/media/a11c28_4a04e6873c9e4858ba9b0621e40c9bd0~mv2.jpg",
-      "https://static.wixstatic.com/media/a11c28_3266eae7be9641cc9902418912b2fe47~mv2.jpg",
+      "",
+      "",
     ],
     cardStat: "28,025 students",
     icon: "youth",
@@ -136,10 +136,10 @@ export const programs: Program[] = [
     status: "Active",
     sortOrder: 4,
     heroImage:
-      "https://static.wixstatic.com/media/a11c28_05aed7a2538e4dfbac72a55b326f924b~mv2.jpeg",
+      "",
     cardImages: [
-      "https://static.wixstatic.com/media/a11c28_05aed7a2538e4dfbac72a55b326f924b~mv2.jpeg",
-      "https://static.wixstatic.com/media/a11c28_92060931dcaa49d4ad61b171e552d36e~mv2.jpeg",
+      "",
+      "",
     ],
     cardStat: "Monthly clean-ups",
     icon: "beach",
@@ -164,10 +164,10 @@ export const programs: Program[] = [
     sortOrder: 5,
     keyPartners: "ECOS Group, Baby2Baby, Target",
     heroImage:
-      "https://static.wixstatic.com/media/a11c28_00da205b7f55490391a902b27d2ed0a5~mv2.jpg",
+      "",
     cardImages: [
-      "https://static.wixstatic.com/media/a11c28_00da205b7f55490391a902b27d2ed0a5~mv2.jpg",
-      "https://static.wixstatic.com/media/a11c28_ef9fb55a9b604d05b8712a9154aa913f~mv2.jpg",
+      "",
+      "",
     ],
     cardStat: "6 years running",
     icon: "gift",
@@ -194,10 +194,10 @@ export const programs: Program[] = [
       "lululemon Glow Up Studio NYC (Cody Rigsby, Adrian Williams, The Rockettes, QuestLove)",
     keyPartners: "lululemon, Black OM Wellness, Peloton",
     heroImage:
-      "https://static.wixstatic.com/media/a11c28_7088b69d1aa14e0ca8d59594057128f3~mv2.jpg",
+      "",
     cardImages: [
-      "https://static.wixstatic.com/media/a11c28_7088b69d1aa14e0ca8d59594057128f3~mv2.jpg",
-      "https://static.wixstatic.com/media/a11c28_a1e0cc925ecf4df4bf8e015335666b3c~mv2.jpg",
+      "",
+      "",
     ],
     cardStat: "50+ health partners",
     icon: "wellness",
@@ -223,10 +223,10 @@ export const programs: Program[] = [
     keyPartners:
       "LA Care Health Plan, Charles Drew University, USC All of Us, Liberty Dental, Keck School of Medicine USC, United MegaCare, Baby2Baby, LA Rams",
     heroImage:
-      "https://static.wixstatic.com/media/a11c28_d169702c6dc14689a8419141cce0bbb9~mv2.jpg",
+      "",
     cardImages: [
-      "https://static.wixstatic.com/media/a11c28_d169702c6dc14689a8419141cce0bbb9~mv2.jpg",
-      "https://static.wixstatic.com/media/a11c28_7f5c375264d249ff8944d8815c30aa8a~mv2.jpeg",
+      "",
+      "",
     ],
     cardStat: "875,500+ lbs food",
     icon: "food",

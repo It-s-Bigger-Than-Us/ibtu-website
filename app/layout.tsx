@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import FloatingNav from "@/components/layout/FloatingNav";
+import TopNav from "@/components/layout/TopNav";
 
 const poppins = Poppins({
   weight: ["300", "400", "600", "700", "900"],
@@ -70,7 +70,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <FloatingNav />
+        <TopNav />
         {children}
       </body>
     </html>

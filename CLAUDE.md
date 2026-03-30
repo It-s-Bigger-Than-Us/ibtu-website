@@ -15,7 +15,8 @@ Site ID (Wix, now deprecated): 37dddaec-4d77-4eae-a0b3-3686f5cb5526
 - NEVER gold text on white background (fails contrast, off-brand)
 - Fonts: LOT (headlines) + Poppins (body)
 - Sacred phrases (verbatim): "Community is the infrastructure." / "Designed with dignity." / "We listen, we build, we stay."
-- No gradients, no stock photos, no carousel heroes, no parallax, no popup modals, no sidebar layouts
+- No gradients, no stock photos, no popup modals, no sidebar layouts
+- Carousel heroes and parallax scroll effects ARE allowed per 3/29/2026 design spec
 - Photography: B&W portraits (dignity), full-color event photos (warm, oversaturated)
 
 ## Key Files
