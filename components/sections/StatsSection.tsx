@@ -86,7 +86,7 @@ export default function StatsSection({ stats }: StatsSectionProps) {
           maxWidth: '1400px',
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(2, 1fr)',
           gap: '16px',
         }}
       >
@@ -109,7 +109,7 @@ export default function StatsSection({ stats }: StatsSectionProps) {
               ref={(el) => { numRefs.current[i] = el }}
               style={{
                 fontFamily: "'Poppins', sans-serif",
-                fontSize: 'clamp(32px, 4vw, 56px)',
+                fontSize: 'clamp(28px, 3.5vw, 48px)',
                 fontWeight: 900,
                 lineHeight: 1,
                 color: '#000',
