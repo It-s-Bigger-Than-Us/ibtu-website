@@ -430,44 +430,7 @@ export default async function ProgramPage({ params }: Props) {
           </section>
         )}
 
-        {/* ──────────────────────────────────────────────
-            7. KEY PARTNERS
-        ────────────────────────────────────────────── */}
-        {program.keyPartners && (
-          <section
-            style={{
-              padding: "100px 80px",
-              borderTop: "1px solid var(--gold)",
-            }}
-          >
-            <RevealOnScroll y={40} delay={0}>
-              <div
-                style={{
-                  fontSize: 11,
-                  letterSpacing: "4px",
-                  textTransform: "uppercase",
-                  color: "#FFC700",
-                  marginBottom: 20,
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                }}
-              >
-                Key Partners
-              </div>
-              <p
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: 16,
-                  color: "var(--gold)",
-                  lineHeight: 1.8,
-                  maxWidth: 700,
-                }}
-              >
-                {program.keyPartners}
-              </p>
-            </RevealOnScroll>
-          </section>
-        )}
+        {/* Key Partners section removed per Molly's direction */}
 
         {/* ──────────────────────────────────────────────
             8. CTA — gold section

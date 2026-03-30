@@ -60,24 +60,26 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
             <Link
               key={program.slug}
               href={`/our-programs/${program.slug}`}
-              className="program-card fold-trigger card-lift"
+              className="program-card"
+              style={{ textDecoration: 'none' }}
             >
+              {/* Image block — NO text on it */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={program.heroImage} alt={program.title} />
+              <img src={program.heroImage} alt={`${program.title} — IBTU program`} />
 
+              {/* Text block — gold bg, black type, BELOW image */}
               <div className="program-card-overlay">
                 <span className="program-card-tag">{program.pillar}</span>
                 <span className="program-card-name">{program.title}</span>
                 {program.cardStat && (
                   <span className="program-card-stat">{program.cardStat}</span>
                 )}
-                {/* Fold-out description on hover */}
                 {program.description && (
                   <div className="fold-content" style={{
                     marginTop: '8px',
-                    fontSize: '13px',
+                    fontSize: '12px',
                     lineHeight: '1.5',
-                    color: '#fff',
+                    color: '#000',
                   }}>
                     {program.description}
                   </div>
