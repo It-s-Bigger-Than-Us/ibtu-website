@@ -8,6 +8,7 @@ import EventGallery3D from "@/components/sections/EventGallery3D";
 import ScrollText from "@/components/ui/ScrollText";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import StickyFlipbook from "@/components/ui/StickyFlipbook";
+import AnimatedHeadline from "@/components/ui/AnimatedHeadline";
 
 export const revalidate = 60;
 
@@ -106,18 +107,21 @@ export default async function ProgramPage({ params }: Props) {
               {program.pillar}
             </div>
 
-            {/* Program title — massive, screen-filling */}
-            <h1 style={{
-              fontFamily: "'LOT', 'Bebas Neue', sans-serif",
-              fontSize: "clamp(60px, 12vw, 180px)",
-              lineHeight: 0.9,
-              letterSpacing: "-0.02em",
-              color: "#FFF",
-              marginBottom: 36,
-              textTransform: "uppercase",
-            }}>
-              {program.title}
-            </h1>
+            {/* Program title — word-by-word animation, breaks across lines */}
+            <AnimatedHeadline
+              text={program.title}
+              as="h1"
+              scrollTrigger={false}
+              style={{
+                fontFamily: "'LOT', 'Bebas Neue', sans-serif",
+                fontSize: "clamp(60px, 12vw, 180px)",
+                lineHeight: 0.9,
+                letterSpacing: "-0.02em",
+                color: "#FFF",
+                marginBottom: 36,
+                textTransform: "uppercase",
+              }}
+            />
 
             {/* Tagline */}
             <p style={{
