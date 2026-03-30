@@ -59,7 +59,7 @@ export default function DonationEmbed({
       {title && (
         <h2
           style={{
-            fontFamily: "LOT, Poppins, sans-serif",
+            fontFamily: "Poppins, sans-serif",
             fontSize: "clamp(36px, 5vw, 72px)",
             lineHeight: 0.95,
             color: "#fff",

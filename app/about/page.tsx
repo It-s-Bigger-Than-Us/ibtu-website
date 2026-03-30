@@ -24,7 +24,7 @@ export default async function AboutPage() {
           <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
             Founded 2020 · Los Angeles
           </span>
-          <h1 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(60px, 9vw, 140px)", lineHeight: 0.9, color: "#fff", marginBottom: 32 }}>
+          <h1 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(60px, 9vw, 140px)", lineHeight: 0.9, color: "#fff", marginBottom: 32 }}>
             WE LISTEN.
             <br />
             WE BUILD.
@@ -45,7 +45,7 @@ export default async function AboutPage() {
               <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
                 How It Started
               </span>
-              <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(36px, 4.5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 28 }}>
+              <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(36px, 4.5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 28 }}>
                 A QUESTION, NOT A PLAN
               </h2>
               <p style={{ fontSize: "clamp(16px, 1.3vw, 19px)", color: "#000", lineHeight: 1.75, marginBottom: 24 }}>
@@ -65,7 +65,7 @@ export default async function AboutPage() {
               <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
                 How It Works
               </span>
-              <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(36px, 4.5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 28 }}>
+              <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(36px, 4.5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 28 }}>
                 COMMUNITY IS THE INFRASTRUCTURE
               </h2>
               <p style={{ fontSize: "clamp(16px, 1.3vw, 19px)", color: "#000", lineHeight: 1.75, marginBottom: 24 }}>
@@ -113,7 +113,7 @@ export default async function AboutPage() {
             <Link key={p.tag} href={p.href} style={{ textDecoration: "none" }}>
               <div style={{ background: "var(--gold)", padding: "60px 44px", minHeight: 280, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
                 <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 14 }}>{p.tag}</span>
-                <h3 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(28px, 3vw, 44px)", lineHeight: 0.95, color: "#000", marginBottom: 16 }}>{p.title.toUpperCase()}</h3>
+                <h3 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(28px, 3vw, 44px)", lineHeight: 0.95, color: "#000", marginBottom: 16 }}>{p.title.toUpperCase()}</h3>
                 <p style={{ fontSize: 14, color: "#000", lineHeight: 1.6 }}>{p.desc}</p>
               </div>
             </Link>
@@ -122,7 +122,7 @@ export default async function AboutPage() {
 
         {/* Timeline */}
         <div style={{ padding: "100px 80px" }}>
-          <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(44px, 6vw, 96px)", lineHeight: 0.9, color: "#fff", marginBottom: 60 }}>
+          <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(44px, 6vw, 96px)", lineHeight: 0.9, color: "#fff", marginBottom: 60 }}>
             TIMELINE
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -144,7 +144,7 @@ export default async function AboutPage() {
                   </span>
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(18px, 2vw, 28px)", color: "#fff", fontWeight: 700, lineHeight: 1.1, marginBottom: 10 }}>
+                  <h3 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(18px, 2vw, 28px)", color: "#fff", fontWeight: 700, lineHeight: 1.1, marginBottom: 10 }}>
                     {entry.title.toUpperCase()}
                   </h3>
                   <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>
@@ -161,7 +161,7 @@ export default async function AboutPage() {
 
         {/* CTA */}
         <div style={{ background: "var(--gold)", padding: "80px 80px", textAlign: "center" }}>
-          <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 24 }}>
+          <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 24 }}>
             THIS WORK DOES NOT HAPPEN WITHOUT YOU
           </h2>
           <p style={{ fontSize: 16, color: "#000", maxWidth: 580, margin: "0 auto 40px", lineHeight: 1.7 }}>

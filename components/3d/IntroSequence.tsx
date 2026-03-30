@@ -56,7 +56,7 @@ export default function IntroSequence({ onComplete }: { onComplete: () => void }
       {/* Main title */}
       <h1
         style={{
-          fontFamily: "LOT, Poppins, sans-serif",
+          fontFamily: "Poppins, sans-serif",
           fontSize: "clamp(48px, 10vw, 140px)",
           lineHeight: 0.9,
           textAlign: "center",

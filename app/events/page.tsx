@@ -54,7 +54,7 @@ export default async function EventsPage() {
           </span>
           <h1
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(60px, 9vw, 140px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -73,7 +73,7 @@ export default async function EventsPage() {
           <div style={{ padding: "80px 80px 60px 80px" }}>
             <h2
               style={{
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontSize: "clamp(36px, 5vw, 72px)",
                 lineHeight: 0.95,
                 color: "var(--gold)",
@@ -122,7 +122,7 @@ export default async function EventsPage() {
                         </span>
                         <div
                           style={{
-                            fontFamily: "LOT, Poppins, sans-serif",
+                            fontFamily: "Poppins, sans-serif",
                             fontSize: "clamp(18px, 2vw, 28px)",
                             color: "#fff",
                             fontWeight: 700,
@@ -162,7 +162,7 @@ export default async function EventsPage() {
         <div style={{ padding: "40px 80px 80px 80px" }}>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#fff",
@@ -186,7 +186,7 @@ export default async function EventsPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(24px, 3vw, 40px)",
                     color: "var(--gold)",
                     fontWeight: 700,

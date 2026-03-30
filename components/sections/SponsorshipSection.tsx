@@ -44,7 +44,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
       </span>
       <h2
         style={{
-          fontFamily: "LOT, Poppins, sans-serif",
+          fontFamily: "Poppins, sans-serif",
           fontSize: "clamp(36px, 5vw, 72px)",
           lineHeight: 0.95,
           color: "#fff",
@@ -96,7 +96,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                   <div>
                     <div
                       style={{
-                        fontFamily: "LOT, Poppins, sans-serif",
+                        fontFamily: "Poppins, sans-serif",
                         fontSize: "clamp(20px, 2.2vw, 30px)",
                         color: pkg.featured ? "#000" : "#fff",
                         lineHeight: 1,

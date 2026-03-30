@@ -38,7 +38,7 @@ export default async function AdminMediaPage() {
         >
           <h1
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(40px, 6vw, 72px)",
               color: "#fff",
               lineHeight: 0.92,

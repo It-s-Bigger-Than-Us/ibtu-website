@@ -69,7 +69,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
 
       <div
         style={{
-          fontFamily: "LOT, Poppins, sans-serif",
+          fontFamily: "Poppins, sans-serif",
           fontSize: "clamp(16px, 1.4vw, 22px)",
           color: "#fff",
           fontWeight: 700,
@@ -119,7 +119,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
         <div style={{ padding: "0 0 40px 0" }}>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(32px, 4vw, 56px)",
               color: "#fff",
               marginBottom: 16,
@@ -185,7 +185,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
       <div style={{ padding: "0 0 40px 0" }}>
         <h2
           style={{
-            fontFamily: "LOT, Poppins, sans-serif",
+            fontFamily: "Poppins, sans-serif",
             fontSize: "clamp(32px, 4vw, 56px)",
             color: "#fff",
             marginBottom: 16,
@@ -391,7 +391,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
         </span>
         <h3
           style={{
-            fontFamily: "LOT, Poppins, sans-serif",
+            fontFamily: "Poppins, sans-serif",
             fontSize: "clamp(28px, 3.5vw, 48px)",
             color: "#fff",
             lineHeight: 0.95,

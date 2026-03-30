@@ -46,7 +46,7 @@ export default async function PartnersPage() {
           </span>
           <h1
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(60px, 9vw, 140px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -130,7 +130,7 @@ export default async function PartnersPage() {
         <div style={{ background: "var(--gold)", padding: "80px 80px", textAlign: "center" }}>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#000",

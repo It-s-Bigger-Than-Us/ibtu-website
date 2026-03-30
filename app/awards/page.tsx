@@ -46,7 +46,7 @@ export default async function AwardsPage() {
           </span>
           <h1
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(40px, 6vw, 100px)",
               lineHeight: 0.9,
               color: "#000",
@@ -75,7 +75,7 @@ export default async function AwardsPage() {
             <div key={group.year} style={{ marginBottom: 80 }}>
               <h2
                 style={{
-                  fontFamily: "LOT, Poppins, sans-serif",
+                  fontFamily: "Poppins, sans-serif",
                   fontSize: "clamp(44px, 5vw, 80px)",
                   color: "var(--gold)",
                   lineHeight: 1,
@@ -178,7 +178,7 @@ export default async function AwardsPage() {
           </span>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#fff",
@@ -198,7 +198,7 @@ export default async function AwardsPage() {
             <div>
               <h3
                 style={{
-                  fontFamily: "LOT, Poppins, sans-serif",
+                  fontFamily: "Poppins, sans-serif",
                   fontSize: "clamp(22px, 2.5vw, 36px)",
                   color: "var(--gold)",
                   marginBottom: 16,
@@ -221,7 +221,7 @@ export default async function AwardsPage() {
             <div>
               <h3
                 style={{
-                  fontFamily: "LOT, Poppins, sans-serif",
+                  fontFamily: "Poppins, sans-serif",
                   fontSize: "clamp(22px, 2.5vw, 36px)",
                   color: "var(--gold)",
                   marginBottom: 16,

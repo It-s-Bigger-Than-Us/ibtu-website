@@ -41,7 +41,7 @@ export default async function ProgramsPage() {
           </span>
           <h1
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(60px, 9vw, 140px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -128,7 +128,7 @@ export default async function ProgramsPage() {
                 </span>
                 <h2
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(32px, 3.5vw, 52px)",
                     lineHeight: 0.95,
                     color: "#000",

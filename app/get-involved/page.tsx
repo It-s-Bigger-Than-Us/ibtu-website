@@ -81,7 +81,7 @@ export default async function GetInvolvedPage() {
           </span>
           <h1
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(52px, 8vw, 120px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -114,7 +114,7 @@ export default async function GetInvolvedPage() {
         <div style={{ padding: "80px 80px 80px 80px" }}>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#fff",
@@ -155,7 +155,7 @@ export default async function GetInvolvedPage() {
                   <div>
                     <h3
                       style={{
-                        fontFamily: "LOT, Poppins, sans-serif",
+                        fontFamily: "Poppins, sans-serif",
                         fontSize: "clamp(22px, 2.5vw, 36px)",
                         color: "#fff",
                         marginBottom: 16,
@@ -198,7 +198,7 @@ export default async function GetInvolvedPage() {
         >
           <h3
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(20px, 2.5vw, 32px)",
               color: "rgba(255,255,255,0.6)",
               marginBottom: 28,
@@ -272,7 +272,7 @@ export default async function GetInvolvedPage() {
         <div id="sponsor" style={{ padding: "80px 80px" }}>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(44px, 6vw, 96px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -312,7 +312,7 @@ export default async function GetInvolvedPage() {
               >
                 <div
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(20px, 2vw, 28px)",
                     color: "var(--gold)",
                     lineHeight: 1,
@@ -371,7 +371,7 @@ export default async function GetInvolvedPage() {
         >
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(44px, 6vw, 96px)",
               lineHeight: 0.9,
               color: "#fff",

@@ -165,7 +165,7 @@ export default function FireReliefPage() {
             </span>
             <h1
               style={{
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontSize: "clamp(40px, 6vw, 100px)",
                 lineHeight: 0.92,
                 color: "#fff",
@@ -213,7 +213,7 @@ export default function FireReliefPage() {
               <div>
                 <span
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(80px, 10vw, 140px)",
                     color: "rgba(255,199,0,0.12)",
                     lineHeight: 0.85,
@@ -237,7 +237,7 @@ export default function FireReliefPage() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(32px, 4vw, 56px)",
                     color: "#fff",
                     lineHeight: 1,
@@ -266,7 +266,7 @@ export default function FireReliefPage() {
               <div>
                 <h3
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(24px, 3vw, 40px)",
                     color: "#FFC700",
                     lineHeight: 1.1,
@@ -298,7 +298,7 @@ export default function FireReliefPage() {
                     <div key={j}>
                       <span
                         style={{
-                          fontFamily: "LOT, Poppins, sans-serif",
+                          fontFamily: "Poppins, sans-serif",
                           fontSize: "clamp(28px, 3vw, 48px)",
                           color: "#FFC700",
                           lineHeight: 1,
@@ -382,7 +382,7 @@ export default function FireReliefPage() {
           </span>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#fff",
@@ -423,7 +423,7 @@ export default function FireReliefPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: 28,
                     color: "#FFC700",
                     marginBottom: 12,
@@ -575,7 +575,7 @@ export default function FireReliefPage() {
               <div key={i} style={{ textAlign: "center" }}>
                 <span
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(32px, 3.5vw, 56px)",
                     color: "#000",
                     lineHeight: 1,
@@ -613,7 +613,7 @@ export default function FireReliefPage() {
           >
             <h2
               style={{
-                fontFamily: "LOT, Poppins, sans-serif",
+                fontFamily: "Poppins, sans-serif",
                 fontSize: "clamp(40px, 5.5vw, 80px)",
                 lineHeight: 0.95,
                 color: "#000",

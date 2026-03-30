@@ -50,7 +50,7 @@ export default async function ImpactPage() {
           </span>
           <h1
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(48px, 7vw, 120px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -105,7 +105,7 @@ export default async function ImpactPage() {
               <div key={i}>
                 <span
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(32px, 4vw, 56px)",
                     color: "#000",
                     lineHeight: 1,
@@ -156,7 +156,7 @@ export default async function ImpactPage() {
               <div key={i}>
                 <span
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(32px, 4vw, 56px)",
                     color: "var(--gold)",
                     lineHeight: 1,
@@ -215,7 +215,7 @@ export default async function ImpactPage() {
               <div key={i} style={{ textAlign: "center", flex: "1 1 140px" }}>
                 <span
                   style={{
-                    fontFamily: "LOT, Poppins, sans-serif",
+                    fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(28px, 3vw, 48px)",
                     color: "#fff",
                     lineHeight: 1,
@@ -255,7 +255,7 @@ export default async function ImpactPage() {
         <div style={{ background: "var(--gold)", padding: "80px 80px", textAlign: "center" }}>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#000",

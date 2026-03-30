@@ -42,7 +42,7 @@ export default async function CalendarPage() {
           <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
             Community Calendar · Los Angeles
           </span>
-          <h1 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(60px, 9vw, 140px)", lineHeight: 0.9, color: "#fff", marginBottom: 32 }}>
+          <h1 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(60px, 9vw, 140px)", lineHeight: 0.9, color: "#fff", marginBottom: 32 }}>
             WHAT&apos;S
             <br />
             HAPPENING
@@ -56,7 +56,7 @@ export default async function CalendarPage() {
         {/* Upcoming Events — Large Cards */}
         {upcoming.length > 0 && (
           <div style={{ padding: "80px 80px 40px 80px" }}>
-            <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, color: "var(--gold)", marginBottom: 48 }}>
+            <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, color: "var(--gold)", marginBottom: 48 }}>
               UPCOMING & ACTIVE
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))", gap: 2 }}>
@@ -89,7 +89,7 @@ export default async function CalendarPage() {
                           </span>
                         )}
                       </div>
-                      <div style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(22px, 2.5vw, 34px)", color: "#fff", fontWeight: 700, lineHeight: 1.05, marginBottom: 12 }}>
+                      <div style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(22px, 2.5vw, 34px)", color: "#fff", fontWeight: 700, lineHeight: 1.05, marginBottom: 12 }}>
                         {ev.title}
                       </div>
                       <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
@@ -114,7 +114,7 @@ export default async function CalendarPage() {
 
         {/* All Events Timeline */}
         <div style={{ padding: "60px 80px 80px 80px" }}>
-          <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, color: "#fff", marginBottom: 40 }}>
+          <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, color: "#fff", marginBottom: 40 }}>
             ALL EVENTS
           </h2>
 
@@ -186,7 +186,7 @@ export default async function CalendarPage() {
         {/* CTA */}
         <div style={{ background: "var(--gold)", padding: "60px 80px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 40, flexWrap: "wrap" }}>
           <div>
-            <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, color: "#000", marginBottom: 12 }}>
+            <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, color: "#000", marginBottom: 12 }}>
               WANT TO BE PART OF THIS?
             </h2>
             <p style={{ fontSize: 16, color: "#000" }}>

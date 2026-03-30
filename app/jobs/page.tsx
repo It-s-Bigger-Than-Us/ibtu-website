@@ -40,7 +40,7 @@ export default function JobsPage() {
           </span>
           <h1
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(48px, 8vw, 120px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -84,7 +84,7 @@ export default function JobsPage() {
           </span>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#fff",
@@ -117,7 +117,7 @@ export default function JobsPage() {
         <section style={{ background: "#FFC700", padding: "100px 80px", textAlign: "center" }}>
           <h2
             style={{
-              fontFamily: "LOT, Poppins, sans-serif",
+              fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(40px, 5.5vw, 80px)",
               lineHeight: 0.95,
               color: "#000",
