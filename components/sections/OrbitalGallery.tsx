@@ -202,13 +202,14 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
         position: 'absolute', bottom: '60px', left: 0, right: 0, zIndex: 20,
         background: '#FFC700', padding: '14px 0', overflow: 'hidden',
       }}>
-        <div style={{
-          display: 'flex', width: 'max-content',
-          animation: 'tickerScroll 25s linear infinite',
-          fontFamily: "'LOT', 'Bebas Neue', sans-serif",
-          fontSize: 'clamp(16px, 2vw, 28px)', textTransform: 'uppercase',
-          color: '#000', letterSpacing: '3px',
-        }}>
+        <div
+          className="ribbon-track"
+          style={{
+            fontFamily: "'LOT', 'Bebas Neue', sans-serif",
+            fontSize: 'clamp(16px, 2vw, 28px)', textTransform: 'uppercase',
+            color: '#000', letterSpacing: '3px',
+          }}
+        >
           {Array(6).fill(null).map((_, i) => (
             <span key={i} style={{ padding: '0 40px', whiteSpace: 'nowrap' }}>
               Community is the Infrastructure &nbsp;/&nbsp; Designed with Dignity &nbsp;/&nbsp; We Listen, We Build, We Stay &nbsp;/&nbsp;

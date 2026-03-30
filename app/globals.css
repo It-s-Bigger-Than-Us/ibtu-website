@@ -217,6 +217,13 @@ body {
   transform: rotate(45deg);
   animation: scrollBounce 2s ease-in-out infinite;
 }
+/* Ribbon ticker — reusable for any scrolling text bar */
+.ribbon-track {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 25s linear infinite;
+}
+
 @keyframes coinSpin {
   0% { transform: perspective(600px) rotateY(0deg); }
   100% { transform: perspective(600px) rotateY(360deg); }
@@ -399,7 +406,7 @@ body {
 .programs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  gap: 20px;
 }
 /* Program cards — image ABOVE, gold text area BELOW. No text over image. */
 .program-card {
