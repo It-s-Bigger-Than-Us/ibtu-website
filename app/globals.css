@@ -981,6 +981,34 @@ body {
   font-weight: 600;
 }
 
+/* Gold variant — yellow background, black type */
+.event-card--gold {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.event-card--gold .event-card-program { color: #000; }
+.event-card--gold .event-card-title { color: #000; }
+.event-card--gold .event-card-date { color: #000; }
+.event-card--gold .event-card-location { color: #000; }
+.event-card--gold .event-card-stats { color: #000; }
+.event-card--gold:hover { border-color: #000; }
+
+/* Gallery card gold variant */
+.gallery-card--gold .gallery-card-overlay {
+  background: linear-gradient(transparent, var(--gold));
+}
+.gallery-card--gold .gallery-card-title { color: #000; }
+.gallery-card--gold .gallery-card-meta { color: #000; }
+.gallery-card--gold .gallery-card-desc { color: #000; }
+
+/* Program card gold variant */
+.program-card--gold {
+  background: var(--gold) !important;
+}
+.program-card--gold .program-card-tag { color: #000; }
+.program-card--gold .program-card-name { color: #000; }
+.program-card--gold .program-card-stat { color: #000; }
+
 /* ═══════════════════════════════════════
    REDUCED MOTION — respect user preferences
 ═══════════════════════════════════════ */

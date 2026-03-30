@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import SectionLabel from '@/components/ui/SectionLabel'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -18,14 +17,15 @@ interface StatsSectionProps {
 }
 
 export default function StatsSection({ stats }: StatsSectionProps) {
-  const gridRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
   const numRefs = useRef<(HTMLSpanElement | null)[]>([])
 
   useEffect(() => {
-    if (!gridRef.current) return
+    if (!sectionRef.current) return
 
+    // Counter animation on scroll
     const trigger = ScrollTrigger.create({
-      trigger: gridRef.current,
+      trigger: sectionRef.current,
       start: 'top 80%',
       once: true,
       onEnter() {
@@ -35,7 +35,7 @@ export default function StatsSection({ stats }: StatsSectionProps) {
           const obj = { val: 0 }
           gsap.to(obj, {
             val: stat.target,
-            duration: 2,
+            duration: 2.2,
             ease: 'power2.out',
             onUpdate() {
               el.textContent =
@@ -43,32 +43,97 @@ export default function StatsSection({ stats }: StatsSectionProps) {
             },
           })
         })
+
+        // Stagger card entrances
+        const cards = sectionRef.current?.querySelectorAll('.stat-card')
+        if (cards) {
+          gsap.fromTo(cards,
+            { opacity: 0, y: 48, scale: 0.95 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out' }
+          )
+        }
       },
     })
 
-    return () => {
-      trigger.kill()
-    }
+    return () => { trigger.kill() }
   }, [stats])
 
   return (
-    <div className="stats-section" style={{ paddingTop: 'var(--section-pad)', paddingBottom: 'var(--section-pad)' }}>
-      <div style={{ maxWidth: 'var(--max-w, 1440px)', margin: '0 auto', padding: '0 var(--page-pad, 2rem)' }}>
-        <SectionLabel label="OUR IMPACT" color="black" />
+    <section
+      ref={sectionRef}
+      style={{
+        background: '#000',
+        padding: 'var(--section-pad) clamp(32px, 5vw, 80px)',
+      }}
+    >
+      {/* Section label */}
+      <div style={{ maxWidth: '1400px', margin: '0 auto 48px' }}>
+        <span style={{
+          fontFamily: "'Poppins', sans-serif",
+          fontSize: 'clamp(10px, 0.8vw, 12px)',
+          letterSpacing: '3px',
+          textTransform: 'uppercase',
+          fontWeight: 700,
+          color: 'var(--gold)',
+        }}>
+          (OUR IMPACT)({stats.length.toString().padStart(2, '0')})
+        </span>
       </div>
-      <div className="stats-grid" ref={gridRef}>
+
+      {/* Stats grid — gold cards with black type */}
+      <div
+        style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '16px',
+        }}
+      >
         {stats.map((stat, i) => (
-          <div className="stat-item" key={stat.label}>
+          <div
+            key={stat.label}
+            className="stat-card card-lift"
+            style={{
+              background: 'var(--gold)',
+              borderRadius: '20px',
+              padding: 'clamp(32px, 4vw, 56px)',
+              opacity: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              minHeight: '200px',
+            }}
+          >
             <span
-              className="stat-num"
               ref={(el) => { numRefs.current[i] = el }}
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 'clamp(48px, 8vw, 96px)',
+                fontWeight: 900,
+                lineHeight: 1,
+                color: '#000',
+                display: 'block',
+              }}
             >
               0{stat.suffix ?? ''}
             </span>
-            <span className="stat-label">{stat.label}</span>
+            <span
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 'clamp(12px, 1vw, 16px)',
+                fontWeight: 700,
+                letterSpacing: '2px',
+                textTransform: 'uppercase',
+                color: '#000',
+                marginTop: '16px',
+              }}
+            >
+              {stat.label}
+            </span>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }
