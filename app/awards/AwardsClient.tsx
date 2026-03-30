@@ -177,7 +177,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                       </h3>
                       <p style={{
                         fontSize: '14px',
-                        color: 'rgba(255,255,255,0.45)',
+                        color: '#fff',
                         lineHeight: 1.5,
                         marginBottom: '4px',
                       }}>
@@ -185,7 +185,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                       </p>
                       <span style={{
                         fontSize: '12px',
-                        color: 'rgba(255,199,0,0.5)',
+                        color: 'var(--gold)',
                         fontWeight: 600,
                         letterSpacing: '1px',
                         textTransform: 'uppercase',
@@ -197,7 +197,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                         <div className="fold-content" style={{
                           marginTop: '10px',
                           fontSize: '13px',
-                          color: 'rgba(255,255,255,0.6)',
+                          color: '#fff',
                           lineHeight: 1.6,
                         }}>
                           {award.notes}
@@ -287,7 +287,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                 </span>
                 <span style={{
                   fontSize: '12px',
-                  color: 'rgba(255,255,255,0.3)',
+                  color: 'var(--gold)',
                   fontFamily: "'Poppins', sans-serif",
                 }}>
                   {item.year}
@@ -306,7 +306,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
               </h4>
               <p style={{
                 fontSize: '13px',
-                color: 'rgba(255,255,255,0.5)',
+                color: '#fff',
                 lineHeight: 1.6,
               }}>
                 {item.description}
