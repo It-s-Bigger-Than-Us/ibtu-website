@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import { getProgramBySlug, getSponsorPackages, getPrograms } from "@/sanity/lib/fetch";
+import { urlFor } from "@/sanity/lib/client";
+import SponsorCard from "@/components/ui/SponsorCard";
 
 export const revalidate = 60;
 
@@ -46,139 +47,113 @@ export default async function DonatePage({ params }: Props) {
   const sponsorPackages = await getSponsorPackages(slug);
   const qgivUrl = QGIV_URLS[slug];
 
-  // Group sponsor packages by tier
-  const groups: Record<string, any[]> = {};
+  const groups: Record<string, { tierName: string; priceDisplay: string; deliverables?: string[]; boothSize?: string; featured?: boolean; bloomerangFormUrl?: string; _id: string }[]> = {};
   for (const pkg of sponsorPackages) {
     const g = pkg.tierGroup || "Sponsorship";
     if (!groups[g]) groups[g] = [];
     groups[g].push(pkg);
   }
 
-  const heroSrc = program.heroImage?.asset?._ref
-    ? `https://cdn.sanity.io/images/0m4ngfcw/production/${program.heroImage.asset._ref.replace("image-", "").replace(/-(\w+)$/, ".$1")}`
+  const heroSrc = program.heroImage
+    ? urlFor(program.heroImage).width(1920).quality(80).url()
     : null;
 
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <main style={{ background: "#000", minHeight: "100vh" }}>
 
-        {/* Hero — full opacity image */}
-        <section
-          style={{
-            minHeight: "60vh",
-            position: "relative",
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            padding: "140px 80px 80px 80px",
-          }}
-        >
+        {/* Hero */}
+        <section style={{
+          minHeight: "50vh",
+          position: "relative",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          padding: "clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px) clamp(48px, 5vw, 80px)",
+        }}>
           {heroSrc && (
+            // eslint-disable-next-line @next/next/no-img-element
             <img
               src={heroSrc}
               alt={program.title}
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7) saturate(1.1)" }}
             />
           )}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.3) 100%)" }} />
-          <div style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%)" }} />
+          <div style={{ position: "relative", zIndex: 1, maxWidth: 800 }}>
             <Link
               href={`/our-programs/${slug}`}
-              style={{ display: "inline-block", fontSize: 12, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", marginBottom: 32, fontFamily: "Poppins, sans-serif", fontWeight: 600, textDecoration: "none" }}
+              style={{ display: "inline-block", fontSize: 12, letterSpacing: 3, textTransform: "uppercase", color: "#FFC700", marginBottom: 28, fontFamily: "Poppins, sans-serif", fontWeight: 600, textDecoration: "none" }}
             >
               &larr; Back to {program.title}
             </Link>
-            <h1
-              style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(48px, 8vw, 100px)", lineHeight: 0.9, color: "#fff", marginBottom: 20 }}
-            >
-              SUPPORT {program.title.toUpperCase()}
+            <h1 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 900, lineHeight: 1, color: "#fff", marginBottom: 16, textTransform: "uppercase", letterSpacing: -1 }}>
+              Support {program.title}
             </h1>
-            <p style={{ fontSize: "clamp(16px, 1.4vw, 20px)", color: "rgba(255,255,255,0.7)", maxWidth: 600, lineHeight: 1.7 }}>
+            <p style={{ fontSize: "clamp(15px, 1.3vw, 18px)", color: "rgba(255,255,255,0.65)", maxWidth: 560, lineHeight: 1.7, fontFamily: "Poppins, sans-serif" }}>
               {program.tagline}
             </p>
           </div>
         </section>
 
-        {/* Sponsorship Packages */}
+        {/* Quick Donate CTA */}
+        {qgivUrl && (
+          <section style={{ padding: "40px clamp(24px, 5vw, 80px)", borderBottom: "1px solid rgba(255,199,0,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
+            <div>
+              <span style={{ fontFamily: "Poppins, sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.5)", letterSpacing: 1, textTransform: "uppercase" }}>
+                Make a direct donation
+              </span>
+            </div>
+            <a
+              href={qgivUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 10,
+                background: "#FFC700", color: "#000",
+                padding: "14px 36px", borderRadius: 100,
+                fontFamily: "Poppins, sans-serif", fontSize: 13, fontWeight: 700,
+                letterSpacing: 1, textTransform: "uppercase",
+                textDecoration: "none", transition: "transform 0.2s, box-shadow 0.2s",
+              }}
+            >
+              Donate Now &rarr;
+            </a>
+          </section>
+        )}
+
+        {/* Sponsorship Packages — Framer-style pricing cards */}
         {Object.keys(groups).length > 0 && (
-          <section style={{ padding: "80px 80px", borderTop: "1px solid rgba(255,199,0,0.1)" }}>
-            <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", marginBottom: 20, fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
-              Sponsorship Opportunities
-            </span>
-            <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, color: "#fff", marginBottom: 48 }}>
-              BECOME A SPONSOR
-            </h2>
-            <p style={{ fontSize: "clamp(15px, 1.3vw, 19px)", color: "rgba(255,255,255,0.5)", maxWidth: 600, lineHeight: 1.7, marginBottom: 48 }}>
-              Your sponsorship is more than a logo. It&apos;s an investment in community infrastructure — seen by thousands of families, partners, and media.
-            </p>
+          <section style={{ padding: "clamp(48px, 6vw, 100px) clamp(24px, 5vw, 80px)" }}>
+            <div style={{ marginBottom: 48 }}>
+              <span style={{ display: "block", fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: "#FFC700", marginBottom: 16, fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
+                Sponsorship Opportunities
+              </span>
+              <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, lineHeight: 1.05, color: "#fff", marginBottom: 16, textTransform: "uppercase" }}>
+                Become a Sponsor
+              </h2>
+              <p style={{ fontSize: "clamp(14px, 1.2vw, 17px)", color: "rgba(255,255,255,0.45)", maxWidth: 520, lineHeight: 1.7, fontFamily: "Poppins, sans-serif" }}>
+                Your sponsorship is more than a logo. It&apos;s an investment in community infrastructure — seen by thousands of families, partners, and media.
+              </p>
+            </div>
 
             {Object.entries(groups).map(([groupName, pkgs]) => (
-              <div key={groupName} style={{ marginBottom: 48 }}>
-                <h3 style={{ fontFamily: "Poppins, sans-serif", fontSize: 14, color: "rgba(255,255,255,0.4)", letterSpacing: "3px", textTransform: "uppercase", marginBottom: 20, fontWeight: 700 }}>
+              <div key={groupName} style={{ marginBottom: 56 }}>
+                <h3 style={{ fontFamily: "Poppins, sans-serif", fontSize: 12, color: "rgba(255,255,255,0.35)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 20, fontWeight: 700 }}>
                   {groupName}
                 </h3>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 2 }}>
-                  {pkgs.map((pkg: any) => (
-                    <div
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 16 }}>
+                  {pkgs.map((pkg) => (
+                    <SponsorCard
                       key={pkg._id}
-                      style={{
-                        background: pkg.featured ? "#FFC700" : "#0e0e0e",
-                        border: pkg.featured ? "none" : "1px solid rgba(255,199,0,0.12)",
-                        padding: "40px 36px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                        minHeight: 280,
-                      }}
-                    >
-                      <div>
-                        <div style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(22px, 2.5vw, 32px)", color: pkg.featured ? "#000" : "#fff", lineHeight: 1, marginBottom: 8 }}>
-                          {pkg.tierName}
-                        </div>
-                        <div style={{ fontFamily: "Poppins, sans-serif", fontWeight: 900, fontSize: "clamp(32px, 4vw, 52px)", color: pkg.featured ? "#000" : "#FFC700", letterSpacing: -1, lineHeight: 1, marginBottom: 20 }}>
-                          {pkg.priceDisplay}
-                        </div>
-                        {pkg.boothSize && (
-                          <div style={{ fontSize: 13, color: pkg.featured ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.4)", marginBottom: 16, fontFamily: "Poppins, sans-serif" }}>
-                            Booth: {pkg.boothSize}
-                          </div>
-                        )}
-                        {pkg.deliverables && (
-                          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                            {pkg.deliverables.map((d: string, i: number) => (
-                              <li key={i} style={{ fontSize: 13, color: pkg.featured ? "rgba(0,0,0,0.75)" : "rgba(255,255,255,0.6)", lineHeight: 1.6, paddingLeft: 16, position: "relative", fontFamily: "Poppins, sans-serif" }}>
-                                <span style={{ position: "absolute", left: 0, color: pkg.featured ? "#000" : "#FFC700" }}>+</span>
-                                {d}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                      <a
-                        href={pkg.bloomerangFormUrl || qgivUrl || "/get-involved#sponsor"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: "inline-block",
-                          marginTop: 24,
-                          background: pkg.featured ? "#000" : "#FFC700",
-                          color: pkg.featured ? "#FFC700" : "#000",
-                          padding: "16px 32px",
-                          fontFamily: "Poppins, sans-serif",
-                          fontSize: 12,
-                          letterSpacing: "3px",
-                          textTransform: "uppercase",
-                          fontWeight: 700,
-                          textDecoration: "none",
-                          textAlign: "center",
-                          borderRadius: 4,
-                        }}
-                      >
-                        Sponsor Now &rarr;
-                      </a>
-                    </div>
+                      tierName={pkg.tierName}
+                      priceDisplay={pkg.priceDisplay}
+                      deliverables={pkg.deliverables}
+                      boothSize={pkg.boothSize}
+                      featured={pkg.featured}
+                      href={pkg.bloomerangFormUrl || qgivUrl || "/get-involved#sponsor"}
+                    />
                   ))}
                 </div>
               </div>
@@ -187,25 +162,30 @@ export default async function DonatePage({ params }: Props) {
         )}
 
         {/* Contact CTA */}
-        <section style={{ background: "#FFC700", padding: "80px 80px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 40, flexWrap: "wrap" }}>
+        <section style={{
+          background: "#FFC700",
+          padding: "clamp(48px, 6vw, 80px) clamp(24px, 5vw, 80px)",
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          gap: 40, flexWrap: "wrap",
+        }}>
           <div>
-            <h2 style={{ fontFamily: "LOT, Poppins, sans-serif", fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, color: "#000", marginBottom: 12 }}>
-              QUESTIONS ABOUT SPONSORSHIP?
+            <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 800, lineHeight: 1.05, color: "#000", marginBottom: 8, textTransform: "uppercase" }}>
+              Questions About Sponsorship?
             </h2>
-            <p style={{ fontSize: 16, color: "#000" }}>
+            <p style={{ fontSize: 15, color: "rgba(0,0,0,0.65)", fontFamily: "Poppins, sans-serif" }}>
               Contact us to build a custom partnership that fits your organization.
             </p>
           </div>
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <a
               href="mailto:partnerships@itsbiggerthanusla.org"
-              style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "18px 40px", fontFamily: "Poppins, sans-serif", fontSize: 12, letterSpacing: "3px", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", borderRadius: 4 }}
+              style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "14px 32px", fontFamily: "Poppins, sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", fontWeight: 700, textDecoration: "none", borderRadius: 100 }}
             >
               Email Us &rarr;
             </a>
             <Link
               href="/get-involved"
-              style={{ display: "inline-block", border: "2px solid #000", color: "#000", padding: "18px 40px", fontFamily: "Poppins, sans-serif", fontSize: 12, letterSpacing: "3px", textTransform: "uppercase", fontWeight: 700, textDecoration: "none", borderRadius: 4 }}
+              style={{ display: "inline-block", border: "2px solid #000", color: "#000", padding: "14px 32px", fontFamily: "Poppins, sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", fontWeight: 700, textDecoration: "none", borderRadius: 100 }}
             >
               Get Involved
             </Link>

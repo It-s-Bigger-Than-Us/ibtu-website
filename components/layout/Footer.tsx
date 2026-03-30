@@ -29,10 +29,6 @@ export default function Footer() {
           &nbsp;·&nbsp;
           <Link href="/impact">Impact</Link>
           &nbsp;·&nbsp;
-          <Link href="/awards">Awards</Link>
-          &nbsp;·&nbsp;
-          <Link href="/partners">Partners</Link>
-          &nbsp;·&nbsp;
           <Link href="/get-involved">Get Involved</Link>
           &nbsp;·&nbsp;
           <Link href="/contact">Contact</Link>

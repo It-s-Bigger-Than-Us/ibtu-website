@@ -35,7 +35,7 @@ export const programs: Program[] = [
     proofStats:
       "5,000+ families stabilized | 7,581 assistance instances | 324 active clients | 23.4 avg visits | 90+ zip codes | 15+ partner services | 350 immigrant families served",
     allTimeServed:
-      "5,000+ families (Phase 1) | 2,500 at TWR | 7,581 Hub instances | 324 clients | 1,800+ volunteers | 15,000+ meals | 350 immigrant families | $1.75M+ distributed",
+      "5,000+ families (Phase 1) | 2,500 at TWR | 7,581 Hub instances | 324 clients | 1,800+ volunteers | 15,000+ meals | 350 immigrant families",
     volunteerUrl: "https://volunteer.bloomerang.co/JE/7haetjfrq5g190",
     ctaText: "Support the Hub",
     ctaHref: "/get-involved",
@@ -97,16 +97,16 @@ export const programs: Program[] = [
     description:
       "IBTU's school-based programs operate on 34 sites across Los Angeles, delivering lunchtime activations, parent empowerment workshops, resource fairs, staff appreciation days, and youth leadership programming. Now serving 28,025 students in 2025.",
     proofStats:
-      "28,025 students (2025) | 34 school sites | $721,660 contracts (4yr) | 62,475+ since 2020 | 4.7-5/5 satisfaction",
+      "28,025 students (2025) | 34 school sites | 62,475+ since 2020 | 4.7-5/5 satisfaction",
     allTimeServed:
-      "62,475+ students since 2020 | 28,025 in 2025 | 34 sites | $721,660 contracts | 50% YOY growth",
+      "62,475+ students since 2020 | 28,025 in 2025 | 34 sites | 50% YOY growth",
     volunteerUrl: "https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih",
     ctaText: "Bring IBTU to Your Campus",
     ctaHref: "/get-involved",
     status: "Active",
     sortOrder: 3,
     keyPartners:
-      "Alliance College-Ready Public Schools (25 campuses), LAUSD, Inglewood USD, Sol de Janeiro ($1.9M), Iovine & Young Center",
+      "Alliance College-Ready Public Schools (25 campuses), LAUSD, Inglewood USD, Sol de Janeiro, Iovine & Young Center",
     heroImage:
       "",
     cardImages: [
