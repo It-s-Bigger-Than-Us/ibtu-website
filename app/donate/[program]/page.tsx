@@ -152,7 +152,7 @@ export default async function DonatePage({ params }: Props) {
                       deliverables={pkg.deliverables}
                       boothSize={pkg.boothSize}
                       featured={pkg.featured}
-                      href={pkg.bloomerangFormUrl || qgivUrl || "/get-involved#sponsor"}
+                      href={qgivUrl || (pkg.bloomerangFormUrl && !pkg.bloomerangFormUrl.includes('ibtu.la') ? pkg.bloomerangFormUrl : "/get-involved#sponsor")}
                     />
                   ))}
                 </div>
