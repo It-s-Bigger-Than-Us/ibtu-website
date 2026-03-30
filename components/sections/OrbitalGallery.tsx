@@ -54,6 +54,34 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
   }
   const handlePointerUp = () => setIsDragging(false)
 
+  const renderCard = (item: GalleryItem, i: number, globalIdx: number) => {
+    const isHovered = hoveredIndex === globalIdx
+    return (
+      <>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={item.src} alt={item.title}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(1.15)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s' }}
+        />
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: '#FFC700', display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center', padding: '12px',
+          opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s',
+        }}>
+          <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '12px', fontWeight: 800, color: '#000', textTransform: 'uppercase', letterSpacing: '1px', textAlign: 'center', lineHeight: 1.2 }}>
+            {item.title}
+          </span>
+          {item.program && (
+            <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '9px', fontWeight: 700, color: '#000', letterSpacing: '3px', textTransform: 'uppercase', marginTop: '6px' }}>
+              {item.program} →
+            </span>
+          )}
+        </div>
+      </>
+    )
+  }
+
   return (
     <section
       style={{
@@ -77,28 +105,30 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
         </div>
       )}
 
-      <div style={{ perspective: '900px', perspectiveOrigin: '50% 45%' }}>
-        {/* Outer ring — horizontal orbit */}
+      {/* IBTU logo — STAYS STILL, does not rotate */}
+      <div style={{
+        position: 'absolute',
+        top: '50%', left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '80px', height: '80px', borderRadius: '50%',
+        background: '#FFC700',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        zIndex: 15,
+        /* No border, no stroke */
+      }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/ibtu-logo.svg" alt="IBTU" style={{ width: '50px', height: '50px', filter: 'brightness(0)' }} />
+      </div>
+
+      {/* 3D orbit container — rings rotate, logo stays */}
+      <div style={{ perspective: '1000px', perspectiveOrigin: '50% 45%' }}>
         <div style={{
           position: 'relative',
           width: '700px', height: '700px',
           transformStyle: 'preserve-3d',
           transform: `rotateX(-10deg) rotateY(${rotationY}deg)`,
         }}>
-          {/* IBTU logo center — flat gold circle, no gradient, no stroke */}
-          <div style={{
-            position: 'absolute', top: '50%', left: '50%',
-            width: '80px', height: '80px', borderRadius: '50%',
-            background: '#FFC700',
-            transform: 'translate(-50%, -50%)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            zIndex: 5,
-          }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/ibtu-logo.svg" alt="IBTU" style={{ width: '50px', height: '50px', filter: 'brightness(0)' }} />
-          </div>
-
-          {/* Ring 1 — outer horizontal orbit, larger cards */}
+          {/* Ring 1 — horizontal orbit */}
           {ring1Items.map((item, i) => {
             const rad = (ring1Angle * i) * (Math.PI / 180)
             const x = Math.cos(rad) * 300
@@ -117,45 +147,24 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
                   transform: `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${-(ring1Angle * i)}deg)`,
                   borderRadius: '12px', overflow: 'hidden',
                   boxShadow: isHovered ? '0 0 30px rgba(255,199,0,0.5)' : '0 8px 32px rgba(0,0,0,0.5)',
-                  transition: 'box-shadow 0.3s, transform 0.3s',
                   cursor: 'pointer',
                 }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.src} alt={item.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(1.15)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s' }}
-                />
-                {/* Hover: gold card — text always faces viewer */}
-                <div style={{
-                  position: 'absolute', inset: 0,
-                  background: '#FFC700', display: 'flex', flexDirection: 'column',
-                  alignItems: 'center', justifyContent: 'center', padding: '12px',
-                  opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s',
-                }}>
-                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '13px', fontWeight: 800, color: '#000', textTransform: 'uppercase', letterSpacing: '1px', textAlign: 'center', lineHeight: 1.2 }}>
-                    {item.title}
-                  </span>
-                  {item.program && (
-                    <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '9px', fontWeight: 700, color: '#000', letterSpacing: '3px', textTransform: 'uppercase', marginTop: '6px' }}>
-                      {item.program} →
-                    </span>
-                  )}
-                </div>
+                {renderCard(item, i, i)}
               </div>
             )
           })}
 
-          {/* Ring 2 — inner ring, spins around vertical equator */}
+          {/* Ring 2 — vertical meridian orbit (images upright, ring rotated 90deg) */}
           <div style={{
             position: 'absolute', inset: 0,
             transformStyle: 'preserve-3d',
-            transform: `rotateX(90deg)`,
+            transform: 'rotateZ(90deg)',
           }}>
             {ring2Items.map((item, i) => {
               const rad = (ring2Angle * i) * (Math.PI / 180)
-              const x = Math.cos(rad) * 200
-              const z = Math.sin(rad) * 200
+              const x = Math.cos(rad) * 220
+              const z = Math.sin(rad) * 220
               const globalIdx = ring1Items.length + i
               const isHovered = hoveredIndex === globalIdx
 
@@ -168,28 +177,13 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
                     position: 'absolute', top: '50%', left: '50%',
                     width: '200px', height: '140px',
                     transformStyle: 'preserve-3d',
-                    transform: `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${-(ring2Angle * i)}deg) rotateX(-90deg)`,
+                    transform: `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${-(ring2Angle * i)}deg) rotateZ(-90deg)`,
                     borderRadius: '10px', overflow: 'hidden',
                     boxShadow: isHovered ? '0 0 24px rgba(255,199,0,0.5)' : '0 6px 24px rgba(0,0,0,0.5)',
-                    transition: 'box-shadow 0.3s',
                     cursor: 'pointer',
                   }}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={item.src} alt={item.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(1.15)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s' }}
-                  />
-                  <div style={{
-                    position: 'absolute', inset: 0,
-                    background: '#FFC700', display: 'flex', flexDirection: 'column',
-                    alignItems: 'center', justifyContent: 'center', padding: '10px',
-                    opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s',
-                  }}>
-                    <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '12px', fontWeight: 800, color: '#000', textTransform: 'uppercase', letterSpacing: '1px', textAlign: 'center', lineHeight: 1.2 }}>
-                      {item.title}
-                    </span>
-                  </div>
+                  {renderCard(item, i, globalIdx)}
                 </div>
               )
             })}
@@ -197,10 +191,12 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
         </div>
       </div>
 
-      {/* RIBBON */}
+      {/* 3D RIBBON — flows in and out with wave animation */}
       <div style={{
-        position: 'absolute', bottom: '60px', left: 0, right: 0, zIndex: 20,
+        position: 'absolute', bottom: '80px', left: '-5%', right: '-5%', zIndex: 20,
         background: '#FFC700', padding: '14px 0', overflow: 'hidden',
+        transform: 'perspective(600px) rotateX(3deg)',
+        animation: 'ribbonWave 4s ease-in-out infinite',
       }}>
         <div
           className="ribbon-track"
@@ -219,12 +215,22 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
       </div>
 
       <div style={{
-        position: 'absolute', bottom: '24px', left: '50%', transform: 'translateX(-50%)', zIndex: 20,
+        position: 'absolute', bottom: '40px', left: '50%', transform: 'translateX(-50%)', zIndex: 20,
         fontFamily: "'Poppins', sans-serif", fontSize: '10px', letterSpacing: '3px',
         textTransform: 'uppercase', color: '#000', fontWeight: 700,
       }}>
         Drag to explore
       </div>
+
+      {/* Ribbon wave keyframe */}
+      <style jsx>{`
+        @keyframes ribbonWave {
+          0%, 100% { transform: perspective(600px) rotateX(3deg) translateY(0px); }
+          25% { transform: perspective(600px) rotateX(-2deg) translateY(-4px); }
+          50% { transform: perspective(600px) rotateX(4deg) translateY(2px); }
+          75% { transform: perspective(600px) rotateX(-1deg) translateY(-2px); }
+        }
+      `}</style>
     </section>
   )
 }
