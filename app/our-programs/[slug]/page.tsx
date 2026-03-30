@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/fetch";
 import EventGallery3D from "@/components/sections/EventGallery3D";
@@ -49,53 +49,32 @@ export default async function ProgramPage({ params }: Props) {
 
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh" }}>
 
         {/* ──────────────────────────────────────────────
-            1. FULL-BLEED HERO IMAGE (100vh)
+            1. FULL-BLEED HERO IMAGE — separate from text
         ────────────────────────────────────────────── */}
-        <section
-          style={{
-            height: "100vh",
-            position: "relative",
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            padding: "160px 80px 100px 80px",
-          }}
-        >
-          {/* Hero background — full bleed, no tint, no overlay */}
-          {heroSrc && (
+        {heroSrc && (
+          <section style={{ width: "100%", height: "70vh", minHeight: "400px", overflow: "hidden" }}>
             <img
               src={heroSrc}
-              alt={program.title}
+              alt={`${program.title} — IBTU program`}
               style={{
-                position: "absolute",
-                inset: 0,
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                filter: "saturate(1.15)",
               }}
             />
-          )}
+          </section>
+        )}
 
-          {/* Bottom gradient only — transparent to black for text readability */}
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              bottom: 0,
-              height: "60%",
-              background:
-                "linear-gradient(to top, #000 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.4) 60%, transparent 100%)",
-              pointerEvents: "none",
-            }}
-          />
-
-          <div style={{ position: "relative", zIndex: 1 }}>
+        {/* ──────────────────────────────────────────────
+            1b. PROGRAM INFO — on solid black, NO text over image
+        ────────────────────────────────────────────── */}
+        <section style={{ background: "#000", padding: "clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px)" }}>
+          <div style={{ maxWidth: "1200px" }}>
             {/* Back link */}
             <Link
               href="/our-programs"
@@ -104,10 +83,10 @@ export default async function ProgramPage({ params }: Props) {
                 fontSize: 12,
                 letterSpacing: "3px",
                 textTransform: "uppercase",
-                color: "#FFC700",
+                color: "var(--gold)",
                 marginBottom: 48,
                 fontFamily: "Poppins, sans-serif",
-                fontWeight: 600,
+                fontWeight: 700,
                 textDecoration: "none",
               }}
             >
@@ -115,49 +94,41 @@ export default async function ProgramPage({ params }: Props) {
             </Link>
 
             {/* Pillar eyebrow */}
-            <div
-              style={{
-                fontSize: 11,
-                letterSpacing: "4px",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.5)",
-                marginBottom: 20,
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 600,
-              }}
-            >
+            <div style={{
+              fontSize: 11,
+              letterSpacing: "4px",
+              textTransform: "uppercase",
+              color: "var(--gold)",
+              marginBottom: 20,
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 700,
+            }}>
               {program.pillar}
             </div>
 
-            {/* Program title — Poppins Black */}
-            <h1
-              style={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 900,
-                fontSize: "clamp(60px, 10vw, 140px)",
-                lineHeight: 0.88,
-                letterSpacing: "-2px",
-                color: "#FFF",
-                marginBottom: 36,
-                maxWidth: "14ch",
-                textTransform: "uppercase",
-              }}
-            >
+            {/* Program title — massive, screen-filling */}
+            <h1 style={{
+              fontFamily: "'LOT', 'Bebas Neue', sans-serif",
+              fontSize: "clamp(60px, 12vw, 180px)",
+              lineHeight: 0.9,
+              letterSpacing: "-0.02em",
+              color: "#FFF",
+              marginBottom: 36,
+              textTransform: "uppercase",
+            }}>
               {program.title}
             </h1>
 
             {/* Tagline */}
-            <p
-              style={{
-                fontSize: "clamp(17px, 1.5vw, 22px)",
-                color: "rgba(255,255,255,0.85)",
-                maxWidth: 700,
-                lineHeight: 1.7,
-                marginBottom: 48,
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 400,
-              }}
-            >
+            <p style={{
+              fontSize: "clamp(17px, 1.5vw, 22px)",
+              color: "#fff",
+              maxWidth: 700,
+              lineHeight: 1.7,
+              marginBottom: 48,
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 500,
+            }}>
               {program.tagline}
             </p>
 
@@ -170,9 +141,10 @@ export default async function ProgramPage({ params }: Props) {
                   rel="noopener noreferrer"
                   style={{
                     display: "inline-block",
-                    background: "#FFC700",
+                    background: "var(--gold)",
                     color: "#000",
                     padding: "18px 40px",
+                    borderRadius: "100px",
                     fontFamily: "Poppins, sans-serif",
                     fontSize: 12,
                     letterSpacing: "3px",
@@ -188,9 +160,10 @@ export default async function ProgramPage({ params }: Props) {
                 href={`/donate/${slug}`}
                 style={{
                   display: "inline-block",
-                  border: "1px solid rgba(255,255,255,0.4)",
+                  border: "2px solid #fff",
                   color: "#FFF",
                   padding: "18px 40px",
+                  borderRadius: "100px",
                   fontFamily: "Poppins, sans-serif",
                   fontSize: 12,
                   letterSpacing: "3px",
@@ -255,7 +228,7 @@ export default async function ProgramPage({ params }: Props) {
                       display: "flex",
                       flexDirection: "column",
                       alignItems: "flex-start",
-                      borderRight: i < stats.length - 1 ? "1px solid rgba(0,0,0,0.15)" : "none",
+                      borderRight: i < stats.length - 1 ? "1px solid #000" : "none",
                       paddingRight: i < stats.length - 1 ? 60 : 0,
                     }}
                   >
@@ -307,7 +280,7 @@ export default async function ProgramPage({ params }: Props) {
                   fontFamily: "Poppins, sans-serif",
                   fontWeight: 400,
                   fontSize: 22,
-                  color: "rgba(255,255,255,0.85)",
+                  color: "#fff",
                   lineHeight: 1.8,
                   letterSpacing: "0.2px",
                   marginBottom: 48,
@@ -377,7 +350,7 @@ export default async function ProgramPage({ params }: Props) {
                   <div
                     style={{
                       background: "#0A0A0A",
-                      border: "1px solid rgba(255,199,0,0.12)",
+                      border: "1px solid var(--gold)",
                       padding: "36px 40px",
                       display: "flex",
                       justifyContent: "space-between",
@@ -419,7 +392,7 @@ export default async function ProgramPage({ params }: Props) {
                         style={{
                           fontFamily: "Poppins, sans-serif",
                           fontSize: 14,
-                          color: "rgba(255,255,255,0.45)",
+                          color: "#fff",
                           lineHeight: 1.5,
                         }}
                       >
@@ -464,7 +437,7 @@ export default async function ProgramPage({ params }: Props) {
           <section
             style={{
               padding: "100px 80px",
-              borderTop: "1px solid rgba(255,255,255,0.06)",
+              borderTop: "1px solid var(--gold)",
             }}
           >
             <RevealOnScroll y={40} delay={0}>
@@ -485,7 +458,7 @@ export default async function ProgramPage({ params }: Props) {
                 style={{
                   fontFamily: "Poppins, sans-serif",
                   fontSize: 16,
-                  color: "rgba(255,255,255,0.5)",
+                  color: "var(--gold)",
                   lineHeight: 1.8,
                   maxWidth: 700,
                 }}
