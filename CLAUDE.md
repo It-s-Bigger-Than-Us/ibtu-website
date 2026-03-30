@@ -3,7 +3,7 @@
 ## Project
 Next.js 16 + React 19 + Tailwind v4 + Vercel. Domain: ibtu.la.
 Organization: It's Bigger Than Us (IBTU), 501(c)(3), Los Angeles.
-Site ID (Wix, now deprecated): 37dddaec-4d77-4eae-a0b3-3686f5cb5526
+Organization: 501(c)(3), Los Angeles.
 
 ## IMPORTANT: Next.js 16 Breaking Changes
 - `params` in page/layout is a Promise — always `const { slug } = await params`

@@ -605,3 +605,403 @@ body {
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ═══════════════════════════════════════
+   EDITORIAL ANIMATION SYSTEM
+   Bold, cinematic, scroll-driven. Every
+   element earns its entrance.
+═══════════════════════════════════════ */
+
+/* --- Staggered entrance for child elements --- */
+.stagger-in > * {
+  opacity: 0;
+  transform: translateY(32px);
+  will-change: opacity, transform;
+}
+.stagger-in.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stagger-in.visible > *:nth-child(1) { transition-delay: 0s; }
+.stagger-in.visible > *:nth-child(2) { transition-delay: 0.08s; }
+.stagger-in.visible > *:nth-child(3) { transition-delay: 0.16s; }
+.stagger-in.visible > *:nth-child(4) { transition-delay: 0.24s; }
+.stagger-in.visible > *:nth-child(5) { transition-delay: 0.32s; }
+.stagger-in.visible > *:nth-child(6) { transition-delay: 0.4s; }
+.stagger-in.visible > *:nth-child(7) { transition-delay: 0.48s; }
+.stagger-in.visible > *:nth-child(8) { transition-delay: 0.56s; }
+
+/* --- Slide in from left (for labels, section intros) --- */
+.slide-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  will-change: opacity, transform;
+}
+.slide-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Scale entrance (for hero stats, counters) --- */
+.scale-in {
+  opacity: 0;
+  transform: scale(0.85);
+  will-change: opacity, transform;
+}
+.scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Clip reveal (for editorial text blocks) --- */
+.clip-reveal {
+  clip-path: inset(100% 0 0 0);
+  will-change: clip-path;
+}
+.clip-reveal.visible {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ═══════════════════════════════════════
+   FOLD / REVEAL INTERACTION PATTERNS
+   Content that unfolds on hover or scroll.
+   Descriptions expand, cards lift, details emerge.
+═══════════════════════════════════════ */
+
+/* --- Hover fold-out (descriptions expand from bottom) --- */
+.fold-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease;
+}
+.fold-trigger:hover .fold-content,
+.fold-trigger:focus-within .fold-content,
+.fold-trigger.expanded .fold-content {
+  max-height: 400px;
+  opacity: 1;
+}
+
+/* --- Card lift on hover --- */
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease;
+}
+.card-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Reveal line (gold underline draws on hover) --- */
+.reveal-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-line:hover::after { width: 100%; }
+
+/* --- Scroll-triggered parallax offset --- */
+.parallax-slow { will-change: transform; }
+.parallax-fast { will-change: transform; }
+
+/* ═══════════════════════════════════════
+   GALLERY DESIGN SYSTEM
+   Consistent card format for ALL galleries.
+   Photos: full-bleed, 100% opacity, warm.
+═══════════════════════════════════════ */
+
+.gallery-grid {
+  display: grid;
+  gap: 16px;
+}
+.gallery-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.gallery-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.gallery-grid--4 { grid-template-columns: repeat(4, 1fr); }
+.gallery-grid--editorial {
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+}
+.gallery-grid--editorial > *:first-child {
+  grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+  .gallery-grid--2,
+  .gallery-grid--3,
+  .gallery-grid--4 { grid-template-columns: 1fr; }
+  .gallery-grid--editorial { grid-template-columns: 1fr; }
+  .gallery-grid--editorial > *:first-child { grid-row: span 1; }
+}
+
+/* Gallery card — consistent everywhere */
+.gallery-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #111;
+  cursor: pointer;
+}
+.gallery-card img,
+.gallery-card video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: saturate(1.15);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-card:hover img,
+.gallery-card:hover video {
+  transform: scale(1.04);
+}
+
+/* Gallery card overlay — folds in from bottom on hover */
+.gallery-card-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 24px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-card:hover .gallery-card-overlay {
+  transform: translateY(0);
+}
+
+.gallery-card-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: clamp(14px, 1.2vw, 18px);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.gallery-card-meta {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+}
+.gallery-card-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* Program badge on gallery cards */
+.gallery-badge {
+  position: absolute;
+  top: 16px; left: 16px;
+  background: var(--gold);
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 100px;
+  z-index: 2;
+}
+
+/* ═══════════════════════════════════════
+   VIDEO INTEGRATION
+   Full-bleed backgrounds, autoplay loops,
+   hero video sections.
+═══════════════════════════════════════ */
+
+.video-hero {
+  position: relative;
+  height: 100vh; min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.video-hero video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.video-hero-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+.video-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 48px;
+  max-width: 1400px;
+}
+
+/* Video card — plays on hover */
+.video-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #111;
+}
+.video-card video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.video-card:hover video { opacity: 1; }
+.video-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  position: absolute; inset: 0;
+  transition: opacity 0.5s ease;
+}
+.video-card:hover img { opacity: 0; }
+
+/* ═══════════════════════════════════════
+   EDITORIAL TYPOGRAPHY
+   Big, bold, animated. Every heading
+   demands attention.
+═══════════════════════════════════════ */
+
+.editorial-headline {
+  font-family: 'LOT', 'Bebas Neue', sans-serif;
+  font-size: var(--section-type);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.editorial-display {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 1.05;
+  color: #fff;
+}
+
+.editorial-stat {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: var(--stat-type);
+  line-height: 1;
+  color: var(--gold);
+}
+
+.editorial-body {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.7;
+  color: var(--warm-white);
+  max-width: 680px;
+}
+
+.editorial-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(10px, 0.8vw, 12px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* ═══════════════════════════════════════
+   EVENT ARCHIVE CARD — standardized
+   Title, date, program, location, photos.
+   Same format everywhere.
+═══════════════════════════════════════ */
+
+.event-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.event-card:hover {
+  border-color: rgba(255,199,0,0.2);
+  transform: translateY(-4px);
+}
+.event-card-image {
+  width: 100%; height: 240px;
+  object-fit: cover;
+  filter: saturate(1.15);
+}
+.event-card-body {
+  padding: 24px;
+}
+.event-card-program {
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px; letter-spacing: 2.5px;
+  text-transform: uppercase; font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.event-card-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.event-card-date {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 4px;
+}
+.event-card-location {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+}
+.event-card-stats {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  color: var(--gold);
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════
+   REDUCED MOTION — respect user preferences
+═══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .stagger-in > *,
+  .slide-left,
+  .scale-in,
+  .clip-reveal,
+  .reveal,
+  .fold-content,
+  .card-lift,
+  .gallery-card img,
+  .gallery-card video,
+  .gallery-card-overlay {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .stagger-in > * { transition-delay: 0s !important; }
+  .reveal, .stagger-in > *, .slide-left, .scale-in, .clip-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}

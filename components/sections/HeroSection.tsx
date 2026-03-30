@@ -3,72 +3,103 @@
 import { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 
-interface HeroSectionProps {
-  images: { src: string; alt: string }[]
-  headline: string
-  metadata: { label: string; value: string }[]
+interface HeroMedia {
+  src: string
+  alt: string
+  type?: 'image' | 'video'
 }
 
-export default function HeroSection({ images, headline, metadata }: HeroSectionProps) {
+interface HeroSectionProps {
+  images: HeroMedia[]
+  headline: string
+  metadata: { label: string; value: string }[]
+  videos?: { src: string; poster?: string }[]
+}
+
+export default function HeroSection({ images, headline, metadata, videos }: HeroSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const headlineRef = useRef<HTMLHeadingElement>(null)
   const metadataRef = useRef<HTMLDivElement>(null)
   const scrollIndicatorRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  // Combine videos (first) + images into media array
+  const media: HeroMedia[] = [
+    ...(videos || []).map((v) => ({ src: v.src, alt: 'IBTU Community', type: 'video' as const })),
+    ...images.map((img) => ({ ...img, type: (img.type || 'image') as 'image' | 'video' })),
+  ]
 
   const words = headline.split(' ')
 
   // Auto-advance carousel
   useEffect(() => {
-    if (images.length <= 1) return
+    if (media.length <= 1) return
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % images.length)
-    }, 5000)
+      setActiveIndex((prev) => (prev + 1) % media.length)
+    }, 6000) // slightly longer for video clips
     return () => clearInterval(interval)
-  }, [images.length])
+  }, [media.length])
 
-  // GSAP entrance animation
+  // GSAP entrance — cinematic char-level stagger
   useEffect(() => {
-    const wordSpans = headlineRef.current?.querySelectorAll('span')
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+    // Word-by-word entrance with stronger stagger
+    const wordSpans = headlineRef.current?.querySelectorAll('.hero-word')
     if (wordSpans) {
-      gsap.fromTo(
+      tl.fromTo(
         wordSpans,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.08,
-          ease: 'power3.out',
-        }
+        { opacity: 0, y: 60, rotateX: -15 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.9, stagger: 0.1 },
+        0.3
       )
     }
 
+    // Metadata slides in
     if (metadataRef.current) {
-      gsap.fromTo(
+      tl.fromTo(
         metadataRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, delay: 0.8, ease: 'power3.out' }
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.7 },
+        '-=0.3'
       )
     }
 
+    // Scroll indicator fades in
     if (scrollIndicatorRef.current) {
-      gsap.fromTo(
+      tl.fromTo(
         scrollIndicatorRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.5, delay: 1.2 }
+        { opacity: 1, duration: 0.5 },
+        '-=0.2'
       )
     }
+
+    return () => { tl.kill() }
   }, [])
 
   return (
-    <section className="hero">
+    <section className="hero" ref={sectionRef}>
+      {/* Media slides — video + images */}
       <div className="hero-slides">
-        {images.map((image, index) => (
+        {media.map((item, index) => (
           <div
-            key={image.src}
+            key={`${item.type}-${index}`}
             className={`hero-slide${index === activeIndex ? ' active' : ''}`}
           >
-            <img src={image.src} alt={image.alt} />
+            {item.type === 'video' ? (
+              <video
+                src={item.src}
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={item.src} alt={item.alt} />
+            )}
           </div>
         ))}
       </div>
@@ -78,8 +109,12 @@ export default function HeroSection({ images, headline, metadata }: HeroSectionP
       <div className="hero-content">
         <h1 className="hero-headline" ref={headlineRef}>
           {words.map((word, i) => (
-            <span key={i} style={{ opacity: 0 }}>
-              {word}{i < words.length - 1 ? ' ' : ''}
+            <span
+              key={i}
+              className="hero-word"
+              style={{ opacity: 0, display: 'inline-block', perspective: '600px' }}
+            >
+              {word}{i < words.length - 1 ? '\u00A0' : ''}
             </span>
           ))}
         </h1>
