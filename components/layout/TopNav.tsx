@@ -25,12 +25,12 @@ export default function TopNav() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Spinning logo animation
+  // 3D coin spin — rotates on Y axis like a spinning coin
   useEffect(() => {
     if (logoRef.current) {
       gsap.to(logoRef.current, {
-        rotation: 360,
-        duration: 12,
+        rotateY: 360,
+        duration: 4,
         ease: 'none',
         repeat: -1,
       });
@@ -68,7 +68,7 @@ export default function TopNav() {
         }}
       >
         {/* Spinning black logo — links home */}
-        <Link href="/" aria-label="IBTU Home" style={{ display: 'block' }}>
+        <Link href="/" aria-label="IBTU Home" style={{ display: 'block', perspective: '600px' }}>
           <div
             ref={logoRef}
             style={{
@@ -77,6 +77,8 @@ export default function TopNav() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              transformStyle: 'preserve-3d',
+              perspective: '600px',
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
