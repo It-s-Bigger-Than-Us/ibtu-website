@@ -36,6 +36,22 @@ const CTA_ACTIONS = [
   { label: 'Sponsor', href: '/get-involved#sponsor' },
 ]
 
+/* Local gallery images from Obsidian vault — always available even if Sanity is empty */
+const LOCAL_GALLERY_IMAGES = [
+  { src: '/images/gallery/IMG_1848.jpg', alt: 'IBTU Coastal Care community cleanup', type: 'image' as const },
+  { src: '/images/gallery/IMG_4993.jpg', alt: 'IBTU Coastal Care beach volunteers', type: 'image' as const },
+  { src: '/images/gallery/IMG_1807.jpg', alt: 'IBTU community wellness event', type: 'image' as const },
+  { src: '/images/gallery/IMG_4960.jpg', alt: 'IBTU yoga and wellness programming', type: 'image' as const },
+  { src: '/images/gallery/IMG_1673.jpg', alt: 'IBTU community builders in action', type: 'image' as const },
+  { src: '/images/gallery/IMG_4649.jpg', alt: 'IBTU volunteer activation', type: 'image' as const },
+  { src: '/images/gallery/IMG_1861.jpg', alt: 'IBTU beach cleanup impact', type: 'image' as const },
+  { src: '/images/gallery/IMG_4687.jpg', alt: 'IBTU yoga community gathering', type: 'image' as const },
+  { src: '/images/gallery/IMG_1324.jpg', alt: 'IBTU event community connection', type: 'image' as const },
+  { src: '/images/gallery/IMG_4907.jpg', alt: 'IBTU wellness programming outdoors', type: 'image' as const },
+  { src: '/images/gallery/IMG_1501.jpg', alt: 'IBTU volunteers serving community', type: 'image' as const },
+  { src: '/images/gallery/IMG_4944.jpg', alt: 'IBTU community wellness activation', type: 'image' as const },
+]
+
 const PILLAR_PROGRAM_MAP: Record<string, string> = {
   'Crisis & Disaster Stabilization': 'fire-relief',
   'School & Youth Stability': 'youth-programming',
@@ -48,14 +64,15 @@ export default async function HomePage() {
     getPillars().catch(() => []),
   ])
 
-  /* Hero images from programs */
-  const heroImages = sanityPrograms
+  /* Hero images from programs — fallback to local gallery */
+  const sanityHeroImages = sanityPrograms
     .filter((p: { heroImage?: unknown }) => p.heroImage)
     .slice(0, 5)
     .map((p: { heroImage: unknown; title: string }) => ({
       src: urlFor(p.heroImage).width(1920).quality(85).url(),
       alt: `IBTU — ${p.title}`,
     }))
+  const heroImages = sanityHeroImages.length > 0 ? sanityHeroImages : LOCAL_GALLERY_IMAGES.slice(0, 5)
 
   /* Pillar cards */
   const pillars = sanityPillars.length
@@ -111,6 +128,9 @@ export default async function HomePage() {
     })
     .slice(0, 8)
 
+  /* Use local gallery images as fallback if Sanity doesn't return enough */
+  const allGalleryItems = mosaicItems.length >= 6 ? mosaicItems : [...mosaicItems, ...LOCAL_GALLERY_IMAGES].slice(0, 12)
+
   /* CTA image */
   const ctaImageSrc = sanityPrograms[0]?.cardImages?.[1]
     ? urlFor(sanityPrograms[0].cardImages[1]).width(1920).quality(80).url()
@@ -131,9 +151,9 @@ export default async function HomePage() {
       <ValuesTicker values={VALUES} speed={25} />
 
       {/* 3. Mission Mosaic — editorial photo grid with animated entrance */}
-      {mosaicItems.length > 0 && (
+      {allGalleryItems.length > 0 && (
         <MissionMosaic
-          items={mosaicItems}
+          items={allGalleryItems}
           headline="Community is the Infrastructure."
           body="We listen, we build, we stay. Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
         />
@@ -149,9 +169,9 @@ export default async function HomePage() {
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
 
       {/* 7. 3D Orbital Gallery — interactive photo space */}
-      {mosaicItems.length > 0 && (
+      {allGalleryItems.length > 0 && (
         <OrbitalGallery
-          items={mosaicItems.map((item: { src: string; alt: string }) => ({
+          items={allGalleryItems.map((item: { src: string; alt: string }) => ({
             src: item.src,
             title: item.alt,
             program: '',
