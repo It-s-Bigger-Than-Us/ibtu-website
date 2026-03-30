@@ -41,8 +41,8 @@ export default async function ProgramsPage() {
           </span>
           <h1
             style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "clamp(60px, 9vw, 140px)",
+              fontFamily: "'LOT', 'Bebas Neue', sans-serif",
+              fontSize: "clamp(60px, 12vw, 180px)",
               lineHeight: 0.9,
               color: "#fff",
               marginBottom: 32,
@@ -118,7 +118,7 @@ export default async function ProgramsPage() {
                     fontSize: 11,
                     letterSpacing: "3px",
                     textTransform: "uppercase",
-                    color: "rgba(0,0,0,0.5)",
+                    color: "#000",
                     marginBottom: 14,
                     fontWeight: 700,
                     fontFamily: "Poppins, sans-serif",
