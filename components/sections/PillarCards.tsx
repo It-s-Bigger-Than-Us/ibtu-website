@@ -69,7 +69,7 @@ export default function PillarCards({ pillars }: PillarCardsProps) {
             onMouseLeave={() => setHoveredIndex(null)}
             style={{
               display: 'grid',
-              gridTemplateColumns: hoveredIndex === i && pillar.image ? '80px 1fr 1fr' : '80px 1fr auto',
+              gridTemplateColumns: hoveredIndex === i && pillar.image ? 'clamp(60px, 8vw, 120px) 1fr 1fr' : 'clamp(60px, 8vw, 120px) 1fr auto',
               alignItems: 'center',
               gap: 'clamp(24px, 3vw, 48px)',
               padding: 'clamp(32px, 4vw, 56px) 0',
@@ -84,7 +84,7 @@ export default function PillarCards({ pillars }: PillarCardsProps) {
               className="pillar-big-num"
               style={{
                 fontFamily: "'LOT', 'Bebas Neue', sans-serif",
-                fontSize: 'clamp(48px, 8vw, 120px)',
+                fontSize: 'clamp(36px, 6vw, 80px)',
                 lineHeight: 1,
                 color: 'var(--gold)',
                 opacity: 0,

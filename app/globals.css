@@ -430,12 +430,6 @@ body {
 .program-card-overlay {
   padding: clamp(16px, 2vw, 24px);
   background: var(--gold);
-  max-height: 56px;
-  overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.program-card:hover .program-card-overlay {
-  max-height: 300px;
 }
 .program-card-tag {
   font-family: 'Poppins', sans-serif;
@@ -449,11 +443,12 @@ body {
   opacity: 1; max-height: 30px;
 }
 .program-card-name {
-  font-family: "'LOT', 'Bebas Neue', sans-serif";
-  font-size: clamp(18px, 2vw, 28px);
+  font-family: 'LOT', 'Bebas Neue', sans-serif;
+  font-size: clamp(16px, 1.8vw, 24px);
   text-transform: uppercase;
   color: #000;
   line-height: 1.1;
+  word-wrap: break-word;
 }
 .program-card-stat {
   font-family: 'Poppins', sans-serif;

@@ -109,11 +109,13 @@ export default function StatsSection({ stats }: StatsSectionProps) {
               ref={(el) => { numRefs.current[i] = el }}
               style={{
                 fontFamily: "'Poppins', sans-serif",
-                fontSize: 'clamp(48px, 8vw, 96px)',
+                fontSize: 'clamp(32px, 4vw, 56px)',
                 fontWeight: 900,
                 lineHeight: 1,
                 color: '#000',
                 display: 'block',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
               }}
             >
               0{stat.suffix ?? ''}
