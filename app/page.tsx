@@ -150,12 +150,12 @@ export default async function HomePage() {
       {/* 2. Values Ticker — gold bg, black text */}
       <ValuesTicker values={VALUES} speed={25} />
 
-      {/* 3. Mission Mosaic — editorial photo grid with animated entrance */}
+      {/* 3. Mission Mosaic — editorial photo grid, NO duplicate headline */}
       {allGalleryItems.length > 0 && (
         <MissionMosaic
           items={allGalleryItems}
-          headline="Community is the Infrastructure."
-          body="We listen, we build, we stay. Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
+          headline="We Listen. We Build. We Stay."
+          body="Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
         />
       )}
 

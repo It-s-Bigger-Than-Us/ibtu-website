@@ -421,31 +421,45 @@ body {
 }
 .program-card:hover img { transform: scale(1.04); }
 .program-card-overlay {
-  padding: clamp(20px, 2.5vw, 32px);
+  padding: clamp(16px, 2vw, 24px);
   background: var(--gold);
+  max-height: 56px;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.program-card:hover .program-card-overlay {
+  max-height: 300px;
 }
 .program-card-tag {
   font-family: 'Poppins', sans-serif;
-  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
   color: #000; font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  opacity: 0; max-height: 0; overflow: hidden;
+  transition: opacity 0.3s, max-height 0.3s;
 }
-.program-card:hover .program-card-tag { }
+.program-card:hover .program-card-tag {
+  opacity: 1; max-height: 30px;
+}
 .program-card-name {
-  font-family: 'LOT', 'Bebas Neue', sans-serif;
-  font-size: clamp(22px, 2.5vw, 36px);
+  font-family: "'LOT', 'Bebas Neue', sans-serif";
+  font-size: clamp(18px, 2vw, 28px);
   text-transform: uppercase;
   color: #000;
-  line-height: 1;
+  line-height: 1.1;
 }
 .program-card-stat {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(11px, 0.9vw, 14px);
+  font-size: clamp(10px, 0.8vw, 13px);
   color: #000;
-  margin-top: 8px;
+  margin-top: 6px;
   font-weight: 600;
+  opacity: 0; max-height: 0; overflow: hidden;
+  transition: opacity 0.3s 0.1s, max-height 0.3s 0.1s;
 }
-.program-card:hover .program-card-stat { }
+.program-card:hover .program-card-stat {
+  opacity: 1; max-height: 40px;
+}
 
 @media (max-width: 860px) {
   .programs-grid { grid-template-columns: repeat(2, 1fr); }
