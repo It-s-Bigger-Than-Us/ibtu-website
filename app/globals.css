@@ -249,9 +249,7 @@ body {
 .ticker-wrap {
   overflow: hidden;
   padding: 28px 0;
-  background: #000;
-  border-top: 1px solid rgba(255,199,0,0.15);
-  border-bottom: 1px solid rgba(255,199,0,0.15);
+  background: var(--gold);
 }
 .ticker-track {
   display: flex;
@@ -265,14 +263,14 @@ body {
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: #000;
   white-space: nowrap;
   padding: 0 32px;
   display: flex; align-items: center; gap: 32px;
 }
 .ticker-item::after {
   content: '/';
-  color: rgba(255,199,0,0.3);
+  color: #000;
 }
 @keyframes tickerScroll {
   0% { transform: translateX(0); }
