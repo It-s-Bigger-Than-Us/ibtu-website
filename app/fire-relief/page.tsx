@@ -111,85 +111,67 @@ export default function FireReliefPage() {
       <TopNav />
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
-        {/* ── FULL-SCREEN VIDEO HERO ── */}
-        <section
-          style={{
-            position: "relative",
-            height: "100vh",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
-            overflow: "hidden",
-          }}
-        >
+        {/* ── VIDEO BLOCK — no text overlay ── */}
+        <section style={{ width: "100%", height: "70vh", minHeight: "400px", overflow: "hidden", position: "relative" }}>
           <video
             autoPlay
             muted
             loop
             playsInline
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
             <source
               src="https://video.wixstatic.com/video/a11c28_22a0fdd69fb348d4a65cc8b7e81e1f81/720p/mp4/file.mp4"
               type="video/mp4"
             />
           </video>
-          <div
+        </section>
+
+        {/* ── HERO TEXT — solid black, no overlay ── */}
+        <section style={{ background: "#000", padding: "clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px)" }}>
+          <span
             style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%)",
+              display: "block",
+              fontSize: 11,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "#FFC700",
+              marginBottom: 24,
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 700,
             }}
-          />
-          <div style={{ position: "relative", zIndex: 1, padding: "0 80px 100px 80px" }}>
-            <span
-              style={{
-                display: "block",
-                fontSize: 11,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "#FFC700",
-                marginBottom: 24,
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 700,
-              }}
-            >
-              Crisis &amp; Disaster Stabilization
-            </span>
-            <h1
-              style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "clamp(40px, 6vw, 100px)",
-                lineHeight: 0.92,
-                color: "#fff",
-                marginBottom: 32,
-                maxWidth: 900,
-              }}
-            >
-              WHEN THE FIRES HIT,
-              <br />
-              IBTU WAS ALREADY HERE.
-            </h1>
-            <p
-              style={{
-                fontSize: "clamp(16px, 1.4vw, 21px)",
-                color: "#fff",
-                maxWidth: 620,
-                lineHeight: 1.75,
-                fontFamily: "Poppins, sans-serif",
-              }}
-            >
-              72 hours to activate. 87 locations across Los Angeles. A permanent Relief Resource
-              Hub that&rsquo;s still open today. This isn&rsquo;t charity — it&rsquo;s infrastructure.
-            </p>
-          </div>
+          >
+            Crisis &amp; Disaster Stabilization
+          </span>
+          <h1
+            style={{
+              fontFamily: "'LOT', 'Bebas Neue', sans-serif",
+              fontSize: "clamp(48px, 10vw, 160px)",
+              lineHeight: 0.9,
+              color: "#fff",
+              marginBottom: 32,
+              maxWidth: 1000,
+              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            WHEN THE FIRES HIT,
+            <br />
+            IBTU WAS ALREADY HERE.
+          </h1>
+          <p
+            style={{
+              fontSize: "clamp(16px, 1.4vw, 21px)",
+              color: "#fff",
+              maxWidth: 620,
+              lineHeight: 1.75,
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 500,
+            }}
+          >
+            72 hours to activate. 87 locations across Los Angeles. A permanent Relief Resource
+            Hub that&rsquo;s still open today. This isn&rsquo;t charity — it&rsquo;s infrastructure.
+          </p>
         </section>
 
         {/* ── THREE PHASES — EDITORIAL TIMELINE ── */}
@@ -354,14 +336,7 @@ export default function FireReliefPage() {
               type="video/mp4"
             />
           </video>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%)",
-            }}
-          />
+          {/* Gradient overlay removed — no text over video */}
         </section>
 
         {/* ── HUB SERVICES — HOW TO GET ASSISTANCE ── */}

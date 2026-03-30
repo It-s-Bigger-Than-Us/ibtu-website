@@ -62,36 +62,31 @@ export default async function DonatePage({ params }: Props) {
     <>
       <main style={{ background: "#000", minHeight: "100vh" }}>
 
-        {/* Hero */}
-        <section style={{
-          minHeight: "50vh",
-          position: "relative",
-          overflow: "hidden",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-          padding: "clamp(80px, 10vw, 140px) clamp(24px, 5vw, 80px) clamp(48px, 5vw, 80px)",
-        }}>
-          {heroSrc && (
-            // eslint-disable-next-line @next/next/no-img-element
+        {/* Hero image — separate block, no text overlay */}
+        {heroSrc && (
+          <section style={{ width: "100%", height: "50vh", minHeight: "300px", overflow: "hidden" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={heroSrc}
-              alt={program.title}
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.7) saturate(1.1)" }}
+              alt={`Support ${program.title} — IBTU`}
+              style={{ width: "100%", height: "100%", objectFit: "cover", filter: "saturate(1.15)" }}
             />
-          )}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #000 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.2) 100%)" }} />
-          <div style={{ position: "relative", zIndex: 1, maxWidth: 800 }}>
+          </section>
+        )}
+
+        {/* Hero text — solid black background */}
+        <section style={{ background: "#000", padding: "clamp(48px, 6vw, 80px) clamp(24px, 5vw, 80px)" }}>
+          <div style={{ maxWidth: 800 }}>
             <Link
               href={`/our-programs/${slug}`}
-              style={{ display: "inline-block", fontSize: 12, letterSpacing: 3, textTransform: "uppercase", color: "#FFC700", marginBottom: 28, fontFamily: "Poppins, sans-serif", fontWeight: 600, textDecoration: "none" }}
+              style={{ display: "inline-block", fontSize: 12, letterSpacing: 3, textTransform: "uppercase", color: "#FFC700", marginBottom: 28, fontFamily: "Poppins, sans-serif", fontWeight: 700, textDecoration: "none" }}
             >
               &larr; Back to {program.title}
             </Link>
-            <h1 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 900, lineHeight: 1, color: "#fff", marginBottom: 16, textTransform: "uppercase", letterSpacing: -1 }}>
+            <h1 style={{ fontFamily: "'LOT', 'Bebas Neue', sans-serif", fontSize: "clamp(48px, 8vw, 120px)", lineHeight: 0.9, color: "#fff", marginBottom: 16, textTransform: "uppercase", letterSpacing: "-0.02em" }}>
               Support {program.title}
             </h1>
-            <p style={{ fontSize: "clamp(15px, 1.3vw, 18px)", color: "#fff", maxWidth: 560, lineHeight: 1.7, fontFamily: "Poppins, sans-serif" }}>
+            <p style={{ fontSize: "clamp(15px, 1.3vw, 18px)", color: "#fff", maxWidth: 560, lineHeight: 1.7, fontFamily: "Poppins, sans-serif", fontWeight: 500 }}>
               {program.tagline}
             </p>
           </div>
