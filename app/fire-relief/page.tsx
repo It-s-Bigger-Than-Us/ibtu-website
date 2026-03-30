@@ -121,7 +121,7 @@ export default function FireReliefPage() {
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
             <source
-              src="https://video.wixstatic.com/video/a11c28_22a0fdd69fb348d4a65cc8b7e81e1f81/720p/mp4/file.mp4"
+              src="/videos/fire-relief-hero.mp4"
               type="video/mp4"
             />
           </video>
@@ -332,7 +332,7 @@ export default function FireReliefPage() {
             }}
           >
             <source
-              src="https://video.wixstatic.com/video/a11c28_22a0fdd69fb348d4a65cc8b7e81e1f81/720p/mp4/file.mp4"
+              src="/videos/fire-relief-hero.mp4"
               type="video/mp4"
             />
           </video>

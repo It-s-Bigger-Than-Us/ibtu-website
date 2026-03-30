@@ -260,7 +260,7 @@ export default function OrbitHero() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               id="hero-logo-img"
-              src="https://static.wixstatic.com/media/a11c28_c704b654e72e4c769b26afe3dabe6384~mv2.png"
+              src="/images/ibtu-logo-white.png"
               alt="IBTU — It's Bigger Than Us"
             />
           </div>

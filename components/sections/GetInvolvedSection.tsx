@@ -8,12 +8,12 @@ import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 const FLIP_IMGS = [
-  "https://static.wixstatic.com/media/a11c28_c252e60a91f34fba9d020d2fc20b45bd~mv2.jpg",
-  "https://static.wixstatic.com/media/a11c28_4a04e6873c9e4858ba9b0621e40c9bd0~mv2.jpg",
-  "https://static.wixstatic.com/media/a11c28_d30b9d68051b4a61b205d5e8b7c77faa~mv2.jpg",
-  "https://static.wixstatic.com/media/a11c28_00da205b7f55490391a902b27d2ed0a5~mv2.jpg",
-  "https://static.wixstatic.com/media/a11c28_3266eae7be9641cc9902418912b2fe47~mv2.jpg",
-  "https://static.wixstatic.com/media/a11c28_a1e0cc925ecf4df4bf8e015335666b3c~mv2.jpg",
+  "/images/placeholder-community.jpg",
+  "/images/placeholder-community.jpg",
+  "/images/placeholder-community.jpg",
+  "/images/placeholder-community.jpg",
+  "/images/placeholder-community.jpg",
+  "/images/placeholder-community.jpg",
 ];
 
 const VOL_OPTIONS = [
