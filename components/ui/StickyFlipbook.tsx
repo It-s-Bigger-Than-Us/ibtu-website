@@ -112,6 +112,7 @@ export default function StickyFlipbook({
             />
 
             {/* Caption overlay */}
+            {/* Caption moved to gold bar below image — no text over image */}
             {images[activeIndex].caption && (
               <div
                 style={{
@@ -119,17 +120,18 @@ export default function StickyFlipbook({
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  padding: "80px 80px 60px 80px",
-                  background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
+                  padding: "16px 32px",
+                  background: "var(--gold)",
                 }}
               >
                 <p
                   style={{
                     fontFamily: "Poppins, sans-serif",
-                    fontSize: 15,
-                    color: "#fff",
+                    fontSize: 13,
+                    color: "#000",
+                    fontWeight: 600,
                     maxWidth: 500,
-                    lineHeight: 1.6,
+                    lineHeight: 1.4,
                   }}
                 >
                   {images[activeIndex].caption}
