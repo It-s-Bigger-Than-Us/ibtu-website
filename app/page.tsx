@@ -99,7 +99,7 @@ export default async function HomePage() {
       {/* 1. Hero */}
       <HeroSection
         images={heroImages}
-        headline="Community is the infrastructure"
+        headline="Community is the Infrastructure"
         metadata={HERO_METADATA}
       />
 

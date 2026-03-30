@@ -44,8 +44,8 @@ export default function Footer() {
     return () => { ScrollTrigger.getAll().forEach((t) => t.kill()); };
   }, []);
 
-  const mantraText = "Community is the infrastructure.";
-  const mantraWords = mantraText.split(" ");
+  // Break mantra into 3 lines: Community / is the / Infrastructure
+  const mantraLines = ["Community", "is the", "Infrastructure."];
 
   return (
     <footer
@@ -74,13 +74,13 @@ export default function Footer() {
             letterSpacing: "-0.02em",
           }}
         >
-          {mantraWords.map((word, i) => (
+          {mantraLines.map((line, i) => (
             <span
               key={i}
               className="foot-mantra-word"
-              style={{ display: "inline-block", opacity: 0 }}
+              style={{ display: "block", opacity: 0 }}
             >
-              {word}{i < mantraWords.length - 1 ? "\u00A0" : ""}
+              {line}
             </span>
           ))}
         </h2>

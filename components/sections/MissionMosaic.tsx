@@ -21,7 +21,7 @@ interface MissionMosaicProps {
 
 export default function MissionMosaic({
   items,
-  headline = 'Community is the infrastructure.',
+  headline = 'Community is the Infrastructure.',
   body = 'We listen, we build, we stay. Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design.',
 }: MissionMosaicProps) {
   const sectionRef = useRef<HTMLElement>(null)
