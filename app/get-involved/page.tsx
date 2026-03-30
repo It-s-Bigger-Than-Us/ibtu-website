@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { getPrograms } from "@/sanity/lib/fetch";
 import DonationEmbed from "@/components/sections/DonationEmbed";
@@ -57,8 +57,8 @@ export default async function GetInvolvedPage() {
 
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
         <div
@@ -99,7 +99,7 @@ export default async function GetInvolvedPage() {
           <p
             style={{
               fontSize: "clamp(16px, 1.5vw, 22px)",
-              color: "rgba(255,255,255,0.7)",
+              color: "#fff",
               maxWidth: 640,
               lineHeight: 1.75,
             }}
@@ -164,7 +164,7 @@ export default async function GetInvolvedPage() {
                     >
                       {item.label}
                     </h3>
-                    <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>
+                    <p style={{ fontSize: 15, color: "#fff", lineHeight: 1.65 }}>
                       {item.description}
                     </p>
                   </div>
@@ -193,14 +193,14 @@ export default async function GetInvolvedPage() {
           style={{
             background: "#0a0a0a",
             padding: "60px 80px",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderTop: "1px solid var(--gold)",
           }}
         >
           <h3
             style={{
               fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(20px, 2.5vw, 32px)",
-              color: "rgba(255,255,255,0.6)",
+              color: "#fff",
               marginBottom: 28,
             }}
           >
@@ -221,7 +221,7 @@ export default async function GetInvolvedPage() {
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "20px 28px",
-                    border: "1px solid rgba(255,255,255,0.06)",
+                    border: "1px solid var(--gold)",
                     background: "#111",
                     cursor: "pointer",
                   }}
@@ -237,7 +237,7 @@ export default async function GetInvolvedPage() {
                     >
                       {prog.title}
                     </div>
-                    <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", marginTop: 4 }}>
+                    <div style={{ fontSize: 13, color: "var(--gold)", marginTop: 4 }}>
                       {prog.schedule}
                     </div>
                   </div>
@@ -284,7 +284,7 @@ export default async function GetInvolvedPage() {
           <p
             style={{
               fontSize: "clamp(15px, 1.3vw, 19px)",
-              color: "rgba(255,255,255,0.6)",
+              color: "#fff",
               maxWidth: 580,
               lineHeight: 1.7,
               marginBottom: 48,
@@ -333,7 +333,7 @@ export default async function GetInvolvedPage() {
                 >
                   {tier.amount}
                 </div>
-                <p style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", lineHeight: 1.6 }}>
+                <p style={{ fontSize: 14, color: "var(--gold)", lineHeight: 1.6 }}>
                   {tier.description}
                 </p>
               </div>
@@ -383,7 +383,7 @@ export default async function GetInvolvedPage() {
           <p
             style={{
               fontSize: "clamp(16px, 1.5vw, 22px)",
-              color: "rgba(255,255,255,0.7)",
+              color: "#fff",
               maxWidth: 640,
               lineHeight: 1.75,
               marginBottom: 40,
@@ -417,7 +417,7 @@ export default async function GetInvolvedPage() {
         <div
           style={{
             padding: "48px 80px",
-            borderTop: "1px solid rgba(255,255,255,0.06)",
+            borderTop: "1px solid var(--gold)",
           }}
         >
           <Link
@@ -426,7 +426,7 @@ export default async function GetInvolvedPage() {
               fontSize: 11,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.4)",
+              color: "var(--gold)",
               textDecoration: "none",
               fontFamily: "Poppins, sans-serif",
               fontWeight: 700,

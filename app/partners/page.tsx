@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { getPartners } from "@/sanity/lib/fetch";
 
@@ -25,8 +25,8 @@ export default async function PartnersPage() {
 
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
         <div style={{ padding: "140px 80px 100px 80px" }}>
@@ -60,7 +60,7 @@ export default async function PartnersPage() {
           <p
             style={{
               fontSize: "clamp(16px, 1.5vw, 22px)",
-              color: "rgba(255,255,255,0.7)",
+              color: "#fff",
               maxWidth: 640,
               lineHeight: 1.75,
             }}
@@ -79,7 +79,7 @@ export default async function PartnersPage() {
               style={{
                 marginBottom: 60,
                 paddingBottom: 60,
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                borderBottom: "1px solid var(--gold)",
               }}
             >
               <span

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -29,8 +29,8 @@ export default function ContactPage() {
 
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
         <div style={{ padding: "140px 80px 80px 80px" }}>
@@ -62,7 +62,7 @@ export default function ContactPage() {
           <p
             style={{
               fontSize: "clamp(16px, 1.5vw, 22px)",
-              color: "rgba(255,255,255,0.7)",
+              color: "#fff",
               maxWidth: 640,
               lineHeight: 1.75,
             }}
@@ -107,7 +107,7 @@ export default function ContactPage() {
                       fontSize: 11,
                       letterSpacing: "2px",
                       textTransform: "uppercase",
-                      color: "rgba(255,255,255,0.4)",
+                      color: "var(--gold)",
                       fontWeight: 600,
                       marginBottom: 6,
                     }}
@@ -174,7 +174,7 @@ export default function ContactPage() {
                     fontSize: 11,
                     letterSpacing: "2px",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
+                    color: "var(--gold)",
                     fontWeight: 600,
                     marginBottom: 8,
                   }}
@@ -189,8 +189,8 @@ export default function ContactPage() {
                   style={{
                     width: "100%",
                     padding: "14px 16px",
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.15)",
+                    background: "#111",
+                    border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
                     fontFamily: "Poppins, sans-serif",
@@ -206,7 +206,7 @@ export default function ContactPage() {
                     fontSize: 11,
                     letterSpacing: "2px",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
+                    color: "var(--gold)",
                     fontWeight: 600,
                     marginBottom: 8,
                   }}
@@ -221,8 +221,8 @@ export default function ContactPage() {
                   style={{
                     width: "100%",
                     padding: "14px 16px",
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.15)",
+                    background: "#111",
+                    border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
                     fontFamily: "Poppins, sans-serif",
@@ -238,7 +238,7 @@ export default function ContactPage() {
                     fontSize: 11,
                     letterSpacing: "2px",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
+                    color: "var(--gold)",
                     fontWeight: 600,
                     marginBottom: 8,
                   }}
@@ -252,8 +252,8 @@ export default function ContactPage() {
                   style={{
                     width: "100%",
                     padding: "14px 16px",
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.15)",
+                    background: "#111",
+                    border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
                     fontFamily: "Poppins, sans-serif",
@@ -279,7 +279,7 @@ export default function ContactPage() {
                     fontSize: 11,
                     letterSpacing: "2px",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
+                    color: "var(--gold)",
                     fontWeight: 600,
                     marginBottom: 8,
                   }}
@@ -294,8 +294,8 @@ export default function ContactPage() {
                   style={{
                     width: "100%",
                     padding: "14px 16px",
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.15)",
+                    background: "#111",
+                    border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
                     fontFamily: "Poppins, sans-serif",
@@ -330,14 +330,14 @@ export default function ContactPage() {
         <div
           style={{
             padding: "40px 80px",
-            borderTop: "1px solid rgba(255,255,255,0.08)",
+            borderTop: "1px solid var(--gold)",
             textAlign: "center",
           }}
         >
           <p
             style={{
               fontSize: 12,
-              color: "rgba(255,255,255,0.3)",
+              color: "var(--gold)",
               letterSpacing: "1px",
               fontFamily: "Poppins, sans-serif",
             }}

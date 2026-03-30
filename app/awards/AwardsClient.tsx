@@ -33,7 +33,7 @@ const LEVEL_COLORS: Record<string, string> = {
   Federal: '#FFC700',
   State: '#FFC700',
   City: 'rgba(255,199,0,0.7)',
-  Institutional: 'rgba(255,255,255,0.3)',
+  Institutional: 'var(--gold)',
 }
 
 export default function AwardsClient({ awards, media }: AwardsClientProps) {
@@ -141,7 +141,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                       gridTemplateColumns: '80px 1fr',
                       gap: '28px',
                       padding: '28px 0',
-                      borderBottom: '1px solid rgba(255,255,255,0.08)',
+                      borderBottom: '1px solid rgba(255,199,0,0.15)',
                       alignItems: 'start',
                       cursor: 'pointer',
                     }}
@@ -215,7 +215,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
       {/* ── MEDIA & NEWS ── */}
       <div style={{
         padding: 'var(--section-pad) clamp(32px, 5vw, 80px)',
-        borderTop: '1px solid rgba(255,255,255,0.08)',
+        borderTop: '1px solid rgba(255,199,0,0.15)',
       }}>
         <span className="editorial-label" style={{ marginBottom: '20px', display: 'block' }}>
           MEDIA & PRESS
@@ -266,7 +266,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                 background: '#111',
                 borderRadius: '16px',
                 padding: '28px',
-                border: '1px solid rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,199,0,0.15)',
               }}
             >
               <div style={{
@@ -336,7 +336,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                 fontSize: '11px',
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.4)',
+                color: 'var(--gold)',
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600,
                 marginTop: '8px',

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { getUpcomingEvents, getAllEvents } from "@/sanity/lib/fetch";
 
@@ -34,8 +34,8 @@ export default async function CalendarPage() {
 
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
         <div style={{ padding: "140px 80px 80px 80px", borderBottom: "1px solid rgba(255,199,0,0.2)" }}>
@@ -47,7 +47,7 @@ export default async function CalendarPage() {
             <br />
             HAPPENING
           </h1>
-          <p style={{ fontSize: "clamp(16px, 1.4vw, 20px)", color: "rgba(255,255,255,0.7)", maxWidth: 640, lineHeight: 1.75 }}>
+          <p style={{ fontSize: "clamp(16px, 1.4vw, 20px)", color: "#fff", maxWidth: 640, lineHeight: 1.75 }}>
             Every week, every month — IBTU shows up. Find upcoming events, volunteer
             opportunities, and ways to get involved.
           </p>
@@ -84,7 +84,7 @@ export default async function CalendarPage() {
                           {ev.status}
                         </span>
                         {ev.programTitle && (
-                          <span style={{ display: "inline-block", border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.5)", fontSize: 10, letterSpacing: "2px", fontWeight: 700, padding: "4px 10px", fontFamily: "Poppins, sans-serif", textTransform: "uppercase" }}>
+                          <span style={{ display: "inline-block", border: "1px solid var(--gold)", color: "var(--gold)", fontSize: 10, letterSpacing: "2px", fontWeight: 700, padding: "4px 10px", fontFamily: "Poppins, sans-serif", textTransform: "uppercase" }}>
                             {ev.programTitle}
                           </span>
                         )}
@@ -92,9 +92,9 @@ export default async function CalendarPage() {
                       <div style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(22px, 2.5vw, 34px)", color: "#fff", fontWeight: 700, lineHeight: 1.05, marginBottom: 12 }}>
                         {ev.title}
                       </div>
-                      <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
+                      <div style={{ fontSize: 14, color: "var(--gold)", lineHeight: 1.5 }}>
                         {ev.location && <>{ev.location}<br /></>}
-                        {ev.proofStats && <span style={{ color: "rgba(255,255,255,0.4)" }}>{ev.proofStats}</span>}
+                        {ev.proofStats && <span style={{ color: "var(--gold)" }}>{ev.proofStats}</span>}
                       </div>
                     </div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 24 }}>
@@ -128,7 +128,7 @@ export default async function CalendarPage() {
                   <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 900, fontSize: 32, color: "var(--gold)" }}>
                     {year}
                   </span>
-                  <span style={{ fontSize: 13, color: "rgba(255,255,255,0.4)" }}>
+                  <span style={{ fontSize: 13, color: "var(--gold)" }}>
                     {yearEvents.length} events
                   </span>
                   <div style={{ flex: 1, height: 1, background: "rgba(255,199,0,0.15)" }} />
@@ -145,7 +145,7 @@ export default async function CalendarPage() {
                         justifyContent: "space-between",
                         alignItems: "center",
                         padding: "14px 0",
-                        borderBottom: "1px solid rgba(255,255,255,0.05)",
+                        borderBottom: "1px solid var(--gold)",
                         gap: 16,
                         transition: "background 0.15s",
                       }}
@@ -159,20 +159,20 @@ export default async function CalendarPage() {
                             background:
                               ev.status === "Active" ? "#22c55e" :
                               ev.status === "Upcoming" ? "var(--gold)" :
-                              "rgba(255,255,255,0.2)",
+                              "var(--gold)",
                             flexShrink: 0,
                           }}
                         />
-                        <span style={{ fontSize: 15, color: ev.status === "Closed" ? "rgba(255,255,255,0.5)" : "#fff", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        <span style={{ fontSize: 15, color: ev.status === "Closed" ? "var(--gold)" : "#fff", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                           {ev.title}
                         </span>
                         {ev.programTitle && (
-                          <span style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", flexShrink: 0 }}>
+                          <span style={{ fontSize: 12, color: "var(--gold)", flexShrink: 0 }}>
                             {ev.programTitle}
                           </span>
                         )}
                       </div>
-                      <span style={{ fontSize: 13, color: "rgba(255,255,255,0.35)", whiteSpace: "nowrap" }}>
+                      <span style={{ fontSize: 13, color: "var(--gold)", whiteSpace: "nowrap" }}>
                         {ev.dateStart}
                       </span>
                     </div>

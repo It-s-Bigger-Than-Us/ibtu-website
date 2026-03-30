@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { getPrograms } from "@/sanity/lib/fetch";
 
@@ -16,8 +16,8 @@ export default async function ProgramsPage() {
   const programs = await getPrograms();
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
         {/* Header */}
         <div
           style={{
@@ -55,7 +55,7 @@ export default async function ProgramsPage() {
           <p
             style={{
               fontSize: "clamp(16px, 1.4vw, 20px)",
-              color: "rgba(255,255,255,0.7)",
+              color: "#fff",
               maxWidth: 640,
               lineHeight: 1.75,
             }}

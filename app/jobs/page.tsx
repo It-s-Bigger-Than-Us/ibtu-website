@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 export default function JobsPage() {
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* ── HERO ── */}
         <section
@@ -52,7 +52,7 @@ export default function JobsPage() {
           <p
             style={{
               fontSize: "clamp(16px, 1.4vw, 21px)",
-              color: "rgba(255,255,255,0.7)",
+              color: "#fff",
               maxWidth: 600,
               lineHeight: 1.75,
               fontFamily: "Poppins, sans-serif",
@@ -96,7 +96,7 @@ export default function JobsPage() {
           <p
             style={{
               fontSize: "clamp(16px, 1.4vw, 20px)",
-              color: "rgba(255,255,255,0.6)",
+              color: "#fff",
               lineHeight: 1.75,
               maxWidth: 640,
               fontFamily: "Poppins, sans-serif",

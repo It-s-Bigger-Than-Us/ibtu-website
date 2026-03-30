@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -108,8 +108,8 @@ export default function FireReliefPage() {
 
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* ── FULL-SCREEN VIDEO HERO ── */}
         <section
@@ -180,7 +180,7 @@ export default function FireReliefPage() {
             <p
               style={{
                 fontSize: "clamp(16px, 1.4vw, 21px)",
-                color: "rgba(255,255,255,0.7)",
+                color: "#fff",
                 maxWidth: 620,
                 lineHeight: 1.75,
                 fontFamily: "Poppins, sans-serif",
@@ -198,7 +198,7 @@ export default function FireReliefPage() {
             key={i}
             style={{
               padding: "120px 80px",
-              borderTop: i === 0 ? "none" : "1px solid rgba(255,255,255,0.06)",
+              borderTop: i === 0 ? "none" : "1px solid rgba(255,199,0,0.15)",
             }}
           >
             <div
@@ -278,7 +278,7 @@ export default function FireReliefPage() {
                 <p
                   style={{
                     fontSize: 16,
-                    color: "rgba(255,255,255,0.7)",
+                    color: "#fff",
                     lineHeight: 1.8,
                     maxWidth: 640,
                     fontFamily: "Poppins, sans-serif",
@@ -311,7 +311,7 @@ export default function FireReliefPage() {
                       <span
                         style={{
                           fontSize: 12,
-                          color: "rgba(255,255,255,0.5)",
+                          color: "var(--gold)",
                           fontWeight: 600,
                           letterSpacing: "1px",
                           textTransform: "uppercase",
@@ -394,7 +394,7 @@ export default function FireReliefPage() {
           <p
             style={{
               fontSize: 16,
-              color: "rgba(255,255,255,0.6)",
+              color: "#fff",
               lineHeight: 1.7,
               maxWidth: 600,
               fontFamily: "Poppins, sans-serif",
@@ -418,7 +418,7 @@ export default function FireReliefPage() {
                 key={i}
                 style={{
                   padding: "32px",
-                  border: "1px solid rgba(255,255,255,0.08)",
+                  border: "1px solid var(--gold)",
                 }}
               >
                 <h3
@@ -435,7 +435,7 @@ export default function FireReliefPage() {
                 <p
                   style={{
                     fontSize: 14,
-                    color: "rgba(255,255,255,0.6)",
+                    color: "#fff",
                     lineHeight: 1.7,
                     fontFamily: "Poppins, sans-serif",
                   }}
@@ -453,7 +453,7 @@ export default function FireReliefPage() {
               gridTemplateColumns: "1fr 1fr",
               gap: 60,
               padding: "48px 0",
-              borderTop: "1px solid rgba(255,255,255,0.08)",
+              borderTop: "1px solid var(--gold)",
             }}
           >
             <div>

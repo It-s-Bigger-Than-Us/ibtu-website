@@ -1,4 +1,4 @@
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { client } from "@/sanity/lib/client";
 
@@ -20,12 +20,11 @@ export default async function AdminMediaPage() {
 
   return (
     <>
-      <Nav />
+      <TopNav />
       <main
         style={{
           background: "#000",
           minHeight: "100vh",
-          paddingRight: "var(--nav-w)",
           fontFamily: "Poppins, sans-serif",
         }}
       >
@@ -50,7 +49,7 @@ export default async function AdminMediaPage() {
           <p
             style={{
               fontSize: 14,
-              color: "rgba(255,255,255,0.5)",
+              color: "var(--gold)",
               marginBottom: 8,
             }}
           >
@@ -61,7 +60,7 @@ export default async function AdminMediaPage() {
         {/* Grid */}
         <section style={{ padding: "40px 80px 120px 80px" }}>
           {assets.length === 0 ? (
-            <p style={{ fontSize: 16, color: "rgba(255,255,255,0.5)" }}>
+            <p style={{ fontSize: 16, color: "var(--gold)" }}>
               No image assets found in Sanity.
             </p>
           ) : (
@@ -84,7 +83,7 @@ export default async function AdminMediaPage() {
                   <div
                     key={asset._id}
                     style={{
-                      background: "rgba(255,255,255,0.03)",
+                      background: "var(--gold)",
                       border: "1px solid rgba(255,199,0,0.1)",
                       borderRadius: 6,
                       overflow: "hidden",
@@ -134,7 +133,7 @@ export default async function AdminMediaPage() {
                       <div
                         style={{
                           fontSize: 11,
-                          color: "rgba(255,255,255,0.35)",
+                          color: "var(--gold)",
                           marginBottom: 10,
                         }}
                       >

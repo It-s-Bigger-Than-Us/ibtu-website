@@ -91,7 +91,7 @@ export default async function DonatePage({ params }: Props) {
             <h1 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(32px, 5vw, 64px)", fontWeight: 900, lineHeight: 1, color: "#fff", marginBottom: 16, textTransform: "uppercase", letterSpacing: -1 }}>
               Support {program.title}
             </h1>
-            <p style={{ fontSize: "clamp(15px, 1.3vw, 18px)", color: "rgba(255,255,255,0.65)", maxWidth: 560, lineHeight: 1.7, fontFamily: "Poppins, sans-serif" }}>
+            <p style={{ fontSize: "clamp(15px, 1.3vw, 18px)", color: "#fff", maxWidth: 560, lineHeight: 1.7, fontFamily: "Poppins, sans-serif" }}>
               {program.tagline}
             </p>
           </div>
@@ -101,7 +101,7 @@ export default async function DonatePage({ params }: Props) {
         {qgivUrl && (
           <section style={{ padding: "40px clamp(24px, 5vw, 80px)", borderBottom: "1px solid rgba(255,199,0,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
             <div>
-              <span style={{ fontFamily: "Poppins, sans-serif", fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.5)", letterSpacing: 1, textTransform: "uppercase" }}>
+              <span style={{ fontFamily: "Poppins, sans-serif", fontSize: 13, fontWeight: 600, color: "var(--gold)", letterSpacing: 1, textTransform: "uppercase" }}>
                 Make a direct donation
               </span>
             </div>
@@ -133,14 +133,14 @@ export default async function DonatePage({ params }: Props) {
               <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, lineHeight: 1.05, color: "#fff", marginBottom: 16, textTransform: "uppercase" }}>
                 Become a Sponsor
               </h2>
-              <p style={{ fontSize: "clamp(14px, 1.2vw, 17px)", color: "rgba(255,255,255,0.45)", maxWidth: 520, lineHeight: 1.7, fontFamily: "Poppins, sans-serif" }}>
+              <p style={{ fontSize: "clamp(14px, 1.2vw, 17px)", color: "#fff", maxWidth: 520, lineHeight: 1.7, fontFamily: "Poppins, sans-serif" }}>
                 Your sponsorship is more than a logo. It&apos;s an investment in community infrastructure — seen by thousands of families, partners, and media.
               </p>
             </div>
 
             {Object.entries(groups).map(([groupName, pkgs]) => (
               <div key={groupName} style={{ marginBottom: 56 }}>
-                <h3 style={{ fontFamily: "Poppins, sans-serif", fontSize: 12, color: "rgba(255,255,255,0.35)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 20, fontWeight: 700 }}>
+                <h3 style={{ fontFamily: "Poppins, sans-serif", fontSize: 12, color: "var(--gold)", letterSpacing: 3, textTransform: "uppercase", marginBottom: 20, fontWeight: 700 }}>
                   {groupName}
                 </h3>
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: 16 }}>

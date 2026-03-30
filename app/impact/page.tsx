@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { getImpactStats } from "@/sanity/lib/fetch";
 import { digitalReach } from "@/lib/data/impact-stats";
@@ -29,8 +29,8 @@ export default async function ImpactPage() {
 
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
         <div style={{ padding: "140px 80px 100px 80px" }}>
@@ -68,7 +68,7 @@ export default async function ImpactPage() {
           <p
             style={{
               fontSize: "clamp(16px, 1.5vw, 22px)",
-              color: "rgba(255,255,255,0.7)",
+              color: "#fff",
               maxWidth: 640,
               lineHeight: 1.75,
             }}
@@ -169,7 +169,7 @@ export default async function ImpactPage() {
                 <span
                   style={{
                     fontSize: 13,
-                    color: "rgba(255,255,255,0.6)",
+                    color: "#fff",
                     fontWeight: 600,
                   }}
                 >
@@ -183,10 +183,10 @@ export default async function ImpactPage() {
         {/* Digital Reach Strip */}
         <div
           style={{
-            background: "rgba(255,255,255,0.03)",
+            background: "var(--gold)",
             padding: "60px 80px",
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-            borderBottom: "1px solid rgba(255,255,255,0.08)",
+            borderTop: "1px solid var(--gold)",
+            borderBottom: "1px solid var(--gold)",
           }}
         >
           <span
@@ -230,7 +230,7 @@ export default async function ImpactPage() {
                     fontSize: 11,
                     letterSpacing: "1px",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
+                    color: "var(--gold)",
                     fontWeight: 600,
                   }}
                 >
@@ -242,7 +242,7 @@ export default async function ImpactPage() {
           <p
             style={{
               fontSize: 12,
-              color: "rgba(255,255,255,0.35)",
+              color: "var(--gold)",
               marginTop: 24,
               textAlign: "center",
             }}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { getTimeline } from "@/sanity/lib/fetch";
 
@@ -16,8 +16,8 @@ export default async function AboutPage() {
   const orgTimeline = await getTimeline();
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
         <div style={{ padding: "140px 80px 100px 80px" }}>
@@ -31,7 +31,7 @@ export default async function AboutPage() {
             <br />
             WE STAY.
           </h1>
-          <p style={{ fontSize: "clamp(16px, 1.5vw, 22px)", color: "rgba(255,255,255,0.7)", maxWidth: 640, lineHeight: 1.75 }}>
+          <p style={{ fontSize: "clamp(16px, 1.5vw, 22px)", color: "#fff", maxWidth: 640, lineHeight: 1.75 }}>
             Since 2020, It&apos;s Bigger Than Us has grown from a pandemic-era
             response team into permanent community infrastructure serving Los
             Angeles and beyond.
@@ -135,7 +135,7 @@ export default async function AboutPage() {
                   gridTemplateColumns: "100px 1fr",
                   gap: 32,
                   padding: "32px 0",
-                  borderBottom: "1px solid rgba(255,255,255,0.08)",
+                  borderBottom: "1px solid var(--gold)",
                 }}
               >
                 <div>
@@ -147,7 +147,7 @@ export default async function AboutPage() {
                   <h3 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(18px, 2vw, 28px)", color: "#fff", fontWeight: 700, lineHeight: 1.1, marginBottom: 10 }}>
                     {entry.title.toUpperCase()}
                   </h3>
-                  <p style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>
+                  <p style={{ fontSize: 15, color: "#fff", lineHeight: 1.65 }}>
                     {entry.detail}
                   </p>
                   <span style={{ display: "inline-block", marginTop: 10, fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(255,199,0,0.5)", fontWeight: 600 }}>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Nav from "@/components/layout/Nav";
+import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { getAllEvents, getUpcomingEvents, getPrograms } from "@/sanity/lib/fetch";
 
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const STATUS_COLORS: Record<string, string> = {
   Upcoming: "var(--gold)",
   Active: "#22c55e",
-  Closed: "rgba(255,255,255,0.35)",
+  Closed: "var(--gold)",
 };
 
 export default async function EventsPage() {
@@ -33,8 +33,8 @@ export default async function EventsPage() {
 
   return (
     <>
-      <Nav />
-      <main style={{ background: "#000", minHeight: "100vh", paddingRight: "var(--nav-w)" }}>
+      <TopNav />
+      <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Header */}
         <div style={{ padding: "140px 80px 80px 80px", borderBottom: "1px solid rgba(255,199,0,0.2)" }}>
@@ -63,7 +63,7 @@ export default async function EventsPage() {
           >
             EVENTS
           </h1>
-          <p style={{ fontSize: "clamp(16px, 1.4vw, 20px)", color: "rgba(255,255,255,0.7)", maxWidth: 640, lineHeight: 1.75 }}>
+          <p style={{ fontSize: "clamp(16px, 1.4vw, 20px)", color: "#fff", maxWidth: 640, lineHeight: 1.75 }}>
             Every year, every month, every week — IBTU shows up.
           </p>
         </div>
@@ -133,7 +133,7 @@ export default async function EventsPage() {
                           {ev.title}
 
                         </div>
-                        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)" }}>
+                        <div style={{ fontSize: 13, color: "var(--gold)" }}>
                           {prog?.title} · {ev.location}
                           {ev.proofStats && <> · {ev.proofStats}</>}
                         </div>
@@ -200,7 +200,7 @@ export default async function EventsPage() {
                     fontSize: 11,
                     letterSpacing: "3px",
                     textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.5)",
+                    color: "var(--gold)",
                     textDecoration: "none",
                     fontFamily: "Poppins, sans-serif",
                     fontWeight: 700,
@@ -219,7 +219,7 @@ export default async function EventsPage() {
                     alignItems: "flex-start",
                     gap: 24,
                     padding: "16px 0",
-                    borderBottom: "1px solid rgba(255,255,255,0.05)",
+                    borderBottom: "1px solid var(--gold)",
                   }}
                 >
                   <div style={{ flex: 1 }}>
@@ -245,14 +245,14 @@ export default async function EventsPage() {
                       <span
                         style={{
                           fontSize: 15,
-                          color: ev.status === "Closed" ? "rgba(255,255,255,0.6)" : "#fff",
+                          color: ev.status === "Closed" ? "var(--gold)" : "#fff",
                           fontWeight: 600,
                         }}
                       >
                         {ev.title}
                       </span>
                     </div>
-                    <div style={{ fontSize: 13, color: "rgba(255,255,255,0.35)" }}>
+                    <div style={{ fontSize: 13, color: "var(--gold)" }}>
                       {ev.location}
                       {ev.proofStats && <> · {ev.proofStats}</>}
                     </div>
@@ -261,7 +261,7 @@ export default async function EventsPage() {
                     style={{
                       whiteSpace: "nowrap",
                       fontSize: 13,
-                      color: "rgba(255,255,255,0.4)",
+                      color: "var(--gold)",
                     }}
                   >
                     {ev.dateStart}
