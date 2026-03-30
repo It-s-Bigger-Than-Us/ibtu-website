@@ -81,7 +81,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
       </div>
 
       {ev.location && (
-        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginBottom: 6 }}>
+        <div style={{ fontSize: 12, color: "#fff", marginBottom: 6 }}>
           {ev.location}
         </div>
       )}
@@ -96,7 +96,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
         <div
           style={{
             fontSize: 11,
-            color: "rgba(255,255,255,0.35)",
+            color: "var(--gold)",
             marginTop: 10,
             lineHeight: 1.5,
             overflow: "hidden",
@@ -128,7 +128,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
           >
             PAST EVENTS
           </h2>
-          <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginBottom: 40, fontFamily: "Poppins, sans-serif" }}>
+          <p style={{ fontSize: 14, color: "var(--gold)", marginBottom: 40, fontFamily: "Poppins, sans-serif" }}>
             Click any card to view details
           </p>
         </div>
@@ -194,7 +194,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
         >
           PAST EVENTS
         </h2>
-        <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", marginBottom: 40, fontFamily: "Poppins, sans-serif" }}>
+        <p style={{ fontSize: 14, color: "var(--gold)", marginBottom: 40, fontFamily: "Poppins, sans-serif" }}>
           Click any card to view details
         </p>
       </div>
@@ -293,7 +293,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
                     left: "-50%",
                     width: "200%",
                     height: "100%",
-                    background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.03) 45%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 55%, transparent 60%)",
+                    background: "linear-gradient(105deg, transparent 40%, rgba(255,199,0,0.05) 45%, rgba(255,199,0,0.1) 50%, rgba(255,199,0,0.05) 55%, transparent 60%)",
                     pointerEvents: "none",
                     zIndex: 2,
                   }}
@@ -366,7 +366,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
             right: 20,
             background: "none",
             border: "none",
-            color: "rgba(255,255,255,0.5)",
+            color: "var(--gold)",
             fontSize: 24,
             cursor: "pointer",
             fontFamily: "Poppins, sans-serif",
@@ -401,12 +401,12 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
           {event.title.toUpperCase()}
         </h3>
         {event.location && (
-          <div style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", marginBottom: 20 }}>
+          <div style={{ fontSize: 15, color: "#fff", marginBottom: 20 }}>
             {event.location}
           </div>
         )}
         {event.shortDescription && (
-          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24 }}>
+          <p style={{ fontSize: 16, color: "#fff", lineHeight: 1.7, marginBottom: 24 }}>
             {event.shortDescription}
           </p>
         )}

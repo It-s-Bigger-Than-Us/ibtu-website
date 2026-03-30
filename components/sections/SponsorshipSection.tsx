@@ -60,7 +60,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
             style={{
               fontFamily: "Poppins, sans-serif",
               fontSize: "clamp(18px, 2vw, 26px)",
-              color: "rgba(255,255,255,0.5)",
+              color: "var(--gold)",
               marginBottom: 16,
               letterSpacing: "2px",
               textTransform: "uppercase",
@@ -122,7 +122,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                       <div
                         style={{
                           fontSize: 13,
-                          color: pkg.featured ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.5)",
+                          color: pkg.featured ? "rgba(0,0,0,0.6)" : "var(--gold)",
                           marginBottom: 12,
                         }}
                       >
@@ -142,7 +142,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                             key={i}
                             style={{
                               fontSize: 14,
-                              color: pkg.featured ? "#000" : "rgba(255,255,255,0.7)",
+                              color: pkg.featured ? "#000" : "#fff",
                               lineHeight: 1.6,
                               paddingLeft: 16,
                               position: "relative",
@@ -170,7 +170,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                           fontSize: 11,
                           letterSpacing: "2px",
                           textTransform: "uppercase",
-                          color: pkg.featured ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.4)",
+                          color: pkg.featured ? "rgba(0,0,0,0.5)" : "var(--gold)",
                           fontFamily: "Poppins, sans-serif",
                         }}
                       >

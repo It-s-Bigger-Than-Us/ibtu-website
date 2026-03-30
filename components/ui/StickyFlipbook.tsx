@@ -127,7 +127,7 @@ export default function StickyFlipbook({
                   style={{
                     fontFamily: "Poppins, sans-serif",
                     fontSize: 15,
-                    color: "rgba(255,255,255,0.8)",
+                    color: "#fff",
                     maxWidth: 500,
                     lineHeight: 1.6,
                   }}
@@ -155,7 +155,7 @@ export default function StickyFlipbook({
                 style={{
                   width: i === activeIndex ? 24 : 8,
                   height: 4,
-                  background: i === activeIndex ? "#FFC700" : "rgba(255,255,255,0.3)",
+                  background: i === activeIndex ? "#FFC700" : "var(--gold)",
                   borderRadius: 2,
                   transition: "all 0.3s",
                 }}

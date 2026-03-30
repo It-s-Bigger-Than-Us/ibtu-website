@@ -133,7 +133,7 @@ export default function DonationForm({
             display: "inline-block",
             marginTop: 16,
             fontSize: 13,
-            color: "rgba(255,255,255,0.4)",
+            color: "var(--gold)",
             textDecoration: "none",
             fontFamily: "Poppins, sans-serif",
           }}
@@ -148,7 +148,7 @@ export default function DonationForm({
             display: "block",
             marginTop: 12,
             fontSize: 12,
-            color: "rgba(255,255,255,0.3)",
+            color: "var(--gold)",
             background: "none",
             border: "none",
             cursor: "pointer",
@@ -163,7 +163,7 @@ export default function DonationForm({
         <p
           style={{
             fontSize: 11,
-            color: "rgba(255,255,255,0.3)",
+            color: "var(--gold)",
             textAlign: "center",
             marginTop: 16,
             lineHeight: 1.5,
@@ -188,8 +188,8 @@ export default function DonationForm({
               flex: 1,
               padding: "14px 24px",
               background: frequency === f ? "#FFC700" : "transparent",
-              color: frequency === f ? "#000" : "rgba(255,255,255,0.5)",
-              border: `1px solid ${frequency === f ? "#FFC700" : "rgba(255,255,255,0.15)"}`,
+              color: frequency === f ? "#000" : "var(--gold)",
+              border: `1px solid ${frequency === f ? "#FFC700" : "rgba(255,199,0,0.3)"}`,
               fontFamily: "Poppins, sans-serif",
               fontSize: 13,
               fontWeight: 700,
@@ -206,7 +206,7 @@ export default function DonationForm({
 
       {/* Sponsor tier label if packages exist */}
       {sponsorPackages && sponsorPackages.length > 0 && (
-        <p style={{ fontSize: 11, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", fontFamily: "Poppins, sans-serif", fontWeight: 600, marginBottom: 12 }}>
+        <p style={{ fontSize: 11, letterSpacing: "2px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "Poppins, sans-serif", fontWeight: 600, marginBottom: 12 }}>
           Choose an amount or match a sponsor tier
         </p>
       )}
@@ -273,7 +273,7 @@ export default function DonationForm({
             left: 16,
             top: "50%",
             transform: "translateY(-50%)",
-            color: "rgba(255,255,255,0.4)",
+            color: "var(--gold)",
             fontSize: 18,
             fontWeight: 700,
           }}
@@ -333,7 +333,7 @@ export default function DonationForm({
       <p
         style={{
           fontSize: 11,
-          color: "rgba(255,255,255,0.3)",
+          color: "var(--gold)",
           textAlign: "center",
           marginTop: 16,
           lineHeight: 1.5,

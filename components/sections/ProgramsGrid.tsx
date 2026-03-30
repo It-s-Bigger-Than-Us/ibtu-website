@@ -77,7 +77,7 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
                     marginTop: '8px',
                     fontSize: '13px',
                     lineHeight: '1.5',
-                    color: 'rgba(255,255,255,0.7)',
+                    color: '#fff',
                   }}>
                     {program.description}
                   </div>

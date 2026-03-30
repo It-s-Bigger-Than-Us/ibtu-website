@@ -93,7 +93,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                   {ev.title}
                 </div>
                 {ev.proofStats && (
-                  <div style={{ fontSize: 13, color: "rgba(255,255,255,0.45)", lineHeight: 1.5 }}>
+                  <div style={{ fontSize: 13, color: "#fff", lineHeight: 1.5 }}>
                     {ev.proofStats}
                   </div>
                 )}
@@ -155,7 +155,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 right: 20,
                 background: "none",
                 border: "none",
-                color: "rgba(255,255,255,0.5)",
+                color: "var(--gold)",
                 fontSize: 24,
                 cursor: "pointer",
                 fontFamily: "Poppins, sans-serif",
@@ -191,12 +191,12 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
               {selectedEvent.title.toUpperCase()}
             </h3>
             {selectedEvent.location && (
-              <div style={{ fontSize: 15, color: "rgba(255,255,255,0.6)", marginBottom: 20 }}>
+              <div style={{ fontSize: 15, color: "#fff", marginBottom: 20 }}>
                 {selectedEvent.location}
               </div>
             )}
             {selectedEvent.shortDescription && (
-              <p style={{ fontSize: 16, color: "rgba(255,255,255,0.8)", lineHeight: 1.7, marginBottom: 24 }}>
+              <p style={{ fontSize: 16, color: "#fff", lineHeight: 1.7, marginBottom: 24 }}>
                 {selectedEvent.shortDescription}
               </p>
             )}
@@ -230,7 +230,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
 
             {/* Gallery images placeholder — will show when images are uploaded to Sanity */}
             {selectedEvent.galleryImages && selectedEvent.galleryImages.length > 0 && (
-              <div style={{ fontSize: 13, color: "rgba(255,255,255,0.4)", fontStyle: "italic" }}>
+              <div style={{ fontSize: 13, color: "var(--gold)", fontStyle: "italic" }}>
                 {selectedEvent.galleryImages.length} photos available
               </div>
             )}

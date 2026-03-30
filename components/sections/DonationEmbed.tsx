@@ -73,7 +73,7 @@ export default function DonationEmbed({
         <p
           style={{
             fontSize: "clamp(15px, 1.3vw, 19px)",
-            color: "rgba(255,255,255,0.6)",
+            color: "#fff",
             maxWidth: 580,
             lineHeight: 1.7,
             marginBottom: 40,
@@ -105,7 +105,7 @@ export default function DonationEmbed({
           display: "inline-block",
           marginTop: 20,
           fontSize: 13,
-          color: "rgba(255,255,255,0.4)",
+          color: "var(--gold)",
           textDecoration: "none",
           fontFamily: "Poppins, sans-serif",
         }}

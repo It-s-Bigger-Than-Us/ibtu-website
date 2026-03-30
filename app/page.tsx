@@ -7,6 +7,7 @@ import StatsSection from '@/components/sections/StatsSection'
 import ProgramsGrid from '@/components/sections/ProgramsGrid'
 import CTASection from '@/components/sections/CTASection'
 import MissionMosaic from '@/components/sections/MissionMosaic'
+import OrbitalGallery from '@/components/sections/OrbitalGallery'
 import Footer from '@/components/layout/Footer'
 
 const HERO_METADATA = [
@@ -147,7 +148,19 @@ export default async function HomePage() {
       {/* 6. Programs — cards with fold-out descriptions */}
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
 
-      {/* 7. Get Involved CTA — gold bg, black type, no text over image */}
+      {/* 7. 3D Orbital Gallery — interactive photo space */}
+      {mosaicItems.length > 0 && (
+        <OrbitalGallery
+          items={mosaicItems.map((item: { src: string; alt: string }) => ({
+            src: item.src,
+            title: item.alt,
+            program: '',
+          }))}
+          title="(EXPLORE OUR IMPACT)"
+        />
+      )}
+
+      {/* 8. Get Involved CTA — gold bg, black type, no text over image */}
       <CTASection
         image={ctaImageSrc}
         headline="Join the movement"
