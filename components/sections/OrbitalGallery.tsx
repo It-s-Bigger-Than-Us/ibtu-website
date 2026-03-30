@@ -23,22 +23,17 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
   const rotationStart = useRef(0)
   const autoRotateRef = useRef(0)
 
-  // Split items into two rings
   const half = Math.ceil(items.length / 2)
   const ring1Items = items.slice(0, half)
   const ring2Items = items.slice(half)
-
   const ring1Angle = 360 / Math.max(ring1Items.length, 1)
   const ring2Angle = 360 / Math.max(ring2Items.length, 1)
-  const ring1Radius = 280
-  const ring2Radius = 180
 
-  // Auto-rotate
   useEffect(() => {
     let frame: number
     const animate = () => {
       if (!isDragging) {
-        autoRotateRef.current += 0.12
+        autoRotateRef.current += 0.1
         setRotationY(autoRotateRef.current)
       }
       frame = requestAnimationFrame(animate)
@@ -59,81 +54,12 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
   }
   const handlePointerUp = () => setIsDragging(false)
 
-  const renderCard = (item: GalleryItem, i: number, angle: number, radius: number, ringOffset: number) => {
-    const rad = (angle * i) * (Math.PI / 180)
-    const x = Math.cos(rad) * radius
-    const z = Math.sin(rad) * radius
-    const globalIndex = ringOffset + i
-    const isHovered = hoveredIndex === globalIndex
-
-    return (
-      <div
-        key={`${ringOffset}-${i}`}
-        onMouseEnter={() => setHoveredIndex(globalIndex)}
-        onMouseLeave={() => setHoveredIndex(null)}
-        style={{
-          position: 'absolute',
-          top: '50%', left: '50%',
-          width: '200px', height: '140px',
-          transformStyle: 'preserve-3d',
-          transform: `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${-(angle * i)}deg)`,
-          borderRadius: '10px',
-          overflow: 'hidden',
-          boxShadow: isHovered ? '0 0 24px rgba(255,199,0,0.6)' : '0 6px 24px rgba(0,0,0,0.6)',
-          transition: 'box-shadow 0.3s',
-          cursor: 'pointer',
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={item.src}
-          alt={item.title}
-          style={{
-            width: '100%', height: '100%', objectFit: 'cover',
-            filter: 'saturate(1.15)', display: 'block',
-            opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s',
-          }}
-        />
-        <Link
-          href={item.programSlug ? `/our-programs/${item.programSlug}` : '/our-programs'}
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            position: 'absolute', inset: 0,
-            display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center',
-            background: '#FFC700', textDecoration: 'none', padding: '12px',
-            opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s',
-            transform: `rotateY(${angle * i}deg)`,
-          }}
-        >
-          <span style={{
-            fontFamily: "'Poppins', sans-serif", fontSize: '13px',
-            fontWeight: 800, color: '#000', textTransform: 'uppercase',
-            letterSpacing: '1px', textAlign: 'center', lineHeight: 1.2,
-          }}>
-            {item.title}
-          </span>
-          {item.program && (
-            <span style={{
-              fontFamily: "'Poppins', sans-serif", fontSize: '9px',
-              fontWeight: 700, color: '#000', letterSpacing: '3px',
-              textTransform: 'uppercase', marginTop: '6px',
-            }}>
-              {item.program} →
-            </span>
-          )}
-        </Link>
-      </div>
-    )
-  }
-
   return (
     <section
       style={{
         position: 'relative', height: '100vh', minHeight: '700px',
         overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center',
         cursor: isDragging ? 'grabbing' : 'grab', touchAction: 'none',
-        /* BLUE SKY background */
         background: 'linear-gradient(180deg, #0a1628 0%, #1a3a5c 20%, #2d6a9f 40%, #4a90c4 55%, #7bb8d9 70%, #a8d4ea 85%, #FFC700 100%)',
       }}
       onPointerDown={handlePointerDown}
@@ -151,50 +77,127 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
         </div>
       )}
 
-      {/* 3D perspective container */}
-      <div style={{ perspective: '1000px', perspectiveOrigin: '50% 45%' }}>
-        {/* Single rotating container — logo + both rings welded together */}
+      <div style={{ perspective: '900px', perspectiveOrigin: '50% 45%' }}>
+        {/* Outer ring — horizontal orbit */}
         <div style={{
           position: 'relative',
-          width: `${ring1Radius * 2 + 100}px`,
-          height: `${ring1Radius * 2 + 100}px`,
+          width: '700px', height: '700px',
           transformStyle: 'preserve-3d',
-          transform: `rotateX(-12deg) rotateY(${rotationY}deg)`,
-          transition: isDragging ? 'none' : 'transform 0.05s linear',
+          transform: `rotateX(-10deg) rotateY(${rotationY}deg)`,
         }}>
-          {/* IBTU logo + gold circle — welded to the orbit, spins WITH it */}
+          {/* IBTU logo center — flat gold circle, no gradient, no stroke */}
           <div style={{
             position: 'absolute', top: '50%', left: '50%',
-            width: '90px', height: '90px', borderRadius: '50%',
-            background: 'radial-gradient(circle at 35% 35%, #ffe680, #FFC700, #b38600)',
+            width: '80px', height: '80px', borderRadius: '50%',
+            background: '#FFC700',
             transform: 'translate(-50%, -50%)',
-            boxShadow: '0 0 50px rgba(255,199,0,0.5), inset 0 -3px 10px rgba(0,0,0,0.25)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            border: '3px solid rgba(255,230,128,0.8)',
             zIndex: 5,
           }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/ibtu-logo.svg" alt="IBTU"
-              style={{ width: '55px', height: '55px', filter: 'brightness(0)' }}
-            />
+            <img src="/ibtu-logo.svg" alt="IBTU" style={{ width: '50px', height: '50px', filter: 'brightness(0)' }} />
           </div>
 
-          {/* Ring 1 — outer, bigger */}
-          {ring1Items.map((item, i) => renderCard(item, i, ring1Angle, ring1Radius, 0))}
+          {/* Ring 1 — outer horizontal orbit, larger cards */}
+          {ring1Items.map((item, i) => {
+            const rad = (ring1Angle * i) * (Math.PI / 180)
+            const x = Math.cos(rad) * 300
+            const z = Math.sin(rad) * 300
+            const isHovered = hoveredIndex === i
 
-          {/* Ring 2 — inner, slightly offset vertically */}
+            return (
+              <div
+                key={`r1-${i}`}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                style={{
+                  position: 'absolute', top: '50%', left: '50%',
+                  width: '240px', height: '160px',
+                  transformStyle: 'preserve-3d',
+                  transform: `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${-(ring1Angle * i)}deg)`,
+                  borderRadius: '12px', overflow: 'hidden',
+                  boxShadow: isHovered ? '0 0 30px rgba(255,199,0,0.5)' : '0 8px 32px rgba(0,0,0,0.5)',
+                  transition: 'box-shadow 0.3s, transform 0.3s',
+                  cursor: 'pointer',
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={item.src} alt={item.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(1.15)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s' }}
+                />
+                {/* Hover: gold card — text always faces viewer */}
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  background: '#FFC700', display: 'flex', flexDirection: 'column',
+                  alignItems: 'center', justifyContent: 'center', padding: '12px',
+                  opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s',
+                }}>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '13px', fontWeight: 800, color: '#000', textTransform: 'uppercase', letterSpacing: '1px', textAlign: 'center', lineHeight: 1.2 }}>
+                    {item.title}
+                  </span>
+                  {item.program && (
+                    <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '9px', fontWeight: 700, color: '#000', letterSpacing: '3px', textTransform: 'uppercase', marginTop: '6px' }}>
+                      {item.program} →
+                    </span>
+                  )}
+                </div>
+              </div>
+            )
+          })}
+
+          {/* Ring 2 — inner ring, spins around vertical equator */}
           <div style={{
             position: 'absolute', inset: 0,
             transformStyle: 'preserve-3d',
-            transform: 'translateY(20px)',
+            transform: `rotateX(90deg)`,
           }}>
-            {ring2Items.map((item, i) => renderCard(item, i, ring2Angle, ring2Radius, ring1Items.length))}
+            {ring2Items.map((item, i) => {
+              const rad = (ring2Angle * i) * (Math.PI / 180)
+              const x = Math.cos(rad) * 200
+              const z = Math.sin(rad) * 200
+              const globalIdx = ring1Items.length + i
+              const isHovered = hoveredIndex === globalIdx
+
+              return (
+                <div
+                  key={`r2-${i}`}
+                  onMouseEnter={() => setHoveredIndex(globalIdx)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  style={{
+                    position: 'absolute', top: '50%', left: '50%',
+                    width: '200px', height: '140px',
+                    transformStyle: 'preserve-3d',
+                    transform: `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${-(ring2Angle * i)}deg) rotateX(-90deg)`,
+                    borderRadius: '10px', overflow: 'hidden',
+                    boxShadow: isHovered ? '0 0 24px rgba(255,199,0,0.5)' : '0 6px 24px rgba(0,0,0,0.5)',
+                    transition: 'box-shadow 0.3s',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={item.src} alt={item.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(1.15)', opacity: isHovered ? 0 : 1, transition: 'opacity 0.3s' }}
+                  />
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    background: '#FFC700', display: 'flex', flexDirection: 'column',
+                    alignItems: 'center', justifyContent: 'center', padding: '10px',
+                    opacity: isHovered ? 1 : 0, transition: 'opacity 0.3s',
+                  }}>
+                    <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: '12px', fontWeight: 800, color: '#000', textTransform: 'uppercase', letterSpacing: '1px', textAlign: 'center', lineHeight: 1.2 }}>
+                      {item.title}
+                    </span>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>
 
-      {/* RIBBON — gold bg, black text, scrolling sacred phrases */}
+      {/* RIBBON */}
       <div style={{
         position: 'absolute', bottom: '60px', left: 0, right: 0, zIndex: 20,
         background: '#FFC700', padding: '14px 0', overflow: 'hidden',
