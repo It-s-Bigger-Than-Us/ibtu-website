@@ -14,6 +14,7 @@ interface Program {
   pillar: string
   heroImage: string
   cardStat?: string
+  description?: string
 }
 
 interface ProgramsGridProps {
@@ -30,8 +31,8 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
     gsap.from(cards, {
       y: 60,
       opacity: 0,
-      stagger: 0.08,
-      duration: 0.7,
+      stagger: 0.1,
+      duration: 0.8,
       ease: 'power3.out',
       scrollTrigger: {
         trigger: gridRef.current,
@@ -59,7 +60,7 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
             <Link
               key={program.slug}
               href={`/our-programs/${program.slug}`}
-              className="program-card"
+              className="program-card fold-trigger card-lift"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={program.heroImage} alt={program.title} />
@@ -69,6 +70,17 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
                 <span className="program-card-name">{program.title}</span>
                 {program.cardStat && (
                   <span className="program-card-stat">{program.cardStat}</span>
+                )}
+                {/* Fold-out description on hover */}
+                {program.description && (
+                  <div className="fold-content" style={{
+                    marginTop: '8px',
+                    fontSize: '13px',
+                    lineHeight: '1.5',
+                    color: 'rgba(255,255,255,0.7)',
+                  }}>
+                    {program.description}
+                  </div>
                 )}
               </div>
             </Link>
