@@ -171,11 +171,19 @@ export default async function HomePage() {
       {/* 7. 3D Orbital Gallery — interactive photo space */}
       {allGalleryItems.length > 0 && (
         <OrbitalGallery
-          items={allGalleryItems.map((item: { src: string; alt: string }) => ({
-            src: item.src,
-            title: item.alt,
-            program: '',
-          }))}
+          items={[
+            ...programCards.filter((p: { heroImage: string }) => p.heroImage).map((p: { heroImage: string; title: string; pillar: string; slug: string }) => ({
+              src: p.heroImage,
+              title: p.title,
+              program: p.pillar,
+              programSlug: p.slug,
+            })),
+            ...LOCAL_GALLERY_IMAGES.slice(0, 6).map((img) => ({
+              src: img.src,
+              title: img.alt.replace('IBTU ', ''),
+              program: 'Community',
+            })),
+          ]}
           title="(EXPLORE OUR IMPACT)"
         />
       )}
