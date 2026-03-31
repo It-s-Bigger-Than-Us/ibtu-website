@@ -313,6 +313,8 @@ export default function Footer() {
         <svg
           viewBox="0 0 1440 120"
           preserveAspectRatio="none"
+          aria-hidden="true"
+          role="presentation"
           style={{ width: '100%', height: '100%', display: 'block' }}
         >
           <path

@@ -1143,6 +1143,21 @@ body {
 .program-card--gold .program-card-stat { color: #000; }
 
 /* ═══════════════════════════════════════
+   SCREEN READER ONLY UTILITY
+═══════════════════════════════════════ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ═══════════════════════════════════════
    REDUCED MOTION — respect user preferences
 ═══════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
@@ -1164,5 +1179,14 @@ body {
     opacity: 1 !important;
     transform: none !important;
     clip-path: none !important;
+  }
+  .ticker-track,
+  .ribbon-track,
+  [style*="tickerScroll"] {
+    animation: none !important;
+  }
+  .holo-glass::before,
+  .sparkle-stroke::before {
+    animation: none !important;
   }
 }

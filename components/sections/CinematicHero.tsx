@@ -263,6 +263,7 @@ export default function CinematicHero({
         {/* Left half of video */}
         <div
           ref={phase3VideoLeftRef}
+          aria-hidden="true"
           style={{
             position: 'absolute',
             inset: 0,
@@ -288,6 +289,7 @@ export default function CinematicHero({
         {/* Right half of video */}
         <div
           ref={phase3VideoRightRef}
+          aria-hidden="true"
           style={{
             position: 'absolute',
             inset: 0,
@@ -399,6 +401,7 @@ export default function CinematicHero({
 
       {/* Scroll indicator */}
       <div
+        aria-hidden="true"
         style={{
           position: 'absolute',
           bottom: '40px',

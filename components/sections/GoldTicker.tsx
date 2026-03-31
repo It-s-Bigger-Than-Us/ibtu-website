@@ -34,6 +34,8 @@ export default function GoldTicker({
 
   return (
     <div
+      role="marquee"
+      aria-label="Scrolling values banner"
       style={{
         overflow: 'hidden',
         padding: 'clamp(20px, 3vw, 36px) 0',
@@ -48,9 +50,9 @@ export default function GoldTicker({
           animation: `tickerScroll ${speed}s linear infinite`,
         }}
       >
-        {/* Duplicate content 3x for seamless loop */}
+        {/* Duplicate content 3x for seamless loop — dupes hidden from screen readers */}
         {[0, 1, 2].map((copy) => (
-          <div key={copy} style={{ display: 'flex', alignItems: 'center' }}>
+          <div key={copy} aria-hidden={copy > 0 ? 'true' : undefined} style={{ display: 'flex', alignItems: 'center' }}>
             {content.map((item, i) => (
               <span
                 key={`${copy}-${i}`}

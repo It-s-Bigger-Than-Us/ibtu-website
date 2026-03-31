@@ -284,6 +284,15 @@ export default function ConstellationGallery({
         </span>
       </div>
 
+      {/* Screen reader alternative for 3D gallery */}
+      <div className="sr-only" role="list" aria-label="Photo gallery">
+        {items.map((item, i) => (
+          <div key={i} role="listitem">
+            {item.title || item.program || `Photo ${i + 1}`}
+          </div>
+        ))}
+      </div>
+
       {/* Selected photo info overlay */}
       {selectedIndex !== null && items[selectedIndex] && (
         <div

@@ -81,6 +81,16 @@ export default function SponsorPanel({ tiers = DEFAULT_TIERS }: SponsorPanelProp
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
+  // Escape key closes panel
+  useEffect(() => {
+    if (!isOpen) return
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsOpen(false)
+    }
+    document.addEventListener('keydown', handleKey)
+    return () => document.removeEventListener('keydown', handleKey)
+  }, [isOpen])
+
   if (!pastHero) return null
 
   return (
@@ -88,7 +98,11 @@ export default function SponsorPanel({ tiers = DEFAULT_TIERS }: SponsorPanelProp
       {/* ── Fixed tab on right edge ── */}
       <div
         ref={tabRef}
+        role="button"
+        tabIndex={0}
+        aria-label="Open sponsor panel"
         onClick={() => setIsOpen(true)}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsOpen(true) } }}
         className="holo-glass"
         style={{
           position: 'fixed',
@@ -157,6 +171,9 @@ export default function SponsorPanel({ tiers = DEFAULT_TIERS }: SponsorPanelProp
 
             {/* Panel */}
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label="Sponsorship information"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -176,6 +193,7 @@ export default function SponsorPanel({ tiers = DEFAULT_TIERS }: SponsorPanelProp
               {/* Close */}
               <button
                 onClick={() => setIsOpen(false)}
+                aria-label="Close sponsor panel"
                 style={{
                   position: 'absolute',
                   top: '24px',

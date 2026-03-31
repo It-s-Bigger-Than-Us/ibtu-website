@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
@@ -22,7 +22,9 @@ interface MenuDropdownProps {
 
 export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
   const linksRef = useRef<HTMLDivElement>(null)
+  const firstLinkRef = useRef<HTMLAnchorElement>(null)
 
+  // Animate links on open
   useEffect(() => {
     if (open && linksRef.current) {
       const links = linksRef.current.querySelectorAll('.menu-link')
@@ -38,13 +40,30 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
           delay: 0.15,
         }
       )
+      // Move focus to first link
+      setTimeout(() => firstLinkRef.current?.focus(), 300)
     }
   }, [open])
+
+  // Escape key closes menu
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') onClose()
+  }, [onClose])
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('keydown', handleKeyDown)
+      return () => document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open, handleKeyDown])
 
   return (
     <AnimatePresence>
       {open && (
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
           initial={{ clipPath: 'inset(0 0 100% 0)' }}
           animate={{ clipPath: 'inset(0 0 0 0)' }}
           exit={{ clipPath: 'inset(0 0 100% 0)' }}
@@ -61,11 +80,12 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
             overflow: 'auto',
           }}
         >
-          <div ref={linksRef}>
-            {navLinks.map((link) => (
+          <nav ref={linksRef} aria-label="Main navigation">
+            {navLinks.map((link, i) => (
               <Link
                 key={link.href}
                 href={link.href}
+                ref={i === 0 ? firstLinkRef : undefined}
                 className="menu-link"
                 onClick={onClose}
                 style={{
@@ -91,10 +111,11 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
                 {link.label}
               </Link>
             ))}
-          </div>
+          </nav>
 
           {/* Sacred mantra at bottom */}
           <div
+            aria-hidden="true"
             style={{
               position: 'absolute',
               bottom: 'clamp(32px, 5vh, 80px)',
