@@ -59,18 +59,18 @@ export default function Footer() {
       if (skylineRef.current) {
         gsap.fromTo(
           skylineRef.current,
-          { y: 60, opacity: 0 },
+          { y: 30, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             duration: 1,
             ease: 'expo.out',
             scrollTrigger: {
-              trigger: footerRef.current,
-              start: 'top 70%',
+              trigger: skylineRef.current,
+              start: 'top 95%',
               once: true,
             },
-            delay: 0.4,
+            delay: 0.2,
           }
         )
       }
@@ -85,8 +85,6 @@ export default function Footer() {
       style={{
         background: 'var(--ibtu-gold)',
         padding: 'clamp(80px, 10vw, 160px) clamp(32px, 5vw, 80px) 0',
-        position: 'relative',
-        overflow: 'hidden',
       }}
     >
       {/* Sacred mantra — big LOT text, left-aligned */}
@@ -291,23 +289,20 @@ export default function Footer() {
           textTransform: 'uppercase',
           color: 'var(--ibtu-black)',
           fontWeight: 600,
-          paddingBottom: '80px',
+          paddingBottom: '24px',
         }}
       >
         &copy; {new Date().getFullYear()} It&apos;s Bigger Than Us. All rights reserved.
       </div>
 
-      {/* ── LA Skyline silhouette — anchored to bottom ── */}
+      {/* ── LA Skyline silhouette — static at bottom ── */}
       <div
         ref={skylineRef}
         style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
+          width: '100%',
           height: 'clamp(60px, 8vw, 120px)',
-          opacity: 0,
           pointerEvents: 'none',
+          marginTop: '16px',
         }}
       >
         <svg

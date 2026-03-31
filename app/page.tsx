@@ -3,6 +3,14 @@ import { urlFor } from '@/sanity/lib/client'
 import HomePageClient from '@/components/sections/HomePageClient'
 import { HERO_VIDEOS, PILLAR_VIDEOS, VOLUNTEER_VIDEOS, PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
 
+/* Override Sanity hero images for programs with wrong/duplicate photos */
+const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
+  'community-builder-linkups': '/images/b2s/_D5A7155.jpg',
+  'community-health': '/images/wellness/IMG_9922.jpg',
+  'wellness': '/images/wellness/IMG_1610.jpg',
+  'coastal-care': '/images/coastal/IMG_4838.jpg',
+}
+
 /* ═══════════════════════════════════════
    LOCAL MEDIA + SANITY CDN VIDEOS
 ═══════════════════════════════════════ */
@@ -37,7 +45,7 @@ const PILLARS = [
     name: 'Community Health',
     stat: '875,500+',
     statLabel: 'Lbs Food Distributed',
-    imageSrc: '/images/wellness/IMG_0007.jpg',
+    imageSrc: '/images/wellness/IMG_9922.jpg',
     videoSrc: PILLAR_VIDEOS.health.community,
   },
 ]
@@ -101,7 +109,7 @@ export default async function HomePage() {
     slug: p.slug,
     title: p.title,
     pillar: p.pillar,
-    heroImage: p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : '',
+    heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : ''),
     cardStat: p.cardStat || '',
     description: p.tagline || '',
     hoverVideo: PROGRAM_HOVER_VIDEO[p.slug] || '',
