@@ -155,13 +155,6 @@ export default async function HomePage() {
       title: p.title,
       program: p.pillar,
     }))
-  const galleryItems = [...sanityGalleryItems, ...LOCAL_GALLERY_IMAGES].slice(0, 18)
-
-  /* CTA image */
-  const ctaImage = sanityPrograms[0]?.heroImage
-    ? urlFor(sanityPrograms[0].heroImage).width(1920).quality(80).url()
-    : ''
-
   return (
     <HomePageClient
       heroImages={finalHeroImages}
@@ -169,9 +162,7 @@ export default async function HomePage() {
       pillars={pillarCards}
       stats={stats}
       programCards={programCards}
-      galleryItems={galleryItems}
       tickerPhrases={TICKER_PHRASES}
-      ctaImage={ctaImage}
     />
   )
 }
