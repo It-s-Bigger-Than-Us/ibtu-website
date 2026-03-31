@@ -31,11 +31,17 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // Bypass with secret query param — sets a cookie
+  // Bypass with secret query param — sets cookie then redirects to clean URL
   const bypass = request.nextUrl.searchParams.get('access')
   if (bypass === BYPASS_SECRET) {
-    const response = NextResponse.next()
-    response.cookies.set('ibtu-access', 'granted', { maxAge: 60 * 60 * 24 })
+    const url = request.nextUrl.clone()
+    url.searchParams.delete('access')
+    const response = NextResponse.redirect(url)
+    response.cookies.set('ibtu-access', 'granted', {
+      maxAge: 60 * 60 * 24,
+      path: '/',
+      sameSite: 'lax',
+    })
     return response
   }
 
