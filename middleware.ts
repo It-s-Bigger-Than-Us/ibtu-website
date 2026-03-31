@@ -8,7 +8,7 @@ import type { NextRequest } from 'next/server'
 ═══════════════════════════════════════ */
 
 const MAINTENANCE_MODE = true
-const BYPASS_SECRET = 'ibtu2026' // Add ?access=ibtu2026 to bypass
+const BYPASS_SECRET = '1369' // Add ?access=1369 to bypass
 
 export function middleware(request: NextRequest) {
   if (!MAINTENANCE_MODE) return NextResponse.next()
