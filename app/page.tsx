@@ -15,6 +15,7 @@ const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'),
 const ConstellationGallery = dynamic(() => import('@/components/sections/ConstellationGallery'), { ssr: false })
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false })
 const SponsorPanel = dynamic(() => import('@/components/sections/SponsorPanel'), { ssr: false })
+const CommunityRibbon = dynamic(() => import('@/components/3d/CommunityRibbon'), { ssr: false })
 
 /* ═══════════════════════════════════════
    LOCAL MEDIA — videos and photos from /public
@@ -177,7 +178,10 @@ export default async function HomePage() {
         stats={STATS}
       />
 
-      {/* 5. Values Ticker — second instance between impact and programs */}
+      {/* 5. 3D Community Ribbon — iridescent divider between impact and programs */}
+      <CommunityRibbon />
+
+      {/* 5b. Values Ticker — second instance */}
       <GoldTicker
         phrases={['Community', 'Infrastructure', 'Resilience', 'Access', 'Dignity', 'Equity', 'Stability', 'Trust']}
         speed={25}
