@@ -183,7 +183,7 @@ export default function MissionSplit({
       </div>
 
       {/* Right panel — media swaps */}
-      <div style={{ position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', overflow: 'hidden', height: '100%', minHeight: '100vh' }}>
         {media.map((item, i) => (
           <div
             key={i}

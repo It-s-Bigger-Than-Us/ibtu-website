@@ -13,9 +13,9 @@ const MISSION_MEDIA = [
   { type: 'video' as const, src: PROGRAM_HOVER_VIDEO['back-to-school'], alt: 'Venice Back to School festival' },
   { type: 'image' as const, src: '/images/b2s/_D5A7392.jpg', alt: 'Back to School community event' },
   { type: 'video' as const, src: PILLAR_VIDEOS.youth.baldwinHills, alt: 'Youth programming at Baldwin Hills' },
-  { type: 'video' as const, src: VOLUNTEER_VIDEOS.brentwoodTeam, alt: 'Volunteer team in action' },
+  { type: 'video' as const, src: VOLUNTEER_VIDEOS.rebuildTeam, alt: 'Volunteer rebuild team in action' },
   { type: 'image' as const, src: '/images/coastal/IMG_0024.jpg', alt: 'Coastal Care beach cleanup' },
-  { type: 'video' as const, src: PILLAR_VIDEOS.crisis.rebuildTeaser, alt: 'Crisis response and rebuilding' },
+  { type: 'video' as const, src: PILLAR_VIDEOS.crisis.altadena, alt: 'Altadena community response' },
 ]
 
 const PILLARS = [
