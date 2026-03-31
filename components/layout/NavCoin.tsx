@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Text, RoundedBox, MeshTransmissionMaterial } from '@react-three/drei'
+import { Text, RoundedBox } from '@react-three/drei'
 import * as THREE from 'three'
 
 function SpinningCoin({ hovered }: { hovered: boolean }) {
@@ -68,23 +68,18 @@ function SpinningCoin({ hovered }: { hovered: boolean }) {
         COMMUNITY IS{'\n'}THE INFRASTRUCTURE
       </Text>
 
-      {/* Iridescent rim ring */}
+      {/* Iridescent rim ring — using Physical instead of Transmission for perf */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.95, 0.04, 16, 64]} />
-        <MeshTransmissionMaterial
-          backside
-          samples={8}
-          thickness={0.3}
-          chromaticAberration={0.5}
-          anisotropy={0.3}
-          distortion={0.2}
-          distortionScale={0.3}
-          temporalDistortion={0.1}
+        <meshPhysicalMaterial
+          color="#ffffff"
+          metalness={0.3}
+          roughness={0.1}
           iridescence={1}
           iridescenceIOR={1.5}
           iridescenceThicknessRange={[100, 400]}
-          color="#ffffff"
-          transmissionSampler={false}
+          clearcoat={1}
+          clearcoatRoughness={0.05}
         />
       </mesh>
 

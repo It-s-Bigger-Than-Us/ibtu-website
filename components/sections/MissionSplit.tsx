@@ -199,7 +199,6 @@ export default function MissionSplit({
               <video
                 src={item.src}
                 playsInline
-                autoPlay
                 muted
                 loop
                 preload="metadata"

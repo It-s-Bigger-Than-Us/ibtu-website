@@ -4,14 +4,17 @@ import dynamic from 'next/dynamic'
 import GoldTicker from '@/components/sections/GoldTicker'
 import Footer from '@/components/layout/Footer'
 
-const CinematicHero = dynamic(() => import('@/components/sections/CinematicHero'), { ssr: false })
-const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false })
-const ImpactReveal = dynamic(() => import('@/components/sections/ImpactReveal'), { ssr: false })
-const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'), { ssr: false })
-const ConstellationGallery = dynamic(() => import('@/components/sections/ConstellationGallery'), { ssr: false })
-const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false })
+const SectionPlaceholder = () => <div style={{ minHeight: '100vh', background: '#000' }} />
+const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
+
+const CinematicHero = dynamic(() => import('@/components/sections/CinematicHero'), { ssr: false, loading: SectionPlaceholder })
+const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: SectionPlaceholder })
+const ImpactReveal = dynamic(() => import('@/components/sections/ImpactReveal'), { ssr: false, loading: SectionPlaceholder })
+const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'), { ssr: false, loading: ShortPlaceholder })
+const ConstellationGallery = dynamic(() => import('@/components/sections/ConstellationGallery'), { ssr: false, loading: SectionPlaceholder })
+const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
 const SponsorPanel = dynamic(() => import('@/components/sections/SponsorPanel'), { ssr: false })
-const CommunityRibbon = dynamic(() => import('@/components/3d/CommunityRibbon'), { ssr: false })
+const CommunityRibbon = dynamic(() => import('@/components/3d/CommunityRibbon'), { ssr: false, loading: ShortPlaceholder })
 
 interface Program {
   slug: string

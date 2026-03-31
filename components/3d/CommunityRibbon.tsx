@@ -2,7 +2,7 @@
 
 import { useRef, useMemo, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Text, MeshTransmissionMaterial } from '@react-three/drei'
+import { Text } from '@react-three/drei'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -20,7 +20,7 @@ function Ribbon({ scrollProgress }: { scrollProgress: { value: number } }) {
   const materialRef = useRef<THREE.MeshPhysicalMaterial>(null)
 
   // Generate ribbon curve
-  const { geometry, goldGeometry } = useMemo(() => {
+  const { geometry } = useMemo(() => {
     const points: THREE.Vector3[] = []
     const segments = 100
 
@@ -33,7 +33,6 @@ function Ribbon({ scrollProgress }: { scrollProgress: { value: number } }) {
     }
 
     const curve = new THREE.CatmullRomCurve3(points)
-    const tubeGeo = new THREE.TubeGeometry(curve, 200, 0.15, 12, false)
 
     // Wider flat ribbon
     const ribbonWidth = 0.6
@@ -90,7 +89,7 @@ function Ribbon({ scrollProgress }: { scrollProgress: { value: number } }) {
     geo.setIndex(indices)
     geo.computeVertexNormals()
 
-    return { geometry: geo, goldGeometry: tubeGeo }
+    return { geometry: geo }
   }, [])
 
   useFrame((state) => {

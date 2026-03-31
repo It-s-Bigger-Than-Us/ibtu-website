@@ -277,7 +277,7 @@ export default function CinematicHero({
             playsInline
             muted
             loop
-            preload="auto"
+            preload="metadata"
             style={{
               width: '100%',
               height: '100%',
@@ -286,7 +286,7 @@ export default function CinematicHero({
           />
         </div>
 
-        {/* Right half of video */}
+        {/* Right half of video — shares same source, clipped differently */}
         <div
           ref={phase3VideoRightRef}
           aria-hidden="true"
@@ -302,7 +302,7 @@ export default function CinematicHero({
             playsInline
             muted
             loop
-            preload="auto"
+            preload="none"
             style={{
               width: '100%',
               height: '100%',

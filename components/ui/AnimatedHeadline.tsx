@@ -44,34 +44,37 @@ export default function AnimatedHeadline({
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const words = ref.current?.querySelectorAll('.anim-word')
+    if (!ref.current) return
+    const words = ref.current.querySelectorAll('.anim-word')
     if (!words?.length) return
 
-    const fromVars = { opacity: 0, y: 60, rotateX: -15 }
-    const config: gsap.TweenVars = {
-      opacity: 1,
-      y: 0,
-      rotateX: 0,
-      duration: 0.8,
-      stagger: 0.08,
-      ease: 'expo.out',
-      delay,
-    }
+    const ctx = gsap.context(() => {
+      const fromVars = { opacity: 0, y: 60, rotateX: -15 }
+      const config: gsap.TweenVars = {
+        opacity: 1,
+        y: 0,
+        rotateX: 0,
+        duration: 0.8,
+        stagger: 0.08,
+        ease: 'expo.out',
+        delay,
+      }
 
-    if (useScrollTrigger) {
-      gsap.fromTo(words, fromVars, {
-        ...config,
-        scrollTrigger: {
-          trigger: ref.current,
-          start: 'top 80%',
-          once: true,
-        },
-      })
-    } else {
-      gsap.fromTo(words, fromVars, config)
-    }
+      if (useScrollTrigger) {
+        gsap.fromTo(words, fromVars, {
+          ...config,
+          scrollTrigger: {
+            trigger: ref.current,
+            start: 'top 80%',
+            once: true,
+          },
+        })
+      } else {
+        gsap.fromTo(words, fromVars, config)
+      }
+    }, ref)
 
-    return () => { ScrollTrigger.getAll().forEach(t => t.kill()) }
+    return () => ctx.revert()
   }, [useScrollTrigger, delay])
 
   const words = text.split(' ')
@@ -98,7 +101,6 @@ export default function AnimatedHeadline({
           style={{
             display: 'inline-block',
             opacity: 0,
-            willChange: 'opacity, transform',
           }}
         >
           {word}{i < words.length - 1 ? '\u00A0' : ''}
