@@ -3,19 +3,31 @@
 import dynamic from 'next/dynamic'
 import GoldTicker from '@/components/sections/GoldTicker'
 import Footer from '@/components/layout/Footer'
-import Canvas3DWrapper from '@/components/ui/Canvas3DWrapper'
 
-const SectionPlaceholder = () => <div style={{ minHeight: '100vh', background: '#000' }} />
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
+const SectionPlaceholder = () => <div style={{ minHeight: '100vh', background: '#000' }} />
 
-const CinematicHero = dynamic(() => import('@/components/sections/CinematicHero'), { ssr: false, loading: SectionPlaceholder })
-const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: SectionPlaceholder })
-const ImpactReveal = dynamic(() => import('@/components/sections/ImpactReveal'), { ssr: false, loading: SectionPlaceholder })
+/* ═══════════════════════════════════════
+   Homepage sections — matching the design briefing:
+   1. Hero (carousel + headline)
+   2. Values Ticker
+   3. Mission Mosaic (editorial photo grid)
+   4. Pillar Cards (big bold rows)
+   5. Stats (gold cards with counters)
+   6. Programs Grid (image above, gold text below)
+   7. Photo Gallery
+   8. CTA
+   9. Footer
+═══════════════════════════════════════ */
+
+const HeroSection = dynamic(() => import('@/components/sections/HeroSection'), { ssr: false, loading: SectionPlaceholder })
+const MissionMosaic = dynamic(() => import('@/components/sections/MissionMosaic'), { ssr: false, loading: ShortPlaceholder })
+const PillarCards = dynamic(() => import('@/components/sections/PillarCards'), { ssr: false, loading: ShortPlaceholder })
+const StatsSection = dynamic(() => import('@/components/sections/StatsSection'), { ssr: false, loading: ShortPlaceholder })
 const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'), { ssr: false, loading: ShortPlaceholder })
 const ConstellationGallery = dynamic(() => import('@/components/sections/ConstellationGallery'), { ssr: false, loading: SectionPlaceholder })
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
 const SponsorPanel = dynamic(() => import('@/components/sections/SponsorPanel'), { ssr: false })
-const CommunityRibbon = dynamic(() => import('@/components/3d/CommunityRibbon'), { ssr: false, loading: ShortPlaceholder })
 
 interface Program {
   slug: string
@@ -34,73 +46,83 @@ interface GalleryItem {
 }
 
 interface Pillar {
-  name: string
+  title: string
+  tagline: string
   stat: string
-  statLabel: string
-  videoSrc?: string
-  imageSrc: string
+  image: string
 }
 
 interface StatItem {
-  value: number
+  target: number
   suffix?: string
   label: string
 }
 
+interface HeroImage {
+  src: string
+  alt: string
+}
+
+interface MosaicItem {
+  src: string
+  alt: string
+  type?: 'image' | 'video'
+}
+
 interface HomePageClientProps {
-  programCards: Program[]
-  galleryItems: GalleryItem[]
-  heroVideo: string
-  missionMedia: Array<{ type: 'image' | 'video'; src: string; alt?: string }>
+  heroImages: HeroImage[]
+  mosaicItems: MosaicItem[]
   pillars: Pillar[]
   stats: StatItem[]
+  programCards: Program[]
+  galleryItems: GalleryItem[]
   tickerPhrases: string[]
+  ctaImage: string
 }
 
 export default function HomePageClient({
-  programCards,
-  galleryItems,
-  heroVideo,
-  missionMedia,
+  heroImages,
+  mosaicItems,
   pillars,
   stats,
+  programCards,
+  galleryItems,
   tickerPhrases,
+  ctaImage,
 }: HomePageClientProps) {
   return (
     <main>
-      {/* 1. Cinematic Hero — 4-phase pinned scroll sequence */}
-      <CinematicHero
-        videoSrc={heroVideo}
-        photoLeft="/images/b2s/_D5A7392.jpg"
-        photoRight="/images/coastal/IMG_0024.jpg"
+      {/* 1. Hero — image carousel with LOT headline */}
+      <HeroSection
+        images={heroImages}
+        headline="Community is the Infrastructure"
+        metadata={[
+          { label: 'Founded', value: '2020' },
+          { label: 'Based', value: 'Los Angeles' },
+          { label: 'Served', value: '62,475+' },
+          { label: 'Pillars', value: 'Three' },
+        ]}
       />
 
-      {/* 2. Values Ticker — gold bg, LOT font, star separators */}
-      <GoldTicker phrases={tickerPhrases} speed={35} />
+      {/* 2. Values Ticker — gold bg, black text, scrolling */}
+      <GoldTicker phrases={tickerPhrases} speed={30} />
 
-      {/* 3. Mission Split — sticky 50/50 with media swaps */}
-      <MissionSplit
-        headline="Why We Exist"
-        body="Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
-        media={missionMedia}
-      />
+      {/* 3. Mission Mosaic — editorial photo grid with scroll animation */}
+      {mosaicItems.length > 0 && (
+        <MissionMosaic
+          items={mosaicItems}
+          headline="We Listen. We Build. We Stay."
+          body="Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
+        />
+      )}
 
-      {/* 4. Impact Reveal — shrinking headline + pillar cards + stat cards */}
-      <ImpactReveal pillars={pillars} stats={stats} />
+      {/* 4. Pillar Cards — big bold rows with hover reveals */}
+      {pillars.length > 0 && <PillarCards pillars={pillars} />}
 
-      {/* 5. 3D Community Ribbon — iridescent divider (deferred load) */}
-      <Canvas3DWrapper delay={2000} fallback={<ShortPlaceholder />}>
-        <CommunityRibbon />
-      </Canvas3DWrapper>
+      {/* 5. Stats — gold cards with animated counters */}
+      <StatsSection stats={stats} />
 
-      {/* 5b. Values Ticker — second instance */}
-      <GoldTicker
-        phrases={['Community', 'Infrastructure', 'Resilience', 'Access', 'Dignity', 'Equity', 'Stability', 'Trust']}
-        speed={25}
-        separator="•"
-      />
-
-      {/* 6. Programs Grid — fold-out cards with holo borders + video hover */}
+      {/* 6. Programs Grid — image above, gold text below, hover fold-out */}
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
 
       {/* 7. Photo Gallery — parallax grid with hover effects */}
@@ -111,10 +133,10 @@ export default function HomePageClient({
         />
       )}
 
-      {/* 8. CTA — gold bg, sparkle + holo buttons */}
+      {/* 8. CTA — gold bg, black type */}
       <CTASection />
 
-      {/* 9. Footer — sacred mantra, LA skyline, social icons */}
+      {/* 9. Footer */}
       <Footer />
 
       {/* Sponsor Panel — fixed right-edge tab */}

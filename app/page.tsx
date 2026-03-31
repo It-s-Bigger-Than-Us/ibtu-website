@@ -1,9 +1,15 @@
 import { getPrograms, getPillars } from '@/sanity/lib/fetch'
 import { urlFor } from '@/sanity/lib/client'
 import HomePageClient from '@/components/sections/HomePageClient'
-import { HERO_VIDEOS, PILLAR_VIDEOS, VOLUNTEER_VIDEOS, PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
+import { PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
 
-/* Override Sanity hero images for programs with wrong/duplicate photos */
+/* ═══════════════════════════════════════
+   Programs that should NOT appear on homepage
+   (gala didn't happen, incubation is internal)
+═══════════════════════════════════════ */
+const HIDDEN_PROGRAMS = ['gala', 'incubation-academy']
+
+/* Override Sanity hero images for programs with wrong photos */
 const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
   'community-builder-linkups': '/images/b2s/_D5A7155.jpg',
   'community-health': '/images/wellness/IMG_9922.jpg',
@@ -11,56 +17,8 @@ const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
   'coastal-care': '/images/coastal/IMG_4838.jpg',
 }
 
-/* ═══════════════════════════════════════
-   LOCAL MEDIA + SANITY CDN VIDEOS
-═══════════════════════════════════════ */
-
-const HERO_VIDEO = HERO_VIDEOS.veniceEnergy
-
-const MISSION_MEDIA = [
-  { type: 'image' as const, src: '/images/b2s/_D5A7392.jpg', alt: 'Back to School community event' },
-  { type: 'video' as const, src: PROGRAM_HOVER_VIDEO['back-to-school'], alt: 'Venice Back to School festival' },
-  { type: 'image' as const, src: '/images/coastal/IMG_4838.jpg', alt: 'Coastal Care beach cleanup' },
-  { type: 'video' as const, src: PILLAR_VIDEOS.youth.baldwinHills, alt: 'Youth programming at Baldwin Hills' },
-  { type: 'image' as const, src: '/images/wellness/IMG_9922.jpg', alt: 'Community yoga and wellness' },
-  { type: 'video' as const, src: PILLAR_VIDEOS.crisis.rebuildTeaser, alt: 'Community rebuilding together' },
-]
-
-const PILLARS = [
-  {
-    name: 'Crisis & Disaster',
-    stat: '5,000+',
-    statLabel: 'Families Stabilized',
-    imageSrc: '/images/fire-relief/IMG_5382.jpg',
-    videoSrc: PILLAR_VIDEOS.crisis.day3Energy,
-  },
-  {
-    name: 'School & Youth',
-    stat: '62,475+',
-    statLabel: 'Students Served',
-    imageSrc: '/images/school/IMG_5608.jpg',
-    videoSrc: PILLAR_VIDEOS.youth.wrightSchool,
-  },
-  {
-    name: 'Community Health',
-    stat: '875,500+',
-    statLabel: 'Lbs Food Distributed',
-    imageSrc: '/images/wellness/IMG_9922.jpg',
-    videoSrc: PILLAR_VIDEOS.health.community,
-  },
-]
-
-const STATS = [
-  { value: 62475, suffix: '+', label: 'Students Served' },
-  { value: 5000, suffix: '+', label: 'Families Stabilized' },
-  { value: 875500, suffix: '+', label: 'Lbs Food Distributed' },
-  { value: 300, suffix: '+', label: 'Partners & Sponsors' },
-  { value: 34, label: 'School Sites' },
-  { value: 7500, suffix: '+', label: 'Volunteers Mobilized' },
-]
-
-/* Gallery — deduplicated, one per event/moment, mixed across all programs */
-const GALLERY_ITEMS = [
+/* Local gallery images — curated, no duplicates */
+const LOCAL_GALLERY_IMAGES = [
   { src: '/images/gallery/IMG_1848.jpg', title: 'Coastal Care Cleanup', program: 'Coastal Care' },
   { src: '/images/gallery/IMG_1807.jpg', title: 'Community Wellness', program: 'Wellness' },
   { src: '/images/gallery/IMG_1673.jpg', title: 'Community Builders', program: 'Community' },
@@ -69,11 +27,9 @@ const GALLERY_ITEMS = [
   { src: '/images/gallery/IMG_1324.jpg', title: 'Community Connection', program: 'Events' },
   { src: '/images/gallery/IMG_1501.jpg', title: 'Community Service', program: 'Volunteers' },
   { src: '/images/b2s/_D5A7224.jpg', title: 'Back to School 2025', program: 'B2S' },
-  { src: '/images/b2s/2V8A1964.jpg', title: 'School Supplies Drive', program: 'B2S' },
   { src: '/images/b2s/6D5A0783.jpg', title: 'B2S Festival Energy', program: 'B2S' },
   { src: '/images/school/IMG_5629.jpg', title: 'Youth Programming', program: 'Youth' },
   { src: '/images/school/IMG_4674.jpg', title: 'School Activations', program: 'Youth' },
-  { src: '/images/volunteer/IMG_1589.jpg', title: 'Volunteer Day', program: 'Volunteers' },
   { src: '/images/wellness/IMG_0279.jpg', title: 'Beach Wellness', program: 'Wellness' },
   { src: '/images/fire-relief/IMG_5406.jpg', title: 'Fire Relief Response', program: 'Crisis' },
   { src: '/images/fire-relief/IMG_5508.jpg', title: 'Rebuilding Together', program: 'Crisis' },
@@ -94,46 +50,128 @@ const TICKER_PHRASES = [
   'Los Angeles',
 ]
 
+const PILLAR_PROGRAM_MAP: Record<string, string> = {
+  'Crisis & Disaster Stabilization': 'fire-relief',
+  'School & Youth Stability': 'youth-programming',
+  'Community Health & Resource Access': 'community-health',
+}
+
 /* ═══════════════════════════════════════
    HOMEPAGE — Server Component
-   Fetches Sanity data, passes to client wrapper
+   Fetches Sanity data, passes to client
 ═══════════════════════════════════════ */
 
 export default async function HomePage() {
-  const [sanityPrograms] = await Promise.all([
+  const [sanityPrograms, sanityPillars] = await Promise.all([
     getPrograms().catch(() => []),
     getPillars().catch(() => []),
   ])
 
-  const programCards = sanityPrograms.map((p: { slug: string; title: string; pillar: string; heroImage?: unknown; cardStat?: string; tagline?: string }) => ({
-    slug: p.slug,
-    title: p.title,
-    pillar: p.pillar,
-    heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : ''),
-    cardStat: p.cardStat || '',
-    description: p.tagline || '',
-    hoverVideo: PROGRAM_HOVER_VIDEO[p.slug] || '',
-  }))
+  /* Hero images from programs */
+  const heroImages = sanityPrograms
+    .filter((p: { heroImage?: unknown; slug: string }) => p.heroImage && !HIDDEN_PROGRAMS.includes(p.slug))
+    .slice(0, 5)
+    .map((p: { heroImage: unknown; title: string }) => ({
+      src: urlFor(p.heroImage).width(1920).quality(85).url(),
+      alt: `IBTU — ${p.title}`,
+    }))
+  const fallbackHeroImages = LOCAL_GALLERY_IMAGES.slice(0, 5).map(g => ({ src: g.src, alt: g.title }))
+  const finalHeroImages = heroImages.length > 0 ? heroImages : fallbackHeroImages
 
+  /* Mosaic items for editorial photo grid */
+  const mosaicItems = sanityPrograms
+    .filter((p: { heroImage?: unknown; slug: string }) => p.heroImage && !HIDDEN_PROGRAMS.includes(p.slug))
+    .flatMap((p: { heroImage?: unknown; cardImages?: unknown[]; title: string }) => {
+      const items: { src: string; alt: string; type: 'image' }[] = []
+      if (p.heroImage) {
+        items.push({
+          src: urlFor(p.heroImage).width(800).quality(80).url(),
+          alt: `IBTU — ${p.title}`,
+          type: 'image',
+        })
+      }
+      if (p.cardImages) {
+        p.cardImages.slice(0, 1).forEach((img: unknown) => {
+          if (img) {
+            items.push({
+              src: urlFor(img).width(600).quality(80).url(),
+              alt: `${p.title}`,
+              type: 'image',
+            })
+          }
+        })
+      }
+      return items
+    })
+    .slice(0, 8)
+  const finalMosaic = mosaicItems.length >= 6
+    ? mosaicItems
+    : [...mosaicItems, ...LOCAL_GALLERY_IMAGES.slice(0, 12 - mosaicItems.length).map(g => ({ src: g.src, alt: g.title, type: 'image' as const }))].slice(0, 12)
+
+  /* Pillar cards */
+  const pillarCards = sanityPillars.length
+    ? sanityPillars.map((p: { pillarName: string; tagline?: string; pageDescription?: string; headlineStat?: string }) => {
+        const programSlug = PILLAR_PROGRAM_MAP[p.pillarName]
+        const matchedProgram = sanityPrograms.find(
+          (prog: { slug: string; pillar: string }) => prog.slug === programSlug || prog.pillar === p.pillarName
+        )
+        return {
+          title: p.pillarName,
+          tagline: p.tagline || p.pageDescription || '',
+          stat: p.headlineStat || '',
+          image: matchedProgram?.heroImage
+            ? urlFor(matchedProgram.heroImage).width(800).quality(80).url()
+            : '',
+        }
+      })
+    : []
+
+  /* Stats */
+  const stats = [
+    { target: 62475, suffix: '+', label: 'Students Served' },
+    { target: 5000, suffix: '+', label: 'Families Stabilized' },
+    { target: 875500, suffix: '+', label: 'Lbs Food Distributed' },
+    { target: 300, suffix: '+', label: 'Partners & Sponsors' },
+  ]
+
+  /* Program cards — filtered, with image overrides */
+  const programCards = sanityPrograms
+    .filter((p: { slug: string }) => !HIDDEN_PROGRAMS.includes(p.slug))
+    .map((p: { slug: string; title: string; pillar: string; heroImage?: unknown; cardStat?: string; tagline?: string }) => ({
+      slug: p.slug,
+      title: p.title,
+      pillar: p.pillar,
+      heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : ''),
+      cardStat: p.cardStat || '',
+      description: p.tagline || '',
+      hoverVideo: PROGRAM_HOVER_VIDEO[p.slug] || '',
+    }))
+
+  /* Gallery items */
   const sanityGalleryItems = sanityPrograms
-    .filter((p: { heroImage?: unknown }) => p.heroImage)
+    .filter((p: { heroImage?: unknown; slug: string }) => p.heroImage && !HIDDEN_PROGRAMS.includes(p.slug))
     .map((p: { heroImage: unknown; title: string; pillar: string }) => ({
       src: urlFor(p.heroImage).width(600).quality(80).url(),
       title: p.title,
       program: p.pillar,
     }))
+  const galleryItems = [...sanityGalleryItems, ...LOCAL_GALLERY_IMAGES].slice(0, 18)
 
-  const galleryItems = [...sanityGalleryItems, ...GALLERY_ITEMS].slice(0, 24)
+  /* CTA image */
+  const ctaImage = sanityPrograms[0]?.heroImage
+    ? urlFor(sanityPrograms[0].heroImage).width(1920).quality(80).url()
+    : ''
 
   return (
     <HomePageClient
+      heroImages={finalHeroImages}
+      mosaicItems={finalMosaic}
+      pillars={pillarCards}
+      stats={stats}
       programCards={programCards}
       galleryItems={galleryItems}
-      heroVideo={HERO_VIDEO}
-      missionMedia={MISSION_MEDIA}
-      pillars={PILLARS}
-      stats={STATS}
       tickerPhrases={TICKER_PHRASES}
+      ctaImage={ctaImage}
     />
   )
 }
