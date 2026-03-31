@@ -1,106 +1,83 @@
-'use client';
+'use client'
 
-import { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import gsap from 'gsap';
+import { useState, useEffect, useRef, Suspense } from 'react'
+import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import MenuDropdown from './MenuDropdown'
+import DonateButton from './DonateButton'
 
-const navLinks = [
-  { label: 'About', href: '/about' },
-  { label: 'Programs', href: '/our-programs' },
-  { label: 'Impact', href: '/impact' },
-  { label: 'Get Involved', href: '/get-involved' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Donate', href: '/donate' },
-];
+const NavCoin = dynamic(() => import('./NavCoin'), {
+  ssr: false,
+  loading: () => (
+    <div style={{
+      width: 64,
+      height: 64,
+      background: 'var(--ibtu-gold)',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/ibtu-logo.svg" alt="IBTU" style={{ width: 40, height: 40, filter: 'brightness(0)' }} />
+    </div>
+  ),
+})
 
 export default function TopNav() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [coinHovered, setCoinHovered] = useState(false)
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 80);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const handleScroll = () => setScrolled(window.scrollY > 80)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-  // 3D coin spin — rotates on Y axis like a spinning coin
+  // Lock body scroll when menu is open
   useEffect(() => {
-    if (logoRef.current) {
-      gsap.to(logoRef.current, {
-        rotateY: 360,
-        duration: 4,
-        ease: 'none',
-        repeat: -1,
-      });
-    }
-  }, []);
-
-  // Animate dropdown links on open
-  useEffect(() => {
-    if (menuOpen && dropdownRef.current) {
-      const links = dropdownRef.current.querySelectorAll('.dropdown-link');
-      gsap.fromTo(links,
-        { opacity: 0, y: -16 },
-        { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power3.out' }
-      );
-    }
-  }, [menuOpen]);
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
 
   return (
     <>
-      {/* ── Fixed nav area: gold background, top-left ── */}
+      {/* ── Logo coin — fixed top-left ── */}
       <div
         style={{
           position: 'fixed',
-          top: 0,
-          left: 0,
-          zIndex: 1000,
+          top: '24px',
+          left: '24px',
+          zIndex: 100,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          background: 'var(--gold)',
-          padding: '16px',
-          borderBottomRightRadius: '16px',
-          transition: 'box-shadow 0.3s',
-          boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.3)' : 'none',
+          gap: '12px',
         }}
+        onMouseEnter={() => setCoinHovered(true)}
+        onMouseLeave={() => setCoinHovered(false)}
       >
-        {/* Spinning black logo — links home */}
-        <Link href="/" aria-label="IBTU Home" style={{ display: 'block', perspective: '600px' }}>
-          <div
-            ref={logoRef}
-            style={{
-              width: '56px',
-              height: '56px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transformStyle: 'preserve-3d',
-              perspective: '600px',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/ibtu-logo.svg"
-              alt="IBTU"
-              style={{
-                width: '48px',
-                height: '48px',
-                filter: 'brightness(0)', // black logo on gold
-              }}
-            />
-          </div>
+        <Link href="/" aria-label="IBTU Home" style={{ display: 'block' }}>
+          <Suspense fallback={
+            <div style={{
+              width: 64, height: 64,
+              background: 'var(--ibtu-gold)',
+              borderRadius: '8px',
+            }} />
+          }>
+            <NavCoin size={64} hovered={coinHovered} />
+          </Suspense>
         </Link>
 
-        {/* Hamburger menu button — below spinning logo */}
+        {/* Hamburger — below coin */}
         <button
-          onClick={() => setMenuOpen((prev) => !prev)}
+          ref={hamburgerRef}
+          onClick={() => setMenuOpen(prev => !prev)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           style={{
-            marginTop: '8px',
             background: 'none',
             border: 'none',
             cursor: 'pointer',
@@ -108,105 +85,38 @@ export default function TopNav() {
             flexDirection: 'column',
             gap: '5px',
             padding: '8px',
+            zIndex: 101,
           }}
         >
           <span style={{
-            width: '24px', height: '2px', background: '#000',
-            transition: 'transform 0.3s, opacity 0.3s',
+            width: '24px',
+            height: '2px',
+            background: scrolled || menuOpen ? 'var(--ibtu-white)' : 'var(--ibtu-white)',
+            transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
             transform: menuOpen ? 'translateY(7px) rotate(45deg)' : 'none',
           }} />
           <span style={{
-            width: '24px', height: '2px', background: '#000',
+            width: '24px',
+            height: '2px',
+            background: scrolled || menuOpen ? 'var(--ibtu-white)' : 'var(--ibtu-white)',
             transition: 'opacity 0.3s',
             opacity: menuOpen ? 0 : 1,
           }} />
           <span style={{
-            width: '24px', height: '2px', background: '#000',
-            transition: 'transform 0.3s, opacity 0.3s',
+            width: '24px',
+            height: '2px',
+            background: scrolled || menuOpen ? 'var(--ibtu-white)' : 'var(--ibtu-white)',
+            transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
             transform: menuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
           }} />
         </button>
       </div>
 
-      {/* ── Dropdown nav — drops from top-left ── */}
-      <div
-        ref={dropdownRef}
-        role="dialog"
-        aria-modal={menuOpen}
-        aria-label="Navigation menu"
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          zIndex: 999,
-          background: 'var(--gold)',
-          padding: menuOpen ? '120px 32px 40px' : '0 32px',
-          maxHeight: menuOpen ? '100vh' : '0',
-          overflow: 'hidden',
-          transition: 'max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-          minWidth: '280px',
-          borderBottomRightRadius: '20px',
-          boxShadow: menuOpen ? '0 24px 48px rgba(0,0,0,0.4)' : 'none',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '4px',
-        }}
-      >
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="dropdown-link"
-            onClick={() => setMenuOpen(false)}
-            style={{
-              fontFamily: "'LOT', 'Bebas Neue', sans-serif",
-              fontSize: 'clamp(36px, 6vw, 56px)',
-              textTransform: 'uppercase',
-              color: '#000',
-              textDecoration: 'none',
-              lineHeight: 1.1,
-              letterSpacing: '-0.01em',
-              opacity: 0,
-              display: 'block',
-              padding: '4px 0',
-              transition: 'color 0.2s',
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = '#fff'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = '#000'; }}
-          >
-            {link.label}
-          </Link>
-        ))}
+      {/* ── Full-screen gold menu dropdown ── */}
+      <MenuDropdown open={menuOpen} onClose={() => setMenuOpen(false)} />
 
-        {/* Sacred mantra at bottom */}
-        <div style={{
-          marginTop: '24px',
-          paddingTop: '16px',
-          borderTop: '1px solid #000',
-          fontFamily: "'Poppins', sans-serif",
-          fontSize: '10px',
-          letterSpacing: '3px',
-          textTransform: 'uppercase',
-          color: '#000',
-          fontWeight: 700,
-        }}>
-          Community is the infrastructure.
-        </div>
-      </div>
-
-      {/* ── Click outside to close ── */}
-      {menuOpen && (
-        <div
-          onClick={() => setMenuOpen(false)}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 998,
-            background: 'rgba(0,0,0,0.5)',
-          }}
-          aria-hidden="true"
-        />
-      )}
+      {/* ── Donate button — slides in from right on cursor proximity ── */}
+      <DonateButton />
     </>
-  );
+  )
 }
