@@ -7,7 +7,6 @@ import Footer from '@/components/layout/Footer'
 const SectionPlaceholder = () => <div style={{ minHeight: '100vh', background: '#000' }} />
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 
-const CinematicHero = dynamic(() => import('@/components/sections/CinematicHero'), { ssr: false, loading: SectionPlaceholder })
 const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: SectionPlaceholder })
 const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
 const ImpactReveal = dynamic(() => import('@/components/sections/ImpactReveal'), { ssr: false, loading: SectionPlaceholder })
@@ -41,7 +40,7 @@ interface StatItem {
 
 interface HomePageClientProps {
   programCards: Program[]
-  heroVideo: string
+  heroVideo?: string
   missionMedia: Array<{ type: 'image' | 'video'; src: string; alt?: string }>
   pillars: Pillar[]
   stats: StatItem[]
@@ -50,7 +49,6 @@ interface HomePageClientProps {
 
 export default function HomePageClient({
   programCards,
-  heroVideo,
   missionMedia,
   pillars,
   stats,
@@ -58,14 +56,7 @@ export default function HomePageClient({
 }: HomePageClientProps) {
   return (
     <main>
-      {/* 1. Cinematic Hero — 4-phase pinned scroll sequence */}
-      <CinematicHero
-        videoSrc={heroVideo}
-        photoLeft="/images/b2s/_D5A7392.jpg"
-        photoRight="/images/coastal/IMG_0024.jpg"
-      />
-
-      {/* 2. Values Ticker — gold bg, black text */}
+      {/* 1. Values Ticker — gold bg, black text */}
       <GoldTicker phrases={tickerPhrases} speed={35} />
 
       {/* 3. Mission Split — sticky 50/50 with media swaps */}
