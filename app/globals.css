@@ -169,19 +169,18 @@ body {
   overflow-x: hidden;
 }
 
-/* Display headlines fill their container width */
+/* All headings: prevent overflow */
 h1, h2, h3, h4, [class*="headline"], [class*="display"] {
   overflow-wrap: break-word;
   word-break: break-word;
+}
+
+/* LOT display text — stretches to fill full width (hero/section heads only) */
+[style*="var(--font-display)"][style*="var(--display-hero)"],
+[style*="var(--font-display)"][style*="var(--display-section)"] {
   text-align: justify;
   text-align-last: justify;
   text-justify: inter-word;
-}
-
-/* LOT display text — stretches to fill full width */
-[style*="font-display"], [style*="LOT"], [style*="var(--font-display)"] {
-  text-align: justify !important;
-  text-align-last: justify !important;
   width: 100%;
 }
 
@@ -193,13 +192,7 @@ section, main {
 
 /* ALL media fills containers — no dead space ever */
 video, img {
-  object-fit: cover !important;
-}
-video {
-  width: 100% !important;
-  height: 100% !important;
-  min-width: 100% !important;
-  min-height: 100% !important;
+  object-fit: cover;
 }
 /* Absolute-positioned media parents must have dimensions */
 div:has(> video), div:has(> img) {

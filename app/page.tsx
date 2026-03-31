@@ -28,7 +28,7 @@ const PILLARS = [
     name: 'Crisis & Disaster',
     stat: '5,000+',
     statLabel: 'Families Stabilized',
-    imageSrc: '/images/fire-relief/IMG_5382.jpg',
+    imageSrc: '/images/school/IMG_5382.jpg',
     videoSrc: PILLAR_VIDEOS.crisis.day3Energy,
   },
   {

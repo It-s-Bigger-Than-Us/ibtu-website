@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
+import { PROGRAM_VIDEOS } from "@/lib/data/video-urls";
 
 export const metadata: Metadata = {
   title: "Fire Relief & The Hub | IBTU",
@@ -121,7 +122,7 @@ export default function FireReliefPage() {
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
             <source
-              src="/videos/fire-relief-hero.mp4"
+              src={PROGRAM_VIDEOS['fire-relief'].highlight}
               type="video/mp4"
             />
           </video>
@@ -332,7 +333,7 @@ export default function FireReliefPage() {
             }}
           >
             <source
-              src="/videos/fire-relief-hero.mp4"
+              src={PROGRAM_VIDEOS['fire-relief'].rebuild}
               type="video/mp4"
             />
           </video>

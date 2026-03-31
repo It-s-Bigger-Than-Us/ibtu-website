@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { PROGRAM_VIDEOS } from "@/lib/data/video-urls";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,7 +41,7 @@ export default function MissionSection() {
           aria-hidden="true"
         >
           <source
-            src="/videos/fire-relief-hero.mp4"
+            src={PROGRAM_VIDEOS['fire-relief'].highlight}
             type="video/mp4"
           />
         </video>
