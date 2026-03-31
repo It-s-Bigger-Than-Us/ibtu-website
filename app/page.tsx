@@ -1,31 +1,14 @@
 import { getPrograms, getPillars } from '@/sanity/lib/fetch'
 import { urlFor } from '@/sanity/lib/client'
-import dynamic from 'next/dynamic'
-import GoldTicker from '@/components/sections/GoldTicker'
-import Footer from '@/components/layout/Footer'
-
-/* ═══════════════════════════════════════
-   Client-side components (animations, Three.js, events)
-   Dynamic imports for code splitting
-═══════════════════════════════════════ */
-const CinematicHero = dynamic(() => import('@/components/sections/CinematicHero'), { ssr: false })
-const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false })
-const ImpactReveal = dynamic(() => import('@/components/sections/ImpactReveal'), { ssr: false })
-const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'), { ssr: false })
-const ConstellationGallery = dynamic(() => import('@/components/sections/ConstellationGallery'), { ssr: false })
-const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false })
-const SponsorPanel = dynamic(() => import('@/components/sections/SponsorPanel'), { ssr: false })
-const CommunityRibbon = dynamic(() => import('@/components/3d/CommunityRibbon'), { ssr: false })
+import HomePageClient from '@/components/sections/HomePageClient'
 
 /* ═══════════════════════════════════════
    LOCAL MEDIA — videos and photos from /public
    Organized by program, pillar, and purpose
 ═══════════════════════════════════════ */
 
-// Hero video
 const HERO_VIDEO = '/videos/site-clips/homepage-hero/landscape/hero-venice-energy1.mp4'
 
-// Mission section media — swapping panels
 const MISSION_MEDIA = [
   { type: 'image' as const, src: '/images/b2s/_D5A7392.jpg', alt: 'Back to School community event' },
   { type: 'video' as const, src: '/videos/site-clips/pillar-youth/landscape/youth-baldwin-hills.mp4', alt: 'Youth programming' },
@@ -33,7 +16,6 @@ const MISSION_MEDIA = [
   { type: 'video' as const, src: '/videos/site-clips/pillar-crisis/landscape/crisis-rebuild-teaser.mp4', alt: 'Crisis response' },
 ]
 
-// Impact pillar cards — one per pillar with video hover
 const PILLARS = [
   {
     name: 'Crisis & Disaster',
@@ -58,7 +40,6 @@ const PILLARS = [
   },
 ]
 
-// Stat cards — 6 key metrics
 const STATS = [
   { value: 62475, suffix: '+', label: 'Students Served' },
   { value: 5000, suffix: '+', label: 'Families Stabilized' },
@@ -68,7 +49,6 @@ const STATS = [
   { value: 7500, suffix: '+', label: 'Volunteers Mobilized' },
 ]
 
-// Gallery images for constellation — curated from all programs
 const GALLERY_ITEMS = [
   { src: '/images/gallery/IMG_1848.jpg', title: 'Coastal Care Cleanup', program: 'Coastal Care' },
   { src: '/images/gallery/IMG_4993.jpg', title: 'Beach Volunteers', program: 'Coastal Care' },
@@ -92,7 +72,6 @@ const GALLERY_ITEMS = [
   { src: '/images/fire-relief/IMG_5406.jpg', title: 'Fire Relief', program: 'Crisis' },
 ]
 
-// Ticker phrases
 const TICKER_PHRASES = [
   'Community is the Infrastructure',
   'Designed with Dignity',
@@ -106,7 +85,6 @@ const TICKER_PHRASES = [
   'Los Angeles',
 ]
 
-// Program-to-video mapping for hover clips
 const PROGRAM_VIDEO_MAP: Record<string, string> = {
   'fire-relief': '/videos/site-clips/program-fire-relief/landscape/fire-rebuild1.mp4',
   'youth-programming': '/videos/site-clips/program-youth/landscape/youth-bhes1.mp4',
@@ -119,17 +97,16 @@ const PROGRAM_VIDEO_MAP: Record<string, string> = {
 
 /* ═══════════════════════════════════════
    HOMEPAGE — Server Component
-   Fetches Sanity data, passes to client sections
+   Fetches Sanity data, passes to client wrapper
 ═══════════════════════════════════════ */
 
 export default async function HomePage() {
-  const [sanityPrograms, sanityPillars] = await Promise.all([
+  const [sanityPrograms] = await Promise.all([
     getPrograms().catch(() => []),
     getPillars().catch(() => []),
   ])
 
-  /* Program cards with Sanity data + local video fallbacks */
-  const programCards = sanityPrograms.map((p: { slug: string; title: string; pillar: string; heroImage?: unknown; cardStat?: string; tagline?: string; hoverVideoClip?: { asset?: unknown } }) => ({
+  const programCards = sanityPrograms.map((p: { slug: string; title: string; pillar: string; heroImage?: unknown; cardStat?: string; tagline?: string }) => ({
     slug: p.slug,
     title: p.title,
     pillar: p.pillar,
@@ -139,74 +116,25 @@ export default async function HomePage() {
     hoverVideo: PROGRAM_VIDEO_MAP[p.slug] || '',
   }))
 
-  /* Constellation gallery — mix Sanity images + local images */
   const sanityGalleryItems = sanityPrograms
     .filter((p: { heroImage?: unknown }) => p.heroImage)
-    .map((p: { heroImage: unknown; title: string; pillar: string; slug: string }) => ({
+    .map((p: { heroImage: unknown; title: string; pillar: string }) => ({
       src: urlFor(p.heroImage).width(600).quality(80).url(),
       title: p.title,
       program: p.pillar,
     }))
 
-  const galleryItems = [
-    ...sanityGalleryItems,
-    ...GALLERY_ITEMS,
-  ].slice(0, 24)
+  const galleryItems = [...sanityGalleryItems, ...GALLERY_ITEMS].slice(0, 24)
 
   return (
-    <main>
-      {/* 1. Cinematic Hero — 4-phase pinned scroll sequence */}
-      <CinematicHero
-        videoSrc={HERO_VIDEO}
-        photoLeft="/images/b2s/_D5A7392.jpg"
-        photoRight="/images/coastal/IMG_0024.jpg"
-      />
-
-      {/* 2. Values Ticker — gold bg, LOT font, star separators */}
-      <GoldTicker phrases={TICKER_PHRASES} speed={35} />
-
-      {/* 3. Mission Split — sticky 50/50 with media swaps */}
-      <MissionSplit
-        headline="Why We Exist"
-        body="Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
-        media={MISSION_MEDIA}
-      />
-
-      {/* 4. Impact Reveal — shrinking headline + pillar cards + stat cards */}
-      <ImpactReveal
-        pillars={PILLARS}
-        stats={STATS}
-      />
-
-      {/* 5. 3D Community Ribbon — iridescent divider between impact and programs */}
-      <CommunityRibbon />
-
-      {/* 5b. Values Ticker — second instance */}
-      <GoldTicker
-        phrases={['Community', 'Infrastructure', 'Resilience', 'Access', 'Dignity', 'Equity', 'Stability', 'Trust']}
-        speed={25}
-        separator="★"
-      />
-
-      {/* 6. Programs Grid — fold-out cards with holo borders + video hover */}
-      {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
-
-      {/* 7. 3D Constellation Gallery — replaces OrbitalGallery */}
-      {galleryItems.length > 0 && (
-        <ConstellationGallery
-          items={galleryItems}
-          title="(EXPLORE OUR IMPACT)"
-        />
-      )}
-
-      {/* 8. CTA — gold bg, sparkle + holo buttons */}
-      <CTASection />
-
-      {/* 9. Footer — sacred mantra, LA skyline, social icons */}
-      <Footer />
-
-      {/* Sponsor Panel — fixed right-edge tab (renders over everything) */}
-      <SponsorPanel />
-    </main>
+    <HomePageClient
+      programCards={programCards}
+      galleryItems={galleryItems}
+      heroVideo={HERO_VIDEO}
+      missionMedia={MISSION_MEDIA}
+      pillars={PILLARS}
+      stats={STATS}
+      tickerPhrases={TICKER_PHRASES}
+    />
   )
 }

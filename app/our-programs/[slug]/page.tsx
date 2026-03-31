@@ -1,16 +1,10 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import dynamic from "next/dynamic"
 import Link from "next/link"
 import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/fetch"
 import Footer from "@/components/layout/Footer"
 import AnimatedHeadline from "@/components/ui/AnimatedHeadline"
-import GoldTicker from "@/components/sections/GoldTicker"
-
-const ProgramHero = dynamic(() => import("@/components/sections/ProgramHero"), { ssr: false })
-const StickyStorySection = dynamic(() => import("@/components/sections/StickyStorySection"), { ssr: false })
-const StackingGallery = dynamic(() => import("@/components/sections/StackingGallery"), { ssr: false })
-const EventGallery3D = dynamic(() => import("@/components/sections/EventGallery3D"), { ssr: false })
+import ProgramDetailClient from "@/components/sections/ProgramDetailClient"
 
 export const revalidate = 60
 
@@ -252,16 +246,21 @@ export default async function ProgramPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── 2. STICKY STORY — pinned left text + right media swaps ── */}
-      {storyMedia.length > 1 && (
-        <StickyStorySection
-          text={{
-            heading: "The Story",
-            body: program.description || program.tagline || "",
-          }}
-          media={storyMedia}
-        />
-      )}
+      {/* ── 2–4. Client sections: sticky story + gallery + events ── */}
+      <ProgramDetailClient
+        slides={storyMedia.map((m, i) => ({
+          image: m.src,
+          alt: m.alt || program.title,
+          headline: i === 0 ? 'The Story' : program.title,
+          body: i === 0 ? (program.description || program.tagline || '') : undefined,
+          type: m.type,
+        }))}
+        galleryImages={galleryImages.map((src: string, i: number) => ({
+          src,
+          alt: `${program.title} — photo ${i + 1}`,
+        }))}
+        pastEvents={pastEvents}
+      />
 
       {/* ── 3. PROGRAM STATS — gold cards ── */}
       {stats.length > 0 && (
@@ -311,32 +310,6 @@ export default async function ProgramPage({ params }: Props) {
                 </div>
               )
             })}
-          </div>
-        </section>
-      )}
-
-      {/* ── 4. STACKING GALLERY — images slide + stack on scroll ── */}
-      {galleryImages.length > 2 && (
-        <StackingGallery
-          images={galleryImages.map((src: string, i: number) => ({
-            src,
-            alt: `${program.title} — photo ${i + 1}`,
-          }))}
-        />
-      )}
-
-      {/* ── 5. PAST EVENTS ── */}
-      {pastEvents.length > 0 && (
-        <section style={{ padding: "var(--section-pad) clamp(32px, 5vw, 80px)" }}>
-          <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
-            <AnimatedHeadline
-              text="Past Events"
-              as="h2"
-              size="section"
-              color="var(--ibtu-white)"
-              style={{ marginBottom: 48 }}
-            />
-            <EventGallery3D events={pastEvents} />
           </div>
         </section>
       )}
