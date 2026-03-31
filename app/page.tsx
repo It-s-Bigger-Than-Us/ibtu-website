@@ -1,19 +1,21 @@
 import { getPrograms, getPillars } from '@/sanity/lib/fetch'
 import { urlFor } from '@/sanity/lib/client'
 import HomePageClient from '@/components/sections/HomePageClient'
+import { HERO_VIDEOS, PILLAR_VIDEOS, VOLUNTEER_VIDEOS, PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
 
 /* ═══════════════════════════════════════
-   LOCAL MEDIA — videos and photos from /public
-   Organized by program, pillar, and purpose
+   LOCAL MEDIA + SANITY CDN VIDEOS
 ═══════════════════════════════════════ */
 
-const HERO_VIDEO = '/videos/site-clips/homepage-hero/landscape/hero-venice-energy1.mp4'
+const HERO_VIDEO = HERO_VIDEOS.veniceEnergy
 
 const MISSION_MEDIA = [
+  { type: 'video' as const, src: HERO_VIDEOS.kidsDancing, alt: 'Kids dancing at IBTU event' },
   { type: 'image' as const, src: '/images/b2s/_D5A7392.jpg', alt: 'Back to School community event' },
-  { type: 'video' as const, src: '/videos/site-clips/pillar-youth/landscape/youth-baldwin-hills.mp4', alt: 'Youth programming' },
+  { type: 'video' as const, src: PILLAR_VIDEOS.youth.baldwinHills, alt: 'Youth programming at Baldwin Hills' },
+  { type: 'video' as const, src: VOLUNTEER_VIDEOS.brentwoodTeam, alt: 'Volunteer team in action' },
   { type: 'image' as const, src: '/images/coastal/IMG_0024.jpg', alt: 'Coastal Care beach cleanup' },
-  { type: 'video' as const, src: '/videos/site-clips/pillar-crisis/landscape/crisis-rebuild-teaser.mp4', alt: 'Crisis response' },
+  { type: 'video' as const, src: PILLAR_VIDEOS.crisis.rebuildTeaser, alt: 'Crisis response and rebuilding' },
 ]
 
 const PILLARS = [
@@ -22,21 +24,21 @@ const PILLARS = [
     stat: '5,000+',
     statLabel: 'Families Stabilized',
     imageSrc: '/images/fire-relief/IMG_5382.jpg',
-    videoSrc: '/videos/site-clips/program-fire-relief/landscape/fire-highlight1.mp4',
+    videoSrc: PILLAR_VIDEOS.crisis.day3Energy,
   },
   {
     name: 'School & Youth',
     stat: '62,475+',
     statLabel: 'Students Served',
     imageSrc: '/images/school/IMG_5608.jpg',
-    videoSrc: '/videos/site-clips/pillar-youth/landscape/youth-wright-school.mp4',
+    videoSrc: PILLAR_VIDEOS.youth.wrightSchool,
   },
   {
     name: 'Community Health',
     stat: '875,500+',
     statLabel: 'Lbs Food Distributed',
     imageSrc: '/images/wellness/IMG_0007.jpg',
-    videoSrc: '/videos/site-clips/pillar-health/landscape/health-beach1.mp4',
+    videoSrc: PILLAR_VIDEOS.health.community,
   },
 ]
 
@@ -85,16 +87,6 @@ const TICKER_PHRASES = [
   'Los Angeles',
 ]
 
-const PROGRAM_VIDEO_MAP: Record<string, string> = {
-  'fire-relief': '/videos/site-clips/program-fire-relief/landscape/fire-rebuild1.mp4',
-  'youth-programming': '/videos/site-clips/program-youth/landscape/youth-bhes1.mp4',
-  'back-to-school': '/videos/site-clips/program-b2s/landscape/b2s-venice1.mp4',
-  'coastal-care': '/videos/site-clips/program-coastal/landscape/coastal-cleanup1.mp4',
-  'community-health': '/videos/site-clips/program-community-health/landscape/ch-mlk-parade1.mp4',
-  'giving-season': '/videos/site-clips/program-giving/landscape/gs-cd8-event.mp4',
-  'wellness': '/videos/site-clips/program-wellness/landscape/well-yoga-beach1.mp4',
-}
-
 /* ═══════════════════════════════════════
    HOMEPAGE — Server Component
    Fetches Sanity data, passes to client wrapper
@@ -113,7 +105,7 @@ export default async function HomePage() {
     heroImage: p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : '',
     cardStat: p.cardStat || '',
     description: p.tagline || '',
-    hoverVideo: PROGRAM_VIDEO_MAP[p.slug] || '',
+    hoverVideo: PROGRAM_HOVER_VIDEO[p.slug] || '',
   }))
 
   const sanityGalleryItems = sanityPrograms

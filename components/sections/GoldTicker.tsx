@@ -24,7 +24,7 @@ interface GoldTickerProps {
 export default function GoldTicker({
   phrases = DEFAULT_PHRASES,
   speed = 30,
-  separator = '★',
+  separator = '•',
 }: GoldTickerProps) {
   // Build the ticker content with separators
   const content = phrases.flatMap((phrase, i) => [

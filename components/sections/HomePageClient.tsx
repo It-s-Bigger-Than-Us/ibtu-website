@@ -97,7 +97,7 @@ export default function HomePageClient({
       <GoldTicker
         phrases={['Community', 'Infrastructure', 'Resilience', 'Access', 'Dignity', 'Equity', 'Stability', 'Trust']}
         speed={25}
-        separator="★"
+        separator="•"
       />
 
       {/* 6. Programs Grid — fold-out cards with holo borders + video hover */}

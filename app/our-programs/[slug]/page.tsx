@@ -5,6 +5,7 @@ import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/
 import Footer from "@/components/layout/Footer"
 import AnimatedHeadline from "@/components/ui/AnimatedHeadline"
 import ProgramDetailClient from "@/components/sections/ProgramDetailClient"
+import { PROGRAM_STORY_VIDEOS } from "@/lib/data/video-urls"
 
 export const revalidate = 60
 
@@ -12,37 +13,7 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
-/* Program-to-video mapping for sticky story sections */
-const PROGRAM_VIDEOS: Record<string, string[]> = {
-  'fire-relief': [
-    '/videos/site-clips/program-fire-relief/landscape/fire-highlight1.mp4',
-    '/videos/site-clips/program-fire-relief/landscape/fire-rebuild1.mp4',
-  ],
-  'youth-programming': [
-    '/videos/site-clips/program-youth/landscape/youth-bhes1.mp4',
-    '/videos/site-clips/program-youth/landscape/youth-wright1.mp4',
-  ],
-  'back-to-school': [
-    '/videos/site-clips/program-b2s/landscape/b2s-venice1.mp4',
-    '/videos/site-clips/program-b2s/landscape/b2s-venice2.mp4',
-  ],
-  'coastal-care': [
-    '/videos/site-clips/program-coastal/landscape/coastal-cleanup1.mp4',
-    '/videos/site-clips/program-coastal/landscape/coastal-cleanup2.mp4',
-  ],
-  'community-health': [
-    '/videos/site-clips/program-community-health/landscape/ch-mlk-parade1.mp4',
-    '/videos/site-clips/program-community-health/landscape/ch-rams-event.mp4',
-  ],
-  'giving-season': [
-    '/videos/site-clips/program-giving/landscape/gs-cd8-event.mp4',
-    '/videos/site-clips/program-giving/landscape/gs-production1.mp4',
-  ],
-  'wellness': [
-    '/videos/site-clips/program-wellness/landscape/well-yoga-beach1.mp4',
-    '/videos/site-clips/program-wellness/landscape/well-yoga-beach2.mp4',
-  ],
-}
+/* Program videos now served from Sanity CDN — see lib/data/video-urls.ts */
 
 /* Program-to-image mapping for stacking gallery */
 const PROGRAM_IMAGES: Record<string, string[]> = {
@@ -97,8 +68,8 @@ export default async function ProgramPage({ params }: Props) {
   const localImages = PROGRAM_IMAGES[slug] || []
   const galleryImages = [...cardImageUrls, ...localImages].slice(0, 8)
 
-  // Videos for sticky story
-  const storyVideos = PROGRAM_VIDEOS[slug] || []
+  // Videos for sticky story — served from Sanity CDN
+  const storyVideos = PROGRAM_STORY_VIDEOS[slug] || []
 
   // Build sticky story media
   const storyMedia = [
