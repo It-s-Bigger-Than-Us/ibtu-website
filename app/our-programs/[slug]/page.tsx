@@ -1,516 +1,246 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import TopNav from "@/components/layout/TopNav";
-import Footer from "@/components/layout/Footer";
-import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/fetch";
-import EventGallery3D from "@/components/sections/EventGallery3D";
-import ScrollText from "@/components/ui/ScrollText";
-import RevealOnScroll from "@/components/ui/RevealOnScroll";
-import StickyFlipbook from "@/components/ui/StickyFlipbook";
-import AnimatedHeadline from "@/components/ui/AnimatedHeadline";
+import type { Metadata } from "next"
+import { notFound } from "next/navigation"
+import dynamic from "next/dynamic"
+import Link from "next/link"
+import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/fetch"
+import Footer from "@/components/layout/Footer"
+import AnimatedHeadline from "@/components/ui/AnimatedHeadline"
+import GoldTicker from "@/components/sections/GoldTicker"
 
-export const revalidate = 60;
+const ProgramHero = dynamic(() => import("@/components/sections/ProgramHero"), { ssr: false })
+const StickyStorySection = dynamic(() => import("@/components/sections/StickyStorySection"), { ssr: false })
+const StackingGallery = dynamic(() => import("@/components/sections/StackingGallery"), { ssr: false })
+const EventGallery3D = dynamic(() => import("@/components/sections/EventGallery3D"), { ssr: false })
+
+export const revalidate = 60
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>
+}
+
+/* Program-to-video mapping for sticky story sections */
+const PROGRAM_VIDEOS: Record<string, string[]> = {
+  'fire-relief': [
+    '/videos/site-clips/program-fire-relief/landscape/fire-highlight1.mp4',
+    '/videos/site-clips/program-fire-relief/landscape/fire-rebuild1.mp4',
+  ],
+  'youth-programming': [
+    '/videos/site-clips/program-youth/landscape/youth-bhes1.mp4',
+    '/videos/site-clips/program-youth/landscape/youth-wright1.mp4',
+  ],
+  'back-to-school': [
+    '/videos/site-clips/program-b2s/landscape/b2s-venice1.mp4',
+    '/videos/site-clips/program-b2s/landscape/b2s-venice2.mp4',
+  ],
+  'coastal-care': [
+    '/videos/site-clips/program-coastal/landscape/coastal-cleanup1.mp4',
+    '/videos/site-clips/program-coastal/landscape/coastal-cleanup2.mp4',
+  ],
+  'community-health': [
+    '/videos/site-clips/program-community-health/landscape/ch-mlk-parade1.mp4',
+    '/videos/site-clips/program-community-health/landscape/ch-rams-event.mp4',
+  ],
+  'giving-season': [
+    '/videos/site-clips/program-giving/landscape/gs-cd8-event.mp4',
+    '/videos/site-clips/program-giving/landscape/gs-production1.mp4',
+  ],
+  'wellness': [
+    '/videos/site-clips/program-wellness/landscape/well-yoga-beach1.mp4',
+    '/videos/site-clips/program-wellness/landscape/well-yoga-beach2.mp4',
+  ],
+}
+
+/* Program-to-image mapping for stacking gallery */
+const PROGRAM_IMAGES: Record<string, string[]> = {
+  'fire-relief': ['/images/fire-relief/IMG_5382.jpg', '/images/fire-relief/IMG_5406.jpg', '/images/fire-relief/IMG_5508.jpg', '/images/fire-relief/IMG_5608.jpg'],
+  'back-to-school': ['/images/b2s/_D5A7392.jpg', '/images/b2s/_D5A7224.jpg', '/images/b2s/2V8A1964.jpg', '/images/b2s/_D5A5912.jpg'],
+  'coastal-care': ['/images/coastal/IMG_0024.jpg', '/images/coastal/IMG_0267.jpg', '/images/coastal/IMG_1796.jpg', '/images/coastal/IMG_1810.jpg'],
+  'wellness': ['/images/wellness/IMG_0007.jpg', '/images/wellness/IMG_0279.jpg', '/images/wellness/IMG_1554.jpg', '/images/wellness/IMG_1583.jpg'],
+  'youth-programming': ['/images/school/IMG_5608.jpg', '/images/school/IMG_5629.jpg', '/images/school/IMG_4674.jpg', '/images/school/IMG_5612.jpg'],
 }
 
 export async function generateStaticParams() {
-  const programs = await getPrograms();
-  return programs.map((p: { slug: string }) => ({ slug: p.slug }));
+  const programs = await getPrograms()
+  return programs.map((p: { slug: string }) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
-  const program = await getProgramBySlug(slug);
-  if (!program) return {};
+  const { slug } = await params
+  const program = await getProgramBySlug(slug)
+  if (!program) return {}
   return {
     title: `${program.title} | IBTU`,
     description: program.tagline,
-  };
+  }
 }
 
 export default async function ProgramPage({ params }: Props) {
-  const { slug } = await params;
-  const program = await getProgramBySlug(slug);
-  if (!program) notFound();
+  const { slug } = await params
+  const program = await getProgramBySlug(slug)
+  if (!program) notFound()
 
-  const events = await getEventsByProgram(slug);
-  const upcomingEvents = events.filter((e: any) => e.status === "Upcoming" || e.status === "Active");
-  const pastEvents = events.filter((e: any) => e.status === "Closed");
+  const events = await getEventsByProgram(slug)
+  const pastEvents = events.filter((e: { status: string }) => e.status === "Closed")
 
   const stats = program.proofStats
-    ? program.proofStats.split("|").map((s: any) => s.trim())
-    : [];
+    ? program.proofStats.split("|").map((s: string) => s.trim())
+    : []
 
   const heroSrc = program.heroImage?.asset?._ref
-    ? `https://cdn.sanity.io/images/0m4ngfcw/production/${program.heroImage.asset._ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}`
-    : null;
+    ? `https://cdn.sanity.io/images/0m4ngfcw/production/${program.heroImage.asset._ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}?w=1920&q=90`
+    : null
+
+  // Build Sanity image URLs for card images
+  const cardImageUrls = (program.cardImages || [])
+    .map((img: { asset?: { _ref?: string } }) =>
+      img?.asset?._ref
+        ? `https://cdn.sanity.io/images/0m4ngfcw/production/${img.asset._ref.replace("image-", "").replace(/-(\w+)$/, ".$1")}?w=1600&q=85`
+        : ""
+    )
+    .filter(Boolean)
+
+  // Combine Sanity + local images for gallery
+  const localImages = PROGRAM_IMAGES[slug] || []
+  const galleryImages = [...cardImageUrls, ...localImages].slice(0, 8)
+
+  // Videos for sticky story
+  const storyVideos = PROGRAM_VIDEOS[slug] || []
+
+  // Build sticky story media
+  const storyMedia = [
+    ...(heroSrc ? [{ type: 'image' as const, src: heroSrc, alt: program.title }] : []),
+    ...storyVideos.map(src => ({ type: 'video' as const, src, alt: program.title })),
+    ...cardImageUrls.slice(0, 2).map((src: string) => ({ type: 'image' as const, src, alt: program.title })),
+  ].slice(0, 4)
 
   return (
-    <>
-      <TopNav />
-      <main style={{ background: "#000", minHeight: "100vh" }}>
+    <main style={{ background: "var(--ibtu-black)", minHeight: "100vh" }}>
 
-        {/* ──────────────────────────────────────────────
-            1. FULL-BLEED HERO IMAGE — separate from text
-        ────────────────────────────────────────────── */}
-        {heroSrc && (
-          <section style={{ width: "100%", height: "70vh", minHeight: "400px", overflow: "hidden" }}>
-            <img
-              src={heroSrc}
-              alt={`${program.title} — IBTU program`}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                filter: "saturate(1.15)",
-              }}
-            />
-          </section>
-        )}
-
-        {/* ──────────────────────────────────────────────
-            1b. PROGRAM INFO — on solid black, NO text over image
-        ────────────────────────────────────────────── */}
-        <section style={{ background: "#000", padding: "clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px)" }}>
-          <div style={{ maxWidth: "1200px" }}>
-            {/* Back link */}
-            <Link
-              href="/our-programs"
-              style={{
-                display: "inline-block",
-                fontSize: 12,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                color: "var(--gold)",
-                marginBottom: 48,
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 700,
-                textDecoration: "none",
-              }}
-            >
-              &larr; Our Programs
-            </Link>
-
-            {/* Pillar eyebrow */}
-            <div style={{
-              fontSize: 11,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "var(--gold)",
-              marginBottom: 20,
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 700,
-            }}>
-              {program.pillar}
-            </div>
-
-            {/* Program title — word-by-word animation, breaks across lines */}
-            <AnimatedHeadline
-              text={program.title}
-              as="h1"
-              scrollTrigger={false}
-              style={{
-                fontFamily: "'LOT', 'Bebas Neue', sans-serif",
-                fontSize: "clamp(60px, 12vw, 180px)",
-                lineHeight: 0.9,
-                letterSpacing: "-0.02em",
-                color: "#FFF",
-                marginBottom: 36,
-                textTransform: "uppercase",
-              }}
-            />
-
-            {/* Tagline */}
-            <p style={{
-              fontSize: "clamp(17px, 1.5vw, 22px)",
-              color: "#fff",
-              maxWidth: 700,
-              lineHeight: 1.7,
-              marginBottom: 48,
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 500,
-            }}>
-              {program.tagline}
-            </p>
-
-            {/* CTA buttons */}
-            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-              {program.volunteerUrl && (
-                <a
-                  href={program.volunteerUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: "inline-block",
-                    background: "var(--gold)",
-                    color: "#000",
-                    padding: "18px 40px",
-                    borderRadius: "100px",
-                    fontFamily: "Poppins, sans-serif",
-                    fontSize: 12,
-                    letterSpacing: "3px",
-                    textTransform: "uppercase",
-                    fontWeight: 700,
-                    textDecoration: "none",
-                  }}
-                >
-                  Volunteer &rarr;
-                </a>
-              )}
-              <Link
-                href={`/donate/${slug}`}
-                style={{
-                  display: "inline-block",
-                  border: "2px solid #fff",
-                  color: "#FFF",
-                  padding: "18px 40px",
-                  borderRadius: "100px",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: 12,
-                  letterSpacing: "3px",
-                  textTransform: "uppercase",
-                  fontWeight: 700,
-                  textDecoration: "none",
-                }}
-              >
-                {program.ctaText}
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* ──────────────────────────────────────────────
-            2. PARALLAX PROGRAM TITLE — editorial impact
-        ────────────────────────────────────────────── */}
-        <section
-          style={{
-            background: "#000",
-            padding: "120px 0",
-            overflow: "hidden",
-          }}
-        >
-          <ScrollText
-            speed={0.4}
-            direction="left"
-            color="#FFC700"
-            size="clamp(80px, 15vw, 220px)"
-          >
-            {program.title}
-          </ScrollText>
-        </section>
-
-        {/* ──────────────────────────────────────────────
-            3. STATS STRIP — gold bar
-        ────────────────────────────────────────────── */}
-        {stats.length > 0 && (
-          <section
+      {/* ── 1. PROGRAM HERO — full-bleed photo ── */}
+      {heroSrc && (
+        <section style={{ width: "100%", height: "70vh", minHeight: "400px", overflow: "hidden" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={heroSrc}
+            alt={`${program.title} — IBTU program`}
             style={{
-              background: "#FFC700",
-              padding: "48px 80px",
-              overflowX: "auto",
-              WebkitOverflowScrolling: "touch",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              filter: "saturate(1.15) brightness(1.05)",
+            }}
+          />
+        </section>
+      )}
+
+      {/* ── 1b. PROGRAM NAME — below image, NOT over it ── */}
+      <section style={{
+        background: "var(--ibtu-black)",
+        padding: "clamp(48px, 6vw, 100px) clamp(32px, 5vw, 80px)",
+      }}>
+        <div style={{ maxWidth: "var(--content-max)" }}>
+          {/* Back link */}
+          <Link
+            href="/our-programs"
+            style={{
+              display: "inline-block",
+              fontFamily: "var(--font-body)",
+              fontSize: 12,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "var(--ibtu-gold)",
+              fontWeight: 700,
+              textDecoration: "none",
+              marginBottom: "32px",
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                gap: 60,
-                minWidth: "max-content",
-              }}
-            >
-              {stats.map((stat: any, i: number) => {
-                const parts = stat.split(" ");
-                const number = parts[0];
-                const label = parts.slice(1).join(" ");
-                return (
-                  <div
-                    key={i}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      borderRight: i < stats.length - 1 ? "1px solid #000" : "none",
-                      paddingRight: i < stats.length - 1 ? 60 : 0,
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontWeight: 900,
-                        fontSize: "clamp(32px, 4vw, 56px)",
-                        color: "#000",
-                        letterSpacing: "-1px",
-                        lineHeight: 1,
-                      }}
-                    >
-                      {number}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: 13,
-                        color: "#000",
-                        fontWeight: 600,
-                        marginTop: 6,
-                        textTransform: "uppercase",
-                        letterSpacing: "1px",
-                      }}
-                    >
-                      {label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-        )}
+            &larr; Our Programs
+          </Link>
 
-        {/* ──────────────────────────────────────────────
-            4. DESCRIPTION — editorial paragraph
-        ────────────────────────────────────────────── */}
-        <section
-          style={{
-            background: "#000",
-            padding: "140px 80px",
-          }}
-        >
-          <RevealOnScroll y={60} delay={0}>
-            <div style={{ maxWidth: 800 }}>
-              <p
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 400,
-                  fontSize: 22,
-                  color: "#fff",
-                  lineHeight: 1.8,
-                  letterSpacing: "0.2px",
-                  marginBottom: 48,
-                }}
-              >
-                {program.description}
-              </p>
-              <Link
-                href={`/donate/${slug}`}
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                  fontSize: 16,
-                  color: "#FFC700",
-                  textDecoration: "none",
-                  letterSpacing: "0.5px",
-                  borderBottom: "2px solid #FFC700",
-                  paddingBottom: 4,
-                }}
-              >
-                Support This Program &rarr;
-              </Link>
-            </div>
-          </RevealOnScroll>
-        </section>
-
-        {/* ──────────────────────────────────────────────
-            4b. STICKY FLIPBOOK — program photos
-        ────────────────────────────────────────────── */}
-        {program.cardImages && program.cardImages.length > 0 && (
-          <StickyFlipbook
-            images={program.cardImages.map((img: any, i: number) => ({
-              src: img?.asset?._ref
-                ? `https://cdn.sanity.io/images/0m4ngfcw/production/${img.asset._ref.replace("image-", "").replace(/-(\w+)$/, ".$1")}?w=1600`
-                : "",
-              alt: `${program.title} photo ${i + 1}`,
-              caption: i === 0 ? program.tagline : undefined,
-            })).filter((img: any) => img.src)}
-            height="300vh"
-          />
-        )}
-
-        {/* ──────────────────────────────────────────────
-            5. UPCOMING EVENTS — staggered reveal cards
-        ────────────────────────────────────────────── */}
-        {upcomingEvents.length > 0 && (
-          <section style={{ padding: "120px 80px 80px 80px" }}>
-            <RevealOnScroll y={40} delay={0}>
-              <h2
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 900,
-                  fontSize: "clamp(36px, 5vw, 64px)",
-                  color: "#FFC700",
-                  marginBottom: 48,
-                  lineHeight: 0.95,
-                  letterSpacing: "-1px",
-                  textTransform: "uppercase",
-                }}
-              >
-                Upcoming
-              </h2>
-            </RevealOnScroll>
-            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-              {upcomingEvents.map((ev: any, i: number) => (
-                <RevealOnScroll key={i} y={50} delay={i * 0.12}>
-                  <div
-                    style={{
-                      background: "#0A0A0A",
-                      border: "1px solid var(--gold)",
-                      padding: "36px 40px",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "flex-start",
-                      gap: 32,
-                    }}
-                  >
-                    <div style={{ flex: 1 }}>
-                      <span
-                        style={{
-                          display: "inline-block",
-                          background: "#FFC700",
-                          color: "#000",
-                          fontSize: 10,
-                          letterSpacing: "2px",
-                          fontWeight: 700,
-                          padding: "5px 12px",
-                          marginBottom: 16,
-                          fontFamily: "Poppins, sans-serif",
-                          textTransform: "uppercase",
-                        }}
-                      >
-                        {ev.status}
-                      </span>
-                      <div
-                        style={{
-                          fontFamily: "Poppins, sans-serif",
-                          fontWeight: 900,
-                          fontSize: "clamp(20px, 2.2vw, 28px)",
-                          color: "#FFF",
-                          lineHeight: 1.1,
-                          marginBottom: 10,
-                          textTransform: "uppercase",
-                        }}
-                      >
-                        {ev.title}
-                      </div>
-                      <div
-                        style={{
-                          fontFamily: "Poppins, sans-serif",
-                          fontSize: 14,
-                          color: "#fff",
-                          lineHeight: 1.5,
-                        }}
-                      >
-                        {ev.location}
-                        {ev.proofStats && <> &middot; {ev.proofStats}</>}
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        textAlign: "right",
-                        whiteSpace: "nowrap",
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: 13,
-                        color: "#FFC700",
-                        fontWeight: 600,
-                        paddingTop: 4,
-                      }}
-                    >
-                      {ev.dateStart}
-                      {ev.dateEnd && <> &ndash; {ev.dateEnd}</>}
-                    </div>
-                  </div>
-                </RevealOnScroll>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* ──────────────────────────────────────────────
-            6. PAST EVENTS — 3D Gallery
-        ────────────────────────────────────────────── */}
-        {pastEvents.length > 0 && (
-          <section style={{ padding: "40px 80px 120px 80px" }}>
-            <EventGallery3D events={pastEvents} />
-          </section>
-        )}
-
-        {/* Key Partners section removed per Molly's direction */}
-
-        {/* ──────────────────────────────────────────────
-            8. CTA — gold section
-        ────────────────────────────────────────────── */}
-        <section
-          style={{
-            background: "#FFC700",
-            padding: "100px 80px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 48,
-            flexWrap: "wrap",
-          }}
-        >
-          <div style={{ flex: 1, minWidth: 280 }}>
-            <h2
-              style={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 900,
-                fontSize: "clamp(40px, 6vw, 80px)",
-                lineHeight: 0.92,
-                letterSpacing: "-2px",
-                color: "#000",
-                marginBottom: 16,
-                textTransform: "uppercase",
-              }}
-            >
-              {program.ctaText}
-            </h2>
-            {program.allTimeServed && (
-              <p
-                style={{
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: 16,
-                  color: "#000",
-                  maxWidth: 500,
-                  lineHeight: 1.6,
-                }}
-              >
-                {program.allTimeServed}
-              </p>
-            )}
+          {/* Pillar eyebrow */}
+          <div style={{
+            fontFamily: "var(--font-body)",
+            fontSize: 11,
+            letterSpacing: "4px",
+            textTransform: "uppercase",
+            color: "var(--ibtu-gold)",
+            fontWeight: 700,
+            marginBottom: 20,
+          }}>
+            {program.pillar}
           </div>
+
+          {/* Program title — word-by-word stagger */}
+          <AnimatedHeadline
+            text={program.title}
+            as="h1"
+            size="hero"
+            color="var(--ibtu-white)"
+            scrollTrigger={false}
+            style={{ marginBottom: 12 }}
+          />
+
+          {/* Gold accent bar — animates to full width */}
+          <div
+            style={{
+              height: "4px",
+              background: "var(--ibtu-gold)",
+              marginBottom: 36,
+              animation: "goldBarGrow 1s var(--ease-out-expo) forwards",
+              transformOrigin: "left",
+            }}
+          />
+
+          {/* Tagline */}
+          <p style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "var(--body-lg)",
+            color: "var(--ibtu-white)",
+            maxWidth: 700,
+            lineHeight: 1.7,
+            fontWeight: 500,
+            marginBottom: 48,
+          }}>
+            {program.tagline}
+          </p>
+
+          {/* CTA buttons */}
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             {program.volunteerUrl && (
               <a
                 href={program.volunteerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="sparkle-stroke"
                 style={{
                   display: "inline-block",
-                  background: "#000",
-                  color: "#FFC700",
-                  padding: "18px 44px",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: 12,
-                  letterSpacing: "3px",
+                  background: "var(--ibtu-gold)",
+                  color: "var(--ibtu-black)",
+                  padding: "16px 40px",
+                  borderRadius: "4px",
+                  fontFamily: "var(--font-body)",
+                  fontSize: 13,
+                  letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   fontWeight: 700,
                   textDecoration: "none",
                 }}
               >
-                Volunteer &rarr;
+                Volunteer →
               </a>
             )}
             <Link
               href={`/donate/${slug}`}
+              className="holo-glass"
               style={{
                 display: "inline-block",
-                border: "2px solid #000",
-                color: "#000",
-                padding: "18px 44px",
-                fontFamily: "Poppins, sans-serif",
-                fontSize: 12,
-                letterSpacing: "3px",
+                background: "var(--ibtu-white)",
+                color: "var(--ibtu-black)",
+                padding: "16px 40px",
+                borderRadius: "4px",
+                fontFamily: "var(--font-body)",
+                fontSize: 13,
+                letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 fontWeight: 700,
                 textDecoration: "none",
@@ -519,10 +249,180 @@ export default async function ProgramPage({ params }: Props) {
               Support This Program
             </Link>
           </div>
-        </section>
+        </div>
+      </section>
 
-      </main>
+      {/* ── 2. STICKY STORY — pinned left text + right media swaps ── */}
+      {storyMedia.length > 1 && (
+        <StickyStorySection
+          text={{
+            heading: "The Story",
+            body: program.description || program.tagline || "",
+          }}
+          media={storyMedia}
+        />
+      )}
+
+      {/* ── 3. PROGRAM STATS — gold cards ── */}
+      {stats.length > 0 && (
+        <section style={{
+          background: "var(--ibtu-gold)",
+          padding: "clamp(48px, 6vw, 80px) clamp(32px, 5vw, 80px)",
+        }}>
+          <div style={{
+            maxWidth: "var(--content-max)",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: `repeat(${Math.min(stats.length, 4)}, 1fr)`,
+            gap: "var(--grid-gap)",
+          }}>
+            {stats.map((stat: string, i: number) => {
+              const parts = stat.split(" ")
+              const number = parts[0]
+              const label = parts.slice(1).join(" ")
+              return (
+                <div
+                  key={i}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "clamp(20px, 3vw, 40px)",
+                  }}
+                >
+                  <span style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(32px, 5vw, 64px)",
+                    color: "var(--ibtu-black)",
+                    lineHeight: 1,
+                  }}>
+                    {number}
+                  </span>
+                  <span style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--body-sm)",
+                    fontWeight: 600,
+                    color: "var(--ibtu-black)",
+                    textTransform: "uppercase",
+                    letterSpacing: "1px",
+                    marginTop: 8,
+                  }}>
+                    {label}
+                  </span>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* ── 4. STACKING GALLERY — images slide + stack on scroll ── */}
+      {galleryImages.length > 2 && (
+        <StackingGallery
+          images={galleryImages.map((src: string, i: number) => ({
+            src,
+            alt: `${program.title} — photo ${i + 1}`,
+          }))}
+        />
+      )}
+
+      {/* ── 5. PAST EVENTS ── */}
+      {pastEvents.length > 0 && (
+        <section style={{ padding: "var(--section-pad) clamp(32px, 5vw, 80px)" }}>
+          <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
+            <AnimatedHeadline
+              text="Past Events"
+              as="h2"
+              size="section"
+              color="var(--ibtu-white)"
+              style={{ marginBottom: 48 }}
+            />
+            <EventGallery3D events={pastEvents} />
+          </div>
+        </section>
+      )}
+
+      {/* ── 6. PROGRAM CTA ── */}
+      <section style={{
+        background: "var(--ibtu-gold)",
+        padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)",
+      }}>
+        <div style={{
+          maxWidth: "var(--content-max)",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 48,
+          flexWrap: "wrap",
+        }}>
+          <div style={{ flex: 1, minWidth: 280 }}>
+            <AnimatedHeadline
+              text={program.ctaText || "Support This Program"}
+              as="h2"
+              size="section"
+              color="var(--ibtu-black)"
+            />
+          </div>
+          <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+            {program.volunteerUrl && (
+              <a
+                href={program.volunteerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="sparkle-stroke"
+                style={{
+                  display: "inline-block",
+                  background: "var(--ibtu-black)",
+                  color: "var(--ibtu-gold)",
+                  padding: "16px 40px",
+                  borderRadius: "4px",
+                  fontFamily: "var(--font-body)",
+                  fontSize: 13,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                }}
+              >
+                Volunteer →
+              </a>
+            )}
+            <Link
+              href={`/donate/${slug}`}
+              style={{
+                display: "inline-block",
+                border: "2px solid var(--ibtu-black)",
+                color: "var(--ibtu-black)",
+                padding: "16px 40px",
+                borderRadius: "4px",
+                fontFamily: "var(--font-body)",
+                fontSize: 13,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                fontWeight: 700,
+                textDecoration: "none",
+              }}
+            >
+              Support This Program
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <Footer />
-    </>
-  );
+
+      {/* Gold bar animation */}
+      <style>{`
+        @keyframes goldBarGrow {
+          from { transform: scaleX(0); }
+          to { transform: scaleX(1); }
+        }
+        @media (max-width: 768px) {
+          section:has(.sticky-story) {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+    </main>
+  )
 }
