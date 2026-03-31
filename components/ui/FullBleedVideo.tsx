@@ -42,6 +42,7 @@ export default function FullBleedVideo({
       <video
         ref={videoRef}
         src={src}
+        crossOrigin="anonymous"
         playsInline
         autoPlay
         muted

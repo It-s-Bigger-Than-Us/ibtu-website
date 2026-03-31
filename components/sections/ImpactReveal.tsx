@@ -207,6 +207,7 @@ export default function ImpactReveal({ pillars, stats }: ImpactRevealProps) {
                 {pillar.videoSrc && (
                   <video
                     src={pillar.videoSrc}
+                    crossOrigin="anonymous"
                     playsInline
                     muted
                     loop

@@ -10,7 +10,7 @@ import { HERO_VIDEOS, PILLAR_VIDEOS, VOLUNTEER_VIDEOS, PROGRAM_HOVER_VIDEO } fro
 const HERO_VIDEO = HERO_VIDEOS.veniceEnergy
 
 const MISSION_MEDIA = [
-  { type: 'video' as const, src: HERO_VIDEOS.kidsDancing, alt: 'Kids dancing at IBTU event' },
+  { type: 'video' as const, src: PROGRAM_HOVER_VIDEO['back-to-school'], alt: 'Venice Back to School festival' },
   { type: 'image' as const, src: '/images/b2s/_D5A7392.jpg', alt: 'Back to School community event' },
   { type: 'video' as const, src: PILLAR_VIDEOS.youth.baldwinHills, alt: 'Youth programming at Baldwin Hills' },
   { type: 'video' as const, src: VOLUNTEER_VIDEOS.brentwoodTeam, alt: 'Volunteer team in action' },

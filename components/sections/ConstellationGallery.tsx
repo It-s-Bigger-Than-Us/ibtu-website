@@ -2,7 +2,7 @@
 
 import { useRef, useMemo, useState, useCallback } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Image as DreiImage, Text, MeshTransmissionMaterial } from '@react-three/drei'
+import { Image as DreiImage } from '@react-three/drei'
 import * as THREE from 'three'
 
 /* ═══════════════════════════════════════
@@ -113,20 +113,15 @@ function CenterLogo() {
       {/* Holographic ring */}
       <mesh ref={ringRef}>
         <torusGeometry args={[0.5, 0.04, 32, 128]} />
-        <MeshTransmissionMaterial
-          backside
-          samples={8}
-          thickness={0.2}
-          chromaticAberration={0.8}
-          anisotropy={0.5}
-          distortion={0.3}
-          distortionScale={0.2}
-          temporalDistortion={0.2}
+        <meshPhysicalMaterial
+          color="#ffffff"
+          metalness={0.3}
+          roughness={0.1}
           iridescence={1}
           iridescenceIOR={1.5}
           iridescenceThicknessRange={[100, 400]}
-          color="#ffffff"
-          transmissionSampler={false}
+          clearcoat={1}
+          clearcoatRoughness={0.05}
         />
       </mesh>
 
@@ -142,17 +137,11 @@ function CenterLogo() {
             clearcoatRoughness={0.1}
           />
         </mesh>
-        <Text
-          position={[0, 0, 0.025]}
-          fontSize={0.12}
-          font="/fonts/Poppins-Black.ttf"
-          color="#000000"
-          anchorX="center"
-          anchorY="middle"
-          letterSpacing={0.05}
-        >
-          IBTU
-        </Text>
+        {/* Geometric IBTU mark — no font dependency */}
+        <mesh position={[0, 0, 0.025]}>
+          <boxGeometry args={[0.15, 0.15, 0.01]} />
+          <meshPhysicalMaterial color="#000000" />
+        </mesh>
       </group>
     </group>
   )

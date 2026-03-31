@@ -198,10 +198,12 @@ export default function MissionSplit({
             {item.type === 'video' ? (
               <video
                 src={item.src}
+                crossOrigin="anonymous"
                 playsInline
+                autoPlay
                 muted
                 loop
-                preload="metadata"
+                preload="auto"
                 style={{
                   width: '100%',
                   height: '100%',

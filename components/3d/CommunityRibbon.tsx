@@ -2,7 +2,7 @@
 
 import { useRef, useMemo, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Text } from '@react-three/drei'
+/* No drei Text — font file not available on deployment */
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -125,19 +125,11 @@ function Ribbon({ scrollProgress }: { scrollProgress: { value: number } }) {
         />
       </mesh>
 
-      {/* Text on ribbon */}
-      <Text
-        position={[0, 0, 0.18]}
-        fontSize={0.15}
-        font="/fonts/Poppins-Black.ttf"
-        color="#FFC700"
-        anchorX="center"
-        anchorY="middle"
-        letterSpacing={0.2}
-        maxWidth={6}
-      >
-        COMMUNITY IS THE INFRASTRUCTURE
-      </Text>
+      {/* Gold accent bar on ribbon surface */}
+      <mesh position={[0, 0, 0.18]}>
+        <boxGeometry args={[3, 0.06, 0.01]} />
+        <meshPhysicalMaterial color="#FFC700" metalness={0.8} roughness={0.1} />
+      </mesh>
     </group>
   )
 }

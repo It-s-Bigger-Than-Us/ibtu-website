@@ -2,8 +2,13 @@
 
 import { useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Text, RoundedBox } from '@react-three/drei'
+import { RoundedBox } from '@react-three/drei'
 import * as THREE from 'three'
+
+/* ═══════════════════════════════════════
+   NAV COIN — 3D spinning gold coin
+   No font dependencies — uses geometry only
+═══════════════════════════════════════ */
 
 function SpinningCoin({ hovered }: { hovered: boolean }) {
   const groupRef = useRef<THREE.Group>(null)
@@ -30,45 +35,19 @@ function SpinningCoin({ hovered }: { hovered: boolean }) {
         />
       </RoundedBox>
 
-      {/* Front face text */}
-      <Text
-        position={[0, 0.15, 0.09]}
-        fontSize={0.35}
-        font="/fonts/Poppins-Black.ttf"
-        color="#000000"
-        anchorX="center"
-        anchorY="middle"
-        letterSpacing={0.05}
-      >
-        IBTU
-      </Text>
-      <Text
-        position={[0, -0.25, 0.09]}
-        fontSize={0.1}
-        font="/fonts/Poppins-Bold.ttf"
-        color="#000000"
-        anchorX="center"
-        anchorY="middle"
-        letterSpacing={0.15}
-      >
-        EST. 2020
-      </Text>
+      {/* Center emblem — geometric IBTU mark */}
+      <mesh position={[0, 0, 0.09]}>
+        <boxGeometry args={[0.6, 0.6, 0.02]} />
+        <meshPhysicalMaterial color="#000000" metalness={0.5} roughness={0.3} />
+      </mesh>
 
-      {/* Back face text */}
-      <Text
-        position={[0, 0, -0.09]}
-        fontSize={0.12}
-        font="/fonts/Poppins-Bold.ttf"
-        color="#000000"
-        anchorX="center"
-        anchorY="middle"
-        rotation={[0, Math.PI, 0]}
-        letterSpacing={0.08}
-      >
-        COMMUNITY IS{'\n'}THE INFRASTRUCTURE
-      </Text>
+      {/* Inner gold square */}
+      <mesh position={[0, 0, 0.1]}>
+        <boxGeometry args={[0.4, 0.4, 0.02]} />
+        <meshPhysicalMaterial color="#FFC700" metalness={0.9} roughness={0.1} />
+      </mesh>
 
-      {/* Iridescent rim ring — using Physical instead of Transmission for perf */}
+      {/* Iridescent rim ring */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[0.95, 0.04, 16, 64]} />
         <meshPhysicalMaterial
@@ -83,7 +62,7 @@ function SpinningCoin({ hovered }: { hovered: boolean }) {
         />
       </mesh>
 
-      {/* Edge detail — small dots around rim */}
+      {/* Edge detail dots */}
       {Array.from({ length: 12 }).map((_, i) => {
         const angle = (i / 12) * Math.PI * 2
         return (
