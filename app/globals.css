@@ -182,11 +182,24 @@ section, main {
   max-width: 100vw;
 }
 
-/* ALL videos fill their container — no dead space, no letterboxing */
-video {
+/* ALL media fills containers — no dead space, no letterboxing, no black bars */
+video,
+img:not([data-nofill]) {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Containers that hold media must stretch to fill their parent */
+[style*="position: absolute"][style*="inset: 0"] > video,
+[style*="position: absolute"][style*="inset: 0"] > img,
+[style*="aspectRatio"] > video,
+[style*="aspectRatio"] > img,
+[style*="aspect-ratio"] > video,
+[style*="aspect-ratio"] > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
 }
 
 /* ═══════════════════════════════════════
