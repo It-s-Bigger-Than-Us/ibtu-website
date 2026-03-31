@@ -182,6 +182,13 @@ section, main {
   max-width: 100vw;
 }
 
+/* ALL videos fill their container — no dead space, no letterboxing */
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* ═══════════════════════════════════════
    TOP NAVIGATION
 ═══════════════════════════════════════ */
