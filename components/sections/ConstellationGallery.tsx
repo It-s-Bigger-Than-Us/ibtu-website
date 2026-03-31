@@ -1,14 +1,15 @@
 'use client'
 
-import { useRef, useMemo, useState, useCallback } from 'react'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { Image as DreiImage } from '@react-three/drei'
-import * as THREE from 'three'
+import { useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
-   CONSTELLATION GALLERY — 3D scattered photo cloud
-   Cursor-driven rotation, passive drift,
-   click-to-expand, gold logo center with holo ring
+   CONSTELLATION GALLERY — parallax photo grid
+   with cursor-driven depth + hover expand
+   Reliable CSS-based, no WebGL dependency
 ═══════════════════════════════════════ */
 
 interface GalleryItem {
@@ -17,214 +18,6 @@ interface GalleryItem {
   program?: string
 }
 
-// ── Individual floating photo ──
-function FloatingPhoto({
-  src,
-  position,
-  rotation,
-  size,
-  onClick,
-  isSelected,
-  isOtherSelected,
-}: {
-  src: string
-  position: [number, number, number]
-  rotation: [number, number, number]
-  size: [number, number]
-  onClick: () => void
-  isSelected: boolean
-  isOtherSelected: boolean
-}) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  const time = useRef(Math.random() * 100)
-
-  useFrame((_, delta) => {
-    if (!meshRef.current) return
-    time.current += delta
-
-    // Gentle floating motion
-    meshRef.current.position.y =
-      position[1] + Math.sin(time.current * 0.5 + position[0]) * 0.08
-
-    // Target opacity based on selection state
-    const targetOpacity = isOtherSelected && !isSelected ? 0.15 : 1
-    const mat = meshRef.current.material as THREE.MeshBasicMaterial
-    if (mat.opacity !== undefined) {
-      mat.opacity += (targetOpacity - mat.opacity) * 0.08
-    }
-
-    // If selected, animate to center
-    if (isSelected) {
-      meshRef.current.position.x += (0 - meshRef.current.position.x) * 0.06
-      meshRef.current.position.y += (0 - meshRef.current.position.y) * 0.06
-      meshRef.current.position.z += (2 - meshRef.current.position.z) * 0.06
-      meshRef.current.rotation.x += (0 - meshRef.current.rotation.x) * 0.06
-      meshRef.current.rotation.y += (0 - meshRef.current.rotation.y) * 0.06
-      meshRef.current.scale.x += (2.5 - meshRef.current.scale.x) * 0.06
-      meshRef.current.scale.y += (2.5 - meshRef.current.scale.y) * 0.06
-    } else {
-      meshRef.current.position.x += (position[0] - meshRef.current.position.x) * 0.04
-      meshRef.current.position.z += (position[2] - meshRef.current.position.z) * 0.04
-      meshRef.current.scale.x += (1 - meshRef.current.scale.x) * 0.06
-      meshRef.current.scale.y += (1 - meshRef.current.scale.y) * 0.06
-    }
-  })
-
-  return (
-    <mesh
-      ref={meshRef}
-      position={position}
-      rotation={rotation}
-      onClick={(e) => {
-        e.stopPropagation()
-        onClick()
-      }}
-    >
-      <planeGeometry args={size} />
-      <meshBasicMaterial transparent opacity={1}>
-        <DreiImage
-          url={src}
-          transparent
-          opacity={1}
-          scale={size}
-          position={[0, 0, 0.001]}
-        />
-      </meshBasicMaterial>
-    </mesh>
-  )
-}
-
-// ── Center logo with holographic ring ──
-function CenterLogo() {
-  const ringRef = useRef<THREE.Mesh>(null)
-  const logoRef = useRef<THREE.Group>(null)
-
-  useFrame((_, delta) => {
-    if (logoRef.current) {
-      logoRef.current.rotation.y += delta * 0.3
-    }
-    if (ringRef.current) {
-      ringRef.current.rotation.z += delta * 0.15
-    }
-  })
-
-  return (
-    <group>
-      {/* Holographic ring */}
-      <mesh ref={ringRef}>
-        <torusGeometry args={[0.5, 0.04, 32, 128]} />
-        <meshPhysicalMaterial
-          color="#ffffff"
-          metalness={0.3}
-          roughness={0.1}
-          iridescence={1}
-          iridescenceIOR={1.5}
-          iridescenceThicknessRange={[100, 400]}
-          clearcoat={1}
-          clearcoatRoughness={0.05}
-        />
-      </mesh>
-
-      {/* Gold center disc */}
-      <group ref={logoRef}>
-        <mesh>
-          <cylinderGeometry args={[0.35, 0.35, 0.04, 32]} />
-          <meshPhysicalMaterial
-            color="#FFC700"
-            metalness={0.85}
-            roughness={0.15}
-            clearcoat={1}
-            clearcoatRoughness={0.1}
-          />
-        </mesh>
-        {/* Geometric IBTU mark — no font dependency */}
-        <mesh position={[0, 0, 0.025]}>
-          <boxGeometry args={[0.15, 0.15, 0.01]} />
-          <meshPhysicalMaterial color="#000000" />
-        </mesh>
-      </group>
-    </group>
-  )
-}
-
-// ── Scene with cursor tracking ──
-function ConstellationScene({
-  items,
-  selectedIndex,
-  onSelect,
-}: {
-  items: GalleryItem[]
-  selectedIndex: number | null
-  onSelect: (i: number | null) => void
-}) {
-  const groupRef = useRef<THREE.Group>(null)
-  const { viewport } = useThree()
-  const mouseRef = useRef({ x: 0, y: 0 })
-  const driftAngle = useRef(0)
-
-  // Generate scattered positions
-  const positions = useMemo(() => {
-    return items.map((_, i) => {
-      const angle = (i / items.length) * Math.PI * 2
-      const radius = 1.8 + Math.random() * 2.5
-      const x = Math.cos(angle) * radius + (Math.random() - 0.5) * 1.2
-      const y = (Math.random() - 0.5) * 3
-      const z = (Math.random() - 0.5) * 2.5
-
-      // Size variation: 60% small, 30% medium, 10% large
-      const sizeRoll = Math.random()
-      const w = sizeRoll < 0.6 ? 0.8 : sizeRoll < 0.9 ? 1.1 : 1.4
-      const h = w * 0.75
-
-      const rx = (Math.random() - 0.5) * 0.3
-      const ry = (Math.random() - 0.5) * 0.3
-
-      return {
-        position: [x, y, z] as [number, number, number],
-        rotation: [rx, ry, 0] as [number, number, number],
-        size: [w, h] as [number, number],
-      }
-    })
-  }, [items.length])
-
-  useFrame((state, delta) => {
-    if (!groupRef.current) return
-
-    // Cursor-driven rotation
-    const pointer = state.pointer
-    const targetX = pointer.y * 0.2
-    const targetY = pointer.x * 0.3
-
-    // When idle, auto-drift
-    driftAngle.current += delta * 0.05
-
-    const finalX = targetX || Math.sin(driftAngle.current) * 0.05
-    const finalY = targetY || driftAngle.current * 0.3
-
-    groupRef.current.rotation.x += (finalX - groupRef.current.rotation.x) * 0.03
-    groupRef.current.rotation.y += (finalY - groupRef.current.rotation.y) * 0.03
-  })
-
-  return (
-    <group ref={groupRef}>
-      <CenterLogo />
-      {items.map((item, i) => (
-        <FloatingPhoto
-          key={i}
-          src={item.src}
-          position={positions[i].position}
-          rotation={positions[i].rotation}
-          size={positions[i].size}
-          onClick={() => onSelect(selectedIndex === i ? null : i)}
-          isSelected={selectedIndex === i}
-          isOtherSelected={selectedIndex !== null && selectedIndex !== i}
-        />
-      ))}
-    </group>
-  )
-}
-
-// ── Main component ──
 interface ConstellationGalleryProps {
   items: GalleryItem[]
   title?: string
@@ -234,46 +27,171 @@ export default function ConstellationGallery({
   items,
   title = '(EXPLORE OUR IMPACT)',
 }: ConstellationGalleryProps) {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
-  const handleSelect = useCallback((i: number | null) => {
-    setSelectedIndex(i)
+  // Cursor-driven parallax on the grid
+  useEffect(() => {
+    if (!sectionRef.current || !gridRef.current) return
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!gridRef.current || !sectionRef.current) return
+      const rect = sectionRef.current.getBoundingClientRect()
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2
+      gsap.to(gridRef.current, {
+        rotateY: x * 3,
+        rotateX: -y * 2,
+        duration: 0.8,
+        ease: 'power2.out',
+      })
+    }
+
+    sectionRef.current.addEventListener('mousemove', handleMouseMove)
+    const ref = sectionRef.current
+    return () => ref.removeEventListener('mousemove', handleMouseMove)
   }, [])
+
+  // Scroll-triggered stagger entrance
+  useEffect(() => {
+    if (!gridRef.current) return
+    const cards = gridRef.current.querySelectorAll('.constellation-card')
+    if (!cards.length) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(cards,
+        { opacity: 0, scale: 0.8, y: 40 },
+        {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          stagger: 0.06,
+          duration: 0.7,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 80%',
+            once: true,
+          },
+        }
+      )
+    }, gridRef)
+
+    return () => ctx.revert()
+  }, [items])
+
+  // Use up to 18 items
+  const displayItems = items.slice(0, 18)
 
   return (
     <section
+      ref={sectionRef}
       style={{
-        position: 'relative',
-        height: '100vh',
         background: 'var(--ibtu-black)',
+        padding: 'var(--section-pad) clamp(32px, 5vw, 80px)',
         overflow: 'hidden',
+        perspective: '1200px',
       }}
-      onClick={() => selectedIndex !== null && setSelectedIndex(null)}
     >
       {/* Section label */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 'clamp(24px, 4vw, 48px)',
-          left: 'clamp(32px, 5vw, 80px)',
-          zIndex: 10,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(10px, 0.8vw, 12px)',
-            letterSpacing: '3px',
-            textTransform: 'uppercase',
-            fontWeight: 700,
-            color: 'var(--ibtu-gold)',
-          }}
-        >
+      <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto 48px' }}>
+        <span style={{
+          fontFamily: 'var(--font-body)',
+          fontSize: 'clamp(10px, 0.8vw, 12px)',
+          letterSpacing: '3px',
+          textTransform: 'uppercase',
+          fontWeight: 700,
+          color: 'var(--ibtu-gold)',
+        }}>
           {title}
         </span>
       </div>
 
-      {/* Screen reader alternative for 3D gallery */}
+      {/* Parallax grid */}
+      <div
+        ref={gridRef}
+        style={{
+          maxWidth: 'var(--content-max)',
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+          gap: '12px',
+          transformStyle: 'preserve-3d',
+        }}
+      >
+        {displayItems.map((item, i) => {
+          const isHovered = hoveredIndex === i
+          const isOtherHovered = hoveredIndex !== null && hoveredIndex !== i
+
+          return (
+            <div
+              key={i}
+              className="constellation-card"
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              style={{
+                position: 'relative',
+                aspectRatio: i % 5 === 0 ? '3/4' : '4/3',
+                borderRadius: '8px',
+                overflow: 'hidden',
+                cursor: 'pointer',
+                opacity: 0,
+                transform: isHovered
+                  ? 'scale(1.05) translateZ(30px)'
+                  : isOtherHovered
+                    ? 'scale(0.97) translateZ(-10px)'
+                    : 'translateZ(0)',
+                transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, box-shadow 0.4s',
+                boxShadow: isHovered
+                  ? '0 20px 60px rgba(255, 199, 0, 0.2), 0 0 0 2px var(--ibtu-gold)'
+                  : '0 4px 20px rgba(0, 0, 0, 0.4)',
+                filter: isOtherHovered ? 'brightness(0.6)' : 'brightness(1)',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={item.src}
+                alt={item.title || item.program || `IBTU photo ${i + 1}`}
+                loading="lazy"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  filter: 'saturate(1.15)',
+                  transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                  transform: isHovered ? 'scale(1.08)' : 'scale(1)',
+                }}
+              />
+
+              {/* Gold info bar on hover */}
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                background: 'var(--ibtu-gold)',
+                padding: '10px 14px',
+                transform: isHovered ? 'translateY(0)' : 'translateY(100%)',
+                transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}>
+                <span style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  letterSpacing: '1px',
+                  textTransform: 'uppercase',
+                  color: 'var(--ibtu-black)',
+                }}>
+                  {item.title || item.program || ''}
+                </span>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Screen reader list */}
       <div className="sr-only" role="list" aria-label="Photo gallery">
         {items.map((item, i) => (
           <div key={i} role="listitem">
@@ -281,49 +199,6 @@ export default function ConstellationGallery({
           </div>
         ))}
       </div>
-
-      {/* Selected photo info overlay */}
-      {selectedIndex !== null && items[selectedIndex] && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 'clamp(24px, 4vw, 60px)',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            zIndex: 10,
-            background: 'var(--ibtu-gold)',
-            padding: '16px 32px',
-            borderRadius: '8px',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(18px, 2vw, 28px)',
-              textTransform: 'uppercase',
-              color: 'var(--ibtu-black)',
-            }}
-          >
-            {items[selectedIndex].title || items[selectedIndex].program || ''}
-          </span>
-        </div>
-      )}
-
-      <Canvas
-        camera={{ position: [0, 0, 6], fov: 50 }}
-        style={{ width: '100%', height: '100%' }}
-        gl={{ antialias: true }}
-      >
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[5, 5, 5]} intensity={0.6} />
-        <pointLight position={[-5, 3, -3]} intensity={0.4} color="#FFC700" />
-
-        <ConstellationScene
-          items={items}
-          selectedIndex={selectedIndex}
-          onSelect={handleSelect}
-        />
-      </Canvas>
     </section>
   )
 }

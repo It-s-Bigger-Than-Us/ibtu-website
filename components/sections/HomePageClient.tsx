@@ -103,14 +103,12 @@ export default function HomePageClient({
       {/* 6. Programs Grid — fold-out cards with holo borders + video hover */}
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
 
-      {/* 7. 3D Constellation Gallery (deferred load) */}
+      {/* 7. Photo Gallery — parallax grid with hover effects */}
       {galleryItems.length > 0 && (
-        <Canvas3DWrapper delay={3000} fallback={<SectionPlaceholder />}>
-          <ConstellationGallery
-            items={galleryItems}
-            title="(EXPLORE OUR IMPACT)"
-          />
-        </Canvas3DWrapper>
+        <ConstellationGallery
+          items={galleryItems}
+          title="(EXPLORE OUR IMPACT)"
+        />
       )}
 
       {/* 8. CTA — gold bg, sparkle + holo buttons */}
