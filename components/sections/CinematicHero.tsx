@@ -194,7 +194,7 @@ export default function CinematicHero({
         <h1
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'var(--display-hero)',
+            fontSize: 'clamp(48px, 12vw, 200px)',
             lineHeight: 0.92,
             textTransform: 'uppercase',
             color: 'var(--ibtu-black)',
@@ -204,6 +204,8 @@ export default function CinematicHero({
             flexWrap: 'wrap',
             justifyContent: 'center',
             gap: '0 0.25em',
+            padding: '0 24px',
+            maxWidth: '100%',
           }}
         >
           {titleWords.map((word, i) => (
@@ -336,12 +338,13 @@ export default function CinematicHero({
               style={{
                 display: 'block',
                 fontFamily: 'var(--font-display)',
-                fontSize: 'var(--display-hero)',
+                fontSize: 'clamp(40px, 10vw, 180px)',
                 lineHeight: 0.95,
                 textTransform: 'uppercase',
                 color: 'var(--ibtu-white)',
                 textAlign: 'center',
                 opacity: 0,
+                padding: '0 16px',
               }}
             >
               {line.text}
