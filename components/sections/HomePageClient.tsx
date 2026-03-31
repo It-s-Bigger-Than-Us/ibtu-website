@@ -9,6 +9,7 @@ const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#0
 
 const CinematicHero = dynamic(() => import('@/components/sections/CinematicHero'), { ssr: false, loading: SectionPlaceholder })
 const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: SectionPlaceholder })
+const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
 const ImpactReveal = dynamic(() => import('@/components/sections/ImpactReveal'), { ssr: false, loading: SectionPlaceholder })
 const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'), { ssr: false, loading: ShortPlaceholder })
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
@@ -74,7 +75,10 @@ export default function HomePageClient({
         media={missionMedia}
       />
 
-      {/* 4. Impact Reveal — shrinking headline + pillar cards + stat cards */}
+      {/* 4. Pillar Cubes — 3D rotating cubes per pillar */}
+      <PillarCubes />
+
+      {/* 5. Impact Reveal — shrinking headline + stat cards */}
       <ImpactReveal pillars={pillars} stats={stats} />
 
       {/* 5. Programs Grid — fold-out cards with holo borders + video hover */}
