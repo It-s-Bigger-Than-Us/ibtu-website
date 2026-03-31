@@ -51,7 +51,7 @@ const jsonLd = {
   telephone: "+1-323-207-0221",
   email: "info@itsbiggerthanusla.org",
   sameAs: [
-    "https://instagram.com/itsbiggerthanus",
+    "https://instagram.com/itsbiggerthanus_",
   ],
   nonprofitStatus: "Nonprofit501c3",
   taxID: "85-3136505",

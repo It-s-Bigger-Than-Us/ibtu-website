@@ -14,7 +14,7 @@ export default function ContactPage() {
     { label: "Volunteer", value: "volunteers@itsbiggerthanusla.org", href: "mailto:volunteers@itsbiggerthanusla.org" },
     { label: "Phone", value: "(323) 207-0221", href: "tel:+13232070221" },
     { label: "Address", value: "Baldwin Hills Crenshaw Plaza, Suite 224-226, 3650 W. Martin Luther King Jr. Blvd, Los Angeles, CA 90008", href: undefined },
-    { label: "Social", value: "@itsbiggerthanus", href: "https://instagram.com/itsbiggerthanus" },
+    { label: "Social", value: "@itsbiggerthanus_", href: "https://instagram.com/itsbiggerthanus_" },
   ];
 
   const subjectOptions = [

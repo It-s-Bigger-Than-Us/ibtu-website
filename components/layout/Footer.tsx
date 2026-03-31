@@ -189,7 +189,7 @@ export default function Footer() {
           {/* Social icons */}
           <div style={{ display: "flex", gap: "16px", justifyContent: "flex-end", marginTop: "16px" }}>
             <a
-              href="https://instagram.com/itsbiggerthanus"
+              href="https://instagram.com/itsbiggerthanus_"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -217,7 +217,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://www.tiktok.com/@itsbiggerthanus"
+              href="https://www.tiktok.com/@itsbiggerthanus_"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TikTok"
