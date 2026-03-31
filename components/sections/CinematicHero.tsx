@@ -104,17 +104,17 @@ export default function CinematicHero({
         videoRef.current?.play().catch(() => {})
       }, [], 0.45)
 
-      // Video splits down the center
+      // Video splits down the center — left half slides left, right reveals and slides right
       tl.to(phase3VideoLeftRef.current, {
-        clipPath: 'inset(0 100% 0 0)',
+        clipPath: 'inset(0 50% 0 0)',
         duration: 0.15,
         ease: 'expo.inOut',
       }, 0.55)
-      tl.to(phase3VideoRightRef.current, {
-        clipPath: 'inset(0 0 0 100%)',
-        duration: 0.15,
-        ease: 'expo.inOut',
-      }, 0.55)
+      tl.fromTo(phase3VideoRightRef.current,
+        { clipPath: 'inset(0 0 0 50%)' },
+        { clipPath: 'inset(0 0 0 100%)', duration: 0.15, ease: 'expo.inOut' },
+        0.55
+      )
 
       // Sacred text reveals behind split
       const mantraWords = phase3TextRef.current?.querySelectorAll('.mantra-word')
@@ -262,14 +262,14 @@ export default function CinematicHero({
           opacity: 0,
         }}
       >
-        {/* Left half of video */}
+        {/* Full-bleed video — starts full, splits on scroll */}
         <div
           ref={phase3VideoLeftRef}
           aria-hidden="true"
           style={{
             position: 'absolute',
             inset: 0,
-            clipPath: 'inset(0 50% 0 0)',
+            clipPath: 'inset(0 0 0 0)',
             zIndex: 2,
           }}
         >
@@ -283,21 +283,26 @@ export default function CinematicHero({
             loop
             preload="auto"
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              minWidth: '100%',
+              minHeight: '100%',
+              width: 'auto',
+              height: 'auto',
             }}
           />
         </div>
 
-        {/* Right half of video — shares same source, clipped differently */}
+        {/* Right half clone — hidden initially, revealed during split */}
         <div
           ref={phase3VideoRightRef}
           aria-hidden="true"
           style={{
             position: 'absolute',
             inset: 0,
-            clipPath: 'inset(0 0 0 50%)',
+            clipPath: 'inset(0 0 0 100%)',
             zIndex: 2,
           }}
         >
@@ -310,9 +315,14 @@ export default function CinematicHero({
             loop
             preload="auto"
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              minWidth: '100%',
+              minHeight: '100%',
+              width: 'auto',
+              height: 'auto',
             }}
           />
         </div>

@@ -12,7 +12,7 @@ const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
   'coastal-care': '/images/coastal/IMG_4838.jpg',
 }
 
-const HERO_VIDEO = HERO_VIDEOS.veniceEnergy
+const HERO_VIDEO = HERO_VIDEOS.brentwoodCrop
 
 const MISSION_MEDIA = [
   { type: 'image' as const, src: '/images/b2s/_D5A7392.jpg', alt: 'Back to School community event' },

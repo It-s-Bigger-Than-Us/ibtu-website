@@ -169,11 +169,20 @@ body {
   overflow-x: hidden;
 }
 
-/* Responsive text — prevent overflow on all headline elements */
+/* Display headlines fill their container width */
 h1, h2, h3, h4, [class*="headline"], [class*="display"] {
   overflow-wrap: break-word;
   word-break: break-word;
-  hyphens: auto;
+  text-align: justify;
+  text-align-last: justify;
+  text-justify: inter-word;
+}
+
+/* LOT display text — stretches to fill full width */
+[style*="font-display"], [style*="LOT"], [style*="var(--font-display)"] {
+  text-align: justify !important;
+  text-align-last: justify !important;
+  width: 100%;
 }
 
 /* Ensure sections don't overflow horizontally */
@@ -189,6 +198,12 @@ video, img {
 video {
   width: 100% !important;
   height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+}
+/* Absolute-positioned media parents must have dimensions */
+div:has(> video), div:has(> img) {
+  min-height: 1px;
 }
 
 /* ═══════════════════════════════════════
