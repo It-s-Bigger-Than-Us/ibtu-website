@@ -18,12 +18,12 @@ const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
 const HERO_VIDEO = HERO_VIDEOS.veniceEnergy
 
 const MISSION_MEDIA = [
-  { type: 'video' as const, src: PROGRAM_HOVER_VIDEO['back-to-school'], alt: 'Venice Back to School festival' },
   { type: 'image' as const, src: '/images/b2s/_D5A7392.jpg', alt: 'Back to School community event' },
+  { type: 'video' as const, src: PROGRAM_HOVER_VIDEO['back-to-school'], alt: 'Venice Back to School festival' },
+  { type: 'image' as const, src: '/images/coastal/IMG_4838.jpg', alt: 'Coastal Care beach cleanup' },
   { type: 'video' as const, src: PILLAR_VIDEOS.youth.baldwinHills, alt: 'Youth programming at Baldwin Hills' },
-  { type: 'video' as const, src: VOLUNTEER_VIDEOS.rebuildTeam, alt: 'Volunteer rebuild team in action' },
-  { type: 'image' as const, src: '/images/coastal/IMG_0024.jpg', alt: 'Coastal Care beach cleanup' },
-  { type: 'video' as const, src: PILLAR_VIDEOS.crisis.altadena, alt: 'Altadena community response' },
+  { type: 'image' as const, src: '/images/wellness/IMG_9922.jpg', alt: 'Community yoga and wellness' },
+  { type: 'video' as const, src: PILLAR_VIDEOS.crisis.rebuildTeaser, alt: 'Community rebuilding together' },
 ]
 
 const PILLARS = [

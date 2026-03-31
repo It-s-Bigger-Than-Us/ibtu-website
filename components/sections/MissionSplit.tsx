@@ -158,7 +158,6 @@ export default function MissionSplit({
               className="mission-word"
               style={{
                 display: 'inline-block',
-                opacity: 0,
                 marginRight: '0.25em',
               }}
             >
@@ -174,7 +173,6 @@ export default function MissionSplit({
             fontSize: 'var(--body-lg)',
             lineHeight: 1.7,
             color: 'var(--ibtu-white)',
-            opacity: 0,
             maxWidth: '480px',
           }}
         >
