@@ -5,23 +5,26 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import MenuDropdown from './MenuDropdown'
 import DonateButton from './DonateButton'
+import Canvas3DWrapper from '@/components/ui/Canvas3DWrapper'
+
+const NavCoinFallback = () => (
+  <div style={{
+    width: 64,
+    height: 64,
+    background: 'var(--ibtu-gold)',
+    borderRadius: '8px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }}>
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src="/ibtu-logo.svg" alt="IBTU" style={{ width: 40, height: 40, filter: 'brightness(0)' }} />
+  </div>
+)
 
 const NavCoin = dynamic(() => import('./NavCoin'), {
   ssr: false,
-  loading: () => (
-    <div style={{
-      width: 64,
-      height: 64,
-      background: 'var(--ibtu-gold)',
-      borderRadius: '8px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/ibtu-logo.svg" alt="IBTU" style={{ width: 40, height: 40, filter: 'brightness(0)' }} />
-    </div>
-  ),
+  loading: NavCoinFallback,
 })
 
 export default function TopNav() {
@@ -60,15 +63,9 @@ export default function TopNav() {
         onMouseLeave={() => setCoinHovered(false)}
       >
         <Link href="/" aria-label="IBTU Home" style={{ display: 'block' }}>
-          <Suspense fallback={
-            <div style={{
-              width: 64, height: 64,
-              background: 'var(--ibtu-gold)',
-              borderRadius: '8px',
-            }} />
-          }>
+          <Canvas3DWrapper delay={500} fallback={<NavCoinFallback />}>
             <NavCoin size={64} hovered={coinHovered} />
-          </Suspense>
+          </Canvas3DWrapper>
         </Link>
 
         {/* Hamburger — below coin */}

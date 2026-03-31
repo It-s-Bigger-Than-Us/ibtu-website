@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic'
 import GoldTicker from '@/components/sections/GoldTicker'
 import Footer from '@/components/layout/Footer'
+import Canvas3DWrapper from '@/components/ui/Canvas3DWrapper'
 
 const SectionPlaceholder = () => <div style={{ minHeight: '100vh', background: '#000' }} />
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
@@ -87,8 +88,10 @@ export default function HomePageClient({
       {/* 4. Impact Reveal — shrinking headline + pillar cards + stat cards */}
       <ImpactReveal pillars={pillars} stats={stats} />
 
-      {/* 5. 3D Community Ribbon — iridescent divider */}
-      <CommunityRibbon />
+      {/* 5. 3D Community Ribbon — iridescent divider (deferred load) */}
+      <Canvas3DWrapper delay={2000} fallback={<ShortPlaceholder />}>
+        <CommunityRibbon />
+      </Canvas3DWrapper>
 
       {/* 5b. Values Ticker — second instance */}
       <GoldTicker
@@ -100,12 +103,14 @@ export default function HomePageClient({
       {/* 6. Programs Grid — fold-out cards with holo borders + video hover */}
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
 
-      {/* 7. 3D Constellation Gallery */}
+      {/* 7. 3D Constellation Gallery (deferred load) */}
       {galleryItems.length > 0 && (
-        <ConstellationGallery
-          items={galleryItems}
-          title="(EXPLORE OUR IMPACT)"
-        />
+        <Canvas3DWrapper delay={3000} fallback={<SectionPlaceholder />}>
+          <ConstellationGallery
+            items={galleryItems}
+            title="(EXPLORE OUR IMPACT)"
+          />
+        </Canvas3DWrapper>
       )}
 
       {/* 8. CTA — gold bg, sparkle + holo buttons */}
