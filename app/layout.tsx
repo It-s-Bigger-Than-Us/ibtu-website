@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import TopNav from "@/components/layout/TopNav";
+import PageTransition from "@/components/ui/PageTransition";
 
 const poppins = Poppins({
   weight: ["300", "400", "600", "700", "900"],
@@ -77,7 +78,9 @@ export default function RootLayout({
       </head>
       <body>
         <TopNav />
-        {children}
+        <PageTransition>
+          {children}
+        </PageTransition>
       </body>
     </html>
   );
