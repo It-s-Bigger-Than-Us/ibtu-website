@@ -1,42 +1,31 @@
 'use client'
 
-import { useState, useEffect, useRef, Suspense } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import MenuDropdown from './MenuDropdown'
 import DonateButton from './DonateButton'
-import Canvas3DWrapper from '@/components/ui/Canvas3DWrapper'
-
-const NavCoinFallback = () => (
-  <div style={{
-    width: 64,
-    height: 64,
-    background: 'var(--ibtu-gold)',
-    borderRadius: '8px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }}>
-    {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img src="/ibtu-logo.svg" alt="IBTU" style={{ width: 40, height: 40, filter: 'brightness(0)' }} />
-  </div>
-)
-
-const NavCoin = dynamic(() => import('./NavCoin'), {
-  ssr: false,
-  loading: NavCoinFallback,
-})
+import gsap from 'gsap'
 
 export default function TopNav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [coinHovered, setCoinHovered] = useState(false)
-  const hamburgerRef = useRef<HTMLButtonElement>(null)
+  const logoRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Spin the logo continuously
+  useEffect(() => {
+    if (!logoRef.current) return
+    gsap.to(logoRef.current, {
+      rotateY: 360,
+      duration: 8,
+      ease: 'none',
+      repeat: -1,
+    })
   }, [])
 
   // Lock body scroll when menu is open
@@ -47,7 +36,7 @@ export default function TopNav() {
 
   return (
     <>
-      {/* ── Logo coin — fixed top-left ── */}
+      {/* ── Logo — fixed top-left, spinning black logo on gold ── */}
       <div
         style={{
           position: 'fixed',
@@ -59,18 +48,44 @@ export default function TopNav() {
           alignItems: 'center',
           gap: '12px',
         }}
-        onMouseEnter={() => setCoinHovered(true)}
-        onMouseLeave={() => setCoinHovered(false)}
       >
-        <Link href="/" aria-label="IBTU Home" style={{ display: 'block' }}>
-          <Canvas3DWrapper delay={500} fallback={<NavCoinFallback />}>
-            <NavCoin size={64} hovered={coinHovered} />
-          </Canvas3DWrapper>
+        <Link
+          href="/"
+          aria-label="IBTU Home"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '64px',
+            height: '64px',
+            background: 'var(--ibtu-gold)',
+            borderRadius: '8px',
+            perspective: '600px',
+          }}
+        >
+          <div
+            ref={logoRef}
+            style={{
+              width: '48px',
+              height: '48px',
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/ibtu-logo.svg"
+              alt="IBTU"
+              style={{
+                width: '100%',
+                height: '100%',
+                filter: 'brightness(0)',
+              }}
+            />
+          </div>
         </Link>
 
-        {/* Hamburger — below coin */}
+        {/* Hamburger — below logo */}
         <button
-          ref={hamburgerRef}
           onClick={() => setMenuOpen(prev => !prev)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
@@ -88,21 +103,21 @@ export default function TopNav() {
           <span style={{
             width: '24px',
             height: '2px',
-            background: scrolled || menuOpen ? 'var(--ibtu-white)' : 'var(--ibtu-white)',
+            background: 'var(--ibtu-white)',
             transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
             transform: menuOpen ? 'translateY(7px) rotate(45deg)' : 'none',
           }} />
           <span style={{
             width: '24px',
             height: '2px',
-            background: scrolled || menuOpen ? 'var(--ibtu-white)' : 'var(--ibtu-white)',
+            background: 'var(--ibtu-white)',
             transition: 'opacity 0.3s',
             opacity: menuOpen ? 0 : 1,
           }} />
           <span style={{
             width: '24px',
             height: '2px',
-            background: scrolled || menuOpen ? 'var(--ibtu-white)' : 'var(--ibtu-white)',
+            background: 'var(--ibtu-white)',
             transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
             transform: menuOpen ? 'translateY(-7px) rotate(-45deg)' : 'none',
           }} />
