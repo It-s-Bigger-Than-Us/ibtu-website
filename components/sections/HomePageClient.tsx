@@ -7,6 +7,7 @@ import Footer from '@/components/layout/Footer'
 const SectionPlaceholder = () => <div style={{ minHeight: '100vh', background: '#000' }} />
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 
+const HeroIntro = dynamic(() => import('@/components/sections/HeroIntro'), { ssr: false, loading: SectionPlaceholder })
 const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: SectionPlaceholder })
 const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
 const ImpactReveal = dynamic(() => import('@/components/sections/ImpactReveal'), { ssr: false, loading: SectionPlaceholder })
@@ -56,7 +57,10 @@ export default function HomePageClient({
 }: HomePageClientProps) {
   return (
     <main>
-      {/* 1. Values Ticker — gold bg, black text */}
+      {/* 1. Hero Intro — "It's Bigger Than Us" animates on load */}
+      <HeroIntro />
+
+      {/* 2. Values Ticker — gold bg, black text */}
       <GoldTicker phrases={tickerPhrases} speed={35} />
 
       {/* 3. Mission Split — sticky 50/50 with media swaps */}
