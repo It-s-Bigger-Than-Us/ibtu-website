@@ -5,7 +5,8 @@
 ═══════════════════════════════════════ */
 @font-face {
   font-family: 'LOT';
-  src: local('LOT'), local('LOT-Regular'), local('LOT Regular'), local('Lot');
+  src: local('LOT'), local('LOT-Regular'), local('LOT Regular'), local('Lot'),
+       url('/fonts/LOT-Regular.otf') format('opentype');
   font-weight: 100 900;
   font-display: swap;
 }
@@ -34,18 +35,24 @@
   --ibtu-white: #FFFFFF;
   --warm-white: #FFF8F0;
 
-  /* Iridescent accent system — holographic glass effect */
+  /* Iridescent accent system — IBTU holographic glass effect
+     NOT generic rainbow. Specific brand colors with gold anchors. */
   --holo-pink: #FF6B9D;
   --holo-mint: #6BFFB8;
   --holo-lavender: #B8A9FF;
   --holo-yellow: #FFE066;
+  --holo-cyan: #64DCFF;
+  --holo-purple: #c084fc;
   --holo-gradient: linear-gradient(
-    135deg,
-    var(--holo-pink),
-    var(--holo-lavender),
-    var(--holo-mint),
-    var(--holo-yellow),
-    var(--holo-pink)
+    105deg,
+    #fff 0%,
+    var(--ibtu-gold) 15%,
+    #fff 30%,
+    var(--holo-cyan) 45%,
+    #fff 55%,
+    var(--ibtu-gold) 70%,
+    var(--holo-purple) 80%,
+    #fff 90%
   );
 
   /* Typography scale */
@@ -96,13 +103,6 @@
    HOLOGRAPHIC GLASS EFFECT
 ═══════════════════════════════════════ */
 .holo-glass {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 107, 157, 0.15),
-    rgba(184, 169, 255, 0.15),
-    rgba(107, 255, 184, 0.15),
-    rgba(255, 224, 102, 0.15)
-  );
   border: 1px solid transparent;
   background-clip: padding-box;
   position: relative;
@@ -140,11 +140,11 @@
   border-radius: inherit;
   background: conic-gradient(
     from var(--sparkle-angle, 0deg),
-    var(--holo-pink),
-    var(--holo-lavender),
-    var(--holo-mint),
-    var(--holo-yellow),
-    var(--holo-pink)
+    var(--ibtu-gold),
+    var(--holo-cyan),
+    var(--ibtu-gold),
+    var(--holo-purple),
+    var(--ibtu-gold)
   );
   animation: sparkle-rotate 3s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -155,6 +155,61 @@
 }
 @keyframes sparkle-rotate {
   to { --sparkle-angle: 360deg; }
+}
+
+/* ═══════════════════════════════════════
+   ANIMATED IRIDESCENT TEXT — brand accent
+   Holographic text gradient that shifts.
+   Use on section labels, accent words.
+═══════════════════════════════════════ */
+.iridescent-text {
+  background: linear-gradient(
+    105deg,
+    #fff 0%,
+    var(--ibtu-gold) 15%,
+    #fff 30%,
+    var(--holo-cyan, #64DCFF) 45%,
+    #fff 55%,
+    var(--ibtu-gold) 70%,
+    var(--holo-purple, #c084fc) 80%,
+    #fff 90%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: iridescent-shift 4s linear infinite;
+}
+@keyframes iridescent-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ═══════════════════════════════════════
+   IRIDESCENT BORDER GLOW — hover accent
+   Animated border for cards and buttons.
+═══════════════════════════════════════ */
+.iridescent-border {
+  position: relative;
+}
+.iridescent-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  background: var(--holo-gradient);
+  background-size: 300% 300%;
+  animation: holo-shift 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out-expo);
+}
+.iridescent-border:hover::after {
+  opacity: 1;
 }
 
 /* ═══════════════════════════════════════
@@ -751,6 +806,21 @@ div:has(> video), div:has(> img) {
     text-align: center;
   }
   .foot-right { text-align: center; }
+}
+
+/* ═══════════════════════════════════════
+   GSAP REVEAL — safe animation target
+   Starts hidden; GSAP handles entrance.
+   Falls back to visible if JS fails.
+═══════════════════════════════════════ */
+.gsap-reveal {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gsap-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* ═══════════════════════════════════════

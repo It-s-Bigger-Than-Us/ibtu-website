@@ -26,7 +26,7 @@ export default function Footer() {
   const footerRef = useRef<HTMLElement>(null)
   const mantraRef = useRef<HTMLDivElement>(null)
 
-  const mantraLines = ['Community', 'is the', 'Infrastructure.']
+  const mantraLines = ['Community is the Infrastructure.']
 
   useEffect(() => {
     if (!footerRef.current) return
@@ -64,10 +64,36 @@ export default function Footer() {
       ref={footerRef}
       style={{
         background: 'var(--ibtu-black)',
-        padding: 'clamp(80px, 10vw, 160px) clamp(32px, 5vw, 80px) 0',
+        paddingBottom: 0,
       }}
     >
+      {/* LA Skyline — brand anchor element */}
+      <div
+        style={{
+          width: '100%',
+          overflow: 'hidden',
+          lineHeight: 0,
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/skyline.svg"
+          alt=""
+          aria-hidden="true"
+          style={{
+            width: '100%',
+            height: 'auto',
+            maxHeight: '120px',
+            objectFit: 'cover',
+            objectPosition: 'center bottom',
+            filter: 'invert(79%) sepia(98%) saturate(1000%) hue-rotate(3deg) brightness(103%)',
+            opacity: 0.15,
+          }}
+        />
+      </div>
+
       {/* Sacred mantra — big LOT text, left-aligned */}
+      <div style={{ padding: 'clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px) 0' }}>
       <div
         ref={mantraRef}
         style={{ maxWidth: 'var(--content-max)', margin: '0 auto 80px' }}
@@ -86,8 +112,8 @@ export default function Footer() {
           {mantraLines.map((line, i) => (
             <span
               key={i}
-              className="foot-mantra-word"
-              style={{ display: 'block', opacity: 0 }}
+              className="foot-mantra-word gsap-reveal"
+              style={{ display: 'block' }}
             >
               {line}
             </span>
@@ -273,6 +299,7 @@ export default function Footer() {
         }}
       >
         &copy; {new Date().getFullYear()} It&apos;s Bigger Than Us. All rights reserved.
+      </div>
       </div>
 
       {/* Mobile responsive */}

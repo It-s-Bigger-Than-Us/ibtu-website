@@ -7,9 +7,8 @@ import Footer from '@/components/layout/Footer'
 const SectionPlaceholder = () => <div style={{ minHeight: '100vh', background: '#000' }} />
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 
-const HeroIntro = dynamic(() => import('@/components/sections/HeroIntro'), { ssr: false, loading: SectionPlaceholder })
 const OrbitalGallery = dynamic(() => import('@/components/3d/OrbitalGallery'), { ssr: false, loading: SectionPlaceholder })
-const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: SectionPlaceholder })
+const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: ShortPlaceholder })
 const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
 const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'), { ssr: false, loading: ShortPlaceholder })
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
@@ -46,35 +45,33 @@ export default function HomePageClient({
 }: HomePageClientProps) {
   return (
     <main>
-      {/* 1. Hero Intro — "It's Bigger Than Us" + logo zoom */}
-      <HeroIntro />
-
-      {/* 2. Orbital Gallery — 3D image sphere */}
+      {/* 1. Orbital Gallery — IS the hero. Starts at page top.
+          Includes "It's Bigger Than Us" text + 3D logo + photo gallery */}
       <OrbitalGallery />
 
-      {/* 3. Values Ticker — gold bg, black text */}
+      {/* 2. Values Ticker */}
       <GoldTicker phrases={tickerPhrases} speed={35} />
 
-      {/* 3. Mission Split — sticky 50/50 with media swaps */}
+      {/* 3. Mission */}
       <MissionSplit
         headline="Why We Exist"
         body="Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
         media={missionMedia}
       />
 
-      {/* 4. Pillar Cubes + Stats — blue sky bg */}
+      {/* 4. Pillar Cubes + Stats */}
       <PillarCubes stats={stats} />
 
-      {/* 5. Programs Grid — fold-out cards with holo borders + video hover */}
+      {/* 5. Programs Grid */}
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
 
-      {/* 6. CTA — gold bg, sparkle + holo buttons */}
+      {/* 6. CTA */}
       <CTASection />
 
-      {/* 7. Footer — sacred mantra, LA skyline */}
+      {/* 7. Footer */}
       <Footer />
 
-      {/* Sponsor Panel — fixed right-edge tab */}
+      {/* Sponsor Panel */}
       <SponsorPanel />
     </main>
   )

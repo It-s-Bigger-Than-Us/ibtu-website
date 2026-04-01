@@ -75,6 +75,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Safety net: reveal hidden GSAP targets if animations haven't fired after 4s */}
+        <script dangerouslySetInnerHTML={{ __html: `setTimeout(function(){document.querySelectorAll('.gsap-reveal').forEach(function(el){if(getComputedStyle(el).opacity==='0')el.style.opacity='1'})},4000)` }} />
       </head>
       <body>
         <TopNav />

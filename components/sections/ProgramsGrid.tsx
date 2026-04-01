@@ -77,14 +77,13 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
             <Link
               key={program.slug}
               href={`/our-programs/${program.slug}`}
-              className="program-card-v2"
+              className="program-card-v2 gsap-reveal"
               style={{
                 textDecoration: 'none',
                 borderRadius: '16px',
                 overflow: 'hidden',
                 background: 'var(--ibtu-gold)',
                 display: 'block',
-                opacity: 0,
                 position: 'relative',
                 transition: 'transform 0.35s var(--ease-out-expo), box-shadow 0.35s',
               }}

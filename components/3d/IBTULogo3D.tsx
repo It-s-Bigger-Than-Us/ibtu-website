@@ -3,20 +3,16 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import {
-  Box3,
-  DoubleSide,
-  ExtrudeGeometry,
-  Group,
-  Mesh,
-  MeshPhysicalMaterial,
-  Vector3,
+  Box3, DoubleSide, ExtrudeGeometry, Group, Mesh, Vector3,
+  ShaderMaterial as ThreeShaderMaterial,
 } from 'three'
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js'
 
 /* ═══════════════════════════════════════
-   IBTU LOGO 3D — extruded SVG with glass material
-   Same reflective/metallic look as the helmet
-   from matdn/helmet (MeshPhysicalMaterial).
+   IBTU LOGO 3D — extruded SVG
+   Custom holographic shader matched to Hub
+   ceiling installation. Dichroic magenta→cyan→green.
+   No wobble. Parent controls rotation.
 ═══════════════════════════════════════ */
 
 const SVG_RAW = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 995.67 995.67">
@@ -28,27 +24,98 @@ const SVG_RAW = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 995.67 995
   <path d="M386.42,800.28v-145.3h57.38v141.97c0,49.47,26.6,65.06,53.42,65.06s53.42-15.59,53.42-65.06v-141.97h57.37v145.3c0,82.52-45.94,115.16-110.79,115.16s-110.79-32.64-110.79-115.16Z"/>
 </svg>`
 
+// ─── Holographic Shader (Hub ceiling material) ────
+
+const holoVert = `
+varying vec3 vNormal;
+varying vec3 vViewDir;
+varying vec3 vWorldPos;
+
+void main() {
+  vec4 worldPos = modelMatrix * vec4(position, 1.0);
+  vWorldPos = worldPos.xyz;
+  vNormal = normalize(normalMatrix * normal);
+  vViewDir = normalize(cameraPosition - worldPos.xyz);
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`
+
+const holoFrag = `
+precision highp float;
+varying vec3 vNormal;
+varying vec3 vViewDir;
+varying vec3 vWorldPos;
+uniform float uTime;
+uniform float uGlow;
+
+void main() {
+  float fresnel = 1.0 - max(dot(vNormal, vViewDir), 0.0);
+  fresnel = pow(fresnel, 1.5);
+
+  float angle = dot(vNormal, vViewDir);
+
+  // Oil-slick glass — dark reflective base with vivid spectral shifts
+  float r = pow(sin(angle * 8.0 + vWorldPos.y * 3.0 + uTime * 0.5) * 0.5 + 0.5, 0.8);
+  float g = pow(sin(angle * 8.0 + vWorldPos.y * 3.0 + uTime * 0.5 + 2.09) * 0.5 + 0.5, 0.8);
+  float b = pow(sin(angle * 8.0 + vWorldPos.y * 3.0 + uTime * 0.5 + 4.19) * 0.5 + 0.5, 0.8);
+  vec3 prism = vec3(r, g, b) * 1.4; // saturated, vivid
+
+  // Dark glass base — mostly black/dark grey, oil-slick sheen at edges
+  vec3 glassBase = vec3(0.08, 0.09, 0.12);
+  vec3 color = mix(glassBase, prism, fresnel * 0.95 + 0.1);
+
+  // Sharp specular highlights (like glass catching light)
+  vec3 lightDir = normalize(vec3(1.0, 2.0, 1.5));
+  vec3 halfDir = normalize(vViewDir + lightDir);
+  float spec = pow(max(dot(vNormal, halfDir), 0.0), 120.0);
+  color += vec3(1.0) * spec * 0.9;
+
+  // Secondary light — warm highlight
+  vec3 lightDir2 = normalize(vec3(-1.5, 0.5, -1.0));
+  vec3 halfDir2 = normalize(vViewDir + lightDir2);
+  float spec2 = pow(max(dot(vNormal, halfDir2), 0.0), 60.0);
+  color += prism * spec2 * 0.5;
+
+  // Prismatic flare streaks (like lens flare on glass)
+  float flare = pow(max(dot(reflect(-lightDir, vNormal), vViewDir), 0.0), 16.0);
+  color += prism * flare * 0.4;
+
+  // Edge darkening for glass depth
+  float rim = pow(fresnel, 3.0);
+  color = mix(color, prism * 0.6, rim * 0.3);
+
+  // Gold emissive glow on hover
+  vec3 gold = vec3(1.0, 0.78, 0.0);
+  color += gold * uGlow * (fresnel * 0.5 + 0.3);
+
+  // Glass transparency — mostly clear, opaque at glancing angles
+  float alpha = mix(0.45, 0.92, fresnel);
+
+  gl_FragColor = vec4(color, alpha);
+}
+`
+
+// ─── Component ────────────────────────────────────
+
 interface IBTULogo3DProps {
-  angleY: React.MutableRefObject<number>
+  glowRef?: React.MutableRefObject<number>
 }
 
-export default function IBTULogo3D({ angleY }: IBTULogo3DProps) {
+export default function IBTULogo3D({ glowRef }: IBTULogo3DProps) {
   const groupRef = useRef<Group>(null)
 
-  const glassMaterial = useMemo(
+  const holoMaterial = useMemo(
     () =>
-      new MeshPhysicalMaterial({
-        thickness: 0.9,
-        roughness: 0.0,
-        metalness: 1,
-        ior: 1.9,
-        clearcoat: 0.1,
-        clearcoatRoughness: 1.1,
-        color: 0x222222,
+      new ThreeShaderMaterial({
+        vertexShader: holoVert,
+        fragmentShader: holoFrag,
+        uniforms: {
+          uTime: { value: 0 },
+          uGlow: { value: 0.15 },
+        },
         transparent: true,
-        opacity: 0.95,
-        depthWrite: true,
         side: DoubleSide,
+        depthWrite: true,
       }),
     []
   )
@@ -72,15 +139,13 @@ export default function IBTULogo3D({ angleY }: IBTULogo3DProps) {
         result.push({ geometry: geo })
       }
     }
-
     return result
   }, [])
 
-  // Center and scale after mount
+  // Center and scale
   useEffect(() => {
     if (!groupRef.current || meshes.length === 0) return
 
-    // Compute bounding box of all meshes together
     const box = new Box3()
     groupRef.current.children.forEach((child) => {
       if (child instanceof Mesh) {
@@ -101,27 +166,26 @@ export default function IBTULogo3D({ angleY }: IBTULogo3DProps) {
     groupRef.current.children.forEach((child) => {
       if (child instanceof Mesh) {
         child.geometry.translate(-center.x, -center.y, -center.z)
-        child.geometry.scale(s, -s, s) // flip Y (SVG is Y-down)
+        child.geometry.scale(s, -s, s)
       }
     })
 
     return () => {
-      glassMaterial.dispose()
+      holoMaterial.dispose()
       meshes.forEach((m) => m.geometry.dispose())
     }
-  }, [meshes, glassMaterial])
+  }, [meshes, holoMaterial])
 
-  useFrame((_state, dt) => {
-    if (!groupRef.current) return
-    // Counter-rotate so logo faces camera while sphere spins
-    groupRef.current.rotation.y = -angleY.current
-    groupRef.current.rotation.x = Math.sin(Date.now() * 0.001) * 0.1
+  // Update shader uniforms each frame
+  useFrame(({ clock }) => {
+    holoMaterial.uniforms.uTime.value = clock.elapsedTime
+    holoMaterial.uniforms.uGlow.value = glowRef?.current ?? 0.15
   })
 
   return (
     <group ref={groupRef}>
       {meshes.map((m, i) => (
-        <mesh key={i} geometry={m.geometry} material={glassMaterial} />
+        <mesh key={i} geometry={m.geometry} material={holoMaterial} />
       ))}
     </group>
   )

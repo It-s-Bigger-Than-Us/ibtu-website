@@ -4,74 +4,81 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 
+/* ═══════════════════════════════════════
+   ACTION BAR — slides in from left,
+   aligned with logo, horizontal.
+   Donate + Volunteer + Support Us
+═══════════════════════════════════════ */
+
+const ACTIONS = [
+  { label: 'Donate', href: '/donate' },
+  { label: 'Volunteer', href: '/get-involved#volunteer' },
+  { label: 'Support Us', href: '/get-involved' },
+]
+
 export default function DonateButton() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const threshold = window.innerWidth * 0.6
-      const exitThreshold = window.innerWidth * 0.4
-
-      if (e.clientX > threshold && e.clientY < 100) {
-        setVisible(true)
-      } else if (e.clientX < exitThreshold) {
-        setVisible(false)
-      }
+    const handleScroll = () => {
+      setVisible(window.scrollY > window.innerHeight * 0.5)
     }
-
-    document.addEventListener('mousemove', handleMouseMove)
-    return () => document.removeEventListener('mousemove', handleMouseMove)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ x: '100%' }}
-          animate={{ x: 0 }}
-          exit={{ x: '100%' }}
+          initial={{ x: '-100%', opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: '-100%', opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           style={{
             position: 'fixed',
-            top: 0,
-            right: 0,
+            top: '100px',
+            left: '24px',
             zIndex: 100,
-            height: '64px',
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'var(--ibtu-black)',
-            padding: '0 32px',
+            flexDirection: 'column',
+            gap: '8px',
           }}
         >
-          <Link
-            href="/donate"
-            className="sparkle-stroke"
-            style={{
-              display: 'inline-block',
-              fontFamily: 'var(--font-body)',
-              fontSize: '14px',
-              fontWeight: 700,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              background: 'var(--ibtu-gold)',
-              color: 'var(--ibtu-black)',
-              borderRadius: '4px',
-              padding: '12px 32px',
-              transition: 'background 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'var(--ibtu-white)'
-              e.currentTarget.style.color = 'var(--ibtu-black)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'var(--ibtu-gold)'
-              e.currentTarget.style.color = 'var(--ibtu-black)'
-            }}
-          >
-            Donate Now
-          </Link>
+          {ACTIONS.map((action) => (
+            <Link
+              key={action.label}
+              href={action.href}
+              className="sparkle-stroke"
+              style={{
+                display: 'block',
+                fontFamily: 'var(--font-body)',
+                fontSize: '11px',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                background: 'var(--ibtu-black)',
+                color: 'var(--ibtu-gold)',
+                borderRadius: '4px',
+                padding: '10px 20px',
+                whiteSpace: 'nowrap',
+                transition: 'background 0.3s var(--ease-out-expo), color 0.3s',
+                textAlign: 'center',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--ibtu-gold)'
+                e.currentTarget.style.color = 'var(--ibtu-black)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'var(--ibtu-black)'
+                e.currentTarget.style.color = 'var(--ibtu-gold)'
+              }}
+            >
+              {action.label}
+            </Link>
+          ))}
         </motion.div>
       )}
     </AnimatePresence>

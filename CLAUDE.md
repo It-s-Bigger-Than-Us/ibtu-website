@@ -1,9 +1,15 @@
 # IBTU Website — Claude Code Project Context
 
+## SESSION STARTUP — READ THESE FIRST
+Before doing ANY work, read these Obsidian files for full context:
+1. `/Users/mollymorrow/Documents/Obsidian Vault/Claude Sessions/SESSION-INDEX.md` — current state, bugs, next steps
+2. `/Users/mollymorrow/Documents/Obsidian Vault/Claude Sessions/feedback/design-rules.md` — strict design constraints
+3. `/Users/mollymorrow/Documents/Obsidian Vault/Claude Sessions/feedback/build-methodology.md` — how to approach work
+4. `/Users/mollymorrow/Documents/Obsidian Vault/Claude Sessions/feedback/scroll-debugging.md` — active bug tracking
+
 ## Project
 Next.js 16 + React 19 + Tailwind v4 + Vercel. Domain: ibtu.la.
 Organization: It's Bigger Than Us (IBTU), 501(c)(3), Los Angeles.
-Organization: 501(c)(3), Los Angeles.
 
 ## IMPORTANT: Next.js 16 Breaking Changes
 - `params` in page/layout is a Promise — always `const { slug } = await params`

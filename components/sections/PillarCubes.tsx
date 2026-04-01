@@ -81,7 +81,7 @@ function CubeCard({ pillar, isHovered }: { pillar: PillarData; isHovered: boolea
 
   return (
     <div className="pillar-cube-container">
-      <div ref={sceneRef} className="pillar-cube-scene">
+      <div ref={sceneRef} className="pillar-cube-scene iridescent-border">
         <div
           className="pillar-cube"
           style={{
@@ -216,7 +216,8 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
         {/* Headline — shrinks from giant on scroll */}
         <div
           ref={headlineRef}
-          style={{ opacity: 0, marginBottom: 'clamp(40px, 5vw, 64px)' }}
+          className="gsap-reveal"
+          style={{ marginBottom: 'clamp(40px, 5vw, 64px)' }}
         >
           <h2 className="pillar-headline">Our Impact Pillars</h2>
         </div>
@@ -244,7 +245,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
             {stats.map((stat, i) => (
               <div
                 key={stat.label}
-                className="stat-card"
+                className="stat-card gsap-reveal holo-glass"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = 'var(--ibtu-black)'
                   const num = e.currentTarget.querySelector('.stat-num') as HTMLElement
@@ -311,7 +312,17 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
         }
 
         .pillar-cube-container {
-          opacity: 0;
+          opacity: 0; /* GSAP animates to 1 on scroll */
+        }
+        .pillar-cube-container.gsap-visible {
+          opacity: 1;
+        }
+
+        .pillar-cube-wrapper {
+          transition: transform 0.4s var(--ease-out-expo);
+        }
+        .pillar-cube-wrapper:hover {
+          transform: translateY(-4px);
         }
 
         .pillar-cube-scene {
@@ -381,7 +392,6 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           background: var(--ibtu-gold);
           border-radius: 16px;
           padding: clamp(20px, 2.5vw, 40px);
-          opacity: 0;
           cursor: pointer;
           transition: background 0.4s var(--ease-out-expo), color 0.4s;
           display: flex;

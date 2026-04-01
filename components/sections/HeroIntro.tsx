@@ -22,19 +22,16 @@ export default function HeroIntro() {
 
     const tl = gsap.timeline({ delay: 0.3 })
 
-    // Phase 1: Words rise in
-    tl.fromTo(
-      words,
-      { opacity: 0, y: 80, rotateX: -20 },
-      {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        stagger: 0.12,
-        duration: 0.9,
-        ease: 'expo.out',
-      }
-    )
+    // Phase 1: Words enter from alternating sides
+    words.forEach((word, i) => {
+      const fromLeft = i % 2 === 0
+      tl.fromTo(
+        word,
+        { opacity: 0, x: fromLeft ? -200 : 200, rotateY: fromLeft ? -30 : 30 },
+        { opacity: 1, x: 0, rotateY: 0, duration: 0.8, ease: 'expo.out' },
+        i * 0.15,
+      )
+    })
 
     // Phase 2: Logo wipes in with circular clip-path
     tl.fromTo(

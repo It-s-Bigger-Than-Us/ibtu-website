@@ -76,10 +76,10 @@ export default function CTASection({
   return (
     <section
       ref={sectionRef}
+      className="gsap-reveal"
       style={{
         background: 'var(--ibtu-gold)',
         padding: 'clamp(80px, 10vw, 160px) clamp(32px, 5vw, 80px)',
-        opacity: 0,
       }}
     >
       <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
@@ -100,8 +100,8 @@ export default function CTASection({
           {headlineWords.map((word, i) => (
             <span
               key={i}
-              className="cta-word"
-              style={{ display: 'inline-block', opacity: 0, marginRight: '0.25em' }}
+              className="cta-word gsap-reveal"
+              style={{ display: 'inline-block', marginRight: '0.25em' }}
             >
               {word}
             </span>

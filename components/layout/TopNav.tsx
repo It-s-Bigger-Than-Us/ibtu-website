@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import MenuDropdown from './MenuDropdown'
-import DonateButton from './DonateButton'
 import gsap from 'gsap'
 
 export default function TopNav() {
@@ -90,13 +89,14 @@ export default function TopNav() {
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
           style={{
-            background: 'none',
+            background: 'var(--ibtu-black)',
             border: 'none',
             cursor: 'pointer',
             display: 'flex',
             flexDirection: 'column',
             gap: '5px',
-            padding: '8px',
+            padding: '10px',
+            borderRadius: '6px',
             zIndex: 101,
           }}
         >
@@ -126,9 +126,6 @@ export default function TopNav() {
 
       {/* ── Full-screen gold menu dropdown ── */}
       <MenuDropdown open={menuOpen} onClose={() => setMenuOpen(false)} />
-
-      {/* ── Donate button — slides in from right on cursor proximity ── */}
-      <DonateButton />
     </>
   )
 }
