@@ -2,15 +2,14 @@
 
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, useTexture } from '@react-three/drei'
-import { Suspense, useCallback, useMemo, useRef } from 'react'
+import { Suspense, useMemo, useRef } from 'react'
 import { DoubleSide, Object3D } from 'three'
 import IBTULogo3D from './IBTULogo3D'
 
 /* ═══════════════════════════════════════
    ORBITAL GALLERY — 3D image sphere
-   Auto-spins gently. Drag to rotate.
-   Page scroll passes through normally.
-   Adapted from matdn/helmet (MIT).
+   Auto-spins. No pointer interaction.
+   Page scroll passes through.
 ═══════════════════════════════════════ */
 
 const GALLERY_IMAGES = [
@@ -80,58 +79,33 @@ function ImageSphere({ angleY }: { angleY: React.MutableRefObject<number> }) {
 }
 
 export default function OrbitalGallery() {
-  const containerRef = useRef<HTMLDivElement>(null)
   const angleY = useRef(0)
-  const isDragging = useRef(false)
-  const dragLastX = useRef(0)
-
-  const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
-    isDragging.current = true
-    dragLastX.current = e.clientX
-    try { e.currentTarget.setPointerCapture(e.pointerId) } catch {}
-  }, [])
-
-  const onPointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragging.current) return
-    const dx = e.clientX - dragLastX.current
-    dragLastX.current = e.clientX
-    angleY.current += dx * 0.005
-  }, [])
-
-  const onPointerUp = useCallback(() => {
-    isDragging.current = false
-  }, [])
 
   return (
     <section
-      ref={containerRef}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
-      onPointerLeave={onPointerUp}
       style={{
         width: '100%',
         height: '100vh',
         background: 'var(--ibtu-black)',
-        cursor: 'grab',
         position: 'relative',
       }}
     >
-      <Canvas
-        frameloop="always"
-        camera={{ position: [0, 0, 6.5], fov: 50 }}
-        onCreated={({ camera }) => { camera.lookAt(0, 0, 0) }}
-        style={{ pointerEvents: 'none' }}
-      >
-        <Suspense fallback={null}>
-          <ambientLight intensity={0.65} />
-          <directionalLight position={[5, 5, 5]} intensity={1} />
-          <Environment preset="studio" blur={10.5} />
-          <ImageSphere angleY={angleY} />
-          <IBTULogo3D angleY={angleY} />
-        </Suspense>
-      </Canvas>
+      <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+        <Canvas
+          frameloop="always"
+          camera={{ position: [0, 0, 6.5], fov: 50 }}
+          onCreated={({ camera }) => { camera.lookAt(0, 0, 0) }}
+          style={{ pointerEvents: 'none' }}
+        >
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.65} />
+            <directionalLight position={[5, 5, 5]} intensity={1} />
+            <Environment preset="studio" blur={10.5} />
+            <ImageSphere angleY={angleY} />
+            <IBTULogo3D angleY={angleY} />
+          </Suspense>
+        </Canvas>
+      </div>
     </section>
   )
 }

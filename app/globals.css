@@ -184,9 +184,8 @@ h1, h2, h3, h4, [class*="headline"], [class*="display"] {
   width: 100%;
 }
 
-/* Ensure sections don't overflow horizontally */
-section, main {
-  overflow-x: hidden;
+/* Prevent horizontal overflow */
+section {
   max-width: 100vw;
 }
 
