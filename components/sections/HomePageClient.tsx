@@ -8,6 +8,7 @@ const SectionPlaceholder = () => <div style={{ minHeight: '100vh', background: '
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 
 const HeroIntro = dynamic(() => import('@/components/sections/HeroIntro'), { ssr: false, loading: SectionPlaceholder })
+const OrbitalGallery = dynamic(() => import('@/components/3d/OrbitalGallery'), { ssr: false, loading: SectionPlaceholder })
 const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: SectionPlaceholder })
 const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
 const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'), { ssr: false, loading: ShortPlaceholder })
@@ -48,7 +49,10 @@ export default function HomePageClient({
       {/* 1. Hero Intro — "It's Bigger Than Us" + logo zoom */}
       <HeroIntro />
 
-      {/* 2. Values Ticker — gold bg, black text */}
+      {/* 2. Orbital Gallery — 3D image sphere */}
+      <OrbitalGallery />
+
+      {/* 3. Values Ticker — gold bg, black text */}
       <GoldTicker phrases={tickerPhrases} speed={35} />
 
       {/* 3. Mission Split — sticky 50/50 with media swaps */}
