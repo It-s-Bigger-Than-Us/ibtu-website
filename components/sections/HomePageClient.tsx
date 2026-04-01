@@ -10,7 +10,6 @@ const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#0
 const HeroIntro = dynamic(() => import('@/components/sections/HeroIntro'), { ssr: false, loading: SectionPlaceholder })
 const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: SectionPlaceholder })
 const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
-const ImpactReveal = dynamic(() => import('@/components/sections/ImpactReveal'), { ssr: false, loading: SectionPlaceholder })
 const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'), { ssr: false, loading: ShortPlaceholder })
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
 const SponsorPanel = dynamic(() => import('@/components/sections/SponsorPanel'), { ssr: false })
@@ -25,14 +24,6 @@ interface Program {
   hoverVideo?: string
 }
 
-interface Pillar {
-  name: string
-  stat: string
-  statLabel: string
-  videoSrc?: string
-  imageSrc: string
-}
-
 interface StatItem {
   value: number
   suffix?: string
@@ -41,9 +32,7 @@ interface StatItem {
 
 interface HomePageClientProps {
   programCards: Program[]
-  heroVideo?: string
   missionMedia: Array<{ type: 'image' | 'video'; src: string; alt?: string }>
-  pillars: Pillar[]
   stats: StatItem[]
   tickerPhrases: string[]
 }
@@ -51,13 +40,12 @@ interface HomePageClientProps {
 export default function HomePageClient({
   programCards,
   missionMedia,
-  pillars,
   stats,
   tickerPhrases,
 }: HomePageClientProps) {
   return (
     <main>
-      {/* 1. Hero Intro — "It's Bigger Than Us" animates on load */}
+      {/* 1. Hero Intro — "It's Bigger Than Us" + logo zoom */}
       <HeroIntro />
 
       {/* 2. Values Ticker — gold bg, black text */}
@@ -70,11 +58,8 @@ export default function HomePageClient({
         media={missionMedia}
       />
 
-      {/* 4. Pillar Cubes — 3D rotating cubes per pillar */}
-      <PillarCubes />
-
-      {/* 5. Impact Reveal — shrinking headline + stat cards */}
-      <ImpactReveal pillars={pillars} stats={stats} />
+      {/* 4. Pillar Cubes + Stats — blue sky bg */}
+      <PillarCubes stats={stats} />
 
       {/* 5. Programs Grid — fold-out cards with holo borders + video hover */}
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}

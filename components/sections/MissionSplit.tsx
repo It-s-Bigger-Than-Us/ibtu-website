@@ -196,7 +196,6 @@ export default function MissionSplit({
             {item.type === 'video' ? (
               <video
                 src={item.src}
-                crossOrigin="anonymous"
                 playsInline
                 autoPlay
                 muted

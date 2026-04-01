@@ -1,25 +1,26 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import dynamic from 'next/dynamic'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const HoloBg = dynamic(() => import('@/components/3d/HoloBg'), { ssr: false })
-
 /* ═══════════════════════════════════════
-   PILLAR CUBES — 3D hover-rotating cubes
-   Square cubes, slightly angled at rest.
-   Hover: rotate to next face + gold label
-   slides up from bottom.
-   Holographic animated gradient background.
+   PILLAR CUBES + STATS — blue sky bg
+   Shrinking headline, 3D cubes, stat cards.
+   All on a bright blue sky background.
 ═══════════════════════════════════════ */
 
 interface PillarData {
   name: string
   images: string[]
+}
+
+interface StatItem {
+  value: number
+  suffix?: string
+  label: string
 }
 
 const PILLARS: PillarData[] = [
@@ -101,8 +102,6 @@ function CubeCard({ pillar, isHovered }: { pillar: PillarData; isHovered: boolea
                 alt={pillar.name}
                 draggable={false}
               />
-
-              {/* Gold label — slides up on hover */}
               <div
                 className="pillar-cube-label"
                 style={{
@@ -116,44 +115,46 @@ function CubeCard({ pillar, isHovered }: { pillar: PillarData; isHovered: boolea
           ))}
         </div>
       </div>
-
-      {/* Pillar name below cube — always visible */}
-      <div className="pillar-cube-title">
-        {pillar.name}
-      </div>
+      <div className="pillar-cube-title">{pillar.name}</div>
     </div>
   )
 }
 
-export default function PillarCubes() {
+interface PillarCubesProps {
+  stats?: StatItem[]
+}
+
+export default function PillarCubes({ stats = [] }: PillarCubesProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
-  const headlineRef = useRef<HTMLHeadingElement>(null)
+  const headlineRef = useRef<HTMLDivElement>(null)
+  const statsGridRef = useRef<HTMLDivElement>(null)
+  const numRefs = useRef<(HTMLSpanElement | null)[]>([])
 
   useEffect(() => {
-    if (!sectionRef.current || !headlineRef.current) return
+    if (!sectionRef.current) return
 
     const ctx = gsap.context(() => {
-      const words = headlineRef.current?.querySelectorAll('.pillar-head-word')
-      if (words) {
+      // Headline: shrinks from 3x into position on scroll (like ImpactReveal)
+      if (headlineRef.current) {
         gsap.fromTo(
-          words,
-          { opacity: 0, y: 50 },
+          headlineRef.current,
+          { scale: 3, opacity: 0 },
           {
+            scale: 1,
             opacity: 1,
-            y: 0,
-            stagger: 0.1,
-            duration: 0.7,
             ease: 'expo.out',
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: 'top 75%',
-              once: true,
+              start: 'top 80%',
+              end: 'top 20%',
+              scrub: 1,
             },
           }
         )
       }
 
+      // Cubes stagger in
       const cubes = sectionRef.current?.querySelectorAll('.pillar-cube-container')
       if (cubes) {
         gsap.fromTo(
@@ -167,33 +168,59 @@ export default function PillarCubes() {
             ease: 'expo.out',
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: 'top 65%',
+              start: 'top 50%',
               once: true,
             },
           }
         )
       }
+
+      // Stat counter animation on scroll
+      if (statsGridRef.current && stats.length > 0) {
+        ScrollTrigger.create({
+          trigger: statsGridRef.current,
+          start: 'top 80%',
+          once: true,
+          onEnter() {
+            stats.forEach((stat, i) => {
+              const el = numRefs.current[i]
+              if (!el) return
+              const obj = { val: 0 }
+              gsap.to(obj, {
+                val: stat.value,
+                duration: 2.2,
+                ease: 'power2.out',
+                onUpdate() {
+                  el.textContent = Math.floor(obj.val).toLocaleString() + (stat.suffix ?? '')
+                },
+              })
+            })
+
+            const statCards = statsGridRef.current?.querySelectorAll('.stat-card')
+            if (statCards) {
+              gsap.fromTo(statCards,
+                { scale: 0.8, opacity: 0 },
+                { scale: 1, opacity: 1, stagger: 0.1, duration: 0.6, ease: 'back.out(1.4)' }
+              )
+            }
+          },
+        })
+      }
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [])
-
-  const headlineWords = ['Our', 'Impact', 'Pillars']
+  }, [stats])
 
   return (
     <section ref={sectionRef} className="pillar-section">
-      {/* Animated holographic background — Three.js WebGL */}
-      <HoloBg />
-
       <div className="pillar-inner">
-        {/* Headline */}
-        <h2 ref={headlineRef} className="pillar-headline">
-          {headlineWords.map((word, i) => (
-            <span key={i} className="pillar-head-word">
-              {word}
-            </span>
-          ))}
-        </h2>
+        {/* Headline — shrinks from giant on scroll */}
+        <div
+          ref={headlineRef}
+          style={{ opacity: 0, marginBottom: 'clamp(40px, 5vw, 64px)' }}
+        >
+          <h2 className="pillar-headline">Our Impact Pillars</h2>
+        </div>
 
         {/* Cubes grid */}
         <div className="pillar-cubes-grid">
@@ -208,6 +235,45 @@ export default function PillarCubes() {
             </div>
           ))}
         </div>
+
+        {/* Stats grid — animates in on scroll after cubes */}
+        {stats.length > 0 && (
+          <div
+            ref={statsGridRef}
+            className="stats-grid"
+          >
+            {stats.map((stat, i) => (
+              <div
+                key={stat.label}
+                className="stat-card"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'var(--ibtu-black)'
+                  const num = e.currentTarget.querySelector('.stat-num') as HTMLElement
+                  const label = e.currentTarget.querySelector('.stat-label') as HTMLElement
+                  if (num) num.style.color = 'var(--ibtu-gold)'
+                  if (label) label.style.color = 'var(--ibtu-gold)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'var(--ibtu-gold)'
+                  const num = e.currentTarget.querySelector('.stat-num') as HTMLElement
+                  const label = e.currentTarget.querySelector('.stat-label') as HTMLElement
+                  if (num) num.style.color = 'var(--ibtu-black)'
+                  if (label) label.style.color = 'var(--ibtu-black)'
+                }}
+              >
+                <span
+                  ref={el => { numRefs.current[i] = el }}
+                  className="stat-num"
+                >
+                  0{stat.suffix ?? ''}
+                </span>
+                <span className="stat-label">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <style>{`
@@ -215,7 +281,7 @@ export default function PillarCubes() {
           position: relative;
           padding: clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px);
           overflow: hidden;
-          min-height: auto;
+          background: linear-gradient(180deg, #87CEEB 0%, #B0E0F0 40%, #D4EEFA 100%);
         }
 
         .pillar-inner {
@@ -225,26 +291,16 @@ export default function PillarCubes() {
           margin: 0 auto;
         }
 
-        /* ── Headline ── */
         .pillar-headline {
           font-family: var(--font-display);
-          font-size: clamp(48px, 8vw, 120px);
+          font-size: var(--display-hero);
           line-height: 0.92;
           text-transform: uppercase;
-          color: var(--ibtu-white);
+          color: var(--ibtu-black);
           letter-spacing: -0.02em;
-          margin-bottom: clamp(32px, 4vw, 56px);
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0 0.25em;
+          text-align: center;
         }
 
-        .pillar-head-word {
-          display: inline-block;
-          opacity: 0;
-        }
-
-        /* ── Grid ── */
         .pillar-cubes-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -259,7 +315,6 @@ export default function PillarCubes() {
           opacity: 0;
         }
 
-        /* ── Cube scene ── */
         .pillar-cube-scene {
           width: 70%;
           aspect-ratio: 1 / 1;
@@ -291,7 +346,6 @@ export default function PillarCubes() {
           filter: saturate(1.15) brightness(1.05);
         }
 
-        /* ── Gold label overlay — slides up from bottom on hover ── */
         .pillar-cube-label {
           position: absolute;
           bottom: 0;
@@ -316,16 +370,55 @@ export default function PillarCubes() {
           text-align: center;
         }
 
-        /* ── Static label below cube ── */
         .pillar-cube-title {
           font-family: var(--font-body);
           font-size: clamp(10px, 1vw, 14px);
           font-weight: 700;
           letter-spacing: 3px;
           text-transform: uppercase;
-          color: var(--ibtu-gold);
+          color: var(--ibtu-black);
           text-align: center;
           margin-top: clamp(12px, 1.5vw, 20px);
+        }
+
+        /* ── Stats grid ── */
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--grid-gap);
+          margin-top: clamp(60px, 8vw, 120px);
+        }
+
+        .stat-card {
+          background: var(--ibtu-gold);
+          border-radius: 16px;
+          padding: clamp(24px, 3vw, 48px);
+          opacity: 0;
+          cursor: pointer;
+          transition: background 0.4s var(--ease-out-expo), color 0.4s;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: 160px;
+        }
+
+        .stat-num {
+          font-family: var(--font-display);
+          font-size: clamp(48px, 6vw, 80px);
+          line-height: 1;
+          color: var(--ibtu-black);
+          transition: color 0.4s var(--ease-out-expo);
+        }
+
+        .stat-label {
+          font-family: var(--font-body);
+          font-size: var(--body-md);
+          font-weight: 600;
+          color: var(--ibtu-black);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-top: 12px;
+          transition: color 0.4s var(--ease-out-expo);
         }
 
         @media (max-width: 768px) {
@@ -333,6 +426,14 @@ export default function PillarCubes() {
             grid-template-columns: 1fr;
             max-width: 320px;
             margin: 0 auto;
+          }
+          .stats-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .stats-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

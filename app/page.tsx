@@ -87,7 +87,6 @@ export default async function HomePage() {
     <HomePageClient
       programCards={programCards}
       missionMedia={MISSION_MEDIA}
-      pillars={PILLARS}
       stats={STATS}
       tickerPhrases={TICKER_PHRASES}
     />
