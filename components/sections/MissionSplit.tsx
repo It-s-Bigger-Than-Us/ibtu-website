@@ -7,9 +7,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
-   MISSION SPLIT — 50/50 sticky panel
-   Left: mission text scrolls
-   Right: pinned media swaps on scroll
+   MISSION SECTION — full-screen photo transitions
+   Each photo pushes in from a different direction
+   on scroll. Text overlaid on first frame.
 ═══════════════════════════════════════ */
 
 interface MissionSplitProps {
@@ -22,96 +22,82 @@ interface MissionSplitProps {
   }>
 }
 
+type Direction = 'right' | 'left' | 'bottom' | 'top'
+const DIRECTIONS: Direction[] = ['right', 'bottom', 'left', 'top', 'right', 'bottom']
+
+const enterProps = (dir: Direction) => {
+  switch (dir) {
+    case 'right': return { x: '100%', y: '0%' }
+    case 'left': return { x: '-100%', y: '0%' }
+    case 'bottom': return { y: '100%', x: '0%' }
+    case 'top': return { y: '-100%', x: '0%' }
+  }
+}
+
 export default function MissionSplit({
   headline = 'Why We Exist',
   body = 'Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design.',
   media,
 }: MissionSplitProps) {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const leftRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLDivElement>(null)
   const mediaRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     if (!sectionRef.current || media.length === 0) return
 
     const ctx = gsap.context(() => {
-      // Pin the section for multi-media swap
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: `+=${media.length * 100}%`,
+          end: `+=${media.length * 80}%`,
           pin: true,
           scrub: 1,
           anticipatePin: 1,
         },
       })
 
-      // Animate left text in
-      const words = leftRef.current?.querySelectorAll('.mission-word')
-      if (words) {
-        tl.fromTo(
-          words,
-          { opacity: 0, y: 60, rotateX: -15 },
-          {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            stagger: 0.03,
-            duration: 0.15,
-            ease: 'expo.out',
-          },
-          0
+      // Text fades in
+      if (textRef.current) {
+        const words = textRef.current.querySelectorAll('.mission-word')
+        if (words.length) {
+          tl.fromTo(words,
+            { opacity: 0, y: 40 },
+            { opacity: 1, y: 0, stagger: 0.02, duration: 0.1, ease: 'expo.out' },
+            0
+          )
+        }
+        const bodyEl = textRef.current.querySelector('.mission-body')
+        if (bodyEl) {
+          tl.fromTo(bodyEl,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.1, ease: 'expo.out' },
+            0.05
+          )
+        }
+        // Text fades out before second photo
+        tl.to(textRef.current,
+          { opacity: 0, duration: 0.08 },
+          0.12
         )
       }
 
-      // Body text fade
-      const bodyEl = leftRef.current?.querySelector('.mission-body')
-      if (bodyEl) {
-        tl.fromTo(
-          bodyEl,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.15, ease: 'expo.out' },
-          0.1
-        )
-      }
-
-      // Media panel swaps
+      // Each photo pushes in from a different direction
       media.forEach((_, i) => {
-        if (i === 0) return // First is already visible
-
-        const enterDir = i % 3 === 1 ? 'right' : i % 3 === 2 ? 'left' : 'bottom'
+        if (i === 0) return
         const el = mediaRefs.current[i]
         if (!el) return
 
+        const dir = DIRECTIONS[(i - 1) % DIRECTIONS.length]
+        const from = enterProps(dir)
         const progress = i / media.length
 
-        if (enterDir === 'right') {
-          tl.fromTo(el,
-            { x: '100%', opacity: 0 },
-            { x: '0%', opacity: 1, duration: 0.15, ease: 'expo.out' },
-            progress
-          )
-        } else if (enterDir === 'left') {
-          tl.fromTo(el,
-            { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
-            { clipPath: 'inset(0 0 0 0)', opacity: 1, duration: 0.15, ease: 'expo.out' },
-            progress
-          )
-        } else {
-          tl.fromTo(el,
-            { y: '100%', opacity: 0 },
-            { y: '0%', opacity: 1, duration: 0.15, ease: 'expo.out' },
-            progress
-          )
-          // Slide back up
-          if (i < media.length - 1) {
-            tl.to(el,
-              { y: '-100%', duration: 0.15, ease: 'expo.in' },
-              progress + 0.2
-            )
-          }
-        }
+        tl.fromTo(el,
+          { ...from, opacity: 1 },
+          { x: '0%', y: '0%', opacity: 1, duration: 0.15, ease: 'expo.out' },
+          progress
+        )
       })
     }, sectionRef)
 
@@ -124,21 +110,51 @@ export default function MissionSplit({
     <section
       ref={sectionRef}
       style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        position: 'relative',
+        width: '100%',
         height: '100vh',
         overflow: 'hidden',
+        background: 'var(--ibtu-black)',
       }}
     >
-      {/* Left panel — text */}
+      {/* Stacked full-bleed photos */}
+      {media.map((item, i) => (
+        <div
+          key={i}
+          ref={el => { mediaRefs.current[i] = el }}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: i + 1,
+            ...(i === 0 ? {} : { transform: `${enterProps(DIRECTIONS[(i - 1) % DIRECTIONS.length]).x !== '0%' ? `translateX(${enterProps(DIRECTIONS[(i - 1) % DIRECTIONS.length]).x})` : `translateY(${enterProps(DIRECTIONS[(i - 1) % DIRECTIONS.length]).y})`}` }),
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={item.src}
+            alt={item.alt || 'IBTU'}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              filter: 'saturate(1.15) brightness(1.05)',
+            }}
+          />
+        </div>
+      ))}
+
+      {/* Text overlay — visible on first photo only */}
       <div
-        ref={leftRef}
+        ref={textRef}
         style={{
-          background: 'var(--ibtu-black)',
-          padding: 'clamp(60px, 8vw, 120px) clamp(40px, 5vw, 80px)',
+          position: 'absolute',
+          inset: 0,
+          zIndex: media.length + 1,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
+          padding: 'clamp(60px, 8vw, 120px) clamp(40px, 5vw, 80px)',
+          background: 'linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)',
         }}
       >
         <h2
@@ -149,23 +165,19 @@ export default function MissionSplit({
             textTransform: 'uppercase',
             color: 'var(--ibtu-white)',
             marginBottom: '32px',
-            perspective: '600px',
+            maxWidth: '600px',
           }}
         >
           {headlineWords.map((word, i) => (
             <span
               key={i}
               className="mission-word"
-              style={{
-                display: 'inline-block',
-                marginRight: '0.25em',
-              }}
+              style={{ display: 'inline-block', marginRight: '0.25em', opacity: 0 }}
             >
               {word}
             </span>
           ))}
         </h2>
-
         <p
           className="mission-body"
           style={{
@@ -173,66 +185,13 @@ export default function MissionSplit({
             fontSize: 'var(--body-lg)',
             lineHeight: 1.7,
             color: 'var(--ibtu-white)',
-            maxWidth: '480px',
+            maxWidth: '520px',
+            opacity: 0,
           }}
         >
           {body}
         </p>
       </div>
-
-      {/* Right panel — media swaps */}
-      <div style={{ position: 'relative', overflow: 'hidden', height: '100%', minHeight: '100vh' }}>
-        {media.map((item, i) => (
-          <div
-            key={i}
-            ref={el => { mediaRefs.current[i] = el }}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              zIndex: i + 1,
-              opacity: i === 0 ? 1 : 0,
-            }}
-          >
-            {item.type === 'video' ? (
-              <video
-                src={item.src}
-                playsInline
-                autoPlay
-                muted
-                loop
-                preload="auto"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-            ) : (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                src={item.src}
-                alt={item.alt || 'IBTU mission'}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  filter: 'saturate(1.15) brightness(1.05)',
-                }}
-              />
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Mobile: stack vertically */}
-      <style>{`
-        @media (max-width: 768px) {
-          section:has(.mission-word) {
-            grid-template-columns: 1fr !important;
-            height: auto !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }

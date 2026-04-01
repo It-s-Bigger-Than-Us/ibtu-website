@@ -18,6 +18,7 @@ interface Props {
 /* Program-to-image mapping for stacking gallery */
 const PROGRAM_IMAGES: Record<string, string[]> = {
   'fire-relief': ['/images/school/IMG_5382.jpg', '/images/school/IMG_5406.jpg', '/images/school/IMG_5508.jpg', '/images/school/IMG_5608.jpg'],
+  'back-2-school': ['/images/b2s/_D5A7392.jpg', '/images/b2s/_D5A7224.jpg', '/images/b2s/2V8A1964.jpg', '/images/b2s/_D5A5912.jpg'],
   'back-to-school': ['/images/b2s/_D5A7392.jpg', '/images/b2s/_D5A7224.jpg', '/images/b2s/2V8A1964.jpg', '/images/b2s/_D5A5912.jpg'],
   'coastal-care': ['/images/coastal/IMG_0024.jpg', '/images/coastal/IMG_0267.jpg', '/images/coastal/IMG_1796.jpg', '/images/coastal/IMG_1810.jpg'],
   'wellness': ['/images/wellness/IMG_0007.jpg', '/images/wellness/IMG_0279.jpg', '/images/wellness/IMG_1554.jpg', '/images/wellness/IMG_1583.jpg'],

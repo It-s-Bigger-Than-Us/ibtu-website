@@ -280,7 +280,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           position: relative;
           padding: clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px);
           overflow: hidden;
-          background: linear-gradient(180deg, #87CEEB 0%, #B0E0F0 40%, #D4EEFA 100%);
+          background: url('/images/blue-sky.jpg') center/cover no-repeat fixed;
         }
 
         .pillar-inner {
@@ -369,30 +369,30 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           text-align: center;
         }
 
-        /* ── Stats grid — 6 across, compact ── */
+        /* ── Stats grid — 3x2 ── */
         .stats-grid {
           display: grid;
-          grid-template-columns: repeat(6, 1fr);
-          gap: clamp(8px, 1.2vw, 16px);
-          margin-top: clamp(40px, 5vw, 80px);
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--grid-gap);
+          margin-top: clamp(48px, 6vw, 80px);
         }
 
         .stat-card {
           background: var(--ibtu-gold);
-          border-radius: 12px;
-          padding: clamp(16px, 2vw, 28px);
+          border-radius: 16px;
+          padding: clamp(20px, 2.5vw, 40px);
           opacity: 0;
           cursor: pointer;
           transition: background 0.4s var(--ease-out-expo), color 0.4s;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          min-height: 120px;
+          min-height: 140px;
         }
 
         .stat-num {
           font-family: var(--font-display);
-          font-size: clamp(28px, 3.5vw, 52px);
+          font-size: clamp(36px, 5vw, 72px);
           line-height: 1;
           color: var(--ibtu-black);
           transition: color 0.4s var(--ease-out-expo);
@@ -400,7 +400,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
 
         .stat-label {
           font-family: var(--font-body);
-          font-size: clamp(9px, 0.8vw, 13px);
+          font-size: var(--body-sm);
           font-weight: 600;
           color: var(--ibtu-black);
           text-transform: uppercase;
@@ -415,11 +415,6 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
             max-width: 320px;
             margin: 0 auto;
           }
-          .stats-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-          }
-        }
-        @media (max-width: 480px) {
           .stats-grid {
             grid-template-columns: 1fr 1fr !important;
           }

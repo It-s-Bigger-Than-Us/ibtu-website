@@ -58,6 +58,12 @@ export default function HeroIntro() {
       '+=0.1'
     )
 
+    // Fade section to black after animation
+    tl.to(
+      sectionRef.current,
+      { background: 'var(--ibtu-black)', duration: 0.01 },
+    )
+
     return () => { tl.kill() }
   }, [])
 
@@ -69,7 +75,7 @@ export default function HeroIntro() {
       style={{
         position: 'relative',
         background: 'var(--ibtu-gold)',
-        minHeight: '100vh',
+        height: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
