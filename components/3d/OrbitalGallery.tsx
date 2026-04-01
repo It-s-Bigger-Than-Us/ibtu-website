@@ -1,9 +1,10 @@
 'use client'
 
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useTexture } from '@react-three/drei'
+import { Environment, useTexture } from '@react-three/drei'
 import { Suspense, useCallback, useMemo, useRef } from 'react'
 import { DoubleSide, Object3D } from 'three'
+import IBTULogo3D from './IBTULogo3D'
 
 /* ═══════════════════════════════════════
    ORBITAL GALLERY — 3D image sphere
@@ -124,9 +125,11 @@ export default function OrbitalGallery() {
         style={{ pointerEvents: 'none' }}
       >
         <Suspense fallback={null}>
-          <ambientLight intensity={0.8} />
-          <directionalLight position={[5, 5, 5]} intensity={0.6} />
+          <ambientLight intensity={0.65} />
+          <directionalLight position={[5, 5, 5]} intensity={1} />
+          <Environment preset="studio" blur={10.5} />
           <ImageSphere angleY={angleY} />
+          <IBTULogo3D angleY={angleY} />
         </Suspense>
       </Canvas>
     </section>
