@@ -115,7 +115,6 @@ function CubeCard({ pillar, isHovered }: { pillar: PillarData; isHovered: boolea
           ))}
         </div>
       </div>
-      <div className="pillar-cube-title">{pillar.name}</div>
     </div>
   )
 }
@@ -370,41 +369,30 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           text-align: center;
         }
 
-        .pillar-cube-title {
-          font-family: var(--font-body);
-          font-size: clamp(10px, 1vw, 14px);
-          font-weight: 700;
-          letter-spacing: 3px;
-          text-transform: uppercase;
-          color: var(--ibtu-black);
-          text-align: center;
-          margin-top: clamp(12px, 1.5vw, 20px);
-        }
-
-        /* ── Stats grid ── */
+        /* ── Stats grid — 6 across, compact ── */
         .stats-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: var(--grid-gap);
-          margin-top: clamp(60px, 8vw, 120px);
+          grid-template-columns: repeat(6, 1fr);
+          gap: clamp(8px, 1.2vw, 16px);
+          margin-top: clamp(40px, 5vw, 80px);
         }
 
         .stat-card {
           background: var(--ibtu-gold);
-          border-radius: 16px;
-          padding: clamp(24px, 3vw, 48px);
+          border-radius: 12px;
+          padding: clamp(16px, 2vw, 28px);
           opacity: 0;
           cursor: pointer;
           transition: background 0.4s var(--ease-out-expo), color 0.4s;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          min-height: 160px;
+          min-height: 120px;
         }
 
         .stat-num {
           font-family: var(--font-display);
-          font-size: clamp(48px, 6vw, 80px);
+          font-size: clamp(28px, 3.5vw, 52px);
           line-height: 1;
           color: var(--ibtu-black);
           transition: color 0.4s var(--ease-out-expo);
@@ -412,12 +400,12 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
 
         .stat-label {
           font-family: var(--font-body);
-          font-size: var(--body-md);
+          font-size: clamp(9px, 0.8vw, 13px);
           font-weight: 600;
           color: var(--ibtu-black);
           text-transform: uppercase;
           letter-spacing: 1px;
-          margin-top: 12px;
+          margin-top: 8px;
           transition: color 0.4s var(--ease-out-expo);
         }
 
@@ -428,12 +416,12 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
             margin: 0 auto;
           }
           .stats-grid {
-            grid-template-columns: 1fr 1fr !important;
+            grid-template-columns: repeat(3, 1fr) !important;
           }
         }
         @media (max-width: 480px) {
           .stats-grid {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: 1fr 1fr !important;
           }
         }
       `}</style>
