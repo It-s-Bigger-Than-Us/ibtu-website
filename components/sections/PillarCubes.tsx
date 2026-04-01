@@ -261,9 +261,10 @@ export default function PillarCubes() {
 
         /* ── Cube scene ── */
         .pillar-cube-scene {
-          width: 100%;
+          width: 70%;
           aspect-ratio: 1 / 1;
           perspective: 1000px;
+          margin: 0 auto;
         }
 
         .pillar-cube {

@@ -58,7 +58,7 @@ export default function TopNav() {
             justifyContent: 'center',
             width: '64px',
             height: '64px',
-            background: 'var(--ibtu-gold)',
+            background: 'var(--ibtu-black)',
             borderRadius: '8px',
             perspective: '600px',
           }}
@@ -78,7 +78,7 @@ export default function TopNav() {
               style={{
                 width: '100%',
                 height: '100%',
-                filter: 'brightness(0)',
+                filter: 'invert(79%) sepia(98%) saturate(1000%) hue-rotate(3deg) brightness(103%)',
               }}
             />
           </div>

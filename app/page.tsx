@@ -1,7 +1,7 @@
 import { getPrograms, getPillars } from '@/sanity/lib/fetch'
 import { urlFor } from '@/sanity/lib/client'
 import HomePageClient from '@/components/sections/HomePageClient'
-import { HERO_VIDEOS, PILLAR_VIDEOS, PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
+import { PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
 
 const HIDDEN_PROGRAMS = ['gala', 'incubation-academy']
 
@@ -12,15 +12,14 @@ const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
   'coastal-care': '/images/coastal/IMG_4838.jpg',
 }
 
-const HERO_VIDEO = HERO_VIDEOS.brentwoodCrop
 
 const MISSION_MEDIA = [
   { type: 'image' as const, src: '/images/b2s/_D5A7392.jpg', alt: 'Back to School community event' },
-  { type: 'video' as const, src: PROGRAM_HOVER_VIDEO['back-to-school'], alt: 'Venice Back to School festival' },
+  { type: 'image' as const, src: '/images/landscape/IMG_5943.jpg', alt: 'IBTU community in action' },
   { type: 'image' as const, src: '/images/coastal/IMG_4838.jpg', alt: 'Coastal Care beach cleanup' },
-  { type: 'video' as const, src: PILLAR_VIDEOS.youth.baldwinHills, alt: 'Youth programming at Baldwin Hills' },
+  { type: 'image' as const, src: '/images/landscape/_D5A8515.jpg', alt: 'Youth programming' },
   { type: 'image' as const, src: '/images/wellness/IMG_9922.jpg', alt: 'Community yoga and wellness' },
-  { type: 'video' as const, src: PILLAR_VIDEOS.crisis.rebuildTeaser, alt: 'Community rebuilding together' },
+  { type: 'image' as const, src: '/images/landscape/IMG_5683.jpg', alt: 'Community rebuilding together' },
 ]
 
 const PILLARS = [
@@ -28,22 +27,19 @@ const PILLARS = [
     name: 'Crisis & Disaster',
     stat: '5,000+',
     statLabel: 'Families Stabilized',
-    imageSrc: '/images/school/IMG_5382.jpg',
-    videoSrc: PILLAR_VIDEOS.crisis.day3Energy,
+    imageSrc: '/images/landscape/_D5A8999.jpg',
   },
   {
     name: 'School & Youth',
     stat: '62,475+',
     statLabel: 'Students Served',
-    imageSrc: '/images/school/IMG_5608.jpg',
-    videoSrc: PILLAR_VIDEOS.youth.wrightSchool,
+    imageSrc: '/images/landscape/IMG_5727.jpg',
   },
   {
     name: 'Community Health',
     stat: '875,500+',
     statLabel: 'Lbs Food Distributed',
-    imageSrc: '/images/wellness/IMG_9922.jpg',
-    videoSrc: PILLAR_VIDEOS.health.community,
+    imageSrc: '/images/landscape/IMG_1628.jpg',
   },
 ]
 
@@ -90,7 +86,6 @@ export default async function HomePage() {
   return (
     <HomePageClient
       programCards={programCards}
-      heroVideo={HERO_VIDEO}
       missionMedia={MISSION_MEDIA}
       pillars={PILLARS}
       stats={STATS}
