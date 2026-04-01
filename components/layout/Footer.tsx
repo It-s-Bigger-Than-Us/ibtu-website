@@ -25,7 +25,6 @@ const footerLinks = [
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null)
   const mantraRef = useRef<HTMLDivElement>(null)
-  const skylineRef = useRef<HTMLDivElement>(null)
 
   const mantraLines = ['Community', 'is the', 'Infrastructure.']
 
@@ -55,25 +54,6 @@ export default function Footer() {
         )
       }
 
-      // Skyline rises from below
-      if (skylineRef.current) {
-        gsap.fromTo(
-          skylineRef.current,
-          { y: 30, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'expo.out',
-            scrollTrigger: {
-              trigger: skylineRef.current,
-              start: 'top 95%',
-              once: true,
-            },
-            delay: 0.2,
-          }
-        )
-      }
     }, footerRef)
 
     return () => ctx.revert()
@@ -83,7 +63,7 @@ export default function Footer() {
     <footer
       ref={footerRef}
       style={{
-        background: 'var(--ibtu-gold)',
+        background: 'var(--ibtu-black)',
         padding: 'clamp(80px, 10vw, 160px) clamp(32px, 5vw, 80px) 0',
       }}
     >
@@ -98,7 +78,7 @@ export default function Footer() {
             fontSize: 'clamp(48px, 10vw, 160px)',
             lineHeight: 0.92,
             textTransform: 'uppercase',
-            color: 'var(--ibtu-black)',
+            color: 'var(--ibtu-gold)',
             letterSpacing: '-0.02em',
             perspective: '600px',
           }}
@@ -124,7 +104,7 @@ export default function Footer() {
           gridTemplateColumns: '1fr 1fr 1fr',
           gap: '48px',
           paddingTop: '48px',
-          borderTop: '2px solid var(--ibtu-black)',
+          borderTop: '2px solid var(--ibtu-gold)',
         }}
       >
         {/* Left — logo + org info */}
@@ -133,13 +113,13 @@ export default function Footer() {
           <img
             src="/ibtu-logo.svg"
             alt="IBTU"
-            style={{ height: '40px', filter: 'brightness(0)', marginBottom: '16px' }}
+            style={{ height: '40px', filter: 'invert(79%) sepia(98%) saturate(1000%) hue-rotate(3deg) brightness(103%)', marginBottom: '16px' }}
           />
           <p
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: '12px',
-              color: 'var(--ibtu-black)',
+              color: 'var(--ibtu-gold)',
               lineHeight: 2,
               fontWeight: 500,
             }}
@@ -162,7 +142,7 @@ export default function Footer() {
               fontSize: '10px',
               letterSpacing: '3px',
               textTransform: 'uppercase',
-              color: 'var(--ibtu-black)',
+              color: 'var(--ibtu-gold)',
               fontWeight: 700,
               marginBottom: '8px',
             }}
@@ -176,13 +156,13 @@ export default function Footer() {
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '14px',
-                color: 'var(--ibtu-black)',
+                color: 'var(--ibtu-gold)',
                 textDecoration: 'none',
                 fontWeight: 600,
                 transition: 'color 0.2s',
               }}
               onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ibtu-white)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--ibtu-black)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--ibtu-gold)' }}
             >
               {link.label}
             </Link>
@@ -197,7 +177,7 @@ export default function Footer() {
               fontSize: '10px',
               letterSpacing: '3px',
               textTransform: 'uppercase',
-              color: 'var(--ibtu-black)',
+              color: 'var(--ibtu-gold)',
               fontWeight: 700,
               marginBottom: '8px',
             }}
@@ -209,13 +189,13 @@ export default function Footer() {
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: '14px',
-              color: 'var(--ibtu-black)',
+              color: 'var(--ibtu-gold)',
               textDecoration: 'none',
               fontWeight: 600,
               transition: 'color 0.2s',
             }}
             onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ibtu-white)' }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--ibtu-black)' }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--ibtu-gold)' }}
           >
             info@itsbiggerthanusla.org
           </a>
@@ -224,13 +204,13 @@ export default function Footer() {
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: '14px',
-              color: 'var(--ibtu-black)',
+              color: 'var(--ibtu-gold)',
               textDecoration: 'none',
               fontWeight: 600,
               transition: 'color 0.2s',
             }}
             onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ibtu-white)' }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--ibtu-black)' }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--ibtu-gold)' }}
           >
             (323) 207-0221
           </a>
@@ -255,17 +235,17 @@ export default function Footer() {
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  border: '2px solid var(--ibtu-black)',
-                  color: 'var(--ibtu-black)',
+                  border: '2px solid var(--ibtu-gold)',
+                  color: 'var(--ibtu-gold)',
                   transition: 'background 0.2s, color 0.2s',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'var(--ibtu-black)'
-                  e.currentTarget.style.color = 'var(--ibtu-gold)'
+                  e.currentTarget.style.background = 'var(--ibtu-gold)'
+                  e.currentTarget.style.color = 'var(--ibtu-black)'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = 'transparent'
-                  e.currentTarget.style.color = 'var(--ibtu-black)'
+                  e.currentTarget.style.color = 'var(--ibtu-gold)'
                 }}
               >
                 {social.icon}
@@ -281,42 +261,18 @@ export default function Footer() {
           maxWidth: 'var(--content-max)',
           margin: '48px auto 0',
           paddingTop: '24px',
-          borderTop: '2px solid var(--ibtu-black)',
+          borderTop: '2px solid var(--ibtu-gold)',
           textAlign: 'center',
           fontFamily: 'var(--font-body)',
           fontSize: '11px',
           letterSpacing: '2px',
           textTransform: 'uppercase',
-          color: 'var(--ibtu-black)',
+          color: 'var(--ibtu-gold)',
           fontWeight: 600,
           paddingBottom: '24px',
         }}
       >
         &copy; {new Date().getFullYear()} It&apos;s Bigger Than Us. All rights reserved.
-      </div>
-
-      {/* ── LA Skyline silhouette — static at bottom ── */}
-      <div
-        ref={skylineRef}
-        style={{
-          width: '100%',
-          height: 'clamp(60px, 8vw, 120px)',
-          pointerEvents: 'none',
-          marginTop: '16px',
-        }}
-      >
-        <svg
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-          role="presentation"
-          style={{ width: '100%', height: '100%', display: 'block' }}
-        >
-          <path
-            d="M0,120 L0,85 L40,85 L40,70 L60,70 L60,55 L75,55 L75,65 L90,65 L90,45 L100,45 L100,35 L110,35 L110,50 L130,50 L130,40 L145,40 L145,25 L155,25 L155,15 L165,15 L165,25 L175,25 L175,40 L190,40 L190,50 L210,50 L210,60 L230,60 L230,45 L245,45 L245,30 L255,30 L255,20 L265,20 L265,30 L280,30 L280,55 L300,55 L300,65 L330,65 L330,50 L345,50 L345,35 L360,35 L360,55 L380,55 L380,70 L420,70 L420,60 L440,60 L440,45 L455,45 L455,30 L470,30 L470,20 L480,20 L480,10 L490,10 L490,20 L500,20 L500,35 L520,35 L520,50 L550,50 L550,65 L580,65 L580,55 L600,55 L600,70 L640,70 L640,60 L660,60 L660,50 L680,50 L680,35 L695,35 L695,25 L710,25 L710,35 L730,35 L730,50 L760,50 L760,60 L790,60 L790,45 L810,45 L810,55 L840,55 L840,65 L880,65 L880,50 L900,50 L900,40 L915,40 L915,25 L930,25 L930,15 L940,15 L940,8 L950,8 L950,15 L960,15 L960,30 L980,30 L980,45 L1010,45 L1010,55 L1040,55 L1040,65 L1080,65 L1080,50 L1100,50 L1100,40 L1120,40 L1120,55 L1150,55 L1150,65 L1180,65 L1180,50 L1200,50 L1200,60 L1230,60 L1230,70 L1260,70 L1260,55 L1280,55 L1280,45 L1300,45 L1300,35 L1315,35 L1315,25 L1325,25 L1325,35 L1340,35 L1340,50 L1360,50 L1360,65 L1390,65 L1390,75 L1420,75 L1420,85 L1440,85 L1440,120 Z"
-            fill="var(--ibtu-black)"
-          />
-        </svg>
       </div>
 
       {/* Mobile responsive */}
