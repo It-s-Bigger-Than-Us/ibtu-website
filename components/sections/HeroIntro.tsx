@@ -5,22 +5,24 @@ import gsap from 'gsap'
 
 /* ═══════════════════════════════════════
    HERO INTRO — "It's Bigger Than Us"
-   Word-by-word entrance on page load.
-   Gold bg, black text, LOT font.
+   Phase 1: Words animate in on load
+   Phase 2: Logo wipes in, zooms past camera
 ═══════════════════════════════════════ */
 
 export default function HeroIntro() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const wordsRef = useRef<HTMLHeadingElement>(null)
+  const logoRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!wordsRef.current) return
+    if (!wordsRef.current || !logoRef.current) return
 
     const words = wordsRef.current.querySelectorAll('.intro-word')
     if (!words.length) return
 
     const tl = gsap.timeline({ delay: 0.3 })
 
+    // Phase 1: Words rise in
     tl.fromTo(
       words,
       { opacity: 0, y: 80, rotateX: -20 },
@@ -34,6 +36,28 @@ export default function HeroIntro() {
       }
     )
 
+    // Phase 2: Logo wipes in with circular clip-path
+    tl.fromTo(
+      logoRef.current,
+      { clipPath: 'circle(0% at 50% 50%)', opacity: 1 },
+      { clipPath: 'circle(35% at 50% 50%)', duration: 0.6, ease: 'power2.inOut' },
+      '+=0.4'
+    )
+
+    // Words fade out behind the logo
+    tl.to(
+      wordsRef.current,
+      { opacity: 0, scale: 0.8, duration: 0.3 },
+      '<+=0.2'
+    )
+
+    // Logo zooms past camera
+    tl.to(
+      logoRef.current,
+      { scale: 18, opacity: 0, duration: 0.8, ease: 'expo.in' },
+      '+=0.1'
+    )
+
     return () => { tl.kill() }
   }, [])
 
@@ -43,6 +67,7 @@ export default function HeroIntro() {
     <section
       ref={sectionRef}
       style={{
+        position: 'relative',
         background: 'var(--ibtu-gold)',
         minHeight: '100vh',
         display: 'flex',
@@ -50,8 +75,10 @@ export default function HeroIntro() {
         justifyContent: 'center',
         padding: '0 clamp(24px, 5vw, 80px)',
         perspective: '800px',
+        overflow: 'hidden',
       }}
     >
+      {/* Title words */}
       <h1
         ref={wordsRef}
         style={{
@@ -67,6 +94,7 @@ export default function HeroIntro() {
           justifyContent: 'center',
           gap: '0 0.25em',
           maxWidth: '100%',
+          zIndex: 1,
         }}
       >
         {titleWords.map((word, i) => (
@@ -83,6 +111,34 @@ export default function HeroIntro() {
           </span>
         ))}
       </h1>
+
+      {/* Logo overlay — wipes in then zooms past */}
+      <div
+        ref={logoRef}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'var(--ibtu-gold)',
+          clipPath: 'circle(0% at 50% 50%)',
+          zIndex: 2,
+          pointerEvents: 'none',
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/ibtu-logo.svg"
+          alt=""
+          style={{
+            width: '40vh',
+            height: '40vh',
+            filter: 'brightness(0)',
+            objectFit: 'contain',
+          }}
+        />
+      </div>
     </section>
   )
 }
