@@ -5,14 +5,28 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import SectionLabel from '@/components/ui/SectionLabel'
+import ProgramIcon from '@/components/ui/ProgramIcon'
 
 gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
    PROGRAMS GRID — image top + gold fold-out
    Holographic border on hover
+   Solid filled program icons
    Scroll entrance with slight rotate
 ═══════════════════════════════════════ */
+
+const SLUG_TO_ICON: Record<string, 'fire' | 'school' | 'youth' | 'beach' | 'gift' | 'wellness' | 'food'> = {
+  'fire-relief': 'fire',
+  'back-2-school': 'school',
+  'back-to-school': 'school',
+  'youth-programming': 'youth',
+  'coastal-care': 'beach',
+  'community-builder-linkups': 'gift',
+  'community-health': 'wellness',
+  'wellness': 'wellness',
+  'food-distribution': 'food',
+}
 
 interface Program {
   slug: string
@@ -163,7 +177,7 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
                 )}
               </div>
 
-              {/* Gold info block with fold-out */}
+              {/* Gold info block with fold-out + solid icon */}
               <div
                 style={{
                   background: 'var(--ibtu-gold)',
@@ -189,18 +203,27 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
                   {program.pillar}
                 </span>
 
-                <span
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(16px, 1.8vw, 24px)',
-                    textTransform: 'uppercase',
-                    color: 'var(--ibtu-black)',
-                    lineHeight: 1.1,
-                    display: 'block',
-                  }}
-                >
-                  {program.title}
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  {SLUG_TO_ICON[program.slug] && (
+                    <ProgramIcon
+                      icon={SLUG_TO_ICON[program.slug]}
+                      size={28}
+                      color="#000"
+                    />
+                  )}
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: 'clamp(16px, 1.8vw, 24px)',
+                      textTransform: 'uppercase',
+                      color: 'var(--ibtu-black)',
+                      lineHeight: 1.1,
+                      display: 'block',
+                    }}
+                  >
+                    {program.title}
+                  </span>
+                </div>
 
                 {/* Fold-out content on hover */}
                 <div
