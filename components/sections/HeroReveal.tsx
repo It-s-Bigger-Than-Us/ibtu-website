@@ -6,10 +6,10 @@ import Image from 'next/image'
 
 /* ═══════════════════════════════════════
    HERO REVEAL
-   1. "It's Bigger Than Us" — one word at a time, BIG personality
-   2. Logo orbital wipe in (spins around, lands center)
+   1. "It's Bigger Than Us" — justified, each word SLAMS in
+   2. Logo wipes in from center and grows (NO orbital spin)
    3. Logo becomes a window — zoom THROUGH it
-   4. Cuts to photo gallery below
+   4. Cuts to 3D perspective card gallery below
 
    Pure CSS + GSAP. No R3F.
 ═══════════════════════════════════════ */
@@ -45,87 +45,94 @@ export default function HeroReveal() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const logoRef = useRef<HTMLDivElement>(null)
-  const logoWindowRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!textRef.current || !logoRef.current || !logoWindowRef.current || !galleryRef.current) return
+    if (!textRef.current || !logoRef.current || !galleryRef.current) return
 
     const words = textRef.current.querySelectorAll('.hero-word')
     const cards = galleryRef.current.querySelectorAll('.gallery-card')
     const tl = gsap.timeline()
 
-    // ── Phase 1: Words animate in one at a time with PERSONALITY ──
+    // ── Phase 1: Words SLAM in — justified, each hits hard ──
     words.forEach((word, i) => {
-      // Each word slams in from below with overshoot
+      // Each word crashes in from below with massive scale + overshoot
       tl.fromTo(
         word,
         {
           opacity: 0,
-          y: 120,
-          scale: 1.4,
-          rotateZ: i % 2 === 0 ? -8 : 8,
+          y: 200,
+          scale: 2.5,
+          rotateX: -45,
         },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          rotateZ: 0,
-          duration: 0.5,
-          ease: 'back.out(2)',
+          rotateX: 0,
+          duration: 0.6,
+          ease: 'back.out(1.7)',
         },
-        i * 0.35, // deliberate pause between each word
+        i * 0.4, // deliberate pause — let each word breathe
       )
-      // Quick emphasis pulse on each word after landing
+      // HARD impact pulse
       tl.to(word, {
-        scale: 1.05,
-        duration: 0.15,
-        ease: 'power2.out',
-      }, `>-0.1`)
+        scale: 1.12,
+        letterSpacing: '0.05em',
+        duration: 0.1,
+        ease: 'power4.out',
+      }, `>-0.05`)
       tl.to(word, {
         scale: 1,
-        duration: 0.2,
-        ease: 'power2.in',
+        letterSpacing: '-0.03em',
+        duration: 0.25,
+        ease: 'power2.inOut',
       })
     })
 
-    // Hold — let it breathe
-    tl.to({}, { duration: 0.6 })
+    // Hold — let it sink in
+    tl.to({}, { duration: 0.8 })
 
-    // ── Phase 2: Text fades, logo orbital wipe in ──
+    // ── Phase 2: Text fades, logo WIPES IN from center ──
     tl.to(textRef.current, {
       opacity: 0,
-      scale: 0.7,
-      duration: 0.4,
+      scale: 0.6,
+      duration: 0.5,
       ease: 'power3.in',
     })
 
-    // Logo enters with orbital spin (like it's flying in from far away, orbiting around)
+    // Logo wipes in from center — clip-path reveal + grows
     tl.fromTo(
       logoRef.current,
       {
-        opacity: 0,
-        scale: 0.1,
-        rotation: -720, // 2 full spins
-        x: 300,
-        y: -200,
+        opacity: 1,
+        scale: 0.3,
+        clipPath: 'inset(50% 50% 50% 50%)',
       },
       {
-        opacity: 1,
         scale: 1,
-        rotation: 0,
-        x: 0,
-        y: 0,
-        duration: 1.2,
+        clipPath: 'inset(0% 0% 0% 0%)',
+        duration: 1.0,
         ease: 'expo.out',
       },
     )
 
+    // Logo grows slightly — breathing
+    tl.to(logoRef.current, {
+      scale: 1.08,
+      duration: 0.4,
+      ease: 'power2.out',
+    })
+    tl.to(logoRef.current, {
+      scale: 1,
+      duration: 0.3,
+      ease: 'power2.in',
+    })
+
     // Hold logo
-    tl.to({}, { duration: 0.4 })
+    tl.to({}, { duration: 0.3 })
 
     // ── Phase 3: Zoom THROUGH the logo like a window ──
-    // Logo scales up massively (we fly through it)
     tl.to(logoRef.current, {
       scale: 30,
       opacity: 0,
@@ -133,7 +140,7 @@ export default function HeroReveal() {
       ease: 'power3.in',
     })
 
-    // Simultaneously: gallery section fades in (we've "arrived" through the window)
+    // Simultaneously: gallery section fades in
     tl.fromTo(
       galleryRef.current,
       { opacity: 0 },
@@ -173,7 +180,7 @@ export default function HeroReveal() {
           justifyContent: 'center',
         }}
       >
-        {/* Phase 1: Words — one at a time */}
+        {/* Phase 1: Words — one at a time, JUSTIFIED to fill width */}
         <div
           ref={textRef}
           style={{
@@ -184,28 +191,35 @@ export default function HeroReveal() {
             justifyContent: 'center',
             zIndex: 2,
             padding: '0 clamp(24px, 5vw, 80px)',
+            perspective: '800px',
           }}
         >
           <h1
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(64px, 16vw, 260px)',
+              fontSize: 'clamp(64px, 18vw, 300px)',
               lineHeight: 0.85,
               textTransform: 'uppercase',
               color: '#000',
               letterSpacing: '-0.03em',
-              textAlign: 'center',
+              textAlign: 'justify',
+              textAlignLast: 'justify',
+              width: '100%',
+              maxWidth: 'var(--content-max)',
               display: 'flex',
               flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: '0 0.25em',
+              justifyContent: 'space-between',
             }}
           >
             {["It's", 'Bigger', 'Than', 'Us'].map((word, i) => (
               <span
                 key={i}
                 className="hero-word"
-                style={{ display: 'inline-block', opacity: 0 }}
+                style={{
+                  display: 'inline-block',
+                  opacity: 0,
+                  transformOrigin: 'center bottom',
+                }}
               >
                 {word}
               </span>
@@ -213,7 +227,7 @@ export default function HeroReveal() {
           </h1>
         </div>
 
-        {/* Phase 2: Logo — orbital entry + becomes window */}
+        {/* Phase 2: Logo — wipes in from center, grows (NO spin) */}
         <div
           ref={logoRef}
           style={{
@@ -224,9 +238,7 @@ export default function HeroReveal() {
             height: 'clamp(160px, 22vw, 300px)',
           }}
         >
-          {/* Logo window frame */}
           <div
-            ref={logoWindowRef}
             style={{
               width: '100%',
               height: '100%',
@@ -244,20 +256,22 @@ export default function HeroReveal() {
         </div>
       </section>
 
-      {/* Gallery — revealed after flying through the logo */}
+      {/* Gallery — 3D perspective card gallery */}
       <section
         ref={galleryRef}
         style={{
           background: '#FFC700',
           padding: '0 clamp(24px, 5vw, 80px) 80px',
           opacity: 0,
+          perspective: '1200px',
         }}
       >
         <div
+          className="hero-gallery-3d"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: '20px',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+            gap: '24px',
             maxWidth: '1400px',
             margin: '0 auto',
           }}
@@ -273,19 +287,31 @@ export default function HeroReveal() {
                 aspectRatio: '4/3',
                 position: 'relative',
                 background: '#000',
-                boxShadow: '0 4px 24px -4px #000',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                boxShadow: '0 8px 32px -8px #000',
                 cursor: 'pointer',
+                transformStyle: 'preserve-3d',
+                transition: 'transform 0.5s var(--ease-out-expo), box-shadow 0.5s var(--ease-out-expo)',
+                transform: `rotateY(${(i % 5 - 2) * 3}deg) rotateX(${(i % 3 - 1) * 2}deg)`,
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget
-                el.style.transform = 'scale(1.03) translateY(-4px)'
-                el.style.boxShadow = '0 12px 40px -8px #000'
+                const rect = el.getBoundingClientRect()
+                const x = (e.clientX - rect.left) / rect.width - 0.5
+                const y = (e.clientY - rect.top) / rect.height - 0.5
+                el.style.transform = `perspective(800px) rotateY(${x * 20}deg) rotateX(${-y * 20}deg) scale(1.05) translateZ(30px)`
+                el.style.boxShadow = '0 20px 60px -12px #000'
+              }}
+              onMouseMove={(e) => {
+                const el = e.currentTarget
+                const rect = el.getBoundingClientRect()
+                const x = (e.clientX - rect.left) / rect.width - 0.5
+                const y = (e.clientY - rect.top) / rect.height - 0.5
+                el.style.transform = `perspective(800px) rotateY(${x * 20}deg) rotateX(${-y * 20}deg) scale(1.05) translateZ(30px)`
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget
-                el.style.transform = ''
-                el.style.boxShadow = '0 4px 24px -4px #000'
+                el.style.transform = `rotateY(${(i % 5 - 2) * 3}deg) rotateX(${(i % 3 - 1) * 2}deg)`
+                el.style.boxShadow = '0 8px 32px -8px #000'
               }}
             >
               <Image
