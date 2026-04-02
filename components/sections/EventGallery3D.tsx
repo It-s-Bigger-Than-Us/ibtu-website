@@ -63,7 +63,6 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
           height: 2,
           background: "#FFC700",
           marginBottom: 14,
-          opacity: 0.7,
         }}
       />
 
@@ -87,7 +86,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
       )}
 
       {ev.dateStart && (
-        <div style={{ fontSize: 12, color: "#FFC700", opacity: 0.7 }}>
+        <div style={{ fontSize: 12, color: "#FFC700" }}>
           {ev.dateStart}
         </div>
       )}

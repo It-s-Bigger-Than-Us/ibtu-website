@@ -33,7 +33,7 @@
   --black: #000;
   --ibtu-black: #000000;
   --ibtu-white: #FFFFFF;
-  --warm-white: #FFFFFF;
+  --warm-white: #FFF8F0;
 
   /* Iridescent accent system — LIQUID GLASS + OILSPILL
      NOT rainbow. Gold-anchored liquid glass with subtle light
@@ -231,6 +231,28 @@
 .iridescent-border:hover::after,
 .iridescent-active::after {
   opacity: 1;
+}
+
+/* ═══════════════════════════════════════
+   SKIP TO CONTENT — accessibility
+═══════════════════════════════════════ */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--ibtu-gold);
+  color: #000;
+  padding: 12px 24px;
+  z-index: 9999;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-to-content:focus {
+  top: 0;
 }
 
 /* ═══════════════════════════════════════

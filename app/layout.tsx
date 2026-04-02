@@ -80,9 +80,17 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `setTimeout(function(){document.querySelectorAll('.gsap-reveal').forEach(function(el){if(getComputedStyle(el).opacity==='0')el.style.opacity='1'})},4000)` }} />
       </head>
       <body>
+        <a
+          href="#main-content"
+          className="skip-to-content"
+        >
+          Skip to content
+        </a>
         <SmoothScroll>
           <TopNav />
-          {children}
+          <div id="main-content">
+            {children}
+          </div>
         </SmoothScroll>
       </body>
     </html>

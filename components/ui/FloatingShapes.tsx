@@ -57,8 +57,8 @@ function OrbShape({ size, color }: { size: number; color: string }) {
         background: color === '#FFC700'
           ? 'radial-gradient(circle at 30% 30%, #FFF, #FFC700, #FFC700)'
           : color === '#000'
-            ? 'radial-gradient(circle at 30% 30%, #333, #000, #000)'
-            : 'radial-gradient(circle at 30% 30%, #FFF, #FFF, #DDD)',
+            ? 'radial-gradient(circle at 30% 30%, #000, #000, #000)'
+            : 'radial-gradient(circle at 30% 30%, #FFF, #FFF, #FFF)',
         boxShadow: color === '#FFC700'
           ? '0 0 20px #FFC700'
           : 'none',

@@ -309,7 +309,8 @@ export default async function ProgramPage({ params }: Props) {
                   }}
                 >
                   <span style={{
-                    fontFamily: "var(--font-display)",
+                    fontFamily: "var(--font-body)",
+                    fontWeight: 900,
                     fontSize: "clamp(28px, 3vw, 40px)",
                     color: "#FFC700",
                     lineHeight: 1,

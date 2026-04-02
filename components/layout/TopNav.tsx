@@ -6,10 +6,9 @@ import MenuDropdown from './MenuDropdown'
 
 /* ═══════════════════════════════════════
    TOP NAV — Editorial, compact, animated
-   Logo coin (gold bg, black IBTU)
-   Hamburger below logo
-   Iridescent donate button to RIGHT of hamburger
-   Iridescent stroke on hover → fill on both.
+   Row 1: Logo (spinning) + Donate button
+   Row 2: Hamburger (left-aligned under logo)
+   All left-aligned. Iridescent stroke → fill.
    NO dynamic CTA text.
 ═══════════════════════════════════════ */
 
@@ -26,7 +25,6 @@ export default function TopNav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -37,7 +35,6 @@ export default function TopNav() {
 
   return (
     <>
-      {/* ── Logo + Hamburger + Donate — fixed top-left ── */}
       <div
         style={{
           position: 'fixed',
@@ -46,97 +43,52 @@ export default function TopNav() {
           zIndex: 100,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           gap: '8px',
           transition: 'top 0.3s var(--ease-out-expo)',
         }}
       >
-        {/* Logo coin — iridescent stroke on hover, fill on active */}
-        <Link
-          href="/"
-          aria-label="IBTU Home"
-          className="iridescent-border"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: `${coinSize}px`,
-            height: `${coinSize}px`,
-            background: 'var(--ibtu-gold)',
-            borderRadius: '12px',
-            transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
-            flexShrink: 0,
-          }}
-        >
-          <div
-            style={{
-              width: `${iconSize}px`,
-              height: `${iconSize}px`,
-              transition: 'width 0.3s, height 0.3s',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/ibtu-logo.svg"
-              alt="IBTU"
-              style={{
-                width: '100%',
-                height: '100%',
-                filter: 'brightness(0)',
-              }}
-            />
-          </div>
-        </Link>
-
-        {/* Row: Hamburger + Donate button side by side */}
+        {/* Row 1: Logo + Donate button side by side */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {/* Hamburger — iridescent border on hover */}
-          <button
-            onClick={() => setMenuOpen(prev => !prev)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
+          {/* Logo coin — spinning, iridescent border on hover */}
+          <Link
+            href="/"
+            aria-label="IBTU Home"
             className="iridescent-border"
             style={{
-              background: 'var(--ibtu-black)',
-              border: 'none',
-              cursor: 'pointer',
               display: 'flex',
-              flexDirection: 'column',
-              gap: '4px',
-              padding: '12px',
-              borderRadius: '12px',
-              zIndex: 101,
-              width: `${coinSize}px`,
-              height: `${coinSize}px`,
               alignItems: 'center',
               justifyContent: 'center',
+              width: `${coinSize}px`,
+              height: `${coinSize}px`,
+              background: 'var(--ibtu-gold)',
+              borderRadius: '12px',
               transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
+              flexShrink: 0,
+              animation: 'coinSpin 12s linear infinite',
             }}
           >
-            <span style={{
-              width: '20px',
-              height: '2px',
-              background: 'var(--ibtu-gold)',
-              transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
-              transform: menuOpen ? 'translateY(6px) rotate(45deg)' : 'none',
-            }} />
-            <span style={{
-              width: '20px',
-              height: '2px',
-              background: 'var(--ibtu-gold)',
-              transition: 'opacity 0.3s',
-              opacity: menuOpen ? 0 : 1,
-            }} />
-            <span style={{
-              width: '20px',
-              height: '2px',
-              background: 'var(--ibtu-gold)',
-              transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
-              transform: menuOpen ? 'translateY(-6px) rotate(-45deg)' : 'none',
-            }} />
-          </button>
+            <div
+              style={{
+                width: `${iconSize}px`,
+                height: `${iconSize}px`,
+                transition: 'width 0.3s, height 0.3s',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/ibtu-logo.svg"
+                alt="IBTU"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  filter: 'brightness(0)',
+                }}
+              />
+            </div>
+          </Link>
 
-          {/* Donate button — iridescent stroke on hover → iridescent fill */}
+          {/* Donate button — next to logo, iridescent fill on hover */}
           <a
             href="/donate"
             className="iridescent-border"
@@ -173,9 +125,54 @@ export default function TopNav() {
             </span>
           </a>
         </div>
+
+        {/* Row 2: Hamburger — left-aligned under logo */}
+        <button
+          onClick={() => setMenuOpen(prev => !prev)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          className="iridescent-border"
+          style={{
+            background: 'var(--ibtu-black)',
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '4px',
+            padding: '12px',
+            borderRadius: '12px',
+            zIndex: 101,
+            width: `${coinSize}px`,
+            height: `${coinSize}px`,
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
+          }}
+        >
+          <span style={{
+            width: '20px',
+            height: '2px',
+            background: 'var(--ibtu-gold)',
+            transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
+            transform: menuOpen ? 'translateY(6px) rotate(45deg)' : 'none',
+          }} />
+          <span style={{
+            width: '20px',
+            height: '2px',
+            background: 'var(--ibtu-gold)',
+            transition: 'opacity 0.3s',
+            opacity: menuOpen ? 0 : 1,
+          }} />
+          <span style={{
+            width: '20px',
+            height: '2px',
+            background: 'var(--ibtu-gold)',
+            transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
+            transform: menuOpen ? 'translateY(-6px) rotate(-45deg)' : 'none',
+          }} />
+        </button>
       </div>
 
-      {/* ── Full-screen gold menu dropdown ── */}
       <MenuDropdown open={menuOpen} onClose={() => setMenuOpen(false)} />
     </>
   )
