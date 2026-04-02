@@ -11,7 +11,10 @@ gsap.registerPlugin(ScrollTrigger)
    LENIS SMOOTH SCROLL PROVIDER
    Foundation for all scroll animations.
    Syncs Lenis with GSAP ScrollTrigger.
-   Wrap layout.tsx body with this.
+
+   IMPORTANT: globals.css must NOT have
+   scroll-behavior: smooth on html — it
+   conflicts with Lenis and makes it invisible.
 ═══════════════════════════════════════ */
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
@@ -19,10 +22,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.4,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: 2,
       infinite: false,
+      smoothWheel: true,
     })
 
     lenisRef.current = lenis
@@ -35,6 +39,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       lenis.raf(time * 1000)
     })
     gsap.ticker.lagSmoothing(0)
+
+    // Expose lenis globally for debugging
+    if (typeof window !== 'undefined') {
+      (window as unknown as Record<string, unknown>).__lenis = lenis
+    }
 
     return () => {
       lenis.destroy()
