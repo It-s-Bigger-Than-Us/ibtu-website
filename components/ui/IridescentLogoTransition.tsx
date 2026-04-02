@@ -78,16 +78,15 @@ export default function IridescentLogoTransition({
           position: 'absolute',
           inset: 0,
           background: `linear-gradient(
-            ${isActive ? '135deg' : '90deg'},
-            #FFC700 0%,
-            #FFD84D 12%,
-            #FFFBE6 24%,
-            #FFF 36%,
-            #000 48%,
-            #FFC700 60%,
-            #FFFBE6 72%,
-            #FFF 84%,
-            #FFC700 100%
+            ${isActive ? '105deg' : '90deg'},
+            #fff 0%,
+            #FFC700 15%,
+            #fff 30%,
+            #64DCFF 45%,
+            #fff 55%,
+            #FFC700 70%,
+            #c084fc 80%,
+            #fff 90%
           )`,
           backgroundSize: '300% 300%',
           animation: isActive

@@ -404,19 +404,19 @@ export default function SponsorPanel({ tiers = REAL_TIERS }: SponsorPanelProps) 
         )}
       </AnimatePresence>
 
-      {/* Iridescent price hover — liquid glass oilspill in IBTU colors */}
+      {/* Iridescent price hover — bright sparkly glass */}
       <style>{`
         .sponsor-tier-header:hover .sponsor-price-tag {
           background: linear-gradient(
             105deg,
-            #FFC700 0%,
-            #FFD84D 18%,
-            #FFFBE6 32%,
-            #FFF 48%,
-            #000 60%,
-            #FFC700 75%,
-            #FFFBE6 88%,
-            #FFC700 100%
+            #fff 0%,
+            #FFC700 15%,
+            #fff 30%,
+            #64DCFF 45%,
+            #fff 55%,
+            #FFC700 70%,
+            #c084fc 80%,
+            #fff 90%
           );
           background-size: 200% 100%;
           -webkit-background-clip: text;
