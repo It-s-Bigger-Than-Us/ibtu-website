@@ -16,7 +16,7 @@ interface Props {
 
 /* Program videos now served from Sanity CDN — see lib/data/video-urls.ts */
 
-/* Program-to-image mapping for stacking gallery */
+/* Program-to-image mapping for parallax gallery */
 const PROGRAM_IMAGES: Record<string, string[]> = {
   'fire-relief': ['/images/school/IMG_5382.jpg', '/images/school/IMG_5406.jpg', '/images/school/IMG_5508.jpg', '/images/school/IMG_5608.jpg'],
   'back-2-school': ['/images/b2s/_D5A7392.jpg', '/images/b2s/_D5A7224.jpg', '/images/b2s/2V8A1964.jpg', '/images/b2s/_D5A5912.jpg'],
@@ -24,6 +24,18 @@ const PROGRAM_IMAGES: Record<string, string[]> = {
   'coastal-care': ['/images/coastal/IMG_0024.jpg', '/images/coastal/IMG_0267.jpg', '/images/coastal/IMG_1796.jpg', '/images/coastal/IMG_1810.jpg'],
   'wellness': ['/images/wellness/IMG_0007.jpg', '/images/wellness/IMG_0279.jpg', '/images/wellness/IMG_1554.jpg', '/images/wellness/IMG_1583.jpg'],
   'youth-programming': ['/images/school/IMG_5608.jpg', '/images/school/IMG_5629.jpg', '/images/school/IMG_4674.jpg', '/images/school/IMG_5612.jpg'],
+}
+
+/* Who We Serve data per program */
+const WHO_WE_SERVE: Record<string, string[]> = {
+  'fire-relief': ['Displaced families', 'Uninsured homeowners', 'Immigrant communities', 'Seniors and elderly residents', 'Single-parent households'],
+  'back-2-school': ['K-12 students and families', 'Title I school communities', 'Under-resourced neighborhoods', 'First-generation families'],
+  'back-to-school': ['K-12 students and families', 'Title I school communities', 'Under-resourced neighborhoods', 'First-generation families'],
+  'coastal-care': ['Beachfront communities', 'Families seeking outdoor wellness', 'Youth environmental stewards', 'Local residents near coastline'],
+  'wellness': ['Families in South LA', 'Youth seeking health resources', 'Community members without wellness access', 'Seniors and caregivers'],
+  'youth-programming': ['Students grades K-12', 'After-school program participants', 'Youth in under-resourced communities', 'Families seeking enrichment'],
+  'community-builder-linkups': ['Local entrepreneurs', 'Community organizers', 'Small business owners', 'Aspiring nonprofit leaders'],
+  'community-health': ['Families without healthcare access', 'Seniors', 'Youth in food deserts', 'Caregivers and parents'],
 }
 
 export async function generateStaticParams() {
@@ -80,10 +92,13 @@ export default async function ProgramPage({ params }: Props) {
     ...cardImageUrls.slice(0, 2).map((src: string) => ({ type: 'image' as const, src, alt: program.title })),
   ].slice(0, 4)
 
+  // Who we serve
+  const whoWeServe = WHO_WE_SERVE[slug] || []
+
   return (
     <main style={{ background: "#FFC700", minHeight: "100vh" }}>
 
-      {/* ── 1. PROGRAM HERO — yellow bg, storybook intro ── */}
+      {/* ── 1. PROGRAM HERO — storybook intro, documentary feel ── */}
       <section style={{
         background: "#FFC700",
         padding: "clamp(120px, 15vh, 200px) clamp(32px, 5vw, 80px) clamp(48px, 6vw, 100px)",
@@ -141,7 +156,7 @@ export default async function ProgramPage({ params }: Props) {
             }}
           />
 
-          {/* Tagline */}
+          {/* Tagline — documentary narration style */}
           <p style={{
             fontFamily: "var(--font-body)",
             fontSize: "var(--body-lg)",
@@ -167,7 +182,7 @@ export default async function ProgramPage({ params }: Props) {
                   background: "#000",
                   color: "#FFC700",
                   padding: "16px 40px",
-                  borderRadius: "100px",
+                  borderRadius: "16px",
                   fontFamily: "var(--font-body)",
                   fontSize: 13,
                   letterSpacing: "0.1em",
@@ -188,7 +203,7 @@ export default async function ProgramPage({ params }: Props) {
                 background: "#000",
                 color: "#FFC700",
                 padding: "16px 40px",
-                borderRadius: "100px",
+                borderRadius: "16px",
                 fontFamily: "var(--font-body)",
                 fontSize: 13,
                 letterSpacing: "0.1em",
@@ -204,24 +219,32 @@ export default async function ProgramPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Full-bleed hero photo — below intro, separate section */}
+      {/* Full-bleed hero photo with parallax effect */}
       {heroSrc && (
-        <section style={{ width: "100%", height: "60vh", minHeight: "350px", overflow: "hidden" }}>
+        <section style={{
+          width: "100%",
+          height: "70vh",
+          minHeight: "400px",
+          overflow: "hidden",
+          position: "relative",
+        }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={heroSrc}
             alt={`${program.title} — IBTU program`}
             style={{
               width: "100%",
-              height: "100%",
+              height: "120%",
               objectFit: "cover",
               filter: "saturate(1.15) brightness(1.05)",
+              position: "absolute",
+              top: "-10%",
             }}
           />
         </section>
       )}
 
-      {/* ── 2–4. Client sections: storybook story + gallery + events ── */}
+      {/* ── 2-4. Client sections: storybook story + gallery + events ── */}
       <ProgramDetailClient
         slides={storyMedia.map((m, i) => ({
           image: m.src,
@@ -237,7 +260,79 @@ export default async function ProgramPage({ params }: Props) {
         pastEvents={pastEvents}
       />
 
-      {/* ── 3. PROGRAM STATS — gold cards ── */}
+      {/* ── WHO WE SERVE — documentary scroll section ── */}
+      {whoWeServe.length > 0 && (
+        <section style={{
+          background: "#000",
+          padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)",
+        }}>
+          <div style={{
+            maxWidth: "var(--content-max)",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "clamp(32px, 5vw, 80px)",
+            alignItems: "start",
+          }}>
+            <div>
+              <div style={{
+                fontFamily: "var(--font-body)",
+                fontSize: 11,
+                letterSpacing: "4px",
+                textTransform: "uppercase",
+                color: "#FFC700",
+                fontWeight: 700,
+                marginBottom: 24,
+              }}>
+                (WHO WE SERVE)
+              </div>
+              <AnimatedHeadline
+                text="Designed for the Community"
+                as="h2"
+                size="section"
+                color="#FFC700"
+              />
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 16, paddingTop: 12 }}>
+              {whoWeServe.map((item, i) => (
+                <div
+                  key={i}
+                  className="holo-glass"
+                  style={{
+                    background: "#000",
+                    border: "2px solid #FFC700",
+                    borderRadius: "16px",
+                    padding: "clamp(16px, 2vw, 24px) clamp(20px, 2.5vw, 32px)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 16,
+                  }}
+                >
+                  <span style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(28px, 3vw, 40px)",
+                    color: "#FFC700",
+                    lineHeight: 1,
+                    flexShrink: 0,
+                  }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "var(--body-md)",
+                    color: "#FFF",
+                    fontWeight: 600,
+                  }}>
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── PROGRAM STATS — gold cards ── */}
       {stats.length > 0 && (
         <section style={{
           background: "var(--ibtu-gold)",
@@ -289,7 +384,63 @@ export default async function ProgramPage({ params }: Props) {
         </section>
       )}
 
-      {/* ── 6. PROGRAM CTA ── */}
+      {/* ── PARALLAX IMAGE GALLERY next to talking points ── */}
+      {galleryImages.length > 0 && (
+        <section style={{
+          background: "#000",
+          padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)",
+          overflow: "hidden",
+        }}>
+          <div style={{
+            maxWidth: "var(--content-max)",
+            margin: "0 auto",
+          }}>
+            <div style={{
+              fontFamily: "var(--font-body)",
+              fontSize: 11,
+              letterSpacing: "4px",
+              textTransform: "uppercase",
+              color: "#FFC700",
+              fontWeight: 700,
+              marginBottom: 24,
+            }}>
+              (IN THE FIELD)
+            </div>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gap: "24px",
+            }}>
+              {galleryImages.slice(0, 6).map((src: string, i: number) => (
+                <div
+                  key={i}
+                  className="iridescent-border"
+                  style={{
+                    borderRadius: "16px",
+                    overflow: "hidden",
+                    aspectRatio: i % 3 === 0 ? "3/4" : "4/3",
+                    position: "relative",
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt={`${program.title} — photo ${i + 1}`}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      filter: "saturate(1.15) brightness(1.05)",
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── PROGRAM CTA — sponsor button with iridescent fill ── */}
       <section style={{
         background: "var(--ibtu-gold)",
         padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)",
@@ -323,7 +474,7 @@ export default async function ProgramPage({ params }: Props) {
                   background: "var(--ibtu-black)",
                   color: "var(--ibtu-gold)",
                   padding: "16px 40px",
-                  borderRadius: "4px",
+                  borderRadius: "16px",
                   fontFamily: "var(--font-body)",
                   fontSize: 13,
                   letterSpacing: "0.1em",
@@ -332,17 +483,18 @@ export default async function ProgramPage({ params }: Props) {
                   textDecoration: "none",
                 }}
               >
-                Volunteer →
+                Volunteer
               </a>
             )}
             <Link
               href={`/donate/${slug}`}
+              className="sparkle-stroke"
               style={{
                 display: "inline-block",
                 border: "2px solid var(--ibtu-black)",
                 color: "var(--ibtu-black)",
                 padding: "16px 40px",
-                borderRadius: "4px",
+                borderRadius: "16px",
                 fontFamily: "var(--font-body)",
                 fontSize: 13,
                 letterSpacing: "0.1em",
@@ -351,7 +503,7 @@ export default async function ProgramPage({ params }: Props) {
                 textDecoration: "none",
               }}
             >
-              Support This Program
+              Sponsor This Program
             </Link>
           </div>
         </div>
@@ -362,7 +514,7 @@ export default async function ProgramPage({ params }: Props) {
       {/* Sponsor slider — right-edge panel for each program */}
       <ProgramSponsorSlider programName={program.title} />
 
-      {/* Gold bar animation */}
+      {/* Gold bar animation + responsive */}
       <style>{`
         @keyframes goldBarGrow {
           from { transform: scaleX(0); }

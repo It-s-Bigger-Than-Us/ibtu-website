@@ -56,7 +56,7 @@ export default async function AboutPage() {
               <p style={{ fontSize: "clamp(16px, 1.3vw, 19px)", color: "#000", lineHeight: 1.75 }}>
                 From weekly food distributions to a 3-pillar organization
                 serving 62,475+ students. Expanded to Miami in 2024. By 2025,
-                running the largest community-based wildfire relief operation in
+                running a community-based wildfire relief operation in
                 LA while serving 28,025 students across 34 school sites.
               </p>
             </div>

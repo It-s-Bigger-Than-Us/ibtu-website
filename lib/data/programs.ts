@@ -31,7 +31,7 @@ export const programs: Program[] = [
     tagline:
       "When the fires hit, IBTU was already here. Within 72 hours we mobilized. Within 90 days we built permanent infrastructure. We are still here — and we are not leaving.",
     description:
-      "IBTU launched the largest community-led disaster response in Los Angeles nonprofit history. Phase 1 activated within 72 hours across 87+ locations. Phase 2 built the permanent Relief Resource Hub at Baldwin Hills Crenshaw Plaza. Phase 3 is converting the Hub into an all-crisis community center.",
+      "IBTU launched a community-led disaster response that activated within 72 hours across 87+ locations. Phase 1 mobilized immediate resources. Phase 2 built the permanent Relief Resource Hub at Baldwin Hills Crenshaw Plaza. Phase 3 is converting the Hub into an all-crisis community center.",
     proofStats:
       "5,000+ families stabilized | 7,581 assistance instances | 324 active clients | 23.4 avg visits | 90+ zip codes | 15+ partner services | 350 immigrant families served",
     allTimeServed:
