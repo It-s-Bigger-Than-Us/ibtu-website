@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import GoldTicker from '@/components/sections/GoldTicker'
 import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
-import SkylineTransition from '@/components/ui/SkylineTransition'
+// import SkylineTransition from '@/components/ui/SkylineTransition' // REMOVED — Molly: wrong color, looks terrible
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
@@ -61,20 +61,17 @@ export default function HomePageClient({
         media={missionMedia}
       />
 
-      {/* Skyline transition into Pillar Cubes */}
-      <SkylineTransition flip bg="black" />
+      {/* Skyline transition removed — needs redesign */}
 
       {/* 4. Pillar Cubes + Stats */}
       <PillarCubes stats={stats} />
 
-      {/* Skyline transition into Programs */}
-      <SkylineTransition bg="black" />
+      {/* Skyline transition removed — needs redesign */}
 
       {/* 5. Programs Grid */}
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
 
-      {/* Skyline transition into CTA */}
-      <SkylineTransition flip bg="black" />
+      {/* Skyline transition removed — needs redesign */}
 
       {/* 6. CTA */}
       <CTASection />

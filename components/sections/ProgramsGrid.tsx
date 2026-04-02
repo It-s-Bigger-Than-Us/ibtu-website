@@ -124,10 +124,11 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
                   src={program.heroImage}
                   alt={`${program.title} — IBTU program`}
                   style={{
+                    display: 'block',
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    filter: 'saturate(1.15)',
+                    filter: 'saturate(1.15) brightness(1.05)',
                     transition: 'transform 0.6s var(--ease-out-expo)',
                     transform: hoveredIndex === index ? 'scale(1.04)' : 'scale(1)',
                   }}
