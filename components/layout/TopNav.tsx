@@ -91,7 +91,7 @@ export default function TopNav() {
 
           {/* Donate button — next to logo, iridescent fill on hover */}
           <a
-            href="/donate"
+            href="/get-involved"
             className="iridescent-border"
             onMouseEnter={() => setDonateHovered(true)}
             onMouseLeave={() => setDonateHovered(false)}

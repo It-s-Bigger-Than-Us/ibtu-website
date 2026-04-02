@@ -127,7 +127,7 @@ export default function CTASection({
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
           {/* Donate — black bg, sparkle-stroke border */}
           <Link
-            href="/donate"
+            href="/get-involved"
             className="sparkle-stroke"
             style={{
               display: 'inline-block',

@@ -20,7 +20,7 @@ const footerLinks = [
   { label: 'Get Involved', href: '/get-involved' },
   { label: 'Events', href: '/events' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Donate', href: '/donate' },
+  { label: 'Donate', href: '/get-involved' },
 ]
 
 export default function Footer() {

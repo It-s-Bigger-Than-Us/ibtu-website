@@ -196,7 +196,7 @@ export default async function ProgramPage({ params }: Props) {
               </a>
             )}
             <Link
-              href={`/donate/${slug}`}
+              href="/get-involved"
               className="iridescent-border"
               style={{
                 display: "inline-block",
@@ -489,7 +489,7 @@ export default async function ProgramPage({ params }: Props) {
               </a>
             )}
             <Link
-              href={`/donate/${slug}`}
+              href="/get-involved"
               className="sparkle-stroke"
               style={{
                 display: "inline-block",
