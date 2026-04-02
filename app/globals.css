@@ -35,26 +35,27 @@
   --ibtu-white: #FFFFFF;
   --warm-white: #FFFFFF;
 
-  /* Iridescent accent system — IBTU holographic GLASS effect
-     Not rainbow. Bright sparkly glass surface — gold anchors,
-     white light refractions, subtle cool accents. */
-  --holo-pink: #FFD4E5;
-  --holo-mint: #D4FFF0;
-  --holo-lavender: #E8E0FF;
+  /* Iridescent accent system — LIQUID GLASS + OILSPILL
+     NOT rainbow. Gold-anchored liquid glass with subtle light
+     refractions. Oilspill = dark iridescence on gold/black/white.
+     Think: gold puddle with light hitting it. Slow, luxurious. */
+  --holo-pink: #FFE8CC;
+  --holo-mint: #E8F5E0;
+  --holo-lavender: #F0ECFF;
   --holo-yellow: #FFE066;
-  --holo-cyan: #C8F0FF;
-  --holo-purple: #E0D4FF;
+  --holo-cyan: #E0F0F5;
+  --holo-purple: #F0ECFF;
   --holo-gradient: linear-gradient(
-    105deg,
-    #fff 0%,
-    var(--ibtu-gold) 12%,
-    #fff 25%,
-    var(--holo-cyan) 40%,
-    #fff 52%,
-    var(--ibtu-gold) 65%,
-    var(--holo-lavender) 78%,
-    #fff 90%,
-    var(--ibtu-gold) 100%
+    120deg,
+    #FFC700 0%,
+    #FFF 15%,
+    #FFC700 30%,
+    #FFF 45%,
+    #000 55%,
+    #FFC700 68%,
+    #FFF 80%,
+    #FFC700 92%,
+    #000 100%
   );
 
   /* Typography scale */
@@ -103,6 +104,8 @@
 
 /* ═══════════════════════════════════════
    HOLOGRAPHIC GLASS EFFECT
+   Liquid glass — slow, luxurious, oilspill
+   Gold/black/white only. 16px corners.
 ═══════════════════════════════════════ */
 .holo-glass {
   border: 1px solid transparent;
@@ -114,11 +117,11 @@
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: inherit;
+  border-radius: 16px;
   padding: 2px;
   background: var(--holo-gradient);
-  background-size: 400% 400%;
-  animation: holo-shift 12s ease infinite;
+  background-size: 600% 600%;
+  animation: holo-shift 20s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -126,30 +129,35 @@
 }
 @keyframes holo-shift {
   0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  33% { background-position: 50% 100%; }
+  66% { background-position: 100% 0%; }
 }
 
 /* ═══════════════════════════════════════
    SPARKLE STROKE — rotating conic border
+   Liquid glass oilspill — gold/black/white.
+   Slow rotation. 16px corners.
 ═══════════════════════════════════════ */
 .sparkle-stroke {
   position: relative;
   overflow: visible;
+  border-radius: 16px;
 }
 .sparkle-stroke::before {
   content: '';
   position: absolute;
   inset: -2px;
-  border-radius: inherit;
+  border-radius: 16px;
   background: conic-gradient(
     from var(--sparkle-angle, 0deg),
-    var(--ibtu-gold),
-    var(--holo-cyan),
-    var(--ibtu-gold),
-    var(--holo-purple),
-    var(--ibtu-gold)
+    #FFC700,
+    #FFF,
+    #000,
+    #FFC700,
+    #FFF,
+    #FFC700
   );
-  animation: sparkle-rotate 8s linear infinite;
+  animation: sparkle-rotate 16s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -162,54 +170,55 @@
 
 /* ═══════════════════════════════════════
    ANIMATED IRIDESCENT TEXT — brand accent
-   Holographic text gradient that shifts.
-   Use on section labels, accent words.
+   Liquid glass text. Gold/black/white oilspill.
+   Slow. Use on section labels, accent words.
 ═══════════════════════════════════════ */
 .iridescent-text {
   background: linear-gradient(
     105deg,
-    #fff 0%,
-    var(--ibtu-gold) 15%,
-    #fff 30%,
-    var(--holo-cyan, #64DCFF) 45%,
-    #fff 55%,
-    var(--ibtu-gold) 70%,
-    var(--holo-purple, #c084fc) 80%,
-    #fff 90%
+    #FFC700 0%,
+    #FFF 18%,
+    #FFC700 35%,
+    #000 50%,
+    #FFC700 65%,
+    #FFF 82%,
+    #FFC700 100%
   );
-  background-size: 200% 100%;
+  background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: iridescent-shift 10s linear infinite;
+  animation: iridescent-shift 16s linear infinite;
 }
 @keyframes iridescent-shift {
   0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+  100% { background-position: 300% 50%; }
 }
 
 /* ═══════════════════════════════════════
    IRIDESCENT BORDER GLOW — hover accent
-   Animated border for cards and buttons.
+   Liquid glass border. Gold/black/white.
+   Slow animation. 16px rounded corners.
 ═══════════════════════════════════════ */
 .iridescent-border {
   position: relative;
+  border-radius: 16px;
 }
 .iridescent-border::after {
   content: '';
   position: absolute;
   inset: -1px;
-  border-radius: inherit;
+  border-radius: 16px;
   padding: 2px;
   background: var(--holo-gradient);
-  background-size: 300% 300%;
-  animation: holo-shift 12s ease infinite;
+  background-size: 600% 600%;
+  animation: holo-shift 20s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.4s var(--ease-out-expo);
+  transition: opacity 0.6s var(--ease-out-expo);
 }
 .iridescent-border:hover::after,
 .iridescent-active::after {
