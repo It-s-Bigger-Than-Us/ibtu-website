@@ -66,7 +66,7 @@ export default function TopNav() {
               borderRadius: '12px',
               transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
               flexShrink: 0,
-              animation: 'coinSpin 12s linear infinite, holo-shift 24s ease infinite',
+              animation: 'coinSpin 12s linear infinite',
             }}
           >
             <div
@@ -103,7 +103,7 @@ export default function TopNav() {
               padding: '0 16px',
               background: 'var(--holo-gradient)',
               backgroundSize: '400% 400%',
-              animation: 'holo-shift 24s ease infinite',
+              /* static iridescent bg — no animation */
               borderRadius: '12px',
               textDecoration: 'none',
               transition: 'background 0.4s, height 0.3s var(--ease-out-expo)',
