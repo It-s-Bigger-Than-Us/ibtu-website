@@ -146,7 +146,7 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
                   transformStyle: 'preserve-3d',
                   transform: `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${-(ring1Angle * i)}deg)`,
                   borderRadius: '12px', overflow: 'hidden',
-                  boxShadow: isHovered ? '0 0 30px rgba(255,199,0,0.5)' : '0 8px 32px rgba(0,0,0,0.5)',
+                  boxShadow: isHovered ? '0 0 30px #FFC700' : '0 8px 32px #000',
                   cursor: 'pointer',
                 }}
               >
@@ -179,7 +179,7 @@ export default function OrbitalGallery({ items, title }: OrbitalGalleryProps) {
                     transformStyle: 'preserve-3d',
                     transform: `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${-(ring2Angle * i)}deg) rotateZ(-90deg)`,
                     borderRadius: '10px', overflow: 'hidden',
-                    boxShadow: isHovered ? '0 0 24px rgba(255,199,0,0.5)' : '0 6px 24px rgba(0,0,0,0.5)',
+                    boxShadow: isHovered ? '0 0 24px #FFC700' : '0 6px 24px #000',
                     cursor: 'pointer',
                   }}
                 >

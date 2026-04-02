@@ -98,7 +98,7 @@ function Ribbon() {
       {/* Front face — black with iridescent text */}
       <mesh ref={ribbonRef} geometry={frontGeom}>
         <meshPhysicalMaterial
-          color="#111111"
+          color="#000000"
           metalness={0.3}
           roughness={0.4}
           side={THREE.FrontSide}

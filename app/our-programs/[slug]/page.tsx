@@ -5,6 +5,7 @@ import { getPrograms, getProgramBySlug, getEventsByProgram } from "@/sanity/lib/
 import Footer from "@/components/layout/Footer"
 import AnimatedHeadline from "@/components/ui/AnimatedHeadline"
 import ProgramDetailClient from "@/components/sections/ProgramDetailClient"
+import ProgramSponsorSlider from "@/components/sections/ProgramSponsorSlider"
 import { PROGRAM_STORY_VIDEOS } from "@/lib/data/video-urls"
 
 export const revalidate = 60
@@ -80,29 +81,12 @@ export default async function ProgramPage({ params }: Props) {
   ].slice(0, 4)
 
   return (
-    <main style={{ background: "var(--ibtu-black)", minHeight: "100vh" }}>
+    <main style={{ background: "#FFC700", minHeight: "100vh" }}>
 
-      {/* ── 1. PROGRAM HERO — full-bleed photo ── */}
-      {heroSrc && (
-        <section style={{ width: "100%", height: "70vh", minHeight: "400px", overflow: "hidden" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={heroSrc}
-            alt={`${program.title} — IBTU program`}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              filter: "saturate(1.15) brightness(1.05)",
-            }}
-          />
-        </section>
-      )}
-
-      {/* ── 1b. PROGRAM NAME — below image, NOT over it ── */}
+      {/* ── 1. PROGRAM HERO — yellow bg, storybook intro ── */}
       <section style={{
-        background: "var(--ibtu-black)",
-        padding: "clamp(48px, 6vw, 100px) clamp(32px, 5vw, 80px)",
+        background: "#FFC700",
+        padding: "clamp(120px, 15vh, 200px) clamp(32px, 5vw, 80px) clamp(48px, 6vw, 100px)",
       }}>
         <div style={{ maxWidth: "var(--content-max)" }}>
           {/* Back link */}
@@ -114,7 +98,7 @@ export default async function ProgramPage({ params }: Props) {
               fontSize: 12,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "var(--ibtu-gold)",
+              color: "#000",
               fontWeight: 700,
               textDecoration: "none",
               marginBottom: "32px",
@@ -129,28 +113,28 @@ export default async function ProgramPage({ params }: Props) {
             fontSize: 11,
             letterSpacing: "4px",
             textTransform: "uppercase",
-            color: "var(--ibtu-gold)",
+            color: "#000",
             fontWeight: 700,
             marginBottom: 20,
           }}>
             {program.pillar}
           </div>
 
-          {/* Program title — word-by-word stagger */}
+          {/* Program title — black on yellow, storybook feel */}
           <AnimatedHeadline
             text={program.title}
             as="h1"
             size="hero"
-            color="var(--ibtu-white)"
+            color="#000"
             scrollTrigger={false}
             style={{ marginBottom: 12 }}
           />
 
-          {/* Gold accent bar — animates to full width */}
+          {/* Black accent bar */}
           <div
             style={{
               height: "4px",
-              background: "var(--ibtu-gold)",
+              background: "#000",
               marginBottom: 36,
               animation: "goldBarGrow 1s var(--ease-out-expo) forwards",
               transformOrigin: "left",
@@ -161,7 +145,7 @@ export default async function ProgramPage({ params }: Props) {
           <p style={{
             fontFamily: "var(--font-body)",
             fontSize: "var(--body-lg)",
-            color: "var(--ibtu-white)",
+            color: "#000",
             maxWidth: 700,
             lineHeight: 1.7,
             fontWeight: 500,
@@ -177,39 +161,41 @@ export default async function ProgramPage({ params }: Props) {
                 href={program.volunteerUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="sparkle-stroke"
+                className="iridescent-border"
                 style={{
                   display: "inline-block",
-                  background: "var(--ibtu-gold)",
-                  color: "var(--ibtu-black)",
+                  background: "#000",
+                  color: "#FFC700",
                   padding: "16px 40px",
-                  borderRadius: "4px",
+                  borderRadius: "100px",
                   fontFamily: "var(--font-body)",
                   fontSize: 13,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   fontWeight: 700,
                   textDecoration: "none",
+                  position: "relative",
                 }}
               >
-                Volunteer →
+                Volunteer &rarr;
               </a>
             )}
             <Link
               href={`/donate/${slug}`}
-              className="holo-glass"
+              className="iridescent-border"
               style={{
                 display: "inline-block",
-                background: "var(--ibtu-white)",
-                color: "var(--ibtu-black)",
+                background: "#000",
+                color: "#FFC700",
                 padding: "16px 40px",
-                borderRadius: "4px",
+                borderRadius: "100px",
                 fontFamily: "var(--font-body)",
                 fontSize: 13,
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
                 fontWeight: 700,
                 textDecoration: "none",
+                position: "relative",
               }}
             >
               Support This Program
@@ -218,7 +204,24 @@ export default async function ProgramPage({ params }: Props) {
         </div>
       </section>
 
-      {/* ── 2–4. Client sections: sticky story + gallery + events ── */}
+      {/* Full-bleed hero photo — below intro, separate section */}
+      {heroSrc && (
+        <section style={{ width: "100%", height: "60vh", minHeight: "350px", overflow: "hidden" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={heroSrc}
+            alt={`${program.title} — IBTU program`}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              filter: "saturate(1.15) brightness(1.05)",
+            }}
+          />
+        </section>
+      )}
+
+      {/* ── 2–4. Client sections: storybook story + gallery + events ── */}
       <ProgramDetailClient
         slides={storyMedia.map((m, i) => ({
           image: m.src,
@@ -355,6 +358,9 @@ export default async function ProgramPage({ params }: Props) {
       </section>
 
       <Footer />
+
+      {/* Sponsor slider — right-edge panel for each program */}
+      <ProgramSponsorSlider programName={program.title} />
 
       {/* Gold bar animation */}
       <style>{`

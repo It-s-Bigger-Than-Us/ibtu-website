@@ -27,7 +27,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
   }
 
   return (
-    <div style={{ padding: "80px 80px", borderTop: "1px solid rgba(255,199,0,0.15)" }}>
+    <div style={{ padding: "80px 80px", borderTop: "1px solid #FFC700" }}>
       <span
         style={{
           display: "block",
@@ -83,7 +83,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                   onClick={() => setExpandedId(isExpanded ? null : pkg._id)}
                   style={{
                     background: pkg.featured ? "var(--gold)" : "#0e0e0e",
-                    border: pkg.featured ? "none" : "1px solid rgba(255,199,0,0.15)",
+                    border: pkg.featured ? "none" : "1px solid #FFC700",
                     padding: "36px 32px",
                     cursor: "pointer",
                     transition: "border-color 0.2s",
@@ -122,7 +122,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                       <div
                         style={{
                           fontSize: 13,
-                          color: pkg.featured ? "rgba(0,0,0,0.6)" : "var(--gold)",
+                          color: pkg.featured ? "#000" : "var(--gold)",
                           marginBottom: 12,
                         }}
                       >
@@ -170,7 +170,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                           fontSize: 11,
                           letterSpacing: "2px",
                           textTransform: "uppercase",
-                          color: pkg.featured ? "rgba(0,0,0,0.5)" : "var(--gold)",
+                          color: pkg.featured ? "#000" : "var(--gold)",
                           fontFamily: "Poppins, sans-serif",
                         }}
                       >

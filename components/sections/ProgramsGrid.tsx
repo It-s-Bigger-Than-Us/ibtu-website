@@ -114,8 +114,9 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
               <div
                 style={{
                   position: 'relative',
-                  aspectRatio: '4/3',
+                  aspectRatio: '16/10',
                   overflow: 'hidden',
+                  width: '100%',
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -241,7 +242,7 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
               <style>{`
                 .program-card-v2:hover {
                   transform: translateY(-8px) !important;
-                  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3) !important;
+                  box-shadow: 0 24px 48px #000 !important;
                 }
               `}</style>
             </Link>

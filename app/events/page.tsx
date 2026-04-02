@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 import { getAllEvents, getUpcomingEvents, getPrograms } from "@/sanity/lib/fetch";
 
@@ -33,11 +33,11 @@ export default async function EventsPage() {
 
   return (
     <>
-      <TopNav />
+
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Header */}
-        <div style={{ padding: "140px 80px 80px 80px", borderBottom: "1px solid rgba(255,199,0,0.2)" }}>
+        <div style={{ padding: "140px 80px 80px 80px", borderBottom: "1px solid #FFC700" }}>
           <span
             style={{
               display: "block",
@@ -93,8 +93,8 @@ export default async function EventsPage() {
                   >
                     <div
                       style={{
-                        background: "#111",
-                        border: "1px solid rgba(255,199,0,0.25)",
+                        background: "#000",
+                        border: "1px solid #FFC700",
                         padding: "28px 32px",
                         display: "flex",
                         justifyContent: "space-between",
@@ -179,7 +179,7 @@ export default async function EventsPage() {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "baseline",
-                  borderBottom: "1px solid rgba(255,199,0,0.2)",
+                  borderBottom: "1px solid #FFC700",
                   paddingBottom: 16,
                   marginBottom: 16,
                 }}

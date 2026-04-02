@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import TopNav from "@/components/layout/TopNav";
-import PageTransition from "@/components/ui/PageTransition";
+import SmoothScroll from "@/components/providers/SmoothScroll";
+
 
 const poppins = Poppins({
   weight: ["300", "400", "600", "700", "900"],
@@ -79,10 +80,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `setTimeout(function(){document.querySelectorAll('.gsap-reveal').forEach(function(el){if(getComputedStyle(el).opacity==='0')el.style.opacity='1'})},4000)` }} />
       </head>
       <body>
-        <TopNav />
-        <PageTransition>
+        <SmoothScroll>
+          <TopNav />
           {children}
-        </PageTransition>
+        </SmoothScroll>
       </body>
     </html>
   );

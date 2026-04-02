@@ -47,8 +47,8 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
               key={ev._id}
               onClick={() => setSelectedEvent(ev)}
               style={{
-                background: "#111",
-                border: "1px solid rgba(255,199,0,0.12)",
+                background: "#000",
+                border: "1px solid #FFC700",
                 padding: "28px 24px",
                 cursor: "pointer",
                 transition: "border-color 0.2s, background 0.2s",
@@ -58,12 +58,12 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 minHeight: 160,
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,199,0,0.5)";
-                (e.currentTarget as HTMLDivElement).style.background = "#1a1a1a";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "#FFC700";
+                (e.currentTarget as HTMLDivElement).style.background = "#000";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,199,0,0.12)";
-                (e.currentTarget as HTMLDivElement).style.background = "#111";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "#FFC700";
+                (e.currentTarget as HTMLDivElement).style.background = "#000";
               }}
             >
               <div>
@@ -73,7 +73,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                     fontSize: 10,
                     letterSpacing: "2px",
                     textTransform: "uppercase",
-                    color: "rgba(255,199,0,0.5)",
+                    color: "#FFC700",
                     fontWeight: 700,
                     marginBottom: 10,
                   }}
@@ -123,7 +123,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0,0,0,0.92)",
+            background: "#000",
             zIndex: 9999,
             display: "flex",
             alignItems: "center",
@@ -135,8 +135,8 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
           <div
             onClick={(e) => e.stopPropagation()}
             style={{
-              background: "#111",
-              border: "1px solid rgba(255,199,0,0.25)",
+              background: "#000",
+              border: "1px solid #FFC700",
               maxWidth: 700,
               width: "100%",
               maxHeight: "85vh",
@@ -213,7 +213,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                     fontSize: 11,
                     letterSpacing: "2px",
                     textTransform: "uppercase",
-                    color: "rgba(0,0,0,0.5)",
+                    color: "#000",
                     fontFamily: "Poppins, sans-serif",
                     fontWeight: 700,
                     display: "block",

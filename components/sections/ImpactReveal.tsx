@@ -183,7 +183,7 @@ export default function ImpactReveal({ pillars, stats }: ImpactRevealProps) {
               onMouseEnter={(e) => {
                 handleVideoHover(e, 'play')
                 e.currentTarget.style.transform = 'translateY(-8px)'
-                e.currentTarget.style.boxShadow = '0 24px 48px rgba(0,0,0,0.3)'
+                e.currentTarget.style.boxShadow = '0 24px 48px #000'
               }}
               onMouseLeave={(e) => {
                 handleVideoHover(e, 'pause')

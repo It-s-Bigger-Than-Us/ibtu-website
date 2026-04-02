@@ -102,8 +102,8 @@ export default function DonationForm({
           style={{
             marginBottom: 20,
             padding: "16px 20px",
-            background: "rgba(255,199,0,0.08)",
-            border: "1px solid rgba(255,199,0,0.2)",
+            background: "#FFC700",
+            border: "1px solid #FFC700",
             borderRadius: 4,
           }}
         >
@@ -117,8 +117,8 @@ export default function DonationForm({
           ref={embedRef}
           style={{
             minHeight: 500,
-            background: "#111",
-            border: "1px solid rgba(255,199,0,0.15)",
+            background: "#000",
+            border: "1px solid #FFC700",
             borderRadius: 6,
             overflow: "hidden",
           }}
@@ -189,7 +189,7 @@ export default function DonationForm({
               padding: "14px 24px",
               background: frequency === f ? "#FFC700" : "transparent",
               color: frequency === f ? "#000" : "var(--gold)",
-              border: `1px solid ${frequency === f ? "#FFC700" : "rgba(255,199,0,0.3)"}`,
+              border: `1px solid ${frequency === f ? "#FFC700" : "#FFC700"}`,
               fontFamily: "Poppins, sans-serif",
               fontSize: 13,
               fontWeight: 700,
@@ -232,9 +232,9 @@ export default function DonationForm({
               }}
               style={{
                 padding: "18px 16px",
-                background: amount === a ? "#FFC700" : "#111",
+                background: amount === a ? "#FFC700" : "#000",
                 color: amount === a ? "#000" : "#fff",
-                border: `1px solid ${amount === a ? "#FFC700" : "rgba(255,199,0,0.2)"}`,
+                border: `1px solid ${amount === a ? "#FFC700" : "#FFC700"}`,
                 fontFamily: "Poppins, sans-serif",
                 fontSize: matchingTier ? 14 : 18,
                 fontWeight: 900,
@@ -254,7 +254,7 @@ export default function DonationForm({
                     letterSpacing: "1px",
                     textTransform: "uppercase",
                     marginTop: 4,
-                    color: amount === a ? "rgba(0,0,0,0.6)" : "rgba(255,199,0,0.5)",
+                    color: amount === a ? "#000" : "#FFC700",
                   }}
                 >
                   {matchingTier.tierName}
@@ -291,8 +291,8 @@ export default function DonationForm({
           style={{
             width: "100%",
             padding: "18px 16px 18px 32px",
-            background: "#111",
-            border: `1px solid ${customAmount ? "#FFC700" : "rgba(255,199,0,0.15)"}`,
+            background: "#000",
+            border: "1px solid #FFC700",
             color: "#fff",
             fontFamily: "Poppins, sans-serif",
             fontSize: 18,
@@ -311,7 +311,7 @@ export default function DonationForm({
         style={{
           width: "100%",
           padding: "20px",
-          background: finalAmount > 0 ? "#FFC700" : "rgba(255,199,0,0.3)",
+          background: finalAmount > 0 ? "#FFC700" : "#FFC700",
           color: "#000",
           border: "none",
           fontFamily: "Poppins, sans-serif",

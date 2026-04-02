@@ -18,7 +18,7 @@
   --color-gold: #FFC700;
   --color-ibtu-black: #000000;
   --color-ibtu-white: #FFFFFF;
-  --color-warm-white: #FFF8F0;
+  --color-warm-white: #FFFFFF;
   --font-lot: 'LOT', 'Bebas Neue', sans-serif;
   --font-poppins: 'Poppins', sans-serif;
 }
@@ -33,26 +33,28 @@
   --black: #000;
   --ibtu-black: #000000;
   --ibtu-white: #FFFFFF;
-  --warm-white: #FFF8F0;
+  --warm-white: #FFFFFF;
 
-  /* Iridescent accent system — IBTU holographic glass effect
-     NOT generic rainbow. Specific brand colors with gold anchors. */
-  --holo-pink: #FF6B9D;
-  --holo-mint: #6BFFB8;
-  --holo-lavender: #B8A9FF;
+  /* Iridescent accent system — IBTU holographic GLASS effect
+     Not rainbow. Bright sparkly glass surface — gold anchors,
+     white light refractions, subtle cool accents. */
+  --holo-pink: #FFD4E5;
+  --holo-mint: #D4FFF0;
+  --holo-lavender: #E8E0FF;
   --holo-yellow: #FFE066;
-  --holo-cyan: #64DCFF;
-  --holo-purple: #c084fc;
+  --holo-cyan: #C8F0FF;
+  --holo-purple: #E0D4FF;
   --holo-gradient: linear-gradient(
     105deg,
     #fff 0%,
-    var(--ibtu-gold) 15%,
-    #fff 30%,
-    var(--holo-cyan) 45%,
-    #fff 55%,
-    var(--ibtu-gold) 70%,
-    var(--holo-purple) 80%,
-    #fff 90%
+    var(--ibtu-gold) 12%,
+    #fff 25%,
+    var(--holo-cyan) 40%,
+    #fff 52%,
+    var(--ibtu-gold) 65%,
+    var(--holo-lavender) 78%,
+    #fff 90%,
+    var(--ibtu-gold) 100%
   );
 
   /* Typography scale */
@@ -106,6 +108,7 @@
   border: 1px solid transparent;
   background-clip: padding-box;
   position: relative;
+  border-radius: 16px;
 }
 .holo-glass::before {
   content: '';
@@ -115,7 +118,7 @@
   padding: 2px;
   background: var(--holo-gradient);
   background-size: 400% 400%;
-  animation: holo-shift 6s ease infinite;
+  animation: holo-shift 12s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -146,7 +149,7 @@
     var(--holo-purple),
     var(--ibtu-gold)
   );
-  animation: sparkle-rotate 3s linear infinite;
+  animation: sparkle-rotate 8s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -178,7 +181,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: iridescent-shift 4s linear infinite;
+  animation: iridescent-shift 10s linear infinite;
 }
 @keyframes iridescent-shift {
   0% { background-position: 0% 50%; }
@@ -200,7 +203,7 @@
   padding: 2px;
   background: var(--holo-gradient);
   background-size: 300% 300%;
-  animation: holo-shift 4s ease infinite;
+  animation: holo-shift 12s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -264,8 +267,7 @@ div:has(> video), div:has(> img) {
   transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
 }
 .top-nav.scrolled {
-  background: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(12px);
+  background: #000;
   padding: 16px 48px;
 }
 .nav-logo img {
@@ -303,7 +305,7 @@ div:has(> video), div:has(> img) {
   text-decoration: none;
   transition: background 0.25s, transform 0.2s;
 }
-.nav-donate:hover { background: #ffda4d; transform: translateY(-1px); }
+.nav-donate:hover { background: #FFC700; transform: translateY(-1px); }
 
 /* Hamburger */
 .nav-hamburger {
@@ -323,7 +325,7 @@ div:has(> video), div:has(> img) {
 /* Overlay menu */
 .nav-overlay {
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.97);
+  background: #000;
   z-index: 999;
   display: flex; align-items: center; justify-content: center;
   opacity: 0; pointer-events: none;
@@ -403,7 +405,7 @@ div:has(> video), div:has(> img) {
 .hero-metadata span { white-space: nowrap; }
 .hero-metadata .sep {
   width: 24px; height: 1px;
-  background: rgba(255,199,0,0.4);
+  background: #FFC700;
 }
 .hero-scroll-indicator {
   position: absolute; bottom: 40px; left: 50%;
@@ -416,8 +418,8 @@ div:has(> video), div:has(> img) {
 }
 .hero-scroll-indicator .chevron {
   width: 20px; height: 20px;
-  border-right: 1.5px solid rgba(255,199,0,0.6);
-  border-bottom: 1.5px solid rgba(255,199,0,0.6);
+  border-right: 1.5px solid #FFC700;
+  border-bottom: 1.5px solid #FFC700;
   transform: rotate(45deg);
   animation: scrollBounce 2s ease-in-out infinite;
 }
@@ -451,7 +453,6 @@ div:has(> video), div:has(> img) {
 }
 .section-label-count {
   font-weight: 400;
-  opacity: 0.5;
 }
 
 /* ═══════════════════════════════════════
@@ -501,10 +502,10 @@ div:has(> video), div:has(> img) {
   padding: clamp(40px, 4vw, 72px);
   display: flex; flex-direction: column;
   position: relative; overflow: hidden;
-  border: 1px solid rgba(255,199,0,0.1);
+  border: 1px solid #FFC700;
   transition: border-color 0.3s;
 }
-.pillar-card:hover { border-color: rgba(255,199,0,0.3); }
+.pillar-card:hover { border-color: #FFC700; }
 .pillar-num {
   font-family: 'Poppins', sans-serif;
   font-size: clamp(12px, 1vw, 15px);
@@ -622,7 +623,7 @@ div:has(> video), div:has(> img) {
 }
 .program-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(255, 199, 0, 0.2);
+  box-shadow: 0 20px 40px #FFC700;
 }
 .program-card img {
   width: 100%; height: 240px; object-fit: cover;
@@ -732,9 +733,9 @@ div:has(> video), div:has(> img) {
   cursor: pointer;
 }
 .btn-primary:hover {
-  background: #ffda4d;
+  background: #FFC700;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255,199,0,0.3);
+  box-shadow: 0 8px 24px #FFC700;
 }
 .btn-outline {
   font-family: 'Poppins', sans-serif;
@@ -758,7 +759,7 @@ div:has(> video), div:has(> img) {
 .site-footer {
   background: #000;
   padding: clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px);
-  border-top: 1px solid rgba(255,199,0,0.2);
+  border-top: 1px solid #FFC700;
 }
 .footer-grid {
   display: grid;
@@ -929,7 +930,7 @@ div:has(> video), div:has(> img) {
 }
 .card-lift:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 24px 48px #000;
 }
 
 /* --- Reveal line (gold underline draws on hover) --- */
@@ -981,7 +982,7 @@ div:has(> video), div:has(> img) {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  background: #111;
+  background: #000;
   cursor: pointer;
 }
 .gallery-card img,
@@ -1072,7 +1073,7 @@ div:has(> video), div:has(> img) {
 }
 .video-hero-overlay {
   position: absolute; inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: #000;
   z-index: 1;
 }
 .video-hero-content {
@@ -1088,7 +1089,7 @@ div:has(> video), div:has(> img) {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  background: #111;
+  background: #000;
 }
 .video-card video {
   width: 100%; height: 100%;
@@ -1163,12 +1164,12 @@ div:has(> video), div:has(> img) {
   position: relative;
   overflow: hidden;
   border-radius: 16px;
-  background: #111;
-  border: 1px solid rgba(255,199,0,0.15);
+  background: #000;
+  border: 1px solid #FFC700;
   transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .event-card:hover {
-  border-color: rgba(255,199,0,0.2);
+  border-color: #FFC700;
   transform: translateY(-4px);
 }
 .event-card-image {
@@ -1197,7 +1198,7 @@ div:has(> video), div:has(> img) {
 .event-card-date {
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
-  color: rgba(255,255,255,0.5);
+  color: #FFF;
   margin-bottom: 4px;
 }
 .event-card-location {

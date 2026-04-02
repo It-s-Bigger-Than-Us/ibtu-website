@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 import { PROGRAM_VIDEOS } from "@/lib/data/video-urls";
 
@@ -109,7 +109,7 @@ export default function FireReliefPage() {
 
   return (
     <>
-      <TopNav />
+
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* ── VIDEO BLOCK — no text overlay ── */}
@@ -181,7 +181,7 @@ export default function FireReliefPage() {
             key={i}
             style={{
               padding: "120px 80px",
-              borderTop: i === 0 ? "none" : "1px solid rgba(255,199,0,0.15)",
+              borderTop: i === 0 ? "none" : "1px solid #FFC700",
             }}
           >
             <div
@@ -198,7 +198,7 @@ export default function FireReliefPage() {
                   style={{
                     fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(80px, 10vw, 140px)",
-                    color: "rgba(255,199,0,0.12)",
+                    color: "#FFC700",
                     lineHeight: 0.85,
                     display: "block",
                   }}
@@ -234,7 +234,7 @@ export default function FireReliefPage() {
                   style={{
                     display: "block",
                     fontSize: 13,
-                    color: "rgba(255,199,0,0.5)",
+                    color: "#FFC700",
                     fontWeight: 600,
                     letterSpacing: "1px",
                     marginTop: 12,
@@ -565,7 +565,7 @@ export default function FireReliefPage() {
                     fontSize: 11,
                     letterSpacing: "1px",
                     textTransform: "uppercase",
-                    color: "rgba(0,0,0,0.6)",
+                    color: "#000",
                     fontWeight: 600,
                     marginTop: 8,
                     display: "block",
@@ -583,7 +583,7 @@ export default function FireReliefPage() {
         <section style={{ background: "#FFC700", padding: "100px 80px", textAlign: "center" }}>
           <div
             style={{
-              borderTop: "2px solid rgba(0,0,0,0.1)",
+              borderTop: "2px solid #000",
               paddingTop: 80,
             }}
           >

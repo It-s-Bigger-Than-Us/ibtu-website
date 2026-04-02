@@ -30,8 +30,8 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
       rel="noopener noreferrer"
       onClick={handleClick}
       style={{
-        background: featured ? '#FFC700' : '#141414',
-        border: featured ? '2px solid #FFC700' : `1px solid ${expanded ? 'rgba(255,199,0,0.25)' : 'rgba(255,199,0,0.15)'}`,
+        background: featured ? '#FFC700' : '#000',
+        border: featured ? '2px solid #FFC700' : '1px solid #FFC700',
         borderRadius: 20,
         padding: '32px 28px 28px',
         display: 'flex',
@@ -89,7 +89,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
           fontWeight: 600,
           letterSpacing: 1,
           textTransform: 'uppercase',
-          color: featured ? 'rgba(0,0,0,0.5)' : 'var(--gold)',
+          color: featured ? '#000' : 'var(--gold)',
           display: 'flex',
           alignItems: 'center',
           gap: 6,
@@ -108,7 +108,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
           {boothSize && (
             <div style={{
               fontSize: 12,
-              color: featured ? 'rgba(0,0,0,0.5)' : 'var(--gold)',
+              color: featured ? '#000' : 'var(--gold)',
               marginBottom: 16,
               fontFamily: 'Poppins, sans-serif',
               fontWeight: 500,
@@ -122,7 +122,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
               {deliverables.map((d, i) => (
                 <li key={i} style={{
                   fontSize: 13,
-                  color: featured ? 'rgba(0,0,0,0.7)' : '#fff',
+                  color: featured ? '#000' : '#fff',
                   lineHeight: 1.7,
                   paddingLeft: 20,
                   position: 'relative',

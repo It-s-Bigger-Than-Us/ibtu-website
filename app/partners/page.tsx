@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 import { getPartners } from "@/sanity/lib/fetch";
 
@@ -25,7 +25,7 @@ export default async function PartnersPage() {
 
   return (
     <>
-      <TopNav />
+
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}

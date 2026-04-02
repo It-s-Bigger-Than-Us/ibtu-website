@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 import { getPrograms } from "@/sanity/lib/fetch";
 import DonationEmbed from "@/components/sections/DonationEmbed";
@@ -57,13 +57,13 @@ export default async function GetInvolvedPage() {
 
   return (
     <>
-      <TopNav />
+
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
         <div
           id="volunteer"
-          style={{ padding: "140px 80px 100px 80px", borderBottom: "1px solid rgba(255,199,0,0.2)" }}
+          style={{ padding: "140px 80px 100px 80px", borderBottom: "1px solid #FFC700" }}
         >
           <span
             style={{
@@ -141,7 +141,7 @@ export default async function GetInvolvedPage() {
                 <div
                   style={{
                     background: "#0e0e0e",
-                    border: "1px solid rgba(255,199,0,0.2)",
+                    border: "1px solid #FFC700",
                     padding: "40px 36px",
                     height: "100%",
                     display: "flex",
@@ -191,7 +191,7 @@ export default async function GetInvolvedPage() {
         {/* Volunteer by Program */}
         <div
           style={{
-            background: "#0a0a0a",
+            background: "#000",
             padding: "60px 80px",
             borderTop: "1px solid var(--gold)",
           }}
@@ -222,7 +222,7 @@ export default async function GetInvolvedPage() {
                     alignItems: "center",
                     padding: "20px 28px",
                     border: "1px solid var(--gold)",
-                    background: "#111",
+                    background: "#000",
                     cursor: "pointer",
                   }}
                 >
@@ -306,7 +306,7 @@ export default async function GetInvolvedPage() {
                 key={tier.name}
                 style={{
                   background: "#0e0e0e",
-                  border: "1px solid rgba(255,199,0,0.15)",
+                  border: "1px solid #FFC700",
                   padding: "32px 28px",
                 }}
               >
@@ -364,9 +364,9 @@ export default async function GetInvolvedPage() {
         <div
           id="partner"
           style={{
-            background: "#0a0a0a",
+            background: "#000",
             padding: "80px 80px",
-            borderTop: "1px solid rgba(255,199,0,0.15)",
+            borderTop: "1px solid #FFC700",
           }}
         >
           <h2
@@ -398,7 +398,7 @@ export default async function GetInvolvedPage() {
             href="mailto:info@itsbiggerthanusla.org"
             style={{
               display: "inline-block",
-              border: "1px solid rgba(255,199,0,0.6)",
+              border: "1px solid #FFC700",
               color: "var(--gold)",
               padding: "18px 48px",
               fontFamily: "Poppins, sans-serif",

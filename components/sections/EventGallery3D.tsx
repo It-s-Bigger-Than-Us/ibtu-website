@@ -48,7 +48,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
           fontFamily: "Poppins, sans-serif",
           fontWeight: 900,
           fontSize: 42,
-          color: "rgba(255, 199, 0, 0.12)",
+          color: "#FFC700",
           lineHeight: 1,
           pointerEvents: "none",
         }}
@@ -154,18 +154,18 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
                 justifyContent: "flex-end",
                 cursor: "pointer",
                 borderRadius: 6,
-                background: "rgba(20, 20, 20, 0.6)",
-                border: "1px solid rgba(255, 199, 0, 0.15)",
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
+                background: "#000",
+                border: "1px solid #FFC700",
+                boxShadow: "0 4px 20px #000",
                 transition: "border-color 0.2s, box-shadow 0.2s",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 199, 0, 0.4)";
-                e.currentTarget.style.boxShadow = "0 8px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 199, 0, 0.1)";
+                e.currentTarget.style.borderColor = "#FFC700";
+                e.currentTarget.style.boxShadow = "0 8px 40px #000, 0 0 20px #FFC700";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 199, 0, 0.15)";
-                e.currentTarget.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.4)";
+                e.currentTarget.style.borderColor = "#FFC700";
+                e.currentTarget.style.boxShadow = "0 4px 20px #000";
               }}
             >
               {renderCardContent(ev)}
@@ -253,24 +253,24 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
                   cursor: "pointer",
                   borderRadius: 6,
                   overflow: "hidden",
-                  background: "rgba(20, 20, 20, 0.6)",
+                  background: "#000",
                   backdropFilter: "blur(12px)",
                   WebkitBackdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255, 199, 0, 0.15)",
+                  border: "1px solid #FFC700",
                   boxShadow: `
-                    0 0 0 1px rgba(255, 199, 0, 0.08),
-                    0 20px 60px rgba(0, 0, 0, 0.6),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.05)
+                    0 0 0 1px #FFC700,
+                    0 20px 60px #000,
+                    inset 0 1px 0 #FFF
                   `,
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
                   el.style.transform = `translateX(${translateX}px) translateY(${translateY - 20}px) translateZ(${translateZ + 60}px) rotateY(${rotateCardY}deg) scale(1.05)`;
                   el.style.boxShadow = `
-                    0 0 0 2px rgba(255, 199, 0, 0.4),
-                    0 30px 80px rgba(0, 0, 0, 0.7),
-                    0 0 40px rgba(255, 199, 0, 0.15),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.1)
+                    0 0 0 2px #FFC700,
+                    0 30px 80px #000,
+                    0 0 40px #FFC700,
+                    inset 0 1px 0 #FFF
                   `;
                   el.style.zIndex = "10";
                 }}
@@ -278,9 +278,9 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
                   const el = e.currentTarget;
                   el.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateY(${rotateCardY}deg)`;
                   el.style.boxShadow = `
-                    0 0 0 1px rgba(255, 199, 0, 0.08),
-                    0 20px 60px rgba(0, 0, 0, 0.6),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.05)
+                    0 0 0 1px #FFC700,
+                    0 20px 60px #000,
+                    inset 0 1px 0 #FFF
                   `;
                   el.style.zIndex = "auto";
                 }}
@@ -293,7 +293,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
                     left: "-50%",
                     width: "200%",
                     height: "100%",
-                    background: "linear-gradient(105deg, transparent 40%, rgba(255,199,0,0.05) 45%, rgba(255,199,0,0.1) 50%, rgba(255,199,0,0.05) 55%, transparent 60%)",
+                    background: "linear-gradient(105deg, transparent 40%, #FFC700 45%, #FFC700 50%, #FFC700 55%, transparent 60%)",
                     pointerEvents: "none",
                     zIndex: 2,
                   }}
@@ -332,7 +332,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
       style={{
         position: "fixed",
         inset: 0,
-        background: "rgba(0,0,0,0.92)",
+        background: "#000",
         backdropFilter: "blur(8px)",
         zIndex: 9999,
         display: "flex",
@@ -345,9 +345,9 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: "rgba(20,20,20,0.9)",
+          background: "#000",
           backdropFilter: "blur(20px)",
-          border: "1px solid rgba(255,199,0,0.25)",
+          border: "1px solid #FFC700",
           maxWidth: 700,
           width: "100%",
           maxHeight: "85vh",
@@ -423,7 +423,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
                 fontSize: 11,
                 letterSpacing: "2px",
                 textTransform: "uppercase",
-                color: "rgba(0,0,0,0.5)",
+                color: "#000",
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
                 display: "block",

@@ -134,20 +134,20 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
     if (!sectionRef.current) return
 
     const ctx = gsap.context(() => {
-      // Headline: shrinks from 3x into position on scroll (like ImpactReveal)
+      // Headline: scale entrance on scroll
       if (headlineRef.current) {
         gsap.fromTo(
           headlineRef.current,
-          { scale: 3, opacity: 0 },
+          { scale: 1.8, opacity: 0 },
           {
             scale: 1,
             opacity: 1,
+            duration: 1,
             ease: 'expo.out',
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: 'top 80%',
-              end: 'top 20%',
-              scrub: 1,
+              start: 'top 75%',
+              once: true,
             },
           }
         )
@@ -281,7 +281,12 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           position: relative;
           padding: clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px);
           overflow: hidden;
-          background: url('/images/blue-sky.jpg') center/cover no-repeat fixed;
+          background-color: #FFC700;
+          background-image: url('/images/blue-sky.jpg');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-attachment: fixed;
         }
 
         .pillar-inner {
@@ -401,7 +406,8 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
         }
 
         .stat-num {
-          font-family: var(--font-display);
+          font-family: var(--font-body);
+          font-weight: 900;
           font-size: clamp(36px, 5vw, 72px);
           line-height: 1;
           color: var(--ibtu-black);

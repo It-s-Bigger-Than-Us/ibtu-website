@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 import { getUpcomingEvents, getAllEvents } from "@/sanity/lib/fetch";
 
@@ -34,11 +34,11 @@ export default async function CalendarPage() {
 
   return (
     <>
-      <TopNav />
+
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
-        <div style={{ padding: "140px 80px 80px 80px", borderBottom: "1px solid rgba(255,199,0,0.2)" }}>
+        <div style={{ padding: "140px 80px 80px 80px", borderBottom: "1px solid #FFC700" }}>
           <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
             Community Calendar · Los Angeles
           </span>
@@ -68,8 +68,8 @@ export default async function CalendarPage() {
                 >
                   <div
                     style={{
-                      background: ev.status === "Active" ? "#111" : "#0a0a0a",
-                      border: `1px solid ${ev.status === "Active" ? "rgba(34,197,94,0.4)" : "rgba(255,199,0,0.2)"}`,
+                      background: "#000",
+                      border: "1px solid #FFC700",
                       padding: "36px 32px",
                       minHeight: 200,
                       display: "flex",
@@ -131,7 +131,7 @@ export default async function CalendarPage() {
                   <span style={{ fontSize: 13, color: "var(--gold)" }}>
                     {yearEvents.length} events
                   </span>
-                  <div style={{ flex: 1, height: 1, background: "rgba(255,199,0,0.15)" }} />
+                  <div style={{ flex: 1, height: 1, background: "#FFC700" }} />
                 </div>
                 {yearEvents.map((ev: any, i: number) => (
                   <Link

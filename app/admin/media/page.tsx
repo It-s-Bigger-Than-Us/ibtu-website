@@ -1,4 +1,4 @@
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 import { client } from "@/sanity/lib/client";
 
@@ -20,7 +20,7 @@ export default async function AdminMediaPage() {
 
   return (
     <>
-      <TopNav />
+
       <main
         style={{
           background: "#000",
@@ -32,7 +32,7 @@ export default async function AdminMediaPage() {
         <section
           style={{
             padding: "120px 80px 40px 80px",
-            borderBottom: "1px solid rgba(255,199,0,0.15)",
+            borderBottom: "1px solid #FFC700",
           }}
         >
           <h1
@@ -84,7 +84,7 @@ export default async function AdminMediaPage() {
                     key={asset._id}
                     style={{
                       background: "var(--gold)",
-                      border: "1px solid rgba(255,199,0,0.1)",
+                      border: "1px solid #FFC700",
                       borderRadius: 6,
                       overflow: "hidden",
                       transition: "border-color 0.2s",
@@ -96,7 +96,7 @@ export default async function AdminMediaPage() {
                         position: "relative",
                         width: "100%",
                         paddingTop: "100%",
-                        background: "#111",
+                        background: "#000",
                         overflow: "hidden",
                       }}
                     >

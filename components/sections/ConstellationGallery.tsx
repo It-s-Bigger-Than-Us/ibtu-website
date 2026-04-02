@@ -144,8 +144,8 @@ export default function ConstellationGallery({
                     : 'translateZ(0)',
                 transition: 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s, box-shadow 0.4s',
                 boxShadow: isHovered
-                  ? '0 20px 60px rgba(255, 199, 0, 0.2), 0 0 0 2px var(--ibtu-gold)'
-                  : '0 4px 20px rgba(0, 0, 0, 0.4)',
+                  ? '0 20px 60px #FFC700, 0 0 0 2px var(--ibtu-gold)'
+                  : '0 4px 20px #000',
                 filter: isOtherHovered ? 'brightness(0.6)' : 'brightness(1)',
               }}
             >

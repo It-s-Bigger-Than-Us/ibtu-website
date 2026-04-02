@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TopNav from "@/components/layout/TopNav";
 import Footer from "@/components/layout/Footer";
 import { getPrograms } from "@/sanity/lib/fetch";
 
@@ -16,13 +15,12 @@ export default async function ProgramsPage() {
   const programs = await getPrograms();
   return (
     <>
-      <TopNav />
       <main style={{ background: "#000", minHeight: "100vh"}}>
         {/* Header */}
         <div
           style={{
             padding: "140px 80px 80px 80px",
-            borderBottom: "1px solid rgba(255,199,0,0.2)",
+            borderBottom: "1px solid #FFC700",
           }}
         >
           <span

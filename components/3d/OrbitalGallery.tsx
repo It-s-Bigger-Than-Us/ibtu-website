@@ -1,7 +1,7 @@
 'use client'
 
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useTexture, Html, OrbitControls } from '@react-three/drei'
+import { useTexture, Html } from '@react-three/drei'
 import { Suspense, useMemo, useRef, useState, useEffect, useCallback } from 'react'
 import gsap from 'gsap'
 import {
@@ -330,7 +330,7 @@ function Scene() {
     const glowTarget = logoHovered.current ? 0.8 : 0.15
     logoGlowRef.current += (glowTarget - logoGlowRef.current) * Math.min(dt * 5, 1)
 
-    // ── After intro: very slow auto-rotation (user can override with drag) ──
+    // ── After intro: very slow auto-rotation ──
     if (tubeRef.current) {
       tubeRef.current.rotation.y += dt * 0.04
     }
@@ -341,18 +341,6 @@ function Scene() {
       <color attach="background" args={['#FFC700']} />
       <ambientLight intensity={0.7} />
       <directionalLight position={[5, 8, 5]} intensity={1} />
-
-      {/* Click-drag to rotate, scroll to zoom, explore the space */}
-      <OrbitControls
-        enableRotate={true}
-        enableZoom={true}
-        enablePan={true}
-        autoRotate={false}
-        minDistance={0.5}
-        maxDistance={8}
-        zoomSpeed={0.6}
-        rotateSpeed={0.4}
-      />
 
       <group ref={tubeRef}>
         <CyberGrid pointerRef={pointerRef} />

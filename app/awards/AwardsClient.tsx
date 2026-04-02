@@ -32,7 +32,7 @@ interface AwardsClientProps {
 const LEVEL_COLORS: Record<string, string> = {
   Federal: '#FFC700',
   State: '#FFC700',
-  City: 'rgba(255,199,0,0.7)',
+  City: '#FFC700',
   Institutional: 'var(--gold)',
 }
 
@@ -93,7 +93,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
           padding: 'clamp(120px, 15vw, 200px) clamp(32px, 5vw, 80px) clamp(80px, 10vw, 140px)',
         }}
       >
-        <span className="editorial-label" style={{ color: 'rgba(0,0,0,0.5)', marginBottom: '20px', display: 'block' }}>
+        <span className="editorial-label" style={{ color: '#000', marginBottom: '20px', display: 'block' }}>
           AWARDS & RECOGNITION
         </span>
         <h1 style={{
@@ -112,7 +112,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
         </h1>
         <p style={{
           fontSize: 'clamp(15px, 1.3vw, 20px)',
-          color: 'rgba(0,0,0,0.6)',
+          color: '#000',
           maxWidth: '600px',
           lineHeight: 1.7,
           marginTop: '32px',
@@ -141,7 +141,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                       gridTemplateColumns: '80px 1fr',
                       gap: '28px',
                       padding: '28px 0',
-                      borderBottom: '1px solid rgba(255,199,0,0.15)',
+                      borderBottom: '1px solid #FFC700',
                       alignItems: 'start',
                       cursor: 'pointer',
                     }}
@@ -215,7 +215,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
       {/* ── MEDIA & NEWS ── */}
       <div style={{
         padding: 'var(--section-pad) clamp(32px, 5vw, 80px)',
-        borderTop: '1px solid rgba(255,199,0,0.15)',
+        borderTop: '1px solid #FFC700',
       }}>
         <span className="editorial-label" style={{ marginBottom: '20px', display: 'block' }}>
           MEDIA & PRESS
@@ -227,11 +227,11 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
         {/* Featured media — Jennifer Hudson */}
         {media.filter(m => m.featured).map((item, i) => (
           <div key={i} style={{
-            background: '#111',
+            background: '#000',
             borderRadius: '20px',
             padding: 'clamp(40px, 5vw, 80px)',
             marginBottom: '48px',
-            border: '1px solid rgba(255,199,0,0.15)',
+            border: '1px solid #FFC700',
           }}>
             <span className="editorial-label">{item.type}</span>
             <h3 style={{
@@ -263,10 +263,10 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
               key={i}
               className="media-card card-lift"
               style={{
-                background: '#111',
+                background: '#000',
                 borderRadius: '16px',
                 padding: '28px',
-                border: '1px solid rgba(255,199,0,0.15)',
+                border: '1px solid #FFC700',
               }}
             >
               <div style={{

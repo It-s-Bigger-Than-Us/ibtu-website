@@ -53,7 +53,7 @@ export default function DonationEmbed({
       style={{
         background: "#000",
         padding: "80px 80px",
-        borderTop: "1px solid rgba(255,199,0,0.15)",
+        borderTop: "1px solid #FFC700",
       }}
     >
       {title && (
@@ -89,8 +89,8 @@ export default function DonationEmbed({
         style={{
           maxWidth: 600,
           minHeight: 400,
-          background: "#111",
-          border: "1px solid rgba(255,199,0,0.15)",
+          background: "#000",
+          border: "1px solid #FFC700",
           borderRadius: 6,
           overflow: "hidden",
         }}

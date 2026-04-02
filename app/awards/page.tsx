@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 import { getAwards } from "@/sanity/lib/fetch";
 import AwardsClient from "./AwardsClient";
@@ -32,7 +32,7 @@ export default async function AwardsPage() {
   const sanityAwards = await getAwards();
   return (
     <>
-      <TopNav />
+
       <AwardsClient awards={sanityAwards} media={MEDIA_PLACEMENTS} />
       <Footer />
     </>

@@ -113,7 +113,7 @@ function Ribbon({ scrollProgress }: { scrollProgress: { value: number } }) {
       <mesh geometry={geometry}>
         <meshPhysicalMaterial
           ref={materialRef}
-          color="#111111"
+          color="#000000"
           metalness={0.3}
           roughness={0.2}
           clearcoat={1}

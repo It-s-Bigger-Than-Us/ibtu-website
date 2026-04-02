@@ -94,7 +94,7 @@ export default async function DonatePage({ params }: Props) {
 
         {/* Quick Donate CTA */}
         {qgivUrl && (
-          <section style={{ padding: "40px clamp(24px, 5vw, 80px)", borderBottom: "1px solid rgba(255,199,0,0.08)", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
+          <section style={{ padding: "40px clamp(24px, 5vw, 80px)", borderBottom: "1px solid #FFC700", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
             <div>
               <span style={{ fontFamily: "Poppins, sans-serif", fontSize: 13, fontWeight: 600, color: "var(--gold)", letterSpacing: 1, textTransform: "uppercase" }}>
                 Make a direct donation
@@ -167,7 +167,7 @@ export default async function DonatePage({ params }: Props) {
             <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(24px, 3vw, 40px)", fontWeight: 800, lineHeight: 1.05, color: "#000", marginBottom: 8, textTransform: "uppercase" }}>
               Questions About Sponsorship?
             </h2>
-            <p style={{ fontSize: 15, color: "rgba(0,0,0,0.65)", fontFamily: "Poppins, sans-serif" }}>
+            <p style={{ fontSize: 15, color: "#000", fontFamily: "Poppins, sans-serif" }}>
               Contact us to build a custom partnership that fits your organization.
             </p>
           </div>

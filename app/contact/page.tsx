@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <TopNav />
+
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
@@ -189,7 +189,7 @@ export default function ContactPage() {
                   style={{
                     width: "100%",
                     padding: "14px 16px",
-                    background: "#111",
+                    background: "#000",
                     border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
@@ -221,7 +221,7 @@ export default function ContactPage() {
                   style={{
                     width: "100%",
                     padding: "14px 16px",
-                    background: "#111",
+                    background: "#000",
                     border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
@@ -252,7 +252,7 @@ export default function ContactPage() {
                   style={{
                     width: "100%",
                     padding: "14px 16px",
-                    background: "#111",
+                    background: "#000",
                     border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
@@ -294,7 +294,7 @@ export default function ContactPage() {
                   style={{
                     width: "100%",
                     padding: "14px 16px",
-                    background: "#111",
+                    background: "#000",
                     border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,

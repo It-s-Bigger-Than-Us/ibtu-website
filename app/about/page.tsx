@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 import { getTimeline } from "@/sanity/lib/fetch";
 
@@ -16,7 +16,6 @@ export default async function AboutPage() {
   const orgTimeline = await getTimeline();
   return (
     <>
-      <TopNav />
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
@@ -112,7 +111,7 @@ export default async function AboutPage() {
           ].map((p) => (
             <Link key={p.tag} href={p.href} style={{ textDecoration: "none" }}>
               <div style={{ background: "var(--gold)", padding: "60px 44px", minHeight: 280, display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-                <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "rgba(0,0,0,0.5)", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 14 }}>{p.tag}</span>
+                <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 14 }}>{p.tag}</span>
                 <h3 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(28px, 3vw, 44px)", lineHeight: 0.95, color: "#000", marginBottom: 16 }}>{p.title.toUpperCase()}</h3>
                 <p style={{ fontSize: 14, color: "#000", lineHeight: 1.6 }}>{p.desc}</p>
               </div>
@@ -150,7 +149,7 @@ export default async function AboutPage() {
                   <p style={{ fontSize: 15, color: "#fff", lineHeight: 1.65 }}>
                     {entry.detail}
                   </p>
-                  <span style={{ display: "inline-block", marginTop: 10, fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(255,199,0,0.5)", fontWeight: 600 }}>
+                  <span style={{ display: "inline-block", marginTop: 10, fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "#FFC700", fontWeight: 600 }}>
                     {entry.pillar}
                   </span>
                 </div>

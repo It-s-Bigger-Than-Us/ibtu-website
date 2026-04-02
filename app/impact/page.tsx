@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import TopNav from "@/components/layout/TopNav";
+
 import Footer from "@/components/layout/Footer";
 import { getImpactStats } from "@/sanity/lib/fetch";
 import { digitalReach } from "@/lib/data/impact-stats";
@@ -29,7 +29,6 @@ export default async function ImpactPage() {
 
   return (
     <>
-      <TopNav />
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
@@ -118,7 +117,7 @@ export default async function ImpactPage() {
                 <span
                   style={{
                     fontSize: 13,
-                    color: "rgba(0,0,0,0.6)",
+                    color: "#000",
                     fontWeight: 600,
                   }}
                 >

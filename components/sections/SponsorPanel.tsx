@@ -192,7 +192,7 @@ export default function SponsorPanel({ tiers = REAL_TIERS }: SponsorPanelProps) 
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setIsOpen(false)}
-              style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', zIndex: 250 }}
+              style={{ position: 'fixed', inset: 0, background: '#000', zIndex: 250 }}
             />
 
             <motion.div
