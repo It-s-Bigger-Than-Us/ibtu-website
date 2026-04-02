@@ -409,13 +409,13 @@ export default function SponsorPanel({ tiers = REAL_TIERS }: SponsorPanelProps) 
         .sponsor-tier-header:hover .sponsor-price-tag {
           background: linear-gradient(
             105deg,
-            #FFC700 0%,
-            #FFF 18%,
-            #FFC700 35%,
-            #000 50%,
-            #FFC700 65%,
-            #FFF 82%,
-            #FFC700 100%
+            #FFF 0%,
+            #FFF4B8 15%,
+            #D4F5E8 30%,
+            #FFF 45%,
+            #FFE4D6 60%,
+            #D4F0F8 75%,
+            #FFF 100%
           );
           background-size: 200% 100%;
           -webkit-background-clip: text;

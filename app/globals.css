@@ -35,26 +35,27 @@
   --ibtu-white: #FFFFFF;
   --warm-white: #FFF8F0;
 
-  /* Iridescent accent system — LIQUID GLASS + OILSPILL
-     Gold/white/black. Slow, luxurious.
-     Approved 4/1 at commit 4666454. */
-  --holo-pink: #FFE8CC;
-  --holo-mint: #E8F5E0;
-  --holo-lavender: #F0ECFF;
-  --holo-yellow: #FFE066;
-  --holo-cyan: #E0F0F5;
-  --holo-purple: #F0ECFF;
+  /* Iridescent accent system — PEARLESCENT LIGHT
+     Predominantly white with soft yellow, mint, peach.
+     Like light on a pearl. No black. No dark tones.
+     Reference: Molly's iridescent image 4/2/2026. */
+  --holo-pink: #FFE4D6;
+  --holo-mint: #D4F5E8;
+  --holo-lavender: #E8E4FF;
+  --holo-yellow: #FFF4B8;
+  --holo-cyan: #D4F0F8;
+  --holo-peach: #FFE4D6;
   --holo-gradient: linear-gradient(
-    120deg,
-    #FFC700 0%,
-    #FFF 15%,
-    #FFC700 30%,
-    #FFF 45%,
-    #000 55%,
-    #FFC700 68%,
-    #FFF 80%,
-    #FFC700 92%,
-    #000 100%
+    135deg,
+    #FFF 0%,
+    #FFF4B8 12%,
+    #D4F5E8 24%,
+    #FFF 36%,
+    #FFE4D6 48%,
+    #FFF 60%,
+    #D4F0F8 72%,
+    #FFF4B8 84%,
+    #FFF 100%
   );
 
   /* Typography scale */
@@ -149,12 +150,14 @@
   border-radius: 16px;
   background: conic-gradient(
     from var(--sparkle-angle, 0deg),
-    #FFC700,
     #FFF,
-    #000,
-    #FFC700,
+    #FFF4B8,
+    #D4F5E8,
     #FFF,
-    #FFC700
+    #FFE4D6,
+    #D4F0F8,
+    #FFF4B8,
+    #FFF
   );
   animation: sparkle-rotate 16s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -175,13 +178,13 @@
 .iridescent-text {
   background: linear-gradient(
     105deg,
-    #FFC700 0%,
-    #FFF 18%,
-    #FFC700 35%,
-    #000 50%,
-    #FFC700 65%,
-    #FFF 82%,
-    #FFC700 100%
+    #FFF 0%,
+    #FFF4B8 15%,
+    #D4F5E8 30%,
+    #FFF 45%,
+    #FFE4D6 60%,
+    #D4F0F8 75%,
+    #FFF 100%
   );
   background-size: 300% 100%;
   -webkit-background-clip: text;

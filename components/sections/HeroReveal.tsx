@@ -141,7 +141,7 @@ export default function HeroReveal() {
         <div
           style={{
             position: 'absolute', inset: 0,
-            background: 'linear-gradient(120deg, #FFC700 0%, #FFF 15%, #FFC700 30%, #FFF 45%, #000 55%, #FFC700 68%, #FFF 80%, #FFC700 92%, #000 100%)',
+            background: 'linear-gradient(135deg, #FFF 0%, #FFF4B8 12%, #D4F5E8 24%, #FFF 36%, #FFE4D6 48%, #FFF 60%, #D4F0F8 72%, #FFF4B8 84%, #FFF 100%)',
             backgroundSize: '300% 300%',
             animation: 'iriLogoShift 4s ease-in-out infinite',
             WebkitMaskImage: 'url(/images/ibtu-logo.svg)', WebkitMaskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat',
