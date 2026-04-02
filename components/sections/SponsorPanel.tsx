@@ -269,14 +269,17 @@ export default function SponsorPanel({ tiers = REAL_TIERS }: SponsorPanelProps) 
                       onClick={() => setExpandedTier(isExpanded ? null : i)}
                     >
                       {/* Tier header — always visible */}
-                      <div style={{
-                        background: 'var(--ibtu-gold)',
-                        padding: 'clamp(16px, 2vw, 24px)',
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        transition: 'background 0.3s',
-                      }}>
+                      <div
+                        className="sponsor-tier-header"
+                        style={{
+                          background: 'var(--ibtu-gold)',
+                          padding: 'clamp(16px, 2vw, 24px)',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          transition: 'background 0.3s',
+                        }}
+                      >
                         <div>
                           <h3 style={{
                             fontFamily: 'var(--font-body)',
@@ -296,17 +299,17 @@ export default function SponsorPanel({ tiers = REAL_TIERS }: SponsorPanelProps) 
                               letterSpacing: '0.1em',
                               textTransform: 'uppercase',
                               color: 'var(--ibtu-black)',
-                              opacity: 0.6,
                             }}>
                               Most Popular
                             </span>
                           )}
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                          <span style={{
+                          <span className="sponsor-price-tag" style={{
                             fontFamily: 'var(--font-display)',
                             fontSize: 'clamp(20px, 2.5vw, 28px)',
                             color: 'var(--ibtu-black)',
+                            transition: 'all 0.3s',
                           }}>
                             {tier.price}
                           </span>
@@ -389,7 +392,7 @@ export default function SponsorPanel({ tiers = REAL_TIERS }: SponsorPanelProps) 
                   textAlign: 'center',
                   textDecoration: 'none',
                   padding: '16px 32px',
-                  borderRadius: '4px',
+                  borderRadius: '16px',
                   transition: 'background 0.3s, color 0.3s',
                 }}
               >
@@ -399,6 +402,27 @@ export default function SponsorPanel({ tiers = REAL_TIERS }: SponsorPanelProps) 
           </>
         )}
       </AnimatePresence>
+
+      {/* Iridescent price hover styles */}
+      <style>{`
+        .sponsor-tier-header:hover .sponsor-price-tag {
+          background: linear-gradient(
+            105deg,
+            #FFC700 0%,
+            #FFF 20%,
+            #C8F0FF 40%,
+            #FFF 55%,
+            #FFC700 70%,
+            #E0D4FF 85%,
+            #FFF 100%
+          );
+          background-size: 200% 100%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: iridescent-shift 3s linear infinite;
+        }
+      `}</style>
     </>
   )
 }
