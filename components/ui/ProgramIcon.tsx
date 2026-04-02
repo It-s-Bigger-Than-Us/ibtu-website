@@ -15,7 +15,7 @@ interface ProgramIconProps {
   color?: string
 }
 
-const ICONS: Record<IconType, (color: string) => JSX.Element> = {
+const ICONS: Record<IconType, (color: string) => React.ReactNode> = {
   fire: (color) => (
     <svg viewBox="0 0 24 24" fill={color}>
       <path d="M12 23c-3.866 0-7-3.134-7-7 0-2.551 1.27-4.672 2.47-6.388A28.3 28.3 0 0 0 9.5 6.5L12 2l2.5 4.5c.47.8 1.24 2.1 2.03 3.112C17.73 11.328 19 13.45 19 16c0 3.866-3.134 7-7 7zm0-2c2.761 0 5-2.239 5-5 0-1.655-.83-3.196-1.87-4.662A25 25 0 0 1 13.5 8.5L12 5.8l-1.5 2.7a25 25 0 0 1-1.63 2.838C7.83 12.804 7 14.345 7 16c0 2.761 2.239 5 5 5zm0-2a3 3 0 0 1-3-3c0-.874.367-1.71.95-2.55.35-.5.75-1 1.05-1.45.3.45.7.95 1.05 1.45.583.84.95 1.676.95 2.55a3 3 0 0 1-3 3z" />
