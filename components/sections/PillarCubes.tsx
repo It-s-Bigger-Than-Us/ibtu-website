@@ -27,7 +27,7 @@ interface StatItem {
 
 const PILLARS: PillarData[] = [
   {
-    name: 'Crisis & Disaster Response',
+    name: 'Crisis & Disaster Stabilization',
     images: [
       '/images/pillars/crisis-1.jpg',
       '/images/pillars/crisis-2.jpg',
@@ -36,7 +36,7 @@ const PILLARS: PillarData[] = [
     ],
   },
   {
-    name: 'School & Youth Development',
+    name: 'School & Youth Stability',
     images: [
       '/images/pillars/school-1.jpg',
       '/images/pillars/school-2.jpg',
@@ -45,30 +45,12 @@ const PILLARS: PillarData[] = [
     ],
   },
   {
-    name: 'Community Health & Wellness',
+    name: 'Community Health & Resource Access',
     images: [
       '/images/pillars/community-1.jpg',
       '/images/pillars/community-2.jpg',
       '/images/pillars/community-1.jpg',
       '/images/pillars/community-2.jpg',
-    ],
-  },
-  {
-    name: 'Environmental Stewardship',
-    images: [
-      '/images/coastal/IMG_0024.jpg',
-      '/images/coastal/IMG_0267.jpg',
-      '/images/coastal/IMG_0024.jpg',
-      '/images/coastal/IMG_0267.jpg',
-    ],
-  },
-  {
-    name: 'Community Building',
-    images: [
-      '/images/gallery/IMG_1311.jpg',
-      '/images/gallery/IMG_4353.jpg',
-      '/images/gallery/IMG_1311.jpg',
-      '/images/gallery/IMG_4353.jpg',
     ],
   },
 ]
@@ -342,7 +324,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
 
         .pillar-cubes-grid {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: clamp(20px, 3vw, 40px);
         }
 
