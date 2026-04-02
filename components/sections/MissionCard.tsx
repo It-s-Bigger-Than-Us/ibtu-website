@@ -7,9 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
-   MISSION CARD — Gold card with skyline,
-   "Our Mission" heading + statement.
-   Sits before "Why We Exist" section.
+   MISSION CARD — Gold card, no skyline.
+   Just "Our Mission" heading + statement.
 ═══════════════════════════════════════ */
 
 export default function MissionCard() {
@@ -59,30 +58,8 @@ export default function MissionCard() {
           padding: 'clamp(48px, 6vw, 80px)',
           maxWidth: '900px',
           width: '100%',
-          position: 'relative',
-          overflow: 'hidden',
         }}
       >
-        {/* Skyline at bottom of card */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/skyline.svg"
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            width: '100%',
-            height: 'auto',
-            maxHeight: '80px',
-            objectFit: 'cover',
-            objectPosition: 'center bottom',
-            opacity: 0.08,
-          }}
-        />
-
         {/* Label */}
         <span
           style={{

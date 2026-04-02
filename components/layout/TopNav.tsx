@@ -61,11 +61,12 @@ export default function TopNav() {
               justifyContent: 'center',
               width: `${coinSize}px`,
               height: `${coinSize}px`,
-              background: 'var(--ibtu-gold)',
+              background: 'var(--holo-gradient)',
+              backgroundSize: '400% 400%',
               borderRadius: '12px',
               transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
               flexShrink: 0,
-              animation: 'coinSpin 12s linear infinite',
+              animation: 'coinSpin 12s linear infinite, holo-shift 24s ease infinite',
             }}
           >
             <div
@@ -100,11 +101,9 @@ export default function TopNav() {
               justifyContent: 'center',
               height: `${coinSize}px`,
               padding: '0 16px',
-              background: donateHovered
-                ? 'var(--holo-gradient)'
-                : 'var(--ibtu-gold)',
-              backgroundSize: donateHovered ? '400% 400%' : undefined,
-              animation: donateHovered ? 'holo-shift 3s ease infinite' : undefined,
+              background: 'var(--holo-gradient)',
+              backgroundSize: '400% 400%',
+              animation: 'holo-shift 24s ease infinite',
               borderRadius: '12px',
               textDecoration: 'none',
               transition: 'background 0.4s, height 0.3s var(--ease-out-expo)',

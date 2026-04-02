@@ -5,7 +5,6 @@ import GoldTicker from '@/components/sections/GoldTicker'
 import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
 import GalleryCarousel3D from '@/components/sections/GalleryCarousel3D'
-import FloatingShapes from '@/components/ui/FloatingShapes'
 import IridescentLogoTransition from '@/components/ui/IridescentLogoTransition'
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
@@ -51,9 +50,6 @@ export default function HomePageClient({
         body="Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
         media={missionMedia}
       />
-
-      {/* Floating shapes transition — hearts, orbs, cubes */}
-      <FloatingShapes count={10} seed={1} height="160px" bgColor="#000" />
 
       {/* 5. Pillar Cubes + Stats */}
       <PillarCubes stats={stats} />

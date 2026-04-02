@@ -68,39 +68,7 @@ export default function Footer() {
         overflow: 'hidden',
       }}
     >
-      {/* Skyline transition at top */}
-      <div
-        style={{
-          width: '100%',
-          overflow: 'hidden',
-          lineHeight: 0,
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <div
-          aria-hidden="true"
-          style={{
-            width: '100%',
-            maxHeight: '100px',
-            overflow: 'hidden',
-            color: '#FFC700',
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/skyline.svg"
-            alt=""
-            style={{
-              width: '100%',
-              height: 'auto',
-              maxHeight: '100px',
-              objectFit: 'cover',
-              objectPosition: 'center bottom',
-              filter: 'brightness(0) saturate(100%) invert(80%) sepia(61%) saturate(2000%) hue-rotate(2deg) brightness(104%) contrast(104%)',
-            }}
-          />
-        </div>
-      </div>
+      {/* Skyline removed per Molly */}
 
       {/* Sacred mantra — big LOT, word by word */}
       <div style={{ padding: 'clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px) 0' }}>
