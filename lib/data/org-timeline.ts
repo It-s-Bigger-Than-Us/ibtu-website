@@ -50,7 +50,7 @@ export const orgTimeline: TimelineEntry[] = [
   },
   {
     year: 2025,
-    title: "LA Wildfire Response — Largest Operation",
+    title: "LA Wildfire Response",
     detail: "Mobilized in 72 hours. Within 90 days, established permanent Relief Hub at Baldwin Hills Crenshaw Plaza. 5,000+ families stabilized. 1,800+ volunteers. 15,000+ meals.",
     pillar: "Crisis & Disaster Stabilization",
   },

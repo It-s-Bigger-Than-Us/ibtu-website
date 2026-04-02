@@ -38,7 +38,8 @@
   /* Iridescent accent system — LIQUID GLASS + OILSPILL
      NOT rainbow. Gold-anchored liquid glass with subtle light
      refractions. Oilspill = dark iridescence on gold/black/white.
-     Think: gold puddle with light hitting it. Slow, luxurious. */
+     Think: gold puddle with light hitting it. Slow, luxurious.
+     More form, more glass refraction, less pink/rainbow. */
   --holo-pink: #FFE8CC;
   --holo-mint: #E8F5E0;
   --holo-lavender: #F0ECFF;
@@ -46,16 +47,18 @@
   --holo-cyan: #E0F0F5;
   --holo-purple: #F0ECFF;
   --holo-gradient: linear-gradient(
-    120deg,
+    135deg,
     #FFC700 0%,
-    #FFF 15%,
-    #FFC700 30%,
-    #FFF 45%,
-    #000 55%,
-    #FFC700 68%,
+    #FFD84D 8%,
+    #FFFBE6 16%,
+    #FFF 24%,
+    #FFC700 36%,
+    #000 48%,
+    #FFC700 60%,
+    #FFFBE6 72%,
     #FFF 80%,
-    #FFC700 92%,
-    #000 100%
+    #000 90%,
+    #FFC700 100%
   );
 
   /* Typography scale */
@@ -120,8 +123,8 @@
   border-radius: 16px;
   padding: 2px;
   background: var(--holo-gradient);
-  background-size: 600% 600%;
-  animation: holo-shift 20s ease infinite;
+  background-size: 400% 400%;
+  animation: holo-shift 24s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -129,8 +132,9 @@
 }
 @keyframes holo-shift {
   0%, 100% { background-position: 0% 50%; }
-  33% { background-position: 50% 100%; }
-  66% { background-position: 100% 0%; }
+  25% { background-position: 30% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 70% 0%; }
 }
 
 /* ═══════════════════════════════════════
@@ -151,13 +155,16 @@
   background: conic-gradient(
     from var(--sparkle-angle, 0deg),
     #FFC700,
+    #FFD84D,
+    #FFFBE6,
     #FFF,
     #000,
     #FFC700,
+    #FFFBE6,
     #FFF,
     #FFC700
   );
-  animation: sparkle-rotate 16s linear infinite;
+  animation: sparkle-rotate 20s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -177,18 +184,19 @@
   background: linear-gradient(
     105deg,
     #FFC700 0%,
-    #FFF 18%,
-    #FFC700 35%,
-    #000 50%,
-    #FFC700 65%,
-    #FFF 82%,
+    #FFD84D 14%,
+    #FFFBE6 28%,
+    #FFF 42%,
+    #000 56%,
+    #FFC700 70%,
+    #FFFBE6 84%,
     #FFC700 100%
   );
   background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: iridescent-shift 16s linear infinite;
+  animation: iridescent-shift 20s linear infinite;
 }
 @keyframes iridescent-shift {
   0% { background-position: 0% 50%; }
@@ -211,8 +219,8 @@
   border-radius: 16px;
   padding: 2px;
   background: var(--holo-gradient);
-  background-size: 600% 600%;
-  animation: holo-shift 20s ease infinite;
+  background-size: 400% 400%;
+  animation: holo-shift 24s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;

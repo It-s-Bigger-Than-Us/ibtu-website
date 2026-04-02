@@ -94,22 +94,22 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* Holo border — fades in on hover */}
+              {/* Iridescent border — liquid glass, fades in on hover */}
               <div
                 style={{
                   position: 'absolute',
                   inset: 0,
                   borderRadius: 'inherit',
-                  padding: '2px',
+                  padding: '3px',
                   background: 'var(--holo-gradient)',
                   backgroundSize: '400% 400%',
-                  animation: 'holo-shift 6s ease infinite',
+                  animation: 'holo-shift 24s ease infinite',
                   WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                   WebkitMaskComposite: 'xor',
                   maskComposite: 'exclude' as never,
                   pointerEvents: 'none',
                   opacity: hoveredIndex === index ? 1 : 0,
-                  transition: 'opacity 0.4s',
+                  transition: 'opacity 0.5s',
                   zIndex: 2,
                 }}
               />

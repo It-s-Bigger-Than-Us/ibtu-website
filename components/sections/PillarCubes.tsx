@@ -221,8 +221,9 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           alt=""
           fill
           sizes="100vw"
-          quality={75}
+          quality={60}
           priority={false}
+          placeholder="empty"
           style={{ objectFit: 'cover', objectPosition: 'center top' }}
         />
       </div>

@@ -8,16 +8,15 @@ import MenuDropdown from './MenuDropdown'
    TOP NAV — Editorial, compact, animated
    Logo coin (gold bg, black IBTU)
    Hamburger below logo
-   Iridescent stroke on hover → iridescent fill
-   on both hamburger button and logo container.
-   NO dynamic CTA text. NO orbital spin.
+   Iridescent donate button to RIGHT of hamburger
+   Iridescent stroke on hover → fill on both.
+   NO dynamic CTA text.
 ═══════════════════════════════════════ */
 
 export default function TopNav() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [logoHovered, setLogoHovered] = useState(false)
-  const [hamburgerHovered, setHamburgerHovered] = useState(false)
+  const [donateHovered, setDonateHovered] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,9 +32,12 @@ export default function TopNav() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  const coinSize = scrolled ? 48 : 56
+  const iconSize = scrolled ? 32 : 38
+
   return (
     <>
-      {/* ── Logo + Hamburger — fixed top-left ── */}
+      {/* ── Logo + Hamburger + Donate — fixed top-left ── */}
       <div
         style={{
           position: 'fixed',
@@ -43,7 +45,7 @@ export default function TopNav() {
           left: '24px',
           zIndex: 100,
           display: 'flex',
-          flexDirection: 'column' as const,
+          flexDirection: 'column',
           alignItems: 'center',
           gap: '8px',
           transition: 'top 0.3s var(--ease-out-expo)',
@@ -54,28 +56,22 @@ export default function TopNav() {
           href="/"
           aria-label="IBTU Home"
           className="iridescent-border"
-          onMouseEnter={() => setLogoHovered(true)}
-          onMouseLeave={() => setLogoHovered(false)}
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: scrolled ? '48px' : '56px',
-            height: scrolled ? '48px' : '56px',
-            background: logoHovered
-              ? 'linear-gradient(135deg, #FFC700, #FFF, #FFC700, #C8F0FF, #FFC700)'
-              : 'var(--ibtu-gold)',
-            backgroundSize: logoHovered ? '400% 400%' : undefined,
-            animation: logoHovered ? 'holo-shift 3s ease infinite' : undefined,
+            width: `${coinSize}px`,
+            height: `${coinSize}px`,
+            background: 'var(--ibtu-gold)',
             borderRadius: '12px',
-            transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo), background 0.4s',
+            transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
             flexShrink: 0,
           }}
         >
           <div
             style={{
-              width: scrolled ? '32px' : '38px',
-              height: scrolled ? '32px' : '38px',
+              width: `${iconSize}px`,
+              height: `${iconSize}px`,
               transition: 'width 0.3s, height 0.3s',
             }}
           >
@@ -92,61 +88,91 @@ export default function TopNav() {
           </div>
         </Link>
 
-        {/* Hamburger — iridescent stroke on hover, fill on active */}
-        <button
-          onClick={() => setMenuOpen(prev => !prev)}
-          onMouseEnter={() => setHamburgerHovered(true)}
-          onMouseLeave={() => setHamburgerHovered(false)}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          className="iridescent-border"
-          style={{
-            background: hamburgerHovered
-              ? 'linear-gradient(135deg, #000, #1a1a1a, #000, #1a1a1a, #000)'
-              : 'var(--ibtu-black)',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '4px',
-            padding: '12px',
-            borderRadius: '12px',
-            zIndex: 101,
-            width: scrolled ? '48px' : '56px',
-            height: scrolled ? '48px' : '56px',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
-          }}
-        >
-          <span style={{
-            width: '20px',
-            height: '2px',
-            background: hamburgerHovered
-              ? 'var(--ibtu-gold)'
-              : 'var(--ibtu-white)',
-            transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s, background 0.3s',
-            transform: menuOpen ? 'translateY(6px) rotate(45deg)' : 'none',
-          }} />
-          <span style={{
-            width: '20px',
-            height: '2px',
-            background: hamburgerHovered
-              ? 'var(--ibtu-gold)'
-              : 'var(--ibtu-white)',
-            transition: 'opacity 0.3s, background 0.3s',
-            opacity: menuOpen ? 0 : 1,
-          }} />
-          <span style={{
-            width: '20px',
-            height: '2px',
-            background: hamburgerHovered
-              ? 'var(--ibtu-gold)'
-              : 'var(--ibtu-white)',
-            transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s, background 0.3s',
-            transform: menuOpen ? 'translateY(-6px) rotate(-45deg)' : 'none',
-          }} />
-        </button>
+        {/* Row: Hamburger + Donate button side by side */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* Hamburger — iridescent border on hover */}
+          <button
+            onClick={() => setMenuOpen(prev => !prev)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            className="iridescent-border"
+            style={{
+              background: 'var(--ibtu-black)',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '4px',
+              padding: '12px',
+              borderRadius: '12px',
+              zIndex: 101,
+              width: `${coinSize}px`,
+              height: `${coinSize}px`,
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
+            }}
+          >
+            <span style={{
+              width: '20px',
+              height: '2px',
+              background: 'var(--ibtu-gold)',
+              transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
+              transform: menuOpen ? 'translateY(6px) rotate(45deg)' : 'none',
+            }} />
+            <span style={{
+              width: '20px',
+              height: '2px',
+              background: 'var(--ibtu-gold)',
+              transition: 'opacity 0.3s',
+              opacity: menuOpen ? 0 : 1,
+            }} />
+            <span style={{
+              width: '20px',
+              height: '2px',
+              background: 'var(--ibtu-gold)',
+              transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
+              transform: menuOpen ? 'translateY(-6px) rotate(-45deg)' : 'none',
+            }} />
+          </button>
+
+          {/* Donate button — iridescent stroke on hover → iridescent fill */}
+          <a
+            href="/donate"
+            className="iridescent-border"
+            onMouseEnter={() => setDonateHovered(true)}
+            onMouseLeave={() => setDonateHovered(false)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: `${coinSize}px`,
+              padding: '0 16px',
+              background: donateHovered
+                ? 'var(--holo-gradient)'
+                : 'var(--ibtu-gold)',
+              backgroundSize: donateHovered ? '400% 400%' : undefined,
+              animation: donateHovered ? 'holo-shift 3s ease infinite' : undefined,
+              borderRadius: '12px',
+              textDecoration: 'none',
+              transition: 'background 0.4s, height 0.3s var(--ease-out-expo)',
+              cursor: 'pointer',
+            }}
+          >
+            <span style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '10px',
+              fontWeight: 700,
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              color: donateHovered ? '#FFF' : 'var(--ibtu-black)',
+              transition: 'color 0.3s',
+              whiteSpace: 'nowrap',
+            }}>
+              Donate
+            </span>
+          </a>
+        </div>
       </div>
 
       {/* ── Full-screen gold menu dropdown ── */}

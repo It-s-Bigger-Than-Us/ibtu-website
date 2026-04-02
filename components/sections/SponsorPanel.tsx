@@ -306,7 +306,8 @@ export default function SponsorPanel({ tiers = REAL_TIERS }: SponsorPanelProps) 
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                           <span className="sponsor-price-tag" style={{
-                            fontFamily: 'var(--font-display)',
+                            fontFamily: 'var(--font-body)',
+                            fontWeight: 900,
                             fontSize: 'clamp(20px, 2.5vw, 28px)',
                             color: 'var(--ibtu-black)',
                             transition: 'all 0.3s',
@@ -403,24 +404,25 @@ export default function SponsorPanel({ tiers = REAL_TIERS }: SponsorPanelProps) 
         )}
       </AnimatePresence>
 
-      {/* Iridescent price hover styles */}
+      {/* Iridescent price hover — liquid glass oilspill in IBTU colors */}
       <style>{`
         .sponsor-tier-header:hover .sponsor-price-tag {
           background: linear-gradient(
             105deg,
             #FFC700 0%,
-            #FFF 20%,
-            #C8F0FF 40%,
-            #FFF 55%,
-            #FFC700 70%,
-            #E0D4FF 85%,
-            #FFF 100%
+            #FFD84D 18%,
+            #FFFBE6 32%,
+            #FFF 48%,
+            #000 60%,
+            #FFC700 75%,
+            #FFFBE6 88%,
+            #FFC700 100%
           );
           background-size: 200% 100%;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
-          animation: iridescent-shift 3s linear infinite;
+          animation: iridescent-shift 4s linear infinite;
         }
       `}</style>
     </>

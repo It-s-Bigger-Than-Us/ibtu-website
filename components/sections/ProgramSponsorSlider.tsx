@@ -270,7 +270,8 @@ export default function ProgramSponsorSlider({
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                           <span style={{
-                            fontFamily: 'var(--font-display)',
+                            fontFamily: 'var(--font-body)',
+                            fontWeight: 900,
                             fontSize: 'clamp(16px, 2vw, 22px)',
                             color: 'var(--ibtu-black)',
                           }}>

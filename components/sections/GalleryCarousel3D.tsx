@@ -4,11 +4,12 @@ import { useEffect, useRef, useCallback } from 'react'
 import gsap from 'gsap'
 
 /* ═══════════════════════════════════════
-   3D GRADIENT CAROUSEL
-   Based on tympanus.net/Tutorials/3DGradientCarousel
-   Cards orbit in 3D space with perspective depth.
-   Drag to spin, momentum physics, infinite loop.
-   Gold background, IBTU photos.
+   3D IMAGE GALLERY — inspired by 21st.dev
+   Cards float in 3D space with depth, perspective.
+   Yellow (#FFC700) background. Iridescent card edges
+   with 3D raised effect. Photos centered on each card.
+   Drag to spin, momentum, auto-drift.
+   Cards are 50% larger than original.
 ═══════════════════════════════════════ */
 
 // All gallery images — shuffled across categories
@@ -32,14 +33,16 @@ const IMAGES = [
   '/images/additional/_D5A7272.jpg', '/images/additional/_D5A8614.jpg',
 ]
 
-const CARD_W = 320
-const CARD_H = 420
-const CARD_GAP = 40
+// 50% larger cards
+const CARD_W = 480
+const CARD_H = 630
+const CARD_PAD = 24
+const CARD_GAP = 48
 const ITEM_W = CARD_W + CARD_GAP
-const MAX_ROTATION = 28
-const MAX_DEPTH = 140
-const MIN_SCALE = 0.92
-const SCALE_RANGE = 0.1
+const MAX_ROTATION = 24
+const MAX_DEPTH = 180
+const MIN_SCALE = 0.88
+const SCALE_RANGE = 0.14
 const FRICTION = 0.94
 const DRAG_SENS = 1.2
 
@@ -76,9 +79,8 @@ export default function GalleryCarousel3D() {
     lastTime.current = now
 
     if (!isDragging.current) {
-      // Auto-drift + momentum
       velocityRef.current *= Math.pow(FRICTION, dt * 60)
-      if (Math.abs(velocityRef.current) < 0.5) velocityRef.current = -30 // gentle auto-spin
+      if (Math.abs(velocityRef.current) < 0.5) velocityRef.current = -25
       scrollXRef.current = mod(scrollXRef.current + velocityRef.current * dt, TRACK)
     }
 
@@ -94,8 +96,7 @@ export default function GalleryCarousel3D() {
       const el = items[i].el
       el.style.transform = `translate3d(${pos}px, -50%, ${tz}px) rotateY(${ry}deg) scale(${scale})`
       el.style.zIndex = String(Math.round(tz))
-      // Slight blur on far cards
-      const blur = Math.max(0, (1 - (tz / MAX_DEPTH)) * 1.5)
+      const blur = Math.max(0, (1 - (tz / MAX_DEPTH)) * 1.2)
       el.style.filter = blur > 0.3 ? `blur(${blur}px)` : 'none'
     }
 
@@ -107,9 +108,9 @@ export default function GalleryCarousel3D() {
     const cards = cardsRef.current
     if (!stage || !cards) return
 
-    // Create card elements
     const items: { el: HTMLDivElement; baseX: number }[] = []
     IMAGES.forEach((src, i) => {
+      // Card container — iridescent edge + raised 3D feel
       const card = document.createElement('div')
       card.style.cssText = `
         position: absolute;
@@ -123,7 +124,23 @@ export default function GalleryCarousel3D() {
         transform-style: preserve-3d;
         will-change: transform, filter;
         cursor: grab;
-        box-shadow: 0 8px 40px -12px #000;
+        background: var(--holo-gradient);
+        background-size: 400% 400%;
+        animation: holo-shift 24s ease infinite;
+        padding: 3px;
+      `
+      // Inner card with yellow bg + centered photo
+      const inner = document.createElement('div')
+      inner.style.cssText = `
+        width: 100%;
+        height: 100%;
+        border-radius: 13px;
+        overflow: hidden;
+        background: #FFC700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: ${CARD_PAD}px;
       `
       const img = document.createElement('img')
       img.src = src
@@ -135,10 +152,12 @@ export default function GalleryCarousel3D() {
         height: 100%;
         object-fit: cover;
         display: block;
-        filter: brightness(1.05) saturate(1.15);
+        border-radius: 8px;
+        filter: brightness(1.08) saturate(1.2);
         pointer-events: none;
       `
-      card.appendChild(img)
+      inner.appendChild(img)
+      card.appendChild(inner)
       cards.appendChild(card)
       items.push({ el: card, baseX: i * ITEM_W })
     })
@@ -178,7 +197,6 @@ export default function GalleryCarousel3D() {
     stage.addEventListener('pointerup', onUp)
     stage.addEventListener('pointercancel', onUp)
 
-    // Start animation loop
     lastTime.current = performance.now()
     rafRef.current = requestAnimationFrame(tick)
 
@@ -195,7 +213,7 @@ export default function GalleryCarousel3D() {
     <section
       style={{
         background: '#FFC700',
-        padding: 'clamp(40px, 6vw, 80px) 0',
+        padding: 'clamp(48px, 8vw, 100px) 0',
         overflow: 'hidden',
       }}
     >
@@ -204,8 +222,8 @@ export default function GalleryCarousel3D() {
         style={{
           position: 'relative',
           width: '100%',
-          height: `${CARD_H + 80}px`,
-          perspective: '1800px',
+          height: `${CARD_H + 100}px`,
+          perspective: '2000px',
           cursor: 'grab',
           touchAction: 'pan-y',
         }}

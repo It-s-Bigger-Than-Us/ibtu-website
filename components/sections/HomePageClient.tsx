@@ -5,6 +5,8 @@ import GoldTicker from '@/components/sections/GoldTicker'
 import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
 import GalleryCarousel3D from '@/components/sections/GalleryCarousel3D'
+import FloatingShapes from '@/components/ui/FloatingShapes'
+import IridescentLogoTransition from '@/components/ui/IridescentLogoTransition'
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
@@ -61,11 +63,28 @@ export default function HomePageClient({
         media={missionMedia}
       />
 
+      {/* Floating shapes transition — hearts, orbs, cubes */}
+      <FloatingShapes count={10} seed={1} height="160px" bgColor="#000" />
+
       {/* 5. Pillar Cubes + Stats */}
       <PillarCubes stats={stats} />
 
+      {/* Iridescent logo transition between sections */}
+      <div style={{
+        background: '#FFC700',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 'clamp(40px, 6vw, 80px) 0',
+      }}>
+        <IridescentLogoTransition size={120} duration={4} autoPlay />
+      </div>
+
       {/* 6. Programs Grid */}
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
+
+      {/* Floating shapes — different seed for variety */}
+      <FloatingShapes count={8} seed={42} height="120px" bgColor="#FFC700" />
 
       {/* 7. Photo Gallery — 3D Carousel */}
       <GalleryCarousel3D />
@@ -73,7 +92,7 @@ export default function HomePageClient({
       {/* 8. CTA */}
       <CTASection />
 
-      {/* 8. Footer */}
+      {/* 9. Footer */}
       <Footer />
 
       {/* Sponsor Panel */}

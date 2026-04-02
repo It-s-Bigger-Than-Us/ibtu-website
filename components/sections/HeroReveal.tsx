@@ -6,10 +6,12 @@ import Image from 'next/image'
 
 /* ═══════════════════════════════════════
    HERO REVEAL — Text + Logo only
-   1. "It's Bigger Than Us" — justified, each word SLAMS in
-   2. Logo wipes in from center and grows dramatically
-   3. Logo bursts out of the window
-   Gallery is now a separate component (GalleryCarousel3D)
+   1. "It's Bigger Than Us" — JUSTIFIED, each word SLAMS
+      in with personality — scale, rotation, bounce
+   2. Logo WIPES IN from center (clip-path from center)
+      and grows dramatically
+   3. Logo BUSTS out of the window to reveal gallery below
+   Gallery is a separate component (GalleryCarousel3D)
 ═══════════════════════════════════════ */
 
 export default function HeroReveal() {
@@ -23,36 +25,51 @@ export default function HeroReveal() {
     const words = textRef.current.querySelectorAll('.hero-word')
     const tl = gsap.timeline()
 
-    // Phase 1: Words SLAM in — justified, each hits hard
+    // Phase 1: Each word SLAMS in with unique personality
+    const entrances = [
+      { y: 300, scale: 3, rotation: -8, ease: 'back.out(2.2)' },   // It's
+      { y: -250, scale: 2.8, rotation: 5, ease: 'elastic.out(1, 0.5)' },   // Bigger
+      { y: 200, scale: 2.5, rotation: -3, ease: 'back.out(1.8)' },  // Than
+      { y: 350, scale: 3.5, rotation: 0, ease: 'expo.out' },         // Us
+    ]
+
     words.forEach((word, i) => {
+      const e = entrances[i]
       tl.fromTo(
         word,
-        { opacity: 0, y: 200, scale: 2.5, rotateX: -45 },
-        { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 0.6, ease: 'back.out(1.7)' },
-        i * 0.4,
+        { opacity: 0, y: e.y, scale: e.scale, rotation: e.rotation },
+        { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.7, ease: e.ease },
+        i * 0.35,
       )
-      tl.to(word, { scale: 1.12, letterSpacing: '0.05em', duration: 0.1, ease: 'power4.out' }, `>-0.05`)
-      tl.to(word, { scale: 1, letterSpacing: '-0.03em', duration: 0.25, ease: 'power2.inOut' })
+      // Impact bounce
+      tl.to(word, { scale: 1.15, duration: 0.08, ease: 'power4.out' }, `>-0.05`)
+      tl.to(word, { scale: 1, duration: 0.3, ease: 'power2.inOut' })
     })
 
-    tl.to({}, { duration: 0.8 })
+    tl.to({}, { duration: 0.6 })
 
-    // Phase 2: Text fades, logo wipes in from center
-    tl.to(textRef.current, { opacity: 0, scale: 0.6, duration: 0.5, ease: 'power3.in' })
+    // Phase 2: Text fades, logo wipes in FROM CENTER
+    tl.to(textRef.current, { opacity: 0, scale: 0.5, duration: 0.4, ease: 'power3.in' })
 
+    // Logo wipes in from center point outward
     tl.fromTo(
       logoRef.current,
-      { opacity: 1, scale: 0.3, clipPath: 'inset(50% 50% 50% 50%)' },
-      { scale: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 1.0, ease: 'expo.out' },
+      { opacity: 1, scale: 0.2, clipPath: 'circle(0% at 50% 50%)' },
+      { scale: 1, clipPath: 'circle(100% at 50% 50%)', duration: 1.2, ease: 'expo.out' },
     )
 
-    // Logo breathes
-    tl.to(logoRef.current, { scale: 1.08, duration: 0.4, ease: 'power2.out' })
-    tl.to(logoRef.current, { scale: 1, duration: 0.3, ease: 'power2.in' })
-    tl.to({}, { duration: 0.3 })
+    // Logo breathes once
+    tl.to(logoRef.current, { scale: 1.1, duration: 0.35, ease: 'power2.out' })
+    tl.to(logoRef.current, { scale: 1, duration: 0.25, ease: 'power2.in' })
+    tl.to({}, { duration: 0.25 })
 
-    // Phase 3: Logo grows dramatically — bursts out of the window
-    tl.to(logoRef.current, { scale: 30, opacity: 0, duration: 0.8, ease: 'power3.in' })
+    // Phase 3: Logo grows DRAMATICALLY — busts out of the window
+    tl.to(logoRef.current, {
+      scale: 40,
+      opacity: 0,
+      duration: 1,
+      ease: 'power4.in',
+    })
 
     return () => { tl.kill() }
   }, [])
@@ -70,7 +87,7 @@ export default function HeroReveal() {
         justifyContent: 'center',
       }}
     >
-      {/* Phase 1: Words */}
+      {/* Phase 1: Words — justified, fill width */}
       <div
         ref={textRef}
         style={{
@@ -82,11 +99,11 @@ export default function HeroReveal() {
         <h1
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(64px, 18vw, 300px)',
-            lineHeight: 0.85,
+            fontSize: 'clamp(72px, 20vw, 340px)',
+            lineHeight: 0.82,
             textTransform: 'uppercase',
             color: '#000',
-            letterSpacing: '-0.03em',
+            letterSpacing: '-0.04em',
             textAlign: 'justify',
             textAlignLast: 'justify',
             width: '100%',
@@ -97,7 +114,12 @@ export default function HeroReveal() {
           }}
         >
           {["It's", 'Bigger', 'Than', 'Us'].map((word, i) => (
-            <span key={i} className="hero-word" style={{ display: 'inline-block', opacity: 0, transformOrigin: 'center bottom' }}>
+            <span key={i} className="hero-word" style={{
+              display: 'inline-block',
+              opacity: 0,
+              transformOrigin: 'center bottom',
+              willChange: 'transform, opacity',
+            }}>
               {word}
             </span>
           ))}
@@ -109,8 +131,8 @@ export default function HeroReveal() {
         ref={logoRef}
         style={{
           position: 'absolute', zIndex: 3, opacity: 0,
-          width: 'clamp(160px, 22vw, 300px)',
-          height: 'clamp(160px, 22vw, 300px)',
+          width: 'clamp(180px, 25vw, 340px)',
+          height: 'clamp(180px, 25vw, 340px)',
         }}
       >
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
@@ -119,9 +141,9 @@ export default function HeroReveal() {
         <div
           style={{
             position: 'absolute', inset: 0,
-            background: 'linear-gradient(120deg, #FFC700 0%, #FFF 20%, #000 35%, #FFC700 50%, #FFF 65%, #000 80%, #FFC700 100%)',
+            background: 'linear-gradient(135deg, #FFC700 0%, #FFD84D 15%, #FFF 30%, #000 50%, #FFC700 70%, #FFFBE6 85%, #FFC700 100%)',
             backgroundSize: '300% 300%',
-            animation: 'iriLogoShift 3s ease-in-out infinite',
+            animation: 'iriLogoShift 4s ease-in-out infinite',
             WebkitMaskImage: 'url(/images/ibtu-logo.svg)', WebkitMaskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat',
             maskImage: 'url(/images/ibtu-logo.svg)', maskSize: '100% 100%', maskRepeat: 'no-repeat',
             pointerEvents: 'none',
