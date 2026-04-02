@@ -12,19 +12,9 @@ const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#0
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
 const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: ShortPlaceholder })
 const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
-const ProgramsGrid = dynamic(() => import('@/components/sections/ProgramsGrid'), { ssr: false, loading: ShortPlaceholder })
+// ProgramsGrid replaced by GalleryCarousel3D on homepage
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
 const SponsorPanel = dynamic(() => import('@/components/sections/SponsorPanel'), { ssr: false })
-
-interface Program {
-  slug: string
-  title: string
-  pillar: string
-  heroImage: string
-  cardStat?: string
-  description?: string
-  hoverVideo?: string
-}
 
 interface StatItem {
   value: number
@@ -33,14 +23,13 @@ interface StatItem {
 }
 
 interface HomePageClientProps {
-  programCards: Program[]
+  programCards?: unknown[]
   missionMedia: Array<{ type: 'image' | 'video'; src: string; alt?: string }>
   stats: StatItem[]
   tickerPhrases: string[]
 }
 
 export default function HomePageClient({
-  programCards,
   missionMedia,
   stats,
   tickerPhrases,
@@ -80,13 +69,7 @@ export default function HomePageClient({
         <IridescentLogoTransition size={120} duration={4} autoPlay />
       </div>
 
-      {/* 6. Programs Grid */}
-      {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
-
-      {/* Floating shapes — different seed for variety */}
-      <FloatingShapes count={8} seed={42} height="120px" bgColor="#FFC700" />
-
-      {/* 7. Photo Gallery — 3D Carousel */}
+      {/* 6. 3D Photo Gallery — replaces ProgramsGrid */}
       <GalleryCarousel3D />
 
       {/* 8. CTA */}
