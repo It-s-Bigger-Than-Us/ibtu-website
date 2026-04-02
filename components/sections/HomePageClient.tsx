@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import GoldTicker from '@/components/sections/GoldTicker'
 import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
-import GalleryCarousel3D from '@/components/sections/GalleryCarousel3D'
+import ProgramCarousel3D from '@/components/sections/ProgramCarousel3D'
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
@@ -13,6 +13,14 @@ const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), {
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
 const SponsorPanel = dynamic(() => import('@/components/sections/SponsorPanel'), { ssr: false })
 
+interface Program {
+  slug: string
+  title: string
+  pillar: string
+  heroImage: string
+  description?: string
+}
+
 interface StatItem {
   value: number
   suffix?: string
@@ -20,13 +28,14 @@ interface StatItem {
 }
 
 interface HomePageClientProps {
-  programCards?: unknown[]
+  programCards: Program[]
   missionMedia: Array<{ type: 'image' | 'video'; src: string; alt?: string }>
   stats: StatItem[]
   tickerPhrases: string[]
 }
 
 export default function HomePageClient({
+  programCards,
   missionMedia,
   stats,
   tickerPhrases,
@@ -45,15 +54,15 @@ export default function HomePageClient({
       {/* 4. Pillar Cubes + Stats */}
       <PillarCubes stats={stats} />
 
-      {/* 5. Why We Exist — smaller font, after pillars */}
+      {/* 5. Why We Exist */}
       <MissionSplit
         headline="Why We Exist"
         body="Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
         media={missionMedia}
       />
 
-      {/* 6. 3D Photo Gallery */}
-      <GalleryCarousel3D />
+      {/* 6. Program Cards — 3D Gradient Carousel */}
+      {programCards.length > 0 && <ProgramCarousel3D programs={programCards} />}
 
       {/* 7. CTA */}
       <CTASection />
