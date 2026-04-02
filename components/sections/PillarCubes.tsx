@@ -284,9 +284,8 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           background-color: #FFC700;
           background-image: url('/images/blue-sky.jpg');
           background-size: cover;
-          background-position: center;
+          background-position: center top;
           background-repeat: no-repeat;
-          background-attachment: fixed;
         }
 
         .pillar-inner {

@@ -69,7 +69,7 @@ export default function GoldTicker({
       <div
         role="marquee"
         aria-label="Scrolling values banner"
-        className={isStuck ? 'iridescent-border' : ''}
+        className={isStuck ? 'iridescent-border iridescent-active' : ''}
         style={{
           overflow: 'hidden',
           padding: 'clamp(16px, 2.5vw, 28px) 0',

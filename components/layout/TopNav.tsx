@@ -62,8 +62,9 @@ export default function TopNav() {
           left: '24px',
           zIndex: 100,
           display: 'flex',
+          flexDirection: 'column' as const,
           alignItems: 'center',
-          gap: '12px',
+          gap: '8px',
           transition: 'top 0.3s var(--ease-out-expo)',
         }}
       >

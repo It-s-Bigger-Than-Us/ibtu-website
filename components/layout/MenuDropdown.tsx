@@ -91,7 +91,7 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
                 style={{
                   display: 'block',
                   fontFamily: 'var(--font-display)',
-                  fontSize: 'var(--display-section)',
+                  fontSize: 'clamp(32px, 5vw, 56px)',
                   textTransform: 'uppercase',
                   color: 'var(--ibtu-black)',
                   textDecoration: 'none',

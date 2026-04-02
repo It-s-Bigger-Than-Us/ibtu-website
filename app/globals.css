@@ -211,7 +211,8 @@
   opacity: 0;
   transition: opacity 0.4s var(--ease-out-expo);
 }
-.iridescent-border:hover::after {
+.iridescent-border:hover::after,
+.iridescent-active::after {
   opacity: 1;
 }
 

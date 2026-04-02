@@ -1,16 +1,17 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import Image from 'next/image'
 
 /* ═══════════════════════════════════════
-   HERO REVEAL — Flat, no 3D
-   Phase 1: "It's Bigger Than Us" words animate in separately on gold bg
-   Phase 2: Text fades → flat IBTU logo fades in, one clean rotation
-   Phase 3: Logo shrinks up → reveals scrollable gallery below
+   HERO REVEAL
+   1. "It's Bigger Than Us" — one word at a time, BIG personality
+   2. Logo orbital wipe in (spins around, lands center)
+   3. Logo becomes a window — zoom THROUGH it
+   4. Cuts to photo gallery below
 
-   Pure CSS + GSAP. No R3F, no Canvas, no Three.js.
+   Pure CSS + GSAP. No R3F.
 ═══════════════════════════════════════ */
 
 const GALLERY_IMAGES = [
@@ -44,66 +45,111 @@ export default function HeroReveal() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const logoRef = useRef<HTMLDivElement>(null)
+  const logoWindowRef = useRef<HTMLDivElement>(null)
   const galleryRef = useRef<HTMLDivElement>(null)
-  const [showGallery, setShowGallery] = useState(false)
 
   useEffect(() => {
-    if (!textRef.current || !logoRef.current || !galleryRef.current) return
+    if (!textRef.current || !logoRef.current || !logoWindowRef.current || !galleryRef.current) return
 
     const words = textRef.current.querySelectorAll('.hero-word')
+    const cards = galleryRef.current.querySelectorAll('.gallery-card')
     const tl = gsap.timeline()
 
-    // Phase 1: Each word animates in separately
+    // ── Phase 1: Words animate in one at a time with PERSONALITY ──
     words.forEach((word, i) => {
+      // Each word slams in from below with overshoot
       tl.fromTo(
         word,
-        { opacity: 0, y: 60, scale: 0.85 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'expo.out' },
-        i * 0.18,
+        {
+          opacity: 0,
+          y: 120,
+          scale: 1.4,
+          rotateZ: i % 2 === 0 ? -8 : 8,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotateZ: 0,
+          duration: 0.5,
+          ease: 'back.out(2)',
+        },
+        i * 0.35, // deliberate pause between each word
       )
+      // Quick emphasis pulse on each word after landing
+      tl.to(word, {
+        scale: 1.05,
+        duration: 0.15,
+        ease: 'power2.out',
+      }, `>-0.1`)
+      tl.to(word, {
+        scale: 1,
+        duration: 0.2,
+        ease: 'power2.in',
+      })
     })
 
-    // Hold for a beat
-    tl.to({}, { duration: 0.8 })
+    // Hold — let it breathe
+    tl.to({}, { duration: 0.6 })
 
-    // Phase 2: Text fades out
+    // ── Phase 2: Text fades, logo orbital wipe in ──
     tl.to(textRef.current, {
       opacity: 0,
-      scale: 0.8,
-      duration: 0.5,
-      ease: 'power2.in',
+      scale: 0.7,
+      duration: 0.4,
+      ease: 'power3.in',
     })
 
-    // Logo fades in with one rotation
+    // Logo enters with orbital spin (like it's flying in from far away, orbiting around)
     tl.fromTo(
       logoRef.current,
-      { opacity: 0, scale: 1.5, rotation: -360 },
-      { opacity: 1, scale: 1, rotation: 0, duration: 1, ease: 'expo.out' },
-      '-=0.2',
+      {
+        opacity: 0,
+        scale: 0.1,
+        rotation: -720, // 2 full spins
+        x: 300,
+        y: -200,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        x: 0,
+        y: 0,
+        duration: 1.2,
+        ease: 'expo.out',
+      },
     )
 
     // Hold logo
-    tl.to({}, { duration: 0.6 })
+    tl.to({}, { duration: 0.4 })
 
-    // Phase 3: Logo shrinks up, gallery reveals
+    // ── Phase 3: Zoom THROUGH the logo like a window ──
+    // Logo scales up massively (we fly through it)
     tl.to(logoRef.current, {
-      scale: 0.3,
-      y: '-30vh',
+      scale: 30,
       opacity: 0,
       duration: 0.8,
-      ease: 'power3.inOut',
-      onComplete: () => setShowGallery(true),
+      ease: 'power3.in',
     })
 
-    // Gallery cards stagger in
+    // Simultaneously: gallery section fades in (we've "arrived" through the window)
     tl.fromTo(
-      '.gallery-card',
-      { opacity: 0, y: 60, scale: 0.9 },
+      galleryRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.3 },
+      '-=0.3',
+    )
+
+    // Gallery cards stagger in from center outward
+    tl.fromTo(
+      cards,
+      { opacity: 0, y: 40, scale: 0.92 },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.5,
+        duration: 0.4,
         ease: 'expo.out',
         stagger: { each: 0.04, from: 'center' },
       },
@@ -114,7 +160,7 @@ export default function HeroReveal() {
 
   return (
     <>
-      {/* Hero section — gold bg, text + logo animation */}
+      {/* Hero — gold bg, text + logo animation */}
       <section
         ref={sectionRef}
         style={{
@@ -127,7 +173,7 @@ export default function HeroReveal() {
           justifyContent: 'center',
         }}
       >
-        {/* Phase 1: Words */}
+        {/* Phase 1: Words — one at a time */}
         <div
           ref={textRef}
           style={{
@@ -143,16 +189,16 @@ export default function HeroReveal() {
           <h1
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(56px, 14vw, 220px)',
-              lineHeight: 0.9,
+              fontSize: 'clamp(64px, 16vw, 260px)',
+              lineHeight: 0.85,
               textTransform: 'uppercase',
               color: '#000',
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.03em',
               textAlign: 'center',
               display: 'flex',
               flexWrap: 'wrap',
               justifyContent: 'center',
-              gap: '0 0.3em',
+              gap: '0 0.25em',
             }}
           >
             {["It's", 'Bigger', 'Than', 'Us'].map((word, i) => (
@@ -167,38 +213,47 @@ export default function HeroReveal() {
           </h1>
         </div>
 
-        {/* Phase 2: Flat logo */}
+        {/* Phase 2: Logo — orbital entry + becomes window */}
         <div
           ref={logoRef}
           style={{
             position: 'absolute',
             zIndex: 3,
             opacity: 0,
-            width: 'clamp(180px, 25vw, 350px)',
-            height: 'clamp(180px, 25vw, 350px)',
+            width: 'clamp(160px, 22vw, 300px)',
+            height: 'clamp(160px, 22vw, 300px)',
           }}
         >
-          <Image
-            src="/images/ibtu-logo.svg"
-            alt="IBTU Logo"
-            fill
-            style={{ objectFit: 'contain', filter: 'brightness(0)' }}
-            priority
-          />
+          {/* Logo window frame */}
+          <div
+            ref={logoWindowRef}
+            style={{
+              width: '100%',
+              height: '100%',
+              position: 'relative',
+            }}
+          >
+            <Image
+              src="/images/ibtu-logo.svg"
+              alt="IBTU Logo"
+              fill
+              style={{ objectFit: 'contain', filter: 'brightness(0)' }}
+              priority
+            />
+          </div>
         </div>
       </section>
 
-      {/* Gallery — revealed after animation, lives BELOW the hero */}
+      {/* Gallery — revealed after flying through the logo */}
       <section
+        ref={galleryRef}
         style={{
           background: '#FFC700',
           padding: '0 clamp(24px, 5vw, 80px) 80px',
-          minHeight: showGallery ? 'auto' : 0,
-          overflow: 'hidden',
+          opacity: 0,
         }}
       >
         <div
-          ref={galleryRef}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',

@@ -1,0 +1,40 @@
+section,element,type,current_source,notes
+Hero Phase 1,Title Background,color,#FFC700 (gold),Gold background with animated title text
+Hero Phase 2,Logo,image,/ibtu-logo.svg,Circular wipe logo zoom
+Hero Phase 3,Main Video,video,Sanity CDN: 4cad285f (brentwoodCrop),Splits to reveal sacred text — NEEDS LANDSCAPE VIDEO
+Hero Phase 4,Left Photo,image,/images/b2s/_D5A7392.jpg,Wipes in from left — PICK REPLACEMENT
+Hero Phase 4,Right Photo,image,/images/coastal/IMG_0024.jpg,Wipes in from right — PICK REPLACEMENT
+Values Ticker,Scrolling Text,text,Community is the Infrastructure / Designed with Dignity / etc,Gold bg black text infinite scroll
+Mission Split,Media 1,image,/images/b2s/_D5A7392.jpg,First panel — PICK REPLACEMENT
+Mission Split,Media 2,video,Sanity CDN: 9aa5e50c (B2S Venice),Second panel video
+Mission Split,Media 3,image,/images/coastal/IMG_4838.jpg,Third panel — beach cleanup group
+Mission Split,Media 4,video,Sanity CDN: 9e936b3a (Youth Baldwin Hills),Fourth panel video
+Mission Split,Media 5,image,/images/wellness/IMG_9922.jpg,Fifth panel — outdoor community yoga
+Mission Split,Media 6,video,Sanity CDN: 11766d2d (Crisis rebuild teaser),Sixth panel video
+Impact Pillar 1,Card Image,image,/images/fire-relief/IMG_5382.jpg,Crisis & Disaster — PICK REPLACEMENT
+Impact Pillar 1,Hover Video,video,Sanity CDN: 97e2b899 (crisis day3Energy),Plays on hover
+Impact Pillar 2,Card Image,image,/images/school/IMG_5608.jpg,School & Youth — PICK REPLACEMENT
+Impact Pillar 2,Hover Video,video,Sanity CDN: 84d5a9b6 (youth wrightSchool),Plays on hover
+Impact Pillar 3,Card Image,image,/images/wellness/IMG_9922.jpg,Community Health — PICK REPLACEMENT (same as mission panel 5)
+Impact Pillar 3,Hover Video,video,Sanity CDN: db320106 (health community),Plays on hover
+Programs - Fire Relief,Card Image,image,FROM SANITY CMS,Sanity heroImage — may need override
+Programs - Fire Relief,Hover Video,video,Sanity CDN: d42a83e7 (fire highlight),Plays on hover
+Programs - Back 2 School,Card Image,image,FROM SANITY CMS,Sanity heroImage
+Programs - Back 2 School,Hover Video,video,Sanity CDN: 9aa5e50c (b2s venice1),Plays on hover
+Programs - Youth Programming,Card Image,image,FROM SANITY CMS,Sanity heroImage
+Programs - Youth Programming,Hover Video,video,Sanity CDN: 9d20c89e (youth bhes),Plays on hover
+Programs - Coastal Care,Card Image,image,/images/coastal/IMG_4838.jpg,OVERRIDE — beach cleanup group
+Programs - Coastal Care,Hover Video,video,Sanity CDN: de313bfd (coastal cleanup1),Plays on hover
+Programs - Community Health,Card Image,image,/images/wellness/IMG_9922.jpg,OVERRIDE — outdoor yoga
+Programs - Community Health,Hover Video,video,Sanity CDN: 97b2390d (ch mlkParade),Plays on hover
+Programs - Wellness,Card Image,image,/images/wellness/IMG_1610.jpg,OVERRIDE — wide beach yoga aerial
+Programs - Wellness,Hover Video,video,Sanity CDN: 23e24a5e (well yogaBeach1),Plays on hover
+Programs - Community Builder Link-Ups,Card Image,image,/images/b2s/_D5A7155.jpg,OVERRIDE — yellow shirt volunteers at B2S
+Programs - Community Builder Link-Ups,Hover Video,video,NONE,No video mapped yet
+Programs - Giving Season,Card Image,image,FROM SANITY CMS,Sanity heroImage
+Programs - Giving Season,Hover Video,video,Sanity CDN: cbb8628a (gs cd8Event),Plays on hover
+CTA Section,Background,color,#FFC700 (gold),Gold bg with Donate + Volunteer buttons
+Footer,Mantra,text,Community / is the / Infrastructure.,LOT font 3 lines
+Footer,Skyline,svg,Inline LA skyline path,Black silhouette at bottom
+Nav,Spinning Logo,image,/ibtu-logo.svg,GSAP Y-axis rotation on gold square
+Nav,Donate Button,component,Slides in from right on cursor,Sparkle stroke border
