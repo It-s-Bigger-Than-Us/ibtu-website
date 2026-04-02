@@ -89,7 +89,7 @@ export default function MissionSplit({
         <h2
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'var(--display-hero)',
+            fontSize: 'clamp(36px, 6vw, 80px)',
             lineHeight: 0.92,
             textTransform: 'uppercase',
             color: 'var(--ibtu-gold)',

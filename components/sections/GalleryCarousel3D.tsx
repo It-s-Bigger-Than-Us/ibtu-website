@@ -16,8 +16,8 @@ const IMAGES = [
   '/images/b2s/_D5A7155.jpg', '/images/coastal/IMG_1778.jpg', '/images/gallery/IMG_4649.jpg',
 ]
 
-const CARD_W = 380
-const CARD_H = 480
+const CARD_W = 280
+const CARD_H = 360
 
 export default function GalleryCarousel3D() {
   const [angle, setAngle] = useState(0)

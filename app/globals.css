@@ -35,26 +35,26 @@
   --ibtu-white: #FFFFFF;
   --warm-white: #FFF8F0;
 
-  /* Iridescent accent system — BRIGHT SPARKLY GLASS
-     Mostly white/clear with subtle spectral color shifts.
-     Think: glass refraction, soap bubble, bright light.
-     Less color, more white/clear. Slow, luxurious. */
-  --holo-pink: #FF6B9D;
-  --holo-mint: #6BFFB8;
-  --holo-lavender: #B8A9FF;
+  /* Iridescent accent system — LIQUID GLASS + OILSPILL
+     Gold/white/black. Slow, luxurious.
+     Approved 4/1 at commit 4666454. */
+  --holo-pink: #FFE8CC;
+  --holo-mint: #E8F5E0;
+  --holo-lavender: #F0ECFF;
   --holo-yellow: #FFE066;
-  --holo-cyan: #64DCFF;
-  --holo-purple: #c084fc;
+  --holo-cyan: #E0F0F5;
+  --holo-purple: #F0ECFF;
   --holo-gradient: linear-gradient(
-    105deg,
-    #fff 0%,
-    #FFC700 15%,
-    #fff 30%,
-    #64DCFF 45%,
-    #fff 55%,
-    #FFC700 70%,
-    #c084fc 80%,
-    #fff 90%
+    120deg,
+    #FFC700 0%,
+    #FFF 15%,
+    #FFC700 30%,
+    #FFF 45%,
+    #000 55%,
+    #FFC700 68%,
+    #FFF 80%,
+    #FFC700 92%,
+    #000 100%
   );
 
   /* Typography scale */
@@ -119,8 +119,8 @@
   border-radius: 16px;
   padding: 2px;
   background: var(--holo-gradient);
-  background-size: 400% 400%;
-  animation: holo-shift 24s ease infinite;
+  background-size: 600% 600%;
+  animation: holo-shift 20s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -128,9 +128,8 @@
 }
 @keyframes holo-shift {
   0%, 100% { background-position: 0% 50%; }
-  25% { background-position: 30% 100%; }
-  50% { background-position: 100% 50%; }
-  75% { background-position: 70% 0%; }
+  33% { background-position: 50% 100%; }
+  66% { background-position: 100% 0%; }
 }
 
 /* ═══════════════════════════════════════
@@ -150,17 +149,14 @@
   border-radius: 16px;
   background: conic-gradient(
     from var(--sparkle-angle, 0deg),
-    #fff,
     #FFC700,
-    #fff,
-    #64DCFF,
-    #fff,
+    #FFF,
+    #000,
     #FFC700,
-    #fff,
-    #c084fc,
-    #fff
+    #FFF,
+    #FFC700
   );
-  animation: sparkle-rotate 20s linear infinite;
+  animation: sparkle-rotate 16s linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -179,20 +175,19 @@
 .iridescent-text {
   background: linear-gradient(
     105deg,
-    #fff 0%,
-    #FFC700 15%,
-    #fff 30%,
-    #64DCFF 45%,
-    #fff 55%,
-    #FFC700 70%,
-    #c084fc 80%,
-    #fff 90%
+    #FFC700 0%,
+    #FFF 18%,
+    #FFC700 35%,
+    #000 50%,
+    #FFC700 65%,
+    #FFF 82%,
+    #FFC700 100%
   );
   background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: iridescent-shift 20s linear infinite;
+  animation: iridescent-shift 16s linear infinite;
 }
 @keyframes iridescent-shift {
   0% { background-position: 0% 50%; }
@@ -215,8 +210,8 @@
   border-radius: 16px;
   padding: 2px;
   background: var(--holo-gradient);
-  background-size: 400% 400%;
-  animation: holo-shift 24s ease infinite;
+  background-size: 600% 600%;
+  animation: holo-shift 20s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
