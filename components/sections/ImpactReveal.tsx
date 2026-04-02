@@ -310,7 +310,8 @@ export default function ImpactReveal({ pillars, stats }: ImpactRevealProps) {
                 ref={el => { numRefs.current[i] = el }}
                 className="stat-num-new"
                 style={{
-                  fontFamily: 'var(--font-display)',
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: 900,
                   fontSize: 'clamp(48px, 6vw, 80px)',
                   lineHeight: 1,
                   color: 'var(--ibtu-black)',

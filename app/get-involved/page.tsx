@@ -140,7 +140,7 @@ export default async function GetInvolvedPage() {
               >
                 <div
                   style={{
-                    background: "#0e0e0e",
+                    background: "#000",
                     border: "1px solid #FFC700",
                     padding: "40px 36px",
                     height: "100%",
@@ -305,7 +305,7 @@ export default async function GetInvolvedPage() {
               <div
                 key={tier.name}
                 style={{
-                  background: "#0e0e0e",
+                  background: "#000",
                   border: "1px solid #FFC700",
                   padding: "32px 28px",
                 }}

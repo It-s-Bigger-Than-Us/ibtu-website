@@ -80,7 +80,7 @@ export default async function CalendarPage() {
                   >
                     <div>
                       <div style={{ display: "flex", gap: 10, marginBottom: 16 }}>
-                        <span style={{ display: "inline-block", background: ev.status === "Active" ? "#22c55e" : "var(--gold)", color: "#000", fontSize: 10, letterSpacing: "2px", fontWeight: 700, padding: "4px 10px", fontFamily: "Poppins, sans-serif", textTransform: "uppercase" }}>
+                        <span style={{ display: "inline-block", background: ev.status === "Active" ? "var(--gold)" : "var(--gold)", color: "#000", fontSize: 10, letterSpacing: "2px", fontWeight: 700, padding: "4px 10px", fontFamily: "Poppins, sans-serif", textTransform: "uppercase" }}>
                           {ev.status}
                         </span>
                         {ev.programTitle && (
@@ -157,7 +157,7 @@ export default async function CalendarPage() {
                             height: 8,
                             borderRadius: "50%",
                             background:
-                              ev.status === "Active" ? "#22c55e" :
+                              ev.status === "Active" ? "var(--gold)" :
                               ev.status === "Upcoming" ? "var(--gold)" :
                               "var(--gold)",
                             flexShrink: 0,

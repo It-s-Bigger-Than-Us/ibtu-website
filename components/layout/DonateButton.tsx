@@ -11,7 +11,7 @@ import Link from 'next/link'
 ═══════════════════════════════════════ */
 
 const ACTIONS = [
-  { label: 'Donate', href: '/donate' },
+  { label: 'Donate', href: '/get-involved' },
   { label: 'Volunteer', href: '/get-involved#volunteer' },
   { label: 'Support Us', href: '/get-involved' },
 ]

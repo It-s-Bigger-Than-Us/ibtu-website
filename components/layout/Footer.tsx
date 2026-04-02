@@ -167,7 +167,7 @@ export default function Footer() {
             </span>
             {footerLinks.map((link) => (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
                 style={{
                   fontFamily: 'var(--font-body)',

@@ -194,7 +194,7 @@ export default async function ImpactPage() {
               fontSize: 11,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "var(--gold)",
+              color: "#000",
               fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               marginBottom: 32,
@@ -216,7 +216,7 @@ export default async function ImpactPage() {
                   style={{
                     fontFamily: "Poppins, sans-serif",
                     fontSize: "clamp(28px, 3vw, 48px)",
-                    color: "#fff",
+                    color: "#000",
                     lineHeight: 1,
                     display: "block",
                     marginBottom: 6,
@@ -229,7 +229,7 @@ export default async function ImpactPage() {
                     fontSize: 11,
                     letterSpacing: "1px",
                     textTransform: "uppercase",
-                    color: "var(--gold)",
+                    color: "#000",
                     fontWeight: 600,
                   }}
                 >

@@ -82,7 +82,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                   key={pkg._id}
                   onClick={() => setExpandedId(isExpanded ? null : pkg._id)}
                   style={{
-                    background: pkg.featured ? "var(--gold)" : "#0e0e0e",
+                    background: pkg.featured ? "var(--gold)" : "#000",
                     border: pkg.featured ? "none" : "1px solid #FFC700",
                     padding: "36px 32px",
                     cursor: "pointer",

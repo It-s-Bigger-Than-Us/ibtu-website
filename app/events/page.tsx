@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const STATUS_COLORS: Record<string, string> = {
   Upcoming: "var(--gold)",
-  Active: "#22c55e",
+  Active: "var(--gold)",
   Closed: "var(--gold)",
 };
 
@@ -107,7 +107,7 @@ export default async function EventsPage() {
                         <span
                           style={{
                             display: "inline-block",
-                            background: ev.status === "Active" ? "#22c55e" : "var(--gold)",
+                            background: ev.status === "Active" ? "var(--gold)" : "var(--gold)",
                             color: "#000",
                             fontSize: 10,
                             letterSpacing: "2px",

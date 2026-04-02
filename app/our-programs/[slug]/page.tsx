@@ -32,7 +32,7 @@ const WHO_WE_SERVE: Record<string, string[]> = {
   'back-2-school': ['K-12 students and families', 'Title I school communities', 'Under-resourced neighborhoods', 'First-generation families'],
   'back-to-school': ['K-12 students and families', 'Title I school communities', 'Under-resourced neighborhoods', 'First-generation families'],
   'coastal-care': ['Beachfront communities', 'Families seeking outdoor wellness', 'Youth environmental stewards', 'Local residents near coastline'],
-  'wellness': ['Families in South LA', 'Youth seeking health resources', 'Community members without wellness access', 'Seniors and caregivers'],
+  'wellness': ['Families in Los Angeles', 'Youth seeking health resources', 'Community members without wellness access', 'Seniors and caregivers'],
   'youth-programming': ['Students grades K-12', 'After-school program participants', 'Youth in under-resourced communities', 'Families seeking enrichment'],
   'community-builder-linkups': ['Local entrepreneurs', 'Community organizers', 'Small business owners', 'Aspiring nonprofit leaders'],
   'community-health': ['Families without healthcare access', 'Seniors', 'Youth in food deserts', 'Caregivers and parents'],
