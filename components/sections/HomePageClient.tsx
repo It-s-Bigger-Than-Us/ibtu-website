@@ -2,13 +2,11 @@
 
 import dynamic from 'next/dynamic'
 import GoldTicker from '@/components/sections/GoldTicker'
+import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
 import SkylineTransition from '@/components/ui/SkylineTransition'
 
-const SectionPlaceholder = () => <div style={{ minHeight: '100vh', background: '#000' }} />
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
-
-const OrbitalGallery = dynamic(() => import('@/components/3d/OrbitalGallery'), { ssr: false, loading: SectionPlaceholder })
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
 const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: ShortPlaceholder })
 const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
@@ -47,9 +45,8 @@ export default function HomePageClient({
 }: HomePageClientProps) {
   return (
     <main>
-      {/* 1. Orbital Gallery — IS the hero. Starts at page top.
-          Includes "It's Bigger Than Us" text + 3D logo + photo gallery */}
-      <OrbitalGallery />
+      {/* 1. Hero — "It's Bigger Than Us" text → logo → gallery reveal */}
+      <HeroReveal />
 
       {/* 2. Values Ticker */}
       <GoldTicker phrases={tickerPhrases} speed={35} />
