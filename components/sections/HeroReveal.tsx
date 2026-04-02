@@ -227,7 +227,7 @@ export default function HeroReveal() {
           </h1>
         </div>
 
-        {/* Phase 2: Logo — wipes in from center, grows (NO spin) */}
+        {/* Phase 2: Logo — wipes in from center with iridescent treatment */}
         <div
           ref={logoRef}
           style={{
@@ -238,13 +238,8 @@ export default function HeroReveal() {
             height: 'clamp(160px, 22vw, 300px)',
           }}
         >
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              position: 'relative',
-            }}
-          >
+          {/* Base logo */}
+          <div style={{ width: '100%', height: '100%', position: 'relative' }}>
             <Image
               src="/images/ibtu-logo.svg"
               alt="IBTU Logo"
@@ -253,6 +248,23 @@ export default function HeroReveal() {
               priority
             />
           </div>
+          {/* Iridescent overlay — animated gradient masked to logo shape */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(120deg, #FFC700 0%, #FFF 20%, #000 35%, #FFC700 50%, #FFF 65%, #000 80%, #FFC700 100%)',
+              backgroundSize: '300% 300%',
+              animation: 'iriLogoShift 3s ease-in-out infinite',
+              WebkitMaskImage: 'url(/images/ibtu-logo.svg)',
+              WebkitMaskSize: '100% 100%',
+              WebkitMaskRepeat: 'no-repeat',
+              maskImage: 'url(/images/ibtu-logo.svg)',
+              maskSize: '100% 100%',
+              maskRepeat: 'no-repeat',
+              pointerEvents: 'none',
+            }}
+          />
         </div>
       </section>
 
@@ -327,6 +339,17 @@ export default function HeroReveal() {
             </div>
           ))}
         </div>
+
+        {/* Iridescent logo keyframes */}
+        <style>{`
+          @keyframes iriLogoShift {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 0% 50%; }
+            100% { background-position: 0% 0%; }
+          }
+        `}</style>
       </section>
     </>
   )
