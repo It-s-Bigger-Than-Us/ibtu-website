@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import GoldTicker from '@/components/sections/GoldTicker'
 import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
-import FloatingShapes from '@/components/ui/FloatingShapes'
+import GalleryCarousel3D from '@/components/sections/GalleryCarousel3D'
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
@@ -45,20 +45,14 @@ export default function HomePageClient({
 }: HomePageClientProps) {
   return (
     <main>
-      {/* 1. Hero — "It's Bigger Than Us" text -> logo -> gallery reveal */}
+      {/* 1. Hero — "It's Bigger Than Us" text → logo → gallery reveal */}
       <HeroReveal />
 
       {/* 2. Values Ticker */}
       <GoldTicker phrases={tickerPhrases} speed={35} />
 
-      {/* Floating shapes transition — gold on black */}
-      <FloatingShapes count={6} seed={1} height="100px" bgColor="#000" />
-
       {/* 3. Mission Card — "Our Mission" with skyline */}
       <MissionCard />
-
-      {/* Floating shapes transition — black bg */}
-      <FloatingShapes count={5} seed={2} height="80px" bgColor="#000" />
 
       {/* 4. Why We Exist */}
       <MissionSplit
@@ -67,25 +61,19 @@ export default function HomePageClient({
         media={missionMedia}
       />
 
-      {/* Floating shapes transition — into pillars */}
-      <FloatingShapes count={7} seed={3} height="100px" bgColor="#FFC700" />
-
-      {/* 4. Pillar Cubes + Stats */}
+      {/* 5. Pillar Cubes + Stats */}
       <PillarCubes stats={stats} />
 
-      {/* Floating shapes transition — into programs */}
-      <FloatingShapes count={6} seed={4} height="80px" bgColor="#000" />
-
-      {/* 5. Programs Grid */}
+      {/* 6. Programs Grid */}
       {programCards.length > 0 && <ProgramsGrid programs={programCards} />}
 
-      {/* Floating shapes transition — into CTA */}
-      <FloatingShapes count={5} seed={5} height="100px" bgColor="#FFC700" />
+      {/* 7. Photo Gallery — 3D Carousel */}
+      <GalleryCarousel3D />
 
-      {/* 6. CTA */}
+      {/* 8. CTA */}
       <CTASection />
 
-      {/* 7. Footer */}
+      {/* 8. Footer */}
       <Footer />
 
       {/* Sponsor Panel */}

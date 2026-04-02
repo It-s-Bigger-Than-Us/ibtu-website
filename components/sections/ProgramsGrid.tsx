@@ -5,7 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
 import SectionLabel from '@/components/ui/SectionLabel'
-import ProgramIcon from '@/components/ui/ProgramIcon'
+// ProgramIcon removed per Molly
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,17 +16,7 @@ gsap.registerPlugin(ScrollTrigger)
    Scroll entrance with slight rotate
 ═══════════════════════════════════════ */
 
-const SLUG_TO_ICON: Record<string, 'fire' | 'school' | 'youth' | 'beach' | 'gift' | 'wellness' | 'food'> = {
-  'fire-relief': 'fire',
-  'back-2-school': 'school',
-  'back-to-school': 'school',
-  'youth-programming': 'youth',
-  'coastal-care': 'beach',
-  'community-builder-linkups': 'gift',
-  'community-health': 'wellness',
-  'wellness': 'wellness',
-  'food-distribution': 'food',
-}
+// Icons removed per Molly
 
 interface Program {
   slug: string
@@ -204,13 +194,6 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
                 </span>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  {SLUG_TO_ICON[program.slug] && (
-                    <ProgramIcon
-                      icon={SLUG_TO_ICON[program.slug]}
-                      size={28}
-                      color="#000"
-                    />
-                  )}
                   <span
                     style={{
                       fontFamily: 'var(--font-display)',
