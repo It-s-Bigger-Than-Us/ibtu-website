@@ -5,8 +5,9 @@ import { useEffect, useRef, useState } from 'react'
 /* ═══════════════════════════════════════
    GOLD TICKER — infinite scrolling ribbon
    LOT font, gold bg, black text, star separators
-   STICKS to top of viewport when scrolled to,
-   integrates visually with nav via iridescent stroke
+   STICKS to top of viewport ONLY after user
+   scrolls past its natural position (not at load).
+   Iridescent finish when content below is yellow.
 ═══════════════════════════════════════ */
 
 const DEFAULT_PHRASES = [
@@ -32,7 +33,21 @@ export default function GoldTicker({
   separator = '\u2022',
 }: GoldTickerProps) {
   const sentinelRef = useRef<HTMLDivElement>(null)
+  const tickerRef = useRef<HTMLDivElement>(null)
   const [isStuck, setIsStuck] = useState(false)
+  const [hasScrolled, setHasScrolled] = useState(false)
+  const [belowIsYellow, setBelowIsYellow] = useState(false)
+
+  // Track whether user has scrolled at all — prevents sticking at page load
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setHasScrolled(true)
+      }
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Detect when ticker hits top of viewport using IntersectionObserver
   useEffect(() => {
@@ -41,8 +56,8 @@ export default function GoldTicker({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // When sentinel scrolls above viewport, ticker should stick
-        setIsStuck(!entry.isIntersecting)
+        // Only stick if user has actually scrolled
+        setIsStuck(!entry.isIntersecting && hasScrolled)
       },
       {
         threshold: 0,
@@ -52,6 +67,28 @@ export default function GoldTicker({
 
     observer.observe(sentinel)
     return () => observer.disconnect()
+  }, [hasScrolled])
+
+  // Detect if the section below ticker is yellow (#FFC700 background)
+  useEffect(() => {
+    if (!tickerRef.current) return
+
+    const checkBelowColor = () => {
+      const ticker = tickerRef.current
+      if (!ticker) return
+      const rect = ticker.getBoundingClientRect()
+      const nextEl = document.elementFromPoint(rect.left + rect.width / 2, rect.bottom + 2)
+      if (nextEl) {
+        const bg = getComputedStyle(nextEl).backgroundColor
+        // Check if it's yellow-ish (#FFC700 = rgb(255, 199, 0))
+        const isYellow = bg.includes('255, 199, 0') || bg.includes('255,199,0')
+        setBelowIsYellow(isYellow)
+      }
+    }
+
+    window.addEventListener('scroll', checkBelowColor, { passive: true })
+    checkBelowColor()
+    return () => window.removeEventListener('scroll', checkBelowColor)
   }, [])
 
   // Build the ticker content with separators
@@ -60,6 +97,8 @@ export default function GoldTicker({
     ...(i < phrases.length - 1 ? [separator] : []),
   ])
 
+  const shouldStick = isStuck && hasScrolled
+
   return (
     <>
       {/* Sentinel: invisible element that sits at ticker's natural position */}
@@ -67,21 +106,23 @@ export default function GoldTicker({
 
       {/* Ticker element */}
       <div
+        ref={tickerRef}
         role="marquee"
         aria-label="Scrolling values banner"
-        className={isStuck ? 'iridescent-border iridescent-active' : ''}
+        className={`${shouldStick && belowIsYellow ? 'iridescent-border iridescent-active' : ''}`}
         style={{
           overflow: 'hidden',
           padding: 'clamp(16px, 2.5vw, 28px) 0',
           background: 'var(--ibtu-gold)',
           width: '100%',
-          position: isStuck ? 'fixed' : 'relative',
-          top: isStuck ? 0 : undefined,
+          position: shouldStick ? 'fixed' : 'relative',
+          top: shouldStick ? 0 : undefined,
           left: 0,
           right: 0,
-          zIndex: isStuck ? 90 : undefined,
+          zIndex: shouldStick ? 90 : undefined,
           transition: 'box-shadow 0.3s',
-          boxShadow: isStuck ? '0 4px 20px #000' : 'none',
+          boxShadow: shouldStick ? '0 4px 20px #000' : 'none',
+          borderBottom: shouldStick && belowIsYellow ? 'none' : undefined,
         }}
       >
         <div
@@ -116,7 +157,7 @@ export default function GoldTicker({
       </div>
 
       {/* Spacer when stuck to prevent content jump */}
-      {isStuck && (
+      {shouldStick && (
         <div style={{ height: 'clamp(56px, 7vw, 92px)' }} />
       )}
     </>
