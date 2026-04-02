@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
+import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -9,7 +10,8 @@ gsap.registerPlugin(ScrollTrigger)
 /* ═══════════════════════════════════════
    PILLAR CUBES + STATS — blue sky bg
    Shrinking headline, 3D cubes, stat cards.
-   All on a bright blue sky background.
+   Uses Next/Image for blue-sky.jpg optimization.
+   Full pillar names. All 5 pillars.
 ═══════════════════════════════════════ */
 
 interface PillarData {
@@ -25,7 +27,7 @@ interface StatItem {
 
 const PILLARS: PillarData[] = [
   {
-    name: 'Crisis & Disaster',
+    name: 'Crisis & Disaster Response',
     images: [
       '/images/pillars/crisis-1.jpg',
       '/images/pillars/crisis-2.jpg',
@@ -34,7 +36,7 @@ const PILLARS: PillarData[] = [
     ],
   },
   {
-    name: 'School & Youth',
+    name: 'School & Youth Development',
     images: [
       '/images/pillars/school-1.jpg',
       '/images/pillars/school-2.jpg',
@@ -43,12 +45,30 @@ const PILLARS: PillarData[] = [
     ],
   },
   {
-    name: 'Community Health',
+    name: 'Community Health & Wellness',
     images: [
       '/images/pillars/community-1.jpg',
       '/images/pillars/community-2.jpg',
       '/images/pillars/community-1.jpg',
       '/images/pillars/community-2.jpg',
+    ],
+  },
+  {
+    name: 'Environmental Stewardship',
+    images: [
+      '/images/coastal/IMG_0024.jpg',
+      '/images/coastal/IMG_0267.jpg',
+      '/images/coastal/IMG_0024.jpg',
+      '/images/coastal/IMG_0267.jpg',
+    ],
+  },
+  {
+    name: 'Community Building',
+    images: [
+      '/images/gallery/IMG_1311.jpg',
+      '/images/gallery/IMG_4353.jpg',
+      '/images/gallery/IMG_1311.jpg',
+      '/images/gallery/IMG_4353.jpg',
     ],
   },
 ]
@@ -212,6 +232,19 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
 
   return (
     <section ref={sectionRef} className="pillar-section">
+      {/* Optimized background: Next/Image handles compression + responsive sizing */}
+      <div className="pillar-bg">
+        <Image
+          src="/images/blue-sky.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          quality={75}
+          priority={false}
+          style={{ objectFit: 'cover', objectPosition: 'center top' }}
+        />
+      </div>
+
       <div className="pillar-inner">
         {/* Headline — shrinks from giant on scroll */}
         <div
@@ -222,7 +255,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           <h2 className="pillar-headline">Our Impact Pillars</h2>
         </div>
 
-        {/* Cubes grid */}
+        {/* Cubes grid — now 5 pillars */}
         <div className="pillar-cubes-grid">
           {PILLARS.map((pillar, i) => (
             <div
@@ -282,10 +315,12 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           padding: clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px);
           overflow: hidden;
           background-color: #FFC700;
-          background-image: url('/images/blue-sky.jpg');
-          background-size: cover;
-          background-position: center top;
-          background-repeat: no-repeat;
+        }
+
+        .pillar-bg {
+          position: absolute;
+          inset: 0;
+          z-index: 0;
         }
 
         .pillar-inner {
@@ -307,8 +342,8 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
 
         .pillar-cubes-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: clamp(32px, 5vw, 64px);
+          grid-template-columns: repeat(5, 1fr);
+          gap: clamp(20px, 3vw, 40px);
         }
 
         .pillar-cube-wrapper {
@@ -330,7 +365,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
         }
 
         .pillar-cube-scene {
-          width: 70%;
+          width: 85%;
           aspect-ratio: 1 / 1;
           perspective: 1000px;
           margin: 0 auto;
@@ -366,7 +401,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           left: 0;
           right: 0;
           background: #FFC700;
-          padding: clamp(14px, 2vw, 24px);
+          padding: clamp(10px, 1.5vw, 18px);
           transform: translateY(100%);
           opacity: 0;
           transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -375,9 +410,9 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
 
         .pillar-cube-name {
           font-family: var(--font-body);
-          font-size: clamp(12px, 1.3vw, 18px);
+          font-size: clamp(9px, 0.9vw, 14px);
           font-weight: 700;
-          letter-spacing: 2px;
+          letter-spacing: 1.5px;
           text-transform: uppercase;
           color: #000;
           display: block;
@@ -424,14 +459,25 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           transition: color 0.4s var(--ease-out-expo);
         }
 
+        @media (max-width: 1024px) {
+          .pillar-cubes-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
         @media (max-width: 768px) {
           .pillar-cubes-grid {
-            grid-template-columns: 1fr;
-            max-width: 320px;
+            grid-template-columns: 1fr 1fr;
+            max-width: 480px;
             margin: 0 auto;
           }
           .stats-grid {
             grid-template-columns: 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .pillar-cubes-grid {
+            grid-template-columns: 1fr;
+            max-width: 280px;
           }
         }
       `}</style>
