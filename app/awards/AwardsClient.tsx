@@ -325,7 +325,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
         }}>
           {[
             { value: '75+', label: 'Media Placements' },
-            { value: '2.5M+', label: 'Instagram Reach' },
+            { value: '2.47M', label: 'Instagram Reach' },
             { value: '74,678', label: 'Website Visits (2025)' },
           ].map((stat, i) => (
             <div key={i} style={{ textAlign: 'center' }}>

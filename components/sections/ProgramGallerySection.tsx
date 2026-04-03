@@ -216,7 +216,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                     textDecoration: 'none',
                   }}
                 >
-                  Learn More →
+                  See This Program →
                 </Link>
               </div>
 

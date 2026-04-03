@@ -28,19 +28,19 @@ const MISSION_MEDIA = [
 
 const PILLARS = [
   {
-    name: 'Crisis & Disaster',
+    name: 'Crisis & Disaster Stabilization',
     stat: '5,000+',
     statLabel: 'Families Stabilized',
     imageSrc: '/images/landscape/_D5A8999.jpg',
   },
   {
-    name: 'School & Youth',
+    name: 'School & Youth Stability',
     stat: '62,475+',
     statLabel: 'Students Served',
     imageSrc: '/images/landscape/IMG_5727.jpg',
   },
   {
-    name: 'Community Health',
+    name: 'Community Health & Resource Access',
     stat: '875,500+',
     statLabel: 'Lbs Food Distributed',
     imageSrc: '/images/landscape/IMG_1628.jpg',

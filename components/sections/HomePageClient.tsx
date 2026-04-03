@@ -48,7 +48,70 @@ export default function HomePageClient({
       {/* 1b. Hero Gallery — revealed by logo zoom */}
       <HeroGallery />
 
-      {/* 2. Values Ticker */}
+      {/* 2. Hero Statement — approved wireframe copy */}
+      <section style={{
+        background: '#000',
+        padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+      }}>
+        <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(48px, 8vw, 140px)',
+            lineHeight: 0.92,
+            textTransform: 'uppercase',
+            color: '#FFC700',
+            letterSpacing: '-0.02em',
+            marginBottom: 32,
+          }}>
+            When Systems Fail, Communities Show Up.
+          </h2>
+          <p style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 'clamp(16px, 1.4vw, 22px)',
+            color: '#FFF',
+            lineHeight: 1.7,
+            maxWidth: 720,
+            fontWeight: 700,
+            marginBottom: 40,
+          }}>
+            It&apos;s Bigger Than Us builds trusted, lasting programs in the places communities already are — schools, neighborhood hubs, community spaces. Everything we do starts by listening. Everything we build is designed with dignity. And we don&apos;t leave.
+          </p>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            <a href="/impact" style={{
+              display: 'inline-block',
+              background: '#FFC700',
+              color: '#000',
+              padding: '16px 40px',
+              borderRadius: '4px',
+              fontFamily: 'var(--font-body)',
+              fontSize: 13,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              textDecoration: 'none',
+            }}>
+              See Our Impact
+            </a>
+            <a href="/get-involved" style={{
+              display: 'inline-block',
+              border: '2px solid #FFC700',
+              color: '#FFC700',
+              padding: '16px 40px',
+              borderRadius: '4px',
+              fontFamily: 'var(--font-body)',
+              fontSize: 13,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              textDecoration: 'none',
+            }}>
+              Find Your Role
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Values Ticker */}
       <GoldTicker phrases={tickerPhrases} speed={60} />
 
       {/* 3. Mission — typewriter effect */}

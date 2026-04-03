@@ -16,7 +16,7 @@ export const events: Event[] = [
   // BACK 2 SCHOOL
   // 7TH ANNUAL BACK 2 SCHOOL TOUR — 5 EVENTS (Jul–Sep 2026)
   {
-    title: "7th Annual B2S — Miami",
+    title: "7th Annual Back 2 School — Miami",
     programSlug: "back-2-school",
     year: 2026,
     dateStart: "Jul 25, 2026",
@@ -24,7 +24,7 @@ export const events: Event[] = [
     status: "Upcoming",
   },
   {
-    title: "7th Annual B2S — Crenshaw",
+    title: "7th Annual Back 2 School — Crenshaw",
     programSlug: "back-2-school",
     year: 2026,
     dateStart: "Aug 1, 2026",
@@ -33,7 +33,7 @@ export const events: Event[] = [
     featured: true,
   },
   {
-    title: "7th Annual B2S — Alliance",
+    title: "7th Annual Back 2 School — Alliance",
     programSlug: "back-2-school",
     year: 2026,
     dateStart: "Aug 8, 2026",
@@ -41,7 +41,7 @@ export const events: Event[] = [
     status: "Upcoming",
   },
   {
-    title: "7th Annual B2S — Venice Beach",
+    title: "7th Annual Back 2 School — Venice Beach",
     programSlug: "back-2-school",
     year: 2026,
     dateStart: "Aug 22, 2026",
@@ -49,7 +49,7 @@ export const events: Event[] = [
     status: "Upcoming",
   },
   {
-    title: "7th Annual B2S — New York",
+    title: "7th Annual Back 2 School — New York",
     programSlug: "back-2-school",
     year: 2026,
     dateStart: "Sep 6, 2026",
@@ -57,7 +57,7 @@ export const events: Event[] = [
     status: "Upcoming",
   },
   {
-    title: "6th Annual B2S — Crenshaw Mall",
+    title: "6th Annual Back 2 School — Crenshaw Mall",
     programSlug: "back-2-school",
     year: 2025,
     dateStart: "Aug 1, 2025",
@@ -67,7 +67,7 @@ export const events: Event[] = [
     status: "Closed",
   },
   {
-    title: "6th Annual B2S — Venice Beach",
+    title: "6th Annual Back 2 School — Venice Beach",
     programSlug: "back-2-school",
     year: 2025,
     dateStart: "Aug 26, 2025",
@@ -76,7 +76,7 @@ export const events: Event[] = [
     status: "Closed",
   },
   {
-    title: "B2S — Crenshaw Court Dedication",
+    title: "Back 2 School — Crenshaw Court Dedication",
     programSlug: "back-2-school",
     year: 2025,
     dateStart: "Sep 6, 2025",
@@ -86,7 +86,7 @@ export const events: Event[] = [
     featured: true,
   },
   {
-    title: "5th Annual B2S — Crenshaw HS",
+    title: "5th Annual Back 2 School — Crenshaw HS",
     programSlug: "back-2-school",
     year: 2024,
     dateStart: "Aug 3, 2024",
@@ -95,7 +95,7 @@ export const events: Event[] = [
     status: "Closed",
   },
   {
-    title: "4th Annual B2S — Leimert Park",
+    title: "4th Annual Back 2 School — Leimert Park",
     programSlug: "back-2-school",
     year: 2023,
     dateStart: "Aug 5, 2023",
@@ -104,7 +104,7 @@ export const events: Event[] = [
     status: "Closed",
   },
   {
-    title: "3rd Annual B2S Festival",
+    title: "3rd Annual Back 2 School Festival",
     programSlug: "back-2-school",
     year: 2022,
     dateStart: "Aug 6, 2022",
@@ -186,7 +186,7 @@ export const events: Event[] = [
     status: "Closed",
   },
   {
-    title: "South Park PW-8 — Parent Empowerment",
+    title: "South Park Parent Empowerment Workshop",
     programSlug: "youth-programming",
     year: 2025,
     dateStart: "Oct 14, 2025",
@@ -365,7 +365,7 @@ export const events: Event[] = [
     status: "Closed",
   },
   {
-    title: "Coastal Care #3 — B2S Day",
+    title: "Coastal Care #3 — Back 2 School Day",
     programSlug: "coastal-care",
     year: 2025,
     dateStart: "Aug 23, 2025",

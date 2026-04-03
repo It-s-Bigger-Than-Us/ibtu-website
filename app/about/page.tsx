@@ -74,7 +74,7 @@ export default async function AboutPage() {
                 community spaces.
               </p>
               <p style={{ fontSize: "clamp(16px, 1.3vw, 19px)", color: "#000", lineHeight: 1.75 }}>
-                We don&apos;t parachute in. We listen, we build, and we stay.
+                We don&apos;t parachute in. We listen, we build, we stay.
               </p>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default async function AboutPage() {
             expands the reach of community-built infrastructure.
           </p>
           <Link href="/get-involved" style={{ display: "inline-block", background: "#000", color: "var(--gold)", padding: "18px 48px", fontFamily: "Poppins, sans-serif", fontSize: 13, letterSpacing: "3px", textTransform: "uppercase", fontWeight: 700, textDecoration: "none" }}>
-            Get Involved →
+            Find Your Role →
           </Link>
         </div>
       </main>

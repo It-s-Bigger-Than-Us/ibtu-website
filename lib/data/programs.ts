@@ -69,7 +69,7 @@ export const programs: Program[] = [
     allTimeServed:
       "17,500+ attendees across 6 years | 18,550+ backpacks distributed | 1,400+ volunteers deployed | 4 cities",
     volunteerUrl: "https://itsbiggerthanusla.org/volunteers",
-    ctaText: "Sponsor B2S 2026",
+    ctaText: "Sponsor Back 2 School 2026",
     ctaHref: "/get-involved",
     status: "Upcoming",
     sortOrder: 2,
@@ -99,7 +99,7 @@ export const programs: Program[] = [
     proofStats:
       "28,025 students (2025) | 34 school sites | 62,475+ since 2020 | 4.7-5/5 satisfaction",
     allTimeServed:
-      "62,475+ students since 2020 | 28,025 in 2025 | 34 sites | 50% YOY growth",
+      "62,475+ students since 2020 | 28,025 in 2025 | 34 sites | 50% year-over-year growth",
     volunteerUrl: "https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih",
     ctaText: "Bring IBTU to Your Campus",
     ctaHref: "/get-involved",

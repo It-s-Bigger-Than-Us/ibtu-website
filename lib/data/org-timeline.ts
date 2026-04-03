@@ -27,7 +27,7 @@ export const orgTimeline: TimelineEntry[] = [
   {
     year: 2023,
     title: "School Program Network Expansion",
-    detail: "Scaled to 8 school sites with formal programming. 9,800 students served. 4th Annual B2S at Leimert Park. Peak food year: 54,000 families, 410,000 lbs.",
+    detail: "Scaled to 8 school sites with formal programming. 9,800 students served. 4th Annual Back 2 School at Leimert Park. Peak food year: 54,000 families, 410,000 lbs.",
     pillar: "School & Youth Stability",
   },
   {

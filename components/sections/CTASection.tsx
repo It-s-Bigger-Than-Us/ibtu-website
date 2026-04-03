@@ -18,8 +18,8 @@ interface CTASectionProps {
 }
 
 export default function CTASection({
-  headline = 'There Is Room for You',
-  body = 'Sort relief supplies at the Hub on a Tuesday. Staff a backpack station at the Back 2 School Festival. Clean Venice Beach with our Coastal Care crew. Sponsor a Lunchtime Takeover that reaches 800 students. However you show up, you become part of the infrastructure. We listen. We build. We stay.',
+  headline = 'This Work Does Not Happen Without You',
+  body = 'Every volunteer shift, every sponsorship dollar, every shared post expands the reach of community-built infrastructure.',
 }: CTASectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const headlineRef = useRef<HTMLHeadingElement>(null)
@@ -117,7 +117,7 @@ export default function CTASection({
             color: 'var(--ibtu-black)',
             maxWidth: '680px',
             marginBottom: '48px',
-            fontWeight: 500,
+            fontWeight: 700,
           }}
         >
           {body}

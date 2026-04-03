@@ -32,7 +32,7 @@ const STATS = [
   { value: '875,500+', label: 'Pounds of food distributed' },
   { value: '34', label: 'School sites across Los Angeles' },
   { value: '5,000+', label: 'Families stabilized after the LA fires' },
-  { value: '$18:$1', label: 'Resource leverage per dollar donated' },
+  { value: '7,500+', label: 'Volunteers activated' },
   { value: '300+', label: 'Partners building together' },
 ];
 
@@ -75,7 +75,7 @@ export default function GetInvolvedPage() {
                 color: '#FFF',
                 lineHeight: 1.8,
               }}>
-                In 2025, IBTU served 28,025 students across 34 school sites — more than every previous year combined. We distributed 875,500 pounds of food to 130,000 families. When the Palisades and Eaton fires displaced thousands, we opened a permanent Relief Resource Hub that now serves 324 active clients averaging 23 visits each. That is not a pop-up. That is infrastructure.
+                In 2025, IBTU served 28,025 students across 34 school sites — more than every previous year combined. We have distributed 875,500+ pounds of food across Los Angeles since 2020. When the Palisades and Eaton fires displaced thousands, we opened a permanent Relief Resource Hub that now serves 324 active clients averaging 23 visits each. That is not a pop-up. That is infrastructure.
               </p>
               <p style={{
                 fontFamily: 'var(--font-body)',
@@ -83,7 +83,7 @@ export default function GetInvolvedPage() {
                 color: '#FFF',
                 lineHeight: 1.8,
               }}>
-                Every dollar donated to IBTU moves $18 in essential resources to families and neighborhoods across Los Angeles. That $18:$1 leverage ratio is not a marketing number — it is the result of 300 partnerships, a volunteer force 7,500 strong, and an organization that has earned the trust to mobilize a city.
+                This reach is the result of 300+ partnerships, a volunteer force 7,500 strong, and an organization that has earned the trust to mobilize a city. Every dollar donated extends community-built infrastructure to more families and neighborhoods across Los Angeles.
               </p>
               <p style={{
                 fontFamily: 'var(--font-body)',
@@ -258,7 +258,7 @@ export default function GetInvolvedPage() {
                 lineHeight: 1.8,
                 marginBottom: 24,
               }}>
-                For organizations looking to align with trusted, community-led infrastructure in Los Angeles: IBTU offers brand visibility across flagship events reaching thousands, employee volunteer activations at the Hub and school sites, and co-branded programming backed by 75 media placements and 2.4 million Instagram impressions in 2025 alone. Your brand next to real work, in real neighborhoods, with real outcomes.
+                For organizations looking to align with trusted, community-led infrastructure in Los Angeles: IBTU offers brand visibility across flagship events reaching thousands, employee volunteer activations at the Hub and school sites, and co-branded programming backed by 75+ media placements and 2.47 million Instagram reach in 2025. Your brand next to real work, in real neighborhoods, with real outcomes.
               </p>
               <a
                 href="mailto:info@itsbiggerthanusla.org?subject=Partnership%20Inquiry"
@@ -277,7 +277,7 @@ export default function GetInvolvedPage() {
                   textDecoration: 'none',
                 }}
               >
-                Contact Us →
+                Start a Partnership Conversation →
               </a>
             </div>
           </div>

@@ -13,16 +13,16 @@ import { motion } from 'framer-motion'
 
 const PILLARS = [
   {
-    label: 'Crisis & Disaster',
+    label: 'Crisis & Disaster Stabilization',
     content: 'When the Palisades and Eaton fires displaced thousands of families in January 2025, IBTU mobilized within 72 hours. Within 90 days we built a permanent Relief Resource Hub at Baldwin Hills Crenshaw Plaza — open five days a week, serving 324 active clients who return an average of 23 times each. Housing navigation, mental health counseling, dental care, food assistance, and immigration support — all under one roof, all free, all dignified.',
   },
   {
-    label: 'School & Youth',
+    label: 'School & Youth Stability',
     content: 'Inside 34 school campuses across Los Angeles, IBTU runs Lunchtime Takeovers that transform cafeterias into spaces of belonging. We facilitate 8-week Parent Empowerment Workshops, host Staff Appreciation Days, and organize campus-wide Resource Fairs that bring 15+ partner organizations directly to families. In 2025 alone, 28,025 students were served — because when families face instability, students feel it first.',
   },
   {
-    label: 'Community Health',
-    content: 'Every month, IBTU distributes thousands of pounds of food to families across Los Angeles — 875,500 pounds since 2020. Our Coastal Care crews clean Venice Beach every second Saturday. The annual Back 2 School Festival has distributed 18,550 backpacks across 6 years. And our wellness programming with lululemon brings free yoga, health screenings, and dental care to the neighborhoods that need it most.',
+    label: 'Community Health & Resource Access',
+    content: 'Every month, IBTU distributes thousands of pounds of food to families across Los Angeles — 875,500 pounds since 2020. Our Coastal Care crews clean Venice Beach every second Saturday. The annual Back 2 School Festival has distributed 18,550 backpacks across 6 years. And our wellness programming with lululemon brings free yoga, health screenings, and dental care to neighborhoods across Los Angeles.',
   },
 ]
 

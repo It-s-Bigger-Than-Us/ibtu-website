@@ -58,13 +58,13 @@ export const awards: Award[] = [
     notes: "Presented to Molly Morrow / IBTU.",
   },
   {
-    title: "Certificate of Recognition — 6th Annual B2S: Coastal Clean-Up & Fire Relief",
+    title: "Certificate of Recognition — 6th Annual Back 2 School: Coastal Clean-Up & Fire Relief",
     presentedBy: "City of Los Angeles — Office of the Mayor (Karen Bass)",
     year: 2025,
     context: "Back 2 School Recognition",
   },
   {
-    title: "Certificate of Recognition — 6th Annual B2S Festival",
+    title: "Certificate of Recognition — 6th Annual Back 2 School Festival",
     presentedBy: "CA State Senate — 28th District (Senator Lola Smallwood-Cuevas)",
     year: 2025,
     context: "1,500+ backpacks distributed",
@@ -77,7 +77,7 @@ export const awards: Award[] = [
     notes: "Over 500 community-led projects throughout LA County.",
   },
   {
-    title: "Certificate of Recognition — 5th Annual B2S",
+    title: "Certificate of Recognition — 5th Annual Back 2 School",
     presentedBy: "U.S. House of Representatives (Congresswoman Sydney Kamlager-Dove)",
     year: 2024,
     context: "Back 2 School Recognition",
