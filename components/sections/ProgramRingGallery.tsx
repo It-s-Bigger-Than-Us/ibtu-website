@@ -3,34 +3,37 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 
 /* ═══════════════════════════════════════
-   PROGRAM RING GALLERY — 3D Carousel
-   Inspired by tympanus.net/Development/3DCarousel
-   Images arranged in a rotating 3D ring.
-   Auto-rotates, drag to spin.
-   One per program on the /our-programs page.
+   PROGRAM GRADIENT CAROUSEL — per program
+   Inspired by tympanus.net/Tutorials/3DGradientCarousel
+   Cards slide horizontally with 3D depth + rotation.
+   Auto-drifts, drag to spin. Fits in a column.
 ═══════════════════════════════════════ */
 
-const CARD_W = 240
-const CARD_H = 320
+const CARD_W = 200
+const CARD_H = 260
+const GAP = 16
 
 export default function ProgramRingGallery({ images, title }: { images: string[]; title: string }) {
-  const [angle, setAngle] = useState(0)
+  const [offset, setOffset] = useState(0)
   const [dragging, setDragging] = useState(false)
   const lastXRef = useRef(0)
   const velRef = useRef(0)
-  const angleRef = useRef(0)
+  const offsetRef = useRef(0)
   const rafRef = useRef<number>(0)
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  const count = images.length || 1
-  const theta = 360 / count
-  const radius = Math.round((CARD_W + 20) / (2 * Math.tan(Math.PI / count)))
+  const count = images.length
+  const ITEM_W = CARD_W + GAP
+  const TOTAL_W = ITEM_W * count
+
+  const mod = (n: number, m: number) => ((n % m) + m) % m
 
   const tick = useCallback(() => {
     if (!dragging) {
       velRef.current *= 0.96
-      if (Math.abs(velRef.current) < 0.02) velRef.current = -0.2
-      angleRef.current += velRef.current
-      setAngle(angleRef.current)
+      if (Math.abs(velRef.current) < 0.3) velRef.current = -0.4
+      offsetRef.current += velRef.current
+      setOffset(offsetRef.current)
     }
     rafRef.current = requestAnimationFrame(tick)
   }, [dragging])
@@ -48,9 +51,9 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
     if (!dragging) return
     const dx = e.clientX - lastXRef.current
     lastXRef.current = e.clientX
-    angleRef.current += dx * 0.3
-    velRef.current = dx * 0.3
-    setAngle(angleRef.current)
+    offsetRef.current += dx
+    velRef.current = dx
+    setOffset(offsetRef.current)
   }
   const onUp = () => setDragging(false)
 
@@ -58,62 +61,71 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
 
   return (
     <div
+      ref={containerRef}
       style={{
         width: '100%',
-        height: CARD_H + 40,
-        perspective: '1000px',
+        height: CARD_H + 20,
+        perspective: '800px',
         cursor: dragging ? 'grabbing' : 'grab',
         touchAction: 'pan-y',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden',
       }}
       onPointerDown={onDown}
       onPointerMove={onMove}
       onPointerUp={onUp}
       onPointerCancel={onUp}
     >
-      <div
-        style={{
-          width: CARD_W,
-          height: CARD_H,
-          position: 'relative',
-          transformStyle: 'preserve-3d',
-          transform: `rotateY(${angle}deg)`,
-        }}
-      >
-        {images.map((src, i) => (
-          <div
-            key={src}
-            style={{
-              position: 'absolute',
-              width: CARD_W,
-              height: CARD_H,
-              transform: `rotateY(${i * theta}deg) translateZ(${radius}px)`,
-              backfaceVisibility: 'hidden',
-              borderRadius: 12,
-              overflow: 'hidden',
-              boxShadow: '0 4px 20px -4px #000',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={src}
-              alt={`${title} photo ${i + 1}`}
-              draggable={false}
-              loading="lazy"
+      {/* Render 3 copies for infinite loop */}
+      {[0, 1, 2].map((copy) =>
+        images.map((src, i) => {
+          const baseX = copy * TOTAL_W + i * ITEM_W
+          const containerW = containerRef.current?.offsetWidth || 600
+          const x = mod(baseX + offset, TOTAL_W * 3) - TOTAL_W
+          const center = containerW / 2
+          const distFromCenter = (x + CARD_W / 2) - center
+          const norm = Math.max(-1, Math.min(1, distFromCenter / (center * 1.1)))
+          const ry = -norm * 20
+          const tz = (1 - Math.abs(norm)) * 60
+          const scale = 0.85 + (1 - Math.abs(norm)) * 0.15
+
+          return (
+            <div
+              key={`${copy}-${i}`}
               style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block',
-                filter: 'brightness(1.05) saturate(1.15)',
-                pointerEvents: 'none',
+                position: 'absolute',
+                left: 0,
+                top: '50%',
+                width: CARD_W,
+                height: CARD_H,
+                transform: `translate3d(${x}px, -50%, ${tz}px) rotateY(${ry}deg) scale(${scale})`,
+                transformStyle: 'preserve-3d',
+                borderRadius: 12,
+                overflow: 'hidden',
+                backfaceVisibility: 'hidden',
+                boxShadow: '0 4px 20px -4px #000',
+                zIndex: Math.round(tz),
               }}
-            />
-          </div>
-        ))}
-      </div>
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={src}
+                alt={`${title} photo ${i + 1}`}
+                draggable={false}
+                loading="lazy"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
+                  filter: 'brightness(1.05) saturate(1.15)',
+                  pointerEvents: 'none',
+                }}
+              />
+            </div>
+          )
+        })
+      )}
     </div>
   )
 }

@@ -9,10 +9,10 @@ import ProgramRingGallery from './ProgramRingGallery'
 gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
-   PROGRAMS PAGE — Scroll through programs
-   "OUR PROGRAMS" big headline shrinks + sticks.
-   Each program: title + 3D ring gallery + info.
-   Yellow bg throughout.
+   PROGRAMS PAGE — 2-column per program
+   Left: pillar + title + tagline + CTA
+   Right: 3D gradient carousel of program photos
+   "OUR PROGRAMS" shrinks + sticks at top.
 ═══════════════════════════════════════ */
 
 interface ProgramData {
@@ -75,88 +75,126 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
         </h1>
       </div>
 
-      {/* Each program — 3D ring gallery + info */}
-      {programs.map((prog, idx) => (
-        <section
-          key={prog.slug}
-          style={{
-            background: idx % 2 === 0 ? '#FFC700' : '#000',
-            padding: 'clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px)',
-          }}
-        >
-          <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
-            {/* Program header */}
-            <div style={{ marginBottom: 'clamp(24px, 3vw, 40px)' }}>
-              <span style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '10px',
-                letterSpacing: '3px',
-                textTransform: 'uppercase',
-                fontWeight: 700,
-                color: idx % 2 === 0 ? '#000' : '#FFC700',
-                display: 'block',
-                marginBottom: 12,
-              }}>
-                {prog.pillar}
-              </span>
-              <Link
-                href={`/our-programs/${prog.slug}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <h2 style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(36px, 6vw, 80px)',
-                  lineHeight: 0.92,
-                  textTransform: 'uppercase',
-                  color: idx % 2 === 0 ? '#000' : '#FFC700',
-                  letterSpacing: '-0.02em',
-                  marginBottom: 16,
-                }}>
-                  {prog.title}
-                </h2>
-              </Link>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'var(--body-md)',
-                color: idx % 2 === 0 ? '#000' : '#FFF',
-                lineHeight: 1.7,
-                maxWidth: 600,
-                fontWeight: 500,
-              }}>
-                {prog.tagline}
-              </p>
-            </div>
+      {/* Each program — 2 columns: text left, gallery right */}
+      {programs.map((prog, idx) => {
+        const isBlack = idx % 2 !== 0
+        const textColor = isBlack ? '#FFC700' : '#000'
+        const bodyColor = isBlack ? '#FFF' : '#000'
+        const bg = isBlack ? '#000' : '#FFC700'
+        const btnBg = isBlack ? '#FFC700' : '#000'
+        const btnColor = isBlack ? '#000' : '#FFC700'
 
-            {/* 3D Ring Gallery for this program */}
-            {prog.galleryImages.length > 0 && (
-              <ProgramRingGallery images={prog.galleryImages} title={prog.title} />
-            )}
-
-            {/* CTA link */}
-            <div style={{ marginTop: 'clamp(24px, 3vw, 40px)', textAlign: 'center' }}>
-              <Link
-                href={`/our-programs/${prog.slug}`}
-                className="iridescent-border"
-                style={{
-                  display: 'inline-block',
-                  background: idx % 2 === 0 ? '#000' : '#FFC700',
-                  color: idx % 2 === 0 ? '#FFC700' : '#000',
-                  padding: '14px 36px',
-                  borderRadius: '16px',
+        return (
+          <section
+            key={prog.slug}
+            style={{
+              background: bg,
+              padding: 'clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px)',
+            }}
+          >
+            <div style={{
+              maxWidth: 'var(--content-max)',
+              margin: '0 auto',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: 'clamp(32px, 4vw, 64px)',
+              alignItems: 'center',
+            }}>
+              {/* Left column: text */}
+              <div>
+                <span style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '12px',
-                  fontWeight: 700,
-                  letterSpacing: '2px',
+                  fontSize: '10px',
+                  letterSpacing: '3px',
                   textTransform: 'uppercase',
-                  textDecoration: 'none',
-                }}
-              >
-                Learn More →
-              </Link>
+                  fontWeight: 700,
+                  color: textColor,
+                  display: 'block',
+                  marginBottom: 12,
+                }}>
+                  {prog.pillar}
+                </span>
+
+                <Link href={`/our-programs/${prog.slug}`} style={{ textDecoration: 'none' }}>
+                  <h2 style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 'clamp(28px, 4vw, 56px)',
+                    lineHeight: 0.92,
+                    textTransform: 'uppercase',
+                    color: textColor,
+                    letterSpacing: '-0.02em',
+                    marginBottom: 16,
+                  }}>
+                    {prog.title}
+                  </h2>
+                </Link>
+
+                <p style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: 'var(--body-sm)',
+                  color: bodyColor,
+                  lineHeight: 1.7,
+                  fontWeight: 500,
+                  marginBottom: 24,
+                }}>
+                  {prog.tagline}
+                </p>
+
+                {prog.cardStat && (
+                  <span style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    color: textColor,
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase',
+                    display: 'block',
+                    marginBottom: 24,
+                  }}>
+                    {prog.cardStat}
+                  </span>
+                )}
+
+                <Link
+                  href={`/our-programs/${prog.slug}`}
+                  className="iridescent-border"
+                  style={{
+                    display: 'inline-block',
+                    background: btnBg,
+                    color: btnColor,
+                    padding: '12px 28px',
+                    borderRadius: '16px',
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    letterSpacing: '2px',
+                    textTransform: 'uppercase',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Learn More →
+                </Link>
+              </div>
+
+              {/* Right column: 3D gradient carousel */}
+              <div>
+                {prog.galleryImages.length > 0 && (
+                  <ProgramRingGallery images={prog.galleryImages} title={prog.title} />
+                )}
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        )
+      })}
+
+      {/* Responsive: stack on mobile */}
+      <style>{`
+        @media (max-width: 768px) {
+          section > div > div {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </main>
   )
 }
