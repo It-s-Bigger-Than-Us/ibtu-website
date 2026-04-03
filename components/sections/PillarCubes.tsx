@@ -235,7 +235,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           className="gsap-reveal"
           style={{ marginBottom: 'clamp(40px, 5vw, 64px)' }}
         >
-          <h2 className="pillar-headline">Our Impact Pillars</h2>
+          <h2 className="pillar-headline">By the Numbers</h2>
         </div>
 
         {/* Cubes grid — now 5 pillars */}
@@ -315,7 +315,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
 
         .pillar-headline {
           font-family: var(--font-display);
-          font-size: var(--display-hero);
+          font-size: clamp(40px, 7vw, 110px);
           line-height: 0.92;
           text-transform: uppercase;
           color: var(--ibtu-black);

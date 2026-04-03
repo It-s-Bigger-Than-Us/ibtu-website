@@ -52,7 +52,7 @@ export default function PillarTabs() {
       background: '#FFC700',
       padding: 'clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px)',
     }}>
-      <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
+      <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto', textAlign: 'center' }}>
         {/* Section label */}
         <span style={{
           fontFamily: 'var(--font-body)',
@@ -64,13 +64,14 @@ export default function PillarTabs() {
           display: 'block',
           marginBottom: 24,
         }}>
-          (What We Do)
+          (Our Impact Pillars)
         </span>
 
         {/* Tab buttons with animated underline */}
         <div style={{ position: 'relative', marginBottom: 'clamp(32px, 4vw, 48px)' }}>
           <div style={{
             display: 'flex',
+            justifyContent: 'center',
             gap: 'clamp(16px, 3vw, 40px)',
             borderBottom: '2px solid #000',
             paddingBottom: 12,
@@ -128,6 +129,7 @@ export default function PillarTabs() {
             lineHeight: 1.8,
             color: '#000',
             maxWidth: '720px',
+          margin: '0 auto',
             fontWeight: 500,
           }}>
             {PILLARS[active].content}
