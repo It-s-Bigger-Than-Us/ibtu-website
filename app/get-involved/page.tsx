@@ -175,35 +175,24 @@ export default function GetInvolvedPage() {
               IBTU volunteers do not watch from the sidelines. You sort relief supplies at the Hub, run resource stations at school festivals, clean Venice Beach with Coastal Care crews, and distribute backpacks to thousands of students — because this work only moves at the speed of people who show up.
             </p>
 
-            {/* ── BLOOMERANG WIDGET GOES HERE ── */}
+            {/* Bloomerang volunteer widget */}
             <div
               style={{
+                borderRadius: 16,
+                overflow: 'hidden',
                 background: '#000',
                 border: '2px solid #FFC700',
-                borderRadius: 16,
-                padding: 'clamp(32px, 4vw, 56px)',
-                textAlign: 'center',
-                minHeight: 200,
               }}
             >
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '14px',
-                color: '#FFC700',
-                fontWeight: 600,
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-              }}>
-                Volunteer Opportunities Loading...
-              </p>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '12px',
-                color: '#FFF',
-                marginTop: 12,
-              }}>
-                {/* Replace this div with Bloomerang volunteer widget embed */}
-              </p>
+              <iframe
+                src="https://volunteer.bloomerang.co:443/volunteer/embed/cards.html?mode=event&org_id=3917&show_description=true&show_language=true&default_language=eng_can"
+                style={{
+                  border: 'none',
+                  width: '100%',
+                  height: '600px',
+                }}
+                title="IBTU Volunteer Opportunities"
+              />
             </div>
           </div>
         </section>

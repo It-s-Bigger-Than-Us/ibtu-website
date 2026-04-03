@@ -517,7 +517,7 @@ export default async function ProgramPage({ params }: Props) {
       <Footer />
 
       {/* Sponsor slider — right-edge panel for each program */}
-      <ProgramSponsorSlider programName={program.title} />
+      {/* Sponsor slider removed for now */}
 
       {/* Gold bar animation + responsive */}
       <style>{`

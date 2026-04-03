@@ -12,7 +12,7 @@ const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#0
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
 const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
-const SponsorPanel = dynamic(() => import('@/components/sections/SponsorPanel'), { ssr: false })
+// SponsorPanel removed for now
 
 interface Program {
   slug: string
@@ -77,8 +77,7 @@ export default function HomePageClient({
       {/* 8. Footer */}
       <Footer />
 
-      {/* Sponsor Panel */}
-      <SponsorPanel />
+      {/* Sponsor Panel removed for now */}
     </main>
   )
 }
