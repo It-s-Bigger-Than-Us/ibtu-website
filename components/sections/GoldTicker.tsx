@@ -91,7 +91,7 @@ export default function GoldTicker({
         aria-label="Scrolling values banner"
         style={{
           overflow: 'hidden',
-          padding: 'clamp(16px, 2.5vw, 28px) 0',
+          padding: 'clamp(10px, 1.5vw, 18px) 0',
           background: 'var(--ibtu-gold)',
           width: '100%',
           position: isStuck ? 'fixed' : 'relative',
@@ -138,7 +138,7 @@ export default function GoldTicker({
                   key={`${copy}-${i}`}
                   style={{
                     fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(20px, 2.5vw, 36px)',
+                    fontSize: 'clamp(14px, 1.8vw, 25px)',
                     textTransform: 'uppercase',
                     color: 'var(--ibtu-black)',
                     whiteSpace: 'nowrap',

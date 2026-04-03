@@ -348,7 +348,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
         }
 
         .pillar-cube-scene {
-          width: 85%;
+          width: 65%;
           aspect-ratio: 1 / 1;
           perspective: 1000px;
           margin: 0 auto;

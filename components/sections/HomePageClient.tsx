@@ -46,7 +46,7 @@ export default function HomePageClient({
       <HeroReveal />
 
       {/* 2. Values Ticker */}
-      <GoldTicker phrases={tickerPhrases} speed={35} />
+      <GoldTicker phrases={tickerPhrases} speed={60} />
 
       {/* 3. Mission Card — "Our Mission" */}
       <MissionCard />
