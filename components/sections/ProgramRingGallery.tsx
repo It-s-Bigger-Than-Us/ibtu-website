@@ -16,6 +16,7 @@ const GAP = 12
 export default function ProgramRingGallery({ images, title }: { images: string[]; title: string }) {
   const [offset, setOffset] = useState(0)
   const [dragging, setDragging] = useState(false)
+  const [hovered, setHovered] = useState(false)
   const lastXRef = useRef(0)
   const velRef = useRef(0)
   const offsetRef = useRef(0)
@@ -32,12 +33,12 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
     if (!dragging) {
       velRef.current *= 0.97
       // Almost still — barely drifting so user knows it's interactive
-      if (Math.abs(velRef.current) < 0.05) velRef.current = -0.08
+      if (Math.abs(velRef.current) < 0.05) velRef.current = hovered ? -0.5 : -0.08
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)
     }
     rafRef.current = requestAnimationFrame(tick)
-  }, [dragging])
+  }, [dragging, hovered])
 
   useEffect(() => {
     rafRef.current = requestAnimationFrame(tick)
@@ -80,6 +81,8 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
       onPointerMove={onMove}
       onPointerUp={onUp}
       onPointerCancel={onUp}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {[0, 1, 2].map((copy) =>
         images.map((src, i) => {
@@ -129,8 +132,11 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
                 }}
               />
               <style>{`
-                .gallery-card-photo { transition: box-shadow 0.3s, filter 0.3s; }
+                .gallery-card-photo {
+                  transition: box-shadow 0.3s, transform 0.4s var(--ease-out-expo);
+                }
                 .gallery-card-photo:hover {
+                  transform: scale(1.08) !important;
                   box-shadow:
                     0 0 15px 2px #FFF4B8,
                     0 0 30px 4px #D4F0F8,
