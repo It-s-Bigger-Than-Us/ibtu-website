@@ -47,60 +47,54 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
         },
       })
 
-      // Parallax on each program section
+      // Parallax + slide-in on each program section
       sectionsRef.current.forEach((section) => {
         if (!section) return
         const textCol = section.querySelector('.prog-text')
         const galleryCol = section.querySelector('.prog-gallery')
 
-        // Text slides up slightly slower (parallax offset)
+        // Text slides up from below, slight sticky feel (slower scrub range)
         if (textCol) {
           gsap.fromTo(textCol,
-            { y: 60 },
+            { y: 120 },
             {
-              y: -20,
+              y: 0,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
-                start: 'top bottom',
-                end: 'bottom top',
+                start: 'top 95%',
+                end: 'top 30%',
                 scrub: true,
               },
             }
           )
         }
 
-        // Gallery slides at a different rate (faster) for parallax depth
+        // Gallery slides up from further below (faster, creates depth)
         if (galleryCol) {
           gsap.fromTo(galleryCol,
-            { y: 100 },
+            { y: 180 },
             {
-              y: -40,
+              y: 0,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
-                start: 'top bottom',
-                end: 'bottom top',
+                start: 'top 95%',
+                end: 'top 20%',
                 scrub: true,
               },
             }
           )
         }
 
-        // Fade + slide entrance for the whole section
-        gsap.fromTo(section,
-          { opacity: 0.3 },
-          {
-            opacity: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 90%',
-              end: 'top 40%',
-              scrub: true,
-            },
-          }
-        )
+        // Slight sticky: section content pins briefly as it enters
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 60%',
+          end: 'top 10%',
+          pin: section.querySelector('.prog-inner') as HTMLElement,
+          pinSpacing: false,
+        })
       })
     })
     return () => ctx.revert()
@@ -152,7 +146,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
               overflow: 'hidden',
             }}
           >
-            <div style={{
+            <div className="prog-inner" style={{
               maxWidth: 'var(--content-max)',
               margin: '0 auto',
               display: 'grid',
