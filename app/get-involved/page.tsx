@@ -303,14 +303,14 @@ export default function GetInvolvedPage() {
           <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
             <h2 style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(48px, 10vw, 160px)',
+              fontSize: 'clamp(32px, 6vw, 80px)',
               lineHeight: 0.88,
               textTransform: 'uppercase',
               color: '#000',
               letterSpacing: '-0.02em',
               marginBottom: 'clamp(24px, 3vw, 40px)',
             }}>
-              Community is the Infrastructure.
+              There Is Room for You.
             </h2>
             <p style={{
               fontFamily: 'var(--font-body)',

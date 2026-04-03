@@ -65,7 +65,7 @@ export default async function AboutPage() {
                 How It Works
               </span>
               <h2 style={{ fontFamily: "Poppins, sans-serif", fontSize: "clamp(36px, 4.5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 28 }}>
-                COMMUNITY IS THE INFRASTRUCTURE
+                HOW WE WORK
               </h2>
               <p style={{ fontSize: "clamp(16px, 1.3vw, 19px)", color: "#000", lineHeight: 1.75, marginBottom: 24 }}>
                 We go where people already are, listen to what they need, and
