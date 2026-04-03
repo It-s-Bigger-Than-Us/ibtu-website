@@ -6,8 +6,7 @@ import MenuDropdown from './MenuDropdown'
 
 /* ═══════════════════════════════════════
    TOP NAV — Editorial, compact, animated
-   Row 1: Logo (spinning) + Donate button
-   Row 2: Hamburger (left-aligned under logo)
+   Single row: Logo | Hamburger | Donate
    All left-aligned. Iridescent stroke → fill.
    NO dynamic CTA text.
 ═══════════════════════════════════════ */
@@ -42,15 +41,13 @@ export default function TopNav() {
           left: '24px',
           zIndex: 100,
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
+          flexDirection: 'row',
+          alignItems: 'center',
           gap: '8px',
           transition: 'top 0.3s var(--ease-out-expo)',
         }}
       >
-        {/* Row 1: Logo + Donate button side by side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {/* Logo coin — spinning, iridescent border on hover */}
+        {/* Logo coin — spinning, iridescent border on hover */}
           <Link
             href="/"
             aria-label="IBTU Home"
@@ -89,7 +86,53 @@ export default function TopNav() {
             </div>
           </Link>
 
-          {/* Donate button — next to logo, iridescent fill on hover */}
+          {/* Hamburger — between logo and donate */}
+          <button
+            onClick={() => setMenuOpen(prev => !prev)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            className="iridescent-border"
+            style={{
+              background: 'var(--ibtu-black)',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '4px',
+              padding: '12px',
+              borderRadius: '12px',
+              zIndex: 101,
+              width: `${coinSize}px`,
+              height: `${coinSize}px`,
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
+            }}
+          >
+            <span style={{
+              width: '20px',
+              height: '2px',
+              background: 'var(--ibtu-gold)',
+              transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
+              transform: menuOpen ? 'translateY(6px) rotate(45deg)' : 'none',
+            }} />
+            <span style={{
+              width: '20px',
+              height: '2px',
+              background: 'var(--ibtu-gold)',
+              transition: 'opacity 0.3s',
+              opacity: menuOpen ? 0 : 1,
+            }} />
+            <span style={{
+              width: '20px',
+              height: '2px',
+              background: 'var(--ibtu-gold)',
+              transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
+              transform: menuOpen ? 'translateY(-6px) rotate(-45deg)' : 'none',
+            }} />
+          </button>
+
+          {/* Donate button — after hamburger */}
           <a
             href="/get-involved"
             className="iridescent-border"
@@ -103,7 +146,6 @@ export default function TopNav() {
               padding: '0 16px',
               background: 'var(--holo-gradient)',
               backgroundSize: '400% 400%',
-              /* static iridescent bg — no animation */
               borderRadius: '12px',
               textDecoration: 'none',
               transition: 'background 0.4s, height 0.3s var(--ease-out-expo)',
@@ -123,53 +165,6 @@ export default function TopNav() {
               Donate
             </span>
           </a>
-        </div>
-
-        {/* Row 2: Hamburger — left-aligned under logo */}
-        <button
-          onClick={() => setMenuOpen(prev => !prev)}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-          className="iridescent-border"
-          style={{
-            background: 'var(--ibtu-black)',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '4px',
-            padding: '12px',
-            borderRadius: '12px',
-            zIndex: 101,
-            width: `${coinSize}px`,
-            height: `${coinSize}px`,
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
-          }}
-        >
-          <span style={{
-            width: '20px',
-            height: '2px',
-            background: 'var(--ibtu-gold)',
-            transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
-            transform: menuOpen ? 'translateY(6px) rotate(45deg)' : 'none',
-          }} />
-          <span style={{
-            width: '20px',
-            height: '2px',
-            background: 'var(--ibtu-gold)',
-            transition: 'opacity 0.3s',
-            opacity: menuOpen ? 0 : 1,
-          }} />
-          <span style={{
-            width: '20px',
-            height: '2px',
-            background: 'var(--ibtu-gold)',
-            transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
-            transform: menuOpen ? 'translateY(-6px) rotate(-45deg)' : 'none',
-          }} />
-        </button>
       </div>
 
       <MenuDropdown open={menuOpen} onClose={() => setMenuOpen(false)} />

@@ -179,7 +179,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                   fontSize: 'var(--body-sm)',
                   color: bodyColor,
                   lineHeight: 1.7,
-                  fontWeight: 500,
+                  fontWeight: 700,
                   marginBottom: 24,
                 }}>
                   {prog.tagline}

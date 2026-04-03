@@ -40,9 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Local image assets (served via Sanity CDN instead)
-/public/images/b2s/
-/public/images/school/
-/public/images/coastal/
-/public/images/wellness/
+# Unused volunteer images
 /public/images/volunteer/

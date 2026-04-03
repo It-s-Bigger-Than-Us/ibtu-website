@@ -85,7 +85,7 @@ export default async function AboutPage() {
           <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "Poppins, sans-serif", fontWeight: 700, marginBottom: 20, display: "block" }}>
             Mission
           </span>
-          <p style={{ fontSize: "clamp(18px, 1.8vw, 26px)", color: "#fff", lineHeight: 1.65, marginBottom: 60 }}>
+          <p style={{ fontSize: "clamp(18px, 1.8vw, 26px)", color: "#fff", lineHeight: 1.65, marginBottom: 60, fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
             It&apos;s Bigger Than Us builds trusted, place-based programs that
             support youth, families, and neighborhoods through education, health
             access, and crisis response — designed with dignity, informed by

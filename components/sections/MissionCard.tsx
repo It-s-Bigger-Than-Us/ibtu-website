@@ -70,8 +70,8 @@ export default function MissionCard() {
 
         {/* Mission statement — typewriter effect */}
         <TypingEffect
-          text="Building trusted, place-based infrastructure for the communities that need it most."
-          speed={35}
+          text="It's Bigger Than Us builds trusted, place-based programs that support youth, families, and neighborhoods through education, health access, and crisis response — designed with dignity, informed by community, and built to last."
+          speed={20}
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: 'clamp(24px, 3.5vw, 40px)',

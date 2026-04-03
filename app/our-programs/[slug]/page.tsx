@@ -166,7 +166,7 @@ export default async function ProgramPage({ params }: Props) {
             color: "#000",
             maxWidth: 700,
             lineHeight: 1.7,
-            fontWeight: 500,
+            fontWeight: 700,
             marginBottom: 48,
           }}>
             {program.tagline}
@@ -327,7 +327,7 @@ export default async function ProgramPage({ params }: Props) {
                     fontFamily: "var(--font-body)",
                     fontSize: "var(--body-md)",
                     color: "#FFF",
-                    fontWeight: 600,
+                    fontWeight: 700,
                   }}>
                     {item}
                   </span>
@@ -376,7 +376,7 @@ export default async function ProgramPage({ params }: Props) {
                   <span style={{
                     fontFamily: "var(--font-body)",
                     fontSize: "var(--body-sm)",
-                    fontWeight: 600,
+                    fontWeight: 700,
                     color: "var(--ibtu-black)",
                     textTransform: "uppercase",
                     letterSpacing: "1px",
