@@ -3,12 +3,15 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import TypingEffect from '@/components/ui/TypingEffect'
 
 gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
-   MISSION CARD — Gold card, storytelling.
-   "Our Mission" + founding story + what we do.
+   MISSION — "Our Mission" label + typewriter
+   Gold card on black bg. Mission statement
+   types out character by character.
+   Poppins font, larger size.
 ═══════════════════════════════════════ */
 
 export default function MissionCard() {
@@ -17,25 +20,15 @@ export default function MissionCard() {
 
   useEffect(() => {
     if (!sectionRef.current || !cardRef.current) return
-
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        cardRef.current,
+      gsap.fromTo(cardRef.current,
         { y: 60, opacity: 0 },
         {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 75%',
-            once: true,
-          },
+          y: 0, opacity: 1, duration: 1, ease: 'expo.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', once: true },
         }
       )
     }, sectionRef)
-
     return () => ctx.revert()
   }, [])
 
@@ -69,52 +62,25 @@ export default function MissionCard() {
             fontWeight: 700,
             color: 'var(--ibtu-black)',
             display: 'block',
-            marginBottom: '16px',
+            marginBottom: '24px',
           }}
         >
           Our Mission
         </span>
 
-        <h2
+        {/* Mission statement — typewriter effect */}
+        <TypingEffect
+          text="Building trusted, place-based infrastructure for the communities that need it most."
+          speed={35}
           style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(32px, 5vw, 56px)',
-            lineHeight: 1.05,
-            textTransform: 'uppercase',
+            fontFamily: 'var(--font-body)',
+            fontSize: 'clamp(24px, 3.5vw, 40px)',
+            lineHeight: 1.3,
             color: 'var(--ibtu-black)',
-            letterSpacing: '-0.01em',
-            marginBottom: '24px',
+            fontWeight: 700,
+            maxWidth: '780px',
           }}
-        >
-          Building trusted, place-based infrastructure for the communities that need it most.
-        </h2>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'var(--body-md)',
-              lineHeight: 1.7,
-              color: 'var(--ibtu-black)',
-              maxWidth: '680px',
-              fontWeight: 500,
-            }}
-          >
-            Since 2020, IBTU has built a permanent operating system for Los Angeles — seven programs running year-round across 34 school campuses, a Relief Resource Hub open five days a week, monthly beach cleanups, annual festivals that reach thousands, and a network of 300 partners who show up consistently.
-          </p>
-          <p
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'var(--body-md)',
-              lineHeight: 1.7,
-              color: 'var(--ibtu-black)',
-              maxWidth: '680px',
-              fontWeight: 500,
-            }}
-          >
-            We run year-round programming inside schools, monthly beach cleanups on the coast, weekly resource distributions, and the only community-operated disaster relief hub in Baldwin Hills. Every program is designed with the people it serves — not for them.
-          </p>
-        </div>
+        />
       </div>
     </section>
   )

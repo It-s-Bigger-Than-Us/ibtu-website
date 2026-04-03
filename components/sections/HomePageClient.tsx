@@ -5,10 +5,10 @@ import GoldTicker from '@/components/sections/GoldTicker'
 import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
 import ProgramCarousel3D from '@/components/sections/ProgramCarousel3D'
+import PillarTabs from '@/components/sections/PillarTabs'
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
-const MissionSplit = dynamic(() => import('@/components/sections/MissionSplit'), { ssr: false, loading: ShortPlaceholder })
 const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
 const SponsorPanel = dynamic(() => import('@/components/sections/SponsorPanel'), { ssr: false })
@@ -36,26 +36,25 @@ interface HomePageClientProps {
 
 export default function HomePageClient({
   programCards,
-  missionMedia,
   stats,
   tickerPhrases,
 }: HomePageClientProps) {
   return (
     <main>
-      {/* 1. Hero — "It's Bigger Than Us" text → logo → gallery reveal */}
+      {/* 1. Hero */}
       <HeroReveal />
 
       {/* 2. Values Ticker */}
       <GoldTicker phrases={tickerPhrases} speed={60} />
 
-      {/* 3. Mission Card — "Our Mission" */}
+      {/* 3. Mission — typewriter effect */}
       <MissionCard />
 
-      {/* 4. Pillar Cubes + Stats */}
-      <PillarCubes stats={stats} />
+      {/* 4. What We Do — tabbed pillars (yellow bg) */}
+      <PillarTabs />
 
-      {/* 5. What We Do — narrative per pillar */}
-      <MissionSplit headline="What We Do" />
+      {/* 5. Impact Pillars + Stats (sky bg) */}
+      <PillarCubes stats={stats} />
 
       {/* 6. Program Cards — 3D Gradient Carousel */}
       <ProgramCarousel3D programs={programCards.length > 0 ? programCards : [
