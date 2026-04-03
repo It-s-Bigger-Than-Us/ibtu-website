@@ -13,17 +13,17 @@ export const metadata: Metadata = {
     "7 community programs across Crisis & Disaster Stabilization, School & Youth Stability, and Community Health & Resource Access. Built for Los Angeles.",
 };
 
-/* Images per program for the 3D ring galleries */
+/* Images per program — correct folders for each program type */
 const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
   'fire-relief': [
-    '/images/school/IMG_5382.jpg', '/images/school/IMG_5406.jpg',
-    '/images/school/IMG_5508.jpg', '/images/school/IMG_5608.jpg',
-    '/images/school/IMG_5629.jpg', '/images/school/IMG_5843.jpg',
+    '/images/gallery/IMG_1311.jpg', '/images/gallery/IMG_1673.jpg',
+    '/images/gallery/IMG_1790.jpg', '/images/gallery/IMG_1827.jpg',
+    '/images/gallery/IMG_1848.jpg', '/images/gallery/IMG_4353.jpg',
   ],
   'back-2-school': [
     '/images/b2s/_D5A7392.jpg', '/images/b2s/_D5A7224.jpg',
     '/images/b2s/2V8A1964.jpg', '/images/b2s/_D5A5912.jpg',
-    '/images/b2s/_D5A7155.jpg', '/images/b2s/_D5A7530.jpg',
+    '/images/b2s/_D5A7530.jpg', '/images/b2s/6D5A0765.jpg',
   ],
   'coastal-care': [
     '/images/coastal/IMG_0024.jpg', '/images/coastal/IMG_0267.jpg',
@@ -36,21 +36,24 @@ const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
     '/images/wellness/IMG_1610.jpg', '/images/wellness/IMG_9922.jpg',
   ],
   'youth-programming': [
-    '/images/school/IMG_5608.jpg', '/images/school/IMG_5629.jpg',
     '/images/school/IMG_4674.jpg', '/images/school/IMG_5612.jpg',
     '/images/school/IMG_5884.jpg', '/images/school/IMG_6134.jpg',
+    '/images/school/IMG_7067.jpg', '/images/school/IMG_7169.jpg',
   ],
   'community-builder-linkups': [
-    '/images/gallery/IMG_4353.jpg', '/images/gallery/IMG_4649.jpg',
-    '/images/gallery/IMG_4672.jpg', '/images/gallery/IMG_1311.jpg',
+    '/images/gallery/IMG_4353.jpg', '/images/gallery/IMG_1501.jpg',
+    '/images/gallery/IMG_1603.jpg', '/images/gallery/IMG_1359.jpg',
+    '/images/gallery/IMG_1324.jpg', '/images/gallery/IMG_1807.jpg',
   ],
   'community-health': [
-    '/images/gallery/IMG_1311.jpg', '/images/gallery/IMG_1673.jpg',
-    '/images/gallery/IMG_4687.jpg', '/images/gallery/IMG_4907.jpg',
+    '/images/wellness/IMG_0097.jpg', '/images/wellness/IMG_0111.jpg',
+    '/images/wellness/IMG_4457.jpg', '/images/wellness/IMG_4688.jpg',
+    '/images/wellness/IMG_9866.jpg', '/images/wellness/IMG_9874.jpg',
   ],
   'giving-season': [
-    '/images/gallery/IMG_4944.jpg', '/images/gallery/IMG_1790.jpg',
-    '/images/gallery/IMG_1848.jpg', '/images/gallery/IMG_4353.jpg',
+    '/images/b2s/6D5A0871.jpg', '/images/b2s/6D5A1246.jpg',
+    '/images/b2s/_D5A8700.jpg', '/images/b2s/_D5A8744.jpg',
+    '/images/b2s/IMG_2113.jpg', '/images/b2s/IMG_2166.jpg',
   ],
 };
 

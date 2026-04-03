@@ -16,14 +16,17 @@ interface Props {
 
 /* Program videos now served from Sanity CDN — see lib/data/video-urls.ts */
 
-/* Program-to-image mapping for parallax gallery */
+/* Program-to-image mapping — correct folders per program */
 const PROGRAM_IMAGES: Record<string, string[]> = {
-  'fire-relief': ['/images/school/IMG_5382.jpg', '/images/school/IMG_5406.jpg', '/images/school/IMG_5508.jpg', '/images/school/IMG_5608.jpg'],
+  'fire-relief': ['/images/gallery/IMG_1311.jpg', '/images/gallery/IMG_1673.jpg', '/images/gallery/IMG_1790.jpg', '/images/gallery/IMG_1848.jpg'],
   'back-2-school': ['/images/b2s/_D5A7392.jpg', '/images/b2s/_D5A7224.jpg', '/images/b2s/2V8A1964.jpg', '/images/b2s/_D5A5912.jpg'],
   'back-to-school': ['/images/b2s/_D5A7392.jpg', '/images/b2s/_D5A7224.jpg', '/images/b2s/2V8A1964.jpg', '/images/b2s/_D5A5912.jpg'],
   'coastal-care': ['/images/coastal/IMG_0024.jpg', '/images/coastal/IMG_0267.jpg', '/images/coastal/IMG_1796.jpg', '/images/coastal/IMG_1810.jpg'],
   'wellness': ['/images/wellness/IMG_0007.jpg', '/images/wellness/IMG_0279.jpg', '/images/wellness/IMG_1554.jpg', '/images/wellness/IMG_1583.jpg'],
-  'youth-programming': ['/images/school/IMG_5608.jpg', '/images/school/IMG_5629.jpg', '/images/school/IMG_4674.jpg', '/images/school/IMG_5612.jpg'],
+  'youth-programming': ['/images/school/IMG_4674.jpg', '/images/school/IMG_5612.jpg', '/images/school/IMG_5884.jpg', '/images/school/IMG_6134.jpg'],
+  'community-builder-linkups': ['/images/gallery/IMG_4353.jpg', '/images/gallery/IMG_1501.jpg', '/images/gallery/IMG_1603.jpg', '/images/gallery/IMG_1807.jpg'],
+  'community-health': ['/images/wellness/IMG_0097.jpg', '/images/wellness/IMG_0111.jpg', '/images/wellness/IMG_4457.jpg', '/images/wellness/IMG_4688.jpg'],
+  'giving-season': ['/images/b2s/6D5A0871.jpg', '/images/b2s/6D5A1246.jpg', '/images/b2s/_D5A8700.jpg', '/images/b2s/_D5A8744.jpg'],
 }
 
 /* Who We Serve data per program */
