@@ -40,7 +40,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
           scrollTrigger: {
             trigger: stickyRef.current,
             start: 'top top',
-            end: '+=250',
+            end: '+=120',
             scrub: true,
             pin: true,
           },
@@ -56,8 +56,10 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
       <div
         ref={stickyRef}
         style={{
-          background: '#FFC700',
-          padding: 'clamp(100px, 12vh, 160px) clamp(32px, 5vw, 80px) clamp(32px, 4vh, 48px)',
+          background: 'var(--holo-gradient)',
+          backgroundSize: '600% 600%',
+          animation: 'holo-shift 20s ease infinite',
+          padding: 'clamp(100px, 12vh, 140px) clamp(32px, 5vw, 80px) clamp(24px, 3vh, 36px)',
         }}
       >
         <h1
