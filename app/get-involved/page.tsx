@@ -1,442 +1,395 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-
 import Footer from "@/components/layout/Footer";
-import { getPrograms } from "@/sanity/lib/fetch";
-import DonationEmbed from "@/components/sections/DonationEmbed";
+import StickyGridScroll from "@/components/sections/StickyGridScroll";
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Get Involved | IBTU — It's Bigger Than Us",
   description:
-    "Volunteer, donate, or partner with IBTU. Community is the infrastructure — and this work does not happen without you.",
+    "Volunteer, donate, or partner with IBTU. 62,475+ students served, 875,500+ lbs food distributed, 5,000+ families stabilized. Community is the infrastructure.",
 };
 
-const BLOOMERANG = [
-  {
-    label: "Hub Volunteer",
-    description: "Support fire relief and ongoing community services at our Relief Resource Hub.",
-    href: "https://volunteer.bloomerang.co/JE/7haetjfrq5g190",
-    cta: "Sign Up for Hub →",
-  },
-  {
-    label: "School Program Volunteer",
-    description: "Bring IBTU programs to school campuses. Lunchtime activations, resource fairs, and more.",
-    href: "https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih",
-    cta: "Sign Up for Schools →",
-  },
-  {
-    label: "Coastal Care Volunteer",
-    description: "Join our monthly beach clean-up crew at Venice Beach. Every 2nd Saturday.",
-    href: "https://volunteer.bloomerang.co/JE/6qkd8xo7woun5v",
-    cta: "Sign Up for Coastal Care →",
-  },
-  {
-    label: "Group Volunteer",
-    description: "Bring your company, team, or organization. We coordinate group activations.",
-    href: "https://volunteer.bloomerang.co/JE/zrvllcgtjvzav2",
-    cta: "Sign Up as a Group →",
-  },
+/* 12 images for the sticky grid header */
+const HERO_IMAGES = [
+  '/images/b2s/6D5A1083.jpg',
+  '/images/wellness/IMG_1583.jpg',
+  '/images/additional/IMG_0020.jpg',
+  '/images/b2s/_D5A7384.jpg',
+  '/images/school/IMG_6078.jpg',
+  '/images/wellness/IMG_4688.jpg',
+  '/images/coastal/IMG_0561.jpg',
+  '/images/b2s/6D5A0956.jpg',
+  '/images/b2s/_D5A6045.jpg',
+  '/images/additional/IMG_5667.jpg',
+  '/images/additional/IMG_0150.jpg',
+  '/images/coastal/IMG_4838.jpg',
 ];
 
-const SPONSOR_TIERS = [
-  { name: "Day One", amount: "$50,000+", description: "Premier naming rights, event co-branding, executive partnership" },
-  { name: "Anchor", amount: "$25,000", description: "Program naming rights, major event presence, community recognition" },
-  { name: "Catalyst", amount: "$10,000", description: "Event sponsor, program partner, brand placement across all activations" },
-  { name: "Builder", amount: "$5,000", description: "Event presence, community recognition, IBTU partner listing" },
-  { name: "Supporter", amount: "$2,500", description: "Community recognition, IBTU partner listing" },
-  { name: "Contributor", amount: "$1,000", description: "Community recognition, in-kind partner listing" },
-  { name: "Backer", amount: "$500", description: "Community recognition" },
+const STATS = [
+  { value: '62,475+', label: 'Students reached since 2020' },
+  { value: '875,500+', label: 'Pounds of food distributed' },
+  { value: '34', label: 'School sites across Los Angeles' },
+  { value: '5,000+', label: 'Families stabilized after the LA fires' },
+  { value: '$18:$1', label: 'Resource leverage per dollar donated' },
+  { value: '300+', label: 'Partners building together' },
 ];
 
-export default async function GetInvolvedPage() {
-  const programs = await getPrograms();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const programsWithVol = programs.filter((p: any) => p.volunteerUrl);
-
+export default function GetInvolvedPage() {
   return (
     <>
+      {/* ── 1. STICKY GRID SCROLL HERO ── */}
+      <StickyGridScroll
+        images={HERO_IMAGES}
+        headline="You Belong in This Work"
+        subheadline="Behind every number is a neighbor who said yes. 7,500 volunteers. 300 partners. One city building together. There is room for you."
+        ctaText="Find Your Role"
+        ctaHref="#volunteer"
+      />
 
-      <main style={{ background: "#000", minHeight: "100vh"}}>
+      <main style={{ background: '#000' }}>
 
-        {/* Hero */}
-        <div
-          id="volunteer"
-          style={{ padding: "140px 80px 100px 80px", borderBottom: "1px solid #FFC700" }}
-        >
-          <span
-            style={{
-              display: "block",
-              fontSize: 11,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "var(--gold)",
-              marginBottom: 20,
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 700,
-            }}
-          >
-            Get Involved · Los Angeles
-          </span>
-          <h1
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "clamp(52px, 8vw, 120px)",
-              lineHeight: 0.9,
-              color: "#fff",
-              marginBottom: 32,
-            }}
-          >
-            THIS WORK
-            <br />
-            DOES NOT
-            <br />
-            HAPPEN
-            <br />
-            WITHOUT YOU
-          </h1>
-          <p
-            style={{
-              fontSize: "clamp(16px, 1.5vw, 22px)",
-              color: "#fff",
-              maxWidth: 640,
-              lineHeight: 1.75,
-            }}
-          >
-            7,500+ volunteers have shown up for Los Angeles through IBTU. Every
-            shift, every clean-up, every lunchtime activation — community built
-            this. Join us.
-          </p>
-        </div>
+        {/* ── 2. THE CASE — Why IBTU ── */}
+        <section style={{
+          background: '#000',
+          padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+        }}>
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <h2 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(36px, 6vw, 72px)',
+              lineHeight: 0.92,
+              textTransform: 'uppercase',
+              color: '#FFC700',
+              letterSpacing: '-0.02em',
+              marginBottom: 'clamp(32px, 4vw, 56px)',
+            }}>
+              The Numbers Don&apos;t Lie
+            </h2>
 
-        {/* Volunteer Sign-Up */}
-        <div style={{ padding: "80px 80px 80px 80px" }}>
-          <h2
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "clamp(36px, 5vw, 72px)",
-              lineHeight: 0.95,
-              color: "#fff",
-              marginBottom: 48,
-            }}
-          >
-            VOLUNTEER
-          </h2>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-              gap: 2,
-            }}
-          >
-            {BLOOMERANG.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none" }}
-              >
-                <div
-                  style={{
-                    background: "#000",
-                    border: "1px solid #FFC700",
-                    padding: "40px 36px",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    minHeight: 240,
-                    cursor: "pointer",
-                    transition: "border-color 0.2s, background 0.2s",
-                  }}
-                >
-                  <div>
-                    <h3
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: "clamp(22px, 2.5vw, 36px)",
-                        color: "#fff",
-                        marginBottom: 16,
-                        lineHeight: 1,
-                      }}
-                    >
-                      {item.label}
-                    </h3>
-                    <p style={{ fontSize: 15, color: "#fff", lineHeight: 1.65 }}>
-                      {item.description}
-                    </p>
-                  </div>
-                  <span
-                    style={{
-                      display: "inline-block",
-                      marginTop: 28,
-                      fontSize: 11,
-                      letterSpacing: "3px",
-                      textTransform: "uppercase",
-                      color: "var(--gold)",
-                      fontFamily: "Poppins, sans-serif",
-                      fontWeight: 700,
-                    }}
-                  >
-                    {item.cta}
-                  </span>
-                </div>
-              </a>
-            ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--body-md)',
+                color: '#FFF',
+                lineHeight: 1.8,
+              }}>
+                In 2025, IBTU served 28,025 students across 34 school sites — more than every previous year combined. We distributed 875,500 pounds of food to 130,000 families. When the Palisades and Eaton fires displaced thousands, we opened a permanent Relief Resource Hub that now serves 324 active clients averaging 23 visits each. That is not a pop-up. That is infrastructure.
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--body-md)',
+                color: '#FFF',
+                lineHeight: 1.8,
+              }}>
+                Every dollar donated to IBTU moves $18 in essential resources to families and neighborhoods across Los Angeles. That $18:$1 leverage ratio is not a marketing number — it is the result of 300 partnerships, a volunteer force 7,500 strong, and an organization that has earned the trust to mobilize a city.
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--body-md)',
+                color: '#FFF',
+                lineHeight: 1.8,
+              }}>
+                We are not a seasonal organization. We run programs inside 34 schools year-round. We staff a crisis hub five days a week. We show up to the same neighborhoods, the same campuses, the same families — because consistency is what trust looks like. We listen, we build, we stay.
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--body-md)',
+                color: '#FFF',
+                lineHeight: 1.8,
+              }}>
+                So why IBTU? Because we have spent six years proving that community-designed programs, run by people who live in these neighborhoods, produce results that outside interventions cannot replicate. 23 awards. Featured on the Jennifer Hudson Show. Trusted by LAUSD, lululemon, LA84 Foundation, and Baby2Baby. But the real proof is simpler: families keep coming back, and they bring their neighbors.
+              </p>
+            </div>
           </div>
-        </div>
+        </section>
 
-        {/* Volunteer by Program */}
-        <div
-          style={{
-            background: "#000",
-            padding: "60px 80px",
-            borderTop: "1px solid var(--gold)",
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "clamp(20px, 2.5vw, 32px)",
-              color: "#fff",
-              marginBottom: 28,
-            }}
-          >
-            VOLUNTEER BY PROGRAM
-          </h3>
-          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            {programsWithVol.map((prog: any) => (
-              <a
-                key={prog.slug}
-                href={prog.volunteerUrl!}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none" }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: "20px 28px",
-                    border: "1px solid var(--gold)",
-                    background: "#000",
-                    cursor: "pointer",
-                  }}
-                >
-                  <div>
-                    <div
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: "clamp(16px, 1.8vw, 24px)",
-                        color: "#fff",
-                        fontWeight: 700,
-                      }}
-                    >
-                      {prog.title}
-                    </div>
-                    <div style={{ fontSize: 13, color: "var(--gold)", marginTop: 4 }}>
-                      {prog.schedule}
-                    </div>
-                  </div>
-                  <span
-                    style={{
-                      fontSize: 11,
-                      letterSpacing: "3px",
-                      color: "var(--gold)",
-                      fontFamily: "Poppins, sans-serif",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    Sign Up →
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Donate — Embedded Bloomerang/Qgiv Form */}
-        <div id="donate">
-          <DonationEmbed
-            formUrl="https://secure.qgiv.com/for/firerelief"
-            title="DONATE"
-            description="Your donation sustains community infrastructure. From fire relief to food access to school programming — every dollar goes directly to programs built for Los Angeles."
-          />
-        </div>
-
-        {/* Sponsor */}
-        <div id="sponsor" style={{ padding: "80px 80px" }}>
-          <h2
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "clamp(44px, 6vw, 96px)",
-              lineHeight: 0.9,
-              color: "#fff",
-              marginBottom: 16,
-            }}
-          >
-            SPONSOR
-          </h2>
-          <p
-            style={{
-              fontSize: "clamp(15px, 1.3vw, 19px)",
-              color: "#fff",
-              maxWidth: 580,
-              lineHeight: 1.7,
-              marginBottom: 48,
-            }}
-          >
-            300+ brands already trust IBTU as their community activation
-            partner. Dignified, impactful, and brand-safe — sponsorship puts
-            your brand at the center of the work.
-          </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-              gap: 2,
-            }}
-          >
-            {SPONSOR_TIERS.map((tier) => (
-              <div
-                key={tier.name}
-                style={{
-                  background: "#000",
-                  border: "1px solid #FFC700",
-                  padding: "32px 28px",
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "Poppins, sans-serif",
-                    fontSize: "clamp(20px, 2vw, 28px)",
-                    color: "var(--gold)",
-                    lineHeight: 1,
-                    marginBottom: 8,
-                  }}
-                >
-                  {tier.name}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "Poppins, sans-serif",
-                    fontWeight: 900,
-                    fontSize: "clamp(24px, 3vw, 40px)",
-                    color: "#fff",
-                    letterSpacing: -1,
-                    marginBottom: 16,
-                  }}
-                >
-                  {tier.amount}
-                </div>
-                <p style={{ fontSize: 14, color: "var(--gold)", lineHeight: 1.6 }}>
-                  {tier.description}
-                </p>
+        {/* ── 3. IMPACT PROOF — Stats ── */}
+        <section style={{
+          background: '#FFC700',
+          padding: 'clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px)',
+        }}>
+          <div style={{
+            maxWidth: 'var(--content-max)',
+            margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 'var(--grid-gap)',
+          }}>
+            {STATS.map((stat) => (
+              <div key={stat.label} style={{
+                padding: 'clamp(24px, 3vw, 40px)',
+              }}>
+                <span style={{
+                  fontFamily: 'var(--font-body)',
+                  fontWeight: 900,
+                  fontSize: 'clamp(32px, 4vw, 56px)',
+                  color: '#000',
+                  lineHeight: 1,
+                  display: 'block',
+                  marginBottom: 8,
+                }}>
+                  {stat.value}
+                </span>
+                <span style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: 'var(--body-sm)',
+                  fontWeight: 600,
+                  color: '#000',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                }}>
+                  {stat.label}
+                </span>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 40 }}>
-            <a
-              href="mailto:info@itsbiggerthanusla.org"
+        </section>
+
+        {/* ── 4. VOLUNTEER — Bloomerang widget placeholder ── */}
+        <section id="volunteer" style={{
+          background: '#000',
+          padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+        }}>
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <h2 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(36px, 6vw, 72px)',
+              lineHeight: 0.92,
+              textTransform: 'uppercase',
+              color: '#FFC700',
+              letterSpacing: '-0.02em',
+              marginBottom: 20,
+            }}>
+              Real Work. Real Impact.
+            </h2>
+            <p style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'var(--body-md)',
+              color: '#FFF',
+              lineHeight: 1.8,
+              marginBottom: 48,
+              maxWidth: 640,
+            }}>
+              IBTU volunteers do not watch from the sidelines. You sort relief supplies at the Hub, run resource stations at school festivals, clean Venice Beach with Coastal Care crews, and distribute backpacks to thousands of students — because this work only moves at the speed of people who show up.
+            </p>
+
+            {/* ── BLOOMERANG WIDGET GOES HERE ── */}
+            <div
               style={{
-                display: "inline-block",
-                background: "var(--gold)",
-                color: "#000",
-                padding: "18px 48px",
-                fontFamily: "Poppins, sans-serif",
-                fontSize: 13,
-                letterSpacing: "3px",
-                textTransform: "uppercase",
-                fontWeight: 700,
-                textDecoration: "none",
+                background: '#000',
+                border: '2px solid #FFC700',
+                borderRadius: 16,
+                padding: 'clamp(32px, 4vw, 56px)',
+                textAlign: 'center',
+                minHeight: 200,
               }}
             >
-              Sponsor IBTU →
-            </a>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '14px',
+                color: '#FFC700',
+                fontWeight: 600,
+                letterSpacing: '2px',
+                textTransform: 'uppercase',
+              }}>
+                Volunteer Opportunities Loading...
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '12px',
+                color: '#FFF',
+                marginTop: 12,
+              }}>
+                {/* Replace this div with Bloomerang volunteer widget embed */}
+              </p>
+            </div>
           </div>
-        </div>
+        </section>
 
-        {/* Partner */}
-        <div
-          id="partner"
-          style={{
-            background: "#000",
-            padding: "80px 80px",
-            borderTop: "1px solid #FFC700",
-          }}
-        >
-          <h2
-            style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "clamp(44px, 6vw, 96px)",
-              lineHeight: 0.9,
-              color: "#fff",
-              marginBottom: 24,
-            }}
-          >
-            PARTNER
-          </h2>
-          <p
-            style={{
-              fontSize: "clamp(16px, 1.5vw, 22px)",
-              color: "#fff",
-              maxWidth: 640,
-              lineHeight: 1.75,
+        {/* ── 5. DONATE — Donor tiers + Corporate ── */}
+        <section style={{
+          background: '#FFC700',
+          padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+        }}>
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <h2 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(36px, 6vw, 72px)',
+              lineHeight: 0.92,
+              textTransform: 'uppercase',
+              color: '#000',
+              letterSpacing: '-0.02em',
+              marginBottom: 'clamp(24px, 3vw, 40px)',
+            }}>
+              Invest in the Infrastructure
+            </h2>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginBottom: 48 }}>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--body-md)',
+                color: '#000',
+                lineHeight: 1.8,
+              }}>
+                There is no minimum to building a city. A $25 donation puts a fire-affected family through a full intake assessment and connects them to housing, mental health, and financial support. A $100 donation sponsors a Lunchtime Takeover that transforms a school cafeteria into a space of belonging for 800 students. A $1,000 donation funds a full resource fair that brings 15 partner organizations onto one campus in one day.
+              </p>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--body-md)',
+                color: '#000',
+                lineHeight: 1.8,
+              }}>
+                Every dollar is leveraged. IBTU&apos;s $18:$1 ratio means your investment does not sit in an account — it multiplies through partnerships, in-kind mobilization, and a volunteer infrastructure that has moved $4.5 million in resources to Los Angeles families since 2020.
+              </p>
+            </div>
+
+            {/* Corporate Partnership */}
+            <div style={{
+              background: '#000',
+              borderRadius: 16,
+              padding: 'clamp(32px, 4vw, 56px)',
               marginBottom: 40,
-            }}
-          >
-            IBTU is the community activation partner that 300+ brands and
-            organizations already trust. We connect your resources directly to
-            people who need them most — with dignity, precision, and no poverty
-            voyeurism.
-          </p>
-          <a
-            href="mailto:info@itsbiggerthanusla.org"
-            style={{
-              display: "inline-block",
-              border: "1px solid #FFC700",
-              color: "var(--gold)",
-              padding: "18px 48px",
-              fontFamily: "Poppins, sans-serif",
-              fontSize: 13,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              fontWeight: 700,
-              textDecoration: "none",
-            }}
-          >
-            Partner With Us →
-          </a>
-        </div>
+            }}>
+              <h3 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(24px, 3vw, 40px)',
+                textTransform: 'uppercase',
+                color: '#FFC700',
+                lineHeight: 1,
+                marginBottom: 20,
+              }}>
+                Partner With Us
+              </h3>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: 'var(--body-md)',
+                color: '#FFF',
+                lineHeight: 1.8,
+                marginBottom: 24,
+              }}>
+                For organizations looking to align with trusted, community-led infrastructure in Los Angeles: IBTU offers brand visibility across flagship events reaching thousands, employee volunteer activations at the Hub and school sites, and co-branded programming backed by 75 media placements and 2.4 million Instagram impressions in 2025 alone. Your brand next to real work, in real neighborhoods, with real outcomes.
+              </p>
+              <a
+                href="mailto:info@itsbiggerthanusla.org?subject=Partnership%20Inquiry"
+                className="holo-glass"
+                style={{
+                  display: 'inline-block',
+                  background: '#FFC700',
+                  color: '#000',
+                  padding: '14px 36px',
+                  borderRadius: '16px',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '12px',
+                  fontWeight: 700,
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                }}
+              >
+                Contact Us →
+              </a>
+            </div>
+          </div>
+        </section>
 
-        {/* Back to programs */}
-        <div
-          style={{
-            padding: "48px 80px",
-            borderTop: "1px solid var(--gold)",
-          }}
-        >
-          <Link
-            href="/our-programs"
-            style={{
-              fontSize: 11,
-              letterSpacing: "3px",
-              textTransform: "uppercase",
-              color: "var(--gold)",
-              textDecoration: "none",
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 700,
-            }}
-          >
-            ← View All Programs
-          </Link>
-        </div>
+        {/* ── 6. CLOSING CTA ── */}
+        <section style={{
+          background: '#FFC700',
+          padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+          borderTop: '2px solid #000',
+        }}>
+          <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+            <h2 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(48px, 10vw, 160px)',
+              lineHeight: 0.88,
+              textTransform: 'uppercase',
+              color: '#000',
+              letterSpacing: '-0.02em',
+              marginBottom: 'clamp(24px, 3vw, 40px)',
+            }}>
+              Community is the Infrastructure.
+            </h2>
+            <p style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'var(--body-lg)',
+              color: '#000',
+              lineHeight: 1.8,
+              maxWidth: '680px',
+              margin: '0 auto clamp(32px, 4vw, 48px)',
+            }}>
+              Every program IBTU runs was designed with dignity, informed by community, and built to last. But infrastructure is not a building. It is people. It is you deciding that the family down the street, the school across town, the neighbor rebuilding after the fire — that their stability is your business too.
+            </p>
+            <p style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'var(--body-lg)',
+              color: '#000',
+              lineHeight: 1.8,
+              fontWeight: 600,
+              marginBottom: 'clamp(32px, 4vw, 48px)',
+            }}>
+              We listen. We build. We stay. And there is room for you.
+            </p>
+            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link
+                href="#volunteer"
+                style={{
+                  display: 'inline-block',
+                  background: '#000',
+                  color: '#FFC700',
+                  padding: '16px 40px',
+                  borderRadius: '16px',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                }}
+              >
+                Find Your Role
+              </Link>
+              <a
+                href="mailto:info@itsbiggerthanusla.org?subject=Donation%20Inquiry"
+                style={{
+                  display: 'inline-block',
+                  border: '2px solid #000',
+                  color: '#000',
+                  padding: '16px 40px',
+                  borderRadius: '16px',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                }}
+              >
+                Donate Now
+              </a>
+            </div>
+          </div>
+        </section>
+
       </main>
+
       <Footer />
+
+      {/* Responsive */}
+      <style>{`
+        @media (max-width: 768px) {
+          section > div > div[style*="grid-template-columns: repeat(3"] {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 480px) {
+          section > div > div[style*="grid-template-columns"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
