@@ -6,6 +6,7 @@ import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
 import ProgramCarousel3D from '@/components/sections/ProgramCarousel3D'
 import PillarTabs from '@/components/sections/PillarTabs'
+import HeroGallery from '@/components/sections/HeroGallery'
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
@@ -43,6 +44,9 @@ export default function HomePageClient({
     <main>
       {/* 1. Hero */}
       <HeroReveal />
+
+      {/* 1b. Hero Gallery — revealed by logo zoom */}
+      <HeroGallery />
 
       {/* 2. Values Ticker */}
       <GoldTicker phrases={tickerPhrases} speed={60} />
