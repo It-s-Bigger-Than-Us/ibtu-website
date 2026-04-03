@@ -58,7 +58,15 @@ export default function HomePageClient({
       <MissionSplit headline="What We Do" />
 
       {/* 6. Program Cards — 3D Gradient Carousel */}
-      {programCards.length > 0 && <ProgramCarousel3D programs={programCards} />}
+      <ProgramCarousel3D programs={programCards.length > 0 ? programCards : [
+        { slug: 'fire-relief', title: 'Fire Relief & The Hub', pillar: 'Crisis & Disaster Stabilization', heroImage: '/images/gallery/IMG_1311.jpg' },
+        { slug: 'back-2-school', title: 'Back 2 School Festival', pillar: 'Community Health & Resource Access', heroImage: '/images/b2s/_D5A7392.jpg' },
+        { slug: 'youth-programming', title: 'Youth Programming', pillar: 'School & Youth Stability', heroImage: '/images/school/IMG_5608.jpg' },
+        { slug: 'coastal-care', title: 'Coastal Care', pillar: 'Community Health & Resource Access', heroImage: '/images/coastal/IMG_4838.jpg' },
+        { slug: 'wellness', title: 'Wellness & Health', pillar: 'Community Health & Resource Access', heroImage: '/images/wellness/IMG_1610.jpg' },
+        { slug: 'giving-season', title: 'Giving Season', pillar: 'Community Health & Resource Access', heroImage: '/images/b2s/6D5A0765.jpg' },
+        { slug: 'community-health', title: 'Community Health', pillar: 'Community Health & Resource Access', heroImage: '/images/wellness/IMG_9922.jpg' },
+      ]} />
 
       {/* 7. CTA */}
       <CTASection />

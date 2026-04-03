@@ -6,10 +6,14 @@ import { PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
 const HIDDEN_PROGRAMS = ['gala', 'incubation-academy']
 
 const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
-  'community-builder-linkups': '/images/b2s/_D5A7155.jpg',
-  'community-health': '/images/wellness/IMG_9922.jpg',
-  'wellness': '/images/wellness/IMG_1610.jpg',
+  'fire-relief': '/images/gallery/IMG_1311.jpg',
+  'back-2-school': '/images/b2s/_D5A7392.jpg',
+  'youth-programming': '/images/school/IMG_5608.jpg',
   'coastal-care': '/images/coastal/IMG_4838.jpg',
+  'giving-season': '/images/b2s/6D5A0765.jpg',
+  'wellness': '/images/wellness/IMG_1610.jpg',
+  'community-builder-linkups': '/images/gallery/IMG_4353.jpg',
+  'community-health': '/images/wellness/IMG_9922.jpg',
 }
 
 
@@ -77,7 +81,7 @@ export default async function HomePage() {
       slug: p.slug,
       title: p.title,
       pillar: p.pillar,
-      heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : ''),
+      heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : '/images/gallery/IMG_1311.jpg'),
       cardStat: p.cardStat || '',
       description: p.tagline || '',
       hoverVideo: PROGRAM_HOVER_VIDEO[p.slug] || '',
