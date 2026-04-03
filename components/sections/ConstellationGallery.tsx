@@ -25,7 +25,7 @@ interface ConstellationGalleryProps {
 
 export default function ConstellationGallery({
   items,
-  title = '(EXPLORE OUR IMPACT)',
+  title = 'EXPLORE OUR IMPACT',
 }: ConstellationGalleryProps) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)

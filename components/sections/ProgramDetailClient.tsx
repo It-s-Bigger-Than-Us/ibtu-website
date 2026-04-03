@@ -53,7 +53,7 @@ export default function ProgramDetailClient({
     <>
       {/* Sticky Story — pinned left text + right media swaps */}
       {slides.length > 1 && (
-        <StickyStorySection slides={slides} sectionLabel="(THE STORY)" />
+        <StickyStorySection slides={slides} sectionLabel="THE STORY" />
       )}
 
       {/* Stacking Gallery — images slide + stack on scroll */}
@@ -78,7 +78,7 @@ export default function ProgramDetailClient({
               fontWeight: 700,
               marginBottom: 24,
             }}>
-              (IN THE FIELD)
+              IN THE FIELD
             </div>
             <InTheFieldGallery images={fieldImages} programTitle={programTitle} />
           </div>

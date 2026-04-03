@@ -289,7 +289,7 @@ export default async function ProgramPage({ params }: Props) {
                 fontWeight: 700,
                 marginBottom: 24,
               }}>
-                (WHO WE SERVE)
+                WHO WE SERVE
               </div>
               <AnimatedHeadline
                 text="Designed for the Community"

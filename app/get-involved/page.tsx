@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "@/components/layout/Footer";
-import StickyGridScroll from "@/components/sections/StickyGridScroll";
+import GetInvolvedHero from "@/components/sections/GetInvolvedHero";
 
 export const revalidate = 60;
 
@@ -39,14 +39,8 @@ const STATS = [
 export default function GetInvolvedPage() {
   return (
     <>
-      {/* ── 1. STICKY GRID SCROLL HERO ── */}
-      <StickyGridScroll
-        images={HERO_IMAGES}
-        headline="You Belong in This Work"
-        subheadline="Behind every number is a neighbor who said yes. 7,500 volunteers. 300 partners. One city building together. There is room for you."
-        ctaText="Find Your Role"
-        ctaHref="#volunteer"
-      />
+      {/* ── 1. HERO — iridescent bg + scrolling photo strip ── */}
+      <GetInvolvedHero images={HERO_IMAGES} />
 
       <main style={{ background: '#000' }}>
 

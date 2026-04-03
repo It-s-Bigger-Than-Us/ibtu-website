@@ -31,6 +31,7 @@ const CARD_H = 400
 export default function HeroGallery() {
   const [angle, setAngle] = useState(0)
   const [dragging, setDragging] = useState(false)
+  const [hovered, setHovered] = useState(false)
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
   const lastXRef = useRef(0)
   const velRef = useRef(0)
@@ -44,12 +45,13 @@ export default function HeroGallery() {
   const tick = useCallback(() => {
     if (!dragging) {
       velRef.current *= 0.97
-      if (Math.abs(velRef.current) < 0.02) velRef.current = -0.12
+      // Scroll left faster on hover
+      if (Math.abs(velRef.current) < 0.02) velRef.current = hovered ? -0.5 : -0.12
       angleRef.current += velRef.current
       setAngle(angleRef.current)
     }
     rafRef.current = requestAnimationFrame(tick)
-  }, [dragging])
+  }, [dragging, hovered])
 
   useEffect(() => {
     rafRef.current = requestAnimationFrame(tick)
@@ -91,6 +93,8 @@ export default function HeroGallery() {
         onPointerMove={onMove}
         onPointerUp={onUp}
         onPointerCancel={onUp}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
         <div
           style={{
