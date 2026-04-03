@@ -136,14 +136,14 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
                   transition: box-shadow 0.3s, transform 0.4s var(--ease-out-expo);
                 }
                 .gallery-card-photo:hover {
-                  transform: scale(1.08) !important;
+                  transform: scale(1.02) !important;
                   box-shadow:
-                    0 0 15px 2px #FFF4B8,
-                    0 0 30px 4px #D4F0F8,
-                    0 0 45px 6px #D4F5E8 !important;
+                    0 0 8px 1px #FFF4B8,
+                    0 0 16px 2px #D4F0F8,
+                    0 0 24px 3px #D4F5E8 !important;
                 }
                 .gallery-card-photo:hover img {
-                  filter: brightness(1.12) saturate(1.25) !important;
+                  filter: brightness(1.08) saturate(1.18) !important;
                 }
               `}</style>
             </div>

@@ -261,6 +261,8 @@ export default async function ProgramPage({ params }: Props) {
           alt: `${program.title} — photo ${i + 1}`,
         }))}
         pastEvents={pastEvents}
+        fieldImages={galleryImages.slice(0, 6)}
+        programTitle={program.title}
       />
 
       {/* ── WHO WE SERVE — documentary scroll section ── */}
@@ -389,61 +391,7 @@ export default async function ProgramPage({ params }: Props) {
         </section>
       )}
 
-      {/* ── PARALLAX IMAGE GALLERY next to talking points ── */}
-      {galleryImages.length > 0 && (
-        <section style={{
-          background: "#000",
-          padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)",
-          overflow: "hidden",
-        }}>
-          <div style={{
-            maxWidth: "var(--content-max)",
-            margin: "0 auto",
-          }}>
-            <div style={{
-              fontFamily: "var(--font-body)",
-              fontSize: 11,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "#FFC700",
-              fontWeight: 700,
-              marginBottom: 24,
-            }}>
-              (IN THE FIELD)
-            </div>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: "24px",
-            }}>
-              {galleryImages.slice(0, 6).map((src: string, i: number) => (
-                <div
-                  key={i}
-                  className="iridescent-border"
-                  style={{
-                    borderRadius: "16px",
-                    overflow: "hidden",
-                    aspectRatio: i % 3 === 0 ? "3/4" : "4/3",
-                    position: "relative",
-                  }}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={src}
-                    alt={`${program.title} — photo ${i + 1}`}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      filter: "saturate(1.15) brightness(1.05)",
-                    }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* IN THE FIELD gallery is now rendered inside ProgramDetailClient with auto-scroll on hover */}
 
       {/* ── PROGRAM CTA — sponsor button with iridescent fill ── */}
       <section style={{

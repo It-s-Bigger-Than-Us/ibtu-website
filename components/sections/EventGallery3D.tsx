@@ -264,11 +264,11 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget;
-                  el.style.transform = `translateX(${translateX}px) translateY(${translateY - 20}px) translateZ(${translateZ + 60}px) rotateY(${rotateCardY}deg) scale(1.05)`;
+                  el.style.transform = `translateX(${translateX}px) translateY(${translateY - 5}px) translateZ(${translateZ + 15}px) rotateY(${rotateCardY}deg) scale(1.013)`;
                   el.style.boxShadow = `
                     0 0 0 2px #FFC700,
-                    0 30px 80px #000,
-                    0 0 40px #FFC700,
+                    0 20px 50px #000,
+                    0 0 20px #FFC700,
                     inset 0 1px 0 #FFF
                   `;
                   el.style.zIndex = "10";
