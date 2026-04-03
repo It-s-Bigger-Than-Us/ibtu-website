@@ -47,54 +47,45 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
         },
       })
 
-      // Parallax + slide-in on each program section
+      // Slide-in parallax on each program section
       sectionsRef.current.forEach((section) => {
         if (!section) return
         const textCol = section.querySelector('.prog-text')
         const galleryCol = section.querySelector('.prog-gallery')
 
-        // Text slides up from below, slight sticky feel (slower scrub range)
+        // Text slides up from below
         if (textCol) {
           gsap.fromTo(textCol,
-            { y: 120 },
+            { y: 80 },
             {
-              y: 0,
+              y: -15,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
-                start: 'top 95%',
-                end: 'top 30%',
-                scrub: true,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.6,
               },
             }
           )
         }
 
-        // Gallery slides up from further below (faster, creates depth)
+        // Gallery slides at a different rate for depth
         if (galleryCol) {
           gsap.fromTo(galleryCol,
-            { y: 180 },
+            { y: 120 },
             {
-              y: 0,
+              y: -30,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
-                start: 'top 95%',
-                end: 'top 20%',
-                scrub: true,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 0.6,
               },
             }
           )
         }
-
-        // Slight sticky: section content pins briefly as it enters
-        ScrollTrigger.create({
-          trigger: section,
-          start: 'top 60%',
-          end: 'top 10%',
-          pin: section.querySelector('.prog-inner') as HTMLElement,
-          pinSpacing: false,
-        })
       })
     })
     return () => ctx.revert()
