@@ -4,12 +4,11 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 
 /* ═══════════════════════════════════════
-   PROGRAM CARDS — 3D Gradient Carousel
-   tympanus.net/Tutorials/3DGradientCarousel style.
-   Horizontal line — center card is largest + front.
-   Cards recede with rotateY + translateZ + scale.
-   Click-drag to spin. Hover grows card + glow.
-   Iridescent section bg.
+   PROGRAM CARDS — 3D Ring Carousel
+   Same proven pattern as ProgramRingGallery.
+   Cards in a CSS 3D ring (rotateY + translateZ).
+   Click-drag to spin. Hover grows + glows.
+   Iridescent section bg. Yellow cards.
 ═══════════════════════════════════════ */
 
 interface Program {
@@ -20,44 +19,28 @@ interface Program {
   description?: string
 }
 
-const CARD_W = 340
-const CARD_H = 440
-const GAP = 20
+const CARD_W = 280
+const CARD_H = 380
 
 export default function ProgramCarousel3D({ programs }: { programs: Program[] }) {
-  const [offset, setOffset] = useState(0)
+  const [angle, setAngle] = useState(0)
   const [dragging, setDragging] = useState(false)
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
-  const [containerW, setContainerW] = useState(1200)
   const lastXRef = useRef(0)
   const velRef = useRef(0)
-  const offsetRef = useRef(0)
+  const angleRef = useRef(0)
   const rafRef = useRef<number>(0)
-  const containerRef = useRef<HTMLDivElement>(null)
 
-  const count = programs.length
-  const ITEM_W = CARD_W + GAP
-  const TOTAL_W = ITEM_W * count
+  const count = programs.length || 1
+  const theta = 360 / count
+  const radius = Math.round((CARD_W + 40) / (2 * Math.tan(Math.PI / count)))
 
-  const mod = (n: number, m: number) => ((n % m) + m) % m
-
-  // Measure container
-  useEffect(() => {
-    const measure = () => {
-      if (containerRef.current) setContainerW(containerRef.current.offsetWidth)
-    }
-    measure()
-    window.addEventListener('resize', measure)
-    return () => window.removeEventListener('resize', measure)
-  }, [])
-
-  // Animation loop
   const tick = useCallback(() => {
     if (!dragging) {
       velRef.current *= 0.97
-      if (Math.abs(velRef.current) < 0.15) velRef.current = -0.3
-      offsetRef.current += velRef.current
-      setOffset(offsetRef.current)
+      if (Math.abs(velRef.current) < 0.02) velRef.current = -0.1
+      angleRef.current += velRef.current
+      setAngle(angleRef.current)
     }
     rafRef.current = requestAnimationFrame(tick)
   }, [dragging])
@@ -70,19 +53,16 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   const onDown = (e: React.PointerEvent) => {
     setDragging(true)
     lastXRef.current = e.clientX
-    ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
   }
   const onMove = (e: React.PointerEvent) => {
     if (!dragging) return
     const dx = e.clientX - lastXRef.current
     lastXRef.current = e.clientX
-    offsetRef.current += dx
-    velRef.current = dx
-    setOffset(offsetRef.current)
+    angleRef.current += dx * 0.25
+    velRef.current = dx * 0.25
+    setAngle(angleRef.current)
   }
   const onUp = () => setDragging(false)
-
-  const center = containerW / 2
 
   return (
     <section style={{
@@ -102,76 +82,67 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
           color: '#000',
           display: 'block',
           marginBottom: 16,
+          textAlign: 'center',
         }}>
           (Our Programs)({count})
         </span>
       </div>
 
+      {/* 3D Ring — perspective on parent, rotateY on inner */}
       <div
-        ref={containerRef}
         style={{
           width: '100%',
-          height: CARD_H + 60,
+          height: CARD_H + 80,
           perspective: '1200px',
           cursor: dragging ? 'grabbing' : 'grab',
           touchAction: 'pan-y',
-          position: 'relative',
-          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
         onPointerDown={onDown}
         onPointerMove={onMove}
         onPointerUp={onUp}
         onPointerCancel={onUp}
       >
-        {/* 3 copies for infinite wrap */}
-        {[0, 1, 2].map((copy) =>
-          programs.map((prog, i) => {
-            const baseX = copy * TOTAL_W + i * ITEM_W
-            const x = mod(baseX + offset, TOTAL_W * 3) - TOTAL_W
-            const distFromCenter = (x + CARD_W / 2) - center
-            const norm = Math.max(-1, Math.min(1, distFromCenter / (center * 1.1)))
-            const absNorm = Math.abs(norm)
-            const ry = -norm * 22
-            const tz = (1 - absNorm) * 100
-            const s = 0.82 + (1 - absNorm) * 0.18
-            const isHovered = hoveredIdx === i && copy === 1
-            const finalScale = isHovered ? s * 1.08 : s
-            const blur = absNorm > 0.7 ? (absNorm - 0.7) * 5 : 0
-
+        <div
+          style={{
+            width: CARD_W,
+            height: CARD_H,
+            position: 'relative',
+            transformStyle: 'preserve-3d',
+            transform: `rotateY(${angle}deg)`,
+          }}
+        >
+          {programs.map((prog, i) => {
+            const isHovered = hoveredIdx === i
             return (
               <Link
-                key={`${copy}-${prog.slug}`}
+                key={prog.slug}
                 href={`/our-programs/${prog.slug}`}
                 style={{
                   position: 'absolute',
-                  left: 0,
-                  top: '50%',
                   width: CARD_W,
                   height: CARD_H,
-                  transform: `translate3d(${x}px, -50%, ${tz}px) rotateY(${ry}deg) scale(${finalScale})`,
-                  transformStyle: 'preserve-3d',
+                  transform: `rotateY(${i * theta}deg) translateZ(${radius}px)${isHovered ? ' scale(1.08)' : ''}`,
                   backfaceVisibility: 'hidden',
                   borderRadius: 16,
                   overflow: 'hidden',
                   textDecoration: 'none',
                   background: '#FFC700',
-                  zIndex: Math.round(tz),
-                  transition: 'box-shadow 0.4s, filter 0.3s',
+                  transition: 'transform 0.4s var(--ease-out-expo), box-shadow 0.4s',
                   boxShadow: isHovered
                     ? '0 0 20px 3px #FFF4B8, 0 0 40px 6px #D4F0F8, 0 0 60px 8px #D4F5E8'
-                    : '0 12px 40px -10px #000',
-                  filter: blur > 0.2 ? `blur(${blur}px)` : 'none',
+                    : '0 8px 32px -8px #000',
                 }}
                 onMouseEnter={() => setHoveredIdx(i)}
                 onMouseLeave={() => setHoveredIdx(null)}
               >
-                {/* High-res photo */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={prog.heroImage || '/images/gallery/IMG_1311.jpg'}
                   alt={`${prog.title} — IBTU`}
                   draggable={false}
-                  loading={i < 4 ? 'eager' : 'lazy'}
                   style={{
                     width: '100%',
                     height: '100%',
@@ -181,18 +152,17 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                     pointerEvents: 'none',
                   }}
                 />
-                {/* Yellow name bar at bottom */}
                 <div style={{
                   position: 'absolute',
                   bottom: 0,
                   left: 0,
                   right: 0,
                   background: '#FFC700',
-                  padding: 'clamp(12px, 1.5vw, 18px)',
+                  padding: 'clamp(10px, 1.2vw, 16px)',
                 }}>
                   <h3 style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '13px',
+                    fontSize: '12px',
                     fontWeight: 800,
                     textTransform: 'uppercase',
                     color: '#000',
@@ -202,21 +172,11 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                   }}>
                     {prog.title}
                   </h3>
-                  <span style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '9px',
-                    fontWeight: 700,
-                    letterSpacing: '2px',
-                    textTransform: 'uppercase',
-                    color: '#000',
-                  }}>
-                    {prog.pillar}
-                  </span>
                 </div>
               </Link>
             )
-          })
-        )}
+          })}
+        </div>
       </div>
     </section>
   )
