@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
    PROGRAMS PAGE — 2-column per program
    Left: pillar + title + tagline + CTA
    Right: 3D gradient carousel of program photos
-   "OUR PROGRAMS" shrinks + sticks at top.
+   Parallax on every section for butter-smooth feel.
 ═══════════════════════════════════════ */
 
 interface ProgramData {
@@ -28,11 +28,12 @@ interface ProgramData {
 export default function ProgramGallerySection({ programs }: { programs: ProgramData[] }) {
   const headlineRef = useRef<HTMLHeadingElement>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
+  const sectionsRef = useRef<HTMLElement[]>([])
 
   useEffect(() => {
     if (!stickyRef.current || !headlineRef.current) return
     const ctx = gsap.context(() => {
-      // Shrink headline on scroll — no pin, content flows up naturally
+      // Headline shrinks on scroll
       gsap.to(headlineRef.current, {
         fontSize: 'clamp(20px, 2.5vw, 32px)',
         paddingTop: '80px',
@@ -45,13 +46,69 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
           scrub: true,
         },
       })
+
+      // Parallax on each program section
+      sectionsRef.current.forEach((section) => {
+        if (!section) return
+        const textCol = section.querySelector('.prog-text')
+        const galleryCol = section.querySelector('.prog-gallery')
+
+        // Text slides up slightly slower (parallax offset)
+        if (textCol) {
+          gsap.fromTo(textCol,
+            { y: 60 },
+            {
+              y: -20,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true,
+              },
+            }
+          )
+        }
+
+        // Gallery slides at a different rate (faster) for parallax depth
+        if (galleryCol) {
+          gsap.fromTo(galleryCol,
+            { y: 100 },
+            {
+              y: -40,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: section,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true,
+              },
+            }
+          )
+        }
+
+        // Fade + slide entrance for the whole section
+        gsap.fromTo(section,
+          { opacity: 0.3 },
+          {
+            opacity: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 90%',
+              end: 'top 40%',
+              scrub: true,
+            },
+          }
+        )
+      })
     })
     return () => ctx.revert()
-  }, [])
+  }, [programs])
 
   return (
     <main style={{ background: '#FFC700', minHeight: '100vh' }}>
-      {/* Sticky headline */}
+      {/* Headline with iridescent bg */}
       <div
         ref={stickyRef}
         style={{
@@ -76,7 +133,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
         </h1>
       </div>
 
-      {/* Each program — 2 columns: text left, gallery right */}
+      {/* Each program — 2 columns with parallax */}
       {programs.map((prog, idx) => {
         const isBlack = idx % 2 !== 0
         const textColor = isBlack ? '#FFC700' : '#000'
@@ -88,9 +145,11 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
         return (
           <section
             key={prog.slug}
+            ref={(el) => { if (el) sectionsRef.current[idx] = el }}
             style={{
               background: bg,
               padding: 'clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px)',
+              overflow: 'hidden',
             }}
           >
             <div style={{
@@ -101,8 +160,8 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
               gap: 'clamp(32px, 4vw, 64px)',
               alignItems: 'center',
             }}>
-              {/* Left column: text */}
-              <div>
+              {/* Left column: text — parallax class */}
+              <div className="prog-text" style={{ willChange: 'transform' }}>
                 <span style={{
                   fontFamily: 'var(--font-body)',
                   fontSize: '10px',
@@ -177,8 +236,8 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                 </Link>
               </div>
 
-              {/* Right column: 3D gradient carousel */}
-              <div>
+              {/* Right column: gallery — parallax class (moves faster) */}
+              <div className="prog-gallery" style={{ willChange: 'transform' }}>
                 {prog.galleryImages.length > 0 && (
                   <ProgramRingGallery images={prog.galleryImages} title={prog.title} />
                 )}
