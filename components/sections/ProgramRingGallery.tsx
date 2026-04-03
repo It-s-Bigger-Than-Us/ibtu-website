@@ -4,14 +4,14 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 
 /* ═══════════════════════════════════════
    PROGRAM GRADIENT CAROUSEL — per program
-   Inspired by tympanus.net/Tutorials/3DGradientCarousel
-   Cards slide horizontally with 3D depth + rotation.
-   Auto-drifts, drag to spin. Fits in a column.
+   Bigger cards filling the section. Iridescent bg.
+   Almost still — very slow auto-drift so user
+   knows to click and drag.
 ═══════════════════════════════════════ */
 
-const CARD_W = 200
-const CARD_H = 260
-const GAP = 16
+const CARD_W = 300
+const CARD_H = 380
+const GAP = 12
 
 export default function ProgramRingGallery({ images, title }: { images: string[]; title: string }) {
   const [offset, setOffset] = useState(0)
@@ -30,8 +30,9 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
 
   const tick = useCallback(() => {
     if (!dragging) {
-      velRef.current *= 0.96
-      if (Math.abs(velRef.current) < 0.3) velRef.current = -0.4
+      velRef.current *= 0.97
+      // Almost still — barely drifting so user knows it's interactive
+      if (Math.abs(velRef.current) < 0.05) velRef.current = -0.08
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)
     }
@@ -64,19 +65,22 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
       ref={containerRef}
       style={{
         width: '100%',
-        height: CARD_H + 20,
+        height: CARD_H + 40,
         perspective: '800px',
         cursor: dragging ? 'grabbing' : 'grab',
         touchAction: 'pan-y',
         position: 'relative',
         overflow: 'hidden',
+        borderRadius: 16,
+        background: 'var(--holo-gradient)',
+        backgroundSize: '600% 600%',
+        animation: 'holo-shift 20s ease infinite',
       }}
       onPointerDown={onDown}
       onPointerMove={onMove}
       onPointerUp={onUp}
       onPointerCancel={onUp}
     >
-      {/* Render 3 copies for infinite loop */}
       {[0, 1, 2].map((copy) =>
         images.map((src, i) => {
           const baseX = copy * TOTAL_W + i * ITEM_W
@@ -85,9 +89,9 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
           const center = containerW / 2
           const distFromCenter = (x + CARD_W / 2) - center
           const norm = Math.max(-1, Math.min(1, distFromCenter / (center * 1.1)))
-          const ry = -norm * 20
-          const tz = (1 - Math.abs(norm)) * 60
-          const scale = 0.85 + (1 - Math.abs(norm)) * 0.15
+          const ry = -norm * 18
+          const tz = (1 - Math.abs(norm)) * 50
+          const scale = 0.88 + (1 - Math.abs(norm)) * 0.12
 
           return (
             <div
@@ -113,6 +117,7 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
                 alt={`${title} photo ${i + 1}`}
                 draggable={false}
                 loading="lazy"
+                className="gallery-photo"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -122,6 +127,18 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
                   pointerEvents: 'none',
                 }}
               />
+              <style>{`
+                .gallery-photo { transition: filter 0.3s; }
+                div:hover > .gallery-photo {
+                  filter: brightness(1.12) saturate(1.25);
+                }
+                div:hover {
+                  box-shadow:
+                    0 0 15px 2px #FFF4B8,
+                    0 0 30px 4px #D4F0F8,
+                    0 0 45px 6px #D4F5E8 !important;
+                }
+              `}</style>
             </div>
           )
         })
