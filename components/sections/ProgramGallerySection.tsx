@@ -202,7 +202,6 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
 
                 <Link
                   href={`/our-programs/${prog.slug}`}
-                  className="iridescent-border"
                   style={{
                     display: 'inline-block',
                     background: btnBg,

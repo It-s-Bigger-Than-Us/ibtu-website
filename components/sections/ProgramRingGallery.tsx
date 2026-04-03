@@ -96,6 +96,7 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
           return (
             <div
               key={`${copy}-${i}`}
+              className="gallery-card-photo"
               style={{
                 position: 'absolute',
                 left: 0,
@@ -128,15 +129,15 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
                 }}
               />
               <style>{`
-                .gallery-photo { transition: filter 0.3s; }
-                div:hover > .gallery-photo {
-                  filter: brightness(1.12) saturate(1.25);
-                }
-                div:hover {
+                .gallery-card-photo { transition: box-shadow 0.3s, filter 0.3s; }
+                .gallery-card-photo:hover {
                   box-shadow:
                     0 0 15px 2px #FFF4B8,
                     0 0 30px 4px #D4F0F8,
                     0 0 45px 6px #D4F5E8 !important;
+                }
+                .gallery-card-photo:hover img {
+                  filter: brightness(1.12) saturate(1.25) !important;
                 }
               `}</style>
             </div>
