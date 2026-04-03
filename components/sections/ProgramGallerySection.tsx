@@ -32,20 +32,19 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
   useEffect(() => {
     if (!stickyRef.current || !headlineRef.current) return
     const ctx = gsap.context(() => {
-      gsap.fromTo(headlineRef.current,
-        { fontSize: 'clamp(72px, 14vw, 240px)' },
-        {
-          fontSize: 'clamp(20px, 2.5vw, 32px)',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: stickyRef.current,
-            start: 'top top',
-            end: '+=120',
-            scrub: true,
-            pin: true,
-          },
-        }
-      )
+      // Shrink headline on scroll — no pin, content flows up naturally
+      gsap.to(headlineRef.current, {
+        fontSize: 'clamp(20px, 2.5vw, 32px)',
+        paddingTop: '80px',
+        paddingBottom: '16px',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: stickyRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
     })
     return () => ctx.revert()
   }, [])
@@ -59,7 +58,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
           background: 'var(--holo-gradient)',
           backgroundSize: '600% 600%',
           animation: 'holo-shift 20s ease infinite',
-          padding: 'clamp(100px, 12vh, 140px) clamp(32px, 5vw, 80px) clamp(24px, 3vh, 36px)',
+          padding: 'clamp(100px, 12vh, 140px) clamp(32px, 5vw, 80px) 0',
         }}
       >
         <h1
