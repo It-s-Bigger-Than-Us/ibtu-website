@@ -7,8 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
-   MISSION CARD — Gold card, no skyline.
-   Just "Our Mission" heading + statement.
+   MISSION CARD — Gold card, storytelling.
+   "Our Mission" + founding story + what we do.
 ═══════════════════════════════════════ */
 
 export default function MissionCard() {
@@ -60,7 +60,6 @@ export default function MissionCard() {
           width: '100%',
         }}
       >
-        {/* Label */}
         <span
           style={{
             fontFamily: 'var(--font-body)',
@@ -76,7 +75,6 @@ export default function MissionCard() {
           Our Mission
         </span>
 
-        {/* Mission statement */}
         <h2
           style={{
             fontFamily: 'var(--font-display)',
@@ -91,19 +89,32 @@ export default function MissionCard() {
           Building trusted, place-based infrastructure for the communities that need it most.
         </h2>
 
-        {/* Body */}
-        <p
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 'var(--body-md)',
-            lineHeight: 1.7,
-            color: 'var(--ibtu-black)',
-            maxWidth: '680px',
-            fontWeight: 500,
-          }}
-        >
-          It&apos;s Bigger Than Us (IBTU) designs and operates community programs across Los Angeles — from crisis response and school stability to food access and coastal stewardship. Every program is built with the people it serves.
-        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'var(--body-md)',
+              lineHeight: 1.7,
+              color: 'var(--ibtu-black)',
+              maxWidth: '680px',
+              fontWeight: 500,
+            }}
+          >
+            IBTU started in 2020 when a group of neighbors decided that the community response to a crisis should not disappear when the cameras leave. What began as a pandemic-era mutual aid effort has grown into a permanent operating system for Los Angeles — seven programs, 34 school campuses, a permanent Relief Hub, and a network of 300 partners who show up every week.
+          </p>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'var(--body-md)',
+              lineHeight: 1.7,
+              color: 'var(--ibtu-black)',
+              maxWidth: '680px',
+              fontWeight: 500,
+            }}
+          >
+            We run year-round programming inside schools, monthly beach cleanups on the coast, weekly resource distributions, and the only community-operated disaster relief hub in Baldwin Hills. Every program is designed with the people it serves — not for them.
+          </p>
+        </div>
       </div>
     </section>
   )

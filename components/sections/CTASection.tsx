@@ -18,8 +18,8 @@ interface CTASectionProps {
 }
 
 export default function CTASection({
-  headline = 'Join the Movement',
-  body = 'Whether you volunteer, donate, partner, or sponsor — you become part of the foundation. Designed with dignity.',
+  headline = 'There Is Room for You',
+  body = 'Sort relief supplies at the Hub on a Tuesday. Staff a backpack station at the Back 2 School Festival. Clean Venice Beach with our Coastal Care crew. Sponsor a Lunchtime Takeover that reaches 800 students. However you show up, you become part of the infrastructure. We listen. We build. We stay.',
 }: CTASectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const headlineRef = useRef<HTMLHeadingElement>(null)

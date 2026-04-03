@@ -11,6 +11,7 @@ export default defineType({
     defineField({ name: "pillar", title: "Associated Pillar", type: "string" }),
     defineField({ name: "programsEvents", title: "Programs / Events", type: "string" }),
     defineField({ name: "tier", title: "Tier", type: "string", options: { list: ["Major", "Key", "Supporting", "Community"] } }),
+    defineField({ name: "featuredOnWebsite", title: "Featured on Website", type: "boolean", initialValue: true, description: "Uncheck to hide this partner from the website" }),
     defineField({ name: "logo", title: "Logo", type: "image" }),
     defineField({ name: "url", title: "Website URL", type: "url" }),
   ],

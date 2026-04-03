@@ -54,12 +54,8 @@ export default function HomePageClient({
       {/* 4. Pillar Cubes + Stats */}
       <PillarCubes stats={stats} />
 
-      {/* 5. Why We Exist */}
-      <MissionSplit
-        headline="Why We Exist"
-        body="Since 2020, IBTU has mobilized 62,475+ students, 300+ partners, and $4.5M in resources across Los Angeles — building systems rooted in dignity, access, and community-led design."
-        media={missionMedia}
-      />
+      {/* 5. What We Do — narrative per pillar */}
+      <MissionSplit headline="What We Do" />
 
       {/* 6. Program Cards — 3D Gradient Carousel */}
       {programCards.length > 0 && <ProgramCarousel3D programs={programCards} />}

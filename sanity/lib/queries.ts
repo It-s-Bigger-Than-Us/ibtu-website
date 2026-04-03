@@ -50,8 +50,8 @@ export const orgTimelineQuery = `*[_type == "orgTimeline"] | order(sortOrder asc
   _id, year, title, detail, pillar, sortOrder
 }`;
 
-export const partnersByCategoryQuery = `*[_type == "partner"] | order(category asc, title asc) {
-  _id, title, category, partnerType, tier, logo, url
+export const partnersByCategoryQuery = `*[_type == "partner" && featuredOnWebsite != false] | order(category asc, title asc) {
+  _id, title, category, partnerType, tier, logo, url, featuredOnWebsite
 }`;
 
 export const sponsorTiersQuery = `*[_type == "sponsorTier"] | order(sortOrder asc) {

@@ -29,15 +29,15 @@ const PROGRAM_IMAGES: Record<string, string[]> = {
   'giving-season': ['/images/b2s/6D5A0871.jpg', '/images/b2s/6D5A1246.jpg', '/images/b2s/_D5A8700.jpg', '/images/b2s/_D5A8744.jpg'],
 }
 
-/* Who We Serve data per program */
+/* Who We Serve — warm, specific, dignity-centered */
 const WHO_WE_SERVE: Record<string, string[]> = {
-  'fire-relief': ['Displaced families', 'Uninsured homeowners', 'Immigrant communities', 'Seniors and elderly residents', 'Single-parent households'],
-  'back-2-school': ['K-12 students and families', 'Title I school communities', 'Under-resourced neighborhoods', 'First-generation families'],
-  'back-to-school': ['K-12 students and families', 'Title I school communities', 'Under-resourced neighborhoods', 'First-generation families'],
-  'coastal-care': ['Beachfront communities', 'Families seeking outdoor wellness', 'Youth environmental stewards', 'Local residents near coastline'],
-  'wellness': ['Families in Los Angeles', 'Youth seeking health resources', 'Community members without wellness access', 'Seniors and caregivers'],
-  'youth-programming': ['Students grades K-12', 'After-school program participants', 'Youth in under-resourced communities', 'Families seeking enrichment'],
-  'community-builder-linkups': ['Local entrepreneurs', 'Community organizers', 'Small business owners', 'Aspiring nonprofit leaders'],
+  'fire-relief': ['Families displaced by the Palisades and Eaton fires', 'Homeowners navigating FEMA and insurance without representation', 'Immigrant families who need bilingual case management', 'Seniors rebuilding after losing everything', 'Single parents holding it together for their kids'],
+  'back-2-school': ['K-12 students heading back to class across Los Angeles', 'Families at Title I schools who need supplies and resources', 'Neighborhoods where back-to-school shopping is a real financial burden', 'First-generation families navigating the school system'],
+  'back-to-school': ['K-12 students heading back to class across Los Angeles', 'Families at Title I schools who need supplies and resources', 'Neighborhoods where back-to-school shopping is a real financial burden', 'First-generation families navigating the school system'],
+  'coastal-care': ['Angelenos who want to take care of the coastline', 'Families looking for outdoor wellness and community', 'Young people learning environmental stewardship', 'Residents near Venice Beach who want a cleaner neighborhood'],
+  'wellness': ['Families in Los Angeles without regular access to wellness programming', 'Young people who have never had a yoga class or health screening', 'Educators who spend all year pouring into students and need refilling', 'Seniors and caregivers carrying the weight of their households'],
+  'youth-programming': ['Students in 34 schools across Los Angeles', 'Young people who need their school to feel like a place of belonging', 'Parents who want to be more involved but need a bridge', 'Campus staff who see the needs every day and want backup'],
+  'community-builder-linkups': ['Local entrepreneurs building something in their neighborhood', 'Community organizers looking for collaboration', 'Small business owners who want to connect with IBTU programs', 'Aspiring nonprofit leaders learning the work'],
   'community-health': ['Families without healthcare access', 'Seniors', 'Youth in food deserts', 'Caregivers and parents'],
 }
 
