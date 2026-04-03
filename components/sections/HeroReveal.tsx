@@ -104,13 +104,13 @@ export default function HeroReveal() {
             textTransform: 'uppercase',
             color: '#000',
             letterSpacing: '-0.04em',
-            textAlign: 'justify',
-            textAlignLast: 'justify',
+            textAlign: 'center',
             width: '100%',
             maxWidth: 'var(--content-max)',
             display: 'flex',
             flexWrap: 'wrap',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
+            gap: '0 0.2em',
           }}
         >
           {["It's", 'Bigger', 'Than', 'Us'].map((word, i) => (

@@ -83,7 +83,7 @@ function CubeCard({ pillar, isHovered }: { pillar: PillarData; isHovered: boolea
 
   return (
     <div className="pillar-cube-container">
-      <div ref={sceneRef} className="pillar-cube-scene iridescent-border">
+      <div ref={sceneRef} className="pillar-cube-scene">
         <div
           className="pillar-cube"
           style={{
@@ -384,19 +384,35 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           left: 0;
           right: 0;
           background: #FFC700;
-          padding: clamp(10px, 1.5vw, 18px);
+          padding: clamp(12px, 1.5vw, 20px);
           transform: translateY(100%);
           opacity: 0;
           transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
                       opacity 0.4s ease;
+          border-radius: 0 0 12px 12px;
+        }
+        .pillar-cube-label::after {
+          content: '';
+          position: absolute;
+          inset: -1px;
+          border-radius: 0 0 12px 12px;
+          padding: 2px;
+          background: var(--holo-gradient);
+          background-size: 600% 600%;
+          animation: holo-shift 20s ease infinite;
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
         }
 
         .pillar-cube-name {
           font-family: var(--font-body);
-          font-size: clamp(9px, 0.9vw, 14px);
+          font-size: clamp(12px, 1.2vw, 17px);
           font-weight: 700;
           letter-spacing: 1.5px;
           text-transform: uppercase;
+          line-height: 1.3;
           color: #000;
           display: block;
           text-align: center;
