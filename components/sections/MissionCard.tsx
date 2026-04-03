@@ -100,7 +100,7 @@ export default function MissionCard() {
               fontWeight: 500,
             }}
           >
-            IBTU started in 2020 when a group of neighbors decided that the community response to a crisis should not disappear when the cameras leave. What began as a pandemic-era mutual aid effort has grown into a permanent operating system for Los Angeles — seven programs, 34 school campuses, a permanent Relief Hub, and a network of 300 partners who show up every week.
+            Since 2020, IBTU has built a permanent operating system for Los Angeles — seven programs running year-round across 34 school campuses, a Relief Resource Hub open five days a week, monthly beach cleanups, annual festivals that reach thousands, and a network of 300 partners who show up consistently.
           </p>
           <p
             style={{
