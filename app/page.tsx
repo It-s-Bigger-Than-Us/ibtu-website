@@ -6,23 +6,23 @@ import { PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
 const HIDDEN_PROGRAMS = ['gala', 'incubation-academy']
 
 const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
-  'fire-relief': '/images/fire-relief/relief-104.jpg',
-  'back-2-school': '/images/b2s/_D5A8614.jpg',
-  'youth-programming': '/images/school/IMG_5608.jpg',
-  'coastal-care': '/images/coastal/IMG_4838.jpg',
+  'fire-relief': '/images/fire-relief/jhud-team.jpg',
+  'back-2-school': '/images/b2s/_D5A8212.jpg',
+  'youth-programming': '/images/school/IMG_7067.jpg',
+  'coastal-care': '/images/coastal/IMG_1858.jpg',
   'giving-season': '/images/b2s/6D5A0765.jpg',
-  'wellness': '/images/wellness/IMG_1610.jpg',
-  'community-builder-linkups': '/images/gallery/IMG_4353.jpg',
-  'community-health': '/images/wellness/IMG_9922.jpg',
+  'wellness': '/images/wellness/IMG_1559.jpg',
+  'community-builder-linkups': '/images/gallery/IMG_1673.jpg',
+  'community-health': '/images/wellness/IMG_9883.jpg',
 }
 
 
 const MISSION_MEDIA = [
-  { type: 'image' as const, src: '/images/b2s/_D5A7392.jpg', alt: 'Back to School community event' },
+  { type: 'image' as const, src: '/images/b2s/_D5A5920.jpg', alt: 'Back to School community event' },
   { type: 'image' as const, src: '/images/landscape/IMG_5943.jpg', alt: 'IBTU community in action' },
-  { type: 'image' as const, src: '/images/coastal/IMG_4838.jpg', alt: 'Coastal Care beach cleanup' },
+  { type: 'image' as const, src: '/images/coastal/IMG_1840.jpg', alt: 'Coastal Care beach cleanup' },
   { type: 'image' as const, src: '/images/landscape/_D5A8515.jpg', alt: 'Youth programming' },
-  { type: 'image' as const, src: '/images/wellness/IMG_9922.jpg', alt: 'Community yoga and wellness' },
+  { type: 'image' as const, src: '/images/wellness/IMG_1593.jpg', alt: 'Community yoga and wellness' },
   { type: 'image' as const, src: '/images/landscape/IMG_5683.jpg', alt: 'Community rebuilding together' },
 ]
 
@@ -37,13 +37,13 @@ const PILLARS = [
     name: 'School & Youth Stability',
     stat: '62,475+',
     statLabel: 'Students Served',
-    imageSrc: '/images/landscape/IMG_5727.jpg',
+    imageSrc: '/images/landscape/_D5A6090.jpg',
   },
   {
     name: 'Community Health & Resource Access',
     stat: '875,500+',
     statLabel: 'Lbs Food Distributed',
-    imageSrc: '/images/landscape/IMG_1628.jpg',
+    imageSrc: '/images/landscape/IMG_0324.jpg',
   },
 ]
 
@@ -81,7 +81,7 @@ export default async function HomePage() {
       slug: p.slug,
       title: p.title,
       pillar: p.pillar,
-      heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : '/images/gallery/IMG_1311.jpg'),
+      heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : '/images/gallery/IMG_4687.jpg'),
       cardStat: p.cardStat || '',
       description: p.tagline || '',
       hoverVideo: PROGRAM_HOVER_VIDEO[p.slug] || '',

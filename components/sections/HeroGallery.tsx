@@ -11,18 +11,18 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 ═══════════════════════════════════════ */
 
 const IMAGES = [
-  '/images/b2s/_D5A7392.jpg',
-  '/images/coastal/IMG_4838.jpg',
-  '/images/gallery/IMG_1311.jpg',
-  '/images/school/IMG_5608.jpg',
-  '/images/wellness/IMG_9922.jpg',
-  '/images/b2s/_D5A5912.jpg',
-  '/images/coastal/IMG_0267.jpg',
-  '/images/gallery/IMG_4353.jpg',
-  '/images/school/IMG_4674.jpg',
-  '/images/b2s/_D5A7155.jpg',
-  '/images/coastal/IMG_1778.jpg',
-  '/images/wellness/IMG_0279.jpg',
+  '/images/b2s/2V8A1776.jpg',
+  '/images/coastal/IMG_4953.jpg',
+  '/images/gallery/IMG_4500.jpg',
+  '/images/school/IMG_5406.jpg',
+  '/images/wellness/IMG_1614.jpg',
+  '/images/b2s/2V8A1826.jpg',
+  '/images/coastal/IMG_0568.jpg',
+  '/images/gallery/IMG_4649.jpg',
+  '/images/school/IMG_0140.jpg',
+  '/images/b2s/2V8A1895.jpg',
+  '/images/coastal/IMG_1652.jpg',
+  '/images/wellness/IMG_1589.jpg',
 ]
 
 const CARD_W = 300

@@ -13,18 +13,18 @@ export const metadata: Metadata = {
 
 /* 12 images for the sticky grid header */
 const HERO_IMAGES = [
-  '/images/b2s/6D5A1083.jpg',
-  '/images/wellness/IMG_1583.jpg',
+  '/images/b2s/6D5A0503.jpg',
+  '/images/additional/IMG_5870.jpg',
   '/images/additional/IMG_0020.jpg',
   '/images/b2s/_D5A7384.jpg',
   '/images/school/IMG_6078.jpg',
-  '/images/wellness/IMG_4688.jpg',
+  '/images/additional/IMG_0295.jpg',
   '/images/coastal/IMG_0561.jpg',
   '/images/b2s/6D5A0956.jpg',
   '/images/b2s/_D5A6045.jpg',
   '/images/additional/IMG_5667.jpg',
-  '/images/additional/IMG_0150.jpg',
-  '/images/coastal/IMG_4838.jpg',
+  '/images/additional/IMG_0285.jpg',
+  '/images/coastal/IMG_4913.jpg',
 ];
 
 const STATS = [

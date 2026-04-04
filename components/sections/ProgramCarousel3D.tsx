@@ -173,7 +173,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                 {/* High-res photo */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={prog.heroImage || '/images/gallery/IMG_1311.jpg'}
+                  src={prog.heroImage || '/images/gallery/IMG_1790.jpg'}
                   alt={`${prog.title} — IBTU`}
                   draggable={false}
                   loading={i < 4 ? 'eager' : 'lazy'}

@@ -137,13 +137,13 @@ export default function HomePageClient({
 
       {/* 6. Program Cards — 3D Gradient Carousel */}
       <ProgramCarousel3D programs={programCards.length > 0 ? programCards : [
-        { slug: 'fire-relief', title: 'Fire Relief & The Hub', pillar: 'Crisis & Disaster Stabilization', heroImage: '/images/fire-relief/relief-104.jpg' },
-        { slug: 'back-2-school', title: 'Back 2 School Festival', pillar: 'Community Health & Resource Access', heroImage: '/images/b2s/_D5A7392.jpg' },
-        { slug: 'youth-programming', title: 'Youth Programming', pillar: 'School & Youth Stability', heroImage: '/images/school/IMG_4674.jpg' },
-        { slug: 'coastal-care', title: 'Coastal Care', pillar: 'Community Health & Resource Access', heroImage: '/images/coastal/IMG_0267.jpg' },
-        { slug: 'wellness', title: 'Wellness & Health Activations', pillar: 'Community Health & Resource Access', heroImage: '/images/wellness/IMG_0279.jpg' },
-        { slug: 'giving-season', title: 'Giving Season', pillar: 'Community Health & Resource Access', heroImage: '/images/b2s/6D5A0871.jpg' },
-        { slug: 'community-health', title: 'Community Health & Equity', pillar: 'Community Health & Resource Access', heroImage: '/images/wellness/IMG_0007.jpg' },
+        { slug: 'fire-relief', title: 'Fire Relief & The Hub', pillar: 'Crisis & Disaster Stabilization', heroImage: '/images/fire-relief/jhud-stage.jpg' },
+        { slug: 'back-2-school', title: 'Back 2 School Festival', pillar: 'Community Health & Resource Access', heroImage: '/images/b2s/_D5A7957.jpg' },
+        { slug: 'youth-programming', title: 'Youth Programming', pillar: 'School & Youth Stability', heroImage: '/images/school/IMG_5843.jpg' },
+        { slug: 'coastal-care', title: 'Coastal Care', pillar: 'Community Health & Resource Access', heroImage: '/images/coastal/IMG_0085.jpg' },
+        { slug: 'wellness', title: 'Wellness & Health Activations', pillar: 'Community Health & Resource Access', heroImage: '/images/wellness/IMG_0011.jpg' },
+        { slug: 'giving-season', title: 'Giving Season', pillar: 'Community Health & Resource Access', heroImage: '/images/b2s/6D5A1108.jpg' },
+        { slug: 'community-health', title: 'Community Health & Equity', pillar: 'Community Health & Resource Access', heroImage: '/images/wellness/IMG_1628.jpg' },
       ]} />
 
       {/* 7. CTA */}

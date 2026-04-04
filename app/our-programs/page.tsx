@@ -13,47 +13,47 @@ export const metadata: Metadata = {
     "7 community programs across Crisis & Disaster Stabilization, School & Youth Stability, and Community Health & Resource Access. Built for Los Angeles.",
 };
 
-/* Images per program — correct folders for each program type */
+/* Images per program — unique to this page, no overlap with program detail pages */
 const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
   'fire-relief': [
-    '/images/fire-relief/relief-104.jpg', '/images/fire-relief/relief-177.jpg',
-    '/images/fire-relief/hub-interior-1.jpg', '/images/fire-relief/hub-ty-community.jpg',
-    '/images/fire-relief/hub-awards.jpg', '/images/fire-relief/hub-group.jpg',
+    '/images/additional/IMG_0317.jpg', '/images/additional/IMG_0339.jpg',
+    '/images/additional/IMG_0331.jpg', '/images/additional/IMG_0292.jpg',
+    '/images/additional/IMG_0283.jpg', '/images/additional/IMG_0337.jpg',
   ],
   'back-2-school': [
-    '/images/b2s/_D5A8614.jpg', '/images/b2s/_D5A8720.jpg',
-    '/images/b2s/_D5A8877.jpg', '/images/b2s/_D5A9056.jpg',
-    '/images/b2s/new-IMG_5394.jpg', '/images/b2s/new-IMG_5579.jpg',
+    '/images/b2s/_D5A5792.jpg', '/images/b2s/_D5A5869.jpg',
+    '/images/b2s/_D5A7187.jpg', '/images/b2s/_D5A7604.jpg',
+    '/images/b2s/_D5A8685.jpg', '/images/b2s/_D5A8736.jpg',
   ],
   'coastal-care': [
-    '/images/coastal/IMG_0024.jpg', '/images/coastal/IMG_0267.jpg',
-    '/images/coastal/IMG_1796.jpg', '/images/coastal/IMG_1810.jpg',
-    '/images/coastal/IMG_4838.jpg', '/images/coastal/IMG_4805.jpg',
+    '/images/coastal/IMG_1603.jpg', '/images/coastal/IMG_1817.jpg',
+    '/images/coastal/IMG_1820.jpg', '/images/coastal/IMG_1827.jpg',
+    '/images/coastal/IMG_4805.jpg', '/images/coastal/IMG_4926.jpg',
   ],
   'wellness': [
-    '/images/wellness/IMG_0007.jpg', '/images/wellness/IMG_0279.jpg',
-    '/images/wellness/IMG_1554.jpg', '/images/wellness/IMG_1583.jpg',
-    '/images/wellness/IMG_1610.jpg', '/images/wellness/IMG_9922.jpg',
+    '/images/additional/IMG_1540.jpg', '/images/additional/IMG_1585.jpg',
+    '/images/additional/IMG_1605.jpg', '/images/additional/IMG_1507.jpg',
+    '/images/additional/IMG_1517.jpg', '/images/additional/IMG_1619.jpg',
   ],
   'youth-programming': [
-    '/images/school/IMG_4674.jpg', '/images/school/IMG_5612.jpg',
-    '/images/school/IMG_5884.jpg', '/images/school/IMG_6134.jpg',
-    '/images/school/IMG_7067.jpg', '/images/school/IMG_7169.jpg',
+    '/images/school/IMG_5629.jpg', '/images/school/IMG_5652.jpg',
+    '/images/school/IMG_5893.jpg', '/images/school/IMG_5895.jpg',
+    '/images/school/IMG_5909.jpg', '/images/school/IMG_6238.jpg',
   ],
   'community-builder-linkups': [
-    '/images/gallery/IMG_4353.jpg', '/images/gallery/IMG_1501.jpg',
-    '/images/gallery/IMG_1603.jpg', '/images/gallery/IMG_1359.jpg',
-    '/images/gallery/IMG_1324.jpg', '/images/gallery/IMG_1807.jpg',
+    '/images/gallery/IMG_1311.jpg', '/images/gallery/IMG_1324.jpg',
+    '/images/gallery/IMG_1359.jpg', '/images/gallery/IMG_1501.jpg',
+    '/images/gallery/IMG_1603.jpg', '/images/gallery/IMG_1807.jpg',
   ],
   'community-health': [
-    '/images/wellness/IMG_0097.jpg', '/images/wellness/IMG_0111.jpg',
-    '/images/wellness/IMG_4457.jpg', '/images/wellness/IMG_4688.jpg',
-    '/images/wellness/IMG_9866.jpg', '/images/wellness/IMG_9874.jpg',
+    '/images/additional/IMG_5506.jpg', '/images/additional/IMG_5511.jpg',
+    '/images/additional/IMG_5645.jpg', '/images/additional/IMG_5724.jpg',
+    '/images/additional/IMG_5736.jpg', '/images/additional/IMG_5850.jpg',
   ],
   'giving-season': [
-    '/images/b2s/6D5A0871.jpg', '/images/b2s/6D5A1246.jpg',
-    '/images/b2s/_D5A8700.jpg', '/images/b2s/_D5A8744.jpg',
-    '/images/b2s/IMG_2113.jpg', '/images/b2s/IMG_2166.jpg',
+    '/images/b2s/6D5A0617.jpg', '/images/b2s/6D5A0700.jpg',
+    '/images/b2s/6D5A0723.jpg', '/images/b2s/6D5A0726.jpg',
+    '/images/b2s/6D5A0727.jpg', '/images/b2s/6D5A0746.jpg',
   ],
 };
 

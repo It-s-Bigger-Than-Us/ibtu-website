@@ -28,10 +28,10 @@ const PILLARS: PillarData[] = [
   {
     name: 'Crisis & Disaster Stabilization',
     images: [
-      '/images/fire-relief/relief-104.jpg',
-      '/images/fire-relief/hub-interior-2.jpg',
-      '/images/fire-relief/hub-ty-community.jpg',
-      '/images/fire-relief/relief-97.jpg',
+      '/images/pillars/crisis-1.jpg',
+      '/images/pillars/crisis-2.jpg',
+      '/images/landscape/_D5A6099.jpg',
+      '/images/landscape/IMG_0491.jpg',
     ],
   },
   {
@@ -39,8 +39,8 @@ const PILLARS: PillarData[] = [
     images: [
       '/images/pillars/school-1.jpg',
       '/images/pillars/school-2.jpg',
-      '/images/pillars/school-1.jpg',
-      '/images/pillars/school-2.jpg',
+      '/images/school/IMG_5382.jpg',
+      '/images/school/IMG_6057.jpg',
     ],
   },
   {
@@ -48,8 +48,8 @@ const PILLARS: PillarData[] = [
     images: [
       '/images/pillars/community-1.jpg',
       '/images/pillars/community-2.jpg',
-      '/images/pillars/community-1.jpg',
-      '/images/pillars/community-2.jpg',
+      '/images/additional/IMG_5680.jpg',
+      '/images/additional/IMG_5824.jpg',
     ],
   },
 ]

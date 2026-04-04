@@ -8,12 +8,12 @@ import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 const FLIP_IMGS = [
-  "/images/fire-relief/hub-ty-community.jpg",
-  "/images/b2s/_D5A8614.jpg",
-  "/images/school/IMG_5612.jpg",
-  "/images/coastal/IMG_4775.jpg",
-  "/images/wellness/IMG_1610.jpg",
-  "/images/fire-relief/relief-177.jpg",
+  "/images/additional/IMG_0313.jpg",
+  "/images/b2s/_D5A6030.jpg",
+  "/images/school/IMG_5508.jpg",
+  "/images/coastal/IMG_1814.jpg",
+  "/images/additional/IMG_5867.jpg",
+  "/images/b2s/_D5A7530.jpg",
 ];
 
 const VOL_OPTIONS = [

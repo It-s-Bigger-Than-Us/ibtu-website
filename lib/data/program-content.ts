@@ -585,9 +585,9 @@ IBTU's staff wellness programming is built into school contracts, not tacked on 
       '/images/wellness/IMG_1610.jpg',
       '/images/wellness/IMG_9922.jpg',
       '/images/wellness/IMG_9874.jpg',
-      '/images/wellness/IMG_0097.jpg',
-      '/images/wellness/IMG_0111.jpg',
-      '/images/wellness/IMG_4457.jpg',
+      '/images/wellness/IMG_9866.jpg',
+      '/images/additional/IMG_5907.jpg',
+      '/images/additional/IMG_5910.jpg',
     ],
     ctaText: 'WELLNESS WITHOUT WALLS.',
     ctaBody:
