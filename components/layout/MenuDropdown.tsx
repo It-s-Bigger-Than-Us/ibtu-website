@@ -10,6 +10,7 @@ const navLinks = [
   { label: 'Programs', href: '/our-programs' },
   { label: 'Impact', href: '/impact' },
   { label: 'Events', href: '/events' },
+  { label: 'Volunteer', href: 'https://volunteer.bloomerang.co/volunteer/#/join-party?k=u9uiz8g1753qfr' },
   { label: 'Get Involved', href: '/get-involved' },
   { label: 'Contact', href: '/contact' },
   { label: 'Donate', href: '/get-involved' },
@@ -109,37 +110,54 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
             }} />
 
             <nav ref={linksRef} aria-label="Main navigation" style={{ position: 'relative', zIndex: 1 }}>
-              {navLinks.map((link, i) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  ref={i === 0 ? firstLinkRef : undefined}
-                  className="menu-link"
-                  onClick={onClose}
-                  style={{
-                    display: 'block',
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(28px, 4vw, 48px)',
-                    textTransform: 'uppercase',
-                    color: 'var(--ibtu-black)',
-                    textDecoration: 'none',
-                    lineHeight: 1.15,
-                    letterSpacing: '-0.01em',
-                    padding: '4px 0',
-                    opacity: 0,
-                    transition: 'color 0.2s',
-                    whiteSpace: 'nowrap',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = 'var(--ibtu-white)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = 'var(--ibtu-black)'
-                  }}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link, i) => {
+                const isExternal = link.href.startsWith('http')
+                const linkStyle = {
+                  display: 'block',
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(28px, 4vw, 48px)',
+                  textTransform: 'uppercase' as const,
+                  color: 'var(--ibtu-black)',
+                  textDecoration: 'none',
+                  lineHeight: 1.15,
+                  letterSpacing: '-0.01em',
+                  padding: '4px 0',
+                  opacity: 0,
+                  transition: 'color 0.2s',
+                  whiteSpace: 'nowrap' as const,
+                }
+                const hoverIn = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-white)' }
+                const hoverOut = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-black)' }
+
+                return isExternal ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="menu-link"
+                    onClick={onClose}
+                    style={linkStyle}
+                    onMouseEnter={hoverIn}
+                    onMouseLeave={hoverOut}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    ref={i === 0 ? firstLinkRef : undefined}
+                    className="menu-link"
+                    onClick={onClose}
+                    style={linkStyle}
+                    onMouseEnter={hoverIn}
+                    onMouseLeave={hoverOut}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
             </nav>
           </motion.div>
         </>

@@ -17,6 +17,7 @@ const footerLinks = [
   { label: 'About', href: '/about' },
   { label: 'Programs', href: '/our-programs' },
   { label: 'Impact', href: '/impact' },
+  { label: 'Volunteer', href: 'https://volunteer.bloomerang.co/volunteer/#/join-party?k=u9uiz8g1753qfr' },
   { label: 'Get Involved', href: '/get-involved' },
   { label: 'Events', href: '/events' },
   { label: 'Contact', href: '/contact' },
