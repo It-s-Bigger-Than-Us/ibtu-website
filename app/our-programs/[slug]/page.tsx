@@ -508,7 +508,7 @@ export default async function ProgramPage({ params }: Props) {
             </p>
             <style>{`
               .qgiv-sponsor-btn {
-                background: #ffc703 !important;
+                background: #FFC700 !important;
                 font-family: var(--font-body) !important;
                 text-align: center !important;
                 font-size: 1.125rem !important;
@@ -575,7 +575,7 @@ export default async function ProgramPage({ params }: Props) {
             </p>
             <style>{`
               .qgiv-sponsor-btn {
-                background: #ffc703 !important;
+                background: #FFC700 !important;
                 font-family: var(--font-body) !important;
                 text-align: center !important;
                 font-size: 1.125rem !important;

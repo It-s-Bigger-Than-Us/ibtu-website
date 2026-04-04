@@ -164,15 +164,6 @@ export const events: Event[] = [
     description: "Community fundraiser for fire relief efforts",
     status: "Closed",
   },
-  {
-    title: "Westside Food Bank Distribution",
-    programSlug: "fire-relief",
-    year: 2025,
-    dateStart: "Dec 18, 2025",
-    location: "IBTU Relief Hub",
-    proofStats: "77 gift cards, 73 households, 161+ impacted",
-    status: "Closed",
-  },
 
   // YOUTH PROGRAMMING
   {
@@ -193,15 +184,6 @@ export const events: Event[] = [
     dateEnd: "Dec 17, 2025",
     location: "South Park Elementary",
     proofStats: "4.7-5/5 rating, 8-week cycle, 3rd year running",
-    status: "Closed",
-  },
-  {
-    title: "Hillcrest LTs — Fall 2025",
-    programSlug: "youth-programming",
-    year: 2025,
-    dateStart: "Oct 1, 2025",
-    dateEnd: "Dec 12, 2025",
-    location: "Hillcrest Drive Elementary",
     status: "Closed",
   },
   {
@@ -241,15 +223,6 @@ export const events: Event[] = [
     dateEnd: "Oct 2024",
     location: "Audubon Middle School",
     description: "Youth leadership pipeline program",
-    status: "Closed",
-  },
-  {
-    title: "Hillcrest LTs — Spring 2025",
-    programSlug: "youth-programming",
-    year: 2025,
-    dateStart: "Feb 18, 2025",
-    dateEnd: "Apr 25, 2025",
-    location: "Hillcrest Drive Elementary",
     status: "Closed",
   },
 

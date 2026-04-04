@@ -70,43 +70,7 @@ export default function Footer() {
     >
       {/* Skyline removed per Molly */}
 
-      {/* Sacred mantra — big LOT, word by word */}
       <div style={{ padding: 'clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px) 0' }}>
-        <div
-          ref={mantraRef}
-          style={{
-            maxWidth: 'var(--content-max)',
-            margin: '0 auto 60px',
-            perspective: '600px',
-          }}
-        >
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(56px, 12vw, 200px)',
-              lineHeight: 0.88,
-              textTransform: 'uppercase',
-              color: 'var(--ibtu-gold)',
-              letterSpacing: '-0.02em',
-              textAlign: 'center',
-            }}
-          >
-            {mantraWords.map((word, i) => (
-              <span
-                key={i}
-                className="foot-word gsap-reveal"
-                style={{
-                  display: 'inline-block',
-                  marginRight: '0.2em',
-                  opacity: 0,
-                }}
-              >
-                {word}
-              </span>
-            ))}
-          </h2>
-        </div>
-
         {/* Footer content — editorial 3-column grid */}
         <div
           style={{
@@ -276,13 +240,50 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Sacred mantra — small LOT, bottom of footer */}
+        <div
+          ref={mantraRef}
+          style={{
+            maxWidth: 'var(--content-max)',
+            margin: '48px auto 0',
+            paddingTop: '32px',
+            borderTop: '2px solid var(--ibtu-gold)',
+            perspective: '600px',
+          }}
+        >
+          <h2
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(20px, 3vw, 36px)',
+              lineHeight: 1,
+              textTransform: 'uppercase',
+              color: 'var(--ibtu-gold)',
+              letterSpacing: '-0.02em',
+              textAlign: 'center',
+              marginBottom: 24,
+            }}
+          >
+            {mantraWords.map((word, i) => (
+              <span
+                key={i}
+                className="foot-word gsap-reveal"
+                style={{
+                  display: 'inline-block',
+                  marginRight: '0.2em',
+                  opacity: 0,
+                }}
+              >
+                {word}
+              </span>
+            ))}
+          </h2>
+        </div>
+
         {/* Copyright */}
         <div
           style={{
             maxWidth: 'var(--content-max)',
-            margin: '48px auto 0',
-            paddingTop: '24px',
-            borderTop: '2px solid var(--ibtu-gold)',
+            margin: '0 auto',
             textAlign: 'center',
             fontFamily: 'var(--font-body)',
             fontSize: '11px',
