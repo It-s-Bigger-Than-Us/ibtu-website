@@ -122,6 +122,10 @@ export default function FireReliefPage() {
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           >
             <source
+              src="/videos/fire-day3-highlight.mp4"
+              type="video/mp4"
+            />
+            <source
               src={PROGRAM_VIDEOS['fire-relief'].highlight}
               type="video/mp4"
             />
@@ -138,7 +142,7 @@ export default function FireReliefPage() {
               textTransform: "uppercase",
               color: "#FFC700",
               marginBottom: 24,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: "var(--font-body)",
               fontWeight: 700,
             }}
           >
@@ -146,7 +150,7 @@ export default function FireReliefPage() {
           </span>
           <h1
             style={{
-              fontFamily: "'LOT', 'Bebas Neue', sans-serif",
+              fontFamily: "var(--font-display)",
               fontSize: "clamp(48px, 10vw, 160px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -166,7 +170,7 @@ export default function FireReliefPage() {
               color: "#fff",
               maxWidth: 620,
               lineHeight: 1.75,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: "var(--font-body)",
               fontWeight: 500,
             }}
           >
@@ -196,7 +200,7 @@ export default function FireReliefPage() {
               <div>
                 <span
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                     fontSize: "clamp(80px, 10vw, 140px)",
                     color: "#FFC700",
                     lineHeight: 0.85,
@@ -207,7 +211,7 @@ export default function FireReliefPage() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                     fontWeight: 700,
                     fontSize: 12,
                     letterSpacing: "3px",
@@ -220,7 +224,7 @@ export default function FireReliefPage() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                     fontSize: "clamp(32px, 4vw, 56px)",
                     color: "#fff",
                     lineHeight: 1,
@@ -238,7 +242,7 @@ export default function FireReliefPage() {
                     fontWeight: 600,
                     letterSpacing: "1px",
                     marginTop: 12,
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {phase.date}
@@ -249,7 +253,7 @@ export default function FireReliefPage() {
               <div>
                 <h3
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                     fontSize: "clamp(24px, 3vw, 40px)",
                     color: "#FFC700",
                     lineHeight: 1.1,
@@ -264,7 +268,7 @@ export default function FireReliefPage() {
                     color: "#fff",
                     lineHeight: 1.8,
                     maxWidth: 640,
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                     marginBottom: 48,
                   }}
                 >
@@ -281,7 +285,7 @@ export default function FireReliefPage() {
                     <div key={j}>
                       <span
                         style={{
-                          fontFamily: "Poppins, sans-serif",
+                          fontFamily: "var(--font-body)",
                           fontSize: "clamp(28px, 3vw, 48px)",
                           color: "#FFC700",
                           lineHeight: 1,
@@ -298,7 +302,7 @@ export default function FireReliefPage() {
                           fontWeight: 600,
                           letterSpacing: "1px",
                           textTransform: "uppercase",
-                          fontFamily: "Poppins, sans-serif",
+                          fontFamily: "var(--font-body)",
                         }}
                       >
                         {stat.label}
@@ -333,6 +337,10 @@ export default function FireReliefPage() {
             }}
           >
             <source
+              src="/videos/rebuild-recap.mp4"
+              type="video/mp4"
+            />
+            <source
               src={PROGRAM_VIDEOS['fire-relief'].rebuild}
               type="video/mp4"
             />
@@ -349,7 +357,7 @@ export default function FireReliefPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#FFC700",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: "var(--font-body)",
               fontWeight: 700,
               marginBottom: 20,
             }}
@@ -358,7 +366,7 @@ export default function FireReliefPage() {
           </span>
           <h2
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: "var(--font-body)",
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#fff",
@@ -373,7 +381,7 @@ export default function FireReliefPage() {
               color: "#fff",
               lineHeight: 1.7,
               maxWidth: 600,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: "var(--font-body)",
               marginBottom: 60,
             }}
           >
@@ -399,7 +407,7 @@ export default function FireReliefPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                     fontSize: 28,
                     color: "#FFC700",
                     marginBottom: 12,
@@ -413,7 +421,7 @@ export default function FireReliefPage() {
                     fontSize: 14,
                     color: "#fff",
                     lineHeight: 1.7,
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {service.detail}
@@ -440,7 +448,7 @@ export default function FireReliefPage() {
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   color: "#FFC700",
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: "var(--font-body)",
                   fontWeight: 700,
                   marginBottom: 16,
                 }}
@@ -452,7 +460,7 @@ export default function FireReliefPage() {
                   fontSize: 18,
                   color: "#fff",
                   lineHeight: 1.6,
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: "var(--font-body)",
                 }}
               >
                 Baldwin Hills Crenshaw Plaza
@@ -472,7 +480,7 @@ export default function FireReliefPage() {
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   color: "#FFC700",
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: "var(--font-body)",
                   fontWeight: 700,
                   marginBottom: 0,
                 }}
@@ -488,12 +496,13 @@ export default function FireReliefPage() {
                   background: "#FFC700",
                   color: "#000",
                   padding: "16px 40px",
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: "var(--font-body)",
                   fontSize: 13,
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
                   textDecoration: "none",
+                  borderRadius: "16px",
                   width: "fit-content",
                 }}
               >
@@ -508,12 +517,13 @@ export default function FireReliefPage() {
                   background: "transparent",
                   color: "#FFC700",
                   padding: "16px 40px",
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: "var(--font-body)",
                   fontSize: 13,
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
                   textDecoration: "none",
+                  borderRadius: "16px",
                   border: "2px solid #FFC700",
                   width: "fit-content",
                 }}
@@ -533,7 +543,7 @@ export default function FireReliefPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: "var(--font-body)",
               fontWeight: 700,
               marginBottom: 40,
             }}
@@ -551,7 +561,7 @@ export default function FireReliefPage() {
               <div key={i} style={{ textAlign: "center" }}>
                 <span
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                     fontSize: "clamp(32px, 3.5vw, 56px)",
                     color: "#000",
                     lineHeight: 1,
@@ -569,7 +579,7 @@ export default function FireReliefPage() {
                     fontWeight: 600,
                     marginTop: 8,
                     display: "block",
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: "var(--font-body)",
                   }}
                 >
                   {stat.label}
@@ -589,7 +599,7 @@ export default function FireReliefPage() {
           >
             <h2
               style={{
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: "var(--font-body)",
                 fontSize: "clamp(40px, 5.5vw, 80px)",
                 lineHeight: 0.95,
                 color: "#000",
@@ -605,7 +615,7 @@ export default function FireReliefPage() {
                 maxWidth: 560,
                 margin: "0 auto 48px",
                 lineHeight: 1.7,
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: "var(--font-body)",
               }}
             >
               The Hub is open. The work continues. Every dollar and every hour
@@ -628,12 +638,13 @@ export default function FireReliefPage() {
                   background: "#000",
                   color: "#FFC700",
                   padding: "18px 48px",
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: "var(--font-body)",
                   fontSize: 13,
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
                   textDecoration: "none",
+                  borderRadius: "16px",
                 }}
               >
                 Donate &rarr;
@@ -647,12 +658,13 @@ export default function FireReliefPage() {
                   background: "transparent",
                   color: "#000",
                   padding: "18px 48px",
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: "var(--font-body)",
                   fontSize: 13,
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
                   textDecoration: "none",
+                  borderRadius: "16px",
                   border: "2px solid #000",
                 }}
               >
