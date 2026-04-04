@@ -382,9 +382,9 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
         .pillar-cube-label::after {
           content: '';
           position: absolute;
-          inset: -1px;
+          inset: -0.5px;
           border-radius: 0 0 12px 12px;
-          padding: 2px;
+          padding: 0.5px;
           background: var(--holo-gradient);
           background-size: 600% 600%;
           animation: holo-shift 20s ease infinite;

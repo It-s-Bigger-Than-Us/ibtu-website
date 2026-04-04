@@ -100,7 +100,7 @@ export default function GoldTicker({
           right: 0,
           zIndex: isStuck ? 90 : undefined,
           transition: 'box-shadow 0.4s',
-          boxShadow: isStuck ? '0 4px 24px #000' : 'none',
+          boxShadow: isStuck ? '0 4px 24px rgba(0,0,0,0.15)' : 'none',
         }}
       >
         {/* Iridescent border — shows when stuck AND below is yellow */}

@@ -112,7 +112,7 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
                 borderRadius: 12,
                 overflow: 'hidden',
                 backfaceVisibility: 'hidden',
-                boxShadow: '0 4px 20px -4px #000',
+                boxShadow: '0 4px 20px -4px rgba(0,0,0,0.15)',
                 zIndex: Math.round(tz),
               }}
             >

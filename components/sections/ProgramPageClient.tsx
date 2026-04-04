@@ -495,7 +495,7 @@ export default function ProgramPageClient({
                     flexDirection: 'column',
                     padding: 'clamp(20px, 3vw, 40px)',
                     background: '#000',
-                    border: '2px solid #FFC700',
+                    border: '0.5px solid #FFC700',
                     borderRadius: 16,
                     opacity: 0,
                   }}
@@ -692,7 +692,7 @@ export default function ProgramPageClient({
                   className="pp-serve-item holo-glass"
                   style={{
                     background: '#000',
-                    border: '2px solid #FFC700',
+                    border: '0.5px solid #FFC700',
                     borderRadius: 16,
                     padding: 'clamp(16px, 2vw, 24px) clamp(20px, 2.5vw, 32px)',
                     display: 'flex',
@@ -889,7 +889,7 @@ export default function ProgramPageClient({
               className="sparkle-stroke"
               style={{
                 display: 'inline-block',
-                border: '2px solid #000',
+                border: '0.5px solid #000',
                 color: '#000',
                 padding: '16px 40px',
                 borderRadius: 16,

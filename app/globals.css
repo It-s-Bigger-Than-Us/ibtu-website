@@ -108,21 +108,21 @@
    16px corners. Glowing shadow on all containers.
 ═══════════════════════════════════════ */
 .holo-glass {
-  border: 1px solid transparent;
+  border: 0.5px solid transparent;
   background-clip: padding-box;
   position: relative;
   border-radius: 16px;
   box-shadow:
-    0 0 10px 1px #FFF4B8,
-    0 0 21px 3px #D4F0F8,
-    0 0 32px 4px #D4F5E8;
+    0 0 10px 1px rgba(255, 244, 184, 0.15),
+    0 0 21px 3px rgba(212, 240, 248, 0.15),
+    0 0 32px 4px rgba(212, 245, 232, 0.15);
 }
 .holo-glass::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 16px;
-  padding: 2px;
+  padding: 0.5px;
   background: var(--holo-gradient);
   background-size: 600% 600%;
   animation: holo-shift 20s ease infinite;
@@ -147,13 +147,13 @@
   overflow: visible;
   border-radius: 16px;
   box-shadow:
-    0 0 8px 1px #FFF4B8,
-    0 0 16px 2px #D4F0F8;
+    0 0 8px 1px rgba(255, 244, 184, 0.15),
+    0 0 16px 2px rgba(212, 240, 248, 0.15);
 }
 .sparkle-stroke::before {
   content: '';
   position: absolute;
-  inset: -2px;
+  inset: -0.5px;
   border-radius: 16px;
   background: conic-gradient(
     from var(--sparkle-angle, 0deg),
@@ -216,9 +216,9 @@
 .iridescent-border::after {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: -0.5px;
   border-radius: 16px;
-  padding: 2px;
+  padding: 0.5px;
   background: var(--holo-gradient);
   background-size: 600% 600%;
   animation: holo-shift 20s ease infinite;
@@ -236,9 +236,9 @@
 .iridescent-border:hover,
 .iridescent-active {
   box-shadow:
-    0 0 8px 1px #FFF4B8,
-    0 0 16px 2px #D4F0F8,
-    0 0 24px 3px #D4F5E8;
+    0 0 8px 1px rgba(255,244,184,0.15),
+    0 0 16px 2px rgba(212,240,248,0.15),
+    0 0 24px 3px rgba(212,245,232,0.15);
   transition: box-shadow 0.6s var(--ease-out-expo);
 }
 

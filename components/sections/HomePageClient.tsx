@@ -91,7 +91,7 @@ export default function HomePageClient({
             </a>
             <a href="/get-involved" style={{
               display: 'inline-block',
-              border: '2px solid #FFC700',
+              border: '0.5px solid #FFC700',
               color: '#FFC700',
               padding: '16px 40px',
               borderRadius: '16px',

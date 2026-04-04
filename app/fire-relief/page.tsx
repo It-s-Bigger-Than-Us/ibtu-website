@@ -593,7 +593,7 @@ export default function FireReliefPage() {
         <section style={{ background: "#FFC700", padding: "100px 80px", textAlign: "center" }}>
           <div
             style={{
-              borderTop: "2px solid #000",
+              borderTop: "0.5px solid #000",
               paddingTop: 80,
             }}
           >

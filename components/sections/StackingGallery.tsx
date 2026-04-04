@@ -131,7 +131,7 @@ export default function StackingGallery({ images, title }: StackingGalleryProps)
               inset: 0,
               borderRadius: '12px',
               overflow: 'hidden',
-              boxShadow: '0 12px 40px #000',
+              boxShadow: '0 12px 40px rgba(0,0,0,0.15)',
               zIndex: i,
               opacity: i === 0 ? 1 : 0,
               transform: i === 0 ? 'none' : undefined,

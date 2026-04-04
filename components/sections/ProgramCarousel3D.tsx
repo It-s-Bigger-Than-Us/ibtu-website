@@ -163,8 +163,8 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                   zIndex: Math.round(tz),
                   transition: 'box-shadow 0.4s, filter 0.3s',
                   boxShadow: isHovered
-                    ? '0 0 20px 3px #FFF4B8, 0 0 40px 6px #D4F0F8, 0 0 60px 8px #D4F5E8'
-                    : '0 12px 40px -10px #000',
+                    ? '0 0 20px 3px rgba(255,244,184,0.15), 0 0 40px 6px rgba(212,240,248,0.15), 0 0 60px 8px rgba(212,245,232,0.15)'
+                    : '0 12px 40px -10px rgba(0,0,0,0.15)',
                   filter: blur > 0.2 ? `blur(${blur}px)` : 'none',
                 }}
                 onMouseEnter={() => setHoveredIdx(i)}

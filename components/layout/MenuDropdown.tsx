@@ -99,7 +99,7 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
               position: 'absolute',
               inset: 0,
               borderRadius: '16px',
-              padding: '2px',
+              padding: '0.5px',
               background: 'var(--holo-gradient)',
               backgroundSize: '600% 600%',
               animation: 'holo-shift 20s ease infinite',

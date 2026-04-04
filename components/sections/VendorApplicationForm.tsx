@@ -81,7 +81,7 @@ const sectionHeadStyle: React.CSSProperties = {
   marginBottom: 16,
   marginTop: 40,
   paddingBottom: 8,
-  borderBottom: '2px solid #000',
+  borderBottom: '0.5px solid #000',
 };
 
 export default function VendorApplicationForm() {

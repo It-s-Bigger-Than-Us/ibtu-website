@@ -81,7 +81,7 @@ export default function Footer() {
             gridTemplateColumns: '1fr 1fr 1fr',
             gap: '48px',
             paddingTop: '48px',
-            borderTop: '2px solid var(--ibtu-gold)',
+            borderTop: '0.5px solid var(--ibtu-gold)',
             alignItems: 'end',
           }}
         >
@@ -248,7 +248,7 @@ export default function Footer() {
             maxWidth: 'var(--content-max)',
             margin: '48px auto 0',
             paddingTop: '32px',
-            borderTop: '2px solid var(--ibtu-gold)',
+            borderTop: '0.5px solid var(--ibtu-gold)',
             perspective: '600px',
           }}
         >

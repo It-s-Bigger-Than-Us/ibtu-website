@@ -273,7 +273,7 @@ export default function GetInvolvedPage() {
         <section style={{
           background: '#FFC700',
           padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
-          borderTop: '2px solid #000',
+          borderTop: '0.5px solid #000',
         }}>
           <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
             <h2 style={{

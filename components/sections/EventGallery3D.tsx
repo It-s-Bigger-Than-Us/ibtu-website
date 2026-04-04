@@ -155,7 +155,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
                 borderRadius: 6,
                 background: "#000",
                 border: "1px solid #FFC700",
-                boxShadow: "0 4px 20px #000",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
                 transition: "border-color 0.2s, box-shadow 0.2s",
               }}
               onMouseEnter={(e) => {
