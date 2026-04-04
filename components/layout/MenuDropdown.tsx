@@ -13,7 +13,7 @@ const navLinks = [
   { label: 'Volunteer', href: 'https://volunteer.bloomerang.co/volunteer/#/join-party?k=u9uiz8g1753qfr' },
   { label: 'Get Involved', href: '/get-involved' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Donate', href: '/get-involved' },
+  { label: 'Donate', href: 'https://secure.qgiv.com/for/ibt/' },
 ]
 
 interface MenuDropdownProps {

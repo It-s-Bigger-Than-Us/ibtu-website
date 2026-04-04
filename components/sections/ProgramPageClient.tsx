@@ -96,6 +96,8 @@ function formatNumber(n: number, original: string): string {
 export default function ProgramPageClient({
   program,
   heroImageUrl,
+  // pastEvents reserved for future event timeline section
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   pastEvents,
 }: ProgramPageClientProps) {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -160,21 +162,16 @@ export default function ProgramPageClient({
           const parsed = parseStatNumber(original)
           if (parsed.num === 0) return
 
-          gsap.fromTo(
-            { val: 0 },
-            { val: parsed.num },
-            {
-              val: parsed.num,
-              duration: 1.2,
-              ease: 'power2.out',
-              scrollTrigger: { trigger: card, start: 'top 80%', once: true },
-              onUpdate: function () {
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const current = (this.targets()[0] as any).val
-                numEl.textContent = parsed.prefix + formatNumber(current, original) + parsed.suffix
-              },
-            }
-          )
+          const counter = { val: 0 }
+          gsap.to(counter, {
+            val: parsed.num,
+            duration: 1.2,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: card, start: 'top 80%', once: true },
+            onUpdate: () => {
+              numEl.textContent = parsed.prefix + formatNumber(counter.val, original) + parsed.suffix
+            },
+          })
         })
       }
 
@@ -885,8 +882,10 @@ export default function ProgramPageClient({
                 Volunteer &rarr;
               </a>
             )}
-            <Link
-              href="/get-involved"
+            <a
+              href={program.donateUrl || 'https://secure.qgiv.com/for/ibt/'}
+              target="_blank"
+              rel="noopener noreferrer"
               className="sparkle-stroke"
               style={{
                 display: 'inline-block',
@@ -903,7 +902,7 @@ export default function ProgramPageClient({
               }}
             >
               Donate &rarr;
-            </Link>
+            </a>
           </div>
         </div>
       </section>

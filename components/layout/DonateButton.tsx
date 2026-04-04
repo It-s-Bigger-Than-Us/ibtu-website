@@ -11,8 +11,8 @@ import Link from 'next/link'
 ═══════════════════════════════════════ */
 
 const ACTIONS = [
-  { label: 'Donate', href: '/get-involved' },
-  { label: 'Volunteer', href: '/get-involved#volunteer' },
+  { label: 'Donate', href: 'https://secure.qgiv.com/for/ibt/' },
+  { label: 'Volunteer', href: 'https://volunteer.bloomerang.co/volunteer/#/join-party?k=u9uiz8g1753qfr' },
   { label: 'Support Us', href: '/get-involved' },
 ]
 

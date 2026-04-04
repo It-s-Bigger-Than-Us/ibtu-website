@@ -21,7 +21,7 @@ const footerLinks = [
   { label: 'Get Involved', href: '/get-involved' },
   { label: 'Events', href: '/events' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Donate', href: '/get-involved' },
+  { label: 'Donate', href: 'https://secure.qgiv.com/for/ibt/' },
 ]
 
 export default function Footer() {

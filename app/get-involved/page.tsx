@@ -327,7 +327,9 @@ export default function GetInvolvedPage() {
                 Find Your Role
               </Link>
               <a
-                href="mailto:info@itsbiggerthanusla.org?subject=Donation%20Inquiry"
+                href="https://secure.qgiv.com/for/ibt/"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: 'inline-block',
                   border: '2px solid #000',
