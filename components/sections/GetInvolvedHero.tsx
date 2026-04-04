@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -10,9 +11,24 @@ gsap.registerPlugin(ScrollTrigger)
    GET INVOLVED HERO — Codrops Sticky Grid Scroll
    Faithful port: parallax wrapper, column reveal
    from alternating top/bottom, zoom + split,
-   content title slides up, desc + CTA fade in.
-   Yellow (#FFC700) background.
+   content title stays centered, desc bumps it up.
+   Mixed backgrounds: iridescent, blue sky, yellow.
 ═══════════════════════════════════════ */
+
+const ITEM_BACKGROUNDS = [
+  'var(--holo-gradient)',  // iridescent
+  '#FFC700',              // yellow
+  'none',                 // blue sky image
+  '#FFC700',              // yellow
+  'var(--holo-gradient)',  // iridescent
+  'none',                 // blue sky image
+  'none',                 // blue sky image
+  'var(--holo-gradient)',  // iridescent
+  '#FFC700',              // yellow
+  'none',                 // blue sky image
+  '#FFC700',              // yellow
+  'var(--holo-gradient)',  // iridescent
+]
 
 interface GetInvolvedHeroProps {
   images: string[]
@@ -63,7 +79,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
     // 2. Title fade in
     gsap.from(title, {
       opacity: 0,
-      duration: 0.7,
+      duration: 0.5,
       ease: 'power1.out',
       scrollTrigger: {
         trigger: block,
@@ -104,19 +120,23 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
     tl.to(columns[0], { xPercent: -40, duration: 1, ease: 'power3.inOut' }, '<')
     tl.to(columns[2], { xPercent: 40, duration: 1, ease: 'power3.inOut' }, '<')
     tl.to(columns[1], {
-      yPercent: (index: number) => (index < Math.floor(columns[1].length / 2) ? -1 : 1) * 40,
+      yPercent: (_index: number, el: HTMLElement) => {
+        const siblings = columns[1]
+        const idx = siblings.indexOf(el)
+        return (idx < Math.floor(siblings.length / 2) ? -1 : 1) * 40
+      },
       duration: 0.5,
       ease: 'power1.inOut',
     }, '-=0.5')
 
     // Content toggle — title slides up, desc + btn fade in
-    tl.to(title, { yPercent: 0, duration: 0.7, ease: 'power2.inOut' }, '-=0.32')
+    tl.to(title, { yPercent: 0, duration: 0.5, ease: 'power2.inOut' }, '-=0.32')
     tl.to([desc, btn], {
       opacity: 1,
-      duration: 0.4,
+      duration: 0.3,
       ease: 'power1.inOut',
       pointerEvents: 'all',
-    }, '-=90%')
+    }, '-=0.2')
 
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill())
@@ -131,7 +151,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
   return (
     <section
       ref={blockRef}
-      style={{ height: '425vh', background: '#FFC700' }}
+      style={{ height: '425vh', background: '#000' }}
     >
       <div
         ref={wrapperRef}
@@ -139,7 +159,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
           position: 'sticky',
           top: 0,
           height: '100vh',
-          padding: '0 24px',
+          padding: 0,
           overflow: 'hidden',
           willChange: 'transform',
         }}
@@ -156,7 +176,8 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
             width: '100%',
             height: '100vh',
             textAlign: 'center',
-            zIndex: 1,
+            zIndex: 2,
+            pointerEvents: 'none',
           }}
         >
           <h1
@@ -169,6 +190,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
               textTransform: 'uppercase',
               color: '#000',
               maxWidth: 900,
+              pointerEvents: 'auto',
             }}
           >
             There Is a Role for You Here
@@ -186,6 +208,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
               maxWidth: 480,
               marginTop: 24,
               fontWeight: 700,
+              pointerEvents: 'auto',
             }}
           >
             Behind every number is a neighbor who said yes. 7,500+ volunteers. 300+ partners. One city building together.
@@ -202,64 +225,89 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
               fontWeight: 700,
               letterSpacing: '2px',
               textTransform: 'uppercase',
-              color: '#000',
+              color: '#FFC700',
+              background: '#000',
               textDecoration: 'none',
-              borderBottom: '2px solid #000',
-              paddingBottom: 4,
+              padding: '14px 36px',
+              borderRadius: '16px',
+              pointerEvents: 'auto',
             }}
           >
             Find Your Role
           </a>
         </div>
 
-        {/* Gallery grid — 3 columns, positioned behind content */}
+        {/* Gallery grid — 3 columns, fills viewport behind content */}
         <div style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate3d(-50%, -50%, 0)',
-          width: 'min(736px, 55vw)',
+          width: 'min(900px, 80vw)',
         }}>
           <ul
             ref={gridRef}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              columnGap: 'clamp(12px, 2vw, 32px)',
-              rowGap: 'clamp(16px, 2.5vw, 40px)',
+              columnGap: 'clamp(8px, 1.5vw, 20px)',
+              rowGap: 'clamp(8px, 1.5vw, 20px)',
               listStyle: 'none',
               margin: 0,
               padding: 0,
               willChange: 'transform',
             }}
           >
-            {displayImages.map((src, i) => (
-              <li
-                key={i}
-                className="gi"
-                style={{
-                  width: '100%',
-                  aspectRatio: '1',
-                  willChange: 'transform',
-                  borderRadius: 8,
-                  overflow: 'hidden',
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={src}
-                  alt={`IBTU community ${i + 1}`}
-                  loading={i < 6 ? 'eager' : 'lazy'}
+            {displayImages.map((src, i) => {
+              const bg = ITEM_BACKGROUNDS[i] || '#FFC700'
+              const isBlueSky = bg === 'none'
+              const isHolo = bg.includes('holo')
+
+              return (
+                <li
+                  key={i}
+                  className="gi"
                   style={{
                     width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    display: 'block',
-                    filter: 'brightness(1.05) saturate(1.15)',
+                    aspectRatio: '1',
+                    willChange: 'transform',
+                    borderRadius: 12,
+                    overflow: 'hidden',
+                    position: 'relative',
+                    background: isBlueSky ? undefined : isHolo ? undefined : bg,
+                    backgroundImage: isHolo ? bg : undefined,
+                    backgroundSize: isHolo ? '600% 600%' : undefined,
+                    animation: isHolo ? 'holo-shift 20s ease infinite' : undefined,
                   }}
-                />
-              </li>
-            ))}
+                >
+                  {/* Blue sky background for designated items */}
+                  {isBlueSky && (
+                    <Image
+                      src="/images/blue-sky.jpg"
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 33vw, 300px"
+                      style={{ objectFit: 'cover', position: 'absolute', inset: 0, zIndex: 0 }}
+                    />
+                  )}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt={`IBTU community ${i + 1}`}
+                    loading={i < 6 ? 'eager' : 'lazy'}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block',
+                      filter: 'brightness(1.05) saturate(1.15)',
+                      position: 'relative',
+                      zIndex: 1,
+                    }}
+                  />
+                </li>
+              )
+            })}
           </ul>
         </div>
       </div>

@@ -8,7 +8,6 @@ import Footer from '@/components/layout/Footer'
 import ProgramCarousel3D from '@/components/sections/ProgramCarousel3D'
 import PillarTabs from '@/components/sections/PillarTabs'
 import PillarCubes from '@/components/sections/PillarCubes'
-import HeroGallery from '@/components/sections/HeroGallery'
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
@@ -46,15 +45,12 @@ export default function HomePageClient({
       {/* 1. Hero */}
       <HeroReveal />
 
-      {/* 1b. Hero Gallery — revealed by logo zoom */}
-      <HeroGallery />
-
       {/* 2. Hero Statement — approved wireframe copy */}
       <section style={{
         background: '#000',
         padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
       }}>
-        <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
+        <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(48px, 8vw, 140px)',
@@ -72,12 +68,12 @@ export default function HomePageClient({
             color: '#FFF',
             lineHeight: 1.7,
             maxWidth: 720,
+            margin: '0 auto 40px',
             fontWeight: 700,
-            marginBottom: 40,
           }}>
             It&apos;s Bigger Than Us builds trusted, lasting programs in the places communities already are — schools, neighborhood hubs, community spaces. Everything we do starts by listening. Everything we build is designed with dignity. And we don&apos;t leave.
           </p>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
             <a href="/impact" style={{
               display: 'inline-block',
               background: '#FFC700',

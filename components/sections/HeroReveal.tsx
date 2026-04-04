@@ -5,73 +5,98 @@ import gsap from 'gsap'
 import Image from 'next/image'
 
 /* ═══════════════════════════════════════
-   HERO REVEAL — Text + Logo only
-   1. "It's Bigger Than Us" — JUSTIFIED, each word SLAMS
-      in with personality — scale, rotation, bounce
-   2. Logo WIPES IN from center (clip-path from center)
-      and grows dramatically
-   3. Logo BUSTS out of the window to reveal gallery below
-   Gallery is a separate component (GalleryCarousel3D)
+   HERO REVEAL — Full homepage hero
+   1. "IT'S BIGGER THAN US" text wipes in from sides
+   2. IBTU logo circle-wipes in from center
+   3. Logo zooms forward to reveal split content
+   Total animation: ~3 seconds
 ═══════════════════════════════════════ */
 
 export default function HeroReveal() {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLDivElement>(null)
+  const leftTextRef = useRef<HTMLSpanElement>(null)
+  const rightTextRef = useRef<HTMLSpanElement>(null)
+  const textContainerRef = useRef<HTMLDivElement>(null)
   const logoRef = useRef<HTMLDivElement>(null)
+  const splitRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!textRef.current || !logoRef.current) return
+    if (
+      !leftTextRef.current ||
+      !rightTextRef.current ||
+      !textContainerRef.current ||
+      !logoRef.current ||
+      !splitRef.current
+    ) return
 
-    const words = textRef.current.querySelectorAll('.hero-word')
     const tl = gsap.timeline()
 
-    // Phase 1: Each word SLAMS in with unique personality
-    const entrances = [
-      { y: 300, scale: 3, rotation: -8, ease: 'back.out(2.2)' },   // It's
-      { y: -250, scale: 2.8, rotation: 5, ease: 'elastic.out(1, 0.5)' },   // Bigger
-      { y: 200, scale: 2.5, rotation: -3, ease: 'back.out(1.8)' },  // Than
-      { y: 350, scale: 3.5, rotation: 0, ease: 'expo.out' },         // Us
-    ]
+    // Setup: hide everything initially
+    gsap.set(logoRef.current, { opacity: 0, scale: 0.15 })
+    gsap.set(splitRef.current, { opacity: 0 })
 
-    words.forEach((word, i) => {
-      const e = entrances[i]
-      tl.fromTo(
-        word,
-        { opacity: 0, y: e.y, scale: e.scale, rotation: e.rotation },
-        { opacity: 1, y: 0, scale: 1, rotation: 0, duration: 0.7, ease: e.ease },
-        i * 0.35,
-      )
-      // Impact bounce
-      tl.to(word, { scale: 1.15, duration: 0.08, ease: 'power4.out' }, `>-0.05`)
-      tl.to(word, { scale: 1, duration: 0.3, ease: 'power2.inOut' })
-    })
-
-    tl.to({}, { duration: 0.6 })
-
-    // Phase 2: Text fades, logo wipes in FROM CENTER
-    tl.to(textRef.current, { opacity: 0, scale: 0.5, duration: 0.4, ease: 'power3.in' })
-
-    // Logo wipes in from center point outward
+    // ─── Phase 1: Text wipes in from both sides (~0.8s) ───
     tl.fromTo(
-      logoRef.current,
-      { opacity: 1, scale: 0.2, clipPath: 'circle(0% at 50% 50%)' },
-      { scale: 1, clipPath: 'circle(100% at 50% 50%)', duration: 1.2, ease: 'expo.out' },
+      leftTextRef.current,
+      { x: '-110%', opacity: 0 },
+      { x: '0%', opacity: 1, duration: 0.5, ease: 'power3.out' },
+      0,
+    )
+    tl.fromTo(
+      rightTextRef.current,
+      { x: '110%', opacity: 0 },
+      { x: '0%', opacity: 1, duration: 0.5, ease: 'power3.out' },
+      0,
     )
 
-    // Logo breathes once
-    tl.to(logoRef.current, { scale: 1.1, duration: 0.35, ease: 'power2.out' })
-    tl.to(logoRef.current, { scale: 1, duration: 0.25, ease: 'power2.in' })
-    tl.to({}, { duration: 0.25 })
+    // Brief hold
+    tl.to({}, { duration: 0.3 })
 
-    // Phase 3: Logo grows DRAMATICALLY — busts out of the window
-    tl.to(logoRef.current, {
-      scale: 40,
+    // ─── Phase 2: Text fades, logo circle-wipes in (~0.8s) ───
+    tl.to(textContainerRef.current, {
       opacity: 0,
-      duration: 1,
-      ease: 'power4.in',
+      scale: 0.85,
+      duration: 0.25,
+      ease: 'power2.in',
     })
 
-    return () => { tl.kill() }
+    tl.to(logoRef.current, { opacity: 1, duration: 0.01 })
+    tl.fromTo(
+      logoRef.current,
+      {
+        scale: 0.6,
+        clipPath: 'circle(0% at 50% 50%)',
+      },
+      {
+        scale: 1,
+        clipPath: 'circle(55% at 50% 50%)',
+        duration: 0.6,
+        ease: 'expo.out',
+      },
+    )
+
+    // Brief hold
+    tl.to({}, { duration: 0.15 })
+
+    // ─── Phase 3: Logo zooms forward, reveals split content (~0.8s) ───
+    tl.to(logoRef.current, {
+      scale: 25,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power3.in',
+    })
+
+    // Split content fades and slides in
+    tl.fromTo(
+      splitRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.4, ease: 'power2.out' },
+      '-=0.2',
+    )
+
+    return () => {
+      tl.kill()
+    }
   }, [])
 
   return (
@@ -79,85 +104,214 @@ export default function HeroReveal() {
       ref={sectionRef}
       style={{
         height: '100vh',
-        background: '#FFC700',
+        background: '#000',
         position: 'relative',
         overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
       }}
     >
-      {/* Phase 1: Words — justified, fill width */}
+      {/* ─── Phase 1: Text wipe ─── */}
       <div
-        ref={textRef}
+        ref={textContainerRef}
         style={{
-          position: 'absolute', inset: 0,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          zIndex: 2, padding: '0 clamp(24px, 5vw, 80px)', perspective: '800px',
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 3,
+          overflow: 'hidden',
         }}
       >
         <h1
           style={{
             fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(72px, 20vw, 340px)',
-            lineHeight: 0.82,
+            fontSize: 'clamp(48px, 12vw, 200px)',
+            lineHeight: 0.9,
             textTransform: 'uppercase',
-            color: '#000',
-            letterSpacing: '-0.04em',
+            color: '#FFC700',
+            letterSpacing: '-0.02em',
             textAlign: 'center',
-            width: '100%',
-            maxWidth: 'var(--content-max)',
+            whiteSpace: 'nowrap',
             display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: '0 0.2em',
+            gap: '0.15em',
           }}
         >
-          {["It's", 'Bigger', 'Than', 'Us'].map((word, i) => (
-            <span key={i} className="hero-word" style={{
+          <span
+            ref={leftTextRef}
+            style={{
               display: 'inline-block',
               opacity: 0,
-              transformOrigin: 'center bottom',
               willChange: 'transform, opacity',
-            }}>
-              {word}
-            </span>
-          ))}
+            }}
+          >
+            IT&apos;S BIGGER
+          </span>
+          <span
+            ref={rightTextRef}
+            style={{
+              display: 'inline-block',
+              opacity: 0,
+              willChange: 'transform, opacity',
+            }}
+          >
+            THAN US
+          </span>
         </h1>
       </div>
 
-      {/* Phase 2: Logo with iridescent overlay */}
+      {/* ─── Phase 2: Logo circle-wipe ─── */}
       <div
         ref={logoRef}
         style={{
-          position: 'absolute', zIndex: 3, opacity: 0,
-          width: 'clamp(180px, 25vw, 340px)',
-          height: 'clamp(180px, 25vw, 340px)',
+          position: 'absolute',
+          zIndex: 4,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 'clamp(200px, 30vw, 400px)',
+          height: 'clamp(200px, 30vw, 400px)',
+          opacity: 0,
+          clipPath: 'circle(0% at 50% 50%)',
+          transformOrigin: 'center center',
         }}
       >
-        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-          <Image src="/images/ibtu-logo.svg" alt="IBTU Logo" fill style={{ objectFit: 'contain', filter: 'brightness(0)' }} priority />
-        </div>
-        <div
-          style={{
-            position: 'absolute', inset: 0,
-            background: 'linear-gradient(135deg, #FFF 0%, #FFF4B8 12%, #D4F5E8 24%, #FFF 36%, #FFE4D6 48%, #FFF 60%, #D4F0F8 72%, #FFF4B8 84%, #FFF 100%)',
-            backgroundSize: '300% 300%',
-            animation: 'iriLogoShift 4s ease-in-out infinite',
-            WebkitMaskImage: 'url(/images/ibtu-logo.svg)', WebkitMaskSize: '100% 100%', WebkitMaskRepeat: 'no-repeat',
-            maskImage: 'url(/images/ibtu-logo.svg)', maskSize: '100% 100%', maskRepeat: 'no-repeat',
-            pointerEvents: 'none',
-          }}
+        <Image
+          src="/ibtu-logo.svg"
+          alt="IBTU Logo"
+          fill
+          style={{ objectFit: 'contain' }}
+          priority
         />
       </div>
 
+      {/* ─── Phase 3: Split-screen content ─── */}
+      <div
+        ref={splitRef}
+        data-hero-split=""
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          zIndex: 2,
+          opacity: 0,
+        }}
+      >
+        {/* Left: Text content */}
+        <div
+          style={{
+            width: '50%',
+            background: '#000',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            padding: 'clamp(32px, 5vw, 80px)',
+          }}
+        >
+          <span
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '10px',
+              textTransform: 'uppercase',
+              letterSpacing: '4px',
+              color: '#FFC700',
+              marginBottom: 20,
+              display: 'block',
+            }}
+          >
+            Find Your Role
+          </span>
+
+          <h2
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(32px, 5vw, 64px)',
+              lineHeight: 0.95,
+              textTransform: 'uppercase',
+              color: '#FFF',
+              letterSpacing: '-0.02em',
+              marginBottom: 24,
+            }}
+          >
+            This Work Does Not Happen Without You.
+          </h2>
+
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'clamp(14px, 1.2vw, 18px)',
+              color: '#FFF',
+              lineHeight: 1.7,
+              fontWeight: 700,
+              maxWidth: 520,
+              marginBottom: 32,
+            }}
+          >
+            Sort relief supplies at the Hub. Run resource stations at school
+            festivals. Clean Venice Beach with Coastal Care crews. Distribute
+            backpacks to thousands of students. There is room for you.
+          </p>
+
+          <a
+            href="https://volunteer.bloomerang.co/volunteer/#/join-party?k=u9uiz8g1753qfr"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              background: '#FFC700',
+              color: '#000',
+              padding: '16px 40px',
+              borderRadius: '16px',
+              fontFamily: 'var(--font-body)',
+              fontSize: '13px',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+              textDecoration: 'none',
+              width: 'fit-content',
+            }}
+          >
+            Volunteer &rarr;
+          </a>
+        </div>
+
+        {/* Right: Full-bleed photo */}
+        <div
+          style={{
+            width: '50%',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src="/images/coastal/IMG_4838.jpg"
+            alt="IBTU Coastal Care volunteers cleaning Venice Beach"
+            fill
+            sizes="50vw"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+              transform: 'scale(1.1)',
+            }}
+            priority
+          />
+        </div>
+      </div>
+
+      {/* ─── Mobile: Stack vertically ─── */}
       <style>{`
-        @keyframes iriLogoShift {
-          0% { background-position: 0% 0%; }
-          25% { background-position: 100% 50%; }
-          50% { background-position: 50% 100%; }
-          75% { background-position: 0% 50%; }
-          100% { background-position: 0% 0%; }
+        @media (max-width: 768px) {
+          [data-hero-split] {
+            flex-direction: column !important;
+          }
+          [data-hero-split] > div {
+            width: 100% !important;
+          }
+          [data-hero-split] > div:first-child {
+            min-height: 55vh;
+          }
+          [data-hero-split] > div:last-child {
+            min-height: 45vh;
+          }
         }
       `}</style>
     </section>
