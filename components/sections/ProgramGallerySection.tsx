@@ -48,19 +48,20 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
         },
       })
 
-      // Slide-in parallax on each program section
-      sectionsRef.current.forEach((section) => {
+      // Parallax SLIDE on each program section — alternating directions
+      sectionsRef.current.forEach((section, idx) => {
         if (!section) return
         const textCol = section.querySelector('.prog-text')
         const galleryCol = section.querySelector('.prog-gallery')
+        const fromLeft = idx % 2 === 0
 
-        // Text slides up from below — 50% faster
+        // Text slides in from left or right
         if (textCol) {
           gsap.fromTo(textCol,
-            { y: 50, opacity: 0 },
+            { x: fromLeft ? -120 : 120, y: 40 },
             {
+              x: 0,
               y: -10,
-              opacity: 1,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
@@ -72,13 +73,13 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
           )
         }
 
-        // Gallery slides at a different rate for depth — 50% faster
+        // Gallery slides from opposite direction at different rate
         if (galleryCol) {
           gsap.fromTo(galleryCol,
-            { y: 80, opacity: 0 },
+            { x: fromLeft ? 100 : -100, y: 60 },
             {
-              y: -20,
-              opacity: 1,
+              x: 0,
+              y: -15,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,

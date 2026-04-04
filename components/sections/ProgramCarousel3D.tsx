@@ -56,7 +56,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   const tick = useCallback(() => {
     if (!dragging) {
       velRef.current *= 0.95
-      if (hovered && Math.abs(velRef.current) < 0.15) velRef.current = -1.5
+      if (hovered && Math.abs(velRef.current) < 0.15) velRef.current = -2.0
       if (!hovered && Math.abs(velRef.current) < 0.05) velRef.current = 0
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)
