@@ -48,10 +48,10 @@ export default async function AboutPage() {
                 A QUESTION, NOT A PLAN
               </h2>
               <p style={{ fontSize: "clamp(16px, 1.3vw, 19px)", color: "#000", lineHeight: 1.75, marginBottom: 24 }}>
-                Founded in 2020 during COVID-19 with &ldquo;How can I help
-                you?&rdquo; cards distributed in Los Angeles neighborhoods. The
-                answers were immediate: food, school supplies, health resources,
-                someone who would listen.
+                Founded in 2020 during COVID-19 by providing resources and
+                holding community listening sessions across Los Angeles
+                neighborhoods. The answers were immediate: food, school
+                supplies, health resources, someone who would listen.
               </p>
               <p style={{ fontSize: "clamp(16px, 1.3vw, 19px)", color: "#000", lineHeight: 1.75 }}>
                 From weekly food distributions to a 3-pillar organization

@@ -54,35 +54,37 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
         const textCol = section.querySelector('.prog-text')
         const galleryCol = section.querySelector('.prog-gallery')
 
-        // Text slides up from below
+        // Text slides up from below — 50% faster
         if (textCol) {
           gsap.fromTo(textCol,
-            { y: 80 },
+            { y: 50, opacity: 0 },
             {
-              y: -15,
+              y: -10,
+              opacity: 1,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
                 start: 'top bottom',
-                end: 'bottom top',
-                scrub: 0.6,
+                end: 'center center',
+                scrub: 0.3,
               },
             }
           )
         }
 
-        // Gallery slides at a different rate for depth
+        // Gallery slides at a different rate for depth — 50% faster
         if (galleryCol) {
           gsap.fromTo(galleryCol,
-            { y: 120 },
+            { y: 80, opacity: 0 },
             {
-              y: -30,
+              y: -20,
+              opacity: 1,
               ease: 'none',
               scrollTrigger: {
                 trigger: section,
                 start: 'top bottom',
-                end: 'bottom top',
-                scrub: 0.6,
+                end: 'center center',
+                scrub: 0.3,
               },
             }
           )
