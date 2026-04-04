@@ -38,7 +38,8 @@ const WHO_WE_SERVE: Record<string, string[]> = {
   'wellness': ['Families in Los Angeles without regular access to wellness programming', 'Young people who have never had a yoga class or health screening', 'Educators who spend all year pouring into students and need refilling', 'Seniors and caregivers carrying the weight of their households'],
   'youth-programming': ['Students in 34 schools across Los Angeles', 'Young people who need their school to feel like a place of belonging', 'Parents who want to be more involved but need a bridge', 'Campus staff who see the needs every day and want backup'],
   'community-builder-linkups': ['Local entrepreneurs building something in their neighborhood', 'Community organizers looking for collaboration', 'Small business owners who want to connect with IBTU programs', 'Aspiring nonprofit leaders learning the work'],
-  'community-health': ['Families without healthcare access', 'Seniors', 'Youth in food deserts', 'Caregivers and parents'],
+  'community-health': ['Families navigating a health system that was not built with them in mind', 'Seniors managing chronic conditions without consistent primary care', 'Young people in neighborhoods where the nearest grocery store is a liquor store', 'Caregivers and parents carrying the weight of an entire household\'s wellness', 'Communities where a free health screening is the only screening they get all year'],
+  'giving-season': ['Families stretching every dollar through the holidays', 'Children who might not have a gift under the tree without community', 'Parents who give everything all year and need someone to show up for them', 'Neighborhoods where holiday programs disappeared when funding dried up'],
 }
 
 export async function generateStaticParams() {
@@ -247,7 +248,143 @@ export default async function ProgramPage({ params }: Props) {
         </section>
       )}
 
-      {/* ── 2-4. Client sections: storybook story + gallery + events ── */}
+      {/* ── STATS — immediately after hero (stats before stories) ── */}
+      {stats.length > 0 && (
+        <section style={{
+          background: "#000",
+          padding: "clamp(48px, 6vw, 80px) clamp(32px, 5vw, 80px)",
+        }}>
+          <div style={{
+            maxWidth: "var(--content-max)",
+            margin: "0 auto",
+          }}>
+            <div style={{
+              fontFamily: "var(--font-body)",
+              fontSize: 11,
+              letterSpacing: "4px",
+              textTransform: "uppercase",
+              color: "#FFC700",
+              fontWeight: 700,
+              marginBottom: 32,
+            }}>
+              BY THE NUMBERS
+            </div>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(${Math.min(stats.length, 3)}, 1fr)`,
+              gap: "var(--grid-gap)",
+            }}>
+              {stats.map((stat: string, i: number) => {
+                const parts = stat.split(" ")
+                const number = parts[0]
+                const label = parts.slice(1).join(" ")
+                return (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "clamp(20px, 3vw, 40px)",
+                      background: "#000",
+                      border: "1px solid #FFC700",
+                      borderRadius: 16,
+                    }}
+                  >
+                    <span style={{
+                      fontFamily: "var(--font-body)",
+                      fontWeight: 900,
+                      fontSize: "clamp(32px, 5vw, 64px)",
+                      color: "#FFC700",
+                      lineHeight: 1,
+                    }}>
+                      {number}
+                    </span>
+                    <span style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "var(--body-sm)",
+                      fontWeight: 700,
+                      color: "#FFF",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                      marginTop: 8,
+                    }}>
+                      {label}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── SCHEDULE + PARTNERS ── */}
+      {(program.schedule || program.keyPartners) && (
+        <section style={{
+          background: "#FFC700",
+          padding: "clamp(48px, 6vw, 80px) clamp(32px, 5vw, 80px)",
+        }}>
+          <div style={{
+            maxWidth: "var(--content-max)",
+            margin: "0 auto",
+            display: "grid",
+            gridTemplateColumns: program.keyPartners ? "1fr 1fr" : "1fr",
+            gap: "clamp(32px, 5vw, 80px)",
+            alignItems: "start",
+          }}>
+            {program.schedule && (
+              <div>
+                <div style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: 11,
+                  letterSpacing: "4px",
+                  textTransform: "uppercase",
+                  color: "#000",
+                  fontWeight: 700,
+                  marginBottom: 16,
+                }}>
+                  SCHEDULE
+                </div>
+                <p style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "var(--body-lg)",
+                  color: "#000",
+                  fontWeight: 700,
+                  lineHeight: 1.5,
+                }}>
+                  {program.schedule}
+                </p>
+              </div>
+            )}
+            {program.keyPartners && (
+              <div>
+                <div style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: 11,
+                  letterSpacing: "4px",
+                  textTransform: "uppercase",
+                  color: "#000",
+                  fontWeight: 700,
+                  marginBottom: 16,
+                }}>
+                  KEY PARTNERS
+                </div>
+                <p style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "var(--body-md)",
+                  color: "#000",
+                  fontWeight: 700,
+                  lineHeight: 1.8,
+                }}>
+                  {program.keyPartners}
+                </p>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ── 2-4. Client sections: story + gallery + events ── */}
       <ProgramDetailClient
         slides={storyMedia.map((m, i) => ({
           image: m.src,
@@ -338,62 +475,9 @@ export default async function ProgramPage({ params }: Props) {
         </section>
       )}
 
-      {/* ── PROGRAM STATS — gold cards ── */}
-      {stats.length > 0 && (
-        <section style={{
-          background: "var(--ibtu-gold)",
-          padding: "clamp(48px, 6vw, 80px) clamp(32px, 5vw, 80px)",
-        }}>
-          <div style={{
-            maxWidth: "var(--content-max)",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: `repeat(${Math.min(stats.length, 4)}, 1fr)`,
-            gap: "var(--grid-gap)",
-          }}>
-            {stats.map((stat: string, i: number) => {
-              const parts = stat.split(" ")
-              const number = parts[0]
-              const label = parts.slice(1).join(" ")
-              return (
-                <div
-                  key={i}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "clamp(20px, 3vw, 40px)",
-                  }}
-                >
-                  <span style={{
-                    fontFamily: "var(--font-body)",
-                    fontWeight: 900,
-                    fontSize: "clamp(32px, 5vw, 64px)",
-                    color: "var(--ibtu-black)",
-                    lineHeight: 1,
-                  }}>
-                    {number}
-                  </span>
-                  <span style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "var(--body-sm)",
-                    fontWeight: 700,
-                    color: "var(--ibtu-black)",
-                    textTransform: "uppercase",
-                    letterSpacing: "1px",
-                    marginTop: 8,
-                  }}>
-                    {label}
-                  </span>
-                </div>
-              )
-            })}
-          </div>
-        </section>
-      )}
-
       {/* IN THE FIELD gallery is now rendered inside ProgramDetailClient with auto-scroll on hover */}
 
-      {/* ── PROGRAM CTA — sponsor button with iridescent fill ── */}
+      {/* ── PROGRAM CTA — sponsor button with sacred phrase ── */}
       <section style={{
         background: "var(--ibtu-gold)",
         padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)",
@@ -414,6 +498,15 @@ export default async function ProgramPage({ params }: Props) {
               size="section"
               color="var(--ibtu-black)"
             />
+            <p style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "var(--body-md)",
+              color: "#000",
+              fontWeight: 700,
+              marginTop: 16,
+            }}>
+              We listen, we build, we stay.
+            </p>
           </div>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             {program.volunteerUrl && (

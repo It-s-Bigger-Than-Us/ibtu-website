@@ -155,7 +155,7 @@ export const programs: Program[] = [
     description:
       "Each December, IBTU closes the year the same way it runs it: by showing up. Giving Season distributes toys, warm meals, and wellness resources to thousands of Los Angeles families across multiple events.",
     proofStats:
-      "6 consecutive years | Thousands of toys distributed | Warm meals served | 100+ volunteers annually",
+      "6,575+ individuals served (2024) | 4,550+ toys distributed | 7 events in one season | 6 consecutive years | 550+ meals served | 100+ volunteers annually",
     allTimeServed:
       "6,575+ individuals (2024 alone across 7 events) | 4,550+ toys distributed | 6 consecutive years",
     ctaText: "Support Giving Season",
@@ -183,7 +183,7 @@ export const programs: Program[] = [
     description:
       "Wellness & Health Activations bring licensed fitness instructors, mental health providers, and wellness programming directly into community spaces — parks, school campuses, and IBTU events. Powered by the lululemon partnership.",
     proofStats:
-      "206 participants (2024 yoga series) | lululemon partnership | Venice + Leimert Park | Staff wellness across 5+ campuses",
+      "206 participants (2024 yoga series) | 75+ educators per campus wellness day | 5+ campuses reached | lululemon Glow Up NYC — all proceeds to IBTU",
     allTimeServed:
       "206 participants (2024 yoga series) | Staff wellness days reaching 75+ educators per campus",
     ctaText: "Attend a Wellness Event",
