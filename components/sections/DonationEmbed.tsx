@@ -59,7 +59,7 @@ export default function DonationEmbed({
       {title && (
         <h2
           style={{
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: "clamp(36px, 5vw, 72px)",
             lineHeight: 0.95,
             color: "#fff",
@@ -107,7 +107,7 @@ export default function DonationEmbed({
           fontSize: 13,
           color: "var(--gold)",
           textDecoration: "none",
-          fontFamily: "Poppins, sans-serif",
+          fontFamily: 'var(--font-body)',
         }}
       >
         Having trouble? Open donation form in new window →

@@ -26,7 +26,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
       <div style={{ padding: "0 80px 80px 80px" }}>
         <h2
           style={{
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: "clamp(32px, 4vw, 56px)",
             color: "#fff",
             marginBottom: 32,
@@ -82,7 +82,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 </span>
                 <div
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     fontSize: "clamp(16px, 1.6vw, 22px)",
                     color: "#fff",
                     fontWeight: 700,
@@ -105,7 +105,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   color: "var(--gold)",
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: 'var(--font-body)',
                   fontWeight: 700,
                 }}
               >
@@ -158,7 +158,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 color: "var(--gold)",
                 fontSize: 24,
                 cursor: "pointer",
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: 'var(--font-body)',
               }}
             >
               ×
@@ -173,7 +173,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 textTransform: "uppercase",
                 color: "var(--gold)",
                 marginBottom: 16,
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: 'var(--font-body)',
                 fontWeight: 700,
               }}
             >
@@ -181,7 +181,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
             </span>
             <h3
               style={{
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: 'var(--font-body)',
                 fontSize: "clamp(28px, 3.5vw, 48px)",
                 color: "#fff",
                 lineHeight: 0.95,
@@ -214,7 +214,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                     letterSpacing: "2px",
                     textTransform: "uppercase",
                     color: "#000",
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     fontWeight: 700,
                     display: "block",
                     marginBottom: 8,

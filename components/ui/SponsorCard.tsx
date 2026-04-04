@@ -50,7 +50,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
           background: '#000', color: '#FFC700',
           fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: 'uppercase',
           padding: '4px 12px', borderRadius: 100,
-          fontFamily: 'Poppins, sans-serif',
+          fontFamily: 'var(--font-body)',
         }}>
           Featured
         </span>
@@ -59,7 +59,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
       {/* Always visible: tier name + price */}
       <div>
         <div style={{
-          fontFamily: 'Poppins, sans-serif',
+          fontFamily: 'var(--font-body)',
           fontSize: 'clamp(16px, 1.5vw, 20px)',
           fontWeight: 600,
           color: featured ? '#000' : '#fff',
@@ -69,7 +69,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
         </div>
 
         <div style={{
-          fontFamily: 'Poppins, sans-serif',
+          fontFamily: 'var(--font-body)',
           fontWeight: 900,
           fontSize: 'clamp(28px, 3vw, 44px)',
           color: featured ? '#000' : '#FFC700',
@@ -84,7 +84,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
       {!expanded && (
         <div style={{
           marginTop: 20,
-          fontFamily: 'Poppins, sans-serif',
+          fontFamily: 'var(--font-body)',
           fontSize: 12,
           fontWeight: 600,
           letterSpacing: 1,
@@ -110,7 +110,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
               fontSize: 12,
               color: featured ? '#000' : 'var(--gold)',
               marginBottom: 16,
-              fontFamily: 'Poppins, sans-serif',
+              fontFamily: 'var(--font-body)',
               fontWeight: 500,
             }}>
               Booth: {boothSize}
@@ -126,7 +126,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
                   lineHeight: 1.7,
                   paddingLeft: 20,
                   position: 'relative',
-                  fontFamily: 'Poppins, sans-serif',
+                  fontFamily: 'var(--font-body)',
                 }}>
                   <span style={{
                     position: 'absolute', left: 0,
@@ -145,7 +145,7 @@ export default function SponsorCard({ tierName, priceDisplay, deliverables, boot
             background: featured ? '#000' : '#FFC700',
             color: featured ? '#FFC700' : '#000',
             padding: '14px 28px',
-            fontFamily: 'Poppins, sans-serif',
+            fontFamily: 'var(--font-body)',
             fontSize: 12,
             letterSpacing: 2,
             textTransform: 'uppercase',

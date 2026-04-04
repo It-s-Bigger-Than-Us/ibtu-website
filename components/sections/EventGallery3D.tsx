@@ -45,7 +45,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
           position: "absolute",
           top: 20,
           right: 20,
-          fontFamily: "Poppins, sans-serif",
+          fontFamily: 'var(--font-body)',
           fontWeight: 900,
           fontSize: 42,
           color: "#FFC700",
@@ -68,7 +68,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
 
       <div
         style={{
-          fontFamily: "Poppins, sans-serif",
+          fontFamily: 'var(--font-body)',
           fontSize: "clamp(16px, 1.4vw, 22px)",
           color: "#fff",
           fontWeight: 700,
@@ -118,7 +118,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
         <div style={{ padding: "0 0 40px 0" }}>
           <h2
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(32px, 4vw, 56px)",
               color: "#fff",
               marginBottom: 16,
@@ -127,7 +127,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
           >
             PAST EVENTS
           </h2>
-          <p style={{ fontSize: 14, color: "var(--gold)", marginBottom: 40, fontFamily: "Poppins, sans-serif" }}>
+          <p style={{ fontSize: 14, color: "var(--gold)", marginBottom: 40, fontFamily: 'var(--font-body)' }}>
             Click any card to view details
           </p>
         </div>
@@ -184,7 +184,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
       <div style={{ padding: "0 0 40px 0" }}>
         <h2
           style={{
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: "clamp(32px, 4vw, 56px)",
             color: "#fff",
             marginBottom: 16,
@@ -193,7 +193,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
         >
           PAST EVENTS
         </h2>
-        <p style={{ fontSize: 14, color: "var(--gold)", marginBottom: 40, fontFamily: "Poppins, sans-serif" }}>
+        <p style={{ fontSize: 14, color: "var(--gold)", marginBottom: 40, fontFamily: 'var(--font-body)' }}>
           Click any card to view details
         </p>
       </div>
@@ -368,7 +368,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
             color: "var(--gold)",
             fontSize: 24,
             cursor: "pointer",
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
           }}
         >
           ×
@@ -382,7 +382,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
             textTransform: "uppercase",
             color: "#FFC700",
             marginBottom: 16,
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontWeight: 700,
           }}
         >
@@ -390,7 +390,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
         </span>
         <h3
           style={{
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: "clamp(28px, 3.5vw, 48px)",
             color: "#fff",
             lineHeight: 0.95,
@@ -423,7 +423,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 color: "#000",
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: 'var(--font-body)',
                 fontWeight: 700,
                 display: "block",
                 marginBottom: 8,

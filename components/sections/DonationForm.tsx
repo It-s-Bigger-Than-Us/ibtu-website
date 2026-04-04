@@ -107,7 +107,7 @@ export default function DonationForm({
             borderRadius: 4,
           }}
         >
-          <p style={{ fontSize: 14, color: "#FFC700", fontFamily: "Poppins, sans-serif", fontWeight: 600, margin: 0 }}>
+          <p style={{ fontSize: 14, color: "#FFC700", fontFamily: 'var(--font-body)', fontWeight: 600, margin: 0 }}>
             Complete your ${finalAmount.toLocaleString()} {frequency === "monthly" ? "monthly " : ""}gift to {programTitle} below.
           </p>
         </div>
@@ -135,7 +135,7 @@ export default function DonationForm({
             fontSize: 13,
             color: "var(--gold)",
             textDecoration: "none",
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
           }}
         >
           Having trouble? Open donation form in new window &rarr;
@@ -152,7 +152,7 @@ export default function DonationForm({
             background: "none",
             border: "none",
             cursor: "pointer",
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             textDecoration: "underline",
           }}
         >
@@ -190,7 +190,7 @@ export default function DonationForm({
               background: frequency === f ? "#FFC700" : "transparent",
               color: frequency === f ? "#000" : "var(--gold)",
               border: `1px solid ${frequency === f ? "#FFC700" : "#FFC700"}`,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: 13,
               fontWeight: 700,
               letterSpacing: "2px",
@@ -206,7 +206,7 @@ export default function DonationForm({
 
       {/* Sponsor tier label if packages exist */}
       {sponsorPackages && sponsorPackages.length > 0 && (
-        <p style={{ fontSize: 11, letterSpacing: "2px", textTransform: "uppercase", color: "var(--gold)", fontFamily: "Poppins, sans-serif", fontWeight: 600, marginBottom: 12 }}>
+        <p style={{ fontSize: 11, letterSpacing: "2px", textTransform: "uppercase", color: "var(--gold)", fontFamily: 'var(--font-body)', fontWeight: 600, marginBottom: 12 }}>
           Choose an amount or match a sponsor tier
         </p>
       )}
@@ -235,7 +235,7 @@ export default function DonationForm({
                 background: amount === a ? "#FFC700" : "#000",
                 color: amount === a ? "#000" : "#fff",
                 border: `1px solid ${amount === a ? "#FFC700" : "#FFC700"}`,
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: 'var(--font-body)',
                 fontSize: matchingTier ? 14 : 18,
                 fontWeight: 900,
                 cursor: "pointer",
@@ -294,7 +294,7 @@ export default function DonationForm({
             background: "#000",
             border: "1px solid #FFC700",
             color: "#fff",
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: 18,
             fontWeight: 700,
             outline: "none",
@@ -314,7 +314,7 @@ export default function DonationForm({
           background: finalAmount > 0 ? "#FFC700" : "#FFC700",
           color: "#000",
           border: "none",
-          fontFamily: "Poppins, sans-serif",
+          fontFamily: 'var(--font-body)',
           fontSize: 14,
           fontWeight: 700,
           letterSpacing: "3px",

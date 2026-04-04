@@ -41,7 +41,7 @@ export default async function ImpactPage() {
               textTransform: "uppercase",
               color: "var(--gold)",
               marginBottom: 20,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 700,
             }}
           >
@@ -49,7 +49,7 @@ export default async function ImpactPage() {
           </span>
           <h1
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(48px, 7vw, 120px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -86,7 +86,7 @@ export default async function ImpactPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 700,
               marginBottom: 48,
             }}
@@ -104,7 +104,7 @@ export default async function ImpactPage() {
               <div key={i}>
                 <span
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     fontSize: "clamp(32px, 4vw, 56px)",
                     color: "#000",
                     lineHeight: 1,
@@ -137,7 +137,7 @@ export default async function ImpactPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 700,
               marginBottom: 48,
             }}
@@ -155,7 +155,7 @@ export default async function ImpactPage() {
               <div key={i}>
                 <span
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     fontSize: "clamp(32px, 4vw, 56px)",
                     color: "var(--gold)",
                     lineHeight: 1,
@@ -195,7 +195,7 @@ export default async function ImpactPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 700,
               marginBottom: 32,
             }}
@@ -214,7 +214,7 @@ export default async function ImpactPage() {
               <div key={i} style={{ textAlign: "center", flex: "1 1 140px" }}>
                 <span
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     fontSize: "clamp(28px, 3vw, 48px)",
                     color: "#000",
                     lineHeight: 1,
@@ -254,7 +254,7 @@ export default async function ImpactPage() {
         <div style={{ background: "var(--gold)", padding: "80px 80px", textAlign: "center" }}>
           <h2
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#000",
@@ -282,7 +282,7 @@ export default async function ImpactPage() {
               background: "#000",
               color: "var(--gold)",
               padding: "18px 48px",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: 13,
               letterSpacing: "3px",
               textTransform: "uppercase",

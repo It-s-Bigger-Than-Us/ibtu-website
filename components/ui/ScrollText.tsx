@@ -64,7 +64,7 @@ export default function ScrollText({
     <div ref={ref} className={className}>
       <Tag
         style={{
-          fontFamily: "Poppins, sans-serif",
+          fontFamily: 'var(--font-body)',
           fontWeight: 900,
           fontSize: size,
           lineHeight: 0.9,

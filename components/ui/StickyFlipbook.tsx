@@ -126,7 +126,7 @@ export default function StickyFlipbook({
               >
                 <p
                   style={{
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     fontSize: 13,
                     color: "#000",
                     fontWeight: 600,
@@ -171,7 +171,7 @@ export default function StickyFlipbook({
               position: "absolute",
               top: 32,
               right: 80,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: 13,
               fontWeight: 700,
               color: "#FFC700",

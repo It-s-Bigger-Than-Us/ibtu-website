@@ -32,7 +32,7 @@ export default function JobsPage() {
               textTransform: "uppercase",
               color: "#FFC700",
               marginBottom: 24,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 700,
             }}
           >
@@ -40,7 +40,7 @@ export default function JobsPage() {
           </span>
           <h1
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(48px, 8vw, 120px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -55,7 +55,7 @@ export default function JobsPage() {
               color: "#fff",
               maxWidth: 600,
               lineHeight: 1.75,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
             }}
           >
             Community infrastructure needs Community Builders. Here&rsquo;s how to join.
@@ -75,7 +75,7 @@ export default function JobsPage() {
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#FFC700",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 700,
               marginBottom: 20,
             }}
@@ -84,7 +84,7 @@ export default function JobsPage() {
           </span>
           <h2
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#fff",
@@ -99,7 +99,7 @@ export default function JobsPage() {
               color: "#fff",
               lineHeight: 1.75,
               maxWidth: 640,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
             }}
           >
             Current openings are posted as they become available. Contact us at{" "}
@@ -117,7 +117,7 @@ export default function JobsPage() {
         <section style={{ background: "#FFC700", padding: "100px 80px", textAlign: "center" }}>
           <h2
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(40px, 5.5vw, 80px)",
               lineHeight: 0.95,
               color: "#000",
@@ -133,7 +133,7 @@ export default function JobsPage() {
               maxWidth: 560,
               margin: "0 auto 48px",
               lineHeight: 1.7,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
             }}
           >
             Whether you&rsquo;re looking for a career in community work or want to
@@ -146,7 +146,7 @@ export default function JobsPage() {
               background: "#000",
               color: "#FFC700",
               padding: "18px 48px",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: 13,
               letterSpacing: "3px",
               textTransform: "uppercase",

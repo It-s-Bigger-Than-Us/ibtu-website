@@ -25,7 +25,7 @@ export default async function AdminMediaPage() {
         style={{
           background: "#000",
           minHeight: "100vh",
-          fontFamily: "Poppins, sans-serif",
+          fontFamily: 'var(--font-body)',
         }}
       >
         {/* Header */}
@@ -37,7 +37,7 @@ export default async function AdminMediaPage() {
         >
           <h1
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(40px, 6vw, 72px)",
               color: "#fff",
               lineHeight: 0.92,
@@ -151,7 +151,7 @@ export default async function AdminMediaPage() {
                           textTransform: "uppercase",
                           color: "#FFC700",
                           textDecoration: "none",
-                          fontFamily: "Poppins, sans-serif",
+                          fontFamily: 'var(--font-body)',
                         }}
                       >
                         Open in Studio →

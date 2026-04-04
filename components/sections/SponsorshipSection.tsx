@@ -36,7 +36,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
           textTransform: "uppercase",
           color: "var(--gold)",
           marginBottom: 20,
-          fontFamily: "Poppins, sans-serif",
+          fontFamily: 'var(--font-body)',
           fontWeight: 700,
         }}
       >
@@ -44,7 +44,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
       </span>
       <h2
         style={{
-          fontFamily: "Poppins, sans-serif",
+          fontFamily: 'var(--font-body)',
           fontSize: "clamp(36px, 5vw, 72px)",
           lineHeight: 0.95,
           color: "#fff",
@@ -58,7 +58,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
         <div key={groupName} style={{ marginBottom: 40 }}>
           <h3
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(18px, 2vw, 26px)",
               color: "var(--gold)",
               marginBottom: 16,
@@ -96,7 +96,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                   <div>
                     <div
                       style={{
-                        fontFamily: "Poppins, sans-serif",
+                        fontFamily: 'var(--font-body)',
                         fontSize: "clamp(20px, 2.2vw, 30px)",
                         color: pkg.featured ? "#000" : "#fff",
                         lineHeight: 1,
@@ -107,7 +107,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                     </div>
                     <div
                       style={{
-                        fontFamily: "Poppins, sans-serif",
+                        fontFamily: 'var(--font-body)',
                         fontWeight: 900,
                         fontSize: "clamp(28px, 3.5vw, 48px)",
                         color: pkg.featured ? "#000" : "var(--gold)",
@@ -171,7 +171,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                           letterSpacing: "2px",
                           textTransform: "uppercase",
                           color: pkg.featured ? "#000" : "var(--gold)",
-                          fontFamily: "Poppins, sans-serif",
+                          fontFamily: 'var(--font-body)',
                         }}
                       >
                         Click to see deliverables
@@ -188,7 +188,7 @@ export default function SponsorshipSection({ packages, programTitle }: { package
                           background: pkg.featured ? "#000" : "var(--gold)",
                           color: pkg.featured ? "var(--gold)" : "#000",
                           padding: "14px 32px",
-                          fontFamily: "Poppins, sans-serif",
+                          fontFamily: 'var(--font-body)',
                           fontSize: 12,
                           letterSpacing: "3px",
                           textTransform: "uppercase",

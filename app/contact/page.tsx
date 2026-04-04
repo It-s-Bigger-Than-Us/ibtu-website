@@ -42,7 +42,7 @@ export default function ContactPage() {
               textTransform: "uppercase",
               color: "var(--gold)",
               marginBottom: 20,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 700,
             }}
           >
@@ -50,7 +50,7 @@ export default function ContactPage() {
           </span>
           <h1
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(60px, 9vw, 140px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -91,7 +91,7 @@ export default function ContactPage() {
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "var(--gold)",
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: 'var(--font-body)',
                 fontWeight: 700,
                 marginBottom: 32,
               }}
@@ -123,7 +123,7 @@ export default function ContactPage() {
                         fontSize: 16,
                         color: "#fff",
                         textDecoration: "none",
-                        fontFamily: "Poppins, sans-serif",
+                        fontFamily: 'var(--font-body)',
                         lineHeight: 1.5,
                       }}
                     >
@@ -134,7 +134,7 @@ export default function ContactPage() {
                       style={{
                         fontSize: 16,
                         color: "#fff",
-                        fontFamily: "Poppins, sans-serif",
+                        fontFamily: 'var(--font-body)',
                         lineHeight: 1.5,
                         margin: 0,
                       }}
@@ -156,7 +156,7 @@ export default function ContactPage() {
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "var(--gold)",
-                fontFamily: "Poppins, sans-serif",
+                fontFamily: 'var(--font-body)',
                 fontWeight: 700,
                 marginBottom: 32,
               }}
@@ -193,7 +193,7 @@ export default function ContactPage() {
                     border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     outline: "none",
                   }}
                 />
@@ -225,7 +225,7 @@ export default function ContactPage() {
                     border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     outline: "none",
                   }}
                 />
@@ -256,7 +256,7 @@ export default function ContactPage() {
                     border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     outline: "none",
                     appearance: "none",
                   }}
@@ -298,7 +298,7 @@ export default function ContactPage() {
                     border: "1px solid var(--gold)",
                     color: "#fff",
                     fontSize: 15,
-                    fontFamily: "Poppins, sans-serif",
+                    fontFamily: 'var(--font-body)',
                     outline: "none",
                     resize: "vertical",
                   }}
@@ -311,7 +311,7 @@ export default function ContactPage() {
                   background: "var(--gold)",
                   color: "#000",
                   padding: "18px 48px",
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: 'var(--font-body)',
                   fontSize: 13,
                   letterSpacing: "3px",
                   textTransform: "uppercase",
@@ -339,7 +339,7 @@ export default function ContactPage() {
               fontSize: 12,
               color: "var(--gold)",
               letterSpacing: "1px",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
             }}
           >
             501(c)(3) &nbsp;|&nbsp; EIN: 85-3136505 &nbsp;|&nbsp; LAUSD Vendor

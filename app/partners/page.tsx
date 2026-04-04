@@ -38,7 +38,7 @@ export default async function PartnersPage() {
               textTransform: "uppercase",
               color: "var(--gold)",
               marginBottom: 20,
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontWeight: 700,
             }}
           >
@@ -46,7 +46,7 @@ export default async function PartnersPage() {
           </span>
           <h1
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(60px, 9vw, 140px)",
               lineHeight: 0.9,
               color: "#fff",
@@ -89,7 +89,7 @@ export default async function PartnersPage() {
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   color: "var(--gold)",
-                  fontFamily: "Poppins, sans-serif",
+                  fontFamily: 'var(--font-body)',
                   fontWeight: 700,
                   marginBottom: 24,
                 }}
@@ -113,7 +113,7 @@ export default async function PartnersPage() {
                       padding: "10px 24px",
                       fontSize: 14,
                       color: "#fff",
-                      fontFamily: "Poppins, sans-serif",
+                      fontFamily: 'var(--font-body)',
                       fontWeight: 500,
                       whiteSpace: "nowrap",
                     }}
@@ -130,7 +130,7 @@ export default async function PartnersPage() {
         <div style={{ background: "var(--gold)", padding: "80px 80px", textAlign: "center" }}>
           <h2
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "#000",
@@ -158,7 +158,7 @@ export default async function PartnersPage() {
               background: "#000",
               color: "var(--gold)",
               padding: "18px 48px",
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: 13,
               letterSpacing: "3px",
               textTransform: "uppercase",

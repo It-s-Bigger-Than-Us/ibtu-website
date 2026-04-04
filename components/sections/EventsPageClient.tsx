@@ -15,7 +15,7 @@ const volunteerBtnStyle: React.CSSProperties = {
   background: "#FFC700",
   color: "#000",
   borderRadius: 16,
-  fontFamily: "Poppins, sans-serif",
+  fontFamily: 'var(--font-body)',
   fontSize: 13,
   fontWeight: 700,
   textTransform: "uppercase",
@@ -204,7 +204,7 @@ export default function EventsPageClient({
             textTransform: "uppercase",
             color: "var(--gold)",
             marginBottom: 20,
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontWeight: 700,
             opacity: 0,
           }}
@@ -213,7 +213,7 @@ export default function EventsPageClient({
         </span>
         <h1
           style={{
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: "clamp(60px, 9vw, 140px)",
             lineHeight: 0.9,
             color: "#fff",
@@ -242,7 +242,7 @@ export default function EventsPageClient({
           <h2
             ref={upcomingHeadlineRef}
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: 'var(--font-body)',
               fontSize: "clamp(36px, 5vw, 72px)",
               lineHeight: 0.95,
               color: "var(--gold)",
@@ -289,7 +289,7 @@ export default function EventsPageClient({
                             fontWeight: 700,
                             padding: "3px 10px",
                             marginBottom: 10,
-                            fontFamily: "Poppins, sans-serif",
+                            fontFamily: 'var(--font-body)',
                             textTransform: "uppercase",
                           }}
                         >
@@ -297,7 +297,7 @@ export default function EventsPageClient({
                         </span>
                         <div
                           style={{
-                            fontFamily: "Poppins, sans-serif",
+                            fontFamily: 'var(--font-body)',
                             fontSize: "clamp(18px, 2vw, 28px)",
                             color: "#fff",
                             fontWeight: 700,
@@ -355,7 +355,7 @@ export default function EventsPageClient({
         <h2
           ref={allHeadlineRef}
           style={{
-            fontFamily: "Poppins, sans-serif",
+            fontFamily: 'var(--font-body)',
             fontSize: "clamp(36px, 5vw, 72px)",
             lineHeight: 0.95,
             color: "#fff",
@@ -388,7 +388,7 @@ export default function EventsPageClient({
                 >
                   <h3
                     style={{
-                      fontFamily: "Poppins, sans-serif",
+                      fontFamily: 'var(--font-body)',
                       fontSize: "clamp(24px, 3vw, 40px)",
                       color: "var(--gold)",
                       fontWeight: 700,
@@ -404,7 +404,7 @@ export default function EventsPageClient({
                       textTransform: "uppercase",
                       color: "var(--gold)",
                       textDecoration: "none",
-                      fontFamily: "Poppins, sans-serif",
+                      fontFamily: 'var(--font-body)',
                       fontWeight: 700,
                     }}
                   >
