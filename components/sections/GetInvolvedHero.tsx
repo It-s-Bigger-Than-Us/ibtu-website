@@ -1,197 +1,266 @@
 'use client'
 
-import { useRef, useEffect, useCallback, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-/**
- * GET INVOLVED HERO — iridescent background with horizontal
- * auto-scrolling photo strip and headline overlay.
- * Photos scroll continuously, speed up on hover.
- * Background transitions from gold → iridescent.
- */
+gsap.registerPlugin(ScrollTrigger)
+
+/* ═══════════════════════════════════════
+   GET INVOLVED HERO — Codrops Sticky Grid Scroll
+   Faithful port: parallax wrapper, column reveal
+   from alternating top/bottom, zoom + split,
+   content title slides up, desc + CTA fade in.
+   Yellow (#FFC700) background.
+═══════════════════════════════════════ */
 
 interface GetInvolvedHeroProps {
   images: string[]
 }
 
 export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
-  const stripRef = useRef<HTMLDivElement>(null)
-  const rafRef = useRef<number>(0)
-  const speedRef = useRef(1)
-  const [hovered, setHovered] = useState(false)
-
-  const scroll = useCallback(() => {
-    if (!stripRef.current) {
-      rafRef.current = requestAnimationFrame(scroll)
-      return
-    }
-
-    const target = hovered ? 2.5 : 1
-    speedRef.current += (target - speedRef.current) * 0.05
-    stripRef.current.scrollLeft += speedRef.current
-
-    // Seamless loop
-    const maxScroll = stripRef.current.scrollWidth - stripRef.current.clientWidth
-    if (stripRef.current.scrollLeft >= maxScroll - 1) {
-      stripRef.current.scrollLeft = 0
-    }
-
-    rafRef.current = requestAnimationFrame(scroll)
-  }, [hovered])
+  const blockRef = useRef<HTMLElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const descRef = useRef<HTMLParagraphElement>(null)
+  const btnRef = useRef<HTMLAnchorElement>(null)
+  const gridRef = useRef<HTMLUListElement>(null)
 
   useEffect(() => {
-    rafRef.current = requestAnimationFrame(scroll)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [scroll])
+    const block = blockRef.current
+    const wrapper = wrapperRef.current
+    const content = contentRef.current
+    const title = titleRef.current
+    const desc = descRef.current
+    const btn = btnRef.current
+    const grid = gridRef.current
+    if (!block || !wrapper || !content || !title || !desc || !btn || !grid) return
 
-  // Triple images for seamless loop
-  const loopImages = [...images, ...images, ...images]
+    const items = grid.querySelectorAll<HTMLElement>('.gi')
+    const numColumns = 3
+    const columns: HTMLElement[][] = Array.from({ length: numColumns }, () => [])
+    items.forEach((item, i) => columns[i % numColumns].push(item))
+
+    // Init: hide desc + btn, center title vertically
+    gsap.set([desc, btn], { opacity: 0, pointerEvents: 'none' })
+    const dy = (content.offsetHeight - title.offsetHeight) / 2
+    const titleOffsetY = (dy / content.offsetHeight) * 100
+    gsap.set(title, { yPercent: titleOffsetY })
+
+    // 1. Parallax wrapper — slides up into view
+    gsap.from(wrapper, {
+      yPercent: -100,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: block,
+        start: 'top bottom',
+        end: 'top top',
+        scrub: true,
+      },
+    })
+
+    // 2. Title fade in
+    gsap.from(title, {
+      opacity: 0,
+      duration: 0.7,
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: block,
+        start: 'top 57%',
+        toggleActions: 'play none none reset',
+      },
+    })
+
+    // 3. Main scroll timeline — grid reveal + zoom + content
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: block,
+        start: 'top 25%',
+        end: 'bottom bottom',
+        scrub: true,
+      },
+    })
+
+    // Grid reveal — columns slide in from alternating top/bottom
+    const wh = window.innerHeight
+    const gridDy = wh - (wh - grid.offsetHeight) / 2
+
+    columns.forEach((column, colIndex) => {
+      const fromTop = colIndex % 2 === 0
+      tl.from(
+        column,
+        {
+          y: gridDy * (fromTop ? -1 : 1),
+          stagger: { each: 0.06, from: fromTop ? 'end' : 'start' },
+          ease: 'power1.inOut',
+        },
+        'grid-reveal'
+      )
+    })
+
+    // Grid zoom — scale up, lateral columns spread, center splits
+    tl.to(grid, { scale: 2.05, duration: 1, ease: 'power3.inOut' })
+    tl.to(columns[0], { xPercent: -40, duration: 1, ease: 'power3.inOut' }, '<')
+    tl.to(columns[2], { xPercent: 40, duration: 1, ease: 'power3.inOut' }, '<')
+    tl.to(columns[1], {
+      yPercent: (index: number) => (index < Math.floor(columns[1].length / 2) ? -1 : 1) * 40,
+      duration: 0.5,
+      ease: 'power1.inOut',
+    }, '-=0.5')
+
+    // Content toggle — title slides up, desc + btn fade in
+    tl.to(title, { yPercent: 0, duration: 0.7, ease: 'power2.inOut' }, '-=0.32')
+    tl.to([desc, btn], {
+      opacity: 1,
+      duration: 0.4,
+      ease: 'power1.inOut',
+      pointerEvents: 'all',
+    }, '-=90%')
+
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill())
+    }
+  }, [])
+
+  // Pad to 12 images
+  const displayImages = images.length >= 12
+    ? images.slice(0, 12)
+    : [...images, ...images, ...images].slice(0, 12)
 
   return (
     <section
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        position: 'relative',
-        overflow: 'hidden',
-        background: 'var(--holo-gradient)',
-        backgroundSize: '600% 600%',
-        animation: 'holo-shift 20s ease infinite',
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}
+      ref={blockRef}
+      style={{ height: '425vh', background: '#FFC700' }}
     >
-      {/* Photo strip — auto-scrolling */}
       <div
-        ref={stripRef}
+        ref={wrapperRef}
         style={{
-          display: 'flex',
-          gap: 12,
-          overflowX: 'hidden',
-          padding: '24px 0',
-          position: 'absolute',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          width: '100%',
+          position: 'sticky',
+          top: 0,
+          height: '100vh',
+          padding: '0 24px',
+          overflow: 'hidden',
+          willChange: 'transform',
         }}
       >
-        {loopImages.map((src, i) => (
-          <div
-            key={`${src}-${i}`}
+        {/* Content overlay — title + desc + CTA */}
+        <div
+          ref={contentRef}
+          style={{
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            height: '100vh',
+            textAlign: 'center',
+            zIndex: 1,
+          }}
+        >
+          <h1
+            ref={titleRef}
             style={{
-              flexShrink: 0,
-              width: 'clamp(200px, 18vw, 280px)',
-              height: 'clamp(260px, 24vw, 360px)',
-              borderRadius: 12,
-              overflow: 'hidden',
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(48px, 10vw, 140px)',
+              lineHeight: 1.05,
+              letterSpacing: '-0.02em',
+              textTransform: 'uppercase',
+              color: '#000',
+              maxWidth: 900,
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={src}
-              alt="IBTU community"
-              loading={i < 6 ? 'eager' : 'lazy'}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block',
-                filter: 'brightness(1.05) saturate(1.15)',
-              }}
-            />
-          </div>
-        ))}
-      </div>
+            There Is a Role for You Here
+          </h1>
 
-      {/* Dark overlay for text legibility */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.5) 100%)',
-        zIndex: 1,
-      }} />
+          <p
+            ref={descRef}
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'clamp(13px, 1.1vw, 16px)',
+              lineHeight: 1.5,
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              color: '#000',
+              maxWidth: 480,
+              marginTop: 24,
+              fontWeight: 700,
+            }}
+          >
+            Behind every number is a neighbor who said yes. 7,500+ volunteers. 300+ partners. One city building together.
+          </p>
 
-      {/* Content overlay */}
-      <div style={{
-        position: 'relative',
-        zIndex: 2,
-        padding: 'clamp(120px, 15vh, 200px) clamp(32px, 5vw, 80px) clamp(80px, 10vw, 140px)',
-        maxWidth: 'var(--content-max)',
-      }}>
-        <div style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: 11,
-          letterSpacing: '4px',
-          textTransform: 'uppercase',
-          color: '#FFC700',
-          fontWeight: 700,
-          marginBottom: 20,
-        }}>
-          GET INVOLVED
-        </div>
-
-        <h1 style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(48px, 10vw, 160px)',
-          lineHeight: 0.88,
-          textTransform: 'uppercase',
-          color: '#FFF',
-          letterSpacing: '-0.03em',
-          marginBottom: 24,
-        }}>
-          There Is a Role for You Here
-        </h1>
-
-        <p style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: 'clamp(15px, 1.3vw, 20px)',
-          color: '#FFF',
-          lineHeight: 1.7,
-          maxWidth: 600,
-          fontWeight: 700,
-          marginBottom: 40,
-        }}>
-          Behind every number is a neighbor who said yes. 7,500+ volunteers. 300+ partners. One city building together.
-        </p>
-
-        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
           <a
+            ref={btnRef}
             href="#volunteer"
             style={{
               display: 'inline-block',
-              background: '#FFC700',
-              color: '#000',
-              padding: '16px 40px',
-              borderRadius: '4px',
+              marginTop: 32,
               fontFamily: 'var(--font-body)',
-              fontSize: 13,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
+              fontSize: 14,
               fontWeight: 700,
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              color: '#000',
               textDecoration: 'none',
+              borderBottom: '2px solid #000',
+              paddingBottom: 4,
             }}
           >
             Find Your Role
           </a>
-          <a
-            href="#donate"
+        </div>
+
+        {/* Gallery grid — 3 columns, positioned behind content */}
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate3d(-50%, -50%, 0)',
+          width: 'min(736px, 55vw)',
+        }}>
+          <ul
+            ref={gridRef}
             style={{
-              display: 'inline-block',
-              border: '2px solid #FFC700',
-              color: '#FFC700',
-              padding: '16px 40px',
-              borderRadius: '4px',
-              fontFamily: 'var(--font-body)',
-              fontSize: 13,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-              textDecoration: 'none',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              columnGap: 'clamp(12px, 2vw, 32px)',
+              rowGap: 'clamp(16px, 2.5vw, 40px)',
+              listStyle: 'none',
+              margin: 0,
+              padding: 0,
+              willChange: 'transform',
             }}
           >
-            Donate
-          </a>
+            {displayImages.map((src, i) => (
+              <li
+                key={i}
+                className="gi"
+                style={{
+                  width: '100%',
+                  aspectRatio: '1',
+                  willChange: 'transform',
+                  borderRadius: 8,
+                  overflow: 'hidden',
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt={`IBTU community ${i + 1}`}
+                  loading={i < 6 ? 'eager' : 'lazy'}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    filter: 'brightness(1.05) saturate(1.15)',
+                  }}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
