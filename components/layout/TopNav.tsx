@@ -24,10 +24,7 @@ export default function TopNav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+  // No body scroll lock — menu is a floating panel, page stays scrollable
 
   const coinSize = scrolled ? 48 : 56
   const iconSize = scrolled ? 32 : 38

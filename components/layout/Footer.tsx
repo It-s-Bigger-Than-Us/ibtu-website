@@ -88,6 +88,7 @@ export default function Footer() {
               textTransform: 'uppercase',
               color: 'var(--ibtu-gold)',
               letterSpacing: '-0.02em',
+              textAlign: 'center',
             }}
           >
             {mantraWords.map((word, i) => (
@@ -116,6 +117,7 @@ export default function Footer() {
             gap: '48px',
             paddingTop: '48px',
             borderTop: '2px solid var(--ibtu-gold)',
+            alignItems: 'end',
           }}
         >
           {/* Left — logo + org info */}
@@ -140,18 +142,18 @@ export default function Footer() {
                 fontWeight: 500,
               }}
             >
-              501(c)(3) &middot; EIN: 85-3136505
-              <br />
               Baldwin Hills Crenshaw Plaza
               <br />
               Suite 224-226
+              <br />
+              3650 W. Martin Luther King Jr. Blvd
               <br />
               Los Angeles, CA 90008
             </p>
           </div>
 
-          {/* Center — nav links */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {/* Center — nav links (horizontal) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-start' }}>
             <span
               style={{
                 fontFamily: 'var(--font-body)',
@@ -160,30 +162,32 @@ export default function Footer() {
                 textTransform: 'uppercase',
                 color: 'var(--ibtu-gold)',
                 fontWeight: 700,
-                marginBottom: '8px',
+                marginBottom: '4px',
               }}
             >
               Navigate
             </span>
-            {footerLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '13px',
-                  color: '#FFF',
-                  textDecoration: 'none',
-                  fontWeight: 600,
-                  transition: 'color 0.2s',
-                  letterSpacing: '0.5px',
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ibtu-gold)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = '#FFF' }}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px' }}>
+              {footerLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '13px',
+                    color: '#FFF',
+                    textDecoration: 'none',
+                    fontWeight: 600,
+                    transition: 'color 0.2s',
+                    letterSpacing: '0.5px',
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ibtu-gold)' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#FFF' }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* Right — contact + social */}
@@ -289,7 +293,7 @@ export default function Footer() {
             paddingBottom: '24px',
           }}
         >
-          &copy; {new Date().getFullYear()} It&apos;s Bigger Than Us. All rights reserved.
+          &copy; 2026 It&apos;s Bigger Than Us 501(c)(3). All rights reserved. EIN: 85-3136505
         </div>
       </div>
 

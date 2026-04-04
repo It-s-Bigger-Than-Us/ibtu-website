@@ -61,7 +61,7 @@ export default function DonateButton() {
                 textDecoration: 'none',
                 background: 'var(--ibtu-black)',
                 color: 'var(--ibtu-gold)',
-                borderRadius: '4px',
+                borderRadius: '16px',
                 padding: '10px 20px',
                 whiteSpace: 'nowrap',
                 transition: 'background 0.3s var(--ease-out-expo), color 0.3s',

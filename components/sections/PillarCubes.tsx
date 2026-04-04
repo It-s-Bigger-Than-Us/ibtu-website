@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -29,10 +28,10 @@ const PILLARS: PillarData[] = [
   {
     name: 'Crisis & Disaster Stabilization',
     images: [
-      '/images/pillars/crisis-1.jpg',
-      '/images/pillars/crisis-2.jpg',
-      '/images/pillars/crisis-1.jpg',
-      '/images/pillars/crisis-2.jpg',
+      '/images/gallery/IMG_1311.jpg',
+      '/images/gallery/IMG_1673.jpg',
+      '/images/gallery/IMG_1790.jpg',
+      '/images/gallery/IMG_1848.jpg',
     ],
   },
   {
@@ -214,45 +213,33 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
 
   return (
     <section ref={sectionRef} className="pillar-section">
-      {/* Optimized background: Next/Image handles compression + responsive sizing */}
-      <div className="pillar-bg">
-        <Image
-          src="/images/blue-sky.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          quality={60}
-          priority={false}
-          placeholder="empty"
-          style={{ objectFit: 'cover', objectPosition: 'center top' }}
-        />
-      </div>
-
       <div className="pillar-inner">
-        {/* Headline — shrinks from giant on scroll */}
+        {/* Iridescent backdrop behind cubes */}
+        <div className="pillar-cubes-backdrop">
+          <div className="pillar-cubes-grid">
+            {PILLARS.map((pillar, i) => (
+              <div
+                key={pillar.name}
+                className="pillar-cube-wrapper"
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <CubeCard pillar={pillar} isHovered={hoveredIndex === i} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Headline — "By the Numbers" between cubes and stats */}
         <div
           ref={headlineRef}
           className="gsap-reveal"
-          style={{ marginBottom: 'clamp(40px, 5vw, 64px)' }}
+          style={{ margin: 'clamp(48px, 6vw, 80px) 0 clamp(40px, 5vw, 64px)' }}
         >
           <h2 className="pillar-headline">By the Numbers</h2>
         </div>
 
-        {/* Cubes grid — now 5 pillars */}
-        <div className="pillar-cubes-grid">
-          {PILLARS.map((pillar, i) => (
-            <div
-              key={pillar.name}
-              className="pillar-cube-wrapper"
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <CubeCard pillar={pillar} isHovered={hoveredIndex === i} />
-            </div>
-          ))}
-        </div>
-
-        {/* Stats grid — animates in on scroll after cubes */}
+        {/* Stats grid — last in section */}
         {stats.length > 0 && (
           <div
             ref={statsGridRef}
@@ -295,20 +282,13 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
       <style>{`
         .pillar-section {
           position: relative;
-          padding: clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px);
-          overflow: hidden;
-          background-color: #FFC700;
-        }
-
-        .pillar-bg {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
+          padding: clamp(32px, 4vw, 48px) clamp(32px, 5vw, 80px) clamp(60px, 8vw, 100px);
+          overflow: visible;
+          background: transparent;
         }
 
         .pillar-inner {
           position: relative;
-          z-index: 1;
           max-width: var(--content-max);
           margin: 0 auto;
         }
@@ -321,6 +301,14 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           color: var(--ibtu-black);
           letter-spacing: -0.02em;
           text-align: center;
+        }
+
+        .pillar-cubes-backdrop {
+          background-image: var(--holo-gradient);
+          background-size: 600% 600%;
+          animation: holo-shift 20s ease infinite;
+          border-radius: 24px;
+          padding: clamp(32px, 4vw, 56px) clamp(24px, 3vw, 48px);
         }
 
         .pillar-cubes-grid {

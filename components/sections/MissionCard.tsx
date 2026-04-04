@@ -1,25 +1,24 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 /* ═══════════════════════════════════════
-   MISSION — each line slides up separately,
-   "Our Mission" highlight sweeps in LAST.
-   On hover: card → iridescent, highlight → yellow.
+   MISSION — "Our Mission" label appears first,
+   mission text animates in line by line,
+   then "Our Mission" highlight sweeps in LAST.
+   Iridescent stroke on box.
 ═══════════════════════════════════════ */
 
-const MISSION_LINES = [
-  "It's Bigger Than Us builds trusted, place-based programs",
-  "that support youth, families, and neighborhoods",
-  "through education, health access, and crisis response —",
-  "designed with dignity, informed by community, and built to last.",
-]
+const MISSION_TEXT = "It\u2019s Bigger Than Us builds trusted, place-based programs that support youth, families, and neighborhoods through education, health access, and crisis response \u2014 designed with dignity, informed by community, and built to last."
 
 export default function MissionCard() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-15%' })
   const [hovered, setHovered] = useState(false)
+
+  const lineDelay = 0.6
+  const highlightDelay = lineDelay + 0.4
 
   return (
     <section
@@ -37,6 +36,7 @@ export default function MissionCard() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
+        className="holo-glass"
         style={{
           background: hovered ? undefined : 'var(--ibtu-gold)',
           backgroundImage: hovered ? 'var(--holo-gradient)' : undefined,
@@ -50,35 +50,8 @@ export default function MissionCard() {
           transition: 'background 0.5s',
         }}
       >
-        {/* Mission text — each line slides up separately */}
-        <div style={{ marginBottom: 32 }}>
-          {MISSION_LINES.map((line, i) => (
-            <motion.p
-              key={i}
-              initial={{ y: 50, opacity: 0 }}
-              animate={isInView ? { y: [50, -4, 0], opacity: 1 } : {}}
-              transition={{
-                duration: 0.6,
-                ease: [0.4, 0.0, 0.2, 1],
-                delay: 0.15 + i * 0.15,
-              }}
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'clamp(22px, 3.2vw, 38px)',
-                lineHeight: 1.35,
-                color: 'var(--ibtu-black)',
-                fontWeight: 700,
-                maxWidth: '780px',
-                margin: 0,
-              }}
-            >
-              {line}
-            </motion.p>
-          ))}
-        </div>
-
-        {/* "Our Mission" label — highlight sweeps in LAST, after all lines */}
-        <span style={{ display: 'inline-block', position: 'relative' }}>
+        {/* "Our Mission" label — visible first, highlight sweeps in AFTER text */}
+        <span style={{ display: 'inline-block', position: 'relative', marginBottom: 32 }}>
           <span
             style={{
               fontFamily: 'var(--font-body)',
@@ -100,14 +73,14 @@ export default function MissionCard() {
             transition={{
               duration: 0.5,
               ease: [0.16, 1, 0.3, 1],
-              delay: 0.15 + MISSION_LINES.length * 0.15 + 0.2,
+              delay: highlightDelay,
             }}
             style={{
               position: 'absolute',
               left: 0,
               bottom: 0,
               height: '100%',
-              borderRadius: '4px',
+              borderRadius: '16px',
               backgroundImage: hovered
                 ? 'linear-gradient(90deg, #FFC700, #FFC700)'
                 : 'linear-gradient(90deg, #FFF4B8, #D4F0F8, #D4F5E8, #FFE4D6, #FFF4B8)',
@@ -118,6 +91,28 @@ export default function MissionCard() {
             }}
           />
         </span>
+
+        {/* Mission text — single block, slides up */}
+        <motion.p
+          initial={{ y: 40, opacity: 0 }}
+          animate={isInView ? { y: 0, opacity: 1 } : {}}
+          transition={{
+            duration: 0.6,
+            ease: [0.4, 0.0, 0.2, 1],
+            delay: 0.15,
+          }}
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: 'clamp(22px, 3.2vw, 38px)',
+            lineHeight: 1.35,
+            color: 'var(--ibtu-black)',
+            fontWeight: 700,
+            maxWidth: '780px',
+            margin: 0,
+          }}
+        >
+          {MISSION_TEXT}
+        </motion.p>
       </motion.div>
 
       <style>{`

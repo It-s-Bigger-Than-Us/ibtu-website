@@ -1,11 +1,13 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import GoldTicker from '@/components/sections/GoldTicker'
 import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
 import ProgramCarousel3D from '@/components/sections/ProgramCarousel3D'
 import PillarTabs from '@/components/sections/PillarTabs'
+import PillarCubes from '@/components/sections/PillarCubes'
 import HeroGallery from '@/components/sections/HeroGallery'
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
@@ -81,7 +83,7 @@ export default function HomePageClient({
               background: '#FFC700',
               color: '#000',
               padding: '16px 40px',
-              borderRadius: '4px',
+              borderRadius: '16px',
               fontFamily: 'var(--font-body)',
               fontSize: 13,
               letterSpacing: '0.1em',
@@ -96,7 +98,8 @@ export default function HomePageClient({
               border: '2px solid #FFC700',
               color: '#FFC700',
               padding: '16px 40px',
-              borderRadius: '4px',
+              borderRadius: '16px',
+              overflow: 'hidden',
               fontFamily: 'var(--font-body)',
               fontSize: 13,
               letterSpacing: '0.1em',
@@ -116,8 +119,25 @@ export default function HomePageClient({
       {/* 3. Mission — typewriter effect */}
       <MissionCard />
 
-      {/* 4. Our Impact Pillars — tabs + cubes + stats (yellow bg) */}
-      <PillarTabs stats={stats} />
+      {/* 4. Our Impact Pillars — blue sky bg behind tabs + cubes */}
+      <section style={{ position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          <Image
+            src="/images/blue-sky.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            quality={60}
+            priority={false}
+            placeholder="empty"
+            style={{ objectFit: 'cover', objectPosition: 'center top' }}
+          />
+        </div>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <PillarTabs />
+          <PillarCubes stats={stats} />
+        </div>
+      </section>
 
       {/* 6. Program Cards — 3D Gradient Carousel */}
       <ProgramCarousel3D programs={programCards.length > 0 ? programCards : [

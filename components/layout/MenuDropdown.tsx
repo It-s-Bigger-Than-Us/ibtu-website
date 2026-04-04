@@ -24,28 +24,25 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
   const linksRef = useRef<HTMLDivElement>(null)
   const firstLinkRef = useRef<HTMLAnchorElement>(null)
 
-  // Animate links on open
   useEffect(() => {
     if (open && linksRef.current) {
       const links = linksRef.current.querySelectorAll('.menu-link')
       gsap.fromTo(
         links,
-        { y: 40, opacity: 0 },
+        { x: -30, opacity: 0 },
         {
-          y: 0,
+          x: 0,
           opacity: 1,
-          duration: 0.6,
-          stagger: 0.08,
+          duration: 0.5,
+          stagger: 0.06,
           ease: 'expo.out',
-          delay: 0.15,
+          delay: 0.2,
         }
       )
-      // Move focus to first link
       setTimeout(() => firstLinkRef.current?.focus(), 300)
     }
   }, [open])
 
-  // Escape key closes menu
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') onClose()
   }, [onClose])
@@ -60,60 +57,92 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
   return (
     <AnimatePresence>
       {open && (
-        <motion.div
-          role="dialog"
-          aria-modal="true"
-          aria-label="Navigation menu"
-          initial={{ clipPath: 'inset(0 0 100% 0)' }}
-          animate={{ clipPath: 'inset(0 0 0 0)' }}
-          exit={{ clipPath: 'inset(0 0 100% 0)' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 99,
-            background: 'var(--ibtu-gold)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            padding: 'clamp(100px, 15vh, 200px) clamp(48px, 8vw, 120px)',
-            overflow: 'auto',
-          }}
-        >
-          <nav ref={linksRef} aria-label="Main navigation">
-            {navLinks.map((link, i) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                ref={i === 0 ? firstLinkRef : undefined}
-                className="menu-link"
-                onClick={onClose}
-                style={{
-                  display: 'block',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(32px, 5vw, 56px)',
-                  textTransform: 'uppercase',
-                  color: 'var(--ibtu-black)',
-                  textDecoration: 'none',
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.01em',
-                  padding: '4px 0',
-                  opacity: 0,
-                  transition: 'color 0.2s',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = 'var(--ibtu-white)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = 'var(--ibtu-black)'
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+        <>
+          {/* Clickable backdrop — transparent so page shows through */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={onClose}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 98,
+              background: 'rgba(0,0,0,0.25)',
+            }}
+          />
 
-        </motion.div>
+          {/* Menu panel — slides from left */}
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              position: 'fixed',
+              top: 'clamp(80px, 10vh, 120px)',
+              left: 'clamp(16px, 3vw, 32px)',
+              zIndex: 99,
+              background: 'var(--ibtu-gold)',
+              borderRadius: '16px',
+              padding: 'clamp(32px, 4vw, 48px) clamp(32px, 5vw, 56px)',
+              overflow: 'hidden',
+            }}
+          >
+            {/* Iridescent border via pseudo-element */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              borderRadius: '16px',
+              padding: '2px',
+              background: 'var(--holo-gradient)',
+              backgroundSize: '600% 600%',
+              animation: 'holo-shift 20s ease infinite',
+              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+              WebkitMaskComposite: 'xor',
+              maskComposite: 'exclude' as never,
+              pointerEvents: 'none',
+            }} />
+
+            <nav ref={linksRef} aria-label="Main navigation" style={{ position: 'relative', zIndex: 1 }}>
+              {navLinks.map((link, i) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  ref={i === 0 ? firstLinkRef : undefined}
+                  className="menu-link"
+                  onClick={onClose}
+                  style={{
+                    display: 'block',
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 'clamp(28px, 4vw, 48px)',
+                    textTransform: 'uppercase',
+                    color: 'var(--ibtu-black)',
+                    textDecoration: 'none',
+                    lineHeight: 1.15,
+                    letterSpacing: '-0.01em',
+                    padding: '4px 0',
+                    opacity: 0,
+                    transition: 'color 0.2s',
+                    whiteSpace: 'nowrap',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = 'var(--ibtu-white)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = 'var(--ibtu-black)'
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   )

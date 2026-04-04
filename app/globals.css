@@ -113,9 +113,9 @@
   position: relative;
   border-radius: 16px;
   box-shadow:
-    0 0 15px 2px #FFF4B8,
-    0 0 30px 4px #D4F0F8,
-    0 0 45px 6px #D4F5E8;
+    0 0 10px 1px #FFF4B8,
+    0 0 21px 3px #D4F0F8,
+    0 0 32px 4px #D4F5E8;
 }
 .holo-glass::before {
   content: '';

@@ -56,7 +56,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   const tick = useCallback(() => {
     if (!dragging) {
       velRef.current *= 0.95
-      if (hovered && Math.abs(velRef.current) < 0.15) velRef.current = -1.2
+      if (hovered && Math.abs(velRef.current) < 0.15) velRef.current = -1.5
       if (!hovered && Math.abs(velRef.current) < 0.05) velRef.current = 0
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)
@@ -95,18 +95,19 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
       overflow: 'hidden',
     }}>
       <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto', padding: '0 clamp(32px, 5vw, 80px) clamp(24px, 3vw, 40px)' }}>
-        <span style={{
-          fontFamily: 'var(--font-body)',
-          fontSize: '10px',
-          letterSpacing: '4px',
+        <h2 style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 'clamp(48px, 7vw, 110px)',
+          lineHeight: 0.92,
           textTransform: 'uppercase',
-          fontWeight: 700,
           color: '#000',
+          letterSpacing: '-0.02em',
           display: 'block',
-          marginBottom: 16,
+          marginBottom: 'clamp(24px, 3vw, 40px)',
+          textAlign: 'center',
         }}>
           Our Programs
-        </span>
+        </h2>
       </div>
 
       <div
@@ -200,7 +201,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                 }}>
                   <h3 style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '13px',
+                    fontSize: 'clamp(15px, 1.4vw, 19px)',
                     fontWeight: 800,
                     textTransform: 'uppercase',
                     color: '#000',
