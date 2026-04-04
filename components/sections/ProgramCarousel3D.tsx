@@ -27,6 +27,7 @@ const GAP = 20
 export default function ProgramCarousel3D({ programs }: { programs: Program[] }) {
   const [offset, setOffset] = useState(0)
   const [dragging, setDragging] = useState(false)
+  const [hovered, setHovered] = useState(false)
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
   const [containerW, setContainerW] = useState(1200)
   const lastXRef = useRef(0)
@@ -51,16 +52,17 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
     return () => window.removeEventListener('resize', measure)
   }, [])
 
-  // Animation loop
+  // Animation loop — ONLY scrolls on hover or drag
   const tick = useCallback(() => {
     if (!dragging) {
-      velRef.current *= 0.97
-      if (Math.abs(velRef.current) < 0.15) velRef.current = -0.3
+      velRef.current *= 0.95
+      if (hovered && Math.abs(velRef.current) < 0.15) velRef.current = -0.6
+      if (!hovered && Math.abs(velRef.current) < 0.05) velRef.current = 0
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)
     }
     rafRef.current = requestAnimationFrame(tick)
-  }, [dragging])
+  }, [dragging, hovered])
 
   useEffect(() => {
     rafRef.current = requestAnimationFrame(tick)
@@ -103,7 +105,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
           display: 'block',
           marginBottom: 16,
         }}>
-          (Our Programs)({count})
+          Our Programs
         </span>
       </div>
 
@@ -122,6 +124,8 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
         onPointerMove={onMove}
         onPointerUp={onUp}
         onPointerCancel={onUp}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
         {/* 3 copies for infinite wrap */}
         {[0, 1, 2].map((copy) =>
@@ -202,16 +206,6 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                   }}>
                     {prog.title}
                   </h3>
-                  <span style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '9px',
-                    fontWeight: 700,
-                    letterSpacing: '2px',
-                    textTransform: 'uppercase',
-                    color: '#000',
-                  }}>
-                    {prog.pillar}
-                  </span>
                 </div>
               </Link>
             )

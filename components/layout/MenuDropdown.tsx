@@ -113,29 +113,6 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
             ))}
           </nav>
 
-          {/* Sacred mantra at bottom */}
-          <div
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              bottom: 'clamp(32px, 5vh, 80px)',
-              left: 'clamp(48px, 8vw, 120px)',
-            }}
-          >
-            <p
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(24px, 4vw, 40px)',
-                lineHeight: 1.1,
-                color: 'var(--ibtu-black)',
-                textTransform: 'uppercase',
-              }}
-            >
-              Community<br />
-              is the<br />
-              Infrastructure.
-            </p>
-          </div>
         </motion.div>
       )}
     </AnimatePresence>

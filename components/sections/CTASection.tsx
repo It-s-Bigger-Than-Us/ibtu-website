@@ -126,8 +126,10 @@ export default function CTASection({
         {/* Two buttons */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
           {/* Donate — black bg, sparkle-stroke border */}
-          <Link
-            href="/get-involved"
+          <a
+            href="https://secure.qgiv.com/for/ibt/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="sparkle-stroke"
             style={{
               display: 'inline-block',
@@ -153,7 +155,7 @@ export default function CTASection({
             }}
           >
             Donate
-          </Link>
+          </a>
 
           {/* Volunteer — white bg, holo-glass border */}
           <Link

@@ -134,7 +134,9 @@ export default function TopNav() {
 
           {/* Donate button — after hamburger */}
           <a
-            href="/get-involved"
+            href="https://secure.qgiv.com/for/ibt/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="iridescent-border"
             onMouseEnter={() => setDonateHovered(true)}
             onMouseLeave={() => setDonateHovered(false)}
