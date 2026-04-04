@@ -130,17 +130,18 @@ export default function HeroReveal() {
             color: '#000',
             letterSpacing: '-0.02em',
             textAlign: 'center',
-            whiteSpace: 'nowrap',
             display: 'flex',
-            gap: '0.15em',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
           <span
             ref={leftTextRef}
             style={{
-              display: 'inline-block',
+              display: 'block',
               opacity: 0,
               willChange: 'transform, opacity',
+              whiteSpace: 'nowrap',
             }}
           >
             IT&apos;S BIGGER
@@ -148,9 +149,10 @@ export default function HeroReveal() {
           <span
             ref={rightTextRef}
             style={{
-              display: 'inline-block',
+              display: 'block',
               opacity: 0,
               willChange: 'transform, opacity',
+              whiteSpace: 'nowrap',
             }}
           >
             THAN US
