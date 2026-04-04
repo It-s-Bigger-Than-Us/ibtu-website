@@ -111,7 +111,7 @@ async function fix() {
 
     // Fire Relief Phase 2 — Active
     { _id: "ev-active-hub-phase2", _type: "event", title: "Fire Relief Hub Phase 2 — Weekly Appointments", jobNumber: "Hub-S26-010-IBTU-FireRelief-Phase2-Weekly Appointments", program: ref("prog-fire-relief"), pillar: "Crisis & Disaster Stabilization", year: 2026, dateStart: "2026", status: "Active", displayOnWebsite: true },
-    { _id: "ev-active-hub-wfb", _type: "event", title: "Fire Relief Hub Phase 2 — Westside Food Bank", jobNumber: "Hub-S26-010-IBTU-FireRelief-Phase2-WFB", program: ref("prog-fire-relief"), pillar: "Crisis & Disaster Stabilization", year: 2026, dateStart: "2026", status: "Active", displayOnWebsite: true },
+    { _id: "ev-active-hub-wfb", _type: "event", title: "Fire Relief Hub Phase 2 — Westside Food Bank", jobNumber: "Hub-S26-010-IBTU-FireRelief-Phase2-WFB", program: ref("prog-fire-relief"), pillar: "Crisis & Disaster Stabilization", year: 2026, dateStart: "2026", status: "Closed", displayOnWebsite: false },
 
     // Coastal Care 2026 — monthly Active events
     { _id: "ev-cc-20260314", _type: "event", title: "Coastal Care — March 2026", jobNumber: "PROG-S26-002-IBTU-CoastalCare-20260314", program: ref("prog-coastal-care"), pillar: "Community Health & Resource Access", year: 2026, dateStart: "03/14/2026", location: "Venice Beach Pier", status: "Active", displayOnWebsite: true },
@@ -125,8 +125,8 @@ async function fix() {
     { _id: "ev-cc-20261114", _type: "event", title: "Coastal Care — November 2026", jobNumber: "PROG-S26-002-IBTU-CoastalCare-20261114", program: ref("prog-coastal-care"), pillar: "Community Health & Resource Access", year: 2026, dateStart: "11/14/2026", location: "Venice Beach Pier", status: "Active", displayOnWebsite: true },
     { _id: "ev-cc-20261212", _type: "event", title: "Coastal Care — December 2026", jobNumber: "PROG-S26-002-IBTU-CoastalCare-20261212", program: ref("prog-coastal-care"), pillar: "Community Health & Resource Access", year: 2026, dateStart: "12/12/2026", location: "Venice Beach Pier", status: "Active", displayOnWebsite: true },
 
-    // Digital Literacy — tracker shows Active (Molly said cancel earlier but tracker says Active)
-    { _id: "ev-active-digital-lit", _type: "event", title: "Digital Literacy Program", jobNumber: "PROG-S26-001-IBTU-DigitalLiteracy", program: ref("prog-community-health"), pillar: "Community Health & Resource Access", year: 2026, dateStart: "March 2026", status: "Active", displayOnWebsite: true, description: "6 events TBD" },
+    // Digital Literacy — CANCELLED per Molly. Removed from CMS entirely.
+    // { _id: "ev-active-digital-lit" — DELETED },
 
     // New school proposals — internal only (displayOnWebsite: false)
     { _id: "ev-prop-purche-pw", _type: "event", title: "Purche ES — Parent Workshop", jobNumber: "SCH-S26-PROP-Purche-PW-032326", program: ref("prog-youth-programming"), pillar: "School & Youth Stability", year: 2026, dateStart: "03/23/2026", status: "Upcoming", displayOnWebsite: false, description: "" },

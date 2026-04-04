@@ -5,11 +5,11 @@ import gsap from 'gsap'
 import Image from 'next/image'
 
 /* ═══════════════════════════════════════
-   HERO REVEAL — Full homepage hero
-   1. "IT'S BIGGER THAN US" text wipes in from sides
-   2. IBTU logo circle-wipes in from center
-   3. Logo zooms forward to reveal split content
-   Total animation: ~3 seconds
+   HERO REVEAL — Yellow bg homepage hero
+   1. "IT'S BIGGER THAN US" wipes in from sides
+   2. IBTU logo circle-wipes from tiny center → full
+   3. Logo zooms through page → split volunteer section
+   Background stays YELLOW throughout.
 ═══════════════════════════════════════ */
 
 export default function HeroReveal() {
@@ -31,72 +31,71 @@ export default function HeroReveal() {
 
     const tl = gsap.timeline()
 
-    // Setup: hide everything initially
-    gsap.set(logoRef.current, { opacity: 0, scale: 0.15 })
+    // Setup: hide logo and split content initially
+    gsap.set(logoRef.current, { opacity: 0 })
     gsap.set(splitRef.current, { opacity: 0 })
 
-    // ─── Phase 1: Text wipes in from both sides (~0.8s) ───
+    // ─── Phase 1: Text wipes in from both sides ───
     tl.fromTo(
       leftTextRef.current,
-      { x: '-110%', opacity: 0 },
-      { x: '0%', opacity: 1, duration: 0.5, ease: 'power3.out' },
+      { x: '-120%', opacity: 0 },
+      { x: '0%', opacity: 1, duration: 0.6, ease: 'power3.out' },
       0,
     )
     tl.fromTo(
       rightTextRef.current,
-      { x: '110%', opacity: 0 },
-      { x: '0%', opacity: 1, duration: 0.5, ease: 'power3.out' },
+      { x: '120%', opacity: 0 },
+      { x: '0%', opacity: 1, duration: 0.6, ease: 'power3.out' },
       0,
     )
 
-    // Brief hold
-    tl.to({}, { duration: 0.3 })
+    // Hold on the title
+    tl.to({}, { duration: 0.4 })
 
-    // ─── Phase 2: Text fades, logo circle-wipes in (~0.8s) ───
+    // ─── Phase 2: Text fades, IBTU logo circle-wipes in from tiny center ───
     tl.to(textContainerRef.current, {
       opacity: 0,
-      scale: 0.85,
-      duration: 0.25,
+      scale: 0.9,
+      duration: 0.3,
       ease: 'power2.in',
     })
 
-    tl.to(logoRef.current, { opacity: 1, duration: 0.01 })
+    // Logo appears tiny at center, circle expands to reveal it
+    tl.set(logoRef.current, { opacity: 1, scale: 0.05 })
     tl.fromTo(
       logoRef.current,
       {
-        scale: 0.6,
         clipPath: 'circle(0% at 50% 50%)',
+        scale: 0.05,
       },
       {
+        clipPath: 'circle(60% at 50% 50%)',
         scale: 1,
-        clipPath: 'circle(55% at 50% 50%)',
-        duration: 0.6,
+        duration: 0.7,
         ease: 'expo.out',
       },
     )
 
-    // Brief hold
-    tl.to({}, { duration: 0.15 })
+    // Hold on logo
+    tl.to({}, { duration: 0.2 })
 
-    // ─── Phase 3: Logo zooms forward, reveals split content (~0.8s) ───
+    // ─── Phase 3: Logo zooms through the page ───
     tl.to(logoRef.current, {
-      scale: 25,
+      scale: 40,
       opacity: 0,
-      duration: 0.5,
+      duration: 0.6,
       ease: 'power3.in',
     })
 
-    // Split content fades and slides in
+    // Split content fades in as logo zooms through
     tl.fromTo(
       splitRef.current,
       { opacity: 0 },
       { opacity: 1, duration: 0.4, ease: 'power2.out' },
-      '-=0.2',
+      '-=0.3',
     )
 
-    return () => {
-      tl.kill()
-    }
+    return () => { tl.kill() }
   }, [])
 
   return (
@@ -104,7 +103,7 @@ export default function HeroReveal() {
       ref={sectionRef}
       style={{
         height: '100vh',
-        background: '#000',
+        background: '#FFC700',
         position: 'relative',
         overflow: 'hidden',
       }}
@@ -128,7 +127,7 @@ export default function HeroReveal() {
             fontSize: 'clamp(48px, 12vw, 200px)',
             lineHeight: 0.9,
             textTransform: 'uppercase',
-            color: '#FFC700',
+            color: '#000',
             letterSpacing: '-0.02em',
             textAlign: 'center',
             whiteSpace: 'nowrap',
@@ -159,7 +158,7 @@ export default function HeroReveal() {
         </h1>
       </div>
 
-      {/* ─── Phase 2: Logo circle-wipe ─── */}
+      {/* ─── Phase 2: Logo circle-wipe from center ─── */}
       <div
         ref={logoRef}
         style={{
@@ -173,18 +172,18 @@ export default function HeroReveal() {
           opacity: 0,
           clipPath: 'circle(0% at 50% 50%)',
           transformOrigin: 'center center',
+          willChange: 'transform, clip-path, opacity',
         }}
       >
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src="/ibtu-logo.svg"
           alt="IBTU Logo"
-          fill
-          style={{ objectFit: 'contain' }}
-          priority
+          style={{ width: '100%', height: '100%', objectFit: 'contain' }}
         />
       </div>
 
-      {/* ─── Phase 3: Split-screen content ─── */}
+      {/* ─── Phase 3: Split-screen volunteer content ─── */}
       <div
         ref={splitRef}
         data-hero-split=""
@@ -196,7 +195,7 @@ export default function HeroReveal() {
           opacity: 0,
         }}
       >
-        {/* Left: Text content */}
+        {/* Left: Text content — black bg */}
         <div
           style={{
             width: '50%',
@@ -246,9 +245,7 @@ export default function HeroReveal() {
               marginBottom: 32,
             }}
           >
-            Sort relief supplies at the Hub. Run resource stations at school
-            festivals. Clean Venice Beach with Coastal Care crews. Distribute
-            backpacks to thousands of students. There is room for you.
+            Behind every backpack, every meal, every family who walks into the Hub and finds someone who listens — there is a volunteer who said yes. 7,500 people have built this alongside us, and every one of them changed what was possible for a neighbor they may never meet. That is what community infrastructure looks like. There is room for you.
           </p>
 
           <a
@@ -274,7 +271,7 @@ export default function HeroReveal() {
           </a>
         </div>
 
-        {/* Right: Full-bleed photo */}
+        {/* Right: IBTU bucket coastal cleanup photo — bleeds out of frame */}
         <div
           style={{
             width: '50%',
@@ -283,8 +280,8 @@ export default function HeroReveal() {
           }}
         >
           <Image
-            src="/images/coastal/IMG_4838.jpg"
-            alt="IBTU Coastal Care volunteers cleaning Venice Beach"
+            src="/images/coastal/IMG_4926.jpg"
+            alt="IBTU branded bucket during Coastal Care beach cleanup at Venice Beach"
             fill
             sizes="50vw"
             style={{

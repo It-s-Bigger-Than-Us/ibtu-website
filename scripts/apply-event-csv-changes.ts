@@ -112,7 +112,7 @@ async function apply() {
 
     // Active events — waysToGetInvolved
     { _id: "ev-active-hub-wfb", waysToGetInvolved: "Volunteer" },
-    { _id: "ev-active-digital-lit", waysToGetInvolved: "Volunteer" },
+    // ev-active-digital-lit — CANCELLED, removed
     { _id: "ev-gala-2026", waysToGetInvolved: "Attend" },
     { _id: "ev-active-b2s-2026", waysToGetInvolved: "Volunteer" },
     { _id: "ev-active-yes-lt-s26", waysToGetInvolved: "Lunchtime Takeover" },
