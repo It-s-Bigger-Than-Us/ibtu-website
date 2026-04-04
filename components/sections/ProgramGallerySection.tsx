@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -29,6 +29,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
   const headlineRef = useRef<HTMLHeadingElement>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
   const sectionsRef = useRef<HTMLElement[]>([])
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
 
   useEffect(() => {
     if (!stickyRef.current || !headlineRef.current) return
@@ -121,20 +122,25 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
       {/* Each program — 2 columns with parallax */}
       {programs.map((prog, idx) => {
         const isBlack = idx % 2 !== 0
-        const textColor = isBlack ? '#FFC700' : '#000'
-        const bodyColor = isBlack ? '#FFF' : '#000'
-        const bg = isBlack ? '#000' : '#FFC700'
-        const btnBg = isBlack ? '#FFC700' : '#000'
-        const btnColor = isBlack ? '#000' : '#FFC700'
+        const isHov = hoveredIdx === idx
+        // Reverse colors on hover
+        const textColor = isHov ? (isBlack ? '#000' : '#FFC700') : (isBlack ? '#FFC700' : '#000')
+        const bodyColor = isHov ? (isBlack ? '#000' : '#FFF') : (isBlack ? '#FFF' : '#000')
+        const bg = isHov ? (isBlack ? '#FFC700' : '#000') : (isBlack ? '#000' : '#FFC700')
+        const btnBg = isHov ? (isBlack ? '#000' : '#FFC700') : (isBlack ? '#FFC700' : '#000')
+        const btnColor = isHov ? (isBlack ? '#FFC700' : '#000') : (isBlack ? '#000' : '#FFC700')
 
         return (
           <section
             key={prog.slug}
             ref={(el) => { if (el) sectionsRef.current[idx] = el }}
+            onMouseEnter={() => setHoveredIdx(idx)}
+            onMouseLeave={() => setHoveredIdx(null)}
             style={{
               background: bg,
               padding: 'clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px)',
               overflow: 'hidden',
+              transition: 'background 0.5s, color 0.5s',
             }}
           >
             <div className="prog-inner" style={{

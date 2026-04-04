@@ -32,8 +32,9 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
   const tick = useCallback(() => {
     if (!dragging) {
       velRef.current *= 0.97
-      // Almost still — barely drifting so user knows it's interactive
-      if (Math.abs(velRef.current) < 0.05) velRef.current = hovered ? -0.5 : -0.08
+      // Only scroll on hover — still when idle
+      if (hovered && Math.abs(velRef.current) < 0.05) velRef.current = -0.8
+      if (!hovered && Math.abs(velRef.current) < 0.05) velRef.current = 0
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)
     }
@@ -131,21 +132,7 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
                   pointerEvents: 'none',
                 }}
               />
-              <style>{`
-                .gallery-card-photo {
-                  transition: box-shadow 0.3s, transform 0.4s var(--ease-out-expo);
-                }
-                .gallery-card-photo:hover {
-                  transform: scale(1.02) !important;
-                  box-shadow:
-                    0 0 8px 1px #FFF4B8,
-                    0 0 16px 2px #D4F0F8,
-                    0 0 24px 3px #D4F5E8 !important;
-                }
-                .gallery-card-photo:hover img {
-                  filter: brightness(1.08) saturate(1.18) !important;
-                }
-              `}</style>
+              {/* No hover grow — scroll handles interaction */}
             </div>
           )
         })
