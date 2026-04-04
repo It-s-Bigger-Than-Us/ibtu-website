@@ -87,14 +87,6 @@ export default function GetInvolvedPage() {
               }}>
                 We are not a seasonal organization. We run programs inside 34 schools year-round. We staff a crisis hub five days a week. We show up to the same neighborhoods, the same campuses, the same families — because consistency is what trust looks like. We listen, we build, we stay.
               </p>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'var(--body-md)',
-                color: '#FFF',
-                lineHeight: 1.8,
-              }}>
-                So why IBTU? Because we have spent six years proving that community-designed programs, run by people who live in these neighborhoods, produce results that outside interventions cannot replicate. 23 awards. Featured on the Jennifer Hudson Show. Trusted by LAUSD, lululemon, LA84 Foundation, and Baby2Baby. But the real proof is simpler: families keep coming back, and they bring their neighbors.
-              </p>
             </div>
           </div>
         </section>
