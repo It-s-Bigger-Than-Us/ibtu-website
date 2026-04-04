@@ -28,10 +28,10 @@ const PILLARS: PillarData[] = [
   {
     name: 'Crisis & Disaster Stabilization',
     images: [
-      '/images/gallery/IMG_1311.jpg',
-      '/images/gallery/IMG_1673.jpg',
-      '/images/gallery/IMG_1790.jpg',
-      '/images/gallery/IMG_1848.jpg',
+      '/images/pillars/crisis-2.jpg',
+      '/images/additional/IMG_0015.jpg',
+      '/images/additional/IMG_0018.jpg',
+      '/images/additional/IMG_0002.jpg',
     ],
   },
   {

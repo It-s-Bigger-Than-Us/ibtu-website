@@ -72,9 +72,9 @@ export const PROGRAM_CONTENT: Record<string, ProgramContent> = {
         body: `On January 7, 2025, the fires started. By January 10, IBTU had activated 1,800+ volunteers, opened supply staging at Baldwin Hills Crenshaw Plaza, and begun delivering essential goods to displaced families across Los Angeles. In those first 14 days, volunteers delivered 10,560 meals to first responders, processed 1,728 individual in-kind donations, and made 147 deliveries to 85 unique locations.
 
 This was not a campaign. This was a community that already had the relationships, the logistics, and the trust to move — because IBTU had spent five years building that infrastructure in South LA schools, food distributions, and neighborhood events.`,
-        image: '/images/gallery/IMG_1311.jpg',
+        image: '/images/additional/IMG_0018.jpg',
         imageAlt:
-          'IBTU volunteers organizing emergency relief supplies at Baldwin Hills Crenshaw Plaza',
+          'IBTU volunteers distributing relief supplies under IBTU tent at Baldwin Hills Crenshaw Plaza',
         imagePosition: 'left',
         highlights: [
           '1,800+ volunteers',
@@ -87,7 +87,7 @@ This was not a campaign. This was a community that already had the relationships
         body: `Phase 2 transformed emergency response into permanent infrastructure. The IBTU Relief Resource Hub at Baldwin Hills Crenshaw Plaza (Suite 224-226, 3650 W Martin Luther King Jr Blvd, Los Angeles, CA 90008) now operates as a full-service community center with 15+ rotating partner services.
 
 Hub services include case management, dental care, vision screenings, mental health support with no waitlist, housing navigation, legal aid, immigration assistance, food distribution, and financial counseling. Walk-in and appointment access. Fire-impacted community members receive services at no cost. The verification process is dignified — no one is turned away, and every person is treated with respect from the first interaction.`,
-        image: '/images/gallery/IMG_1603.jpg',
+        image: '/images/pillars/crisis-2.jpg',
         imageAlt:
           'Community members receiving support services at the IBTU Relief Resource Hub',
         imagePosition: 'right',
@@ -102,7 +102,7 @@ Hub services include case management, dental care, vision screenings, mental hea
         body: `The Hub serves 324 active clients who return an average of 23.4 times each — proof that this is not transactional relief but a trusted resource. Of those assessed, 79% are permanently displaced. 62% report significant mental health impact. 37% are unemployed. These are not abstract statistics. They represent families rebuilding their lives, and they keep coming back because the Hub delivers.
 
 Referral sources tell the story of organic trust: 37% find the Hub through word of mouth, 14% through social media, and 10% through other organizations. IBTU serves families from 90+ zip codes across Los Angeles — because crisis does not respect district lines.`,
-        image: '/images/gallery/IMG_1790.jpg',
+        image: '/images/additional/IMG_0015.jpg',
         imageAlt:
           'Hub staff conducting intake assessment with a fire-impacted family',
         imagePosition: 'left',
@@ -117,7 +117,7 @@ Referral sources tell the story of organic trust: 37% find the Hub through word 
         body: `The Hub is transitioning into Phase 3 — a permanent all-crisis community center that will serve fire survivors, immigrant families, and any community member navigating systemic barriers. In July 2025, IBTU served 350 immigrant families across three LAUSD campuses in partnership with UTLA, Baby2Baby, and Khalsa Aid.
 
 This is the IBTU model: show up in crisis, build infrastructure that stays, and expand that infrastructure to meet the next need. 300+ partners activated. $4.5M+ in in-kind resources moved at an $18:$1 leverage ratio. Community is the infrastructure.`,
-        image: '/images/gallery/IMG_1848.jpg',
+        image: '/images/additional/IMG_0094.jpg',
         imageAlt:
           'IBTU team and partners at a Hub community resource event',
         imagePosition: 'right',
@@ -139,16 +139,16 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
     partners:
       'SoLa Impact, One Church, HACLA, Baby2Baby, Khalsa Aid, UTLA, Liberty Dental, lululemon, Nike, Apple, Google, FOX, BET+, TBWA\\Chiat\\Day, Shell, LA28, Target, 180+ Phase 1 partners',
     images: [
-      '/images/gallery/IMG_1311.jpg',
-      '/images/gallery/IMG_1324.jpg',
-      '/images/gallery/IMG_1359.jpg',
-      '/images/gallery/IMG_1501.jpg',
-      '/images/gallery/IMG_1589.jpg',
-      '/images/gallery/IMG_1603.jpg',
-      '/images/gallery/IMG_1673.jpg',
-      '/images/gallery/IMG_1790.jpg',
-      '/images/gallery/IMG_1807.jpg',
-      '/images/gallery/IMG_1848.jpg',
+      '/images/pillars/crisis-2.jpg',
+      '/images/additional/IMG_0002.jpg',
+      '/images/additional/IMG_0015.jpg',
+      '/images/additional/IMG_0018.jpg',
+      '/images/additional/IMG_0094.jpg',
+      '/images/landscape/IMG_0324.jpg',
+      '/images/landscape/IMG_0491.jpg',
+      '/images/pillars/crisis-1.jpg',
+      '/images/additional/IMG_0131.jpg',
+      '/images/additional/IMG_0150.jpg',
     ],
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/7haetjfrq5g190',
     donateUrl: 'https://secure.qgiv.com/for/firerelief',

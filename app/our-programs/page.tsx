@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 /* Images per program — correct folders for each program type */
 const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
   'fire-relief': [
-    '/images/gallery/IMG_1311.jpg', '/images/gallery/IMG_1673.jpg',
-    '/images/gallery/IMG_1790.jpg', '/images/gallery/IMG_1827.jpg',
-    '/images/gallery/IMG_1848.jpg', '/images/gallery/IMG_4353.jpg',
+    '/images/pillars/crisis-2.jpg', '/images/additional/IMG_0002.jpg',
+    '/images/additional/IMG_0015.jpg', '/images/additional/IMG_0018.jpg',
+    '/images/additional/IMG_0094.jpg', '/images/landscape/IMG_0324.jpg',
   ],
   'back-2-school': [
     '/images/b2s/_D5A7392.jpg', '/images/b2s/_D5A7224.jpg',
