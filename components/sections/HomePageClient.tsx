@@ -10,7 +10,6 @@ import HeroGallery from '@/components/sections/HeroGallery'
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
-const PillarCubes = dynamic(() => import('@/components/sections/PillarCubes'), { ssr: false, loading: ShortPlaceholder })
 const CTASection = dynamic(() => import('@/components/sections/CTASection'), { ssr: false, loading: ShortPlaceholder })
 // SponsorPanel removed for now
 
@@ -117,11 +116,8 @@ export default function HomePageClient({
       {/* 3. Mission — typewriter effect */}
       <MissionCard />
 
-      {/* 4. What We Do — tabbed pillars (yellow bg) */}
-      <PillarTabs />
-
-      {/* 5. Impact Pillars + Stats (sky bg) */}
-      <PillarCubes stats={stats} />
+      {/* 4. Our Impact Pillars — tabs + cubes + stats (yellow bg) */}
+      <PillarTabs stats={stats} />
 
       {/* 6. Program Cards — 3D Gradient Carousel */}
       <ProgramCarousel3D programs={programCards.length > 0 ? programCards : [

@@ -56,7 +56,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   const tick = useCallback(() => {
     if (!dragging) {
       velRef.current *= 0.95
-      if (hovered && Math.abs(velRef.current) < 0.15) velRef.current = -0.6
+      if (hovered && Math.abs(velRef.current) < 0.15) velRef.current = -1.2
       if (!hovered && Math.abs(velRef.current) < 0.05) velRef.current = 0
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)
@@ -185,14 +185,18 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                     pointerEvents: 'none',
                   }}
                 />
-                {/* Yellow name bar at bottom */}
+                {/* Name bar — yellow default, iridescent on hover */}
                 <div style={{
                   position: 'absolute',
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  background: '#FFC700',
+                  background: isHovered ? undefined : '#FFC700',
+                  backgroundImage: isHovered ? 'var(--holo-gradient)' : undefined,
+                  backgroundSize: isHovered ? '600% 600%' : undefined,
+                  animation: isHovered ? 'holo-shift 20s ease infinite' : undefined,
                   padding: 'clamp(12px, 1.5vw, 18px)',
+                  transition: 'background 0.4s',
                 }}>
                   <h3 style={{
                     fontFamily: 'var(--font-body)',
