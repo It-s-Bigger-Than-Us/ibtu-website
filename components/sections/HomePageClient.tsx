@@ -137,7 +137,7 @@ export default function HomePageClient({
 
       {/* 6. Program Cards — 3D Gradient Carousel */}
       <ProgramCarousel3D programs={programCards.length > 0 ? programCards : [
-        { slug: 'fire-relief', title: 'Fire Relief & The Hub', pillar: 'Crisis & Disaster Stabilization', heroImage: '/images/gallery/IMG_1311.jpg' },
+        { slug: 'fire-relief', title: 'Fire Relief & The Hub', pillar: 'Crisis & Disaster Stabilization', heroImage: '/images/fire-relief/relief-104.jpg' },
         { slug: 'back-2-school', title: 'Back 2 School Festival', pillar: 'Community Health & Resource Access', heroImage: '/images/b2s/_D5A7392.jpg' },
         { slug: 'youth-programming', title: 'Youth Programming', pillar: 'School & Youth Stability', heroImage: '/images/school/IMG_4674.jpg' },
         { slug: 'coastal-care', title: 'Coastal Care', pillar: 'Community Health & Resource Access', heroImage: '/images/coastal/IMG_0267.jpg' },

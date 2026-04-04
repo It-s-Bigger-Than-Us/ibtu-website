@@ -72,9 +72,9 @@ export const PROGRAM_CONTENT: Record<string, ProgramContent> = {
         body: `On January 7, 2025, the fires started. By January 10, IBTU had activated 1,800+ volunteers, opened supply staging at Baldwin Hills Crenshaw Plaza, and begun delivering essential goods to displaced families across Los Angeles. In those first 14 days, volunteers delivered 10,560 meals to first responders, processed 1,728 individual in-kind donations, and made 147 deliveries to 85 unique locations.
 
 This was not a campaign. This was a community that already had the relationships, the logistics, and the trust to move — because IBTU had spent five years building that infrastructure in South LA schools, food distributions, and neighborhood events.`,
-        image: '/images/additional/IMG_0018.jpg',
+        image: '/images/fire-relief/relief-104.jpg',
         imageAlt:
-          'IBTU volunteers distributing relief supplies under IBTU tent at Baldwin Hills Crenshaw Plaza',
+          'IBTU volunteers distributing clothing and supplies to fire-impacted families at Together We Rebuild event',
         imagePosition: 'left',
         highlights: [
           '1,800+ volunteers',
@@ -87,7 +87,7 @@ This was not a campaign. This was a community that already had the relationships
         body: `Phase 2 transformed emergency response into permanent infrastructure. The IBTU Relief Resource Hub at Baldwin Hills Crenshaw Plaza (Suite 224-226, 3650 W Martin Luther King Jr Blvd, Los Angeles, CA 90008) now operates as a full-service community center with 15+ rotating partner services.
 
 Hub services include case management, dental care, vision screenings, mental health support with no waitlist, housing navigation, legal aid, immigration assistance, food distribution, and financial counseling. Walk-in and appointment access. Fire-impacted community members receive services at no cost. The verification process is dignified — no one is turned away, and every person is treated with respect from the first interaction.`,
-        image: '/images/pillars/crisis-2.jpg',
+        image: '/images/fire-relief/hub-interior-2.jpg',
         imageAlt:
           'Community members receiving support services at the IBTU Relief Resource Hub',
         imagePosition: 'right',
@@ -102,7 +102,7 @@ Hub services include case management, dental care, vision screenings, mental hea
         body: `The Hub serves 324 active clients who return an average of 23.4 times each — proof that this is not transactional relief but a trusted resource. Of those assessed, 79% are permanently displaced. 62% report significant mental health impact. 37% are unemployed. These are not abstract statistics. They represent families rebuilding their lives, and they keep coming back because the Hub delivers.
 
 Referral sources tell the story of organic trust: 37% find the Hub through word of mouth, 14% through social media, and 10% through other organizations. IBTU serves families from 90+ zip codes across Los Angeles — because crisis does not respect district lines.`,
-        image: '/images/additional/IMG_0015.jpg',
+        image: '/images/fire-relief/hub-community-voice.jpg',
         imageAlt:
           'Hub staff conducting intake assessment with a fire-impacted family',
         imagePosition: 'left',
@@ -117,7 +117,7 @@ Referral sources tell the story of organic trust: 37% find the Hub through word 
         body: `The Hub is transitioning into Phase 3 — a permanent all-crisis community center that will serve fire survivors, immigrant families, and any community member navigating systemic barriers. In July 2025, IBTU served 350 immigrant families across three LAUSD campuses in partnership with UTLA, Baby2Baby, and Khalsa Aid.
 
 This is the IBTU model: show up in crisis, build infrastructure that stays, and expand that infrastructure to meet the next need. 300+ partners activated. $4.5M+ in in-kind resources moved at an $18:$1 leverage ratio. Community is the infrastructure.`,
-        image: '/images/additional/IMG_0094.jpg',
+        image: '/images/fire-relief/hub-group.jpg',
         imageAlt:
           'IBTU team and partners at a Hub community resource event',
         imagePosition: 'right',
@@ -139,16 +139,16 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
     partners:
       'SoLa Impact, One Church, HACLA, Baby2Baby, Khalsa Aid, UTLA, Liberty Dental, lululemon, Nike, Apple, Google, FOX, BET+, TBWA\\Chiat\\Day, Shell, LA28, Target, 180+ Phase 1 partners',
     images: [
-      '/images/pillars/crisis-2.jpg',
-      '/images/additional/IMG_0002.jpg',
-      '/images/additional/IMG_0015.jpg',
-      '/images/additional/IMG_0018.jpg',
-      '/images/additional/IMG_0094.jpg',
-      '/images/landscape/IMG_0324.jpg',
-      '/images/landscape/IMG_0491.jpg',
-      '/images/pillars/crisis-1.jpg',
-      '/images/additional/IMG_0131.jpg',
-      '/images/additional/IMG_0150.jpg',
+      '/images/fire-relief/relief-104.jpg',
+      '/images/fire-relief/relief-177.jpg',
+      '/images/fire-relief/relief-97.jpg',
+      '/images/fire-relief/hub-interior-1.jpg',
+      '/images/fire-relief/hub-interior-2.jpg',
+      '/images/fire-relief/hub-awards.jpg',
+      '/images/fire-relief/hub-community-1.jpg',
+      '/images/fire-relief/hub-community-voice.jpg',
+      '/images/fire-relief/hub-ty-community.jpg',
+      '/images/fire-relief/hub-group.jpg',
     ],
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/7haetjfrq5g190',
     donateUrl: 'https://secure.qgiv.com/for/firerelief',
@@ -202,7 +202,7 @@ In 2025, the Crenshaw High School Court Dedication distributed 1,000 backpacks a
         body: `In 2025, IBTU expanded the Back 2 School Festival to three simultaneous locations across Los Angeles. Baldwin Hills Crenshaw Plaza served 2,500+ attendees with 60+ partner organizations and 150+ volunteers. Venice Beach reached 5,000+ community members, served 149 fire-impacted families, and earned recognition from Mayor Karen Bass and Councilmember Traci Park. Crenshaw High School hosted the Court Dedication in partnership with LA84 Foundation.
 
 Every site operates at the same standard. The same quality of resources, the same partner services, the same dignified experience — regardless of zip code. IBTU does not do pop-ups. We build platforms.`,
-        image: '/images/b2s/2V8A1964.jpg',
+        image: '/images/b2s/_D5A8894.jpg',
         imageAlt:
           'Aerial view of community members at a Back 2 School distribution site',
         imagePosition: 'right',
@@ -217,7 +217,7 @@ Every site operates at the same standard. The same quality of resources, the sam
         body: `Over six years, 190+ organizations have partnered with the Back 2 School Festival — lululemon, Baby2Baby, Supreme, Adidas, Nike, Apple, Google, Target, LA Rams, Pepsi, LA84 Foundation, and LAUSD among them. These are not logo placements. Partner organizations send staff, donate supplies, and run service stations alongside IBTU volunteers.
 
 Corporate teams work shoulder-to-shoulder with community members. Elected officials — Mayor Bass, Superintendent Carvalho, Assemblymembers Bryan and McKinnor, Senator Smallwood-Cuevas — attend not for photo ops but because the data speaks: 17,500+ attendees, 90+ schools, 123+ zip codes. The Back 2 School Festival has become one of the largest community-driven school readiness events in Los Angeles.`,
-        image: '/images/b2s/6D5A0871.jpg',
+        image: '/images/b2s/_D5A8946.jpg',
         imageAlt:
           'Partner organizations and volunteers collaborating at the festival',
         imagePosition: 'left',
@@ -232,7 +232,7 @@ Corporate teams work shoulder-to-shoulder with community members. Elected offici
         body: `The Back 2 School Festival has earned a Certificate of Recognition from Mayor Karen Bass, a Proclamation for Sustained Community Service from Councilmember Traci Park, a U.S. Congressional Certificate from Congresswoman Kamlager-Dove, a Bridge Builder Award from Supervisor Holly Mitchell, and proclamations from Assemblymembers Bryan and McKinnor. The City of Inglewood issued a Special Commendation in 2024.
 
 These recognitions were not solicited. They came because community leaders saw the same thing families see every August: an organization that shows up, delivers, and comes back next year. Built to last.`,
-        image: '/images/b2s/_D5A8744.jpg',
+        image: '/images/b2s/new-IMG_5631.jpg',
         imageAlt:
           'IBTU receiving recognition at a Back 2 School community event',
         imagePosition: 'right',
@@ -256,14 +256,14 @@ These recognitions were not solicited. They came because community leaders saw t
     images: [
       '/images/b2s/_D5A7392.jpg',
       '/images/b2s/_D5A7224.jpg',
-      '/images/b2s/2V8A1964.jpg',
-      '/images/b2s/_D5A5912.jpg',
-      '/images/b2s/6D5A0871.jpg',
-      '/images/b2s/6D5A0765.jpg',
-      '/images/b2s/_D5A8700.jpg',
-      '/images/b2s/_D5A8744.jpg',
-      '/images/b2s/6D5A1246.jpg',
-      '/images/b2s/_D5A5869.jpg',
+      '/images/b2s/_D5A8614.jpg',
+      '/images/b2s/_D5A8720.jpg',
+      '/images/b2s/_D5A8844.jpg',
+      '/images/b2s/_D5A8877.jpg',
+      '/images/b2s/_D5A8937.jpg',
+      '/images/b2s/_D5A9056.jpg',
+      '/images/b2s/new-IMG_5394.jpg',
+      '/images/b2s/new-IMG_5579.jpg',
     ],
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih',
     ctaText: 'BACK 2 SCHOOL 2026 IS COMING.',

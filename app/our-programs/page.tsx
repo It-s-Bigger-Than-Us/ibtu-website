@@ -16,14 +16,14 @@ export const metadata: Metadata = {
 /* Images per program — correct folders for each program type */
 const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
   'fire-relief': [
-    '/images/pillars/crisis-2.jpg', '/images/additional/IMG_0002.jpg',
-    '/images/additional/IMG_0015.jpg', '/images/additional/IMG_0018.jpg',
-    '/images/additional/IMG_0094.jpg', '/images/landscape/IMG_0324.jpg',
+    '/images/fire-relief/relief-104.jpg', '/images/fire-relief/relief-177.jpg',
+    '/images/fire-relief/hub-interior-1.jpg', '/images/fire-relief/hub-ty-community.jpg',
+    '/images/fire-relief/hub-awards.jpg', '/images/fire-relief/hub-group.jpg',
   ],
   'back-2-school': [
-    '/images/b2s/_D5A7392.jpg', '/images/b2s/_D5A7224.jpg',
-    '/images/b2s/2V8A1964.jpg', '/images/b2s/_D5A5912.jpg',
-    '/images/b2s/_D5A7530.jpg', '/images/b2s/6D5A0765.jpg',
+    '/images/b2s/_D5A8614.jpg', '/images/b2s/_D5A8720.jpg',
+    '/images/b2s/_D5A8877.jpg', '/images/b2s/_D5A9056.jpg',
+    '/images/b2s/new-IMG_5394.jpg', '/images/b2s/new-IMG_5579.jpg',
   ],
   'coastal-care': [
     '/images/coastal/IMG_0024.jpg', '/images/coastal/IMG_0267.jpg',

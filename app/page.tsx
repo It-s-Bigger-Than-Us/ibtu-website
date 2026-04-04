@@ -6,8 +6,8 @@ import { PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
 const HIDDEN_PROGRAMS = ['gala', 'incubation-academy']
 
 const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
-  'fire-relief': '/images/gallery/IMG_1311.jpg',
-  'back-2-school': '/images/b2s/_D5A7392.jpg',
+  'fire-relief': '/images/fire-relief/relief-104.jpg',
+  'back-2-school': '/images/b2s/_D5A8614.jpg',
   'youth-programming': '/images/school/IMG_5608.jpg',
   'coastal-care': '/images/coastal/IMG_4838.jpg',
   'giving-season': '/images/b2s/6D5A0765.jpg',
