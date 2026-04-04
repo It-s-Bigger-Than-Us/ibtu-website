@@ -113,7 +113,7 @@ export default function StickyStorySection({ slides, sectionLabel }: StickyStory
           top: '48px',
           left: 'clamp(32px, 5vw, 80px)',
           zIndex: 10,
-          fontFamily: "'Poppins', sans-serif",
+          fontFamily: "var(--font-body)",
           fontSize: '10px',
           letterSpacing: '3px',
           textTransform: 'uppercase',
@@ -188,7 +188,7 @@ export default function StickyStorySection({ slides, sectionLabel }: StickyStory
           >
             {slide.label && (
               <span style={{
-                fontFamily: "'Poppins', sans-serif",
+                fontFamily: "var(--font-body)",
                 fontSize: '10px',
                 letterSpacing: '3px',
                 textTransform: 'uppercase',
@@ -223,7 +223,7 @@ export default function StickyStorySection({ slides, sectionLabel }: StickyStory
 
             {slide.body && (
               <p style={{
-                fontFamily: "'Poppins', sans-serif",
+                fontFamily: "var(--font-body)",
                 fontSize: 'clamp(15px, 1.2vw, 18px)',
                 lineHeight: 1.7,
                 color: '#fff',
@@ -236,7 +236,7 @@ export default function StickyStorySection({ slides, sectionLabel }: StickyStory
 
             {slide.stat && (
               <span style={{
-                fontFamily: "'Poppins', sans-serif",
+                fontFamily: "var(--font-body)",
                 fontSize: 'clamp(36px, 4vw, 56px)',
                 fontWeight: 900,
                 color: 'var(--gold)',

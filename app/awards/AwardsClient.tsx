@@ -97,7 +97,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
           AWARDS & RECOGNITION
         </span>
         <h1 style={{
-          fontFamily: "'Poppins', sans-serif",
+          fontFamily: "var(--font-body)",
           fontSize: 'clamp(36px, 6vw, 96px)',
           lineHeight: 0.92,
           color: '#000',
@@ -151,7 +151,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                         display: 'inline-block',
                         background: LEVEL_COLORS[award.level || 'Institutional'] || 'var(--gold)',
                         color: '#000',
-                        fontFamily: "'Poppins', sans-serif",
+                        fontFamily: "var(--font-body)",
                         fontSize: '11px',
                         fontWeight: 700,
                         padding: '5px 10px',
@@ -164,7 +164,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                     </div>
                     <div>
                       <h3 style={{
-                        fontFamily: "'Poppins', sans-serif",
+                        fontFamily: "var(--font-body)",
                         fontSize: 'clamp(16px, 1.6vw, 22px)',
                         color: '#fff',
                         fontWeight: 800,
@@ -235,7 +235,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
           }}>
             <span className="editorial-label">{item.type}</span>
             <h3 style={{
-              fontFamily: "'Poppins', sans-serif",
+              fontFamily: "var(--font-body)",
               fontSize: 'clamp(28px, 4vw, 56px)',
               fontWeight: 900,
               color: 'var(--gold)',
@@ -281,20 +281,20 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                   textTransform: 'uppercase',
                   color: 'var(--gold)',
                   fontWeight: 700,
-                  fontFamily: "'Poppins', sans-serif",
+                  fontFamily: "var(--font-body)",
                 }}>
                   {item.type}
                 </span>
                 <span style={{
                   fontSize: '12px',
                   color: 'var(--gold)',
-                  fontFamily: "'Poppins', sans-serif",
+                  fontFamily: "var(--font-body)",
                 }}>
                   {item.year}
                 </span>
               </div>
               <h4 style={{
-                fontFamily: "'Poppins', sans-serif",
+                fontFamily: "var(--font-body)",
                 fontSize: '18px',
                 fontWeight: 800,
                 color: '#fff',
@@ -337,7 +337,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
                 color: 'var(--gold)',
-                fontFamily: "'Poppins', sans-serif",
+                fontFamily: "var(--font-body)",
                 fontWeight: 600,
                 marginTop: '8px',
               }}>
