@@ -415,9 +415,9 @@ Staff Appreciation Days reach 75+ educators per campus with wellness experiences
         body: `Every Coastal Care cleanup produces detailed debris tracking across 27 categories. Volunteers complete crew data cards that log item counts, weight, and material type. In March 2026, a single event removed 8,049 pieces of debris weighing 75.7 pounds — including 4,237 microplastics that would have otherwise entered the marine ecosystem.
 
 This data serves a purpose beyond the cleanup itself. It builds the evidence base for coastal policy, informs partner organizations, and demonstrates IBTU's commitment to rigorous measurement in every program. The same operational discipline that tracks 7,581 assistance instances at the Hub tracks every cigarette butt and foam fragment on the beach.`,
-        image: '/images/coastal/IMG_0024.jpg',
+        image: '/images/coastal/IMG_4953.jpg',
         imageAlt:
-          'Volunteers collecting and categorizing debris at Venice Fishing Pier',
+          'IBTU Coastal Care data collection card on clipboard in the sand at Venice Beach',
         imagePosition: 'left',
         highlights: [
           '8,049 pieces of debris weighing 75.7 pounds',
