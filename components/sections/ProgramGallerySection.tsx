@@ -190,6 +190,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
                 alignItems: 'stretch',
+                gap: 0,
                 minHeight: 'clamp(400px, 50vh, 600px)',
               }}>
                 {/* Left column: text — padded, half-width description */}
@@ -306,6 +307,9 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                   willChange: 'transform',
                   position: 'relative',
                   minHeight: '100%',
+                  margin: 0,
+                  padding: 0,
+                  lineHeight: 0,
                 }}>
                   {prog.galleryImages.length > 0 && (
                     <ProgramRingGallery images={prog.galleryImages} title={prog.title} fullHeight />
