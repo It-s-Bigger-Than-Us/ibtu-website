@@ -1,11 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
+import { useRef } from 'react'
 
 /* ═══════════════════════════════════════
    FOOTER — Editorial, animated, black bg
@@ -27,38 +23,6 @@ const footerLinks = [
 
 export default function Footer() {
   const footerRef = useRef<HTMLElement>(null)
-  const mantraRef = useRef<HTMLDivElement>(null)
-
-  const mantraWords = ['Community', 'is', 'the', 'Infrastructure.']
-
-  useEffect(() => {
-    if (!footerRef.current) return
-
-    const ctx = gsap.context(() => {
-      const words = mantraRef.current?.querySelectorAll('.foot-word')
-      if (words) {
-        gsap.fromTo(
-          words,
-          { opacity: 0, y: 80, rotateX: -20 },
-          {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 1,
-            stagger: 0.15,
-            ease: 'expo.out',
-            scrollTrigger: {
-              trigger: footerRef.current,
-              start: 'top 80%',
-              once: true,
-            },
-          }
-        )
-      }
-    }, footerRef)
-
-    return () => ctx.revert()
-  }, [])
 
   return (
     <footer
@@ -110,7 +74,7 @@ export default function Footer() {
 
           {/* Center — nav links (no "Navigate" label) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px' }}>
+            <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '16px', whiteSpace: 'nowrap' }}>
               {footerLinks.map((link) => {
                 const isExternal = link.href.startsWith('http')
                 const linkStyle = {
@@ -236,45 +200,6 @@ export default function Footer() {
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Sacred mantra — small LOT, bottom of footer */}
-        <div
-          ref={mantraRef}
-          style={{
-            maxWidth: 'var(--content-max)',
-            margin: '48px auto 0',
-            paddingTop: '32px',
-            borderTop: '0.5px solid var(--ibtu-gold)',
-            perspective: '600px',
-          }}
-        >
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(20px, 3vw, 36px)',
-              lineHeight: 1,
-              textTransform: 'uppercase',
-              color: 'var(--ibtu-gold)',
-              letterSpacing: '-0.02em',
-              textAlign: 'center',
-              marginBottom: 24,
-            }}
-          >
-            {mantraWords.map((word, i) => (
-              <span
-                key={i}
-                className="foot-word gsap-reveal"
-                style={{
-                  display: 'inline-block',
-                  marginRight: '0.2em',
-                  opacity: 0,
-                }}
-              >
-                {word}
-              </span>
-            ))}
-          </h2>
         </div>
 
         {/* Copyright + address on one line below */}
