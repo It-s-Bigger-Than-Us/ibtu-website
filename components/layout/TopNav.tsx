@@ -9,6 +9,8 @@ import MenuDropdown from './MenuDropdown'
    Single row: Logo | Hamburger | Donate
    All left-aligned. Iridescent stroke → fill.
    NO dynamic CTA text.
+   FIX: Balanced spacing (top = left = 24px)
+   FIX: Body scroll lock when menu open
 ═══════════════════════════════════════ */
 
 export default function TopNav() {
@@ -24,18 +26,35 @@ export default function TopNav() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // No body scroll lock — menu is a floating panel, page stays scrollable
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+      // Also pause Lenis if available
+      const lenis = (window as unknown as Record<string, { stop?: () => void; start?: () => void }>).__lenis
+      lenis?.stop?.()
+    } else {
+      document.body.style.overflow = ''
+      const lenis = (window as unknown as Record<string, { stop?: () => void; start?: () => void }>).__lenis
+      lenis?.start?.()
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [menuOpen])
 
   const coinSize = scrolled ? 48 : 56
   const iconSize = scrolled ? 32 : 38
+  // Balanced spacing: top matches left
+  const edgeOffset = 24
 
   return (
     <>
       <div
         style={{
           position: 'fixed',
-          top: scrolled ? '12px' : '24px',
-          left: '24px',
+          top: `${scrolled ? 12 : edgeOffset}px`,
+          left: `${edgeOffset}px`,
           zIndex: 100,
           display: 'flex',
           flexDirection: 'row',
@@ -44,7 +63,7 @@ export default function TopNav() {
           transition: 'top 0.3s var(--ease-out-expo)',
         }}
       >
-        {/* Logo coin — spinning, iridescent border on hover */}
+        {/* Logo coin — iridescent border on hover */}
           <Link
             href="/"
             aria-label="IBTU Home"
@@ -60,7 +79,6 @@ export default function TopNav() {
               borderRadius: '12px',
               transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
               flexShrink: 0,
-              animation: 'coinSpin 12s linear infinite',
             }}
           >
             <div

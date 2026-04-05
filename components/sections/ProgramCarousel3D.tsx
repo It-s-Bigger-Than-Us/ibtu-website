@@ -3,14 +3,18 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 
-/* ═══════════════════════════════════════
+/* ════════════���══════════════════════════
    PROGRAM CARDS — 3D Gradient Carousel
-   tympanus.net/Tutorials/3DGradientCarousel style.
    Horizontal line — center card is largest + front.
    Cards recede with rotateY + translateZ + scale.
-   Click-drag to spin. Hover grows card + glow.
+   Click-drag to spin. Hover auto-scrolls FAST.
    Iridescent section bg.
-═══════════════════════════════════════ */
+
+   FIXES:
+   - Faster hover velocity (-4.0 vs -2.0)
+   - IntersectionObserver to pause RAF when off-screen
+   - Crisper velocity decay (0.92 vs 0.95)
+══════════���════════════════════════════ */
 
 interface Program {
   slug: string
@@ -30,11 +34,13 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   const [hovered, setHovered] = useState(false)
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
   const [containerW, setContainerW] = useState(1200)
+  const [isVisible, setIsVisible] = useState(false)
   const lastXRef = useRef(0)
   const velRef = useRef(0)
   const offsetRef = useRef(0)
   const rafRef = useRef<number>(0)
   const containerRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
 
   const count = programs.length
   const ITEM_W = CARD_W + GAP
@@ -52,17 +58,34 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
     return () => window.removeEventListener('resize', measure)
   }, [])
 
-  // Animation loop — ONLY scrolls on hover or drag
+  // IntersectionObserver — only animate when visible
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    )
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [])
+
+  // Animation loop — ONLY runs when visible, faster on hover
   const tick = useCallback(() => {
+    if (!isVisible) {
+      rafRef.current = requestAnimationFrame(tick)
+      return
+    }
     if (!dragging) {
-      velRef.current *= 0.95
-      if (hovered && Math.abs(velRef.current) < 0.15) velRef.current = -2.0
+      velRef.current *= 0.92 // Crisper decay
+      // Faster hover velocity for premium feel
+      if (hovered && Math.abs(velRef.current) < 0.3) velRef.current = -4.0
       if (!hovered && Math.abs(velRef.current) < 0.05) velRef.current = 0
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)
     }
     rafRef.current = requestAnimationFrame(tick)
-  }, [dragging, hovered])
+  }, [dragging, hovered, isVisible])
 
   useEffect(() => {
     rafRef.current = requestAnimationFrame(tick)
@@ -87,13 +110,16 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   const center = containerW / 2
 
   return (
-    <section style={{
-      background: 'var(--holo-gradient)',
-      backgroundSize: '600% 600%',
-      animation: 'holo-shift 20s ease infinite',
-      padding: 'clamp(60px, 8vw, 100px) 0',
-      overflow: 'hidden',
-    }}>
+    <section
+      ref={sectionRef}
+      style={{
+        background: 'var(--holo-gradient)',
+        backgroundSize: '600% 600%',
+        animation: 'holo-shift 20s ease infinite',
+        padding: 'clamp(60px, 8vw, 100px) 0',
+        overflow: 'hidden',
+      }}
+    >
       <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto', padding: '0 clamp(32px, 5vw, 80px) clamp(24px, 3vw, 40px)' }}>
         <h2 style={{
           fontFamily: 'var(--font-display)',
@@ -139,8 +165,8 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
             const ry = -norm * 22
             const tz = (1 - absNorm) * 100
             const s = 0.82 + (1 - absNorm) * 0.18
-            const isHovered = hoveredIdx === i && copy === 1
-            const finalScale = isHovered ? s * 1.08 : s
+            const isCardHovered = hoveredIdx === i && copy === 1
+            const finalScale = isCardHovered ? s * 1.08 : s
             const blur = absNorm > 0.7 ? (absNorm - 0.7) * 5 : 0
 
             return (
@@ -161,8 +187,8 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                   textDecoration: 'none',
                   background: '#FFC700',
                   zIndex: Math.round(tz),
-                  transition: 'box-shadow 0.4s, filter 0.3s',
-                  boxShadow: isHovered
+                  transition: 'box-shadow 0.3s, filter 0.2s',
+                  boxShadow: isCardHovered
                     ? '0 0 20px 3px rgba(255,244,184,0.15), 0 0 40px 6px rgba(212,240,248,0.15), 0 0 60px 8px rgba(212,245,232,0.15)'
                     : '0 12px 40px -10px rgba(0,0,0,0.15)',
                   filter: blur > 0.2 ? `blur(${blur}px)` : 'none',
@@ -170,7 +196,6 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                 onMouseEnter={() => setHoveredIdx(i)}
                 onMouseLeave={() => setHoveredIdx(null)}
               >
-                {/* High-res photo */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={prog.heroImage || '/images/gallery/IMG_1790.jpg'}
@@ -186,18 +211,18 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                     pointerEvents: 'none',
                   }}
                 />
-                {/* Name bar — yellow default, iridescent on hover */}
+                {/* Name bar */}
                 <div style={{
                   position: 'absolute',
                   bottom: 0,
                   left: 0,
                   right: 0,
-                  background: isHovered ? undefined : '#FFC700',
-                  backgroundImage: isHovered ? 'var(--holo-gradient)' : undefined,
-                  backgroundSize: isHovered ? '600% 600%' : undefined,
-                  animation: isHovered ? 'holo-shift 20s ease infinite' : undefined,
+                  background: isCardHovered ? undefined : '#FFC700',
+                  backgroundImage: isCardHovered ? 'var(--holo-gradient)' : undefined,
+                  backgroundSize: isCardHovered ? '600% 600%' : undefined,
+                  animation: isCardHovered ? 'holo-shift 20s ease infinite' : undefined,
                   padding: 'clamp(12px, 1.5vw, 18px)',
-                  transition: 'background 0.4s',
+                  transition: 'background 0.3s',
                 }}>
                   <h3 style={{
                     fontFamily: 'var(--font-body)',

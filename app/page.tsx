@@ -3,17 +3,21 @@ import { urlFor } from '@/sanity/lib/client'
 import HomePageClient from '@/components/sections/HomePageClient'
 import { PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
 
-const HIDDEN_PROGRAMS = ['gala', 'incubation-academy']
+const HIDDEN_PROGRAMS = ['gala', 'incubation-academy', 'community-health']
 
 const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
-  'fire-relief': '/images/fire-relief/jhud-team.jpg',
-  'back-2-school': '/images/b2s/_D5A8212.jpg',
-  'youth-programming': '/images/school/IMG_7067.jpg',
-  'coastal-care': '/images/coastal/IMG_1858.jpg',
+  'fire-relief': '/images/fire-relief/IMG_8047.jpg',
+  'back-2-school': '/images/b2s/_D5A5792.jpg',
+  'youth-programming': '/images/school/IMG_5406.jpg',
+  'coastal-care': '/images/coastal/IMG_4920.jpg',
   'giving-season': '/images/b2s/6D5A0765.jpg',
-  'wellness': '/images/wellness/IMG_1559.jpg',
-  'community-builder-linkups': '/images/gallery/IMG_1673.jpg',
-  'community-health': '/images/wellness/IMG_9883.jpg',
+  'wellness': '/images/additional/IMG_1540.jpg',
+  'community-builder-linkups': '/images/linkup/community-builder-linkups.jpg',
+}
+
+/* Title overrides — Sanity may have old names */
+const PROGRAM_TITLE_OVERRIDE: Record<string, string> = {
+  'youth-programming': 'School Program',
 }
 
 
@@ -79,7 +83,7 @@ export default async function HomePage() {
     .filter((p: { slug: string }) => !HIDDEN_PROGRAMS.includes(p.slug))
     .map((p: { slug: string; title: string; pillar: string; heroImage?: unknown; cardStat?: string; tagline?: string }) => ({
       slug: p.slug,
-      title: p.title,
+      title: PROGRAM_TITLE_OVERRIDE[p.slug] || p.title,
       pillar: p.pillar,
       heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : '/images/gallery/IMG_4687.jpg'),
       cardStat: p.cardStat || '',

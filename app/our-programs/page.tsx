@@ -13,11 +13,12 @@ export const metadata: Metadata = {
     "7 community programs across Crisis & Disaster Stabilization, School & Youth Stability, and Community Health & Resource Access. Built for Los Angeles.",
 };
 
-/* Images per program — unique to this page, no overlap with program detail pages */
+/* Images per program — unique to this page, no overlap with program detail pages.
+   Updated 4/4/2026: correct image assignments per Molly's review. */
 const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
   'fire-relief': [
-    '/images/additional/IMG_0317.jpg', '/images/additional/IMG_0339.jpg',
-    '/images/additional/IMG_0331.jpg', '/images/additional/IMG_0292.jpg',
+    '/images/fire-relief/IMG_8047.jpg', '/images/fire-relief/IMG_5909.jpg',
+    '/images/fire-relief/IMG_9804.jpg', '/images/additional/IMG_0339.jpg',
     '/images/additional/IMG_0283.jpg', '/images/additional/IMG_0337.jpg',
   ],
   'back-2-school': [
@@ -26,8 +27,8 @@ const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
     '/images/b2s/_D5A8685.jpg', '/images/b2s/_D5A8736.jpg',
   ],
   'coastal-care': [
-    '/images/coastal/IMG_1603.jpg', '/images/coastal/IMG_1817.jpg',
-    '/images/coastal/IMG_1820.jpg', '/images/coastal/IMG_1827.jpg',
+    '/images/coastal/IMG_4920.jpg', '/images/coastal/IMG_1603.jpg',
+    '/images/coastal/IMG_1817.jpg', '/images/coastal/IMG_1820.jpg',
     '/images/coastal/IMG_4805.jpg', '/images/coastal/IMG_4926.jpg',
   ],
   'wellness': [
@@ -36,19 +37,19 @@ const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
     '/images/additional/IMG_1517.jpg', '/images/additional/IMG_1619.jpg',
   ],
   'youth-programming': [
-    '/images/school/IMG_5629.jpg', '/images/school/IMG_5652.jpg',
-    '/images/school/IMG_5893.jpg', '/images/school/IMG_5895.jpg',
-    '/images/school/IMG_5909.jpg', '/images/school/IMG_6238.jpg',
+    '/images/school/IMG_5406.jpg', '/images/school/IMG_5629.jpg',
+    '/images/school/IMG_5652.jpg', '/images/school/IMG_5893.jpg',
+    '/images/school/IMG_5895.jpg', '/images/school/IMG_6238.jpg',
   ],
   'community-builder-linkups': [
-    '/images/gallery/IMG_1311.jpg', '/images/gallery/IMG_1324.jpg',
+    '/images/linkup/community-builder-linkups.jpg', '/images/gallery/IMG_1324.jpg',
     '/images/gallery/IMG_1359.jpg', '/images/gallery/IMG_1501.jpg',
     '/images/gallery/IMG_1603.jpg', '/images/gallery/IMG_1807.jpg',
   ],
   'community-health': [
-    '/images/additional/IMG_5506.jpg', '/images/additional/IMG_5511.jpg',
-    '/images/additional/IMG_5645.jpg', '/images/additional/IMG_5724.jpg',
-    '/images/additional/IMG_5736.jpg', '/images/additional/IMG_5850.jpg',
+    '/images/additional/IMG_0418.jpg', '/images/additional/IMG_5506.jpg',
+    '/images/additional/IMG_5511.jpg', '/images/additional/IMG_5645.jpg',
+    '/images/additional/IMG_5724.jpg', '/images/additional/IMG_5850.jpg',
   ],
   'giving-season': [
     '/images/b2s/6D5A0617.jpg', '/images/b2s/6D5A0700.jpg',

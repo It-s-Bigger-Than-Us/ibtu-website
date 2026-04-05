@@ -2,8 +2,14 @@
 
 import { useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
+
+/* ═══════════════════════════════════════
+   MENU DROPDOWN — CSS transitions only
+   Replaced Framer Motion with pure CSS for
+   one fewer motion system in the bundle.
+   Slides from left, gold bg, iridescent border.
+═══════════════════════════════════════ */
 
 const navLinks = [
   { label: 'About', href: '/about' },
@@ -56,112 +62,108 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
   }, [open, handleKeyDown])
 
   return (
-    <AnimatePresence>
-      {open && (
-        <>
-          {/* Clickable backdrop — transparent so page shows through */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={onClose}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              zIndex: 98,
-              background: 'rgba(0,0,0,0.25)',
-            }}
-          />
+    <>
+      {/* Clickable backdrop */}
+      <div
+        onClick={onClose}
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 98,
+          background: 'rgba(0,0,0,0.25)',
+          opacity: open ? 1 : 0,
+          pointerEvents: open ? 'auto' : 'none',
+          transition: 'opacity 0.3s ease',
+        }}
+      />
 
-          {/* Menu panel — slides from left */}
-          <motion.div
-            role="dialog"
-            aria-modal="true"
-            aria-label="Navigation menu"
-            initial={{ x: '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '-100%' }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              position: 'fixed',
-              top: 'clamp(80px, 10vh, 120px)',
-              left: 'clamp(16px, 3vw, 32px)',
-              zIndex: 99,
-              background: 'var(--ibtu-gold)',
-              borderRadius: '16px',
-              padding: 'clamp(32px, 4vw, 48px) clamp(32px, 5vw, 56px)',
-              overflow: 'hidden',
-            }}
-          >
-            {/* Iridescent border via pseudo-element */}
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              borderRadius: '16px',
-              padding: '0.5px',
-              background: 'var(--holo-gradient)',
-              backgroundSize: '600% 600%',
-              animation: 'holo-shift 20s ease infinite',
-              WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-              WebkitMaskComposite: 'xor',
-              maskComposite: 'exclude' as never,
-              pointerEvents: 'none',
-            }} />
+      {/* Menu panel — slides from left via CSS transform */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+        aria-hidden={!open}
+        style={{
+          position: 'fixed',
+          top: 'clamp(80px, 10vh, 120px)',
+          left: 'clamp(16px, 3vw, 32px)',
+          zIndex: 99,
+          background: 'var(--ibtu-gold)',
+          borderRadius: '16px',
+          padding: 'clamp(32px, 4vw, 48px) clamp(32px, 5vw, 56px)',
+          overflow: 'hidden',
+          transform: open ? 'translateX(0)' : 'translateX(calc(-100% - 40px))',
+          opacity: open ? 1 : 0,
+          transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease',
+          pointerEvents: open ? 'auto' : 'none',
+        }}
+      >
+        {/* Iridescent border via pseudo-element */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: '16px',
+          padding: '0.5px',
+          background: 'var(--holo-gradient)',
+          backgroundSize: '600% 600%',
+          animation: 'holo-shift 20s ease infinite',
+          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+          WebkitMaskComposite: 'xor',
+          maskComposite: 'exclude' as never,
+          pointerEvents: 'none',
+        }} />
 
-            <nav ref={linksRef} aria-label="Main navigation" style={{ position: 'relative', zIndex: 1 }}>
-              {navLinks.map((link, i) => {
-                const isExternal = link.href.startsWith('http')
-                const linkStyle = {
-                  display: 'block',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(28px, 4vw, 48px)',
-                  textTransform: 'uppercase' as const,
-                  color: 'var(--ibtu-black)',
-                  textDecoration: 'none',
-                  lineHeight: 1.15,
-                  letterSpacing: '-0.01em',
-                  padding: '4px 0',
-                  opacity: 0,
-                  transition: 'color 0.2s',
-                  whiteSpace: 'nowrap' as const,
-                }
-                const hoverIn = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-white)' }
-                const hoverOut = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-black)' }
+        <nav ref={linksRef} aria-label="Main navigation" style={{ position: 'relative', zIndex: 1 }}>
+          {navLinks.map((link, i) => {
+            const isExternal = link.href.startsWith('http')
+            const linkStyle = {
+              display: 'block',
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(28px, 4vw, 48px)',
+              textTransform: 'uppercase' as const,
+              color: 'var(--ibtu-black)',
+              textDecoration: 'none',
+              lineHeight: 1.15,
+              letterSpacing: '-0.01em',
+              padding: '4px 0',
+              opacity: 0,
+              transition: 'color 0.2s',
+              whiteSpace: 'nowrap' as const,
+            }
+            const hoverIn = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-white)' }
+            const hoverOut = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-black)' }
 
-                return isExternal ? (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="menu-link"
-                    onClick={onClose}
-                    style={linkStyle}
-                    onMouseEnter={hoverIn}
-                    onMouseLeave={hoverOut}
-                  >
-                    {link.label}
-                  </a>
-                ) : (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    ref={i === 0 ? firstLinkRef : undefined}
-                    className="menu-link"
-                    onClick={onClose}
-                    style={linkStyle}
-                    onMouseEnter={hoverIn}
-                    onMouseLeave={hoverOut}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              })}
-            </nav>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+            return isExternal ? (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="menu-link"
+                onClick={onClose}
+                style={linkStyle}
+                onMouseEnter={hoverIn}
+                onMouseLeave={hoverOut}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                ref={i === 0 ? firstLinkRef : undefined}
+                className="menu-link"
+                onClick={onClose}
+                style={linkStyle}
+                onMouseEnter={hoverIn}
+                onMouseLeave={hoverOut}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
+        </nav>
+      </div>
+    </>
   )
 }

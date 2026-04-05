@@ -45,11 +45,10 @@ export const programs: Program[] = [
       "Jennifer Hudson Show, Mayor Karen Bass, Kendrick Lamar pgLang donation",
     keyPartners:
       "SoLa Impact, One Church, HACLA, Baby2Baby, Khalsa Aid, UTLA, Liberty Dental, lululemon, Nike, Apple, Google, FOX, BET+, TBWA\\Chiat\\Day, Shell, L'OCCITANE, LA28, Target",
-    heroImage:
-      "",
+    heroImage: "/images/fire-relief/IMG_8047.jpg",
     cardImages: [
-      "",
-      "",
+      "/images/fire-relief/IMG_5909.jpg",
+      "/images/fire-relief/IMG_9804.jpg",
     ],
     cardStat: "324 active clients",
     icon: "fire",
@@ -77,18 +76,17 @@ export const programs: Program[] = [
       "Mayor Karen Bass, LAUSD Supt. Alberto Carvalho, Congresswoman Sydney Kamlager-Dove, LA Rams, Marques Johnson (NBA), D Smoke",
     keyPartners:
       "lululemon, Baby2Baby, Supreme, Adidas, Bombas, Nike, Apple, Google, Target, LA Rams, Pepsi, LA84 Foundation, LAUSD",
-    heroImage:
-      "",
+    heroImage: "/images/b2s/_D5A5792.jpg",
     cardImages: [
-      "",
-      "",
+      "/images/b2s/_D5A7187.jpg",
+      "/images/b2s/_D5A8685.jpg",
     ],
     cardStat: "18,550+ backpacks",
     icon: "school",
   },
   {
     slug: "youth-programming",
-    title: "Youth Programming",
+    title: "School Program",
     pillar: "School & Youth Stability",
     schedule: "Year-round school calendar",
     scheduleType: "Ongoing",
@@ -107,11 +105,10 @@ export const programs: Program[] = [
     sortOrder: 3,
     keyPartners:
       "Alliance College-Ready Public Schools (25 campuses), LAUSD, Inglewood USD, Sol de Janeiro, Iovine & Young Center",
-    heroImage:
-      "",
+    heroImage: "/images/school/IMG_5406.jpg",
     cardImages: [
-      "",
-      "",
+      "/images/school/IMG_5629.jpg",
+      "/images/school/IMG_5893.jpg",
     ],
     cardStat: "28,025 students",
     icon: "youth",
@@ -135,11 +132,10 @@ export const programs: Program[] = [
     ctaHref: "/get-involved",
     status: "Active",
     sortOrder: 4,
-    heroImage:
-      "",
+    heroImage: "/images/coastal/IMG_4920.jpg",
     cardImages: [
-      "",
-      "",
+      "/images/coastal/IMG_1603.jpg",
+      "/images/coastal/IMG_4926.jpg",
     ],
     cardStat: "Monthly clean-ups",
     icon: "beach",
@@ -163,11 +159,10 @@ export const programs: Program[] = [
     status: "Active",
     sortOrder: 5,
     keyPartners: "ECOS Group, Baby2Baby, Target",
-    heroImage:
-      "",
+    heroImage: "/images/b2s/6D5A1108.jpg",
     cardImages: [
-      "",
-      "",
+      "/images/b2s/6D5A0617.jpg",
+      "/images/b2s/6D5A0723.jpg",
     ],
     cardStat: "6 years running",
     icon: "gift",
@@ -193,11 +188,10 @@ export const programs: Program[] = [
     notableParticipants:
       "lululemon Glow Up Studio NYC (Cody Rigsby, Adrian Williams, The Rockettes, QuestLove)",
     keyPartners: "lululemon, Black OM Wellness, Peloton",
-    heroImage:
-      "",
+    heroImage: "/images/additional/IMG_1540.jpg",
     cardImages: [
-      "",
-      "",
+      "/images/additional/IMG_1585.jpg",
+      "/images/additional/IMG_1605.jpg",
     ],
     cardStat: "50+ health partners",
     icon: "wellness",
@@ -222,11 +216,10 @@ export const programs: Program[] = [
     sortOrder: 7,
     keyPartners:
       "LA Care Health Plan, Charles Drew University, USC All of Us, Liberty Dental, Keck School of Medicine USC, United MegaCare, Baby2Baby, LA Rams",
-    heroImage:
-      "",
+    heroImage: "/images/additional/IMG_0418.jpg",
     cardImages: [
-      "",
-      "",
+      "/images/additional/IMG_5506.jpg",
+      "/images/additional/IMG_5645.jpg",
     ],
     cardStat: "875,500+ lbs food",
     icon: "food",

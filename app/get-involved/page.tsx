@@ -208,14 +208,6 @@ export default function GetInvolvedPage() {
                 color: '#000',
                 lineHeight: 1.8,
               }}>
-                There is no minimum to building a city. A $25 donation puts a fire-affected family through a full intake assessment and connects them to housing, mental health, and financial support. A $100 donation sponsors a Lunchtime Takeover that transforms a school cafeteria into a space of belonging for 800 students. A $1,000 donation funds a full resource fair that brings 15 partner organizations onto one campus in one day.
-              </p>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'var(--body-md)',
-                color: '#000',
-                lineHeight: 1.8,
-              }}>
                 Every dollar is leveraged. IBTU&apos;s $18:$1 ratio means your investment does not sit in an account — it multiplies through partnerships, in-kind mobilization, and a volunteer infrastructure that has moved $4.5 million in resources to Los Angeles families since 2020.
               </p>
             </div>

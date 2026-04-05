@@ -28,16 +28,16 @@ const PILLARS: PillarData[] = [
   {
     name: 'Crisis & Disaster Stabilization',
     images: [
-      '/images/pillars/crisis-1.jpg',
-      '/images/pillars/crisis-2.jpg',
-      '/images/landscape/_D5A6099.jpg',
-      '/images/landscape/IMG_0491.jpg',
+      '/images/fire-relief/IMG_5909.jpg',
+      '/images/fire-relief/IMG_9804.jpg',
+      '/images/fire-relief/IMG_8047.jpg',
+      '/images/additional/IMG_0339.jpg',
     ],
   },
   {
     name: 'School & Youth Stability',
     images: [
-      '/images/pillars/school-1.jpg',
+      '/images/school/IMG_5406.jpg',
       '/images/pillars/school-2.jpg',
       '/images/school/IMG_5382.jpg',
       '/images/school/IMG_6057.jpg',
@@ -46,8 +46,8 @@ const PILLARS: PillarData[] = [
   {
     name: 'Community Health & Resource Access',
     images: [
-      '/images/pillars/community-1.jpg',
-      '/images/pillars/community-2.jpg',
+      '/images/pillars/community-food-distribution.jpg',
+      '/images/additional/IMG_0418.jpg',
       '/images/additional/IMG_5680.jpg',
       '/images/additional/IMG_5824.jpg',
     ],

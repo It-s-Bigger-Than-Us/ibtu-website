@@ -8,26 +8,32 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
-   GET INVOLVED HERO — Codrops Sticky Grid Scroll
-   Faithful port: parallax wrapper, column reveal
-   from alternating top/bottom, zoom + split,
-   content title stays centered, desc bumps it up.
-   Mixed backgrounds: iridescent, blue sky, yellow.
+   GET INVOLVED HERO — Simplified Sticky Grid
+
+   FIXED (4/4/2026):
+   - Page was loading completely black because
+     parallax wrapper started at yPercent:-100
+     and grid items were offset off-screen.
+   - Now: grid is VISIBLE on load. Zoom/split
+     animation triggers on scroll from a visible
+     starting position.
+   - Reduced from 425vh → 300vh for snappier feel.
+   - Scoped ScrollTrigger cleanup (no global kill).
 ═══════════════════════════════════════ */
 
 const ITEM_BACKGROUNDS = [
-  'var(--holo-gradient)',  // iridescent
-  '#FFC700',              // yellow
-  'none',                 // blue sky image
-  '#FFC700',              // yellow
-  'var(--holo-gradient)',  // iridescent
-  'none',                 // blue sky image
-  'none',                 // blue sky image
-  'var(--holo-gradient)',  // iridescent
-  '#FFC700',              // yellow
-  'none',                 // blue sky image
-  '#FFC700',              // yellow
-  'var(--holo-gradient)',  // iridescent
+  'var(--holo-gradient)',
+  '#FFC700',
+  'none',
+  '#FFC700',
+  'var(--holo-gradient)',
+  'none',
+  'none',
+  'var(--holo-gradient)',
+  '#FFC700',
+  'none',
+  '#FFC700',
+  'var(--holo-gradient)',
 ]
 
 interface GetInvolvedHeroProps {
@@ -37,109 +43,69 @@ interface GetInvolvedHeroProps {
 export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
   const blockRef = useRef<HTMLElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descRef = useRef<HTMLParagraphElement>(null)
   const btnRef = useRef<HTMLAnchorElement>(null)
   const gridRef = useRef<HTMLUListElement>(null)
+  const triggersRef = useRef<ScrollTrigger[]>([])
 
   useEffect(() => {
     const block = blockRef.current
     const wrapper = wrapperRef.current
-    const content = contentRef.current
     const title = titleRef.current
     const desc = descRef.current
     const btn = btnRef.current
     const grid = gridRef.current
-    if (!block || !wrapper || !content || !title || !desc || !btn || !grid) return
+    if (!block || !wrapper || !title || !desc || !btn || !grid) return
 
     const items = grid.querySelectorAll<HTMLElement>('.gi')
     const numColumns = 3
     const columns: HTMLElement[][] = Array.from({ length: numColumns }, () => [])
     items.forEach((item, i) => columns[i % numColumns].push(item))
 
-    // Init: hide desc + btn, center title vertically
+    // Init: hide desc + btn (they appear after zoom)
     gsap.set([desc, btn], { opacity: 0, pointerEvents: 'none' })
-    const dy = (content.offsetHeight - title.offsetHeight) / 2
-    const titleOffsetY = (dy / content.offsetHeight) * 100
-    gsap.set(title, { yPercent: titleOffsetY })
 
-    // 1. Parallax wrapper — slides up into view
-    gsap.from(wrapper, {
-      yPercent: -100,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: block,
-        start: 'top bottom',
-        end: 'top top',
-        scrub: true,
-      },
-    })
+    // Main scroll timeline — zoom + split + content reveal
+    const tl = gsap.timeline()
 
-    // 2. Title fade in
-    gsap.from(title, {
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power1.out',
-      scrollTrigger: {
-        trigger: block,
-        start: 'top 57%',
-        toggleActions: 'play none none reset',
-      },
-    })
+    // Grid zoom — scale up, columns spread apart
+    tl.to(grid, { scale: 2.2, duration: 1, ease: 'power3.inOut' })
+    tl.to(columns[0], { xPercent: -50, duration: 1, ease: 'power3.inOut' }, '<')
+    tl.to(columns[2], { xPercent: 50, duration: 1, ease: 'power3.inOut' }, '<')
 
-    // 3. Main scroll timeline — grid reveal + zoom + content
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: block,
-        start: 'top 25%',
-        end: 'bottom bottom',
-        scrub: true,
-      },
-    })
-
-    // Grid reveal — columns slide in from alternating top/bottom
-    const wh = window.innerHeight
-    const gridDy = wh - (wh - grid.offsetHeight) / 2
-
-    columns.forEach((column, colIndex) => {
-      const fromTop = colIndex % 2 === 0
-      tl.from(
-        column,
-        {
-          y: gridDy * (fromTop ? -1 : 1),
-          stagger: { each: 0.06, from: fromTop ? 'end' : 'start' },
-          ease: 'power1.inOut',
-        },
-        'grid-reveal'
-      )
-    })
-
-    // Grid zoom — scale up, lateral columns spread, center splits
-    tl.to(grid, { scale: 2.05, duration: 1, ease: 'power3.inOut' })
-    tl.to(columns[0], { xPercent: -40, duration: 1, ease: 'power3.inOut' }, '<')
-    tl.to(columns[2], { xPercent: 40, duration: 1, ease: 'power3.inOut' }, '<')
+    // Center column splits vertically
     tl.to(columns[1], {
       yPercent: (_index: number, el: HTMLElement) => {
         const siblings = columns[1]
         const idx = siblings.indexOf(el)
-        return (idx < Math.floor(siblings.length / 2) ? -1 : 1) * 40
+        return (idx < Math.floor(siblings.length / 2) ? -1 : 1) * 50
       },
-      duration: 0.5,
+      duration: 0.6,
       ease: 'power1.inOut',
-    }, '-=0.5')
+    }, '-=0.4')
 
-    // Content toggle — title slides up, desc + btn fade in
-    tl.to(title, { yPercent: 0, duration: 0.5, ease: 'power2.inOut' }, '-=0.32')
+    // Content fades in as grid parts
     tl.to([desc, btn], {
       opacity: 1,
       duration: 0.3,
       ease: 'power1.inOut',
       pointerEvents: 'all',
-    }, '-=0.2')
+    }, '-=0.3')
+
+    const st = ScrollTrigger.create({
+      trigger: block,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.5,
+      animation: tl,
+    })
+    triggersRef.current.push(st)
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill())
+      triggersRef.current.forEach(t => t.kill())
+      triggersRef.current = []
+      tl.kill()
     }
   }, [])
 
@@ -151,7 +117,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
   return (
     <section
       ref={blockRef}
-      style={{ height: '425vh', background: '#000' }}
+      style={{ height: '300vh', background: '#000' }}
     >
       <div
         ref={wrapperRef}
@@ -159,14 +125,14 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
           position: 'sticky',
           top: 0,
           height: '100vh',
-          padding: 0,
           overflow: 'hidden',
-          willChange: 'transform',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         {/* Content overlay — title + desc + CTA */}
         <div
-          ref={contentRef}
           style={{
             position: 'relative',
             display: 'flex',
@@ -237,21 +203,21 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
           </a>
         </div>
 
-        {/* Gallery grid — 3 columns, fills viewport behind content */}
+        {/* Gallery grid — VISIBLE on load, zooms/splits on scroll */}
         <div style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate3d(-50%, -50%, 0)',
-          width: 'min(900px, 80vw)',
+          width: 'min(900px, 85vw)',
         }}>
           <ul
             ref={gridRef}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(3, 1fr)',
-              columnGap: 'clamp(8px, 1.5vw, 20px)',
-              rowGap: 'clamp(8px, 1.5vw, 20px)',
+              columnGap: 'clamp(8px, 1.5vw, 16px)',
+              rowGap: 'clamp(8px, 1.5vw, 16px)',
               listStyle: 'none',
               margin: 0,
               padding: 0,
@@ -270,7 +236,6 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
                   style={{
                     width: '100%',
                     aspectRatio: '1',
-                    willChange: 'transform',
                     borderRadius: 12,
                     overflow: 'hidden',
                     position: 'relative',
@@ -280,7 +245,6 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
                     animation: isHolo ? 'holo-shift 20s ease infinite' : undefined,
                   }}
                 >
-                  {/* Blue sky background for designated items */}
                   {isBlueSky && (
                     <Image
                       src="/images/blue-sky.jpg"

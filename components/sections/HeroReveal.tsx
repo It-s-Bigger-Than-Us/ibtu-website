@@ -5,11 +5,13 @@ import gsap from 'gsap'
 import Image from 'next/image'
 
 /* ═══════════════════════════════════════
-   HERO REVEAL — Yellow bg homepage hero
+   HERO REVEAL — Homepage hero
    1. "IT'S BIGGER THAN US" wipes in from sides
-   2. IBTU logo circle-wipes from tiny center → full
-   3. Logo zooms through page → split volunteer section
-   Background stays YELLOW throughout.
+      on YELLOW background
+   2. IBTU logo circle-wipes from center on
+      IRIDESCENT background
+   3. Logo zooms through page → volunteer section
+      on YELLOW background
 ═══════════════════════════════════════ */
 
 export default function HeroReveal() {
@@ -18,6 +20,7 @@ export default function HeroReveal() {
   const rightTextRef = useRef<HTMLSpanElement>(null)
   const textContainerRef = useRef<HTMLDivElement>(null)
   const logoRef = useRef<HTMLDivElement>(null)
+  const iridBgRef = useRef<HTMLDivElement>(null)
   const splitRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -26,16 +29,18 @@ export default function HeroReveal() {
       !rightTextRef.current ||
       !textContainerRef.current ||
       !logoRef.current ||
+      !iridBgRef.current ||
       !splitRef.current
     ) return
 
     const tl = gsap.timeline()
 
-    // Setup: hide logo and split content initially
+    // Setup: hide logo, iridescent bg, and split content initially
     gsap.set(logoRef.current, { opacity: 0 })
+    gsap.set(iridBgRef.current, { opacity: 0 })
     gsap.set(splitRef.current, { opacity: 0 })
 
-    // ─── Phase 1: Text wipes in from both sides ───
+    // ─── Phase 1: Text wipes in from both sides (yellow bg) ───
     tl.fromTo(
       leftTextRef.current,
       { x: '-120%', opacity: 0 },
@@ -52,12 +57,19 @@ export default function HeroReveal() {
     // Hold on the title
     tl.to({}, { duration: 0.4 })
 
-    // ─── Phase 2: Text fades, IBTU logo circle-wipes in from tiny center ───
+    // ─── Phase 2: Text fades, iridescent bg appears, logo circle-wipes ───
     tl.to(textContainerRef.current, {
       opacity: 0,
       scale: 0.9,
       duration: 0.3,
       ease: 'power2.in',
+    })
+
+    // Iridescent background fades in behind logo
+    tl.to(iridBgRef.current, {
+      opacity: 1,
+      duration: 0.3,
+      ease: 'power2.out',
     })
 
     // Logo appears tiny at center, circle expands to reveal it
@@ -87,6 +99,12 @@ export default function HeroReveal() {
       ease: 'power3.in',
     })
 
+    // Iridescent bg fades out as logo zooms
+    tl.to(iridBgRef.current, {
+      opacity: 0,
+      duration: 0.3,
+    }, '-=0.4')
+
     // Split content fades in as logo zooms through
     tl.fromTo(
       splitRef.current,
@@ -108,7 +126,7 @@ export default function HeroReveal() {
         overflow: 'hidden',
       }}
     >
-      {/* ─── Phase 1: Text wipe ─── */}
+      {/* ─── Phase 1: Text wipe (yellow bg shows through) ─── */}
       <div
         ref={textContainerRef}
         style={{
@@ -160,7 +178,22 @@ export default function HeroReveal() {
         </h1>
       </div>
 
-      {/* ─── Phase 2: Logo circle-wipe from center ─── */}
+      {/* ─── Iridescent background layer (appears behind logo) ─── */}
+      <div
+        ref={iridBgRef}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 3,
+          background: 'var(--holo-gradient)',
+          backgroundSize: '600% 600%',
+          animation: 'holo-shift 20s ease infinite',
+          opacity: 0,
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* ─── Phase 2: Logo circle-wipe from center (on iridescent bg) ─── */}
       <div
         ref={logoRef}
         style={{
@@ -185,7 +218,7 @@ export default function HeroReveal() {
         />
       </div>
 
-      {/* ─── Phase 3: Split-screen volunteer content ─── */}
+      {/* ─── Phase 3: Volunteer section (YELLOW background) ─── */}
       <div
         ref={splitRef}
         data-hero-split=""
@@ -197,11 +230,11 @@ export default function HeroReveal() {
           opacity: 0,
         }}
       >
-        {/* Left: Text content — black bg */}
+        {/* Left: Text content — yellow bg */}
         <div
           style={{
             width: '50%',
-            background: '#000',
+            background: '#FFC700',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -214,9 +247,10 @@ export default function HeroReveal() {
               fontSize: '10px',
               textTransform: 'uppercase',
               letterSpacing: '4px',
-              color: '#FFC700',
+              color: '#000',
               marginBottom: 20,
               display: 'block',
+              fontWeight: 700,
             }}
           >
             Find Your Role
@@ -228,7 +262,7 @@ export default function HeroReveal() {
               fontSize: 'clamp(32px, 5vw, 64px)',
               lineHeight: 0.95,
               textTransform: 'uppercase',
-              color: '#FFF',
+              color: '#000',
               letterSpacing: '-0.02em',
               marginBottom: 24,
             }}
@@ -240,7 +274,7 @@ export default function HeroReveal() {
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'clamp(14px, 1.2vw, 18px)',
-              color: '#FFF',
+              color: '#000',
               lineHeight: 1.7,
               fontWeight: 700,
               maxWidth: 520,
@@ -256,8 +290,8 @@ export default function HeroReveal() {
             rel="noopener noreferrer"
             style={{
               display: 'inline-block',
-              background: '#FFC700',
-              color: '#000',
+              background: '#000',
+              color: '#FFC700',
               padding: '16px 40px',
               borderRadius: '16px',
               fontFamily: 'var(--font-body)',
@@ -273,7 +307,7 @@ export default function HeroReveal() {
           </a>
         </div>
 
-        {/* Right: IBTU bucket coastal cleanup photo — bleeds out of frame */}
+        {/* Right: IBTU bucket coastal cleanup photo */}
         <div
           style={{
             width: '50%',
