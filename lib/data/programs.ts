@@ -35,7 +35,7 @@ export const programs: Program[] = [
     proofStats:
       "5,000+ families stabilized | 7,581 assistance instances | 324 active clients | 23.4 avg visits | 90+ zip codes | 15+ partner services | 350 immigrant families served",
     allTimeServed:
-      "5,000+ families (Phase 1) | 2,500 at TWR | 7,581 Hub instances | 324 clients | 1,800+ volunteers | 15,000+ meals | 350 immigrant families",
+      "5,000+ families (Phase 1) | 2,500 at TWR | 7,581 Hub instances | 324 clients | 3,500+ volunteers | 15,000+ meals | 350 immigrant families | $1.75M+ distributed",
     volunteerUrl: "https://volunteer.bloomerang.co/JE/7haetjfrq5g190",
     ctaText: "Support the Hub",
     ctaHref: "/get-involved",
@@ -64,9 +64,9 @@ export const programs: Program[] = [
     description:
       "The Back 2 School Festival is IBTU's flagship annual event — a multi-city, multi-day community activation that distributes backpacks, school supplies, and partner services to thousands of Los Angeles families. Now in its 7th year.",
     proofStats:
-      "18,550+ backpacks (6yr) | 17,500+ attendees (6yr) | 4 cities | 90+ schools | 190+ partners | 1,400+ volunteers",
+      "22,550+ backpacks (6yr) | 20,396+ attendees (6yr) | 4 cities | 90+ schools | 190+ partners | 1,400+ volunteers",
     allTimeServed:
-      "17,500+ attendees across 6 years | 18,550+ backpacks distributed | 1,400+ volunteers deployed | 4 cities",
+      "20,396+ attendees across 6 years | 22,550+ backpacks distributed | 1,400+ volunteers deployed | 4 cities | 123+ zip codes",
     volunteerUrl: "https://itsbiggerthanusla.org/volunteers",
     ctaText: "Sponsor Back 2 School 2026",
     ctaHref: "/get-involved",
@@ -81,7 +81,7 @@ export const programs: Program[] = [
       "/images/b2s/6D5A0503.jpg",
       "/images/b2s/IBTU Bacl 2 School 2023-33.jpg",
     ],
-    cardStat: "18,550+ backpacks",
+    cardStat: "22,550+ backpacks",
     icon: "school",
   },
   {
