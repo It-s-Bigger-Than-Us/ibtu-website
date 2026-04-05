@@ -56,11 +56,7 @@ const FAQ = [
   },
   {
     q: 'What if I lost everything, including my ID?',
-    a: 'We work with what you have. We accept passports, temporary IDs, and foreign-issued IDs. Combined with FEMA paperwork, insurance documents, utility bills, or bank statements showing your affected address, we will do our best to verify your situation.',
-  },
-  {
-    q: 'What if I am undocumented?',
-    a: 'You are welcome here. We accept foreign-issued IDs, utility bills, and lease agreements. We are committed to serving our full community with dignity and discretion.',
+    a: 'We work with what you have. We accept passports, temporary IDs, and alternative identification. Combined with FEMA paperwork, insurance documents, utility bills, or bank statements showing your affected address, we will do our best to verify your situation.',
   },
   {
     q: 'What about smoke damage in neighboring areas?',
