@@ -63,7 +63,7 @@ export const orgTimeline: TimelineEntry[] = [
   {
     year: 2025,
     title: "Record School & Youth Programming Scale",
-    detail: "28,025 students across 34 school sites — more than all prior years combined. Alliance Charter partnership expanded to 25 campuses ($1.9M Sol de Janeiro distribution).",
+    detail: "28,025 students across 34 school sites — more than all prior years combined. Alliance Charter partnership expanded to 25 campuses ($1.9M in self-care products donated by IBTU).",
     pillar: "School & Youth Stability",
   },
   {

@@ -27,7 +27,7 @@ const SERVICES = [
   { title: 'Dental & Vision', desc: 'On-site dental services via Liberty Dental Plan and same-day vision screenings with glasses.' },
   { title: 'Employment Resources', desc: 'Job loss navigation for the 89+ individuals who lost employment due to the fires.' },
   { title: 'Housing Navigation', desc: 'Connections to temporary and permanent housing resources for the 79% of clients permanently displaced.' },
-  { title: 'Legal & Immigration', desc: 'Legal aid and immigration support. We serve all survivors regardless of documentation status.' },
+  { title: 'Legal Aid', desc: 'Legal support for fire survivors navigating FEMA, insurance, and tenant protections.' },
 ]
 
 const PHASES = [
@@ -48,7 +48,7 @@ const PHASES = [
 const FAQ = [
   {
     q: 'Who do you serve?',
-    a: 'We serve survivors of the Eaton and Palisades fires — regardless of immigration status, documentation, or background. Since opening, we\'ve served families across 5+ languages (English, Spanish, Mandarin, Japanese, and Russian) including 38 seniors, 23 people with disabilities, 67 families with babies and young children, and 89 people who lost their jobs due to the fires.',
+    a: 'We serve survivors of the Eaton and Palisades fires. Since opening, we\'ve served families across 5+ languages (English, Spanish, Mandarin, Japanese, and Russian) including 38 seniors, 23 people with disabilities, 67 families with babies and young children, and 89 people who lost their jobs due to the fires.',
   },
   {
     q: 'What counts as proof of fire impact?',

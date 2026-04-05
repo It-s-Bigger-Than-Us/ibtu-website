@@ -465,16 +465,6 @@ export const events: Event[] = [
     status: "Closed",
   },
   {
-    title: "Immigration Emergency Response",
-    programSlug: "fire-relief",
-    year: 2025,
-    dateStart: "Jul 16, 2025",
-    dateEnd: "Jul 22, 2025",
-    location: "3 LAUSD campuses",
-    proofStats: "350 families, UTLA + Baby2Baby + Khalsa Aid",
-    status: "Closed",
-  },
-  {
     title: "Coastal Care #1 — Venice Pier",
     programSlug: "coastal-care",
     year: 2025,
@@ -550,7 +540,7 @@ export const events: Event[] = [
     featured: true,
   },
   {
-    title: "Alliance Sol de Janeiro — 25 Campuses",
+    title: "Alliance Self-Care Product Distribution — 25 Campuses",
     programSlug: "youth-programming",
     year: 2025,
     dateStart: "2025",

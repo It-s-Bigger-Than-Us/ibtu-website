@@ -50,7 +50,6 @@ const PARTNERS = [
   'Alliance College-Ready Public Schools (25 campuses)',
   'LAUSD',
   'Inglewood Unified School District',
-  'Sol de Janeiro ($1.9M product distribution)',
   'Iovine & Young Center',
   'LA84 Foundation',
   'lululemon',

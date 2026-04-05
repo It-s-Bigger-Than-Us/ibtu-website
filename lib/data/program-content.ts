@@ -86,7 +86,7 @@ This was not a campaign. This was a community that already had the relationships
         heading: 'The Hub: Permanent, Not Pop-Up',
         body: `Phase 2 transformed emergency response into permanent infrastructure. The IBTU Relief Resource Hub at Baldwin Hills Crenshaw Plaza (Suite 224-226, 3650 W Martin Luther King Jr Blvd, Los Angeles, CA 90008) now operates as a full-service community center with 15+ rotating partner services.
 
-Hub services include case management, dental care, vision screenings, mental health support with no waitlist, housing navigation, legal aid, immigration assistance, food distribution, and financial counseling. Walk-in and appointment access. Fire-impacted community members receive services at no cost. The verification process is dignified — no one is turned away, and every person is treated with respect from the first interaction.`,
+Hub services include case management, dental care, vision screenings, mental health support with no waitlist, housing navigation, legal aid, food distribution, and financial counseling. Walk-in and appointment access. Fire-impacted community members receive services at no cost. The verification process is dignified — no one is turned away, and every person is treated with respect from the first interaction.`,
         image: '/images/fire-relief/hub-interior-2.jpg',
         imageAlt:
           'Community members receiving support services at the IBTU Relief Resource Hub',
@@ -114,7 +114,7 @@ Referral sources tell the story of organic trust: 37% find the Hub through word 
       },
       {
         heading: 'Phase 3: From Response to Renewal',
-        body: `The Hub is transitioning into Phase 3 — a permanent all-crisis community center that will serve fire survivors, immigrant families, and any community member navigating systemic barriers. In July 2025, IBTU served 350 immigrant families across three LAUSD campuses in partnership with UTLA, Baby2Baby, and Khalsa Aid.
+        body: `The Hub is transitioning into Phase 3 — a permanent all-crisis community center that will serve fire survivors and any community member navigating systemic barriers.
 
 This is the IBTU model: show up in crisis, build infrastructure that stays, and expand that infrastructure to meet the next need. 300+ partners activated. $4.5M+ in in-kind resources moved at an $18:$1 leverage ratio. Community is the infrastructure.`,
         image: '/images/fire-relief/hub-group.jpg',
@@ -131,7 +131,7 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
     whoWeServe: [
       'Families displaced by the Palisades and Eaton fires rebuilding their lives',
       'Seniors and individuals with disabilities navigating complex recovery systems',
-      'Immigrant families seeking culturally responsive support in their first language',
+      'Community members seeking culturally responsive support in their first language',
       'Community members who lost employment, housing, or critical documents in the fires',
       'Anyone impacted by crisis in Los Angeles — no ID required, no barriers to entry',
     ],
@@ -300,7 +300,7 @@ These recognitions were not solicited. They came because community leaders saw t
         heading: 'Inside the School, Not Outside It',
         body: `IBTU does not parachute in with a one-day assembly and leave. Lunchtime Takeovers transform the lunch period into a campus-wide activation — DJs, activities, resource tables, and direct engagement with students who might otherwise disengage. These are structured, scheduled, and built into the school calendar so students and staff know IBTU is part of the fabric of their campus.
 
-Resource Fairs bring 15+ partner organizations on campus for families. At Wright Middle School, a single open house connected 74 families across 15 grade levels with 22 schools and 17 partners, reaching 18,000+ people through online engagement. When families walk in, they access health screenings, enrollment support, and direct connections to services — all in a space they already trust.`,
+Resource Fairs bring 15+ partner organizations on campus for families. At a single open house, IBTU connected 74 families across 15 grade levels with 22 schools and 17 partners, reaching 18,000+ people through online engagement. When families walk in, they access health screenings, enrollment support, and direct connections to services — all in a space they already trust.`,
         image: '/images/school/IMG_4674.jpg',
         imageAlt:
           'Students engaging with IBTU staff during a Lunchtime Takeover on campus',
@@ -313,12 +313,12 @@ Resource Fairs bring 15+ partner organizations on campus for families. At Wright
       },
       {
         heading: 'Parents Are Part of the Model',
-        body: `The 8-week Parent Empowerment Workshop at South Park Elementary — "Bridging the Gap" — ran 13 sessions and earned a 4.7 to 5.0 satisfaction rating from participating parents. The curriculum builds parental confidence in supporting academic and emotional development, navigating school systems, and connecting to community resources.
+        body: `The 8-week Parent Empowerment Workshop — "Bridging the Gap" — ran 13 sessions and earned a 4.7 to 5.0 satisfaction rating from participating parents. The curriculum builds parental confidence in supporting academic and emotional development, navigating school systems, and connecting to community resources.
 
 This is not a lecture series. Parents build relationships with each other, with school staff, and with IBTU facilitators. The cohort model creates a support network that lasts beyond the eight weeks. At the Roots and Wings Celebration, graduating parents shared what changed for their families. When parents feel stable, students show up.`,
         image: '/images/school/IMG_5884.jpg',
         imageAlt:
-          'Parents participating in a workshop session at South Park Elementary',
+          'Parents participating in a Parent Empowerment Workshop session',
         imagePosition: 'right',
         highlights: [
           '4.7 to 5.0 satisfaction rating',
@@ -328,16 +328,14 @@ This is not a lecture series. Parents build relationships with each other, with 
       },
       {
         heading: 'Alliance Expansion: 22 Schools, 12,000+ Students',
-        body: `In 2025, IBTU formalized a partnership with Alliance College-Ready Public Schools, reaching 12,000+ students across 22 campuses with $1.9 million in Sol de Janeiro self-care products distributed to students. This expansion required a Memorandum of Service Agreement with detailed sections for programming scope, deliverables, and accountability.
-
-The Alliance network represents IBTU's replicable model at scale — standardized programming that adapts to each campus while maintaining consistent quality. IBTU is now one of the largest community-based programming partners in the Alliance Charter network. The growth is not accidental. It is the result of four years of trust built one campus at a time.`,
+        body: `In 2025, IBTU formalized a partnership with Alliance College-Ready Public Schools, reaching 12,000+ students across 22 campuses. IBTU donated $1.9 million in self-care products to Alliance students — direct investment in the dignity and wellness of every young person on those campuses. The growth is not accidental. It is the result of four years of trust built one campus at a time.`,
         image: '/images/school/IMG_6134.jpg',
         imageAlt:
           'IBTU programming activation at an Alliance Charter campus',
         imagePosition: 'left',
         highlights: [
           '12,000+ students across 22 campuses',
-          '$1.9 million in Sol de Janeiro self-care products',
+          '$1.9 million in self-care products donated to Alliance',
           'four years of trust built one campus at a time',
         ],
       },
@@ -366,7 +364,7 @@ Staff Appreciation Days reach 75+ educators per campus with wellness experiences
     ],
     schedule: 'Year-round school calendar',
     partners:
-      'Alliance College-Ready Public Schools (22 campuses), LAUSD, Inglewood USD, Sol de Janeiro, Iovine & Young Center',
+      'Alliance College-Ready Public Schools (22 campuses), LAUSD, Inglewood USD, Iovine & Young Center',
     images: [
       '/images/school/IMG_4674.jpg',
       '/images/school/IMG_5612.jpg',

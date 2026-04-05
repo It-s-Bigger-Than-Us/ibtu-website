@@ -34,7 +34,7 @@ export default function FireReliefPage() {
       date: "Apr 2025 – Present",
       tagline: "The Hub. Permanent infrastructure.",
       detail:
-        "IBTU opened the Relief Resource Hub at Baldwin Hills Crenshaw Plaza — a permanent, community-led recovery center with 15+ partner services under one roof. Case management, dental, vision, mental health, food assistance, legal aid, housing navigation, and immigration support. Not temporary. Not a popup. Built to stay.",
+        "IBTU opened the Relief Resource Hub at Baldwin Hills Crenshaw Plaza — a permanent, community-led recovery center with 15+ partner services under one roof. Case management, dental, vision, mental health, food assistance, legal aid, and housing navigation. Not temporary. Not a popup. Built to stay.",
       stats: [
         { value: "324", label: "Active Clients" },
         { value: "15+", label: "Partner Services" },
@@ -91,10 +91,6 @@ export default function FireReliefPage() {
     {
       title: "Legal Support",
       detail: "FEMA appeals, insurance guidance, and tenant protections.",
-    },
-    {
-      title: "Immigration Assistance",
-      detail: "Trusted legal partners supporting undocumented community members.",
     },
   ];
 

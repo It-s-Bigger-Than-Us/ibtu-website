@@ -33,9 +33,9 @@ export const programs: Program[] = [
     description:
       "IBTU launched a community-led disaster response that activated within 72 hours across 87+ locations. Phase 1 mobilized immediate resources. Phase 2 built the permanent Relief Resource Hub at Baldwin Hills Crenshaw Plaza. Phase 3 is converting the Hub into an all-crisis community center.",
     proofStats:
-      "5,000+ families stabilized | 7,581 assistance instances | 324 active clients | 23.4 avg visits | 90+ zip codes | 15+ partner services | 350 immigrant families served",
+      "5,000+ families stabilized | 7,581 assistance instances | 324 active clients | 23.4 avg visits | 90+ zip codes | 15+ partner services",
     allTimeServed:
-      "5,000+ families (Phase 1) | 2,500 at TWR | 7,581 Hub instances | 324 clients | 3,500+ volunteers | 15,000+ meals | 350 immigrant families | $1.75M+ distributed",
+      "5,000+ families (Phase 1) | 2,500 at TWR | 7,581 Hub instances | 324 clients | 3,500+ volunteers | 15,000+ meals | $1.75M+ distributed",
     volunteerUrl: "https://volunteer.bloomerang.co/JE/7haetjfrq5g190",
     ctaText: "Support the Hub",
     ctaHref: "/get-involved",
@@ -104,7 +104,7 @@ export const programs: Program[] = [
     status: "Active",
     sortOrder: 3,
     keyPartners:
-      "Alliance College-Ready Public Schools (25 campuses), LAUSD, Inglewood USD, Sol de Janeiro, Iovine & Young Center",
+      "Alliance College-Ready Public Schools (25 campuses), LAUSD, Inglewood USD, Iovine & Young Center",
     heroImage: "/images/school/IMG_5406.jpg",
     cardImages: [
       "/images/school/IMG_5629.jpg",

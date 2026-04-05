@@ -62,7 +62,7 @@ export default function MissionSplit({
   const pillars = [
     {
       label: 'Crisis & Disaster Stabilization',
-      text: 'When the Palisades and Eaton fires displaced thousands of families in January 2025, IBTU mobilized within 72 hours. Within 90 days we built a permanent Relief Resource Hub at Baldwin Hills Crenshaw Plaza — open five days a week, serving 324 active clients who return an average of 23 times each. Housing navigation, mental health counseling, dental care, food assistance, and immigration support — all under one roof, all free, all dignified.',
+      text: 'When the Palisades and Eaton fires displaced thousands of families in January 2025, IBTU mobilized within 72 hours. Within 90 days we built a permanent Relief Resource Hub at Baldwin Hills Crenshaw Plaza — open five days a week, serving 324 active clients who return an average of 23 times each. Housing navigation, mental health counseling, dental care, and food assistance — all under one roof, all free, all dignified.',
     },
     {
       label: 'School & Youth Stability',

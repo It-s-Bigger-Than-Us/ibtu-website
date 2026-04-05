@@ -57,6 +57,7 @@ Do NOT use unverified numbers. Public-facing SSOT:
 - EIN: 85-3136505
 
 ## Prohibited
+- **NO IMMIGRATION CONTENT ON PUBLIC SITE — CLIENT SAFETY RISK.** Never mention immigration work, immigrant families served, immigration assistance, or undocumented status on any public-facing page. This endangers clients.
 - No financial data (revenue, expenses) on website
 - No mention of the gala (it did not happen)
 - No unverified statistics

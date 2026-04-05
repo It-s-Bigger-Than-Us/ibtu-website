@@ -17,7 +17,6 @@ export const impactStats: ImpactStat[] = [
   { value: "300+", label: "Partners Activated", year: "2025", category: "Partnerships", sortOrder: 7 },
   { value: "18,550+", label: "Backpacks Distributed (All-time)", year: "2025", category: "Education", sortOrder: 8 },
   { value: "75+", label: "Media Placements", year: "2025", category: "Media", sortOrder: 9 },
-  { value: "350", label: "Immigration Families Served", year: "2025", category: "Crisis Response", sortOrder: 10 },
 
   // Cumulative
   { value: "62,475+", label: "Students Served Since 2020", year: "Cumulative", category: "Education", sortOrder: 1 },
