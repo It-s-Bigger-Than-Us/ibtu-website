@@ -184,7 +184,7 @@ export default function GetInvolvedPage() {
         </section>
 
         {/* ── 5. DONATE — Donor tiers + Corporate ── */}
-        <section style={{
+        <section id="sponsor" style={{
           background: '#FFC700',
           padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
         }}>
@@ -213,7 +213,7 @@ export default function GetInvolvedPage() {
             </div>
 
             {/* Corporate Partnership */}
-            <div style={{
+            <div id="partner" style={{
               background: '#000',
               borderRadius: 16,
               padding: 'clamp(32px, 4vw, 56px)',
