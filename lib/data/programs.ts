@@ -78,8 +78,8 @@ export const programs: Program[] = [
       "lululemon, Baby2Baby, Supreme, Adidas, Bombas, Nike, Apple, Google, Target, LA Rams, Pepsi, LA84 Foundation, LAUSD",
     heroImage: "/images/b2s/_D5A5792.jpg",
     cardImages: [
-      "/images/b2s/_D5A7187.jpg",
-      "/images/b2s/_D5A8685.jpg",
+      "/images/b2s/6D5A0503.jpg",
+      "/images/b2s/IBTU Bacl 2 School 2023-33.jpg",
     ],
     cardStat: "18,550+ backpacks",
     icon: "school",

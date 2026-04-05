@@ -22,9 +22,9 @@ const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
     '/images/additional/IMG_0283.jpg', '/images/additional/IMG_0337.jpg',
   ],
   'back-2-school': [
-    '/images/b2s/_D5A5792.jpg', '/images/b2s/_D5A5869.jpg',
-    '/images/b2s/_D5A7187.jpg', '/images/b2s/_D5A7604.jpg',
-    '/images/b2s/_D5A8685.jpg', '/images/b2s/_D5A8736.jpg',
+    '/images/b2s/6D5A0503.jpg', '/images/b2s/_D5A5792.jpg',
+    '/images/b2s/IBTU Bacl 2 School 2023-33.jpg', '/images/b2s/6D5A0871.jpg',
+    '/images/b2s/_D5A7187.jpg', '/images/b2s/_D5A5869.jpg',
   ],
   'coastal-care': [
     '/images/coastal/IMG_4920.jpg', '/images/coastal/IMG_1603.jpg',
@@ -52,9 +52,9 @@ const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
     '/images/additional/IMG_5724.jpg', '/images/additional/IMG_5850.jpg',
   ],
   'giving-season': [
-    '/images/landscape/_D5A8844.jpg', '/images/landscape/_D5A8877.jpg',
-    '/images/landscape/_D5A8894.jpg', '/images/landscape/_D5A8937.jpg',
-    '/images/landscape/_D5A8946.jpg', '/images/landscape/_D5A9056.jpg',
+    '/images/additional/_D5A8844.jpg', '/images/additional/_D5A8877.jpg',
+    '/images/additional/_D5A8894.jpg', '/images/additional/_D5A8937.jpg',
+    '/images/additional/_D5A8946.jpg', '/images/additional/_D5A9056.jpg',
   ],
 };
 
