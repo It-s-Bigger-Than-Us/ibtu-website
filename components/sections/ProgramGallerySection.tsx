@@ -107,16 +107,32 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
 
   return (
     <main style={{ background: '#FFC700', minHeight: '100vh' }}>
-      {/* Headline with iridescent bg — full width */}
+      {/* Headline with sky bg — gold type */}
       <div
         ref={stickyRef}
         style={{
-          background: 'var(--holo-gradient)',
-          backgroundSize: '600% 600%',
-          animation: 'holo-shift 20s ease infinite',
-          padding: 'clamp(100px, 12vh, 140px) clamp(32px, 5vw, 80px) 0',
+          position: 'relative',
+          overflow: 'hidden',
+          padding: 'clamp(100px, 12vh, 140px) clamp(32px, 5vw, 80px) clamp(40px, 5vh, 60px)',
         }}
       >
+        {/* Sky background with cloud panning */}
+        <img
+          src="/images/blue-sky.jpg"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '110%',
+            height: '120%',
+            objectFit: 'cover',
+            top: '-10%',
+            left: '-5%',
+            zIndex: 0,
+            animation: 'skyPan 60s linear infinite',
+          }}
+        />
         <h1
           ref={headlineRef}
           style={{
@@ -124,8 +140,11 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
             fontSize: 'clamp(72px, 14vw, 240px)',
             lineHeight: 0.88,
             textTransform: 'uppercase',
-            color: '#000',
+            color: '#FFC700',
             letterSpacing: '-0.03em',
+            position: 'relative',
+            zIndex: 1,
+            textShadow: '0 2px 20px rgba(0,0,0,0.15)',
           }}
         >
           Our Programs

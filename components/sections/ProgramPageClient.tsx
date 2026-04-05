@@ -391,21 +391,25 @@ export default function ProgramPageClient({
         className="pp-overview"
         style={{
           background: '#000',
-          padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+          overflow: 'hidden',
         }}
       >
         <div
           style={{
-            maxWidth: 'var(--content-max)',
-            margin: '0 auto',
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
-            gap: 'clamp(32px, 5vw, 80px)',
-            alignItems: 'center',
+            alignItems: 'stretch',
+            minHeight: 'clamp(400px, 50vh, 600px)',
           }}
           className="pp-overview-grid"
         >
-          <div className="pp-overview-text" style={{ opacity: 0 }}>
+          <div className="pp-overview-text" style={{
+            opacity: 0,
+            padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}>
             <div
               style={{
                 fontFamily: 'var(--font-body)',
@@ -426,6 +430,7 @@ export default function ProgramPageClient({
                 color: '#FFF',
                 lineHeight: 1.8,
                 fontWeight: 500,
+                maxWidth: 560,
               }}
             >
               {renderHighlightedText(program.overview, program.overviewHighlights)}
@@ -433,22 +438,22 @@ export default function ProgramPageClient({
           </div>
           <div
             className="pp-overview-image"
-            style={{ opacity: 0, position: 'relative' }}
+            style={{ opacity: 0, position: 'relative', minHeight: '100%' }}
           >
             {overviewImage && (
-              <div className="holo-glass" style={{ borderRadius: 16, overflow: 'hidden' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={overviewImage}
-                  alt={`${program.heroTitle} — overview`}
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    display: 'block',
-                    borderRadius: 16,
-                  }}
-                />
-              </div>
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={overviewImage}
+                alt={`${program.heroTitle} — overview`}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
+                }}
+              />
             )}
           </div>
         </div>
@@ -544,41 +549,41 @@ export default function ProgramPageClient({
             className="pp-content-section"
             style={{
               background: i % 2 === 0 ? '#FFC700' : '#000',
-              padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+              overflow: 'hidden',
             }}
           >
             <div
               style={{
-                maxWidth: 'var(--content-max)',
-                margin: '0 auto',
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
-                gap: 'clamp(32px, 5vw, 80px)',
-                alignItems: 'center',
+                alignItems: 'stretch',
+                minHeight: 'clamp(400px, 50vh, 600px)',
               }}
               className="pp-content-grid"
             >
-              {/* Image column */}
+              {/* Image column — full bleed */}
               <div
                 className="pp-content-image"
                 style={{
                   order: imgLeft ? 0 : 1,
                   opacity: 0,
+                  position: 'relative',
+                  minHeight: '100%',
                 }}
               >
-                <div className="holo-glass" style={{ borderRadius: 16, overflow: 'hidden' }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={section.image}
-                    alt={section.imageAlt}
-                    style={{
-                      width: '100%',
-                      height: 'auto',
-                      display: 'block',
-                      borderRadius: 16,
-                    }}
-                  />
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={section.image}
+                  alt={section.imageAlt}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                  }}
+                />
               </div>
 
               {/* Text column */}
@@ -587,6 +592,10 @@ export default function ProgramPageClient({
                 style={{
                   order: imgLeft ? 1 : 0,
                   opacity: 0,
+                  padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
                 }}
               >
                 <h2
