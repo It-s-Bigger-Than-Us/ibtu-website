@@ -4,16 +4,21 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 
 /* ═══════════════════════════════════════
    PROGRAM GRADIENT CAROUSEL — per program
-   Bigger cards filling the section. Iridescent bg.
-   Almost still — very slow auto-drift so user
-   knows to click and drag.
+   fullHeight mode: fills parent, bleeds off right edge.
+   Fast hover scroll for premium feel.
 ═══════════════════════════════════════ */
 
 const CARD_W = 300
 const CARD_H = 380
 const GAP = 12
 
-export default function ProgramRingGallery({ images, title }: { images: string[]; title: string }) {
+interface Props {
+  images: string[]
+  title: string
+  fullHeight?: boolean
+}
+
+export default function ProgramRingGallery({ images, title, fullHeight }: Props) {
   const [offset, setOffset] = useState(0)
   const [dragging, setDragging] = useState(false)
   const [hovered, setHovered] = useState(false)
@@ -67,13 +72,15 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
       ref={containerRef}
       style={{
         width: '100%',
-        height: CARD_H + 40,
+        height: fullHeight ? '100%' : CARD_H + 40,
+        minHeight: fullHeight ? CARD_H + 40 : undefined,
         perspective: '800px',
         cursor: dragging ? 'grabbing' : 'grab',
         touchAction: 'pan-y',
-        position: 'relative',
+        position: fullHeight ? 'absolute' : 'relative',
+        inset: fullHeight ? 0 : undefined,
         overflow: 'hidden',
-        borderRadius: 16,
+        borderRadius: fullHeight ? 0 : 16,
         background: 'var(--holo-gradient)',
         backgroundSize: '600% 600%',
         animation: 'holo-shift 20s ease infinite',
@@ -132,7 +139,6 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
                   pointerEvents: 'none',
                 }}
               />
-              {/* No hover grow — scroll handles interaction */}
             </div>
           )
         })

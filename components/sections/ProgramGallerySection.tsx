@@ -162,22 +162,26 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
               onMouseLeave={() => setHoveredIdx(null)}
               style={{
                 background: bg,
-                padding: 'clamp(60px, 8vw, 100px) clamp(24px, 4vw, 64px)',
                 overflow: 'hidden',
                 transition: 'background 0.5s, color 0.5s',
                 width: '100%',
               }}
             >
               <div className="prog-inner" style={{
-                maxWidth: 'var(--content-max)',
-                margin: '0 auto',
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
-                gap: 'clamp(32px, 4vw, 64px)',
-                alignItems: 'center',
+                alignItems: 'stretch',
+                minHeight: 'clamp(400px, 50vh, 600px)',
               }}>
-                {/* Left column: text — half-width description */}
-                <div className="prog-text" style={{ willChange: 'transform', maxWidth: '480px' }}>
+                {/* Left column: text — padded, half-width description */}
+                <div className="prog-text" style={{
+                  willChange: 'transform',
+                  maxWidth: '480px',
+                  padding: 'clamp(60px, 8vw, 100px) 0 clamp(60px, 8vw, 100px) clamp(24px, 4vw, 64px)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                }}>
                   <span style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: '10px',
@@ -278,10 +282,14 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                   </Link>
                 </div>
 
-                {/* Right column: gallery */}
-                <div className="prog-gallery" style={{ willChange: 'transform' }}>
+                {/* Right column: gallery — full height, bleeds off right edge */}
+                <div className="prog-gallery" style={{
+                  willChange: 'transform',
+                  position: 'relative',
+                  minHeight: '100%',
+                }}>
                   {prog.galleryImages.length > 0 && (
-                    <ProgramRingGallery images={prog.galleryImages} title={prog.title} />
+                    <ProgramRingGallery images={prog.galleryImages} title={prog.title} fullHeight />
                   )}
                 </div>
               </div>
