@@ -128,7 +128,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
             priority
             style={{
               objectFit: 'cover',
-              filter: 'brightness(0.7)',
+              /* pure sky — no overlay */
               animation: 'skyPan 60s linear infinite',
               transform: 'scale(1.2)',
             }}

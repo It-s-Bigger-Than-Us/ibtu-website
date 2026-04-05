@@ -70,7 +70,7 @@ export default function HomePageClient({
             margin: '0 auto 40px',
             fontWeight: 700,
           }}>
-            It&apos;s Bigger Than Us builds trusted, lasting programs in the places communities already are — schools, neighborhood hubs, community spaces. Everything we do starts by listening. Everything we build is designed with dignity. And we don&apos;t leave.
+            Since 2020, IBTU has served 62,475+ students across 34 school sites, distributed 875,500+ pounds of food, and stabilized 5,000+ families after the LA fires. We built a permanent Relief Resource Hub, activated 7,500+ volunteers, and mobilized $4.5 million in resources — all through 300+ partnerships and a community that shows up every single time.
           </p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
             <a href="/impact" style={{
@@ -128,7 +128,6 @@ export default function HomePageClient({
             style={{
               objectFit: 'cover',
               objectPosition: 'center top',
-              filter: 'brightness(0.75)',
               animation: 'skyPan 60s linear infinite',
               transform: 'scale(1.2)',
             }}
