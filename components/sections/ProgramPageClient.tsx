@@ -4,7 +4,10 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import type { ProgramContent } from '@/lib/data/program-content'
+
+const InTheFieldGallery = dynamic(() => import('@/components/sections/InTheFieldGallery'), { ssr: false })
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -252,21 +255,6 @@ export default function ProgramPageClient({
             delay: 0.15,
           }
         )
-      }
-
-      /* ── Image gallery ── */
-      const galleryImgs = containerRef.current?.querySelectorAll('.pp-gallery-img')
-      if (galleryImgs) {
-        galleryImgs.forEach((img, i) => {
-          gsap.fromTo(
-            img,
-            { opacity: 0, x: i % 2 === 0 ? -60 : 60, y: 30 },
-            {
-              opacity: 1, x: 0, y: 0, duration: 0.5, ease: 'expo.out',
-              scrollTrigger: { trigger: img, start: 'top 80%', once: true },
-            }
-          )
-        })
       }
 
       /* ── CTA section ── */
@@ -740,7 +728,7 @@ export default function ProgramPageClient({
       )}
 
       {/* ═══════════════════════════════════════
-          6. IMAGE GALLERY — 2-col grid, iridescent borders
+          6. IN THE FIELD — tiled editorial gallery
       ═══════════════════════════════════════ */}
       {galleryImages.length > 0 && (
         <section
@@ -763,39 +751,13 @@ export default function ProgramPageClient({
             >
               IN THE FIELD
             </div>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: 'var(--grid-gap)',
-              }}
-              className="pp-gallery-grid"
-            >
-              {galleryImages.map((src, i) => (
-                <div
-                  key={i}
-                  className="pp-gallery-img"
-                  style={{ opacity: 0 }}
-                >
-                  <div
-                    className="holo-glass"
-                    style={{ borderRadius: 16, overflow: 'hidden' }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={src}
-                      alt={`${program.heroTitle} — photo ${i + 1}`}
-                      style={{
-                        width: '100%',
-                        height: 'auto',
-                        display: 'block',
-                        borderRadius: 16,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <InTheFieldGallery
+              items={galleryImages.map((src, i) => ({
+                id: `field-${i}`,
+                image: src,
+                alt: `${program.heroTitle} — photo ${i + 1}`,
+              }))}
+            />
           </div>
         </section>
       )}
@@ -928,7 +890,6 @@ export default function ProgramPageClient({
           .pp-overview-grid,
           .pp-content-grid,
           .pp-serve-grid,
-          .pp-gallery-grid,
           .pp-cta-grid {
             grid-template-columns: 1fr !important;
           }

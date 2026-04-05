@@ -1,136 +1,100 @@
 'use client'
 
-import { useRef, useEffect, useCallback, useState } from 'react'
+import Image from 'next/image'
+import { motion } from 'motion/react'
 
-/**
- * IN THE FIELD — horizontal gallery strip that auto-scrolls on hover.
- * Scroll direction follows mouse position (left half = scroll left, right half = scroll right).
- * Gentle hover scale (1.02) with iridescent glow, clipped to container.
- */
+/*  ═══════════════════════════════════════
+    IN THE FIELD — tiled editorial gallery
+    CSS Grid, asymmetric layout, Motion for React hover.
+    No GSAP. No ScrollTrigger. No parallax.
+═══════════════════════════════════════ */
 
-interface InTheFieldGalleryProps {
-  images: string[]
-  programTitle: string
+export interface GalleryItem {
+  id: string
+  image: string
+  alt: string
+  title?: string
+  span?: 'default' | 'tall' | 'wide' | 'large'
 }
 
-export default function InTheFieldGallery({ images, programTitle }: InTheFieldGalleryProps) {
-  const stripRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const rafRef = useRef<number>(0)
-  const speedRef = useRef(0)
-  const [hovered, setHovered] = useState(false)
-  const mouseXRef = useRef(0.5)
+interface InTheFieldGalleryProps {
+  items: GalleryItem[]
+}
 
-  const scroll = useCallback(() => {
-    if (!stripRef.current || !containerRef.current) {
-      rafRef.current = requestAnimationFrame(scroll)
-      return
-    }
+/* Repeating tile pattern for editorial rhythm */
+const SPAN_PATTERN: GalleryItem['span'][] = [
+  'large',   // 2×2 hero
+  'default', // 1×1
+  'tall',    // 1×2
+  'default', // 1×1
+  'default', // 1×1
+  'wide',    // 2×1
+  'default', // 1×1
+  'tall',    // 1×2
+]
 
-    if (hovered) {
-      // Mouse position determines direction and speed
-      // Left side = scroll left (negative), right side = scroll right (positive)
-      const direction = (mouseXRef.current - 0.5) * 2 // -1 to 1
-      const targetSpeed = direction * 2.5 // max 2.5px/frame
-      speedRef.current += (targetSpeed - speedRef.current) * 0.08
-    } else {
-      // Gentle auto-drift when not hovered
-      speedRef.current += (0.4 - speedRef.current) * 0.05
-    }
+function getSpan(item: GalleryItem, index: number): NonNullable<GalleryItem['span']> {
+  return item.span || SPAN_PATTERN[index % SPAN_PATTERN.length] || 'default'
+}
 
-    stripRef.current.scrollLeft += speedRef.current
+const SPAN_CLASSES: Record<NonNullable<GalleryItem['span']>, string> = {
+  default: 'col-span-1 row-span-1',
+  tall:    'col-span-1 row-span-2',
+  wide:    'col-span-2 row-span-1',
+  large:   'col-span-2 row-span-2',
+}
 
-    // Loop: if we hit the end, wrap back
-    const maxScroll = stripRef.current.scrollWidth - stripRef.current.clientWidth
-    if (stripRef.current.scrollLeft >= maxScroll - 1) {
-      stripRef.current.scrollLeft = 0
-    } else if (stripRef.current.scrollLeft <= 0 && speedRef.current < 0) {
-      stripRef.current.scrollLeft = maxScroll
-    }
+/* Mobile: collapse all spans to single cells */
+const MOBILE_SPAN_CLASSES: Record<NonNullable<GalleryItem['span']>, string> = {
+  default: 'max-md:col-span-1 max-md:row-span-1',
+  tall:    'max-md:col-span-1 max-md:row-span-1',
+  wide:    'max-md:col-span-1 max-md:row-span-1',
+  large:   'max-md:col-span-2 max-md:row-span-1',
+}
 
-    rafRef.current = requestAnimationFrame(scroll)
-  }, [hovered])
-
-  useEffect(() => {
-    rafRef.current = requestAnimationFrame(scroll)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [scroll])
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!containerRef.current) return
-    const rect = containerRef.current.getBoundingClientRect()
-    mouseXRef.current = (e.clientX - rect.left) / rect.width
-  }, [])
-
-  if (images.length === 0) return null
-
-  // Double images for seamless loop
-  const loopImages = [...images, ...images]
+export default function InTheFieldGallery({ items }: InTheFieldGalleryProps) {
+  if (items.length === 0) return null
 
   return (
     <div
-      ref={containerRef}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => { setHovered(false); mouseXRef.current = 0.5 }}
-      onMouseMove={handleMouseMove}
-      style={{
-        position: 'relative',
-        overflow: 'hidden',
-        borderRadius: 16,
-      }}
+      className="grid grid-cols-4 gap-[var(--grid-gap)] max-lg:grid-cols-3 max-md:grid-cols-2"
+      style={{ gridAutoRows: 'clamp(200px, 18vw, 280px)' }}
     >
-      <div
-        ref={stripRef}
-        style={{
-          display: 'flex',
-          gap: 16,
-          overflowX: 'hidden',
-          scrollBehavior: 'auto',
-          padding: '8px 0',
-        }}
-      >
-        {loopImages.map((src, i) => (
-          <div
-            key={`${src}-${i}`}
-            className="field-gallery-card"
-            style={{
-              flexShrink: 0,
-              width: 'clamp(260px, 22vw, 340px)',
-              aspectRatio: i % 3 === 0 ? '3/4' : '4/3',
-              borderRadius: 12,
-              overflow: 'hidden',
-              position: 'relative',
-            }}
+      {items.map((item, i) => {
+        const span = getSpan(item, i)
+        return (
+          <motion.div
+            key={item.id}
+            className={`relative overflow-hidden rounded-2xl ${SPAN_CLASSES[span]} ${MOBILE_SPAN_CLASSES[span]}`}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.28, delay: Math.min(i * 0.04, 0.32), ease: [0.25, 0.1, 0.25, 1] }}
+            whileHover={{ y: -4, scale: 1.015 }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={src}
-              alt={`${programTitle} — photo ${(i % images.length) + 1}`}
-              loading="lazy"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block',
-                filter: 'saturate(1.15) brightness(1.05)',
-              }}
-            />
-          </div>
-        ))}
-      </div>
-
-      <style>{`
-        .field-gallery-card {
-          transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s;
-        }
-        .field-gallery-card:hover {
-          transform: scale(1.02);
-          box-shadow:
-            0 0 8px 1px #FFF4B8,
-            0 0 16px 2px #D4F0F8,
-            0 0 24px 3px #D4F5E8;
-        }
-      `}</style>
+            <motion.div
+              className="relative w-full h-full"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
+                sizes={span === 'large' || span === 'wide' ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 50vw, 25vw'}
+                className="object-cover"
+                loading={i < 4 ? 'eager' : 'lazy'}
+              />
+            </motion.div>
+            {item.title && (
+              <div className="absolute bottom-0 inset-x-0 p-4 pt-10 bg-gradient-to-t from-black/70 to-transparent pointer-events-none">
+                <span className="font-[family-name:var(--font-body)] text-[11px] font-bold uppercase tracking-[2px] text-white">
+                  {item.title}
+                </span>
+              </div>
+            )}
+          </motion.div>
+        )
+      })}
     </div>
   )
 }

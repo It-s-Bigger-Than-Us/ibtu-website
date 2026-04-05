@@ -34,6 +34,14 @@ interface GalleryEvent {
   proofStats?: string
 }
 
+interface FieldGalleryItem {
+  id: string
+  image: string
+  alt: string
+  title?: string
+  span?: 'default' | 'tall' | 'wide' | 'large'
+}
+
 interface ProgramDetailClientProps {
   slides: StorySlide[]
   galleryImages: Array<{ src: string; alt: string }>
@@ -49,6 +57,11 @@ export default function ProgramDetailClient({
   fieldImages = [],
   programTitle = '',
 }: ProgramDetailClientProps) {
+  const fieldItems: FieldGalleryItem[] = fieldImages.map((src, i) => ({
+    id: `field-${i}`,
+    image: src,
+    alt: `${programTitle} — photo ${i + 1}`,
+  }))
   return (
     <>
       {/* Sticky Story — pinned left text + right media swaps */}
@@ -61,8 +74,8 @@ export default function ProgramDetailClient({
         <StackingGallery images={galleryImages} />
       )}
 
-      {/* IN THE FIELD — auto-scroll gallery on hover */}
-      {fieldImages.length > 0 && (
+      {/* IN THE FIELD — tiled editorial gallery */}
+      {fieldItems.length > 0 && (
         <section style={{
           background: '#000',
           padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
@@ -80,7 +93,7 @@ export default function ProgramDetailClient({
             }}>
               IN THE FIELD
             </div>
-            <InTheFieldGallery images={fieldImages} programTitle={programTitle} />
+            <InTheFieldGallery items={fieldItems} />
           </div>
         </section>
       )}
