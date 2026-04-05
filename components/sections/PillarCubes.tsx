@@ -298,7 +298,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           font-size: clamp(40px, 7vw, 110px);
           line-height: 0.92;
           text-transform: uppercase;
-          color: var(--ibtu-black);
+          color: var(--ibtu-gold);
           letter-spacing: -0.02em;
           text-align: center;
         }

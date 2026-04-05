@@ -52,9 +52,9 @@ const PROGRAM_GALLERY_IMAGES: Record<string, string[]> = {
     '/images/additional/IMG_5724.jpg', '/images/additional/IMG_5850.jpg',
   ],
   'giving-season': [
-    '/images/b2s/6D5A0617.jpg', '/images/b2s/6D5A0700.jpg',
-    '/images/b2s/6D5A0723.jpg', '/images/b2s/6D5A0726.jpg',
-    '/images/b2s/6D5A0727.jpg', '/images/b2s/6D5A0746.jpg',
+    '/images/landscape/_D5A8844.jpg', '/images/landscape/_D5A8877.jpg',
+    '/images/landscape/_D5A8894.jpg', '/images/landscape/_D5A8937.jpg',
+    '/images/landscape/_D5A8946.jpg', '/images/landscape/_D5A9056.jpg',
   ],
 };
 

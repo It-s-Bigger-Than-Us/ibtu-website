@@ -44,24 +44,29 @@ export default function GetInvolvedPage() {
 
       <main style={{ background: '#000' }}>
 
-        {/* ── 2. THE CASE — Why IBTU ── */}
+        {/* ── 2. THE NUMBERS DON'T LIE — 2-column layout ── */}
         <section style={{
           background: '#000',
           padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
         }}>
-          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{
+            maxWidth: 'var(--content-max)',
+            margin: '0 auto',
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: 'clamp(32px, 4vw, 64px)',
+            alignItems: 'start',
+          }}>
             <h2 style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(36px, 6vw, 72px)',
+              fontSize: 'clamp(36px, 6vw, 80px)',
               lineHeight: 0.92,
               textTransform: 'uppercase',
               color: '#FFC700',
               letterSpacing: '-0.02em',
-              marginBottom: 'clamp(32px, 4vw, 56px)',
             }}>
               The Numbers Don&apos;t Lie
             </h2>
-
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               <p style={{
                 fontFamily: 'var(--font-body)',
@@ -77,18 +82,17 @@ export default function GetInvolvedPage() {
                 color: '#FFF',
                 lineHeight: 1.8,
               }}>
-                This reach is the result of 300+ partnerships, a volunteer force 7,500 strong, and an organization that has earned the trust to mobilize a city. Every dollar donated extends community-built infrastructure to more families and neighborhoods across Los Angeles.
-              </p>
-              <p style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 'var(--body-md)',
-                color: '#FFF',
-                lineHeight: 1.8,
-              }}>
-                We are not a seasonal organization. We run programs inside 34 schools year-round. We staff a crisis hub five days a week. We show up to the same neighborhoods, the same campuses, the same families — because consistency is what trust looks like. We listen, we build, we stay.
+                This reach is the result of 300+ partnerships, a volunteer force 7,500 strong, and an organization that has earned the trust to mobilize a city.
               </p>
             </div>
           </div>
+          <style>{`
+            @media (max-width: 768px) {
+              section > div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+              }
+            }
+          `}</style>
         </section>
 
         {/* ── 3. IMPACT PROOF — Stats ── */}

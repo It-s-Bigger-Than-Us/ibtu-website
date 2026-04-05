@@ -8,17 +8,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
-   GET INVOLVED HERO — Simplified Sticky Grid
-
-   FIXED (4/4/2026):
-   - Page was loading completely black because
-     parallax wrapper started at yPercent:-100
-     and grid items were offset off-screen.
-   - Now: grid is VISIBLE on load. Zoom/split
-     animation triggers on scroll from a visible
-     starting position.
-   - Reduced from 425vh → 300vh for snappier feel.
-   - Scoped ScrollTrigger cleanup (no global kill).
+   GET INVOLVED HERO — Sky Background
+   Darkened sky with panning cloud animation.
+   Gold (#FFC700) type on darkened sky.
+   Grid visible on load, zooms/splits on scroll.
 ═══════════════════════════════════════ */
 
 const ITEM_BACKGROUNDS = [
@@ -42,7 +35,6 @@ interface GetInvolvedHeroProps {
 
 export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
   const blockRef = useRef<HTMLElement>(null)
-  const wrapperRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descRef = useRef<HTMLParagraphElement>(null)
   const btnRef = useRef<HTMLAnchorElement>(null)
@@ -51,30 +43,24 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
 
   useEffect(() => {
     const block = blockRef.current
-    const wrapper = wrapperRef.current
     const title = titleRef.current
     const desc = descRef.current
     const btn = btnRef.current
     const grid = gridRef.current
-    if (!block || !wrapper || !title || !desc || !btn || !grid) return
+    if (!block || !title || !desc || !btn || !grid) return
 
     const items = grid.querySelectorAll<HTMLElement>('.gi')
     const numColumns = 3
     const columns: HTMLElement[][] = Array.from({ length: numColumns }, () => [])
     items.forEach((item, i) => columns[i % numColumns].push(item))
 
-    // Init: hide desc + btn (they appear after zoom)
     gsap.set([desc, btn], { opacity: 0, pointerEvents: 'none' })
 
-    // Main scroll timeline — zoom + split + content reveal
     const tl = gsap.timeline()
 
-    // Grid zoom — scale up, columns spread apart
     tl.to(grid, { scale: 2.2, duration: 1, ease: 'power3.inOut' })
     tl.to(columns[0], { xPercent: -50, duration: 1, ease: 'power3.inOut' }, '<')
     tl.to(columns[2], { xPercent: 50, duration: 1, ease: 'power3.inOut' }, '<')
-
-    // Center column splits vertically
     tl.to(columns[1], {
       yPercent: (_index: number, el: HTMLElement) => {
         const siblings = columns[1]
@@ -84,8 +70,6 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
       duration: 0.6,
       ease: 'power1.inOut',
     }, '-=0.4')
-
-    // Content fades in as grid parts
     tl.to([desc, btn], {
       opacity: 1,
       duration: 0.3,
@@ -109,7 +93,6 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
     }
   }, [])
 
-  // Pad to 12 images
   const displayImages = images.length >= 12
     ? images.slice(0, 12)
     : [...images, ...images, ...images].slice(0, 12)
@@ -117,10 +100,9 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
   return (
     <section
       ref={blockRef}
-      style={{ height: '300vh', background: '#000' }}
+      style={{ height: '300vh', background: '#000', position: 'relative' }}
     >
       <div
-        ref={wrapperRef}
         style={{
           position: 'sticky',
           top: 0,
@@ -131,7 +113,29 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
           justifyContent: 'center',
         }}
       >
-        {/* Content overlay — title + desc + CTA */}
+        {/* Sky background — darkened with cloud panning */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          overflow: 'hidden',
+        }}>
+          <Image
+            src="/images/blue-sky.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            priority
+            style={{
+              objectFit: 'cover',
+              filter: 'brightness(0.7)',
+              animation: 'skyPan 60s linear infinite',
+              transform: 'scale(1.2)',
+            }}
+          />
+        </div>
+
+        {/* Content overlay */}
         <div
           style={{
             position: 'relative',
@@ -154,9 +158,10 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
               textTransform: 'uppercase',
-              color: '#000',
+              color: '#FFC700',
               maxWidth: 900,
               pointerEvents: 'auto',
+              textShadow: '0 2px 20px rgba(0,0,0,0.3)',
             }}
           >
             There Is a Role for You Here
@@ -170,7 +175,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
               lineHeight: 1.5,
               textTransform: 'uppercase',
               letterSpacing: '1px',
-              color: '#000',
+              color: '#FFC700',
               maxWidth: 480,
               marginTop: 24,
               fontWeight: 700,
@@ -191,25 +196,35 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
               fontWeight: 700,
               letterSpacing: '2px',
               textTransform: 'uppercase',
-              color: '#FFC700',
-              background: '#000',
+              color: '#000',
+              background: '#FFC700',
               textDecoration: 'none',
               padding: '14px 36px',
               borderRadius: '16px',
               pointerEvents: 'auto',
+              transition: 'transform 0.2s, box-shadow 0.2s',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(255,199,0,0.3)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'none'
             }}
           >
             Find Your Role
           </a>
         </div>
 
-        {/* Gallery grid — VISIBLE on load, zooms/splits on scroll */}
+        {/* Gallery grid */}
         <div style={{
           position: 'absolute',
           top: '50%',
           left: '50%',
           transform: 'translate3d(-50%, -50%, 0)',
           width: 'min(900px, 85vw)',
+          zIndex: 1,
         }}>
           <ul
             ref={gridRef}
@@ -246,13 +261,12 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
                   }}
                 >
                   {isBlueSky && (
-                    <Image
-                      src="/images/blue-sky.jpg"
-                      alt=""
-                      fill
-                      sizes="(max-width: 768px) 33vw, 300px"
-                      style={{ objectFit: 'cover', position: 'absolute', inset: 0, zIndex: 0 }}
-                    />
+                    <div style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: 'rgba(0,0,0,0.15)',
+                      zIndex: 0,
+                    }} />
                   )}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -275,6 +289,15 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
           </ul>
         </div>
       </div>
+
+      {/* Cloud panning animation */}
+      <style>{`
+        @keyframes skyPan {
+          0% { transform: scale(1.2) translateX(0); }
+          50% { transform: scale(1.2) translateX(-3%); }
+          100% { transform: scale(1.2) translateX(0); }
+        }
+      `}</style>
     </section>
   )
 }

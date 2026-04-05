@@ -31,9 +31,9 @@ export default function ProgramRingGallery({ images, title }: { images: string[]
 
   const tick = useCallback(() => {
     if (!dragging) {
-      velRef.current *= 0.97
-      // Only scroll on hover — still when idle
-      if (hovered && Math.abs(velRef.current) < 0.05) velRef.current = -2.0
+      velRef.current *= 0.92
+      // Fast scroll on hover — still when idle
+      if (hovered && Math.abs(velRef.current) < 0.3) velRef.current = -5.0
       if (!hovered && Math.abs(velRef.current) < 0.05) velRef.current = 0
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)

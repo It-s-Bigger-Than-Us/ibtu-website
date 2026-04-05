@@ -78,8 +78,8 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
     }
     if (!dragging) {
       velRef.current *= 0.92 // Crisper decay
-      // Faster hover velocity for premium feel
-      if (hovered && Math.abs(velRef.current) < 0.3) velRef.current = -4.0
+      // Fast hover velocity for premium feel
+      if (hovered && Math.abs(velRef.current) < 0.3) velRef.current = -6.0
       if (!hovered && Math.abs(velRef.current) < 0.05) velRef.current = 0
       offsetRef.current += velRef.current
       setOffset(offsetRef.current)
@@ -226,13 +226,14 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                 }}>
                   <h3 style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: 'clamp(15px, 1.4vw, 19px)',
+                    fontSize: 'clamp(13px, 1.2vw, 16px)',
                     fontWeight: 800,
                     textTransform: 'uppercase',
                     color: '#000',
                     letterSpacing: '1px',
                     margin: 0,
                     lineHeight: 1.3,
+                    whiteSpace: 'normal',
                   }}>
                     {prog.title}
                   </h3>

@@ -9,8 +9,9 @@ gsap.registerPlugin(ScrollTrigger)
 
 /* ═══════════════════════════════════════
    FOOTER — Editorial, animated, black bg
-   Gold LOT mantra, skyline, grid layout
-   Logo: gold on black (not inverted)
+   "Navigate" label removed.
+   Address on one line, under the legal.
+   "Community is the Infrastructure" on logo baseline.
 ═══════════════════════════════════════ */
 
 const footerLinks = [
@@ -34,7 +35,6 @@ export default function Footer() {
     if (!footerRef.current) return
 
     const ctx = gsap.context(() => {
-      // Mantra words stagger in one by one
       const words = mantraRef.current?.querySelectorAll('.foot-word')
       if (words) {
         gsap.fromTo(
@@ -69,10 +69,8 @@ export default function Footer() {
         overflow: 'hidden',
       }}
     >
-      {/* Skyline removed per Molly */}
-
       <div style={{ padding: 'clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px) 0' }}>
-        {/* Footer content — editorial 3-column grid */}
+        {/* Footer content — 3-column grid */}
         <div
           style={{
             maxWidth: 'var(--content-max)',
@@ -82,76 +80,75 @@ export default function Footer() {
             gap: '48px',
             paddingTop: '48px',
             borderTop: '0.5px solid var(--ibtu-gold)',
-            alignItems: 'end',
+            alignItems: 'start',
           }}
         >
-          {/* Left — logo + org info */}
-          <div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* Left — logo + tagline on same baseline */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div
               style={{
                 height: '44px',
-                marginBottom: '20px',
                 color: '#FFC700',
+                flexShrink: 0,
               }}
               dangerouslySetInnerHTML={{
                 __html: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 995.67 995.67" height="44" fill="currentColor"><path d="M956.59,304.1c-37.83-89.38-100.82-165.25-180.43-219.09C696.76,31.39,600.93,0,497.83,0c-68.59,0-134.28,13.93-193.73,39.08-89.38,37.83-165.25,100.81-219.09,180.43C31.39,298.91,0,394.94,0,497.83c0,68.59,13.93,134.28,39.08,193.73,37.83,89.39,100.81,165.26,180.43,219.09,79.4,53.63,175.44,85.02,278.33,85.02,68.59,0,134.28-13.93,193.73-39.08,89.39-37.83,165.26-100.82,219.09-180.43,53.63-79.41,85.02-175.44,85.02-278.33,0-68.59-13.93-134.28-39.08-193.73ZM912.53,673.06c-34.09,80.65-91.26,149.46-163.18,198.1-71.92,48.43-158.39,76.91-251.52,76.91-62.15,0-121.39-12.68-175.23-35.33-80.65-34.09-149.45-91.26-198.09-163.18-48.43-71.92-76.91-158.39-76.91-251.52,0-62.15,12.68-121.39,35.34-175.23,34.09-80.65,91.25-149.45,163.17-198.09,71.92-48.43,158.4-76.91,251.52-76.91,62.15,0,121.4,12.68,175.23,35.34,80.65,34.09,149.46,91.25,198.1,163.17,48.43,71.92,76.91,158.39,76.91,251.52,0,62.15-12.68,121.4-35.33,175.23Z"/><path d="M799.24,228.65l-33.89-33.68-267.52,267.32L230.31,194.97l-33.67,33.68,267.52,267.52-267.52,267.52,33.67,33.67,267.52-267.31,267.52,267.31,33.89-33.67-267.53-267.52,267.53-267.52Z"/><path d="M182.92,369.79h57.79v254.22h-57.79v-254.22Z"/><path d="M409.28,84.6h108.71c46.15,0,79.2,30.56,79.2,72.34,0,19.33-9.35,36.79-24.32,49.47,20.79,11.85,34.51,31.18,34.51,55.5,0,42.2-33.05,76.91-82.11,76.91h-116.61l.83-254.22h-.21ZM513.84,186.66c15.59,0,27.23-11.22,27.23-26.82s-11.64-26.81-27.23-26.81h-51.14v53.84h51.14v-.21ZM518.2,290.59c19.33,0,32.43-13.1,32.43-29.1,0-17.46-13.09-29.1-32.43-29.1h-55.5v58.2h55.5Z"/><path d="M753.09,443.99h-68.39v-53.63h193.94v53.63h-68.18v200.59h-57.37v-200.59Z"/><path d="M386.42,800.28v-145.3h57.38v141.97c0,49.47,26.6,65.06,53.42,65.06s53.42-15.59,53.42-65.06v-141.97h57.37v145.3c0,82.52-45.94,115.16-110.79,115.16s-110.79-32.64-110.79-115.16Z"/></svg>`,
               }}
             />
-            <p
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '12px',
-                color: 'var(--ibtu-gold)',
-                lineHeight: 2,
-                fontWeight: 500,
-              }}
-            >
-              Baldwin Hills Crenshaw Plaza
-              <br />
-              Suite 224-226
-              <br />
-              3650 W. Martin Luther King Jr. Blvd
-              <br />
-              Los Angeles, CA 90008
-            </p>
+            <span style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '10px',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              color: 'var(--ibtu-gold)',
+              fontWeight: 700,
+              whiteSpace: 'nowrap',
+            }}>
+              Community is the infrastructure.
+            </span>
           </div>
 
-          {/* Center — nav links (horizontal) */}
+          {/* Center — nav links (no "Navigate" label) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-start' }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '10px',
-                letterSpacing: '3px',
-                textTransform: 'uppercase',
-                color: 'var(--ibtu-gold)',
-                fontWeight: 700,
-                marginBottom: '4px',
-              }}
-            >
-              Navigate
-            </span>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px' }}>
-              {footerLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '13px',
-                    color: '#FFF',
-                    textDecoration: 'none',
-                    fontWeight: 600,
-                    transition: 'color 0.2s',
-                    letterSpacing: '0.5px',
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--ibtu-gold)' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#FFF' }}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {footerLinks.map((link) => {
+                const isExternal = link.href.startsWith('http')
+                const linkStyle = {
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '13px',
+                  color: '#FFF',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  transition: 'color 0.2s',
+                  letterSpacing: '0.5px',
+                } as const
+                const hoverIn = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-gold)' }
+                const hoverOut = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = '#FFF' }
+
+                return isExternal ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={linkStyle}
+                    onMouseEnter={hoverIn}
+                    onMouseLeave={hoverOut}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    style={linkStyle}
+                    onMouseEnter={hoverIn}
+                    onMouseLeave={hoverOut}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
             </div>
           </div>
 
@@ -280,7 +277,7 @@ export default function Footer() {
           </h2>
         </div>
 
-        {/* Copyright */}
+        {/* Copyright + address on one line below */}
         <div
           style={{
             maxWidth: 'var(--content-max)',
@@ -295,21 +292,30 @@ export default function Footer() {
             paddingBottom: '24px',
           }}
         >
-          &copy; 2026 It&apos;s Bigger Than Us 501(c)(3). All rights reserved. EIN: 85-3136505
+          <p style={{ margin: '0 0 8px' }}>
+            &copy; 2026 It&apos;s Bigger Than Us 501(c)(3). All rights reserved. EIN: 85-3136505
+          </p>
+          <p style={{ margin: 0, fontSize: '10px', fontWeight: 500, letterSpacing: '1.5px' }}>
+            Baldwin Hills Crenshaw Plaza, Suite 224-226, 3650 W. Martin Luther King Jr. Blvd, Los Angeles, CA 90008
+          </p>
         </div>
       </div>
 
       {/* Mobile responsive */}
       <style>{`
         @media (max-width: 768px) {
-          footer > div:last-child > div:nth-child(2) {
+          footer > div > div:first-child {
             grid-template-columns: 1fr !important;
             text-align: center !important;
           }
-          footer > div:last-child > div:nth-child(2) > div:last-child {
+          footer > div > div:first-child > div:first-child {
+            flex-direction: column !important;
+            align-items: center !important;
+          }
+          footer > div > div:first-child > div:last-child {
             text-align: center !important;
           }
-          footer > div:last-child > div:nth-child(2) > div:last-child > div {
+          footer > div > div:first-child > div:last-child > div {
             justify-content: center !important;
           }
         }

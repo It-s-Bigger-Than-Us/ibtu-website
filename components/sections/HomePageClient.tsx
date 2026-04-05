@@ -111,64 +111,12 @@ export default function HomePageClient({
       {/* 3. Values Ticker */}
       <GoldTicker phrases={tickerPhrases} speed={60} />
 
-      {/* 4. Numbers Don't Lie — 2-column layout */}
-      <section style={{
-        background: '#000',
-        padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
-      }}>
-        <div style={{
-          maxWidth: 'var(--content-max)',
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 'clamp(32px, 4vw, 64px)',
-          alignItems: 'start',
-        }}>
-          <h2 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(36px, 6vw, 80px)',
-            lineHeight: 0.92,
-            textTransform: 'uppercase',
-            color: '#FFC700',
-            letterSpacing: '-0.02em',
-          }}>
-            The Numbers Don&apos;t Lie
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <p style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'var(--body-md)',
-              color: '#FFF',
-              lineHeight: 1.8,
-            }}>
-              In 2025, IBTU served 28,025 students across 34 school sites — more than every previous year combined. We have distributed 875,500+ pounds of food across Los Angeles since 2020. When the Palisades and Eaton fires displaced thousands, we opened a permanent Relief Resource Hub that now serves 324 active clients averaging 23 visits each. That is not a pop-up. That is infrastructure.
-            </p>
-            <p style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: 'var(--body-md)',
-              color: '#FFF',
-              lineHeight: 1.8,
-            }}>
-              This reach is the result of 300+ partnerships, a volunteer force 7,500 strong, and an organization that has earned the trust to mobilize a city. Every dollar donated extends community-built infrastructure to more families and neighborhoods across Los Angeles.
-            </p>
-          </div>
-        </div>
-        {/* Responsive: stack on mobile */}
-        <style>{`
-          @media (max-width: 768px) {
-            section > div[style*="grid-template-columns: 1fr 1fr"] {
-              grid-template-columns: 1fr !important;
-            }
-          }
-        `}</style>
-      </section>
-
-      {/* 5. Mission — typewriter effect */}
+      {/* 4. Mission — typewriter effect */}
       <MissionCard />
 
       {/* 6. Our Impact Pillars — blue sky bg behind tabs + cubes */}
       <section style={{ position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden' }}>
           <Image
             src="/images/blue-sky.jpg"
             alt=""
@@ -177,7 +125,13 @@ export default function HomePageClient({
             quality={60}
             priority={false}
             placeholder="empty"
-            style={{ objectFit: 'cover', objectPosition: 'center top' }}
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center top',
+              filter: 'brightness(0.75)',
+              animation: 'skyPan 60s linear infinite',
+              transform: 'scale(1.2)',
+            }}
           />
         </div>
         <div style={{ position: 'relative', zIndex: 1 }}>
