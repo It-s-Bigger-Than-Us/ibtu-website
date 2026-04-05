@@ -677,7 +677,7 @@ export default function ProgramPageClient({
               <h2
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: 'var(--display-section)',
+                  fontSize: 'clamp(30px, 5vw, 80px)',
                   lineHeight: 0.95,
                   color: '#FFC700',
                   textTransform: 'uppercase',
