@@ -128,7 +128,7 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
               padding: '4px 0',
               opacity: 0,
               transition: 'color 0.2s',
-              whiteSpace: 'nowrap' as const,
+              whiteSpace: 'normal' as const,
             }
             const hoverIn = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-white)' }
             const hoverOut = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-black)' }

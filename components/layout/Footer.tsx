@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Center — nav links (no "Navigate" label) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', flexWrap: 'nowrap', gap: '16px', whiteSpace: 'nowrap' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 16px' }}>
               {footerLinks.map((link) => {
                 const isExternal = link.href.startsWith('http')
                 const linkStyle = {
@@ -232,10 +232,19 @@ export default function Footer() {
           footer > div > div:first-child {
             grid-template-columns: 1fr !important;
             text-align: center !important;
+            gap: 32px !important;
           }
           footer > div > div:first-child > div:first-child {
             flex-direction: column !important;
             align-items: center !important;
+          }
+          footer > div > div:first-child > div:nth-child(2) {
+            align-items: center !important;
+          }
+          footer > div > div:first-child > div:nth-child(2) > div {
+            justify-content: center !important;
+            flex-wrap: wrap !important;
+            gap: 10px 16px !important;
           }
           footer > div > div:first-child > div:last-child {
             text-align: center !important;

@@ -28,7 +28,19 @@ const CARD_W = 340
 const CARD_H = 440
 const GAP = 20
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < breakpoint)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [breakpoint])
+  return isMobile
+}
+
 export default function ProgramCarousel3D({ programs }: { programs: Program[] }) {
+  const isMobile = useIsMobile()
   const [offset, setOffset] = useState(0)
   const [dragging, setDragging] = useState(false)
   const [hovered, setHovered] = useState(false)
@@ -108,6 +120,87 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   const onUp = () => setDragging(false)
 
   const center = containerW / 2
+
+  // Mobile: scrollable card grid instead of 3D carousel
+  if (isMobile) {
+    return (
+      <section
+        style={{
+          background: 'var(--holo-gradient)',
+          backgroundSize: '600% 600%',
+          animation: 'holo-shift 20s ease infinite',
+          padding: 'clamp(40px, 6vw, 80px) 0',
+          overflow: 'hidden',
+        }}
+      >
+        <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto', padding: '0 clamp(16px, 4vw, 32px) clamp(16px, 2vw, 24px)' }}>
+          <h2 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(36px, 8vw, 64px)',
+            lineHeight: 0.92,
+            textTransform: 'uppercase',
+            color: '#000',
+            letterSpacing: '-0.02em',
+            marginBottom: 'clamp(16px, 3vw, 32px)',
+            textAlign: 'center',
+          }}>
+            Our Programs
+          </h2>
+        </div>
+        <div style={{
+          display: 'flex',
+          gap: '16px',
+          overflowX: 'auto',
+          padding: '0 16px 16px',
+          scrollSnapType: 'x mandatory',
+          WebkitOverflowScrolling: 'touch',
+        }}>
+          {programs.map((prog) => (
+            <Link
+              key={prog.slug}
+              href={`/our-programs/${prog.slug}`}
+              style={{
+                flex: '0 0 280px',
+                scrollSnapAlign: 'center',
+                borderRadius: 16,
+                overflow: 'hidden',
+                textDecoration: 'none',
+                background: '#FFC700',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={prog.heroImage || '/images/gallery/IMG_1790.jpg'}
+                alt={`${prog.title} — IBTU`}
+                loading="lazy"
+                style={{
+                  width: '100%',
+                  height: 240,
+                  objectFit: 'cover',
+                  display: 'block',
+                  filter: 'brightness(1.08) saturate(1.2)',
+                }}
+              />
+              <div style={{ padding: '14px 16px' }}>
+                <h3 style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '14px',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  color: '#000',
+                  letterSpacing: '1px',
+                  margin: 0,
+                  lineHeight: 1.3,
+                }}>
+                  {prog.title}
+                </h3>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section
