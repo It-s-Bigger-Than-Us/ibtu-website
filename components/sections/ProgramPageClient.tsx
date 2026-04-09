@@ -96,6 +96,14 @@ function formatNumber(n: number, original: string): string {
   return rounded.toString()
 }
 
+function chunkItems<T>(items: T[], size: number): T[][] {
+  const chunks: T[][] = []
+  for (let index = 0; index < items.length; index += size) {
+    chunks.push(items.slice(index, index + size))
+  }
+  return chunks
+}
+
 export default function ProgramPageClient({
   program,
   heroImageUrl,
@@ -280,10 +288,19 @@ export default function ProgramPageClient({
     return () => ctx.revert()
   }, [])
 
-  // Use first image from program data for overview
-  const overviewImage = heroImageUrl || program.images[0] || ''
-  // Remaining images for gallery (skip first if used as overview)
-  const galleryImages = program.images.slice(heroImageUrl ? 0 : 1, 8)
+  const reservedImageCount = program.sections.length + 1
+  const heroGridCount = Math.min(
+    12,
+    program.images.length > reservedImageCount
+      ? program.images.length - reservedImageCount
+      : program.images.length
+  )
+  const heroImages = program.images.slice(0, heroGridCount)
+  const overviewImage = program.images[heroGridCount] || heroImageUrl || program.images[0] || ''
+  const sectionImageStart = heroGridCount + 1
+  const sectionImages = program.sections.map((section, index) => program.images[sectionImageStart + index] || section.image)
+  const galleryImages = program.images.slice(sectionImageStart + program.sections.length)
+  const galleryChunks = chunkItems(galleryImages, 18)
 
   return (
     <div ref={containerRef}>
@@ -382,27 +399,22 @@ export default function ProgramPageClient({
             aspectRatio: '16 / 9',
           }}
         >
-          {(() => {
-            const heroImages = program.images.length >= 12
-              ? program.images.slice(0, 12)
-              : [...program.images, ...program.images, ...program.images].slice(0, 12)
-            return heroImages.map((src, i) => (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                key={i}
-                src={src}
-                alt={`${program.heroTitle} — photo ${i + 1}`}
-                loading={i < 8 ? 'eager' : 'lazy'}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  display: 'block',
-                  filter: 'brightness(1.05) saturate(1.15)',
-                }}
-              />
-            ))
-          })()}
+          {heroImages.map((src, i) => (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              key={i}
+              src={src}
+              alt={`${program.heroTitle} — photo ${i + 1}`}
+              loading={i < 8 ? 'eager' : 'lazy'}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+                filter: 'brightness(1.05) saturate(1.15)',
+              }}
+            />
+          ))}
         </div>
       </section>
 
@@ -565,6 +577,7 @@ export default function ProgramPageClient({
       ═══════════════════════════════════════ */}
       {program.sections.map((section, i) => {
         const imgLeft = section.imagePosition === 'left'
+        const sectionImage = sectionImages[i] || section.image
         return (
           <section
             key={i}
@@ -595,7 +608,7 @@ export default function ProgramPageClient({
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={section.image}
+                  src={sectionImage}
                   alt={section.imageAlt}
                   style={{
                     position: 'absolute',
@@ -764,8 +777,9 @@ export default function ProgramPageClient({
       {/* ═══════════════════════════════════════
           6. IN THE FIELD — tiled editorial gallery
       ═══════════════════════════════════════ */}
-      {galleryImages.length > 0 && (
+      {galleryChunks.map((chunk, chunkIndex) => (
         <section
+          key={`gallery-chunk-${chunkIndex}`}
           style={{
             background: '#000',
             padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
@@ -783,18 +797,18 @@ export default function ProgramPageClient({
                 marginBottom: 32,
               }}
             >
-              IN THE FIELD
+              {chunkIndex === 0 ? 'IN THE FIELD' : `FIELD NOTES ${chunkIndex + 1}`}
             </div>
             <InTheFieldGallery
-              items={galleryImages.map((src, i) => ({
-                id: `field-${i}`,
+              items={chunk.map((src, imageIndex) => ({
+                id: `field-${chunkIndex}-${imageIndex}`,
                 image: src,
-                alt: `${program.heroTitle} — photo ${i + 1}`,
+                alt: `${program.heroTitle} — photo ${chunkIndex * 18 + imageIndex + 1}`,
               }))}
             />
           </div>
         </section>
-      )}
+      ))}
 
       {/* ═══════════════════════════════════════
           7. CTA — gold background, program-specific

@@ -23,6 +23,7 @@ export default function MissionCard() {
   return (
     <section
       ref={sectionRef}
+      className="mission-card-section"
       style={{
         background: 'var(--ibtu-black)',
         padding: 'clamp(80px, 10vh, 140px) clamp(32px, 5vw, 80px)',
@@ -36,7 +37,7 @@ export default function MissionCard() {
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="holo-glass"
+        className="holo-glass mission-card-shell"
         style={{
           background: hovered ? undefined : 'var(--ibtu-gold)',
           backgroundImage: hovered ? 'var(--holo-gradient)' : undefined,
@@ -44,7 +45,7 @@ export default function MissionCard() {
           animation: hovered ? 'holo-shift 20s ease infinite' : undefined,
           borderRadius: '16px',
           padding: 'clamp(48px, 6vw, 80px)',
-          maxWidth: '900px',
+          maxWidth: '1080px',
           width: '100%',
           cursor: 'pointer',
           transition: 'background 0.5s',
@@ -101,6 +102,7 @@ export default function MissionCard() {
             ease: [0.4, 0.0, 0.2, 1],
             delay: 0.15,
           }}
+          className="mission-card-body"
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: 'clamp(22px, 3.2vw, 38px)',
@@ -119,6 +121,22 @@ export default function MissionCard() {
         @keyframes highlightShimmer {
           0% { background-position: 0% 50%; }
           100% { background-position: 300% 50%; }
+        }
+
+        @media (max-width: 768px) {
+          .mission-card-section {
+            padding: 24px 16px !important;
+          }
+
+          .mission-card-shell {
+            border-radius: 22px !important;
+            padding: 28px 22px !important;
+          }
+
+          .mission-card-body {
+            font-size: clamp(18px, 6.2vw, 28px) !important;
+            line-height: 1.28 !important;
+          }
         }
       `}</style>
     </section>

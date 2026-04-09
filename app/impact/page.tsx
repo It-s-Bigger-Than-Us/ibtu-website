@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import Footer from "@/components/layout/Footer";
+import InTheFieldGallery from "@/components/sections/InTheFieldGallery";
+import { IMPACT_GALLERY_IMAGES } from "@/lib/data/site-media";
 import { getImpactStats } from "@/sanity/lib/fetch";
 import { digitalReach } from "@/lib/data/impact-stats";
 
@@ -178,6 +180,43 @@ export default async function ImpactPage() {
             ))}
           </div>
         </div>
+
+        <section style={{ background: "#000", padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px)" }}>
+          <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
+            <span
+              style={{
+                display: "block",
+                fontSize: 11,
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                color: "var(--gold)",
+                fontFamily: 'var(--font-body)',
+                fontWeight: 700,
+                marginBottom: 20,
+              }}
+            >
+              The People Behind the Numbers
+            </span>
+            <h2
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: "clamp(36px, 5vw, 72px)",
+                lineHeight: 0.95,
+                color: "#fff",
+                marginBottom: 28,
+              }}
+            >
+              IMPACT HAS A FACE
+            </h2>
+            <InTheFieldGallery
+              items={IMPACT_GALLERY_IMAGES.map((image, index) => ({
+                id: `impact-gallery-${index}`,
+                image,
+                alt: `IBTU impact gallery photo ${index + 1}`,
+              }))}
+            />
+          </div>
+        </section>
 
         {/* Digital Reach Strip */}
         <div

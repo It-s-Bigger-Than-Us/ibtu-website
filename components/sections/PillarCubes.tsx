@@ -24,14 +24,14 @@ interface StatItem {
   label: string
 }
 
-const PILLARS: PillarData[] = [
+const DEFAULT_PILLARS: PillarData[] = [
   {
     name: 'Crisis & Disaster Stabilization',
     images: [
       '/images/fire-relief/IMG_5909.jpg',
       '/images/fire-relief/IMG_9804.jpg',
       '/images/fire-relief/IMG_8047.jpg',
-      '/images/additional/IMG_0339.jpg',
+      '/images/communityevent/IMG_0339.jpg',
     ],
   },
   {
@@ -47,8 +47,8 @@ const PILLARS: PillarData[] = [
     name: 'Community Health & Resource Access',
     images: [
       '/images/pillars/community-food-distribution.jpg',
-      '/images/additional/IMG_0418.jpg',
-      '/images/additional/IMG_5680.jpg',
+      '/images/communityevent/IMG_0418.jpg',
+      '/images/b2s/IMG_5680.jpg',
       '/images/additional/IMG_5824.jpg',
     ],
   },
@@ -122,9 +122,10 @@ function CubeCard({ pillar, isHovered }: { pillar: PillarData; isHovered: boolea
 
 interface PillarCubesProps {
   stats?: StatItem[]
+  pillars?: PillarData[]
 }
 
-export default function PillarCubes({ stats = [] }: PillarCubesProps) {
+export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: PillarCubesProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const headlineRef = useRef<HTMLDivElement>(null)
@@ -209,7 +210,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [stats])
+  }, [pillars, stats])
 
   return (
     <section ref={sectionRef} className="pillar-section">
@@ -217,7 +218,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
         {/* Iridescent backdrop behind cubes */}
         <div className="pillar-cubes-backdrop">
           <div className="pillar-cubes-grid">
-            {PILLARS.map((pillar, i) => (
+            {pillars.map((pillar, i) => (
               <div
                 key={pillar.name}
                 className="pillar-cube-wrapper"
@@ -445,19 +446,36 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           }
         }
         @media (max-width: 768px) {
+          .pillar-section {
+            padding: 24px 20px 56px;
+          }
           .pillar-cubes-grid {
             grid-template-columns: 1fr 1fr;
             max-width: 480px;
             margin: 0 auto;
           }
+          .pillar-cube-scene {
+            width: 78%;
+          }
           .stats-grid {
             grid-template-columns: 1fr 1fr;
+            gap: 12px;
+          }
+          .stat-card {
+            min-height: 0;
+            padding: 20px 18px;
+          }
+          .stat-num {
+            font-size: clamp(30px, 10vw, 52px);
           }
         }
         @media (max-width: 480px) {
           .pillar-cubes-grid {
             grid-template-columns: 1fr;
             max-width: 280px;
+          }
+          .stats-grid {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>

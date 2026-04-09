@@ -1,13 +1,19 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import GoldTicker from '@/components/sections/GoldTicker'
 import HeroReveal from '@/components/sections/HeroReveal'
 import Footer from '@/components/layout/Footer'
 import ProgramCarousel3D from '@/components/sections/ProgramCarousel3D'
 import PillarTabs from '@/components/sections/PillarTabs'
 import PillarCubes from '@/components/sections/PillarCubes'
+import EditorialMediaStrip from '@/components/sections/EditorialMediaStrip'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const ShortPlaceholder = () => <div style={{ minHeight: '300px', background: '#000' }} />
 const MissionCard = dynamic(() => import('@/components/sections/MissionCard'), { ssr: false, loading: ShortPlaceholder })
@@ -27,30 +33,71 @@ interface StatItem {
   label: string
 }
 
+interface PillarVisual {
+  name: string
+  images: string[]
+}
+
 interface HomePageClientProps {
   programCards: Program[]
   missionMedia: Array<{ type: 'image' | 'video'; src: string; alt?: string }>
+  pillarVisuals?: PillarVisual[]
   stats: StatItem[]
   tickerPhrases: string[]
+  editorialImages?: string[]
+  editorialVideoUrl?: string
 }
 
 export default function HomePageClient({
   programCards,
+  pillarVisuals,
   stats,
   tickerPhrases,
+  editorialImages,
+  editorialVideoUrl,
 }: HomePageClientProps) {
+  const mainRef = useRef<HTMLElement>(null)
+
+  /* Scroll-triggered fade-in for the statement section (smooth hero → content transition) */
+  useEffect(() => {
+    if (!mainRef.current) return
+    const statement = mainRef.current.querySelector('.home-statement')
+    if (!statement) return
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        statement,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: statement,
+            start: 'top 90%',
+            once: true,
+          },
+        },
+      )
+    }, mainRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <main>
+    <main className="home-page" ref={mainRef}>
       {/* 1. Hero — text wipe → iridescent logo → yellow volunteer section */}
       <HeroReveal />
 
-      {/* 2. Hero Statement — approved wireframe copy */}
-      <section style={{
+      {/* 2. Hero Statement — approved wireframe copy (scroll-reveal from hero) */}
+      <section className="home-statement" style={{
         background: '#000',
         padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
+        opacity: 0,
       }}>
-        <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{
+        <div className="home-statement-inner" style={{ maxWidth: 'var(--content-max)', margin: '0 auto', textAlign: 'center' }}>
+          <h2 className="home-statement-title" style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(48px, 8vw, 140px)',
             lineHeight: 0.92,
@@ -58,10 +105,11 @@ export default function HomePageClient({
             color: '#FFC700',
             letterSpacing: '-0.02em',
             marginBottom: 32,
+            textWrap: 'balance',
           }}>
             When Systems Fail, Communities Show Up.
           </h2>
-          <p style={{
+          <p className="home-statement-body" style={{
             fontFamily: 'var(--font-body)',
             fontSize: 'clamp(16px, 1.4vw, 22px)',
             color: '#FFF',
@@ -72,7 +120,7 @@ export default function HomePageClient({
           }}>
             Since 2020, IBTU has served 62,475+ students across 34 school sites, distributed 875,500+ pounds of food, and stabilized 5,000+ families after the LA fires. We built a permanent Relief Resource Hub, activated 7,500+ volunteers, and mobilized $4.5 million in resources — all through 300+ partnerships and a community that shows up every single time.
           </p>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className="home-statement-actions" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
             <a href="/impact" style={{
               display: 'inline-block',
               background: '#FFC700',
@@ -111,6 +159,15 @@ export default function HomePageClient({
       {/* 3. Values Ticker */}
       <GoldTicker phrases={tickerPhrases} speed={60} />
 
+      {/* 3.5. Editorial Media Strip — full-bleed cinematic gallery (3519-style) */}
+      {editorialImages && editorialImages.length >= 6 && (
+        <EditorialMediaStrip
+          images={editorialImages}
+          videoUrl={editorialVideoUrl}
+          sectionLabel="In the Field"
+        />
+      )}
+
       {/* 4. Mission — typewriter effect */}
       <MissionCard />
 
@@ -135,7 +192,7 @@ export default function HomePageClient({
         </div>
         <div style={{ position: 'relative', zIndex: 1 }}>
           <PillarTabs />
-          <PillarCubes stats={stats} />
+          <PillarCubes stats={stats} pillars={pillarVisuals} />
         </div>
       </section>
 
@@ -145,9 +202,8 @@ export default function HomePageClient({
         { slug: 'back-2-school', title: 'Back 2 School Festival', pillar: 'Community Health & Resource Access', heroImage: '/images/b2s/_D5A5792.jpg' },
         { slug: 'youth-programming', title: 'School Program', pillar: 'School & Youth Stability', heroImage: '/images/school/IMG_5406.jpg' },
         { slug: 'coastal-care', title: 'Coastal Care', pillar: 'Community Health & Resource Access', heroImage: '/images/coastal/IMG_4920.jpg' },
-        { slug: 'wellness', title: 'Wellness & Health Activations', pillar: 'Community Health & Resource Access', heroImage: '/images/additional/IMG_1540.jpg' },
+        { slug: 'wellness', title: 'Wellness & Health Activations', pillar: 'Community Health & Resource Access', heroImage: '/images/wellness/IMG_1540.jpg' },
         { slug: 'giving-season', title: 'Giving Season', pillar: 'Community Health & Resource Access', heroImage: '/images/b2s/6D5A1108.jpg' },
-        { slug: 'community-builder-linkups', title: 'Community Builder Link Ups', pillar: 'Community Health & Resource Access', heroImage: '/images/linkup/community-builder-linkups.jpg' },
       ]} />
 
       {/* 8. CTA */}
@@ -155,6 +211,41 @@ export default function HomePageClient({
 
       {/* 9. Footer */}
       <Footer />
+
+      <style>{`
+        @media (max-width: 768px) {
+          .home-statement {
+            padding: 56px 20px !important;
+          }
+
+          .home-statement-title {
+            font-size: clamp(36px, 14vw, 62px) !important;
+            max-width: 7.5ch;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px !important;
+          }
+
+          .home-statement-body {
+            font-size: 16px !important;
+            line-height: 1.65 !important;
+            max-width: 30ch !important;
+            margin-bottom: 28px !important;
+          }
+
+          .home-statement-actions {
+            flex-direction: column;
+            align-items: stretch;
+          }
+
+          .home-statement-actions a {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+            text-align: center;
+          }
+        }
+      `}</style>
     </main>
   )
 }

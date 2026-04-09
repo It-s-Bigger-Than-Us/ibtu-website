@@ -1,3 +1,7 @@
+import 'server-only'
+
+import { PROGRAM_PAGE_IMAGES } from './site-media'
+
 // =============================================================================
 // IBTU Program Page Content — All 7 Programs
 // Single source of truth for dynamic program pages
@@ -137,18 +141,7 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
     ],
     schedule: 'Hub open weekly — walk-in or appointment',
     partners: '',
-    images: [
-      '/images/fire-relief/relief-104.jpg',
-      '/images/fire-relief/relief-177.jpg',
-      '/images/fire-relief/relief-97.jpg',
-      '/images/fire-relief/hub-interior-1.jpg',
-      '/images/fire-relief/hub-interior-2.jpg',
-      '/images/fire-relief/hub-awards.jpg',
-      '/images/fire-relief/hub-community-1.jpg',
-      '/images/fire-relief/hub-community-voice.jpg',
-      '/images/fire-relief/hub-ty-community.jpg',
-      '/images/fire-relief/hub-group.jpg',
-    ],
+    images: PROGRAM_PAGE_IMAGES['fire-relief'],
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/7haetjfrq5g190',
     donateUrl: 'https://secure.qgiv.com/for/firerelief',
     ctaText: 'THE HUB IS OPEN. FAMILIES NEED YOU.',
@@ -236,20 +229,7 @@ Every site operates at the same standard. The same quality of resources, the sam
     ],
     schedule: 'August annually — multiple locations across Los Angeles',
     partners: '',
-    images: [
-      '/images/b2s/6D5A0503.jpg',       // BHCP — backpack wall, volunteers
-      '/images/b2s/new-IMG_5645.jpg',    // Crenshaw HS — ribbon cutting, court
-      '/images/b2s/IMG_2166.jpg',        // BHCP interior — families browsing supplies
-      '/images/b2s/_D5A5792.jpg',        // BHCP outdoor — stage, drummers, bean bags
-      '/images/b2s/new-IMG_5667.jpg',    // Crenshaw HS — marching band on court
-      '/images/b2s/6D5A0723.jpg',        // BHCP interior — volunteer smiling, diaper station
-      '/images/b2s/_D5A7155.jpg',        // BHCP outdoor — volunteers pointing, backpack tent
-      '/images/b2s/new-IMG_5579.jpg',    // Crenshaw HS — court, mascot, B2S signage
-      '/images/b2s/6D5A0746.jpg',        // BHCP interior — volunteers directing families
-      '/images/b2s/_D5A8894.jpg',        // Venice — skatepark activation
-      '/images/b2s/IMG_2525.jpg',        // BHCP interior — family picking supplies
-      '/images/b2s/new-IMG_5631.jpg',    // Crenshaw HS — marching band with flags
-    ],
+    images: PROGRAM_PAGE_IMAGES['back-2-school'],
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih',
     ctaText: 'BACK 2 SCHOOL 2026 IS COMING.',
     ctaBody:
@@ -349,18 +329,7 @@ Staff Appreciation Days reach 75+ educators per campus with wellness experiences
     ],
     schedule: 'Year-round school calendar',
     partners: '',
-    images: [
-      '/images/school/IMG_4674.jpg',
-      '/images/school/IMG_5612.jpg',
-      '/images/school/IMG_5884.jpg',
-      '/images/school/IMG_6134.jpg',
-      '/images/school/IMG_5608.jpg',
-      '/images/school/IMG_7184.jpg',
-      '/images/school/IMG_7259.jpg',
-      '/images/school/IMG_8033.jpg',
-      '/images/school/IMG_8204.jpg',
-      '/images/school/IMG_5727.jpg',
-    ],
+    images: PROGRAM_PAGE_IMAGES['youth-programming'],
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih',
     ctaText: 'BRING IBTU TO YOUR CAMPUS.',
     ctaBody:
@@ -446,18 +415,7 @@ The program creates a bridge between IBTU's wellness activations and its communi
     ],
     schedule: 'Every 2nd Saturday, February through December',
     partners: 'Venice community organizations, environmental stewardship partners',
-    images: [
-      '/images/coastal/IMG_0024.jpg',
-      '/images/coastal/IMG_0267.jpg',
-      '/images/coastal/IMG_1796.jpg',
-      '/images/coastal/IMG_1810.jpg',
-      '/images/coastal/IMG_4838.jpg',
-      '/images/coastal/IMG_4775.jpg',
-      '/images/coastal/IMG_4816.jpg',
-      '/images/coastal/IMG_4845.jpg',
-      '/images/coastal/IMG_5005.jpg',
-      '/images/coastal/IMG_5025.jpg',
-    ],
+    images: PROGRAM_PAGE_IMAGES['coastal-care'],
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/6qkd8xo7woun5v',
     ctaText: 'SAME SHORE. NEXT SATURDAY.',
     ctaBody:
@@ -558,18 +516,7 @@ IBTU's staff wellness programming is built into school contracts, not tacked on 
     ],
     schedule: 'Year-round — integrated into all IBTU events and school programming',
     partners: '',
-    images: [
-      '/images/wellness/IMG_0007.jpg',
-      '/images/wellness/IMG_0279.jpg',
-      '/images/wellness/IMG_1554.jpg',
-      '/images/wellness/IMG_1583.jpg',
-      '/images/wellness/IMG_1610.jpg',
-      '/images/wellness/IMG_9922.jpg',
-      '/images/wellness/IMG_9874.jpg',
-      '/images/wellness/IMG_9866.jpg',
-      '/images/additional/IMG_5907.jpg',
-      '/images/additional/IMG_5910.jpg',
-    ],
+    images: PROGRAM_PAGE_IMAGES['wellness'],
     ctaText: 'WELLNESS WITHOUT WALLS.',
     ctaBody:
       'Sponsor a wellness activation, provide health screening services, or partner with IBTU to bring care where communities already gather.',
@@ -670,18 +617,7 @@ Across 11 events, the 2025 Giving Season connected thousands of families to food
     ],
     schedule: 'November through December annually',
     partners: '',
-    images: [
-      '/images/b2s/6D5A0871.jpg',
-      '/images/b2s/6D5A1246.jpg',
-      '/images/b2s/_D5A8700.jpg',
-      '/images/b2s/_D5A8744.jpg',
-      '/images/additional/IMG_0131.jpg',
-      '/images/additional/IMG_0150.jpg',
-      '/images/additional/IMG_0166.jpg',
-      '/images/additional/IMG_0173.jpg',
-      '/images/additional/IMG_0189.jpg',
-      '/images/additional/IMG_0281.jpg',
-    ],
+    images: PROGRAM_PAGE_IMAGES['giving-season'],
     ctaText: 'GIVING SEASON NEVER STOPS.',
     ctaBody:
       'Donate toys, sponsor a MegaFeast turkey box, or volunteer at a holiday distribution. Every contribution reaches a family that needs it.',
@@ -717,7 +653,7 @@ Across 11 events, the 2025 Giving Season connected thousands of families to food
         body: `IBTU's food distribution program launched in 2020 during the pandemic with 500 families and 2,000 pounds of food across 4 events. By 2023, that had scaled to 54,000 families, 144,000 individuals, and 410,000 pounds across dual-site Tuesday and Friday distributions in South and East LA. In total, 130,116+ families have accessed food through 389+ events.
 
 Every distribution operates on the same principle: show up and receive. No ID required. No income verification. No forms. Fresh produce, nonperishable goods, and culturally relevant food — distributed with the same operational rigor IBTU brings to every program. 94% of families surveyed reported reduced food stress. Reliability is the intervention.`,
-        image: '/images/additional/IMG_5390.jpg',
+        image: '/images/b2s/IMG_5390.jpg',
         imageAlt:
           'Community members receiving fresh produce at an IBTU food distribution',
         imagePosition: 'left',
@@ -732,7 +668,7 @@ Every distribution operates on the same principle: show up and receive. No ID re
         body: `Since 2024, product partnerships have delivered 498,075 items to families across Los Angeles and Miami — 236,800 diapers, 166,760 wipes, 8,633 hygiene products, 10,500 cleaning supplies, 1,563 toys, and 2,042 school supply packs. These are not surplus donations. They are essential goods distributed through IBTU's trusted infrastructure to families who need them.
 
 Community baby showers, Back 2 School festivals, Hub distributions, and holiday events all serve as distribution channels. This is proof of what happens when product partners meet an organization with the community trust and logistics to deliver at scale.`,
-        image: '/images/additional/IMG_5392.jpg',
+        image: '/images/b2s/IMG_5392.jpg',
         imageAlt:
           'Volunteers sorting and distributing donated goods',
         imagePosition: 'right',
@@ -762,7 +698,7 @@ These numbers did not come from a clinic outreach campaign. They came from embed
         body: `In a city where mental health waitlists stretch months, IBTU provides access to licensed providers with no waitlist at the Hub and through school-based programming. This includes individual support, group sessions, and referrals to long-term care. 62% of fire-assessed clients at the Hub reported significant mental health impact — 139 adults with stress and anxiety, 52 children with behavioral changes.
 
 Naloxone distribution (223 kits), dental access days, and vision screenings round out a health access model that treats the whole person. IBTU does not separate physical health from mental health from food access from housing stability. It is all connected, and the programming reflects that. Designed with dignity.`,
-        image: '/images/additional/IMG_5431.jpg',
+        image: '/images/b2s/IMG_5431.jpg',
         imageAlt:
           'Community members connecting with mental health and wellness resources',
         imagePosition: 'right',
@@ -783,18 +719,7 @@ Naloxone distribution (223 kits), dental access days, and vision screenings roun
     schedule:
       'Weekly distributions, recurring health screenings, monthly partner activations',
     partners: '',
-    images: [
-      '/images/wellness/IMG_0097.jpg',
-      '/images/wellness/IMG_0111.jpg',
-      '/images/wellness/IMG_4457.jpg',
-      '/images/wellness/IMG_4688.jpg',
-      '/images/additional/IMG_5390.jpg',
-      '/images/additional/IMG_5392.jpg',
-      '/images/additional/IMG_5394.jpg',
-      '/images/additional/IMG_5404.jpg',
-      '/images/additional/IMG_5415.jpg',
-      '/images/additional/IMG_5431.jpg',
-    ],
+    images: PROGRAM_PAGE_IMAGES['community-health'],
     ctaText: 'HEALTH ACCESS STARTS HERE.',
     ctaBody:
       'Partner with IBTU to sponsor food distributions, provide health screening services, or fund direct community health programming. Every dollar moves $18 in resources.',

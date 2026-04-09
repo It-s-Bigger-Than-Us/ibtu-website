@@ -76,7 +76,7 @@ export default function CTASection({
   return (
     <section
       ref={sectionRef}
-      className="gsap-reveal"
+      className="gsap-reveal cta-section-shell"
       style={{
         background: 'var(--ibtu-gold)',
         padding: 'clamp(80px, 10vw, 160px) clamp(32px, 5vw, 80px)',
@@ -86,6 +86,7 @@ export default function CTASection({
         {/* Big animated headline */}
         <h2
           ref={headlineRef}
+          className="cta-section-title"
           style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'var(--display-section)',
@@ -95,6 +96,7 @@ export default function CTASection({
             letterSpacing: '-0.02em',
             marginBottom: '24px',
             perspective: '600px',
+            textWrap: 'balance',
           }}
         >
           {headlineWords.map((word, i) => (
@@ -110,6 +112,7 @@ export default function CTASection({
 
         {/* Body */}
         <p
+          className="cta-section-body"
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: 'var(--body-lg)',
@@ -124,13 +127,13 @@ export default function CTASection({
         </p>
 
         {/* Two buttons */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+        <div className="cta-section-actions" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
           {/* Donate — black bg, sparkle-stroke border */}
           <a
             href="https://secure.qgiv.com/for/ibt/"
             target="_blank"
             rel="noopener noreferrer"
-            className="sparkle-stroke"
+            className="sparkle-stroke cta-action"
             style={{
               display: 'inline-block',
               fontFamily: 'var(--font-body)',
@@ -161,7 +164,7 @@ export default function CTASection({
           {/* Volunteer — white bg, holo-glass border */}
           <Link
             href="/get-involved#volunteer"
-            className="holo-glass"
+            className="holo-glass cta-action"
             style={{
               display: 'inline-block',
               fontFamily: 'var(--font-body)',
@@ -190,6 +193,37 @@ export default function CTASection({
           </Link>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .cta-section-shell {
+            padding: 56px 20px !important;
+          }
+
+          .cta-section-title {
+            font-size: clamp(36px, 14vw, 64px) !important;
+            max-width: 7ch;
+            margin-bottom: 18px !important;
+          }
+
+          .cta-section-body {
+            font-size: 16px !important;
+            line-height: 1.65 !important;
+            max-width: 30ch !important;
+            margin-bottom: 28px !important;
+          }
+
+          .cta-section-actions {
+            flex-direction: column;
+          }
+
+          .cta-action {
+            width: 100%;
+            max-width: 320px;
+            text-align: center;
+          }
+        }
+      `}</style>
     </section>
   )
 }

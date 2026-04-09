@@ -60,6 +60,9 @@ export default function TopNav() {
           flexDirection: 'row',
           alignItems: 'center',
           gap: '8px',
+          background: 'var(--ibtu-black)',
+          padding: '8px',
+          borderRadius: '20px',
           transition: 'top 0.3s var(--ease-out-expo)',
         }}
       >

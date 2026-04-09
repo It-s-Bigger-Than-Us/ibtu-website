@@ -216,7 +216,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                     {prog.pillar}
                   </span>
 
-                  <Link href={`/our-programs/${prog.slug}`} style={{ textDecoration: 'none' }}>
+                  {isComingSoon ? (
                     <h2 style={{
                       fontFamily: 'var(--font-display)',
                       fontSize: 'clamp(28px, 4vw, 56px)',
@@ -229,7 +229,22 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                     }}>
                       {formatTitle(prog.title)}
                     </h2>
-                  </Link>
+                  ) : (
+                    <Link href={`/our-programs/${prog.slug}`} style={{ textDecoration: 'none' }}>
+                      <h2 style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 'clamp(28px, 4vw, 56px)',
+                        lineHeight: 0.92,
+                        textTransform: 'uppercase',
+                        color: textColor,
+                        letterSpacing: '-0.02em',
+                        marginBottom: 16,
+                        transition: 'color 0.5s',
+                      }}>
+                        {formatTitle(prog.title)}
+                      </h2>
+                    </Link>
+                  )}
 
                   {isComingSoon && (
                     <span style={{
@@ -279,27 +294,48 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                     </span>
                   )}
 
-                  <Link
-                    href={`/our-programs/${prog.slug}`}
-                    style={{
-                      display: 'inline-block',
-                      background: btnBg,
-                      color: btnColor,
-                      padding: '12px 28px',
-                      borderRadius: '16px',
-                      fontFamily: 'var(--font-body)',
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      letterSpacing: '2px',
-                      textTransform: 'uppercase',
-                      textDecoration: 'none',
-                      transition: 'background 0.3s, color 0.3s, transform 0.2s',
-                    }}
-                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)' }}
-                  >
-                    See This Program →
-                  </Link>
+                  {isComingSoon ? (
+                    <span
+                      style={{
+                        display: 'inline-block',
+                        background: 'transparent',
+                        color: textColor,
+                        padding: '12px 28px',
+                        borderRadius: '16px',
+                        border: `1px solid ${textColor}`,
+                        fontFamily: 'var(--font-body)',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        letterSpacing: '2px',
+                        textTransform: 'uppercase',
+                        transition: 'color 0.5s, border-color 0.5s',
+                      }}
+                    >
+                      Coming Soon
+                    </span>
+                  ) : (
+                    <Link
+                      href={`/our-programs/${prog.slug}`}
+                      style={{
+                        display: 'inline-block',
+                        background: btnBg,
+                        color: btnColor,
+                        padding: '12px 28px',
+                        borderRadius: '16px',
+                        fontFamily: 'var(--font-body)',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        letterSpacing: '2px',
+                        textTransform: 'uppercase',
+                        textDecoration: 'none',
+                        transition: 'background 0.3s, color 0.3s, transform 0.2s',
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)' }}
+                      onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)' }}
+                    >
+                      See This Program →
+                    </Link>
+                  )}
                 </div>
 
                 {/* Right column: gallery — full height, bleeds off right edge */}

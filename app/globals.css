@@ -278,8 +278,10 @@ body {
 
 /* All headings: prevent overflow */
 h1, h2, h3, h4, [class*="headline"], [class*="display"] {
-  overflow-wrap: break-word;
-  word-break: break-word;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: balance;
 }
 
 /* LOT display text — stretches to fill full width (hero/section heads only) */
@@ -623,14 +625,43 @@ button[style*="border-radius:16px"]:hover {
     text-align: center;
     gap: 32px;
   }
+  .ibtu-footer-inner {
+    padding: 48px 20px 0;
+  }
   .ibtu-footer-brand {
     flex-direction: column;
     align-items: center;
+    gap: 12px;
+  }
+  .ibtu-footer-mantra {
+    max-width: 220px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.5;
   }
   .ibtu-footer-nav { align-items: center; }
-  .ibtu-footer-links { justify-content: center; }
+  .ibtu-footer-links {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    gap: 12px 20px;
+  }
+  .ibtu-footer-link {
+    font-size: 15px;
+  }
   .ibtu-footer-contact { text-align: center; }
   .ibtu-footer-social { justify-content: center; }
+  .ibtu-footer-legal {
+    font-size: 10px;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    padding-bottom: 28px;
+  }
+  .ibtu-footer-address {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    line-height: 1.6;
+  }
 }
 
 /* ═══════════════════════════════════════

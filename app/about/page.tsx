@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import Footer from "@/components/layout/Footer";
+import InTheFieldGallery from "@/components/sections/InTheFieldGallery";
+import { ABOUT_GALLERY_IMAGES } from "@/lib/data/site-media";
 import { getTimeline } from "@/sanity/lib/fetch";
 
 export const revalidate = 60;
@@ -14,6 +16,11 @@ export const metadata: Metadata = {
 
 export default async function AboutPage() {
   const orgTimeline = await getTimeline();
+  const aboutGalleryChunks = [
+    ABOUT_GALLERY_IMAGES.slice(0, 10),
+    ABOUT_GALLERY_IMAGES.slice(10),
+  ].filter((chunk) => chunk.length > 0);
+
   return (
     <>
       <main style={{ background: "#000", minHeight: "100vh"}}>
@@ -101,6 +108,32 @@ export default async function AboutPage() {
             survive.
           </p>
         </div>
+
+        {aboutGalleryChunks.map((chunk, chunkIndex) => (
+          <section
+            key={`about-gallery-${chunkIndex}`}
+            style={{
+              background: chunkIndex % 2 === 0 ? "#000" : "var(--gold)",
+              padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px)",
+            }}
+          >
+            <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
+              <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: chunkIndex % 2 === 0 ? "var(--gold)" : "#000", marginBottom: 20, fontFamily: 'var(--font-body)', fontWeight: 700 }}>
+                {chunkIndex === 0 ? "From the Field" : "Still Showing Up"}
+              </span>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, color: chunkIndex % 2 === 0 ? "#fff" : "#000", marginBottom: 28 }}>
+                {chunkIndex === 0 ? "THE WORK LOOKS LIKE RELATIONSHIPS" : "COMMUNITY IS WHAT STAYS"}
+              </h2>
+              <InTheFieldGallery
+                items={chunk.map((image, imageIndex) => ({
+                  id: `about-gallery-${chunkIndex}-${imageIndex}`,
+                  image,
+                  alt: `IBTU about gallery photo ${chunkIndex * 10 + imageIndex + 1}`,
+                }))}
+              />
+            </div>
+          </section>
+        ))}
 
         {/* Three Pillars */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 2, padding: 2 }}>

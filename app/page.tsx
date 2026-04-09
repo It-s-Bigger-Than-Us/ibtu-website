@@ -1,55 +1,19 @@
-import { getPrograms, getPillars } from '@/sanity/lib/fetch'
+import { getPrograms } from '@/sanity/lib/fetch'
 import { urlFor } from '@/sanity/lib/client'
 import HomePageClient from '@/components/sections/HomePageClient'
 import { PROGRAM_HOVER_VIDEO } from '@/lib/data/video-urls'
+import { HOME_PILLAR_VISUALS, HOME_PROGRAM_HEROES, HOME_EDITORIAL_IMAGES } from '@/lib/data/site-media'
+import { VOLUNTEER_VIDEOS } from '@/lib/data/video-urls'
 
-const HIDDEN_PROGRAMS = ['gala', 'incubation-academy', 'community-health']
+const HIDDEN_PROGRAMS = ['gala', 'incubation-academy', 'community-health', 'community-builder-linkups']
 
-const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = {
-  'fire-relief': '/images/fire-relief/IMG_8047.jpg',
-  'back-2-school': '/images/b2s/_D5A5792.jpg',
-  'youth-programming': '/images/school/IMG_5406.jpg',
-  'coastal-care': '/images/coastal/IMG_4920.jpg',
-  'giving-season': '/images/b2s/6D5A0765.jpg',
-  'wellness': '/images/additional/IMG_1540.jpg',
-  'community-builder-linkups': '/images/linkup/community-builder-linkups.jpg',
-}
+const PROGRAM_IMAGE_OVERRIDE: Record<string, string> = HOME_PROGRAM_HEROES
 
 /* Title overrides — Sanity may have old names */
 const PROGRAM_TITLE_OVERRIDE: Record<string, string> = {
   'youth-programming': 'School Program',
 }
 
-
-const MISSION_MEDIA = [
-  { type: 'image' as const, src: '/images/b2s/_D5A5920.jpg', alt: 'Back to School community event' },
-  { type: 'image' as const, src: '/images/landscape/IMG_5943.jpg', alt: 'IBTU community in action' },
-  { type: 'image' as const, src: '/images/coastal/IMG_1840.jpg', alt: 'Coastal Care beach cleanup' },
-  { type: 'image' as const, src: '/images/landscape/_D5A8515.jpg', alt: 'Youth programming' },
-  { type: 'image' as const, src: '/images/wellness/IMG_1593.jpg', alt: 'Community yoga and wellness' },
-  { type: 'image' as const, src: '/images/landscape/IMG_5683.jpg', alt: 'Community rebuilding together' },
-]
-
-const PILLARS = [
-  {
-    name: 'Crisis & Disaster Stabilization',
-    stat: '5,000+',
-    statLabel: 'Families Stabilized',
-    imageSrc: '/images/landscape/_D5A8999.jpg',
-  },
-  {
-    name: 'School & Youth Stability',
-    stat: '62,475+',
-    statLabel: 'Students Served',
-    imageSrc: '/images/landscape/_D5A6090.jpg',
-  },
-  {
-    name: 'Community Health & Resource Access',
-    stat: '875,500+',
-    statLabel: 'Lbs Food Distributed',
-    imageSrc: '/images/landscape/IMG_0324.jpg',
-  },
-]
 
 const STATS = [
   { value: 62475, suffix: '+', label: 'Students Served' },
@@ -74,10 +38,7 @@ const TICKER_PHRASES = [
 ]
 
 export default async function HomePage() {
-  const [sanityPrograms] = await Promise.all([
-    getPrograms().catch(() => []),
-    getPillars().catch(() => []),
-  ])
+  const sanityPrograms = await getPrograms().catch(() => [])
 
   const programCards = sanityPrograms
     .filter((p: { slug: string }) => !HIDDEN_PROGRAMS.includes(p.slug))
@@ -85,7 +46,7 @@ export default async function HomePage() {
       slug: p.slug,
       title: PROGRAM_TITLE_OVERRIDE[p.slug] || p.title,
       pillar: p.pillar,
-      heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : '/images/gallery/IMG_4687.jpg'),
+      heroImage: PROGRAM_IMAGE_OVERRIDE[p.slug] || (p.heroImage ? urlFor(p.heroImage).width(800).quality(85).url() : '/images/school/IMG_4687.jpg'),
       cardStat: p.cardStat || '',
       description: p.tagline || '',
       hoverVideo: PROGRAM_HOVER_VIDEO[p.slug] || '',
@@ -94,9 +55,12 @@ export default async function HomePage() {
   return (
     <HomePageClient
       programCards={programCards}
-      missionMedia={MISSION_MEDIA}
+      missionMedia={[]}
+      pillarVisuals={HOME_PILLAR_VISUALS}
       stats={STATS}
       tickerPhrases={TICKER_PHRASES}
+      editorialImages={HOME_EDITORIAL_IMAGES}
+      editorialVideoUrl={VOLUNTEER_VIDEOS.brentwoodTeam}
     />
   )
 }

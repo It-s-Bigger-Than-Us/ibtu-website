@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import Footer from "@/components/layout/Footer";
 import EventsPageClient from "@/components/sections/EventsPageClient";
+import InTheFieldGallery from "@/components/sections/InTheFieldGallery";
+import { EVENTS_GALLERY_IMAGES } from "@/lib/data/site-media";
 import { getAllEvents, getUpcomingEvents, getPrograms } from "@/sanity/lib/fetch";
 
 export const revalidate = 60;
@@ -33,6 +35,23 @@ export default async function EventsPage() {
         programs={programs}
         allByProgram={allByProgram}
       />
+      <section style={{ background: "#FFC700", padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px)" }}>
+        <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
+          <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 20 }}>
+            Event Archive
+          </span>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 28 }}>
+            HOW IBTU SHOWS UP
+          </h2>
+          <InTheFieldGallery
+            items={EVENTS_GALLERY_IMAGES.map((image, index) => ({
+              id: `events-gallery-${index}`,
+              image,
+              alt: `IBTU events gallery photo ${index + 1}`,
+            }))}
+          />
+        </div>
+      </section>
       <Footer />
     </>
   );

@@ -27,12 +27,23 @@ const PILLARS = [
 
 export default function PillarTabs() {
   const [active, setActive] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([])
   const [lineStyle, setLineStyle] = useState({ left: 0, width: 0 })
 
   useEffect(() => {
+    const syncViewport = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    syncViewport()
+    window.addEventListener('resize', syncViewport)
+    return () => window.removeEventListener('resize', syncViewport)
+  }, [])
+
+  useEffect(() => {
     const tab = tabRefs.current[active]
-    if (tab) {
+    if (tab && !isMobile) {
       const parent = tab.parentElement
       if (parent) {
         const parentRect = parent.getBoundingClientRect()
@@ -40,7 +51,7 @@ export default function PillarTabs() {
         setLineStyle({ left: tabRect.left - parentRect.left, width: tabRect.width })
       }
     }
-  }, [active])
+  }, [active, isMobile])
 
   return (
     <section
@@ -54,13 +65,14 @@ export default function PillarTabs() {
         {/* Section headline — LOT display font */}
         <h2 style={{
           fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(48px, 7vw, 110px)',
+          fontSize: isMobile ? 'clamp(36px, 12vw, 64px)' : 'clamp(48px, 7vw, 110px)',
           lineHeight: 0.92,
           textTransform: 'uppercase',
           color: '#000',
           letterSpacing: '-0.02em',
           textAlign: 'center',
           marginBottom: 'clamp(32px, 4vw, 48px)',
+          textWrap: 'balance',
         }}>
           Our Impact Pillars
         </h2>
@@ -69,10 +81,13 @@ export default function PillarTabs() {
         <div style={{ position: 'relative', marginBottom: 'clamp(32px, 4vw, 48px)' }}>
           <div style={{
             display: 'flex',
-            justifyContent: 'center',
-            gap: 'clamp(16px, 3vw, 40px)',
+            justifyContent: isMobile ? 'flex-start' : 'center',
+            gap: isMobile ? '12px' : 'clamp(16px, 3vw, 40px)',
             paddingBottom: 12,
             position: 'relative',
+            overflowX: isMobile ? 'auto' : 'visible',
+            WebkitOverflowScrolling: isMobile ? 'touch' : undefined,
+            scrollbarWidth: isMobile ? 'none' : undefined,
           }}>
             {PILLARS.map((pillar, i) => (
               <button
@@ -81,27 +96,31 @@ export default function PillarTabs() {
                 onClick={() => setActive(i)}
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: 'clamp(12px, 1.3vw, 16px)',
+                  fontSize: isMobile ? '11px' : 'clamp(12px, 1.3vw, 16px)',
                   fontWeight: active === i ? 800 : 600,
                   textTransform: 'uppercase',
                   letterSpacing: '1.5px',
-                  color: '#000',
-                  background: 'none',
-                  border: 'none',
+                  color: isMobile && active === i ? '#FFC700' : '#000',
+                  background: isMobile && active === i ? '#000' : 'none',
+                  border: isMobile ? `1px solid ${active === i ? '#000' : 'transparent'}` : 'none',
+                  borderRadius: isMobile ? '999px' : 0,
                   cursor: 'pointer',
-                  padding: '8px 0',
+                  padding: isMobile ? '10px 16px' : '8px 0',
                   transition: 'font-weight 0.2s',
                   whiteSpace: 'nowrap',
+                  flexShrink: 0,
                 }}
               >
                 {pillar.label}
               </button>
             ))}
-            <motion.div
-              animate={{ left: lineStyle.left, width: lineStyle.width }}
-              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              style={{ position: 'absolute', bottom: 0, height: 3, background: '#000', borderRadius: 2 }}
-            />
+            {!isMobile && (
+              <motion.div
+                animate={{ left: lineStyle.left, width: lineStyle.width }}
+                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                style={{ position: 'absolute', bottom: 0, height: 3, background: '#000', borderRadius: 2 }}
+              />
+            )}
           </div>
         </div>
 
@@ -111,15 +130,15 @@ export default function PillarTabs() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          style={{ maxWidth: 800, margin: '0 auto' }}
+          style={{ maxWidth: isMobile ? 640 : 800, margin: '0 auto' }}
         >
           <p style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 'var(--body-md)',
-            lineHeight: 1.8,
+            fontSize: isMobile ? '16px' : 'var(--body-md)',
+            lineHeight: isMobile ? 1.65 : 1.8,
             color: '#000',
             fontWeight: 700,
-            textAlign: 'center',
+            textAlign: isMobile ? 'left' : 'center',
           }}>
             {PILLARS[active].content}
           </p>

@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Footer from "@/components/layout/Footer"
 import GetInvolvedHero from "@/components/sections/GetInvolvedHero"
+import { GET_INVOLVED_HERO_IMAGES } from "@/lib/data/site-media"
 
 export const revalidate = 60
 
@@ -10,21 +11,6 @@ export const metadata: Metadata = {
   description:
     "Volunteer, donate, sponsor, or partner with IBTU. $18:$1 leverage ratio. 62,475+ students served, 875,500+ lbs food distributed. Community is the infrastructure.",
 }
-
-const HERO_IMAGES = [
-  '/images/b2s/6D5A0503.jpg',
-  '/images/additional/IMG_5870.jpg',
-  '/images/additional/IMG_0020.jpg',
-  '/images/b2s/_D5A7384.jpg',
-  '/images/school/IMG_6078.jpg',
-  '/images/additional/IMG_0295.jpg',
-  '/images/coastal/IMG_0561.jpg',
-  '/images/b2s/6D5A0956.jpg',
-  '/images/b2s/_D5A6045.jpg',
-  '/images/additional/IMG_5667.jpg',
-  '/images/additional/IMG_0285.jpg',
-  '/images/coastal/IMG_4913.jpg',
-]
 
 // Sponsorship tiers removed — donations handled through Bloomerang/QGIV
 
@@ -40,7 +26,7 @@ const STATS = [
 export default function GetInvolvedPage() {
   return (
     <>
-      <GetInvolvedHero images={HERO_IMAGES} />
+      <GetInvolvedHero images={GET_INVOLVED_HERO_IMAGES} />
 
       <main style={{ background: '#000' }}>
 

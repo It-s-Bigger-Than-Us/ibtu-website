@@ -36,7 +36,18 @@ export default function GoldTicker({
   const tickerRef = useRef<HTMLDivElement>(null)
   const [isStuck, setIsStuck] = useState(false)
   const [belowIsYellow, setBelowIsYellow] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const tickerHeight = useRef(0)
+
+  useEffect(() => {
+    const syncViewport = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+
+    syncViewport()
+    window.addEventListener('resize', syncViewport)
+    return () => window.removeEventListener('resize', syncViewport)
+  }, [])
 
   // Sticky logic: stick when ticker top reaches viewport top
   useEffect(() => {
@@ -56,7 +67,8 @@ export default function GoldTicker({
       // Check what's below the ticker
       if (shouldStick) {
         const sampleX = window.innerWidth / 2
-        const sampleY = h + 4
+        const stickyOffset = isMobile ? 88 : 0
+        const sampleY = stickyOffset + h + 4
         // Temporarily hide ticker to sample element behind it
         ticker.style.pointerEvents = 'none'
         const el = document.elementFromPoint(sampleX, sampleY)
@@ -74,7 +86,7 @@ export default function GoldTicker({
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll() // initial check
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [isMobile])
 
   // Build the ticker content with separators
   const content = phrases.flatMap((phrase, i) => [
@@ -95,7 +107,7 @@ export default function GoldTicker({
           background: 'var(--ibtu-gold)',
           width: '100%',
           position: isStuck ? 'fixed' : 'relative',
-          top: isStuck ? 0 : undefined,
+          top: isStuck ? (isMobile ? 88 : 0) : undefined,
           left: 0,
           right: 0,
           zIndex: isStuck ? 90 : undefined,

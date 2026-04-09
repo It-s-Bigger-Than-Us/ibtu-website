@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import Footer from "@/components/layout/Footer"
+import { SPECIAL_PAGE_MEDIA } from "@/lib/data/site-media"
 import { PROGRAM_VIDEOS } from "@/lib/data/video-urls"
 
 export const metadata: Metadata = {
@@ -110,7 +111,7 @@ export default function HubPage() {
             playsInline
             preload="metadata"
             style={{ width: '100%', borderRadius: 16, background: '#000' }}
-            poster="/images/fire-relief/IMG_8047.jpg"
+            poster={SPECIAL_PAGE_MEDIA.hubPoster}
           />
         </div>
       </section>
