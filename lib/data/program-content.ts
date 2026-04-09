@@ -216,9 +216,9 @@ Every site operates at the same standard. The same quality of resources, the sam
         body: `Over six years, 190+ organizations have partnered with the Back 2 School Festival. These are not logo placements. Partner organizations send staff, donate supplies, and run service stations alongside IBTU volunteers. Corporate teams work shoulder-to-shoulder with community members.
 
 17,500+ attendees, 90+ schools, 123+ zip codes. The Back 2 School Festival has become one of the largest community-driven school readiness events in Los Angeles. The work speaks for itself — and the community keeps showing up because IBTU does.`,
-        image: '/images/b2s/_D5A8946.jpg',
+        image: '/images/b2s/new-IMG_5645.jpg',
         imageAlt:
-          'Volunteers collaborating at the Back 2 School festival',
+          'Ribbon cutting ceremony at the Crenshaw High School Court Dedication',
         imagePosition: 'left',
         highlights: [
           '190+ organizations',
@@ -237,16 +237,18 @@ Every site operates at the same standard. The same quality of resources, the sam
     schedule: 'August annually — multiple locations across Los Angeles',
     partners: '',
     images: [
-      '/images/b2s/_D5A7392.jpg',
-      '/images/b2s/_D5A7224.jpg',
-      '/images/b2s/_D5A8614.jpg',
-      '/images/b2s/_D5A8720.jpg',
-      '/images/b2s/_D5A8844.jpg',
-      '/images/b2s/_D5A8877.jpg',
-      '/images/b2s/_D5A8937.jpg',
-      '/images/b2s/_D5A9056.jpg',
-      '/images/b2s/new-IMG_5394.jpg',
-      '/images/b2s/new-IMG_5579.jpg',
+      '/images/b2s/6D5A0503.jpg',       // BHCP — backpack wall, volunteers
+      '/images/b2s/new-IMG_5645.jpg',    // Crenshaw HS — ribbon cutting, court
+      '/images/b2s/IMG_2166.jpg',        // BHCP interior — families browsing supplies
+      '/images/b2s/_D5A5792.jpg',        // BHCP outdoor — stage, drummers, bean bags
+      '/images/b2s/new-IMG_5667.jpg',    // Crenshaw HS — marching band on court
+      '/images/b2s/6D5A0723.jpg',        // BHCP interior — volunteer smiling, diaper station
+      '/images/b2s/_D5A7155.jpg',        // BHCP outdoor — volunteers pointing, backpack tent
+      '/images/b2s/new-IMG_5579.jpg',    // Crenshaw HS — court, mascot, B2S signage
+      '/images/b2s/6D5A0746.jpg',        // BHCP interior — volunteers directing families
+      '/images/b2s/_D5A8894.jpg',        // Venice — skatepark activation
+      '/images/b2s/IMG_2525.jpg',        // BHCP interior — family picking supplies
+      '/images/b2s/new-IMG_5631.jpg',    // Crenshaw HS — marching band with flags
     ],
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih',
     ctaText: 'BACK 2 SCHOOL 2026 IS COMING.',
