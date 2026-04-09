@@ -288,19 +288,15 @@ export default function ProgramPageClient({
   return (
     <div ref={containerRef}>
       {/* ═══════════════════════════════════════
-          1. HERO — blue sky background, LOT title
+          1. HERO — full-bleed tiled gallery + blue sky + title
       ═══════════════════════════════════════ */}
       <section
         style={{
           position: 'relative',
           overflow: 'hidden',
-          minHeight: '80vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          textAlign: 'center',
         }}
       >
+        {/* Sky background */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/blue-sky.jpg"
@@ -310,19 +306,19 @@ export default function ProgramPageClient({
             position: 'absolute',
             inset: 0,
             width: '100%',
-            height: '120%',
+            height: '100%',
             objectFit: 'cover',
-            top: '-10%',
             zIndex: 0,
           }}
         />
+
+        {/* Title overlay */}
         <div
           style={{
             position: 'relative',
-            zIndex: 1,
-            padding: 'clamp(120px, 15vh, 200px) clamp(32px, 5vw, 80px) clamp(60px, 8vh, 120px)',
-            maxWidth: 'var(--content-max)',
-            width: '100%',
+            zIndex: 2,
+            textAlign: 'center',
+            padding: 'clamp(120px, 15vh, 200px) clamp(32px, 5vw, 80px) clamp(40px, 5vh, 60px)',
           }}
         >
           <div
@@ -332,10 +328,11 @@ export default function ProgramPageClient({
               fontSize: 11,
               letterSpacing: '4px',
               textTransform: 'uppercase',
-              color: '#FFF',
+              color: '#FFC700',
               fontWeight: 700,
               marginBottom: 24,
               opacity: 0,
+              textShadow: '0 1px 8px rgba(0,0,0,0.15)',
             }}
           >
             {program.pillar}
@@ -346,10 +343,11 @@ export default function ProgramPageClient({
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(48px, 10vw, 160px)',
               lineHeight: 0.95,
-              color: '#FFF',
+              color: '#FFC700',
               textTransform: 'uppercase',
               margin: '0 0 24px',
               opacity: 0,
+              textShadow: '0 2px 20px rgba(0,0,0,0.15)',
             }}
           >
             {program.heroTitle}
@@ -359,7 +357,7 @@ export default function ProgramPageClient({
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'var(--body-lg)',
-              color: '#FFF',
+              color: '#FFC700',
               fontWeight: 700,
               maxWidth: 700,
               margin: '0 auto',
@@ -369,6 +367,42 @@ export default function ProgramPageClient({
           >
             {program.tagline}
           </p>
+        </div>
+
+        {/* Full-bleed tiled photo grid */}
+        <div
+          className="pp-hero-grid"
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateRows: 'repeat(3, 1fr)',
+            width: '100%',
+            aspectRatio: '16 / 9',
+          }}
+        >
+          {(() => {
+            const heroImages = program.images.length >= 12
+              ? program.images.slice(0, 12)
+              : [...program.images, ...program.images, ...program.images].slice(0, 12)
+            return heroImages.map((src, i) => (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                key={i}
+                src={src}
+                alt={`${program.heroTitle} — photo ${i + 1}`}
+                loading={i < 8 ? 'eager' : 'lazy'}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block',
+                  filter: 'brightness(1.05) saturate(1.15)',
+                }}
+              />
+            ))
+          })()}
         </div>
       </section>
 
@@ -887,6 +921,10 @@ export default function ProgramPageClient({
           100% { background-position: 300% 50%; }
         }
         @media (max-width: 768px) {
+          .pp-hero-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            aspect-ratio: 4 / 3 !important;
+          }
           .pp-overview-grid,
           .pp-content-grid,
           .pp-serve-grid,
