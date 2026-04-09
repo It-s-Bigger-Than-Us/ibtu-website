@@ -4,10 +4,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import type { ProgramContent } from '@/lib/data/program-content'
-
-const InTheFieldGallery = dynamic(() => import('@/components/sections/InTheFieldGallery'), { ssr: false })
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -265,6 +262,21 @@ export default function ProgramPageClient({
         )
       }
 
+      /* ── Gallery blocks — scroll-triggered reveals ── */
+      const galleryBlocks = containerRef.current?.querySelectorAll('.pp-gallery-block')
+      if (galleryBlocks) {
+        galleryBlocks.forEach((block) => {
+          gsap.fromTo(
+            block,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1, y: 0, duration: 0.7, ease: 'expo.out',
+              scrollTrigger: { trigger: block, start: 'top 85%', once: true },
+            }
+          )
+        })
+      }
+
       /* ── CTA section ── */
       gsap.fromTo(
         '.pp-cta-text',
@@ -288,54 +300,55 @@ export default function ProgramPageClient({
     return () => ctx.revert()
   }, [])
 
-  const reservedImageCount = program.sections.length + 1
-  const heroGridCount = Math.min(
-    12,
-    program.images.length > reservedImageCount
-      ? program.images.length - reservedImageCount
-      : program.images.length
-  )
-  const heroImages = program.images.slice(0, heroGridCount)
-  const overviewImage = program.images[heroGridCount] || heroImageUrl || program.images[0] || ''
-  const sectionImageStart = heroGridCount + 1
-  const sectionImages = program.sections.map((section, index) => program.images[sectionImageStart + index] || section.image)
+  /* Image allocation: hero (full-bleed) → overview → section images → editorial gallery */
+  const heroImage = program.images[0] || heroImageUrl || ''
+  const overviewImage = program.images[1] || heroImageUrl || program.images[0] || ''
+  const sectionImageStart = 2
+  const sectionImages = program.sections.map((_section, index) => program.images[sectionImageStart + index] || _section.image)
   const galleryImages = program.images.slice(sectionImageStart + program.sections.length)
-  const galleryChunks = chunkItems(galleryImages, 18)
 
   return (
     <div ref={containerRef}>
       {/* ═══════════════════════════════════════
-          1. HERO — full-bleed tiled gallery + blue sky + title
+          1. HERO — full-bleed single image + title overlay
       ═══════════════════════════════════════ */}
       <section
         style={{
           position: 'relative',
           overflow: 'hidden',
+          minHeight: '100vh',
         }}
       >
-        {/* Sky background */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/blue-sky.jpg"
-          alt=""
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: 0,
-          }}
-        />
+        {/* Full-bleed hero image */}
+        {heroImage && (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={heroImage}
+            alt={`${program.heroTitle}`}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              display: 'block',
+              filter: 'brightness(0.7) saturate(1.2)',
+            }}
+          />
+        )}
 
-        {/* Title overlay */}
+        {/* Title overlay — centered on the image */}
         <div
           style={{
             position: 'relative',
             zIndex: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
             textAlign: 'center',
-            padding: 'clamp(120px, 15vh, 200px) clamp(32px, 5vw, 80px) clamp(40px, 5vh, 60px)',
+            minHeight: '100vh',
+            padding: 'clamp(120px, 15vh, 200px) clamp(32px, 5vw, 80px)',
           }}
         >
           <div
@@ -349,7 +362,6 @@ export default function ProgramPageClient({
               fontWeight: 700,
               marginBottom: 24,
               opacity: 0,
-              textShadow: '0 1px 8px rgba(0,0,0,0.15)',
             }}
           >
             {program.pillar}
@@ -364,7 +376,7 @@ export default function ProgramPageClient({
               textTransform: 'uppercase',
               margin: '0 0 24px',
               opacity: 0,
-              textShadow: '0 2px 20px rgba(0,0,0,0.15)',
+              textShadow: '0 4px 40px rgba(0,0,0,0.5)',
             }}
           >
             {program.heroTitle}
@@ -374,47 +386,17 @@ export default function ProgramPageClient({
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'var(--body-lg)',
-              color: '#FFC700',
+              color: '#FFF',
               fontWeight: 700,
               maxWidth: 700,
               margin: '0 auto',
               lineHeight: 1.6,
               opacity: 0,
+              textShadow: '0 2px 20px rgba(0,0,0,0.4)',
             }}
           >
             {program.tagline}
           </p>
-        </div>
-
-        {/* Full-bleed tiled photo grid */}
-        <div
-          className="pp-hero-grid"
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gridTemplateRows: 'repeat(3, 1fr)',
-            width: '100%',
-            aspectRatio: '16 / 9',
-          }}
-        >
-          {heroImages.map((src, i) => (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              key={i}
-              src={src}
-              alt={`${program.heroTitle} — photo ${i + 1}`}
-              loading={i < 8 ? 'eager' : 'lazy'}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block',
-                filter: 'brightness(1.05) saturate(1.15)',
-              }}
-            />
-          ))}
         </div>
       </section>
 
@@ -775,40 +757,134 @@ export default function ProgramPageClient({
       )}
 
       {/* ═══════════════════════════════════════
-          6. IN THE FIELD — tiled editorial gallery
+          6. IN THE FIELD — full-bleed editorial gallery
+          Pattern: panoramic → asymmetric pair → centered → reversed pair (repeating)
       ═══════════════════════════════════════ */}
-      {galleryChunks.map((chunk, chunkIndex) => (
+      {galleryImages.length > 0 && (
         <section
-          key={`gallery-chunk-${chunkIndex}`}
-          style={{
-            background: '#000',
-            padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
-          }}
+          style={{ background: '#000', overflow: 'hidden' }}
         >
-          <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
-            <div
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: 11,
-                letterSpacing: '4px',
-                textTransform: 'uppercase',
-                color: '#FFC700',
-                fontWeight: 700,
-                marginBottom: 32,
-              }}
-            >
-              {chunkIndex === 0 ? 'IN THE FIELD' : `FIELD NOTES ${chunkIndex + 1}`}
-            </div>
-            <InTheFieldGallery
-              items={chunk.map((src, imageIndex) => ({
-                id: `field-${chunkIndex}-${imageIndex}`,
-                image: src,
-                alt: `${program.heroTitle} — photo ${chunkIndex * 18 + imageIndex + 1}`,
-              }))}
-            />
+          {/* Section label */}
+          <div style={{
+            padding: 'clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px) clamp(24px, 3vw, 40px)',
+          }}>
+            <span style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 11,
+              letterSpacing: '4px',
+              textTransform: 'uppercase',
+              color: '#FFC700',
+              fontWeight: 700,
+            }}>
+              In the Field
+            </span>
           </div>
+
+          {/* Render gallery images in editorial blocks */}
+          {galleryImages.map((src, i) => {
+            const blockType = i % 6
+
+            /* 0: Full-bleed panoramic */
+            if (blockType === 0) {
+              return (
+                <div key={i} className="pp-gallery-block" style={{
+                  width: '100%',
+                  aspectRatio: '21 / 9',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  opacity: 0,
+                }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt="" loading="lazy" style={{
+                    width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+                  }} />
+                </div>
+              )
+            }
+
+            /* 1+2: Asymmetric pair — left flush, right offset down */
+            if (blockType === 1) {
+              const pairImg = galleryImages[i + 1]
+              return (
+                <div key={i} className="pp-gallery-block pp-gallery-pair" style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: 4,
+                  marginTop: 4,
+                  opacity: 0,
+                }}>
+                  <div style={{ aspectRatio: '3 / 4', overflow: 'hidden' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt="" loading="lazy" style={{
+                      width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+                    }} />
+                  </div>
+                  {pairImg && (
+                    <div style={{ aspectRatio: '3 / 4', overflow: 'hidden', marginTop: 'clamp(40px, 6vw, 100px)' }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={pairImg} alt="" loading="lazy" style={{
+                        width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+                      }} />
+                    </div>
+                  )}
+                </div>
+              )
+            }
+            if (blockType === 2) return null /* consumed by pair above */
+
+            /* 3: Centered single */
+            if (blockType === 3) {
+              return (
+                <div key={i} className="pp-gallery-block" style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  padding: 'clamp(40px, 6vw, 80px) clamp(32px, 5vw, 80px)',
+                  opacity: 0,
+                }}>
+                  <div style={{ width: '75%', maxWidth: 1100, aspectRatio: '16 / 10', overflow: 'hidden' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt="" loading="lazy" style={{
+                      width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+                    }} />
+                  </div>
+                </div>
+              )
+            }
+
+            /* 4+5: Reversed asymmetric pair — left offset, right flush */
+            if (blockType === 4) {
+              const pairImg = galleryImages[i + 1]
+              return (
+                <div key={i} className="pp-gallery-block pp-gallery-pair" style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: 4,
+                  marginTop: 4,
+                  opacity: 0,
+                }}>
+                  <div style={{ aspectRatio: '4 / 3', overflow: 'hidden', marginTop: 'clamp(40px, 6vw, 100px)' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt="" loading="lazy" style={{
+                      width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+                    }} />
+                  </div>
+                  {pairImg && (
+                    <div style={{ aspectRatio: '4 / 5', overflow: 'hidden' }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={pairImg} alt="" loading="lazy" style={{
+                        width: '100%', height: '100%', objectFit: 'cover', display: 'block',
+                      }} />
+                    </div>
+                  )}
+                </div>
+              )
+            }
+            if (blockType === 5) return null /* consumed by pair above */
+
+            return null
+          })}
         </section>
-      ))}
+      )}
 
       {/* ═══════════════════════════════════════
           7. CTA — gold background, program-specific
@@ -935,9 +1011,11 @@ export default function ProgramPageClient({
           100% { background-position: 300% 50%; }
         }
         @media (max-width: 768px) {
-          .pp-hero-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            aspect-ratio: 4 / 3 !important;
+          .pp-gallery-pair {
+            grid-template-columns: 1fr !important;
+          }
+          .pp-gallery-pair > div {
+            margin-top: 4px !important;
           }
           .pp-overview-grid,
           .pp-content-grid,

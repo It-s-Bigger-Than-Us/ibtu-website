@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import ProgramRingGallery from './ProgramRingGallery'
+/* ProgramRingGallery removed — replaced with full-bleed image column */
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -338,7 +338,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                   )}
                 </div>
 
-                {/* Right column: gallery — full height, bleeds off right edge */}
+                {/* Right column: full-bleed stacked images */}
                 <div className="prog-gallery" style={{
                   willChange: 'transform',
                   position: 'relative',
@@ -346,10 +346,27 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                   margin: 0,
                   padding: 0,
                   lineHeight: 0,
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gridAutoRows: 'minmax(200px, 1fr)',
+                  gap: 0,
                 }}>
-                  {prog.galleryImages.length > 0 && (
-                    <ProgramRingGallery images={prog.galleryImages} title={prog.title} fullHeight />
-                  )}
+                  {prog.galleryImages.slice(0, 6).map((img, imgIdx) => (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      key={imgIdx}
+                      src={img}
+                      alt=""
+                      loading="lazy"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                        gridColumn: imgIdx === 0 ? 'span 2' : undefined,
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             </section>
