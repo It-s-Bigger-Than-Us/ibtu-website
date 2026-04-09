@@ -136,8 +136,7 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
       'Anyone impacted by crisis in Los Angeles — no ID required, no barriers to entry',
     ],
     schedule: 'Hub open weekly — walk-in or appointment',
-    partners:
-      'SoLa Impact, One Church, HACLA, Baby2Baby, Khalsa Aid, UTLA, Liberty Dental, lululemon, Nike, Apple, Google, FOX, BET+, TBWA\\Chiat\\Day, Shell, LA28, Target, 180+ Phase 1 partners',
+    partners: '',
     images: [
       '/images/fire-relief/relief-104.jpg',
       '/images/fire-relief/relief-177.jpg',
@@ -186,7 +185,7 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
         heading: 'Readiness Starts Before the Bell Rings',
         body: `The Back 2 School Festival is not a one-day event — it is the entry point for families into IBTU's year-round programming. Every child who walks through receives a fully loaded backpack with grade-appropriate supplies. But backpacks are only the beginning. On-site partners provide free health screenings, dental checks, vision exams, and haircuts. Enrollment counselors connect families to resources they did not know existed.
 
-In 2025, the Crenshaw High School Court Dedication distributed 1,000 backpacks and 100 laptops, with 139 families completing on-site service applications. The estimated value of that single event: $174,567. Former NBA All-Star Marques Johnson, a Crenshaw alum, showed up because this community raised him.`,
+In 2025, the Crenshaw High School Court Dedication distributed 1,000 backpacks and 100 laptops, with 139 families completing on-site service applications. The estimated value of that single event: $174,567.`,
         image: '/images/b2s/_D5A7392.jpg',
         imageAlt:
           'Families receiving backpacks at the IBTU Back 2 School Festival',
@@ -199,7 +198,7 @@ In 2025, the Crenshaw High School Court Dedication distributed 1,000 backpacks a
       },
       {
         heading: 'Three Locations, One Standard',
-        body: `In 2025, IBTU expanded the Back 2 School Festival to three simultaneous locations across Los Angeles. Baldwin Hills Crenshaw Plaza served 2,500+ attendees with 60+ partner organizations and 150+ volunteers. Venice Beach reached 5,000+ community members, served 149 fire-impacted families, and earned recognition from Mayor Karen Bass and Councilmember Traci Park. Crenshaw High School hosted the Court Dedication in partnership with LA84 Foundation.
+        body: `In 2025, IBTU expanded the Back 2 School Festival to three simultaneous locations across Los Angeles. Baldwin Hills Crenshaw Plaza served 2,500+ attendees with 60+ partner organizations and 150+ volunteers. Venice Beach reached 5,000+ community members and served 149 fire-impacted families. Crenshaw High School hosted the Court Dedication.
 
 Every site operates at the same standard. The same quality of resources, the same partner services, the same dignified experience — regardless of zip code. IBTU does not do pop-ups. We build platforms.`,
         image: '/images/b2s/_D5A8894.jpg',
@@ -213,33 +212,18 @@ Every site operates at the same standard. The same quality of resources, the sam
         ],
       },
       {
-        heading: 'Partners Who Show Up Year After Year',
-        body: `Over six years, 190+ organizations have partnered with the Back 2 School Festival — lululemon, Baby2Baby, Supreme, Adidas, Nike, Apple, Google, Target, LA Rams, Pepsi, LA84 Foundation, and LAUSD among them. These are not logo placements. Partner organizations send staff, donate supplies, and run service stations alongside IBTU volunteers.
+        heading: '190+ Organizations. One Standard.',
+        body: `Over six years, 190+ organizations have partnered with the Back 2 School Festival. These are not logo placements. Partner organizations send staff, donate supplies, and run service stations alongside IBTU volunteers. Corporate teams work shoulder-to-shoulder with community members.
 
-Corporate teams work shoulder-to-shoulder with community members. Elected officials — Mayor Bass, Superintendent Carvalho, Assemblymembers Bryan and McKinnor, Senator Smallwood-Cuevas — attend not for photo ops but because the data speaks: 17,500+ attendees, 90+ schools, 123+ zip codes. The Back 2 School Festival has become one of the largest community-driven school readiness events in Los Angeles.`,
+17,500+ attendees, 90+ schools, 123+ zip codes. The Back 2 School Festival has become one of the largest community-driven school readiness events in Los Angeles. The work speaks for itself — and the community keeps showing up because IBTU does.`,
         image: '/images/b2s/_D5A8946.jpg',
         imageAlt:
-          'Partner organizations and volunteers collaborating at the festival',
+          'Volunteers collaborating at the Back 2 School festival',
         imagePosition: 'left',
         highlights: [
-          '190+ organizations have partnered',
+          '190+ organizations',
           'not logo placements',
           'largest community-driven school readiness events in Los Angeles',
-        ],
-      },
-      {
-        heading: 'Recognized Because the Work Is Real',
-        body: `The Back 2 School Festival has earned a Certificate of Recognition from Mayor Karen Bass, a Proclamation for Sustained Community Service from Councilmember Traci Park, a U.S. Congressional Certificate from Congresswoman Kamlager-Dove, a Bridge Builder Award from Supervisor Holly Mitchell, and proclamations from Assemblymembers Bryan and McKinnor. The City of Inglewood issued a Special Commendation in 2024.
-
-These recognitions were not solicited. They came because community leaders saw the same thing families see every August: an organization that shows up, delivers, and comes back next year. Built to last.`,
-        image: '/images/b2s/new-IMG_5631.jpg',
-        imageAlt:
-          'IBTU receiving recognition at a Back 2 School community event',
-        imagePosition: 'right',
-        highlights: [
-          'Bridge Builder Award from Supervisor Holly Mitchell',
-          'not solicited',
-          'Built to last',
         ],
       },
     ],
@@ -251,8 +235,7 @@ These recognitions were not solicited. They came because community leaders saw t
       'Community members looking to connect with year-round IBTU programming',
     ],
     schedule: 'August annually — multiple locations across Los Angeles',
-    partners:
-      'lululemon, Baby2Baby, Supreme, Adidas, Bombas, Nike, Apple, Google, Target, LA Rams, Pepsi, LA84 Foundation, FOX, LAUSD, Alliance College-Ready Public Schools, Crenshaw High School Alumni Association, Inglewood USD',
+    partners: '',
     images: [
       '/images/b2s/_D5A7392.jpg',
       '/images/b2s/_D5A7224.jpg',
@@ -327,21 +310,21 @@ This is not a lecture series. Parents build relationships with each other, with 
         ],
       },
       {
-        heading: 'Alliance Expansion: 22 Schools, 12,000+ Students',
-        body: `In 2025, IBTU formalized a partnership with Alliance College-Ready Public Schools, reaching 12,000+ students across 22 campuses. IBTU donated $1.9 million in self-care products to Alliance students — direct investment in the dignity and wellness of every young person on those campuses. The growth is not accidental. It is the result of four years of trust built one campus at a time.`,
+        heading: 'Network Expansion: 22 Schools, 12,000+ Students',
+        body: `In 2025, IBTU formalized a partnership with a charter school network, reaching 12,000+ students across 22 campuses. IBTU donated $1.9 million in self-care products — direct investment in the dignity and wellness of every young person on those campuses. The growth is not accidental. It is the result of four years of trust built one campus at a time.`,
         image: '/images/school/IMG_6134.jpg',
         imageAlt:
           'IBTU programming activation at an Alliance Charter campus',
         imagePosition: 'left',
         highlights: [
           '12,000+ students across 22 campuses',
-          '$1.9 million in self-care products donated to Alliance',
+          '$1.9 million in self-care products',
           'four years of trust built one campus at a time',
         ],
       },
       {
         heading: 'Community Creators: Youth Voice Amplified',
-        body: `The Community Creators program at the Iovine and Young Center gives young people the tools to tell their own stories through media production, content creation, and community journalism. This is not an extracurricular. It is a youth leadership pipeline that positions students as documentarians of their own communities.
+        body: `The Community Creators program gives young people the tools to tell their own stories through media production, content creation, and community journalism. This is not an extracurricular. It is a youth leadership pipeline that positions students as documentarians of their own communities.
 
 Staff Appreciation Days reach 75+ educators per campus with wellness experiences, meals, and direct recognition. In a district where teacher burnout drives turnover, IBTU invests in the adults who show up for students every day. We listen, we build, we stay — and that applies to educators as much as the families they serve.`,
         image: '/images/school/IMG_7259.jpg',
@@ -363,8 +346,7 @@ Staff Appreciation Days reach 75+ educators per campus with wellness experiences
       'Families at resource fairs connecting to health, housing, and enrollment services on campus',
     ],
     schedule: 'Year-round school calendar',
-    partners:
-      'Alliance College-Ready Public Schools (22 campuses), LAUSD, Inglewood USD, Iovine & Young Center',
+    partners: '',
     images: [
       '/images/school/IMG_4674.jpg',
       '/images/school/IMG_5612.jpg',
@@ -442,7 +424,7 @@ The June 2025 launch drew 100 volunteers and removed 2,011 pieces of debris. Jul
         heading: 'Wellness Meets the Waterline',
         body: `Coastal Care is not only an environmental program. It is an outdoor wellness activation. Cleanups incorporate yoga sessions, community connection, and time on the beach — combining environmental stewardship with physical and mental health benefits. Families bring their children. Friends bring their neighbors.
 
-The program creates a bridge between IBTU's wellness activations with lululemon and its community health infrastructure. The beach becomes another place people already are — and IBTU meets them there with purpose, structure, and care.`,
+The program creates a bridge between IBTU's wellness activations and its community health infrastructure. The beach becomes another place people already are — and IBTU meets them there with purpose, structure, and care.`,
         image: '/images/coastal/IMG_4838.jpg',
         imageAlt:
           'Families and volunteers participating in a Coastal Care wellness activation',
@@ -490,7 +472,7 @@ The program creates a bridge between IBTU's wellness activations with lululemon 
     tagline:
       'IBTU removes barriers to health and wellness in public parks, on school campuses, and at the coast — free, accessible, no barriers.',
     overview:
-      'Wellness is not something IBTU adds on top of its programming. It is woven into everything. From lululemon yoga activations in Leimert Park to Charles Drew University health screenings (156 blood pressure, 84 A1C, 72 cholesterol checks), from USC All of Us research enrollment to naloxone distribution (223 kits), IBTU meets people where they are and removes every barrier between them and their health. Staff wellness days on school campuses ensure educators are cared for too. Designed with dignity means no one has to prove they deserve access.',
+      'Wellness is not something IBTU adds on top of its programming. It is woven into everything. From yoga activations in Leimert Park to university-led health screenings (156 blood pressure, 84 A1C, 72 cholesterol checks), from research enrollment to naloxone distribution (223 kits), IBTU meets people where they are and removes every barrier between them and their health. Staff wellness days on school campuses ensure educators are cared for too. Designed with dignity means no one has to prove they deserve access.',
     overviewHighlights: [
       '156 blood pressure, 84 A1C, 72 cholesterol checks',
       '223 kits',
@@ -507,9 +489,9 @@ The program creates a bridge between IBTU's wellness activations with lululemon 
     sections: [
       {
         heading: 'Yoga in the Park, Not the Studio',
-        body: `In 2024, IBTU and lululemon hosted four yoga activations in Leimert Park and one fitness session, reaching 206 participants. In April 2025, a Volunteer Appreciation Yoga event at Baldwin Hills Crenshaw Plaza recognized the people who power IBTU's work with a wellness experience they deserved.
+        body: `In 2024, IBTU hosted four yoga activations in Leimert Park and one fitness session, reaching 206 participants. In April 2025, a Volunteer Appreciation Yoga event at Baldwin Hills Crenshaw Plaza recognized the people who power IBTU's work with a wellness experience they deserved.
 
-These are not branded fitness events. They are community wellness activations held in public spaces — free, open, and designed for people who may never set foot in a studio. The lululemon Glow Up Studio in New York City, featuring Cody Rigsby, Adrian Williams, and QuestLove, donated ALL proceeds to IBTU — proof that this partnership is about investment, not optics.`,
+These are not branded fitness events. They are community wellness activations held in public spaces — free, open, and designed for people who may never set foot in a studio.`,
         image: '/images/wellness/IMG_0007.jpg',
         imageAlt:
           'Community members participating in a free yoga session at Leimert Park',
@@ -517,12 +499,12 @@ These are not branded fitness events. They are community wellness activations he
         highlights: [
           '206 participants',
           'free, open, and designed for people who may never set foot in a studio',
-          'ALL proceeds to IBTU',
+          'community wellness activations',
         ],
       },
       {
         heading: 'Clinical Care Without the Clinic',
-        body: `Through a partnership with Charles Drew University, IBTU delivered 156 blood pressure screenings, 84 A1C checks, 72 cholesterol screenings, 430 CPR education sessions, 300 nutrition education interactions, and 430 fentanyl awareness trainings between January and June 2024. USC All of Us Research enrolled 38 participants from 195 community interactions.
+        body: `Through university clinical partnerships, IBTU delivered 156 blood pressure screenings, 84 A1C checks, 72 cholesterol screenings, 430 CPR education sessions, 300 nutrition education interactions, and 430 fentanyl awareness trainings between January and June 2024. Research partners enrolled 38 participants from 195 community interactions.
 
 These screenings happen at IBTU events — not in hospitals or clinics that require appointments, insurance, and transportation. When health services show up where families already gather, the barrier drops to zero. That is how you build community health infrastructure.`,
         image: '/images/wellness/IMG_1554.jpg',
@@ -573,8 +555,7 @@ IBTU's staff wellness programming is built into school contracts, not tacked on 
       'Anyone who wants to participate in outdoor wellness activations in their own neighborhood',
     ],
     schedule: 'Year-round — integrated into all IBTU events and school programming',
-    partners:
-      'lululemon, Black OM Wellness, Peloton, Charles Drew University, USC All of Us, Keck School of Medicine USC',
+    partners: '',
     images: [
       '/images/wellness/IMG_0007.jpg',
       '/images/wellness/IMG_0279.jpg',
@@ -619,7 +600,7 @@ IBTU's staff wellness programming is built into school contracts, not tacked on 
     sections: [
       {
         heading: 'MegaFeast: One Thousand Tables Filled',
-        body: `The MegaFeast Thanksgiving Distribution, in partnership with United MegaCare and One LA, distributed 1,000 turkey boxes to families across Los Angeles. Each box contained a full turkey and sides — enough to anchor a family's Thanksgiving table. Additional distributions reached 1,000 to 1,500 families with over $100,000 in meals.
+        body: `The MegaFeast Thanksgiving Distribution provided 1,000 turkey boxes to families across Los Angeles. Each box contained a full turkey and sides — enough to anchor a family's Thanksgiving table. Additional distributions reached 1,000 to 1,500 families with over $100,000 in meals.
 
 This is not charity for the holidays. This is a logistics operation powered by community trust. Families show up because they know IBTU delivers consistently, with quality, and with respect. No lines that strip dignity. No cameras that exploit need. Just food, on time, with warmth.`,
         image: '/images/additional/IMG_0131.jpg',
@@ -649,9 +630,9 @@ Every Giving Season event is free and open — no registration, no income verifi
       },
       {
         heading: 'Community Baby Showers for Black Maternal Health',
-        body: `IBTU's community baby showers address the Black maternal health crisis directly — not with awareness campaigns, but with diapers, formula, hygiene kits, and connections to prenatal and postnatal care. The Health Net partnership (May 2025) and the Project Pit Maternal Health Summit (August 2025, featuring Halle Bailey, Faith Evans, and ABC7 coverage) centered the health and dignity of Black mothers in Los Angeles.
+        body: `IBTU's community baby showers address the Black maternal health crisis directly — not with awareness campaigns, but with diapers, formula, hygiene kits, and connections to prenatal and postnatal care. Maternal health summits centered the health and dignity of Black mothers in Los Angeles.
 
-Baby2Baby has provided 498,075 items to IBTU since 2024, including 236,800 diapers and 166,760 wipes. These numbers represent families who did not have to choose between diapers and dinner. That is what resource access looks like when it is designed with dignity.`,
+Since 2024, partner donations have provided 498,075 items to families, including 236,800 diapers and 166,760 wipes. These numbers represent families who did not have to choose between diapers and dinner. That is what resource access looks like when it is designed with dignity.`,
         image: '/images/additional/IMG_0173.jpg',
         imageAlt:
           'Mothers receiving supplies at an IBTU community baby shower event',
@@ -664,7 +645,7 @@ Baby2Baby has provided 498,075 items to IBTU since 2024, including 236,800 diape
       },
       {
         heading: 'Oakwood: Holidays After the Fires',
-        body: `The Oakwood Holiday Event on December 7, 2025 served 350+ people in the Venice community — many of them still recovering from the fires that displaced their neighbors earlier that year. The Winter Wonderland at Algin Sutton Park, a job fair with Westside Food Bank gift cards, and the Volunteer Hangout rounded out a season that proved IBTU does not slow down when the calendar says it should.
+        body: `The Oakwood Holiday Event on December 7, 2025 served 350+ people in the Venice community — many of them still recovering from the fires that displaced their neighbors earlier that year. The Winter Wonderland at Algin Sutton Park, a job fair, and the Volunteer Hangout rounded out a season that proved IBTU does not slow down when the calendar says it should.
 
 Across 11 events, the 2025 Giving Season connected thousands of families to food, toys, job resources, health services, and each other. Community is the infrastructure — even in December.`,
         image: '/images/additional/IMG_0281.jpg',
@@ -686,8 +667,7 @@ Across 11 events, the 2025 Giving Season connected thousands of families to food
       'Anyone in Los Angeles — all events are free, open, and require no documentation',
     ],
     schedule: 'November through December annually',
-    partners:
-      'ECOS Group, Baby2Baby, Target, United MegaCare, One LA, Health Net, local toy donors, food sponsors, wellness providers',
+    partners: '',
     images: [
       '/images/b2s/6D5A0871.jpg',
       '/images/b2s/6D5A1246.jpg',
@@ -715,7 +695,7 @@ Across 11 events, the 2025 Giving Season connected thousands of families to food
     tagline:
       'Access alone does not create stability. Reliability and dignity do.',
     overview:
-      'Since 2020, IBTU has distributed 875,500+ pounds of food across 389+ events, serving 130,116+ families. But Community Health is more than food. It encompasses health screenings through Charles Drew University and USC, dental and vision access through Liberty Dental and partner providers, mental health programming with licensed providers and no waitlist, naloxone distribution (223 kits), and the Baby2Baby partnership that has moved 498,075 items including 236,800 diapers. In 2023 alone, IBTU served 144,000 individuals through weekly dual-site food distributions. 94% of families reported reduced food stress.',
+      'Since 2020, IBTU has distributed 875,500+ pounds of food across 389+ events, serving 130,116+ families. But Community Health is more than food. It encompasses university-led health screenings, dental and vision access, mental health programming with licensed providers and no waitlist, naloxone distribution (223 kits), and partner donations totaling 498,075 items including 236,800 diapers. In 2023 alone, IBTU served 144,000 individuals through weekly dual-site food distributions. 94% of families reported reduced food stress.',
     overviewHighlights: [
       '875,500+ pounds of food across 389+ events',
       '130,116+ families',
@@ -725,7 +705,7 @@ Across 11 events, the 2025 Giving Season connected thousands of families to food
       { value: '875,500+', label: 'Pounds of Food (Since 2020)' },
       { value: '130,116+', label: 'Families Served (Food)' },
       { value: '389+', label: 'Distribution Events' },
-      { value: '498,075', label: 'Baby2Baby Items' },
+      { value: '498,075', label: 'Donated Items Distributed' },
       { value: '223', label: 'Naloxone Kits' },
       { value: '94%', label: 'Reduced Food Stress' },
     ],
@@ -746,13 +726,13 @@ Every distribution operates on the same principle: show up and receive. No ID re
         ],
       },
       {
-        heading: 'Baby2Baby: Half a Million Items Moved',
-        body: `Since 2024, the Baby2Baby partnership has delivered 498,075 items to families across Los Angeles and Miami — 236,800 diapers, 166,760 wipes, 8,633 hygiene products, 10,500 cleaning supplies, 1,563 toys, and 2,042 school supply packs. These are not surplus donations. They are essential goods distributed through IBTU's trusted infrastructure to families who need them.
+        heading: 'Half a Million Items Moved',
+        body: `Since 2024, product partnerships have delivered 498,075 items to families across Los Angeles and Miami — 236,800 diapers, 166,760 wipes, 8,633 hygiene products, 10,500 cleaning supplies, 1,563 toys, and 2,042 school supply packs. These are not surplus donations. They are essential goods distributed through IBTU's trusted infrastructure to families who need them.
 
-Community baby showers, Back 2 School festivals, Hub distributions, and holiday events all serve as distribution channels. The Baby2Baby partnership is proof of what happens when a product partner meets an organization with the community trust and logistics to deliver at scale.`,
+Community baby showers, Back 2 School festivals, Hub distributions, and holiday events all serve as distribution channels. This is proof of what happens when product partners meet an organization with the community trust and logistics to deliver at scale.`,
         image: '/images/additional/IMG_5392.jpg',
         imageAlt:
-          'Volunteers sorting and distributing Baby2Baby donations',
+          'Volunteers sorting and distributing donated goods',
         imagePosition: 'right',
         highlights: [
           '498,075 items',
@@ -762,7 +742,7 @@ Community baby showers, Back 2 School festivals, Hub distributions, and holiday 
       },
       {
         heading: 'Health Screenings Where Families Already Gather',
-        body: `Through Charles Drew University, IBTU delivered 156 blood pressure screenings, 84 A1C checks, and 72 cholesterol screenings between January and June 2024. USC All of Us Research enrolled 38 participants through 195 community interactions. 430 people received CPR education. 430 attended fentanyl awareness trainings. 300 participated in nutrition education sessions.
+        body: `Through university clinical partnerships, IBTU delivered 156 blood pressure screenings, 84 A1C checks, and 72 cholesterol screenings between January and June 2024. Research partners enrolled 38 participants through 195 community interactions. 430 people received CPR education. 430 attended fentanyl awareness trainings. 300 participated in nutrition education sessions.
 
 These numbers did not come from a clinic outreach campaign. They came from embedding clinical partners inside existing IBTU events — food distributions, school resource fairs, Back 2 School festivals. When families are already present and comfortable, the step from picking up groceries to checking their blood pressure is small. That is how community health infrastructure works.`,
         image: '/images/wellness/IMG_4457.jpg',
@@ -779,7 +759,7 @@ These numbers did not come from a clinic outreach campaign. They came from embed
         heading: 'Mental Health With No Waitlist',
         body: `In a city where mental health waitlists stretch months, IBTU provides access to licensed providers with no waitlist at the Hub and through school-based programming. This includes individual support, group sessions, and referrals to long-term care. 62% of fire-assessed clients at the Hub reported significant mental health impact — 139 adults with stress and anxiety, 52 children with behavioral changes.
 
-Naloxone distribution (223 kits), dental access days through Liberty Dental, and vision screenings round out a health access model that treats the whole person. IBTU does not separate physical health from mental health from food access from housing stability. It is all connected, and the programming reflects that. Designed with dignity.`,
+Naloxone distribution (223 kits), dental access days, and vision screenings round out a health access model that treats the whole person. IBTU does not separate physical health from mental health from food access from housing stability. It is all connected, and the programming reflects that. Designed with dignity.`,
         image: '/images/additional/IMG_5431.jpg',
         imageAlt:
           'Community members connecting with mental health and wellness resources',
@@ -800,8 +780,7 @@ Naloxone distribution (223 kits), dental access days through Liberty Dental, and
     ],
     schedule:
       'Weekly distributions, recurring health screenings, monthly partner activations',
-    partners:
-      'LA Care Health Plan, Charles Drew University, USC All of Us, Liberty Dental, Tena Health, Keck School of Medicine USC, United MegaCare, One LA, Baby2Baby, LA Rams, Pepsi',
+    partners: '',
     images: [
       '/images/wellness/IMG_0097.jpg',
       '/images/wellness/IMG_0111.jpg',

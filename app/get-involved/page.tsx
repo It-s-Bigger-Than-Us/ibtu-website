@@ -41,7 +41,7 @@ const SPONSOR_PROGRAMS = [
   { program: 'School Program', desc: '34 school sites across LAUSD, Alliance, and Inglewood USD. Lunchtime Takeovers, Parent Workshops, Resource Fairs, Staff Wellness Days.', cta: 'Sponsor a Campus', href: '/school-program' },
   { program: 'Coastal Care', desc: 'Monthly beach cleanups at Venice Pier. 20,463+ items removed. 27-category debris tracking. Environmental advocacy data.', cta: 'Sponsor Coastal Care', href: '/our-programs/coastal-care' },
   { program: 'Giving Season', desc: 'Year-end holiday distributions: toys, warm meals, wellness resources. 6,575+ individuals served in 2024 across 7 events.', cta: 'Sponsor Giving Season', href: '/our-programs/giving-season' },
-  { program: 'Wellness & Health', desc: 'Licensed fitness, mental health, and wellness programming in community spaces. Powered by lululemon partnership.', cta: 'Sponsor Wellness', href: '/our-programs/wellness' },
+  { program: 'Wellness & Health', desc: 'Licensed fitness, mental health, and wellness programming in community spaces — free, accessible, no barriers.', cta: 'Sponsor Wellness', href: '/our-programs/wellness' },
 ]
 
 const STATS = [

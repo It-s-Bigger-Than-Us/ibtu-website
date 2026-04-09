@@ -24,7 +24,7 @@ const SERVICES = [
   { title: 'Case Management', desc: 'Comprehensive intake assessing housing, health, employment, and family needs at every visit. Long-term follow-up, not one-time.' },
   { title: 'FEMA Navigation', desc: 'Direct support navigating FEMA applications, appeals, and documentation — with bilingual staff across 5+ languages.' },
   { title: 'Mental Health', desc: 'Referrals and ongoing counseling connections for fire-related trauma, grief, and displacement stress.' },
-  { title: 'Dental & Vision', desc: 'On-site dental services via Liberty Dental Plan and same-day vision screenings with glasses.' },
+  { title: 'Dental & Vision', desc: 'On-site dental services and same-day vision screenings with glasses.' },
   { title: 'Employment Resources', desc: 'Job loss navigation for the 89+ individuals who lost employment due to the fires.' },
   { title: 'Housing Navigation', desc: 'Connections to temporary and permanent housing resources for the 79% of clients permanently displaced.' },
   { title: 'Legal Aid', desc: 'Legal support for fire survivors navigating FEMA, insurance, and tenant protections.' },

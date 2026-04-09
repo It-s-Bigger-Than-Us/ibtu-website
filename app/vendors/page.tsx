@@ -76,7 +76,7 @@ const VENDOR_TIERS = [
     price: "$1,500–$10,000+",
     color: "#FFC700",
     description:
-      "You are not just setting up a booth — you are building a brand moment inside the most trusted community platform in Los Angeles. Your name alongside Nike, lululemon, Apple, and Baby2Baby. Your team on the ground doing real work. Thank you for investing at a level that changes what is possible for an entire community. We are grateful for you.",
+      "You are not just setting up a booth — you are building a brand moment inside the most trusted community platform in Los Angeles. Your team on the ground doing real work alongside 190+ partner organizations. Thank you for investing at a level that changes what is possible for an entire community. We are grateful for you.",
     types: "National brands, corporate partners, marketing activations, product sampling",
     includes: "Custom space (10x10 to 20x20+), dedicated social media campaign, logo on event materials, MC mentions, content package.",
     note: "Category exclusivity available. Contact info@itsbiggerthanusla.org for custom packages.",

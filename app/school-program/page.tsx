@@ -46,15 +46,7 @@ const STATS = [
   { value: '4.7–5.0', label: 'Satisfaction Rating' },
 ]
 
-const PARTNERS = [
-  'Alliance College-Ready Public Schools (25 campuses)',
-  'LAUSD',
-  'Inglewood Unified School District',
-  'Iovine & Young Center',
-  'LA84 Foundation',
-  'lululemon',
-  'Baby2Baby',
-]
+// Partners list removed — no named partners on public pages
 
 export default function SchoolProgramPage() {
   return (
@@ -146,21 +138,7 @@ export default function SchoolProgramPage() {
         </div>
       </section>
 
-      {/* ── PARTNERS ── */}
-      <section style={{ background: '#000', padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)' }}>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(36px, 6vw, 72px)', lineHeight: 0.92, textTransform: 'uppercase', color: '#FFC700', letterSpacing: '-0.02em', marginBottom: 'clamp(32px, 4vw, 48px)' }}>
-            Education Partners
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            {PARTNERS.map((p) => (
-              <span key={p} style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--body-md)', color: '#FFF', fontWeight: 600, lineHeight: 1.6, paddingLeft: 16, borderLeft: '3px solid #FFC700' }}>
-                {p}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Partners section removed — no named partners on public pages */}
 
       {/* ── CTA ── */}
       <section style={{ background: '#FFC700', padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)', textAlign: 'center' }}>

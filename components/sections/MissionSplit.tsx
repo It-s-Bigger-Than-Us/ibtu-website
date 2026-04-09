@@ -70,7 +70,7 @@ export default function MissionSplit({
     },
     {
       label: 'Community Health & Resource Access',
-      text: 'Every month, IBTU distributes thousands of pounds of food to families across Los Angeles — 875,500 pounds since 2020. Our Coastal Care crews clean Venice Beach every second Saturday. The annual Back 2 School Festival has distributed 18,550 backpacks across 6 years. And our wellness programming with lululemon brings free yoga, health screenings, and dental care to the neighborhoods that need it most.',
+      text: 'Every month, IBTU distributes thousands of pounds of food to families across Los Angeles — 875,500 pounds since 2020. Our Coastal Care crews clean Venice Beach every second Saturday. The annual Back 2 School Festival has distributed 18,550 backpacks across 6 years. And our wellness programming brings free yoga, health screenings, and dental care to the neighborhoods that need it most.',
     },
   ]
 

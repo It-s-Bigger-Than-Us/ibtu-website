@@ -39,13 +39,13 @@ export const orgTimeline: TimelineEntry[] = [
   {
     year: 2024,
     title: "Multistate Expansion & Program Diversification",
-    detail: "Expanded to Miami with Baby2Baby (498,075 items). Launched Coastal Care. 14,150 students served. Top 100 CA Nonprofit.",
+    detail: "Expanded to Miami (498,075 items distributed). Launched Coastal Care. 14,150 students served. Top 100 CA Nonprofit.",
     pillar: "Community Health & Resource Access",
   },
   {
     year: 2024,
     title: "Major Corporate Partnerships Secured",
-    detail: "Deepened partnerships with lululemon, Baby2Baby, and brand sponsors. Institutional health partnerships with Charles Drew University and USC All of Us.",
+    detail: "Deepened corporate and brand partnerships. Institutional health partnerships with university clinical programs and research institutions.",
     pillar: "Partnerships",
   },
   {

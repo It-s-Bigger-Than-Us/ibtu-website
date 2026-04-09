@@ -893,6 +893,10 @@ export default function ProgramPageClient({
           .pp-cta-grid {
             grid-template-columns: 1fr !important;
           }
+          .pp-overview-image,
+          .pp-content-image {
+            min-height: 300px !important;
+          }
           .pp-content-image {
             order: 0 !important;
           }
@@ -902,13 +906,23 @@ export default function ProgramPageClient({
           .pp-stat-card {
             min-width: 0;
           }
-        }
-        @media (max-width: 768px) {
-          .pp-stats .pp-stat-card {
-            min-width: 0;
-          }
           section.pp-stats > div > div:last-child {
             grid-template-columns: 1fr 1fr !important;
+          }
+          .pp-hero-title {
+            font-size: clamp(32px, 8vw, 48px) !important;
+          }
+          .pp-hero-tagline {
+            font-size: 1rem !important;
+          }
+          .pp-content-heading {
+            font-size: clamp(28px, 6vw, 36px) !important;
+          }
+          .pp-serve-headline h2 {
+            font-size: clamp(28px, 6vw, 48px) !important;
+          }
+          .pp-cta-text h2 {
+            font-size: clamp(28px, 6vw, 48px) !important;
           }
         }
       `}</style>

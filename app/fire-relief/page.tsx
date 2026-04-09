@@ -74,7 +74,7 @@ export default function FireReliefPage() {
     },
     {
       title: "Dental Access",
-      detail: "Weekly dental clinic through Liberty Dental partnership.",
+      detail: "Weekly dental clinic through clinical partner.",
     },
     {
       title: "Vision Screenings",
@@ -180,11 +180,12 @@ export default function FireReliefPage() {
           <section
             key={i}
             style={{
-              padding: "120px 80px",
+              padding: "clamp(60px, 10vw, 120px) clamp(24px, 5vw, 80px)",
               borderTop: i === 0 ? "none" : "1px solid #FFC700",
             }}
           >
             <div
+              className="fr-phase-grid"
               style={{
                 display: "grid",
                 gridTemplateColumns: "260px 1fr",
@@ -271,6 +272,7 @@ export default function FireReliefPage() {
                   {phase.detail}
                 </p>
                 <div
+                  className="fr-services-grid"
                   style={{
                     display: "grid",
                     gridTemplateColumns: "repeat(4, 1fr)",
@@ -315,7 +317,7 @@ export default function FireReliefPage() {
         <section
           style={{
             position: "relative",
-            height: "100vh",
+            height: "min(100vh, 600px)",
             overflow: "hidden",
           }}
         >
@@ -386,6 +388,7 @@ export default function FireReliefPage() {
           </p>
 
           <div
+            className="fr-services-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
@@ -428,6 +431,7 @@ export default function FireReliefPage() {
 
           {/* Address & Links */}
           <div
+            className="fr-timeline-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
@@ -547,6 +551,7 @@ export default function FireReliefPage() {
             Fire Relief — By the Numbers
           </span>
           <div
+            className="fr-stats-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(6, 1fr)",
@@ -586,7 +591,7 @@ export default function FireReliefPage() {
         </section>
 
         {/* ── CTA — SUPPORT THE HUB ── */}
-        <section style={{ background: "#FFC700", padding: "100px 80px", textAlign: "center" }}>
+        <section style={{ background: "#FFC700", padding: "clamp(60px, 10vw, 100px) clamp(24px, 5vw, 80px)", textAlign: "center" }}>
           <div
             style={{
               borderTop: "0.5px solid #000",
@@ -671,6 +676,26 @@ export default function FireReliefPage() {
         </section>
       </main>
       <Footer />
+      <style>{`
+        @media (max-width: 768px) {
+          .fr-phase-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .fr-services-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+          .fr-demographics-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .fr-timeline-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .fr-stats-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

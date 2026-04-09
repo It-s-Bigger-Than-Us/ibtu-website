@@ -769,6 +769,9 @@ button[style*="border-radius:16px"]:hover {
   .gallery-grid--4 { grid-template-columns: 1fr; }
   .gallery-grid--editorial { grid-template-columns: 1fr; }
   .gallery-grid--editorial > *:first-child { grid-row: span 1; }
+
+  .video-hero { height: auto; min-height: 50vh; }
+  .cta-section { min-height: auto; padding: 60px 24px; }
 }
 
 /* Gallery card — consistent everywhere */
