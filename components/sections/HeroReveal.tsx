@@ -278,7 +278,7 @@ export default function HeroReveal() {
             objectFit: 'cover',
           }}
         >
-          <source src="https://cdn.sanity.io/files/0m4ngfcw/production/ee455ec5e6644648f1306d149badd14641cb4f07.mp4" type="video/mp4" />
+          <source src="https://cdn.sanity.io/files/0m4ngfcw/production/260586a73e01013647f309c3cea587f3e934a1b3.mp4" type="video/mp4" />
         </video>
       </div>
 
