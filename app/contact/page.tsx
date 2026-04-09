@@ -33,7 +33,7 @@ export default function ContactPage() {
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
-        <div style={{ padding: "140px 80px 80px 80px" }}>
+        <div style={{ padding: "clamp(80px, 12vw, 140px) clamp(24px, 5vw, 80px) clamp(48px, 6vw, 80px)" }}>
           <span
             style={{
               display: "block",
@@ -78,7 +78,7 @@ export default function ContactPage() {
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
             gap: 80,
-            padding: "0 80px 100px 80px",
+            padding: "0 clamp(24px, 5vw, 80px) clamp(60px, 8vw, 100px)",
             alignItems: "start",
           }}
         >
@@ -348,6 +348,14 @@ export default function ContactPage() {
         </div>
       </main>
       <Footer />
+      <style>{`
+        @media (max-width: 768px) {
+          main > div > div[style*="grid-template-columns: 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

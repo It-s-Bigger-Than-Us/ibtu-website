@@ -32,7 +32,7 @@ export default async function ImpactPage() {
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
-        <div style={{ padding: "140px 80px 100px 80px" }}>
+        <div style={{ padding: "clamp(80px, 12vw, 140px) clamp(24px, 5vw, 80px) clamp(60px, 8vw, 100px)" }}>
           <span
             style={{
               display: "block",
@@ -78,7 +78,7 @@ export default async function ImpactPage() {
         </div>
 
         {/* 2025 Stats Grid */}
-        <div style={{ background: "var(--gold)", padding: "80px 80px" }}>
+        <div style={{ background: "var(--gold)", padding: "clamp(48px, 8vw, 80px) clamp(24px, 5vw, 80px)" }}>
           <span
             style={{
               display: "block",
@@ -129,7 +129,7 @@ export default async function ImpactPage() {
         </div>
 
         {/* Cumulative Stats Grid */}
-        <div style={{ padding: "100px 80px" }}>
+        <div style={{ padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px)" }}>
           <span
             style={{
               display: "block",
@@ -183,7 +183,7 @@ export default async function ImpactPage() {
         <div
           style={{
             background: "var(--gold)",
-            padding: "60px 80px",
+            padding: "clamp(32px, 6vw, 60px) clamp(24px, 5vw, 80px)",
             borderTop: "1px solid var(--gold)",
             borderBottom: "1px solid var(--gold)",
           }}
@@ -251,7 +251,7 @@ export default async function ImpactPage() {
         </div>
 
         {/* CTA */}
-        <div style={{ background: "var(--gold)", padding: "80px 80px", textAlign: "center" }}>
+        <div style={{ background: "var(--gold)", padding: "clamp(48px, 8vw, 80px) clamp(24px, 5vw, 80px)", textAlign: "center" }}>
           <h2
             style={{
               fontFamily: 'var(--font-body)',

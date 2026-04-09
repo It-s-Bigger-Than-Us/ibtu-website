@@ -192,7 +192,7 @@ export default function EventsPageClient({
       <div
         ref={headerRef}
         style={{
-          padding: "140px 80px 80px 80px",
+          padding: "clamp(80px, 12vw, 140px) clamp(24px, 5vw, 80px) clamp(48px, 6vw, 80px)",
           borderBottom: "1px solid #FFC700",
         }}
       >
@@ -238,7 +238,7 @@ export default function EventsPageClient({
 
       {/* Upcoming & Active */}
       {upcoming.length > 0 && (
-        <div style={{ padding: "80px 80px 60px 80px" }}>
+        <div style={{ padding: "clamp(48px, 8vw, 80px) clamp(24px, 5vw, 80px) clamp(32px, 5vw, 60px)" }}>
           <h2
             ref={upcomingHeadlineRef}
             style={{
@@ -351,7 +351,7 @@ export default function EventsPageClient({
       )}
 
       {/* All events by program */}
-      <div style={{ padding: "40px 80px 80px 80px" }}>
+      <div style={{ padding: "clamp(24px, 4vw, 40px) clamp(24px, 5vw, 80px) clamp(48px, 6vw, 80px)" }}>
         <h2
           ref={allHeadlineRef}
           style={{

@@ -5,10 +5,8 @@ import impactStat from "./impactStat";
 import award from "./award";
 import orgTimeline from "./orgTimeline";
 import partner from "./partner";
-import sponsorTier from "./sponsorTier";
 import newsMedia from "./newsMedia";
 import siteContent from "./siteContent";
-import programSponsorPackage from "./programSponsorPackage";
 
 export const schemaTypes = [
   program,
@@ -18,8 +16,6 @@ export const schemaTypes = [
   award,
   orgTimeline,
   partner,
-  sponsorTier,
   newsMedia,
   siteContent,
-  programSponsorPackage,
 ];

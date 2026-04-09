@@ -19,7 +19,7 @@ export default async function AboutPage() {
       <main style={{ background: "#000", minHeight: "100vh"}}>
 
         {/* Hero */}
-        <div style={{ padding: "140px 80px 100px 80px" }}>
+        <div style={{ padding: "clamp(80px, 12vw, 140px) clamp(24px, 5vw, 80px) clamp(60px, 8vw, 100px)" }}>
           <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", marginBottom: 20, fontFamily: 'var(--font-body)', fontWeight: 700 }}>
             Founded 2020 · Los Angeles
           </span>
@@ -38,7 +38,7 @@ export default async function AboutPage() {
         </div>
 
         {/* Origin */}
-        <div style={{ background: "var(--gold)", padding: "100px 80px" }}>
+        <div style={{ background: "var(--gold)", padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px)" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "start" }}>
             <div>
               <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 20, display: "block" }}>
@@ -81,7 +81,7 @@ export default async function AboutPage() {
         </div>
 
         {/* Mission & Vision */}
-        <div style={{ padding: "100px 80px", maxWidth: 800 }}>
+        <div style={{ padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px)", maxWidth: 800 }}>
           <span style={{ fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "var(--gold)", fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 20, display: "block" }}>
             Mission
           </span>
@@ -120,7 +120,7 @@ export default async function AboutPage() {
         </div>
 
         {/* Timeline */}
-        <div style={{ padding: "100px 80px" }}>
+        <div style={{ padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px)" }}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: "clamp(44px, 6vw, 96px)", lineHeight: 0.9, color: "#fff", marginBottom: 60 }}>
             TIMELINE
           </h2>
@@ -159,7 +159,7 @@ export default async function AboutPage() {
         </div>
 
         {/* CTA */}
-        <div style={{ background: "var(--gold)", padding: "80px 80px", textAlign: "center" }}>
+        <div style={{ background: "var(--gold)", padding: "clamp(48px, 8vw, 80px) clamp(24px, 5vw, 80px)", textAlign: "center" }}>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 24 }}>
             THIS WORK DOES NOT HAPPEN WITHOUT YOU
           </h2>
@@ -173,6 +173,14 @@ export default async function AboutPage() {
         </div>
       </main>
       <Footer />
+      <style>{`
+        @media (max-width: 768px) {
+          div[style*="grid-template-columns: 1fr 1fr"],
+          div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

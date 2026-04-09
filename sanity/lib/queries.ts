@@ -54,10 +54,6 @@ export const partnersByCategoryQuery = `*[_type == "partner" && featuredOnWebsit
   _id, title, category, partnerType, tier, logo, url, featuredOnWebsite
 }`;
 
-export const sponsorTiersQuery = `*[_type == "sponsorTier"] | order(sortOrder asc) {
-  _id, title, amount, description, sortOrder
-}`;
-
 export const newsMediaQuery = `*[_type == "newsMedia"] | order(date desc) {
   _id, outlet, title, date, coverageType, topic, url, featured
 }`;
@@ -70,17 +66,6 @@ export const siteContentQuery = `*[_type == "siteContent" && page == $page] {
   _id, page, section, headline, subheadline, body, ctaText, ctaHref
 }`;
 
-export const sponsorPackagesByProgramQuery = `*[_type == "programSponsorPackage" && program->slug.current == $slug && active == true] | order(sortOrder asc) {
-  _id, tierName, tierGroup, price, priceDisplay, deliverables,
-  boothSize, maxSponsors, bloomerangFormUrl, sortOrder, featured
-}`;
-
-export const allSponsorPackagesQuery = `*[_type == "programSponsorPackage" && active == true] | order(sortOrder asc) {
-  _id, tierName, tierGroup, price, priceDisplay, deliverables,
-  boothSize, featured,
-  "programTitle": program->title,
-  "programSlug": program->slug.current
-}`;
 
 export const eventGalleryQuery = `*[_type == "event" && program->slug.current == $slug && status == "Closed" && displayOnWebsite == true && defined(galleryImages)] | order(year desc) {
   _id, title, year, dateStart, location, shortDescription,

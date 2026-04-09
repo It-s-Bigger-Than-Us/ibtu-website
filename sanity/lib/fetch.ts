@@ -34,15 +34,6 @@ export async function getPillars() {
 export async function getPartners() {
   return client.fetch(q.partnersByCategoryQuery);
 }
-export async function getSponsorTiers() {
-  return client.fetch(q.sponsorTiersQuery);
-}
-export async function getSponsorPackages(slug: string) {
-  return client.fetch(q.sponsorPackagesByProgramQuery, { slug });
-}
-export async function getAllSponsorPackages() {
-  return client.fetch(q.allSponsorPackagesQuery);
-}
 export async function getEventGallery(slug: string) {
   return client.fetch(q.eventGalleryQuery, { slug });
 }
