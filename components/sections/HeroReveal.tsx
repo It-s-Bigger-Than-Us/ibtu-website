@@ -1,17 +1,16 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import gsap from 'gsap'
 import Image from 'next/image'
 
 /* ═══════════════════════════════════════
    HERO REVEAL — Homepage hero
-   1. "IT'S BIGGER THAN US" wipes in from sides
-      on YELLOW background
-   2. IBTU logo circle-wipes from center on
-      IRIDESCENT background
-   3. Logo zooms through page → volunteer section
-      on YELLOW background
+   1. "IT'S BIGGER THAN US" wipes in on yellow
+   2. Logo circle-wipes on iridescent bg
+   3. Logo zooms through → reveals fullscreen video
+   4. Video plays to completion
+   5. Video fades out → volunteer section revealed
 ═══════════════════════════════════════ */
 
 export default function HeroReveal() {
@@ -21,7 +20,26 @@ export default function HeroReveal() {
   const textContainerRef = useRef<HTMLDivElement>(null)
   const logoRef = useRef<HTMLDivElement>(null)
   const iridBgRef = useRef<HTMLDivElement>(null)
+  const videoLayerRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
   const splitRef = useRef<HTMLDivElement>(null)
+  const [videoReady, setVideoReady] = useState(false)
+
+  const handleVideoEnd = useCallback(() => {
+    if (!videoLayerRef.current || !splitRef.current) return
+
+    const tl = gsap.timeline()
+    tl.to(videoLayerRef.current, {
+      opacity: 0,
+      duration: 1.2,
+      ease: 'power2.inOut',
+    })
+    tl.to(
+      splitRef.current,
+      { opacity: 1, duration: 0.8, ease: 'power2.out' },
+      '-=0.6',
+    )
+  }, [])
 
   useEffect(() => {
     if (
@@ -30,15 +48,17 @@ export default function HeroReveal() {
       !textContainerRef.current ||
       !logoRef.current ||
       !iridBgRef.current ||
+      !videoLayerRef.current ||
       !splitRef.current
     ) return
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline()
 
-      // Setup: hide logo, iridescent bg, and split content initially
+      // Setup: hide layers
       gsap.set(logoRef.current!, { opacity: 0 })
       gsap.set(iridBgRef.current!, { opacity: 0 })
+      gsap.set(videoLayerRef.current!, { opacity: 0 })
       gsap.set(splitRef.current!, { opacity: 0 })
 
       // ─── Phase 1: Text wipes in from both sides (yellow bg) ───
@@ -58,7 +78,7 @@ export default function HeroReveal() {
       // Hold on the title
       tl.to({}, { duration: 0.4 })
 
-      // ─── Phase 2: Text fades, iridescent bg appears, logo circle-wipes ───
+      // ─── Phase 2: Text fades, iridescent bg, logo circle-wipe ───
       tl.to(textContainerRef.current!, {
         opacity: 0,
         scale: 0.9,
@@ -66,21 +86,16 @@ export default function HeroReveal() {
         ease: 'power2.in',
       })
 
-      // Iridescent background fades in behind logo
       tl.to(iridBgRef.current!, {
         opacity: 1,
         duration: 0.3,
         ease: 'power2.out',
       })
 
-      // Logo appears tiny at center, circle expands to reveal it
       tl.set(logoRef.current!, { opacity: 1, scale: 0.05 })
       tl.fromTo(
         logoRef.current!,
-        {
-          clipPath: 'circle(0% at 50% 50%)',
-          scale: 0.05,
-        },
+        { clipPath: 'circle(0% at 50% 50%)', scale: 0.05 },
         {
           clipPath: 'circle(60% at 50% 50%)',
           scale: 1,
@@ -92,7 +107,13 @@ export default function HeroReveal() {
       // Hold on logo
       tl.to({}, { duration: 0.2 })
 
-      // ─── Phase 3: Logo zooms through the page ───
+      // ─── Phase 3: Logo zooms through → video revealed ───
+      // Bring video layer visible behind logo
+      tl.to(videoLayerRef.current!, {
+        opacity: 1,
+        duration: 0.2,
+      }, '-=0.1')
+
       tl.to(logoRef.current!, {
         scale: 40,
         opacity: 0,
@@ -100,23 +121,35 @@ export default function HeroReveal() {
         ease: 'power3.in',
       })
 
-      // Iridescent bg fades out as logo zooms
       tl.to(iridBgRef.current!, {
         opacity: 0,
         duration: 0.3,
       }, '-=0.4')
 
-      // Split content fades in as logo zooms through
-      tl.fromTo(
-        splitRef.current!,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.4, ease: 'power2.out' },
-        '-=0.3',
-      )
+      // Start video playback once animation reveals it
+      tl.call(() => {
+        setVideoReady(true)
+      })
+
+      // Fade out the text container and yellow bg
+      tl.to(textContainerRef.current!, {
+        display: 'none',
+        duration: 0,
+      })
     })
 
     return () => ctx.revert()
   }, [])
+
+  // Play video when ready
+  useEffect(() => {
+    if (videoReady && videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Autoplay blocked — reveal volunteer section directly
+        handleVideoEnd()
+      })
+    }
+  }, [videoReady, handleVideoEnd])
 
   return (
     <section
@@ -137,7 +170,7 @@ export default function HeroReveal() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          zIndex: 3,
+          zIndex: 10,
           overflow: 'hidden',
         }}
       >
@@ -180,13 +213,13 @@ export default function HeroReveal() {
         </h1>
       </div>
 
-      {/* ─── Iridescent background layer (appears behind logo) ─── */}
+      {/* ─── Iridescent background (behind logo) ─── */}
       <div
         ref={iridBgRef}
         style={{
           position: 'absolute',
           inset: 0,
-          zIndex: 3,
+          zIndex: 9,
           background: 'var(--holo-gradient)',
           backgroundSize: '600% 600%',
           animation: 'holo-shift 20s ease infinite',
@@ -195,12 +228,12 @@ export default function HeroReveal() {
         }}
       />
 
-      {/* ─── Phase 2: Logo circle-wipe from center (on iridescent bg) ─── */}
+      {/* ─── Phase 2: Logo circle-wipe ─── */}
       <div
         ref={logoRef}
         style={{
           position: 'absolute',
-          zIndex: 4,
+          zIndex: 11,
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
@@ -220,7 +253,36 @@ export default function HeroReveal() {
         />
       </div>
 
-      {/* ─── Phase 3: Volunteer section (YELLOW background) ─── */}
+      {/* ─── Phase 3: Fullscreen video (plays after logo reveal) ─── */}
+      <div
+        ref={videoLayerRef}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 5,
+          background: '#000',
+          opacity: 0,
+        }}
+      >
+        <video
+          ref={videoRef}
+          muted
+          playsInline
+          preload="auto"
+          onEnded={handleVideoEnd}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        >
+          <source src="/videos/hero-reel.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* ─── Phase 4: Volunteer section (revealed when video ends) ─── */}
       <div
         ref={splitRef}
         data-hero-split=""
@@ -309,7 +371,7 @@ export default function HeroReveal() {
           </a>
         </div>
 
-        {/* Right: IBTU bucket coastal cleanup photo */}
+        {/* Right: Coastal cleanup photo */}
         <div
           style={{
             width: '50%',
