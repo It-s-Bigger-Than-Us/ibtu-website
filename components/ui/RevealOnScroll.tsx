@@ -28,28 +28,26 @@ export default function RevealOnScroll({
     if (!ref.current) return;
     const el = ref.current;
 
-    gsap.fromTo(
-      el,
-      { y, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration,
-        delay,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-          once: true,
-        },
-      }
-    );
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { y, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration,
+          delay,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            once: true,
+          },
+        }
+      );
+    });
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === el) t.kill();
-      });
-    };
+    return () => ctx.revert();
   }, [delay, y, duration]);
 
   return (

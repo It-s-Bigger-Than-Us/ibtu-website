@@ -40,22 +40,26 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
     const cards = gridRef.current?.querySelectorAll('.program-card-v2')
     if (!cards?.length) return
 
-    gsap.fromTo(cards,
-      { y: 80, rotateZ: 2, opacity: 0 },
-      {
-        y: 0,
-        rotateZ: 0,
-        opacity: 1,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: 'expo.out',
-        scrollTrigger: {
-          trigger: gridRef.current,
-          start: 'top 75%',
-          once: true,
-        },
-      }
-    )
+    const ctx = gsap.context(() => {
+      gsap.fromTo(cards,
+        { y: 80, rotateZ: 2, opacity: 0 },
+        {
+          y: 0,
+          rotateZ: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: 'top 75%',
+            once: true,
+          },
+        }
+      )
+    })
+
+    return () => ctx.revert()
   }, [programs])
 
   return (

@@ -33,20 +33,23 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
 
   useEffect(() => {
     if (open && linksRef.current) {
-      const links = linksRef.current.querySelectorAll('.menu-link')
-      gsap.fromTo(
-        links,
-        { x: -30, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.5,
-          stagger: 0.06,
-          ease: 'expo.out',
-          delay: 0.2,
-        }
-      )
+      const ctx = gsap.context(() => {
+        const links = linksRef.current!.querySelectorAll('.menu-link')
+        gsap.fromTo(
+          links,
+          { x: -30, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.06,
+            ease: 'expo.out',
+            delay: 0.2,
+          }
+        )
+      })
       setTimeout(() => firstLinkRef.current?.focus(), 300)
+      return () => ctx.revert()
     }
   }, [open])
 
@@ -116,22 +119,6 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
         <nav ref={linksRef} aria-label="Main navigation" style={{ position: 'relative', zIndex: 1 }}>
           {navLinks.map((link, i) => {
             const isExternal = link.href.startsWith('http')
-            const linkStyle = {
-              display: 'block',
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(28px, 4vw, 48px)',
-              textTransform: 'uppercase' as const,
-              color: 'var(--ibtu-black)',
-              textDecoration: 'none',
-              lineHeight: 1.15,
-              letterSpacing: '-0.01em',
-              padding: '4px 0',
-              opacity: 0,
-              transition: 'color 0.2s',
-              whiteSpace: 'normal' as const,
-            }
-            const hoverIn = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-white)' }
-            const hoverOut = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.color = 'var(--ibtu-black)' }
 
             return isExternal ? (
               <a
@@ -141,9 +128,6 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
                 rel="noopener noreferrer"
                 className="menu-link"
                 onClick={onClose}
-                style={linkStyle}
-                onMouseEnter={hoverIn}
-                onMouseLeave={hoverOut}
               >
                 {link.label}
               </a>
@@ -154,9 +138,6 @@ export default function MenuDropdown({ open, onClose }: MenuDropdownProps) {
                 ref={i === 0 ? firstLinkRef : undefined}
                 className="menu-link"
                 onClick={onClose}
-                style={linkStyle}
-                onMouseEnter={hoverIn}
-                onMouseLeave={hoverOut}
               >
                 {link.label}
               </Link>

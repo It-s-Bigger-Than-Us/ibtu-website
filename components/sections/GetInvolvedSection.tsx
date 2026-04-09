@@ -45,26 +45,29 @@ export default function GetInvolvedSection() {
       }, 320);
     }
 
-    ScrollTrigger.create({
-      trigger: "#s-volunteer",
-      start: "top 60%",
-      once: true,
-      onEnter: () => {
-        flipInterval = setInterval(doFlip, 800);
-      },
-    });
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: "#s-volunteer",
+        start: "top 60%",
+        once: true,
+        onEnter: () => {
+          flipInterval = setInterval(doFlip, 800);
+        },
+      });
 
-    gsap.from(".vol-tag, .vol-head, .vol-options", {
-      y: 40,
-      opacity: 0,
-      stagger: 0.12,
-      duration: 0.9,
-      ease: "power3.out",
-      scrollTrigger: { trigger: "#s-volunteer", start: "top 65%", once: true },
+      gsap.from(".vol-tag, .vol-head, .vol-options", {
+        y: 40,
+        opacity: 0,
+        stagger: 0.12,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: { trigger: "#s-volunteer", start: "top 65%", once: true },
+      });
     });
 
     return () => {
       if (flipInterval) clearInterval(flipInterval);
+      ctx.revert();
     };
   }, []);
 

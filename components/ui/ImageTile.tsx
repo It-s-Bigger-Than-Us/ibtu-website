@@ -33,44 +33,42 @@ export default function ImageTile({
     const container = containerRef.current;
     const img = imgRef.current;
 
-    // Parallax: image moves slower than scroll
-    gsap.fromTo(
-      img,
-      { y: -50 * parallaxSpeed },
-      {
-        y: 50 * parallaxSpeed,
-        ease: "none",
-        scrollTrigger: {
-          trigger: container,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-      }
-    );
+    const ctx = gsap.context(() => {
+      // Parallax: image moves slower than scroll
+      gsap.fromTo(
+        img,
+        { y: -50 * parallaxSpeed },
+        {
+          y: 50 * parallaxSpeed,
+          ease: "none",
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
+          },
+        }
+      );
 
-    // Fade in on reveal
-    gsap.fromTo(
-      container,
-      { opacity: 0, scale: 1.02 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: container,
-          start: "top 90%",
-          once: true,
-        },
-      }
-    );
+      // Fade in on reveal
+      gsap.fromTo(
+        container,
+        { opacity: 0, scale: 1.02 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: container,
+            start: "top 90%",
+            once: true,
+          },
+        }
+      );
+    });
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === container) t.kill();
-      });
-    };
+    return () => ctx.revert();
   }, [parallaxSpeed]);
 
   return (

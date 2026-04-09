@@ -249,20 +249,6 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
               <div
                 key={stat.label}
                 className="stat-card gsap-reveal holo-glass"
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'var(--ibtu-black)'
-                  const num = e.currentTarget.querySelector('.stat-num') as HTMLElement
-                  const label = e.currentTarget.querySelector('.stat-label') as HTMLElement
-                  if (num) num.style.color = 'var(--ibtu-gold)'
-                  if (label) label.style.color = 'var(--ibtu-gold)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'var(--ibtu-gold)'
-                  const num = e.currentTarget.querySelector('.stat-num') as HTMLElement
-                  const label = e.currentTarget.querySelector('.stat-label') as HTMLElement
-                  if (num) num.style.color = 'var(--ibtu-black)'
-                  if (label) label.style.color = 'var(--ibtu-black)'
-                }}
               >
                 <span
                   ref={el => { numRefs.current[i] = el }}
@@ -419,11 +405,18 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
           border-radius: 16px;
           padding: clamp(20px, 2.5vw, 40px);
           cursor: pointer;
-          transition: background 0.4s var(--ease-out-expo), color 0.4s;
+          transition: background 0.4s var(--ease-out-expo);
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           min-height: 140px;
+        }
+        .stat-card:hover {
+          background: var(--ibtu-black);
+        }
+        .stat-card:hover .stat-num,
+        .stat-card:hover .stat-label {
+          color: var(--ibtu-gold);
         }
 
         .stat-num {
@@ -458,7 +451,7 @@ export default function PillarCubes({ stats = [] }: PillarCubesProps) {
             margin: 0 auto;
           }
           .stats-grid {
-            grid-template-columns: 1fr 1fr !important;
+            grid-template-columns: 1fr 1fr;
           }
         }
         @media (max-width: 480px) {

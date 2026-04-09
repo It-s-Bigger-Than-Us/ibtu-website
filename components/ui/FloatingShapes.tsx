@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 
 /* ═══════════════════════════════════════
    FLOATING 3D SHAPES — CSS/SVG
@@ -137,10 +137,6 @@ export default function FloatingShapes({
 }: FloatingShapesProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const shapes = generateShapes(count, seed)
-
-  useEffect(() => {
-    // Shapes are CSS-animated, no JS needed
-  }, [])
 
   return (
     <div

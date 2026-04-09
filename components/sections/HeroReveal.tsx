@@ -33,87 +33,89 @@ export default function HeroReveal() {
       !splitRef.current
     ) return
 
-    const tl = gsap.timeline()
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline()
 
-    // Setup: hide logo, iridescent bg, and split content initially
-    gsap.set(logoRef.current, { opacity: 0 })
-    gsap.set(iridBgRef.current, { opacity: 0 })
-    gsap.set(splitRef.current, { opacity: 0 })
+      // Setup: hide logo, iridescent bg, and split content initially
+      gsap.set(logoRef.current!, { opacity: 0 })
+      gsap.set(iridBgRef.current!, { opacity: 0 })
+      gsap.set(splitRef.current!, { opacity: 0 })
 
-    // ─── Phase 1: Text wipes in from both sides (yellow bg) ───
-    tl.fromTo(
-      leftTextRef.current,
-      { x: '-120%', opacity: 0 },
-      { x: '0%', opacity: 1, duration: 0.6, ease: 'power3.out' },
-      0,
-    )
-    tl.fromTo(
-      rightTextRef.current,
-      { x: '120%', opacity: 0 },
-      { x: '0%', opacity: 1, duration: 0.6, ease: 'power3.out' },
-      0,
-    )
+      // ─── Phase 1: Text wipes in from both sides (yellow bg) ───
+      tl.fromTo(
+        leftTextRef.current!,
+        { x: '-120%', opacity: 0 },
+        { x: '0%', opacity: 1, duration: 0.6, ease: 'power3.out' },
+        0,
+      )
+      tl.fromTo(
+        rightTextRef.current!,
+        { x: '120%', opacity: 0 },
+        { x: '0%', opacity: 1, duration: 0.6, ease: 'power3.out' },
+        0,
+      )
 
-    // Hold on the title
-    tl.to({}, { duration: 0.4 })
+      // Hold on the title
+      tl.to({}, { duration: 0.4 })
 
-    // ─── Phase 2: Text fades, iridescent bg appears, logo circle-wipes ───
-    tl.to(textContainerRef.current, {
-      opacity: 0,
-      scale: 0.9,
-      duration: 0.3,
-      ease: 'power2.in',
+      // ─── Phase 2: Text fades, iridescent bg appears, logo circle-wipes ───
+      tl.to(textContainerRef.current!, {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.3,
+        ease: 'power2.in',
+      })
+
+      // Iridescent background fades in behind logo
+      tl.to(iridBgRef.current!, {
+        opacity: 1,
+        duration: 0.3,
+        ease: 'power2.out',
+      })
+
+      // Logo appears tiny at center, circle expands to reveal it
+      tl.set(logoRef.current!, { opacity: 1, scale: 0.05 })
+      tl.fromTo(
+        logoRef.current!,
+        {
+          clipPath: 'circle(0% at 50% 50%)',
+          scale: 0.05,
+        },
+        {
+          clipPath: 'circle(60% at 50% 50%)',
+          scale: 1,
+          duration: 0.7,
+          ease: 'expo.out',
+        },
+      )
+
+      // Hold on logo
+      tl.to({}, { duration: 0.2 })
+
+      // ─── Phase 3: Logo zooms through the page ───
+      tl.to(logoRef.current!, {
+        scale: 40,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'power3.in',
+      })
+
+      // Iridescent bg fades out as logo zooms
+      tl.to(iridBgRef.current!, {
+        opacity: 0,
+        duration: 0.3,
+      }, '-=0.4')
+
+      // Split content fades in as logo zooms through
+      tl.fromTo(
+        splitRef.current!,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.4, ease: 'power2.out' },
+        '-=0.3',
+      )
     })
 
-    // Iridescent background fades in behind logo
-    tl.to(iridBgRef.current, {
-      opacity: 1,
-      duration: 0.3,
-      ease: 'power2.out',
-    })
-
-    // Logo appears tiny at center, circle expands to reveal it
-    tl.set(logoRef.current, { opacity: 1, scale: 0.05 })
-    tl.fromTo(
-      logoRef.current,
-      {
-        clipPath: 'circle(0% at 50% 50%)',
-        scale: 0.05,
-      },
-      {
-        clipPath: 'circle(60% at 50% 50%)',
-        scale: 1,
-        duration: 0.7,
-        ease: 'expo.out',
-      },
-    )
-
-    // Hold on logo
-    tl.to({}, { duration: 0.2 })
-
-    // ─── Phase 3: Logo zooms through the page ───
-    tl.to(logoRef.current, {
-      scale: 40,
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power3.in',
-    })
-
-    // Iridescent bg fades out as logo zooms
-    tl.to(iridBgRef.current, {
-      opacity: 0,
-      duration: 0.3,
-    }, '-=0.4')
-
-    // Split content fades in as logo zooms through
-    tl.fromTo(
-      splitRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.4, ease: 'power2.out' },
-      '-=0.3',
-    )
-
-    return () => { tl.kill() }
+    return () => ctx.revert()
   }, [])
 
   return (

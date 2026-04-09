@@ -9,24 +9,27 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function MissionSection() {
   useEffect(() => {
-    gsap.to("#mission-text", {
-      y: 0,
-      opacity: 1,
-      duration: 0.9,
-      ease: "power3.out",
-      scrollTrigger: { trigger: "#s-mission", start: "top 65%", once: true },
+    const ctx = gsap.context(() => {
+      gsap.to("#mission-text", {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: { trigger: "#s-mission", start: "top 65%", once: true },
+      });
+      gsap.to("#mission-detail-inner", {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "#s-mission-detail",
+          start: "top 60%",
+          once: true,
+        },
+      });
     });
-    gsap.to("#mission-detail-inner", {
-      y: 0,
-      opacity: 1,
-      duration: 0.9,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: "#s-mission-detail",
-        start: "top 60%",
-        once: true,
-      },
-    });
+    return () => ctx.revert();
   }, []);
 
   return (

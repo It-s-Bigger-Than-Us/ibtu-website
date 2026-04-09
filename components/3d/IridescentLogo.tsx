@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Text, MeshTransmissionMaterial } from "@react-three/drei";
+import { Text } from "@react-three/drei";
 import * as THREE from "three";
 
 function LogoCoin() {

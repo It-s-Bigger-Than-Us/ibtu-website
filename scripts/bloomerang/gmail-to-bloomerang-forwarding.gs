@@ -1,8 +1,11 @@
 /**
  * Gmail → Bloomerang Auto-Forward Script
  *
- * Forwards past sent emails to Bloomerang's BCC address so they get
- * logged as full interactions with email body + thread content.
+ * Forwards sent emails to Bloomerang's BCC address so they get
+ * logged as full interactions in the CRM with email body + thread content.
+ *
+ * Each staff member has their own Bloomerang BCC address.
+ * The script detects who sent the email and forwards to the correct BCC.
  *
  * SETUP:
  * 1. Go to script.google.com
@@ -10,7 +13,7 @@
  * 3. Paste this entire script
  * 4. Click Run → select "forwardBatch" → Authorize
  * 5. It will process 80 emails per run (well under Gmail limits)
- * 6. Set up a time-based trigger to run every hour until done
+ * 6. Run "setupHourlyTrigger" to auto-run every hour
  *
  * LIMITS BUILT IN:
  * - 80 emails per batch (Gmail daily limit: 500 for Workspace, this stays safe)
@@ -18,25 +21,40 @@
  * - Tracks progress in Script Properties (remembers where it left off)
  * - Skips internal emails (@itsbiggerthanusla.org → @itsbiggerthanusla.org)
  * - Skips system emails (google, noreply, calendar, bloomerang, qgiv)
- * - Exclusion list for specific contacts
  * - Won't re-forward emails already processed
  *
- * COST: $0 — Google Apps Script is free, forwarding uses your existing Gmail
- *
- * TO RUN FOR DIFFERENT TEAM MEMBERS:
- * Each person runs this from THEIR OWN Google account at script.google.com
- * Or you run it as admin using domain-wide delegation
+ * COST: $0
  */
 
 // ═══════════════════════════════════════
-// CONFIGURATION — edit these
+// CONFIGURATION
 // ═══════════════════════════════════════
 
-const BLOOMERANG_BCC = "bcc156679168@bloomerang.me"; // Your Bloomerang BCC address
-const BATCH_SIZE = 80; // Emails per run (keep under 100 to be safe)
-const DELAY_MS = 2000; // 2 seconds between forwards
-const DAYS_BACK = 365; // How far back to go (365 = 1 year)
+// Each staff member's Bloomerang BCC address
+const BLOOMERANG_BCC_MAP = {
+  "molly@itsbiggerthanusla.org": "bcc156679168@bloomerang.me",
+  "tyrone@itsbiggerthanusla.org": "bcc155884623@bloomerang.me",
+  "cwright@itsbiggerthanusla.org": "bcc236431406@bloomerang.me",
+  "danielle@itsbiggerthanusla.org": "bcc236423209@bloomerang.me",
+  "data@itsbiggerthanusla.org": "bcc216733812@bloomerang.me",
+};
+
+// Fallback BCC if sender not in map (logs under Molly)
+const BLOOMERANG_BCC_DEFAULT = "bcc156679168@bloomerang.me";
+
+const BATCH_SIZE = 80;
+const DELAY_MS = 2000;
 const DRY_RUN = true; // SET TO false WHEN READY TO ACTUALLY FORWARD
+
+// Cutoff dates per person — don't backfill before these dates
+const BACKFILL_CUTOFFS = {
+  "molly@itsbiggerthanusla.org": "2024/08/01",
+  "tyrone@itsbiggerthanusla.org": "2024/08/01",
+  // Everyone else: no cutoff (backfill all available history)
+};
+
+// Default cutoff if not in map (2 years back)
+const DEFAULT_CUTOFF = "2022/01/01";
 
 // Emails to SKIP
 const EXCLUDED_DOMAINS = [
@@ -68,12 +86,11 @@ function forwardBatch() {
   const totalForwarded = parseInt(props.getProperty("totalForwarded") || "0");
   const processedIds = JSON.parse(props.getProperty("processedIds") || "[]");
 
-  // Search for sent emails to external recipients
-  const cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - DAYS_BACK);
-  const dateStr = Utilities.formatDate(cutoffDate, "America/Los_Angeles", "yyyy/MM/dd");
+  // Determine cutoff date for the current user
+  const currentUser = Session.getActiveUser().getEmail().toLowerCase();
+  const cutoffStr = BACKFILL_CUTOFFS[currentUser] || DEFAULT_CUTOFF;
 
-  const query = "in:sent after:" + dateStr;
+  const query = "in:sent after:" + cutoffStr;
   const threads = GmailApp.search(query, 0, BATCH_SIZE * 2); // Get extra to account for skips
 
   Logger.log("Found " + threads.length + " sent threads to process");
@@ -115,18 +132,21 @@ function forwardBatch() {
         continue;
       }
 
+      // Determine which Bloomerang BCC to use based on sender
+      const senderEmail = from.match(/[\w.-]+@[\w.-]+/);
+      const bccAddress = senderEmail ? (BLOOMERANG_BCC_MAP[senderEmail[0]] || BLOOMERANG_BCC_DEFAULT) : BLOOMERANG_BCC_DEFAULT;
+
       // Forward to Bloomerang
       if (DRY_RUN) {
-        Logger.log("[DRY RUN] Would forward: " + message.getSubject() + " → " + to);
+        Logger.log("[DRY RUN] Would forward: " + message.getSubject() + " → " + to + " (BCC: " + bccAddress + ")");
       } else {
         try {
-          message.forward(BLOOMERANG_BCC);
-          Logger.log("✅ Forwarded: " + message.getSubject().substring(0, 60) + " → " + to);
+          message.forward(bccAddress);
+          Logger.log("Forwarded: " + message.getSubject().substring(0, 60) + " → " + bccAddress);
         } catch (e) {
-          Logger.log("⚠️ Failed: " + message.getSubject() + " — " + e.message);
+          Logger.log("Failed: " + message.getSubject() + " — " + e.message);
         }
 
-        // Delay to avoid rate limits
         Utilities.sleep(DELAY_MS);
       }
 
@@ -171,6 +191,144 @@ function shouldSkip(email) {
 }
 
 // ═══════════════════════════════════════
+// INBOX BACKFILL — Forward received emails too
+// ═══════════════════════════════════════
+
+function forwardInboxBatch() {
+  const props = PropertiesService.getScriptProperties();
+  const inboxForwarded = parseInt(props.getProperty("inboxForwarded") || "0");
+  const inboxProcessedIds = JSON.parse(props.getProperty("inboxProcessedIds") || "[]");
+
+  const currentUser = Session.getActiveUser().getEmail().toLowerCase();
+  const cutoffStr = BACKFILL_CUTOFFS[currentUser] || DEFAULT_CUTOFF;
+  const senderEmail = currentUser;
+  const bccAddress = BLOOMERANG_BCC_MAP[senderEmail] || BLOOMERANG_BCC_DEFAULT;
+
+  // Search for received emails from external senders
+  const query = "in:inbox after:" + cutoffStr + " -from:itsbiggerthanusla.org -from:google.com -from:noreply -from:no-reply -category:promotions -category:social -category:updates";
+  const threads = GmailApp.search(query, 0, BATCH_SIZE * 2);
+
+  Logger.log("Found " + threads.length + " inbox threads to process");
+
+  let forwarded = 0;
+  let skipped = 0;
+
+  for (const thread of threads) {
+    if (forwarded >= BATCH_SIZE) break;
+
+    const messages = thread.getMessages();
+    // Only forward the FIRST external message in each thread (creates the interaction in Bloomerang)
+    const firstMessage = messages[0];
+    const messageId = firstMessage.getId();
+
+    if (inboxProcessedIds.indexOf(messageId) !== -1) {
+      skipped++;
+      continue;
+    }
+
+    const from = firstMessage.getFrom().toLowerCase();
+    if (shouldSkip(from)) {
+      skipped++;
+      inboxProcessedIds.push(messageId);
+      continue;
+    }
+
+    if (DRY_RUN) {
+      Logger.log("[DRY RUN] Would forward inbox: " + firstMessage.getSubject() + " from " + from + " (BCC: " + bccAddress + ")");
+    } else {
+      try {
+        firstMessage.forward(bccAddress);
+        Logger.log("Forwarded inbox: " + firstMessage.getSubject().substring(0, 60));
+      } catch (e) {
+        Logger.log("Failed: " + firstMessage.getSubject() + " — " + e.message);
+      }
+      Utilities.sleep(DELAY_MS);
+    }
+
+    forwarded++;
+    inboxProcessedIds.push(messageId);
+  }
+
+  const trimmedIds = inboxProcessedIds.slice(-5000);
+  props.setProperty("inboxProcessedIds", JSON.stringify(trimmedIds));
+  props.setProperty("inboxForwarded", String(inboxForwarded + forwarded));
+
+  Logger.log("Inbox batch: forwarded " + forwarded + " | skipped " + skipped + " | DRY_RUN: " + DRY_RUN);
+}
+
+// ═══════════════════════════════════════
+// PROFILE EXTRACTION — Parse email signatures for contact info
+// ═══════════════════════════════════════
+
+function extractContactProfiles() {
+  const currentUser = Session.getActiveUser().getEmail().toLowerCase();
+  const cutoffStr = BACKFILL_CUTOFFS[currentUser] || DEFAULT_CUTOFF;
+
+  // Search for external emails with likely signatures
+  const query = "after:" + cutoffStr + " -from:itsbiggerthanusla.org -from:google.com -from:noreply -category:promotions";
+  const threads = GmailApp.search(query, 0, 200);
+
+  const contacts = {};
+
+  for (const thread of threads) {
+    const messages = thread.getMessages();
+    for (const message of messages) {
+      const from = message.getFrom();
+      const body = message.getPlainBody() || "";
+
+      // Extract email
+      const emailMatch = from.match(/[\w.-]+@[\w.-]+/);
+      if (!emailMatch) continue;
+      const email = emailMatch[0].toLowerCase();
+      if (email.includes("itsbiggerthanusla.org") || email.includes("noreply") || email.includes("google.com")) continue;
+
+      if (!contacts[email]) {
+        contacts[email] = { email: email, name: "", org: "", title: "", phone: "", address: "", website: "" };
+      }
+
+      // Extract name from "Name <email>" format
+      if (!contacts[email].name && from.includes("<")) {
+        contacts[email].name = from.split("<")[0].replace(/"/g, "").trim();
+      }
+
+      // Parse signature from last 20 lines of email body
+      const lines = body.split("\n").slice(-25);
+      const sigText = lines.join("\n");
+
+      // Phone patterns
+      const phoneMatch = sigText.match(/(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})/);
+      if (phoneMatch && !contacts[email].phone) {
+        contacts[email].phone = phoneMatch[1];
+      }
+
+      // Title patterns (common nonprofit/business titles)
+      const titlePatterns = /(?:^|\n)\s*((?:executive |associate |assistant |deputy |chief |senior |junior |vice )?(?:director|manager|coordinator|specialist|officer|president|ceo|cfo|coo|cto|founder|co-founder|partner|counsel|attorney|advisor|consultant|analyst|developer|engineer|designer|planner|secretary|treasurer|chair)(?:\s+of\s+\w+)?)/im;
+      const titleMatch = sigText.match(titlePatterns);
+      if (titleMatch && !contacts[email].title) {
+        contacts[email].title = titleMatch[1].trim();
+      }
+
+      // Website patterns
+      const webMatch = sigText.match(/(https?:\/\/(?:www\.)?[\w.-]+\.\w{2,})/i);
+      if (webMatch && !contacts[email].website) {
+        contacts[email].website = webMatch[1];
+      }
+    }
+  }
+
+  // Log results to a spreadsheet
+  const ss = SpreadsheetApp.create("Bloomerang Contact Enrichment — " + Utilities.formatDate(new Date(), "America/Los_Angeles", "yyyy-MM-dd"));
+  const sheet = ss.getActiveSheet();
+  sheet.appendRow(["Email", "Name", "Organization", "Title", "Phone", "Address", "Website", "Source"]);
+
+  for (const [email, info] of Object.entries(contacts)) {
+    sheet.appendRow([info.email, info.name, info.org, info.title, info.phone, info.address, info.website, "Gmail signature extraction"]);
+  }
+
+  Logger.log("Extracted " + Object.keys(contacts).length + " contact profiles → " + ss.getUrl());
+}
+
+// ═══════════════════════════════════════
 // UTILITY — reset progress (start over)
 // ═══════════════════════════════════════
 
@@ -202,14 +360,20 @@ function setupHourlyTrigger() {
     ScriptApp.deleteTrigger(trigger);
   }
 
-  // Create new hourly trigger
+  // Sent email forwarding — every hour
   ScriptApp.newTrigger("forwardBatch")
     .timeBased()
     .everyHours(1)
     .create();
 
-  Logger.log("Hourly trigger created. Will process " + BATCH_SIZE + " emails per hour.");
-  Logger.log("At this rate, 1 year of emails (~2000) will take about 25 hours.");
+  // Inbox email forwarding — every hour (offset by 30 min)
+  ScriptApp.newTrigger("forwardInboxBatch")
+    .timeBased()
+    .everyHours(1)
+    .create();
+
+  Logger.log("Hourly triggers created for both sent + inbox forwarding.");
+  Logger.log("Will process " + BATCH_SIZE + " sent + " + BATCH_SIZE + " inbox emails per hour.");
 }
 
 // ═══════════════════════════════════════

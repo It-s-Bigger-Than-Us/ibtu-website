@@ -29,9 +29,9 @@
 :root {
   /* Core palette — NO GREY, NO RGBA, NO OPACITY REDUCTIONS */
   --gold: #FFC700;
-  --ibtu-gold: #FFC700;
-  --black: #000;
-  --ibtu-black: #000000;
+  --ibtu-gold: var(--gold);
+  --black: #000000;
+  --ibtu-black: var(--black);
   --ibtu-white: #FFFFFF;
   --warm-white: #FFFFFF;
 
@@ -305,13 +305,6 @@ div:has(> video), div:has(> img) {
   min-height: 1px;
 }
 
-/* Ribbon ticker — reusable for any scrolling text bar */
-.ribbon-track {
-  display: flex;
-  width: max-content;
-  animation: tickerScroll 25s linear infinite;
-}
-
 @keyframes coinSpin {
   0% { transform: perspective(600px) rotateY(0deg); }
   100% { transform: perspective(600px) rotateY(360deg); }
@@ -337,58 +330,12 @@ div:has(> video), div:has(> img) {
   font-weight: 400;
 }
 
-/* ═══════════════════════════════════════
-   VALUES TICKER
-═══════════════════════════════════════ */
-.ticker-wrap {
-  overflow: hidden;
-  padding: 28px 0;
-  background: var(--gold);
-}
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: tickerScroll var(--ticker-duration, 30s) linear infinite;
-}
-.ticker-track:hover { animation-play-state: paused; }
-.ticker-item {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(14px, 1.4vw, 20px);
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: #000;
-  white-space: nowrap;
-  padding: 0 32px;
-  display: flex; align-items: center; gap: 32px;
-}
-.ticker-item::after {
-  content: '/';
-  color: #000;
-}
 @keyframes tickerScroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
 /* Pillar cards and stats are now component-scoped in PillarCubes.tsx */
-
-/* ═══════════════════════════════════════
-   PHOTO BREAK
-═══════════════════════════════════════ */
-.photo-break {
-  position: relative;
-  height: 65vh; min-height: 400px;
-  overflow: hidden;
-}
-.photo-break img {
-  position: absolute;
-  width: 100%; height: 120%;
-  object-fit: cover;
-  top: -10%;
-  filter: brightness(1.1) saturate(1.15);
-  will-change: transform;
-}
 
 /* ═══════════════════════════════════════
    PROGRAMS GRID
@@ -398,67 +345,11 @@ div:has(> video), div:has(> img) {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-/* Program cards — image ABOVE, gold text area BELOW. No text over image. */
-.program-card {
-  overflow: hidden;
-  cursor: pointer;
-  background: var(--gold);
-  border-radius: 16px;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
-}
-.program-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px #FFC700;
-}
-.program-card img {
-  width: 100%; height: 240px; object-fit: cover;
-  display: block;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: saturate(1.15);
-}
-.program-card:hover img { transform: scale(1.04); }
-.program-card-overlay {
-  padding: clamp(16px, 2vw, 24px);
-  background: var(--gold);
-}
-.program-card-tag {
-  font-family: 'Poppins', sans-serif;
-  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-  color: #000; font-weight: 700;
-  margin-bottom: 4px;
-  opacity: 0; max-height: 0; overflow: hidden;
-  transition: opacity 0.3s, max-height 0.3s;
-}
-.program-card:hover .program-card-tag {
-  opacity: 1; max-height: 30px;
-}
-.program-card-name {
-  font-family: 'LOT', 'Bebas Neue', sans-serif;
-  font-size: clamp(16px, 1.8vw, 24px);
-  text-transform: uppercase;
-  color: #000;
-  line-height: 1.1;
-  word-wrap: break-word;
-}
-.program-card-stat {
-  font-family: 'Poppins', sans-serif;
-  font-size: clamp(10px, 0.8vw, 13px);
-  color: #000;
-  margin-top: 6px;
-  font-weight: 600;
-  opacity: 0; max-height: 0; overflow: hidden;
-  transition: opacity 0.3s 0.1s, max-height 0.3s 0.1s;
-}
-.program-card:hover .program-card-stat {
-  opacity: 1; max-height: 40px;
-}
-
 @media (max-width: 860px) {
   .programs-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 480px) {
   .programs-grid { grid-template-columns: 1fr; }
-  .program-card { aspect-ratio: 4/3; }
 }
 
 /* ═══════════════════════════════════════
@@ -512,7 +403,7 @@ a[style*="border-radius: 16px"],
 a[style*="border-radius:16px"],
 button[style*="border-radius: 16px"],
 button[style*="border-radius:16px"] {
-  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s !important;
+  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s;
 }
 a[style*="border-radius: 16px"]:hover,
 a[style*="border-radius:16px"]:hover,
@@ -566,61 +457,6 @@ button[style*="border-radius:16px"]:hover {
   transform: translateY(-2px);
 }
 
-/* ═══════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════ */
-.site-footer {
-  background: #000;
-  padding: clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px);
-  border-top: 1px solid #FFC700;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: start; gap: 48px;
-  max-width: var(--content-max);
-  margin: 0 auto;
-}
-.foot-logo-img {
-  height: 40px;
-  filter: brightness(0) invert(1);
-}
-.foot-mantra {
-  font-size: 10px; letter-spacing: 3px;
-  color: var(--gold); text-transform: uppercase;
-  margin-top: 12px; font-weight: 600;
-  font-family: 'Poppins', sans-serif;
-}
-.foot-center {
-  text-align: center;
-  font-size: 12px; color: #fff;
-  line-height: 2.2;
-}
-.foot-center a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.25s;
-}
-.foot-center a:hover { color: var(--gold); }
-.foot-right {
-  text-align: right;
-  font-size: 12px; color: #fff;
-  line-height: 2.3;
-}
-.foot-right a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.25s;
-}
-.foot-right a:hover { color: var(--gold); }
-
-@media (max-width: 768px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-  .foot-right { text-align: center; }
-}
 
 /* ═══════════════════════════════════════
    GSAP REVEAL — safe animation target
@@ -650,6 +486,151 @@ button[style*="border-radius:16px"]:hover {
   transform: translateY(0);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+.ibtu-footer {
+  background: var(--ibtu-black);
+  position: relative;
+  overflow: hidden;
+}
+.ibtu-footer-inner {
+  padding: clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px) 0;
+}
+.ibtu-footer-grid {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+  padding-top: 48px;
+  border-top: 0.5px solid var(--ibtu-gold);
+  align-items: start;
+}
+.ibtu-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ibtu-footer-logo { flex-shrink: 0; }
+.ibtu-footer-mantra {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ibtu-gold);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.ibtu-footer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+.ibtu-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+}
+.ibtu-footer-link {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+  letter-spacing: 0.5px;
+}
+.ibtu-footer-link:hover { color: var(--ibtu-gold); }
+.ibtu-footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: right;
+}
+.ibtu-footer-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ibtu-gold);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.ibtu-footer-social {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+.ibtu-footer-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--ibtu-gold);
+  color: var(--ibtu-gold);
+  transition: background 0.2s, color 0.2s;
+}
+.ibtu-footer-social-icon:hover {
+  background: var(--ibtu-gold);
+  color: var(--ibtu-black);
+}
+.ibtu-footer-legal {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ibtu-gold);
+  font-weight: 600;
+  padding-bottom: 24px;
+}
+.ibtu-footer-legal p { margin: 0 0 8px; }
+.ibtu-footer-address {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+/* ═══════════════════════════════════════
+   MENU DROPDOWN LINKS
+═══════════════════════════════════════ */
+.menu-link {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  text-transform: uppercase;
+  color: var(--ibtu-black);
+  text-decoration: none;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  padding: 4px 0;
+  opacity: 0;
+  transition: color 0.2s;
+}
+.menu-link:hover { color: var(--ibtu-white); }
+
+@media (max-width: 768px) {
+  .ibtu-footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 32px;
+  }
+  .ibtu-footer-brand {
+    flex-direction: column;
+    align-items: center;
+  }
+  .ibtu-footer-nav { align-items: center; }
+  .ibtu-footer-links { justify-content: center; }
+  .ibtu-footer-contact { text-align: center; }
+  .ibtu-footer-social { justify-content: center; }
 }
 
 /* ═══════════════════════════════════════
@@ -1047,14 +1028,6 @@ button[style*="border-radius:16px"]:hover {
 .gallery-card--gold .gallery-card-meta { color: #000; }
 .gallery-card--gold .gallery-card-desc { color: #000; }
 
-/* Program card gold variant */
-.program-card--gold {
-  background: var(--gold) !important;
-}
-.program-card--gold .program-card-tag { color: #000; }
-.program-card--gold .program-card-name { color: #000; }
-.program-card--gold .program-card-stat { color: #000; }
-
 /* ═══════════════════════════════════════
    SCREEN READER ONLY UTILITY
 ═══════════════════════════════════════ */
@@ -1093,8 +1066,6 @@ button[style*="border-radius:16px"]:hover {
     transform: none !important;
     clip-path: none !important;
   }
-  .ticker-track,
-  .ribbon-track,
   [style*="tickerScroll"] {
     animation: none !important;
   }

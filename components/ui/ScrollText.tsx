@@ -36,28 +36,26 @@ export default function ScrollText({
     const xMove = direction === "left" ? -100 * speed : direction === "right" ? 100 * speed : 0;
     const yMove = direction === "up" ? -80 * speed : 0;
 
-    gsap.fromTo(
-      el,
-      { x: direction !== "up" ? -xMove : 0, y: direction === "up" ? 60 : 30, opacity: 0 },
-      {
-        x: xMove,
-        y: yMove,
-        opacity: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: el,
-          start: "top 90%",
-          end: "bottom 20%",
-          scrub: 1,
-        },
-      }
-    );
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        el,
+        { x: direction !== "up" ? -xMove : 0, y: direction === "up" ? 60 : 30, opacity: 0 },
+        {
+          x: xMove,
+          y: yMove,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            end: "bottom 20%",
+            scrub: 1,
+          },
+        }
+      );
+    });
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === el) t.kill();
-      });
-    };
+    return () => ctx.revert();
   }, [speed, direction]);
 
   return (

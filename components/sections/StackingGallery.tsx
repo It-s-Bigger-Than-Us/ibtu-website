@@ -29,57 +29,59 @@ export default function StackingGallery({ images, title }: StackingGalleryProps)
   useEffect(() => {
     if (!containerRef.current || !stackRef.current || images.length === 0) return
 
-    const cards = stackRef.current.querySelectorAll('.stack-card')
+    const ctx = gsap.context(() => {
+      const cards = stackRef.current!.querySelectorAll('.stack-card')
 
-    // Pin the container
-    ScrollTrigger.create({
-      trigger: containerRef.current,
-      start: 'top top',
-      end: `+=${images.length * 80}%`,
-      pin: true,
-      scrub: 1,
-    })
+      // Pin the container
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: 'top top',
+        end: `+=${images.length * 80}%`,
+        pin: true,
+        scrub: 1,
+      })
 
-    // Each card slides in from different directions and stacks
-    cards.forEach((card, i) => {
-      if (i === 0) return // First card is already visible
+      // Each card slides in from different directions and stacks
+      cards.forEach((card, i) => {
+        if (i === 0) return // First card is already visible
 
-      const directions = [
-        { x: 200, y: 40, rotation: 5 },
-        { x: -180, y: 60, rotation: -4 },
-        { x: 150, y: -30, rotation: 3 },
-        { x: -120, y: 50, rotation: -6 },
-        { x: 200, y: -20, rotation: 4 },
-        { x: -160, y: 40, rotation: -3 },
-      ]
-      const dir = directions[i % directions.length]
+        const directions = [
+          { x: 200, y: 40, rotation: 5 },
+          { x: -180, y: 60, rotation: -4 },
+          { x: 150, y: -30, rotation: 3 },
+          { x: -120, y: 50, rotation: -6 },
+          { x: 200, y: -20, rotation: 4 },
+          { x: -160, y: 40, rotation: -3 },
+        ]
+        const dir = directions[i % directions.length]
 
-      gsap.fromTo(card,
-        {
-          x: dir.x,
-          y: dir.y,
-          rotation: dir.rotation,
-          opacity: 0,
-          scale: 0.9,
-        },
-        {
-          x: (i % 2 === 0 ? 1 : -1) * (i * 8),
-          y: -(i * 6),
-          rotation: (i % 2 === 0 ? 1 : -1) * (i * 1.5),
-          opacity: 1,
-          scale: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: `${(i / images.length) * 80}% top`,
-            end: `${((i + 0.6) / images.length) * 80}% top`,
-            scrub: 1,
+        gsap.fromTo(card,
+          {
+            x: dir.x,
+            y: dir.y,
+            rotation: dir.rotation,
+            opacity: 0,
+            scale: 0.9,
           },
-        }
-      )
+          {
+            x: (i % 2 === 0 ? 1 : -1) * (i * 8),
+            y: -(i * 6),
+            rotation: (i % 2 === 0 ? 1 : -1) * (i * 1.5),
+            opacity: 1,
+            scale: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: `${(i / images.length) * 80}% top`,
+              end: `${((i + 0.6) / images.length) * 80}% top`,
+              scrub: 1,
+            },
+          }
+        )
+      })
     })
 
-    return () => { ScrollTrigger.getAll().forEach(t => t.kill()) }
+    return () => ctx.revert()
   }, [images])
 
   return (
