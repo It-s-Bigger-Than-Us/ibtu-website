@@ -188,7 +188,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
             >
               <div className="prog-inner" style={{
                 display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
+                gridTemplateColumns: '1fr 3fr',
                 alignItems: 'stretch',
                 gap: 0,
                 minHeight: 'clamp(400px, 50vh, 600px)',
@@ -352,7 +352,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                     position: 'fixed',
                     top: 0,
                     right: 0,
-                    width: '50%',
+                    width: '75%',
                     height: '100vh',
                     pointerEvents: 'auto',
                   }}>
