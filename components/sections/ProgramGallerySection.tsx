@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-/* ProgramRingGallery removed — replaced with full-bleed image column */
+import ProgramRingGallery from './ProgramRingGallery'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -338,7 +338,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                   )}
                 </div>
 
-                {/* Right column: full-bleed stacked images */}
+                {/* Right column: gallery fixed to section background */}
                 <div className="prog-gallery" style={{
                   willChange: 'transform',
                   position: 'relative',
@@ -346,27 +346,20 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                   margin: 0,
                   padding: 0,
                   lineHeight: 0,
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gridAutoRows: 'minmax(200px, 1fr)',
-                  gap: 0,
+                  clipPath: 'inset(0)',
                 }}>
-                  {prog.galleryImages.slice(0, 6).map((img, imgIdx) => (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img
-                      key={imgIdx}
-                      src={img}
-                      alt=""
-                      loading="lazy"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block',
-                        gridColumn: imgIdx === 0 ? 'span 2' : undefined,
-                      }}
-                    />
-                  ))}
+                  <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    right: 0,
+                    width: '50%',
+                    height: '100vh',
+                    pointerEvents: 'auto',
+                  }}>
+                    {prog.galleryImages.length > 0 && (
+                      <ProgramRingGallery images={prog.galleryImages} title={prog.title} fullHeight />
+                    )}
+                  </div>
                 </div>
               </div>
             </section>
