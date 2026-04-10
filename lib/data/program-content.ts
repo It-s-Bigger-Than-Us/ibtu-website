@@ -40,12 +40,11 @@ function curateImages(images: string[], priorityFragments: string[]): string[] {
  * Casual/celebratory photos sink to the gallery.
  */
 const FIRE_RELIEF_PRIORITY = [
-  'IMG_9495',   // overview: massive warehouse full of supplies, volunteers sorting
-  'IMG_9455',   // section: volunteer carrying diaper boxes, pallets of water
-  'IMG_8047',   // section: Hub interior, RELIEF bags, community seated
-  'IMG_7687',   // section: Hub as resource store, clothing + supplies
-  'IMG_8266',   // section: Ty speaking to packed room of families
-  'IMG_7025',   // gallery lead: outdoor relief setup, yellow tents, infrastructure
+  'IMG_7025',   // overview: outdoor relief tents, IBTU yellow canopies, infrastructure
+  'IMG_9495',   // section 1 (72 Hours): warehouse at scale, volunteers sorting
+  'IMG_8047',   // section 2 (The Hub): Hub interior, RELIEF bags, community seated
+  'IMG_7687',   // section 3 (Data): Hub as resource store, clothing + supplies
+  'IMG_8266',   // section 4 (Phase 3): Ty speaking to packed room of families
   'IMG_9292',   // gallery: supply pickup at medical clinic
   'IMG_9374',   // gallery: coordinator with clipboard at IBTU tent
   'relief-97',  // gallery: family at relief table with child

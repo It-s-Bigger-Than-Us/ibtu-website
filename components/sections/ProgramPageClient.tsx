@@ -787,105 +787,23 @@ export default function ProgramPageClient({
             </span>
           </div>
 
-          {/* Render gallery images in editorial blocks */}
-          {galleryImages.map((src, i) => {
-            const blockType = i % 6
-
-            /* 0: Full-bleed panoramic */
-            if (blockType === 0) {
-              return (
-                <div key={i} className="pp-gallery-block" style={{
-                  width: '100%',
-                  aspectRatio: '21 / 9',
-                  position: 'relative',
-                  overflow: 'hidden',
-                }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={src} alt="" loading="lazy" style={{
-                    width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-                  }} />
-                </div>
-              )
-            }
-
-            /* 1+2: Asymmetric pair — left flush, right offset down */
-            if (blockType === 1) {
-              const pairImg = galleryImages[i + 1]
-              return (
-                <div key={i} className="pp-gallery-block pp-gallery-pair" style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: 4,
-                  marginTop: 4,
-                }}>
-                  <div style={{ aspectRatio: '3 / 4', overflow: 'hidden' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt="" loading="lazy" style={{
-                      width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-                    }} />
-                  </div>
-                  {pairImg && (
-                    <div style={{ aspectRatio: '3 / 4', overflow: 'hidden', marginTop: 'clamp(40px, 6vw, 100px)' }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={pairImg} alt="" loading="lazy" style={{
-                        width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-                      }} />
-                    </div>
-                  )}
-                </div>
-              )
-            }
-            if (blockType === 2) return null /* consumed by pair above */
-
-            /* 3: Centered single */
-            if (blockType === 3) {
-              return (
-                <div key={i} className="pp-gallery-block" style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  padding: 'clamp(40px, 6vw, 80px) clamp(32px, 5vw, 80px)',
-                }}>
-                  <div style={{ width: '75%', maxWidth: 1100, aspectRatio: '16 / 10', overflow: 'hidden' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt="" loading="lazy" style={{
-                      width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-                    }} />
-                  </div>
-                </div>
-              )
-            }
-
-            /* 4+5: Reversed asymmetric pair — left offset, right flush */
-            if (blockType === 4) {
-              const pairImg = galleryImages[i + 1]
-              return (
-                <div key={i} className="pp-gallery-block pp-gallery-pair" style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: 4,
-                  marginTop: 4,
-                }}>
-                  <div style={{ aspectRatio: '4 / 3', overflow: 'hidden', marginTop: 'clamp(40px, 6vw, 100px)' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt="" loading="lazy" style={{
-                      width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-                    }} />
-                  </div>
-                  {pairImg && (
-                    <div style={{ aspectRatio: '4 / 5', overflow: 'hidden' }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={pairImg} alt="" loading="lazy" style={{
-                        width: '100%', height: '100%', objectFit: 'cover', display: 'block',
-                      }} />
-                    </div>
-                  )}
-                </div>
-              )
-            }
-            if (blockType === 5) return null /* consumed by pair above */
-
-            return null
-          })}
+          {/* Masonry gallery — CSS columns, no gaps, hover magnification */}
+          <div className="pp-masonry">
+            {galleryImages.map((src, i) => (
+              <div key={i} className="pp-masonry-item">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={src}
+                  alt=""
+                  loading="lazy"
+                  style={{
+                    width: '100%',
+                    display: 'block',
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </section>
       )}
 
@@ -1009,17 +927,32 @@ export default function ProgramPageClient({
           Inline styles for responsive + shimmer
       ═══════════════════════════════════════ */}
       <style>{`
+        /* ── Masonry gallery ── */
+        .pp-masonry {
+          columns: 4;
+          column-gap: 0;
+        }
+        .pp-masonry-item {
+          break-inside: avoid;
+          overflow: hidden;
+          line-height: 0;
+        }
+        .pp-masonry-item img {
+          transition: transform 0.35s ease;
+        }
+        .pp-masonry-item:hover img {
+          transform: scale(1.05);
+        }
+
         @keyframes highlightShimmer {
           0% { background-position: 0% 50%; }
           100% { background-position: 300% 50%; }
         }
+        @media (max-width: 1200px) {
+          .pp-masonry { columns: 3; }
+        }
         @media (max-width: 768px) {
-          .pp-gallery-pair {
-            grid-template-columns: 1fr !important;
-          }
-          .pp-gallery-pair > div {
-            margin-top: 4px !important;
-          }
+          .pp-masonry { columns: 2; }
           .pp-overview-grid,
           .pp-content-grid,
           .pp-serve-grid,
