@@ -159,7 +159,7 @@ export const HOME_PILLAR_VISUALS: PillarVisual[] = [
 
 export const PROGRAM_INDEX_GALLERIES: Record<ProgramSlug, string[]> = {
   'fire-relief': fireRelief.takeSpread(10),
-  'back-2-school': b2s.takeSpread(10),
+  'back-2-school': b2s.take(10),
   'youth-programming': school.takeSpread(8),
   'coastal-care': coastal.takeSpread(8),
   'wellness': wellness.takeSpread(4),
