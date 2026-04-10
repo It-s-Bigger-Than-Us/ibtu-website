@@ -3,6 +3,63 @@ import 'server-only'
 import { PROGRAM_PAGE_IMAGES } from './site-media'
 
 // =============================================================================
+// IMAGE CURATION — intentional ordering for program pages
+// The allocator returns images alphabetically. For pages where visual tone
+// matters (crisis response, etc.), we push the right images to lead positions:
+//   [0] = hero, [1] = overview, [2..N] = content section images
+// =============================================================================
+
+/**
+ * Reorder an image array so that priority filenames appear first (in order),
+ * with the rest following in their original order.
+ */
+function curateImages(images: string[], priorityFragments: string[]): string[] {
+  const priority: string[] = []
+  const rest: string[] = []
+  const matched = new Set<number>()
+
+  for (const frag of priorityFragments) {
+    const idx = images.findIndex((img, i) => !matched.has(i) && img.includes(frag))
+    if (idx !== -1) {
+      priority.push(images[idx])
+      matched.add(idx)
+    }
+  }
+
+  for (let i = 0; i < images.length; i++) {
+    if (!matched.has(i)) rest.push(images[i])
+  }
+
+  return [...priority, ...rest]
+}
+
+/*
+ * Fire Relief: crisis operations and the Hub — NOT casual poses.
+ * Hero = supply warehouse at scale, Overview = street distribution,
+ * then Hub operations, families receiving help, community gathering.
+ * Casual/celebratory photos sink to the gallery.
+ */
+const FIRE_RELIEF_PRIORITY = [
+  'IMG_9495',   // hero: massive warehouse full of supplies, volunteers sorting
+  'IMG_9251',   // overview: street-level distribution under IBTU tent
+  'IMG_9455',   // section: volunteer carrying diaper boxes, pallets of water
+  'IMG_8047',   // section: Hub interior, RELIEF bags, community seated
+  'IMG_7687',   // section: Hub as resource store, clothing + supplies
+  'IMG_8266',   // section: Ty speaking to packed room of families
+  'IMG_7025',   // gallery lead: outdoor relief setup, yellow tents, infrastructure
+  'IMG_9292',   // gallery: supply pickup at medical clinic
+  'IMG_9374',   // gallery: coordinator with clipboard at IBTU tent
+  'relief-97',  // gallery: family at relief table with child
+  'IMG_7818',   // gallery: community gathering at Hub
+  'IMG_7279',   // gallery: two people in IBTU Relief shirts from behind
+  'IMG_8338',   // gallery: boy with relief bag in Hub
+  'IMG_7744',   // gallery: Hub shelves with toys and supplies
+  'IMG_8154',   // gallery: community member selecting clothing
+  'IMG_9804',   // gallery: Hub intake session, people at table
+  'relief-104', // gallery: volunteers distributing under tent
+]
+
+// =============================================================================
 // IBTU Program Page Content — All 7 Programs
 // Single source of truth for dynamic program pages
 // Stats verified against IBTU_SINGLE_SOURCE_OF_TRUTH_v3 (March 2026)
@@ -141,7 +198,7 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
     ],
     schedule: 'Hub open weekly — walk-in or appointment',
     partners: '',
-    images: PROGRAM_PAGE_IMAGES['fire-relief'],
+    images: curateImages(PROGRAM_PAGE_IMAGES['fire-relief'], FIRE_RELIEF_PRIORITY),
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/7haetjfrq5g190',
     donateUrl: 'https://secure.qgiv.com/for/firerelief',
     ctaText: 'THE HUB IS OPEN. FAMILIES NEED YOU.',
