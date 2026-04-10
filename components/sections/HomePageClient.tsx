@@ -11,7 +11,7 @@ import Footer from '@/components/layout/Footer'
 import ProgramCarousel3D from '@/components/sections/ProgramCarousel3D'
 import PillarTabs from '@/components/sections/PillarTabs'
 import PillarCubes from '@/components/sections/PillarCubes'
-import EditorialMediaStrip from '@/components/sections/EditorialMediaStrip'
+/* EditorialMediaStrip removed — homepage uses video-only transition */
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -158,13 +158,28 @@ export default function HomePageClient({
       {/* 3. Values Ticker */}
       <GoldTicker phrases={tickerPhrases} speed={60} />
 
-      {/* 3.5. Editorial Media Strip — full-bleed cinematic gallery (3519-style) */}
-      {editorialImages && editorialImages.length >= 6 && (
-        <EditorialMediaStrip
-          images={editorialImages}
-          videoUrl={editorialVideoUrl}
-          sectionLabel="In the Field"
-        />
+      {/* 3.5. Video transition — full-bleed ambient video between ticker and mission */}
+      {editorialVideoUrl && (
+        <section style={{ background: '#000', overflow: 'hidden' }}>
+          <div style={{ width: '100%', aspectRatio: '21 / 9', position: 'relative' }}>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            >
+              <source src={editorialVideoUrl} type="video/mp4" />
+            </video>
+          </div>
+        </section>
       )}
 
       {/* 4. Mission — typewriter effect */}
