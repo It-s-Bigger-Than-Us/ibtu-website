@@ -394,7 +394,13 @@ Staff Appreciation Days reach 75+ educators per campus with wellness experiences
     ],
     schedule: 'Year-round school calendar',
     partners: '',
-    images: PROGRAM_PAGE_IMAGES['youth-programming'],
+    images: curateImages(PROGRAM_PAGE_IMAGES['youth-programming'], [
+      'IMG_7067',  // overview: aerial view, full event scale
+      'IMG_6057',  // section 1 (Inside the School): Ty with student on court
+      'IMG_7259',  // section 2 (Parents): family at IBTU tent
+      'IMG_5909',  // section 3 (Network Expansion): wide shot, crowds, inflatables
+      'IMG_7976',  // section 4 (Community Creators): IBTU booth, community engaging
+    ]),
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih',
     ctaText: 'BRING IBTU TO YOUR CAMPUS.',
     ctaBody:
