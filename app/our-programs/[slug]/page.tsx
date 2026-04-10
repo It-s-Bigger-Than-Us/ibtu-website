@@ -45,6 +45,13 @@ export default async function ProgramPage({ params }: Props) {
     ? `https://cdn.sanity.io/images/0m4ngfcw/production/${program.heroImage.asset._ref.replace('image-', '').replace(/-(\w+)$/, '.$1')}?w=1920&q=90`
     : null
 
+  /* Per-program hero video — replaces the wide image below the header */
+  const HERO_VIDEOS: Record<string, string> = {
+    'fire-relief': '/videos/fire-rebuild-drone.mp4',
+    'back-2-school': '/videos/b2s-venice-highlight.mp4',
+  }
+  const heroVideoUrl = HERO_VIDEOS[slug] || undefined
+
   return (
     <main style={{ background: "#000", minHeight: "100vh" }}>
 
@@ -52,6 +59,7 @@ export default async function ProgramPage({ params }: Props) {
       <ProgramPageClient
         program={programContent}
         heroImageUrl={heroImageUrl}
+        heroVideoUrl={heroVideoUrl}
         pastEvents={pastEvents}
       />
 

@@ -18,6 +18,7 @@ gsap.registerPlugin(ScrollTrigger)
 interface ProgramPageClientProps {
   program: ProgramContent
   heroImageUrl: string | null
+  heroVideoUrl?: string
   pastEvents: Array<{
     _id: string
     title: string
@@ -104,6 +105,7 @@ function chunkItems<T>(items: T[], size: number): T[][] {
 export default function ProgramPageClient({
   program,
   heroImageUrl,
+  heroVideoUrl,
   // pastEvents reserved for future event timeline section
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   pastEvents,
@@ -388,10 +390,27 @@ export default function ProgramPageClient({
           </p>
         </div>
 
-        {/* Full-bleed hero image below the title */}
-        {heroImage && (
-          <div style={{ position: 'relative', zIndex: 1, width: '100%', aspectRatio: '21 / 9', overflow: 'hidden' }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/* Full-bleed hero media below the title — video if provided, otherwise image */}
+        <div style={{ position: 'relative', zIndex: 1, width: '100%', aspectRatio: '21 / 9', overflow: 'hidden' }}>
+          {heroVideoUrl ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            >
+              <source src={heroVideoUrl} type="video/mp4" />
+            </video>
+          ) : heroImage ? (
+            /* eslint-disable-next-line @next/next/no-img-element */
             <img
               src={heroImage}
               alt={`${program.heroTitle}`}
@@ -403,8 +422,8 @@ export default function ProgramPageClient({
                 filter: 'brightness(1.05) saturate(1.15)',
               }}
             />
-          </div>
-        )}
+          ) : null}
+        </div>
       </section>
 
       {/* ═══════════════════════════════════════
