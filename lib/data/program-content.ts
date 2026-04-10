@@ -44,7 +44,7 @@ const FIRE_RELIEF_PRIORITY = [
   'IMG_9495',   // section 1 (72 Hours): warehouse at scale, volunteers sorting
   'IMG_8047',   // section 2 (The Hub): Hub interior, RELIEF bags, community seated
   'IMG_7687',   // section 3 (Data): Hub as resource store, clothing + supplies
-  'IMG_8266',   // section 4 (Phase 3): Ty speaking to packed room of families
+  'IMG_8266',   // section 4 (Phase 3): placeholder — overridden by direct inject below
   'IMG_9292',   // gallery: supply pickup at medical clinic
   'IMG_9374',   // gallery: coordinator with clipboard at IBTU tent
   'relief-97',  // gallery: family at relief table with child
@@ -196,7 +196,13 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
     ],
     schedule: 'Hub open weekly — walk-in or appointment',
     partners: '',
-    images: ['/images/fire-relief/hub-group.jpg', ...curateImages(PROGRAM_PAGE_IMAGES['fire-relief'], FIRE_RELIEF_PRIORITY)],
+    images: (() => {
+      const curated = curateImages(PROGRAM_PAGE_IMAGES['fire-relief'], FIRE_RELIEF_PRIORITY)
+      // [0]=hero (video replaces), [1]=overview, [2]=72hrs, [3]=hub, [4]=data, [5]=phase3
+      // Inject hub-group at phase 3 position (index 5) — it's not in the pool (claimed by pillars)
+      curated.splice(4, 0, '/images/fire-relief/hub-group.jpg')
+      return curated
+    })(),
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/7haetjfrq5g190',
     donateUrl: 'https://secure.qgiv.com/for/firerelief',
     ctaText: 'THE HUB IS OPEN. FAMILIES NEED YOU.',
