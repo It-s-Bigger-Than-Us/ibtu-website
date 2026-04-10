@@ -27,7 +27,7 @@ interface ProgramData {
   galleryImages: string[]
 }
 
-const COMING_SOON_SLUGS = ['community-builder-linkups', 'community-health', 'wellness']
+const COMING_SOON_SLUGS = ['community-builder-linkups', 'community-health']
 
 function formatTitle(title: string) {
   // Fire Relief & The Hub → two lines

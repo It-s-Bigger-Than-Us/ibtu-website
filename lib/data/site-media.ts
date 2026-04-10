@@ -67,10 +67,36 @@ function createPool(label: string, items: string[]) {
     return claimed
   }
 
+  /** Take count items evenly spread across the remaining pool (for visual variety) */
+  const takeSpread = (count: number) => {
+    const remaining = items.length - cursor
+    if (remaining <= count) return takeAll()
+    const step = remaining / count
+    const picked: string[] = []
+    const pickedIndices = new Set<number>()
+    for (let i = 0; i < count; i++) {
+      const idx = cursor + Math.floor(i * step)
+      picked.push(items[idx])
+      pickedIndices.add(idx)
+    }
+    // Rebuild cursor: move all items so picked ones are consumed first
+    const newItems = [...picked]
+    for (let i = cursor; i < items.length; i++) {
+      if (!pickedIndices.has(i)) newItems.push(items[i])
+    }
+    // Replace remaining items with reordered version
+    for (let i = 0; i < newItems.length; i++) {
+      items[cursor + i] = newItems[i]
+    }
+    cursor += count
+    return picked
+  }
+
   return {
     take,
     takeOne: () => take(1)[0],
     takeAll,
+    takeSpread,
   }
 }
 
@@ -132,13 +158,13 @@ export const HOME_PILLAR_VISUALS: PillarVisual[] = [
 ]
 
 export const PROGRAM_INDEX_GALLERIES: Record<ProgramSlug, string[]> = {
-  'fire-relief': fireRelief.take(10),
-  'back-2-school': b2s.take(10),
-  'youth-programming': school.take(8),
-  'coastal-care': coastal.take(8),
-  'wellness': wellness.take(4),
-  'giving-season': givingSeason.take(4),
-  'community-health': volunteer.take(12),
+  'fire-relief': fireRelief.takeSpread(10),
+  'back-2-school': b2s.takeSpread(10),
+  'youth-programming': school.takeSpread(8),
+  'coastal-care': coastal.takeSpread(8),
+  'wellness': wellness.takeSpread(4),
+  'giving-season': givingSeason.takeSpread(4),
+  'community-health': volunteer.takeSpread(12),
   'community-builder-linkups': volunteer.take(8),
 }
 
