@@ -197,7 +197,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                 <div className="prog-text" style={{
                   willChange: 'transform',
                   maxWidth: '480px',
-                  padding: 'clamp(60px, 8vw, 100px) 0 clamp(60px, 8vw, 100px) clamp(24px, 4vw, 64px)',
+                  padding: 'clamp(100px, 12vw, 140px) 0 clamp(60px, 8vw, 100px) clamp(24px, 4vw, 64px)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
