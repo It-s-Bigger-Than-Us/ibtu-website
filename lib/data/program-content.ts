@@ -284,7 +284,11 @@ Every site operates at the same standard. The same quality of resources, the sam
     ],
     schedule: 'August annually — multiple locations across Los Angeles',
     partners: '',
-    images: PROGRAM_PAGE_IMAGES['back-2-school'],
+    images: curateImages(PROGRAM_PAGE_IMAGES['back-2-school'], [
+      'Bacl 2 School 2023-55', // overview: crowd scene
+      'IMG_2166',              // section 1 (Bell Rings)
+      'new-IMG_5579',          // section 2 (Three Locations)
+    ]),
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih',
     ctaText: 'BACK 2 SCHOOL 2026 IS COMING.',
     ctaBody:
