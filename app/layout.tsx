@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import TopNav from "@/components/layout/TopNav";
 import SmoothScroll from "@/components/providers/SmoothScroll";
@@ -16,6 +17,13 @@ export const metadata: Metadata = {
   title: "It's Bigger Than Us (IBTU) | Community is the Infrastructure",
   description:
     "IBTU builds trusted, place-based programs for Los Angeles communities — from fire relief and youth programming to back-to-school festivals and food access. Designed with dignity.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-icon",
+  },
   openGraph: {
     title: "It's Bigger Than Us (IBTU)",
     description: "Community is the infrastructure. Trusted, place-based programs in Los Angeles.",
@@ -28,6 +36,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "It's Bigger Than Us (IBTU)",
     description: "Community is the infrastructure. Trusted, place-based programs in Los Angeles.",
+    images: ["/opengraph-image"],
+  },
+  alternates: {
+    canonical: "https://ibtu.la",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   metadataBase: new URL("https://ibtu.la"),
 };
@@ -54,6 +70,10 @@ const jsonLd = {
   email: "info@itsbiggerthanusla.org",
   sameAs: [
     "https://instagram.com/itsbiggerthanus_",
+    "https://facebook.com/itsbiggerthanus",
+    "https://tiktok.com/@itsbiggerthanus",
+    "https://linkedin.com/company/its-bigger-than-us",
+    "https://youtube.com/@itsbiggerthanus",
   ],
   nonprofitStatus: "Nonprofit501c3",
   taxID: "85-3136505",
@@ -92,6 +112,10 @@ export default function RootLayout({
             {children}
           </div>
         </SmoothScroll>
+        <Script
+          src="https://api.bloomerang.co/v1/WebsiteVisit?ApiKey=pub_a73727e3-a04d-11ee-96cb-0a3287177f03"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
