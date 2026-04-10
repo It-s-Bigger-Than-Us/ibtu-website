@@ -13,10 +13,12 @@ export const metadata: Metadata = {
     "7 community programs across Crisis & Disaster Stabilization, School & Youth Stability, and Community Health & Resource Access. Built for Los Angeles.",
 };
 
+const HIDDEN_PROGRAMS = ['gala', 'community-builder-linkups', 'incubation-academy']
+
 export default async function ProgramsPage() {
   const programs = await getPrograms();
 
-  const programsWithImages = programs.map((prog: {
+  const programsWithImages = programs.filter((p: { slug: string }) => !HIDDEN_PROGRAMS.includes(p.slug)).map((prog: {
     slug: string;
     title: string;
     pillar: string;
