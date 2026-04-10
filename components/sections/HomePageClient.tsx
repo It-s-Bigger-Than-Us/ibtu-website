@@ -94,7 +94,6 @@ export default function HomePageClient({
       <section className="home-statement" style={{
         background: '#000',
         padding: 'clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)',
-        opacity: 0,
       }}>
         <div className="home-statement-inner" style={{ maxWidth: 'var(--content-max)', margin: '0 auto', textAlign: 'center' }}>
           <h2 className="home-statement-title" style={{

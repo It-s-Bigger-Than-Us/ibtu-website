@@ -117,7 +117,6 @@ export default function EditorialMediaStrip({
             aspectRatio: '21 / 9',
             position: 'relative',
             overflow: 'hidden',
-            opacity: 0,
           }}
         >
           <video
@@ -147,7 +146,6 @@ export default function EditorialMediaStrip({
           gridTemplateColumns: '1fr 1fr',
           gap: 4,
           marginTop: 'clamp(40px, 6vw, 80px)',
-          opacity: 0,
         }}
       >
         {/* Left — flush top */}
@@ -197,7 +195,6 @@ export default function EditorialMediaStrip({
           display: 'flex',
           justifyContent: 'center',
           padding: 'clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px)',
-          opacity: 0,
         }}
       >
         <div
@@ -231,7 +228,6 @@ export default function EditorialMediaStrip({
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: 4,
-          opacity: 0,
         }}
       >
         {/* Left — offset down */}
@@ -283,7 +279,6 @@ export default function EditorialMediaStrip({
           position: 'relative',
           overflow: 'hidden',
           marginTop: 'clamp(40px, 6vw, 80px)',
-          opacity: 0,
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}

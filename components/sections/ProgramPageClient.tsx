@@ -792,7 +792,6 @@ export default function ProgramPageClient({
                   aspectRatio: '21 / 9',
                   position: 'relative',
                   overflow: 'hidden',
-                  opacity: 0,
                 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={src} alt="" loading="lazy" style={{
@@ -811,7 +810,6 @@ export default function ProgramPageClient({
                   gridTemplateColumns: '1fr 1fr',
                   gap: 4,
                   marginTop: 4,
-                  opacity: 0,
                 }}>
                   <div style={{ aspectRatio: '3 / 4', overflow: 'hidden' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -839,7 +837,6 @@ export default function ProgramPageClient({
                   display: 'flex',
                   justifyContent: 'center',
                   padding: 'clamp(40px, 6vw, 80px) clamp(32px, 5vw, 80px)',
-                  opacity: 0,
                 }}>
                   <div style={{ width: '75%', maxWidth: 1100, aspectRatio: '16 / 10', overflow: 'hidden' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -860,7 +857,6 @@ export default function ProgramPageClient({
                   gridTemplateColumns: '1fr 1fr',
                   gap: 4,
                   marginTop: 4,
-                  opacity: 0,
                 }}>
                   <div style={{ aspectRatio: '4 / 3', overflow: 'hidden', marginTop: 'clamp(40px, 6vw, 100px)' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
