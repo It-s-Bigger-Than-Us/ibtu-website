@@ -40,8 +40,7 @@ function curateImages(images: string[], priorityFragments: string[]): string[] {
  * Casual/celebratory photos sink to the gallery.
  */
 const FIRE_RELIEF_PRIORITY = [
-  'IMG_9495',   // hero: massive warehouse full of supplies, volunteers sorting
-  'IMG_9251',   // overview: street-level distribution under IBTU tent
+  'IMG_9495',   // overview: massive warehouse full of supplies, volunteers sorting
   'IMG_9455',   // section: volunteer carrying diaper boxes, pallets of water
   'IMG_8047',   // section: Hub interior, RELIEF bags, community seated
   'IMG_7687',   // section: Hub as resource store, clothing + supplies
@@ -198,7 +197,7 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
     ],
     schedule: 'Hub open weekly — walk-in or appointment',
     partners: '',
-    images: curateImages(PROGRAM_PAGE_IMAGES['fire-relief'], FIRE_RELIEF_PRIORITY),
+    images: ['/images/fire-relief/hub-group.jpg', ...curateImages(PROGRAM_PAGE_IMAGES['fire-relief'], FIRE_RELIEF_PRIORITY)],
     volunteerUrl: 'https://volunteer.bloomerang.co/JE/7haetjfrq5g190',
     donateUrl: 'https://secure.qgiv.com/for/firerelief',
     ctaText: 'THE HUB IS OPEN. FAMILIES NEED YOU.',
