@@ -310,45 +310,37 @@ export default function ProgramPageClient({
   return (
     <div ref={containerRef}>
       {/* ═══════════════════════════════════════
-          1. HERO — full-bleed single image + title overlay
+          1. HERO — blue sky + title + full-bleed hero image below
       ═══════════════════════════════════════ */}
       <section
         style={{
           position: 'relative',
           overflow: 'hidden',
-          minHeight: '100vh',
         }}
       >
-        {/* Full-bleed hero image */}
-        {heroImage && (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={heroImage}
-            alt={`${program.heroTitle}`}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              display: 'block',
-              filter: 'brightness(0.7) saturate(1.2)',
-            }}
-          />
-        )}
+        {/* Sky background */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/blue-sky.jpg"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+          }}
+        />
 
-        {/* Title overlay — centered on the image */}
+        {/* Title overlay */}
         <div
           style={{
             position: 'relative',
             zIndex: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
             textAlign: 'center',
-            minHeight: '100vh',
-            padding: 'clamp(120px, 15vh, 200px) clamp(32px, 5vw, 80px)',
+            padding: 'clamp(120px, 15vh, 200px) clamp(32px, 5vw, 80px) clamp(40px, 5vh, 60px)',
           }}
         >
           <div
@@ -361,7 +353,7 @@ export default function ProgramPageClient({
               color: '#FFC700',
               fontWeight: 700,
               marginBottom: 24,
-              opacity: 0,
+              textShadow: '0 1px 8px rgba(0,0,0,0.15)',
             }}
           >
             {program.pillar}
@@ -375,8 +367,7 @@ export default function ProgramPageClient({
               color: '#FFC700',
               textTransform: 'uppercase',
               margin: '0 0 24px',
-              opacity: 0,
-              textShadow: '0 4px 40px rgba(0,0,0,0.5)',
+              textShadow: '0 2px 20px rgba(0,0,0,0.15)',
             }}
           >
             {program.heroTitle}
@@ -386,18 +377,34 @@ export default function ProgramPageClient({
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'var(--body-lg)',
-              color: '#FFF',
+              color: '#FFC700',
               fontWeight: 700,
               maxWidth: 700,
               margin: '0 auto',
               lineHeight: 1.6,
-              opacity: 0,
-              textShadow: '0 2px 20px rgba(0,0,0,0.4)',
             }}
           >
             {program.tagline}
           </p>
         </div>
+
+        {/* Full-bleed hero image below the title */}
+        {heroImage && (
+          <div style={{ position: 'relative', zIndex: 1, width: '100%', aspectRatio: '21 / 9', overflow: 'hidden' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={heroImage}
+              alt={`${program.heroTitle}`}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+                filter: 'brightness(1.05) saturate(1.15)',
+              }}
+            />
+          </div>
+        )}
       </section>
 
       {/* ═══════════════════════════════════════
