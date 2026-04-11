@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      {
+        source: '/volunteer',
+        destination: '/get-involved',
+      },
+    ]
+  },
   async headers() {
     return [
       {
