@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
         destination: '/our-programs/back-2-school',
         permanent: true,
       },
+      {
+        source: '/gala',
+        destination: 'https://secure.qgiv.com/for/itsbiggerthanus/event/gala/',
+        permanent: false,
+      },
     ]
   },
   async headers() {
