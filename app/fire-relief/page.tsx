@@ -530,6 +530,28 @@ export default function FireReliefPage() {
               >
                 Donate &rarr;
               </a>
+              <a
+                href="https://calendar.app.google/TgJk68WX7w1joC3p8"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-block",
+                  background: "transparent",
+                  color: "#FFC700",
+                  padding: "16px 40px",
+                  fontFamily: "var(--font-body)",
+                  fontSize: 13,
+                  letterSpacing: "3px",
+                  textTransform: "uppercase",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  borderRadius: "16px",
+                  border: "2px solid #FFC700",
+                  width: "fit-content",
+                }}
+              >
+                Book an Appointment &rarr;
+              </a>
             </div>
           </div>
         </section>
@@ -670,6 +692,27 @@ export default function FireReliefPage() {
                 }}
               >
                 Volunteer &rarr;
+              </a>
+              <a
+                href="https://calendar.app.google/TgJk68WX7w1joC3p8"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-block",
+                  background: "transparent",
+                  color: "#000",
+                  padding: "18px 48px",
+                  fontFamily: "var(--font-body)",
+                  fontSize: 13,
+                  letterSpacing: "3px",
+                  textTransform: "uppercase",
+                  fontWeight: 700,
+                  textDecoration: "none",
+                  borderRadius: "16px",
+                  border: "2px solid #000",
+                }}
+              >
+                Book an Appointment &rarr;
               </a>
             </div>
           </div>
