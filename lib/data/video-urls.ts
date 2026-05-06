@@ -48,6 +48,7 @@ export const PROGRAM_VIDEOS = {
     altaCrop: `${S}/cb4a68115366e3a14828982ecaaa58c8cb9791cd.mp4`,
     day3Vert: `${S}/de4d291812a7b1c0514cf7d893548d72e49c5b9b.mp4`,
     teaserVert: `${S}/49bfe469a78ec84c575feaf57d05255e29386a40.mp4`,
+    hubLaunch: `${S}/c0cd917f12276bc6c936eee1ddacc0b7ea3ea8d2.mp4`,
   },
   'back-to-school': {
     venice1: `${S}/9aa5e50c4810f6e7db0f6fe89ca40a497cc57d8e.mp4`,

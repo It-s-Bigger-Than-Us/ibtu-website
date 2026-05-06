@@ -141,7 +141,7 @@ export default function FireReliefPage() {
   return (
     <>
 
-      <main style={{ background: "#000", minHeight: "100vh"}}>
+      <main style={{ background: "#FFC700", minHeight: "100vh"}}>
 
         {/* ── VIDEO BLOCK — no text overlay ── */}
         <section style={{ width: "100%", height: "70vh", minHeight: "400px", overflow: "hidden", position: "relative" }}>
@@ -163,15 +163,15 @@ export default function FireReliefPage() {
           </video>
         </section>
 
-        {/* ── HERO TEXT — solid black, no overlay ── */}
-        <section style={{ background: "#000", padding: "clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px)" }}>
+        {/* ── HERO TEXT — gold bg ── */}
+        <section style={{ background: "#FFC700", padding: "clamp(60px, 8vw, 120px) clamp(32px, 5vw, 80px)" }}>
           <span
             style={{
               display: "block",
               fontSize: 11,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "#FFC700",
+              color: "#000",
               marginBottom: 24,
               fontFamily: "var(--font-body)",
               fontWeight: 700,
@@ -184,7 +184,7 @@ export default function FireReliefPage() {
               fontFamily: "var(--font-display)",
               fontSize: "clamp(48px, 10vw, 160px)",
               lineHeight: 0.9,
-              color: "#fff",
+              color: "#000",
               marginBottom: 32,
               maxWidth: 1000,
               textTransform: "uppercase",
@@ -198,7 +198,7 @@ export default function FireReliefPage() {
           <p
             style={{
               fontSize: "clamp(16px, 1.4vw, 21px)",
-              color: "#fff",
+              color: "#000",
               maxWidth: 620,
               lineHeight: 1.75,
               fontFamily: "var(--font-body)",
@@ -216,7 +216,7 @@ export default function FireReliefPage() {
             key={i}
             style={{
               padding: "clamp(60px, 10vw, 120px) clamp(24px, 5vw, 80px)",
-              borderTop: i === 0 ? "none" : "1px solid #FFC700",
+              borderTop: i === 0 ? "none" : "1px solid #000",
             }}
           >
             <div
@@ -232,9 +232,9 @@ export default function FireReliefPage() {
               <div>
                 <span
                   style={{
-                    fontFamily: "var(--font-body)",
+                    fontFamily: "var(--font-display)",
                     fontSize: "clamp(80px, 10vw, 140px)",
-                    color: "#FFC700",
+                    color: "#000",
                     lineHeight: 0.85,
                     display: "block",
                   }}
@@ -247,7 +247,7 @@ export default function FireReliefPage() {
                     fontWeight: 700,
                     fontSize: 12,
                     letterSpacing: "3px",
-                    color: "#FFC700",
+                    color: "#000",
                     display: "block",
                     marginTop: 16,
                   }}
@@ -256,9 +256,9 @@ export default function FireReliefPage() {
                 </span>
                 <span
                   style={{
-                    fontFamily: "var(--font-body)",
+                    fontFamily: "var(--font-display)",
                     fontSize: "clamp(32px, 4vw, 56px)",
-                    color: "#fff",
+                    color: "#000",
                     lineHeight: 1,
                     display: "block",
                     marginTop: 8,
@@ -270,7 +270,7 @@ export default function FireReliefPage() {
                   style={{
                     display: "block",
                     fontSize: 13,
-                    color: "#FFC700",
+                    color: "#000",
                     fontWeight: 600,
                     letterSpacing: "1px",
                     marginTop: 12,
@@ -285,9 +285,9 @@ export default function FireReliefPage() {
               <div>
                 <h3
                   style={{
-                    fontFamily: "var(--font-body)",
+                    fontFamily: "var(--font-display)",
                     fontSize: "clamp(24px, 3vw, 40px)",
-                    color: "#FFC700",
+                    color: "#000",
                     lineHeight: 1.1,
                     marginBottom: 24,
                   }}
@@ -297,7 +297,7 @@ export default function FireReliefPage() {
                 <p
                   style={{
                     fontSize: 16,
-                    color: "#fff",
+                    color: "#000",
                     lineHeight: 1.8,
                     maxWidth: 640,
                     fontFamily: "var(--font-body)",
@@ -318,9 +318,9 @@ export default function FireReliefPage() {
                     <div key={j}>
                       <span
                         style={{
-                          fontFamily: "var(--font-body)",
+                          fontFamily: "var(--font-display)",
                           fontSize: "clamp(28px, 3vw, 48px)",
-                          color: "#FFC700",
+                          color: "#000",
                           lineHeight: 1,
                           display: "block",
                           marginBottom: 6,
@@ -331,7 +331,7 @@ export default function FireReliefPage() {
                       <span
                         style={{
                           fontSize: 12,
-                          color: "var(--gold)",
+                          color: "#000",
                           fontWeight: 600,
                           letterSpacing: "1px",
                           textTransform: "uppercase",
@@ -348,48 +348,21 @@ export default function FireReliefPage() {
           </section>
         ))}
 
-        {/* ── FULL-FRAME VIDEO SECTION ── */}
+        {/* ── THE HUB — LAUNCH VIDEO ── */}
         <section
           style={{
-            position: "relative",
-            height: "min(100vh, 600px)",
-            overflow: "hidden",
+            background: "#FFC700",
+            padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px) 0",
+            textAlign: "center",
           }}
         >
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          >
-            <source
-              src="/videos/rebuild-recap.mp4"
-              type="video/mp4"
-            />
-            <source
-              src={PROGRAM_VIDEOS['fire-relief'].rebuild}
-              type="video/mp4"
-            />
-          </video>
-          {/* Gradient overlay removed — no text over video */}
-        </section>
-
-        {/* ── HUB SERVICES — WHAT WE DO HERE ── */}
-        <section style={{ padding: "120px 80px" }}>
           <span
             style={{
               display: "block",
               fontSize: 11,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "#FFC700",
+              color: "#000",
               fontFamily: "var(--font-body)",
               fontWeight: 700,
               marginBottom: 20,
@@ -399,11 +372,79 @@ export default function FireReliefPage() {
           </span>
           <h2
             style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(72px, 14vw, 220px)",
+              lineHeight: 0.85,
+              color: "#000",
+              marginBottom: 0,
+              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            THE HUB
+          </h2>
+        </section>
+        <section
+          style={{
+            background: "#FFC700",
+            padding: "clamp(40px, 6vw, 80px) clamp(24px, 5vw, 80px) clamp(60px, 8vw, 100px)",
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              maxWidth: 1280,
+              margin: "0 auto",
+              aspectRatio: "16 / 9",
+              overflow: "hidden",
+              border: "1px solid #000",
+            }}
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              style={{
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            >
+              <source src={PROGRAM_VIDEOS['fire-relief'].hubLaunch} type="video/mp4" />
+            </video>
+          </div>
+        </section>
+
+        {/* ── HUB SERVICES — WHAT WE DO HERE ── */}
+        <section style={{ padding: "120px 80px", borderTop: "1px solid #000" }}>
+          <span
+            style={{
+              display: "block",
+              fontSize: 11,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "#000",
               fontFamily: "var(--font-body)",
-              fontSize: "clamp(36px, 5vw, 72px)",
-              lineHeight: 0.95,
-              color: "#fff",
+              fontWeight: 700,
               marginBottom: 20,
+            }}
+          >
+            Inside The Hub
+          </span>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(48px, 7vw, 96px)",
+              lineHeight: 0.9,
+              color: "#000",
+              marginBottom: 20,
+              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
             }}
           >
             WHAT WE DO HERE
@@ -411,7 +452,7 @@ export default function FireReliefPage() {
           <p
             style={{
               fontSize: 16,
-              color: "#fff",
+              color: "#000",
               lineHeight: 1.7,
               maxWidth: 720,
               fontFamily: "var(--font-body)",
@@ -438,16 +479,18 @@ export default function FireReliefPage() {
                 key={i}
                 style={{
                   padding: "32px",
-                  border: "1px solid var(--gold)",
+                  border: "1px solid #000",
                 }}
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-body)",
+                    fontFamily: "var(--font-display)",
                     fontSize: 28,
-                    color: "#FFC700",
+                    color: "#000",
                     marginBottom: 12,
                     lineHeight: 1.1,
+                    textTransform: "uppercase",
+                    letterSpacing: "-0.01em",
                   }}
                 >
                   {service.title}
@@ -455,7 +498,7 @@ export default function FireReliefPage() {
                 <p
                   style={{
                     fontSize: 14,
-                    color: "#fff",
+                    color: "#000",
                     lineHeight: 1.7,
                     fontFamily: "var(--font-body)",
                   }}
@@ -474,7 +517,7 @@ export default function FireReliefPage() {
               gridTemplateColumns: "1fr 1fr",
               gap: 60,
               padding: "48px 0",
-              borderTop: "1px solid var(--gold)",
+              borderTop: "1px solid #000",
             }}
           >
             <div>
@@ -484,7 +527,7 @@ export default function FireReliefPage() {
                   fontSize: 12,
                   letterSpacing: "2px",
                   textTransform: "uppercase",
-                  color: "#FFC700",
+                  color: "#000",
                   fontFamily: "var(--font-body)",
                   fontWeight: 700,
                   marginBottom: 16,
@@ -495,7 +538,7 @@ export default function FireReliefPage() {
               <p
                 style={{
                   fontSize: 18,
-                  color: "#fff",
+                  color: "#000",
                   lineHeight: 1.6,
                   fontFamily: "var(--font-body)",
                 }}
@@ -518,7 +561,7 @@ export default function FireReliefPage() {
                   fontSize: 12,
                   letterSpacing: "2px",
                   textTransform: "uppercase",
-                  color: "#FFC700",
+                  color: "#000",
                   fontFamily: "var(--font-body)",
                   fontWeight: 700,
                   marginBottom: 0,
@@ -532,8 +575,8 @@ export default function FireReliefPage() {
                 rel="noopener noreferrer"
                 style={{
                   display: "inline-block",
-                  background: "#FFC700",
-                  color: "#000",
+                  background: "#000",
+                  color: "#FFC700",
                   padding: "16px 40px",
                   fontFamily: "var(--font-body)",
                   fontSize: 13,
@@ -554,7 +597,7 @@ export default function FireReliefPage() {
                 style={{
                   display: "inline-block",
                   background: "transparent",
-                  color: "#FFC700",
+                  color: "#000",
                   padding: "16px 40px",
                   fontFamily: "var(--font-body)",
                   fontSize: 13,
@@ -563,7 +606,7 @@ export default function FireReliefPage() {
                   fontWeight: 700,
                   textDecoration: "none",
                   borderRadius: "16px",
-                  border: "2px solid #FFC700",
+                  border: "2px solid #000",
                   width: "fit-content",
                 }}
               >
@@ -576,7 +619,7 @@ export default function FireReliefPage() {
                 style={{
                   display: "inline-block",
                   background: "transparent",
-                  color: "#FFC700",
+                  color: "#000",
                   padding: "16px 40px",
                   fontFamily: "var(--font-body)",
                   fontSize: 13,
@@ -585,7 +628,7 @@ export default function FireReliefPage() {
                   fontWeight: 700,
                   textDecoration: "none",
                   borderRadius: "16px",
-                  border: "2px solid #FFC700",
+                  border: "2px solid #000",
                   width: "fit-content",
                 }}
               >
@@ -596,14 +639,14 @@ export default function FireReliefPage() {
         </section>
 
         {/* ── WHAT MAKES IBTU DIFFERENT ── */}
-        <section style={{ padding: "clamp(80px, 10vw, 120px) clamp(24px, 5vw, 80px)", borderTop: "1px solid #FFC700" }}>
+        <section style={{ padding: "clamp(80px, 10vw, 120px) clamp(24px, 5vw, 80px)", borderTop: "1px solid #000" }}>
           <span
             style={{
               display: "block",
               fontSize: 11,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "#FFC700",
+              color: "#000",
               fontFamily: "var(--font-body)",
               fontWeight: 700,
               marginBottom: 20,
@@ -613,11 +656,13 @@ export default function FireReliefPage() {
           </span>
           <h2
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(36px, 5vw, 72px)",
-              lineHeight: 0.95,
-              color: "#fff",
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(48px, 7vw, 96px)",
+              lineHeight: 0.9,
+              color: "#000",
               marginBottom: 60,
+              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
             }}
           >
             WHAT MAKES IBTU DIFFERENT
@@ -635,16 +680,18 @@ export default function FireReliefPage() {
                 key={i}
                 style={{
                   padding: 32,
-                  border: "1px solid #FFC700",
+                  border: "1px solid #000",
                 }}
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-body)",
+                    fontFamily: "var(--font-display)",
                     fontSize: 28,
-                    color: "#FFC700",
+                    color: "#000",
                     marginBottom: 12,
                     lineHeight: 1.1,
+                    textTransform: "uppercase",
+                    letterSpacing: "-0.01em",
                   }}
                 >
                   {p.title}
@@ -652,7 +699,7 @@ export default function FireReliefPage() {
                 <p
                   style={{
                     fontSize: 14,
-                    color: "#fff",
+                    color: "#000",
                     lineHeight: 1.7,
                     fontFamily: "var(--font-body)",
                   }}
@@ -665,14 +712,14 @@ export default function FireReliefPage() {
         </section>
 
         {/* ── VERIFICATION FAQ ── */}
-        <section style={{ padding: "clamp(80px, 10vw, 120px) clamp(24px, 5vw, 80px)", borderTop: "1px solid #FFC700" }}>
+        <section style={{ padding: "clamp(80px, 10vw, 120px) clamp(24px, 5vw, 80px)", borderTop: "1px solid #000" }}>
           <span
             style={{
               display: "block",
               fontSize: 11,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "#FFC700",
+              color: "#000",
               fontFamily: "var(--font-body)",
               fontWeight: 700,
               marginBottom: 20,
@@ -682,11 +729,13 @@ export default function FireReliefPage() {
           </span>
           <h2
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(36px, 5vw, 72px)",
-              lineHeight: 0.95,
-              color: "#fff",
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(48px, 7vw, 96px)",
+              lineHeight: 0.9,
+              color: "#000",
               marginBottom: 24,
+              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
             }}
           >
             NOT SURE IF YOU QUALIFY?
@@ -694,7 +743,7 @@ export default function FireReliefPage() {
           <p
             style={{
               fontSize: 16,
-              color: "#fff",
+              color: "#000",
               lineHeight: 1.7,
               maxWidth: 720,
               fontFamily: "var(--font-body)",
@@ -720,15 +769,15 @@ export default function FireReliefPage() {
               <div
                 key={i}
                 style={{
-                  borderTop: "1px solid #FFC700",
+                  borderTop: "1px solid #000",
                   paddingTop: 24,
                 }}
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-body)",
+                    fontFamily: "var(--font-display)",
                     fontSize: 22,
-                    color: "#FFC700",
+                    color: "#000",
                     marginBottom: 12,
                     lineHeight: 1.2,
                     textTransform: "uppercase",
@@ -740,7 +789,7 @@ export default function FireReliefPage() {
                 <p
                   style={{
                     fontSize: 16,
-                    color: "#fff",
+                    color: "#000",
                     lineHeight: 1.7,
                     fontFamily: "var(--font-body)",
                   }}
@@ -754,7 +803,7 @@ export default function FireReliefPage() {
           {/* Three-question walkthrough */}
           <div
             style={{
-              border: "1px solid #FFC700",
+              border: "1px solid #000",
               padding: "32px",
               maxWidth: 880,
             }}
@@ -765,7 +814,7 @@ export default function FireReliefPage() {
                 fontSize: 11,
                 letterSpacing: "3px",
                 textTransform: "uppercase",
-                color: "#FFC700",
+                color: "#000",
                 fontFamily: "var(--font-body)",
                 fontWeight: 700,
                 marginBottom: 20,
@@ -777,7 +826,7 @@ export default function FireReliefPage() {
               style={{
                 listStyle: "decimal",
                 paddingLeft: 24,
-                color: "#fff",
+                color: "#000",
                 fontFamily: "var(--font-body)",
                 fontSize: 16,
                 lineHeight: 1.7,
@@ -785,7 +834,7 @@ export default function FireReliefPage() {
               }}
             >
               <li style={{ marginBottom: 16 }}>
-                <strong style={{ color: "#FFC700" }}>
+                <strong style={{ color: "#000" }}>
                   Do you have a photo ID with your affected address, or a lease /
                   deed for the affected property?
                 </strong>
@@ -794,7 +843,7 @@ export default function FireReliefPage() {
                 burn or evacuation zone, you’re verified.
               </li>
               <li style={{ marginBottom: 16 }}>
-                <strong style={{ color: "#FFC700" }}>
+                <strong style={{ color: "#000" }}>
                   Do you have a photo ID at a different address plus proof of the
                   affected property?
                 </strong>
@@ -803,7 +852,7 @@ export default function FireReliefPage() {
                 displacement.
               </li>
               <li>
-                <strong style={{ color: "#FFC700" }}>
+                <strong style={{ color: "#000" }}>
                   Do you have a FEMA registration number plus one other document?
                 </strong>
                 <br />
@@ -815,15 +864,15 @@ export default function FireReliefPage() {
           </div>
         </section>
 
-        {/* ── IMPACT STATS — GOLD BAR ── */}
-        <section style={{ background: "#FFC700", padding: "80px 80px" }}>
+        {/* ── IMPACT STATS — BLACK BAR (contrast) ── */}
+        <section style={{ background: "#000", padding: "80px 80px" }}>
           <span
             style={{
               display: "block",
               fontSize: 11,
               letterSpacing: "3px",
               textTransform: "uppercase",
-              color: "#000",
+              color: "#FFC700",
               fontFamily: "var(--font-body)",
               fontWeight: 700,
               marginBottom: 40,
@@ -843,9 +892,9 @@ export default function FireReliefPage() {
               <div key={i} style={{ textAlign: "center" }}>
                 <span
                   style={{
-                    fontFamily: "var(--font-body)",
+                    fontFamily: "var(--font-display)",
                     fontSize: "clamp(32px, 3.5vw, 56px)",
-                    color: "#000",
+                    color: "#FFC700",
                     lineHeight: 1,
                     display: "block",
                   }}
@@ -857,7 +906,7 @@ export default function FireReliefPage() {
                     fontSize: 11,
                     letterSpacing: "1px",
                     textTransform: "uppercase",
-                    color: "#000",
+                    color: "#fff",
                     fontWeight: 600,
                     marginTop: 8,
                     display: "block",
@@ -872,20 +921,22 @@ export default function FireReliefPage() {
         </section>
 
         {/* ── CTA — SUPPORT THE HUB ── */}
-        <section style={{ background: "#FFC700", padding: "clamp(60px, 10vw, 100px) clamp(24px, 5vw, 80px)", textAlign: "center" }}>
+        <section style={{ background: "#000", padding: "clamp(60px, 10vw, 100px) clamp(24px, 5vw, 80px)", textAlign: "center" }}>
           <div
             style={{
-              borderTop: "0.5px solid #000",
+              borderTop: "0.5px solid #FFC700",
               paddingTop: 80,
             }}
           >
             <h2
               style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "clamp(40px, 5.5vw, 80px)",
-                lineHeight: 0.95,
-                color: "#000",
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(56px, 8vw, 120px)",
+                lineHeight: 0.9,
+                color: "#FFC700",
                 marginBottom: 24,
+                textTransform: "uppercase",
+                letterSpacing: "-0.02em",
               }}
             >
               SUPPORT THE HUB
@@ -893,7 +944,7 @@ export default function FireReliefPage() {
             <p
               style={{
                 fontSize: 16,
-                color: "#000",
+                color: "#fff",
                 maxWidth: 560,
                 margin: "0 auto 48px",
                 lineHeight: 1.7,
@@ -917,8 +968,8 @@ export default function FireReliefPage() {
                 rel="noopener noreferrer"
                 style={{
                   display: "inline-block",
-                  background: "#000",
-                  color: "#FFC700",
+                  background: "#FFC700",
+                  color: "#000",
                   padding: "18px 48px",
                   fontFamily: "var(--font-body)",
                   fontSize: 13,
@@ -938,7 +989,7 @@ export default function FireReliefPage() {
                 style={{
                   display: "inline-block",
                   background: "transparent",
-                  color: "#000",
+                  color: "#FFC700",
                   padding: "18px 48px",
                   fontFamily: "var(--font-body)",
                   fontSize: 13,
@@ -947,7 +998,7 @@ export default function FireReliefPage() {
                   fontWeight: 700,
                   textDecoration: "none",
                   borderRadius: "16px",
-                  border: "2px solid #000",
+                  border: "2px solid #FFC700",
                 }}
               >
                 Volunteer &rarr;
@@ -959,7 +1010,7 @@ export default function FireReliefPage() {
                 style={{
                   display: "inline-block",
                   background: "transparent",
-                  color: "#000",
+                  color: "#FFC700",
                   padding: "18px 48px",
                   fontFamily: "var(--font-body)",
                   fontSize: 13,
@@ -968,7 +1019,7 @@ export default function FireReliefPage() {
                   fontWeight: 700,
                   textDecoration: "none",
                   borderRadius: "16px",
-                  border: "2px solid #000",
+                  border: "2px solid #FFC700",
                 }}
               >
                 Book an Appointment &rarr;
