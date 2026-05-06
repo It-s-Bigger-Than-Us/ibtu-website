@@ -22,6 +22,11 @@ const nextConfig: NextConfig = {
         destination: 'https://secure.qgiv.com/for/itsbiggerthanus/event/gala/',
         permanent: false,
       },
+      {
+        source: '/7years',
+        destination: 'https://secure.qgiv.com/for/ibt/',
+        permanent: false,
+      },
     ]
   },
   async headers() {
