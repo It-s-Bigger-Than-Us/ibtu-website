@@ -61,36 +61,71 @@ export default function FireReliefPage() {
 
   const hubServices = [
     {
-      title: "Case Management",
-      detail: "HIPAA-compliant intake and ongoing support. 324 active clients.",
+      title: "Comprehensive Intake",
+      detail:
+        "When someone arrives, we sit down and hear their whole story. Housing, health, employment, family needs — we assess everything so we can respond to the full picture, not just the surface.",
     },
     {
-      title: "Food & Grocery Distribution",
-      detail: "Weekly distributions in partnership with Westside Food Bank.",
+      title: "Material Aid Distribution",
+      detail:
+        "Groceries, clothing, hygiene kits, household goods, baby essentials, pet supplies. We give people choice and dignity in selecting what they actually need — not a pre-packed box.",
     },
     {
-      title: "Clothing & Essentials",
-      detail: "Donated goods sorted and distributed with dignity.",
-    },
-    {
-      title: "Dental Access",
-      detail: "Weekly dental clinic through clinical partner.",
-    },
-    {
-      title: "Vision Screenings",
-      detail: "On-site screenings with same-day glasses available.",
+      title: "FEMA & Insurance Navigation",
+      detail:
+        "Insurance battles are ongoing and many survivors are severely underinsured. We help navigate applications, gather documentation, and connect people to case managers.",
     },
     {
       title: "Mental Health Support",
-      detail: "Licensed providers on-site. No waitlist.",
+      detail:
+        "Parents watching their children have nightmares. Adults experiencing night terrors and severe anxiety. We connect every person who needs it to mental health services and ongoing counseling.",
     },
     {
-      title: "Housing Navigation",
-      detail: "Dedicated navigators connecting clients to stable housing.",
+      title: "Employment Navigation",
+      detail:
+        "Housekeepers whose client homes burned. Hairdressers who lost their tools. Daycare providers whose facilities are gone. We help people navigate a financial collapse that didn’t make the news.",
     },
     {
-      title: "Legal Support",
-      detail: "FEMA appeals, insurance guidance, and tenant protections.",
+      title: "Long-Term Follow-Up",
+      detail:
+        "We are not a one-time stop. We remember names, children, and situations. We follow up. We are a consistent presence throughout the entire recovery journey.",
+    },
+  ];
+
+  const principles = [
+    {
+      title: "Dignity First",
+      detail:
+        "We verify impact through proper documentation, but we never make people feel interrogated or judged. Every person who walks through our doors is in one of the most vulnerable moments of their life. We treat them accordingly.",
+    },
+    {
+      title: "Relationship-Based",
+      detail:
+        "This is not transactional. We remember names, we remember kids, we remember what someone was going through last time. People come back because they trust us. That trust is the foundation of everything we do.",
+    },
+    {
+      title: "Community Rooted",
+      detail:
+        "This fire relief work extends our existing mission of supporting Los Angeles communities. We were here before the fires. We will be here long after the headlines fade. We do not show up for a moment and leave — we stay.",
+    },
+  ];
+
+  const verificationFaqs = [
+    {
+      q: "Why Do You Verify Fire Impact?",
+      a: "We verify because we want limited resources to reach the people who need them most. This is not about distrust — it’s about accountability to our funders and to our community. We work hard to make verification easy, private, and dignified.",
+    },
+    {
+      q: "What if I’m a renter?",
+      a: "Bring your lease or rental agreement showing your affected address. Your personal ID can have a different address. We’ll confirm the address is in the fire zone and that you were displaced.",
+    },
+    {
+      q: "What if I lost everything, including my ID?",
+      a: "We work with what you have. We accept passports, temporary IDs, and foreign-issued IDs. Combined with FEMA paperwork, insurance documents, utility bills, or bank statements showing your affected address, we will do our best to verify your situation.",
+    },
+    {
+      q: "What about smoke damage in neighboring areas?",
+      a: "If you were forced to leave your home due to smoke damage and cannot return, you may qualify. We’ll need proof that you are still displaced — such as an uninhabitable notice, hotel receipts, or a temporary housing lease. Being near the fire zone without displacement does not qualify.",
     },
   ];
 
@@ -346,7 +381,7 @@ export default function FireReliefPage() {
           {/* Gradient overlay removed — no text over video */}
         </section>
 
-        {/* ── HUB SERVICES — HOW TO GET ASSISTANCE ── */}
+        {/* ── HUB SERVICES — WHAT WE DO HERE ── */}
         <section style={{ padding: "120px 80px" }}>
           <span
             style={{
@@ -371,20 +406,22 @@ export default function FireReliefPage() {
               marginBottom: 20,
             }}
           >
-            HOW TO GET ASSISTANCE
+            WHAT WE DO HERE
           </h2>
           <p
             style={{
               fontSize: 16,
               color: "#fff",
               lineHeight: 1.7,
-              maxWidth: 600,
+              maxWidth: 720,
               fontFamily: "var(--font-body)",
               marginBottom: 60,
             }}
           >
-            The Hub is open and serving fire-impacted community members at no cost.
-            Walk in or call to schedule an appointment.
+            We take a holistic approach because a family’s needs do not exist in
+            isolation. A household that lost its home also lost its income, its
+            kids’ school routine, its sense of safety, and sometimes its will to
+            ask for help. We address all of it.
           </p>
 
           <div
@@ -453,7 +490,7 @@ export default function FireReliefPage() {
                   marginBottom: 16,
                 }}
               >
-                Location
+                Visit The Hub
               </span>
               <p
                 style={{
@@ -463,6 +500,8 @@ export default function FireReliefPage() {
                   fontFamily: "var(--font-body)",
                 }}
               >
+                The IBTU Relief Resource Hub
+                <br />
                 Baldwin Hills Crenshaw Plaza
                 <br />
                 Suite 224-226
@@ -553,6 +592,226 @@ export default function FireReliefPage() {
                 Book an Appointment &rarr;
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* ── WHAT MAKES IBTU DIFFERENT ── */}
+        <section style={{ padding: "clamp(80px, 10vw, 120px) clamp(24px, 5vw, 80px)", borderTop: "1px solid #FFC700" }}>
+          <span
+            style={{
+              display: "block",
+              fontSize: 11,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "#FFC700",
+              fontFamily: "var(--font-body)",
+              fontWeight: 700,
+              marginBottom: 20,
+            }}
+          >
+            Our Approach
+          </span>
+          <h2
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "clamp(36px, 5vw, 72px)",
+              lineHeight: 0.95,
+              color: "#fff",
+              marginBottom: 60,
+            }}
+          >
+            WHAT MAKES IBTU DIFFERENT
+          </h2>
+          <div
+            className="fr-services-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: 24,
+            }}
+          >
+            {principles.map((p, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: 32,
+                  border: "1px solid #FFC700",
+                }}
+              >
+                <h3
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: 28,
+                    color: "#FFC700",
+                    marginBottom: 12,
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {p.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "#fff",
+                    lineHeight: 1.7,
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  {p.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── VERIFICATION FAQ ── */}
+        <section style={{ padding: "clamp(80px, 10vw, 120px) clamp(24px, 5vw, 80px)", borderTop: "1px solid #FFC700" }}>
+          <span
+            style={{
+              display: "block",
+              fontSize: 11,
+              letterSpacing: "3px",
+              textTransform: "uppercase",
+              color: "#FFC700",
+              fontFamily: "var(--font-body)",
+              fontWeight: 700,
+              marginBottom: 20,
+            }}
+          >
+            Verification &amp; Eligibility
+          </span>
+          <h2
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "clamp(36px, 5vw, 72px)",
+              lineHeight: 0.95,
+              color: "#fff",
+              marginBottom: 24,
+            }}
+          >
+            NOT SURE IF YOU QUALIFY?
+          </h2>
+          <p
+            style={{
+              fontSize: 16,
+              color: "#fff",
+              lineHeight: 1.7,
+              maxWidth: 720,
+              fontFamily: "var(--font-body)",
+              marginBottom: 48,
+            }}
+          >
+            We verify addresses using Google Maps and publicly available fire zone
+            and evacuation maps. No documentation looks suspicious to us — people
+            lose everything in disasters. If you have questions, any IBTU team
+            member can walk you through it.
+          </p>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr",
+              gap: 32,
+              maxWidth: 880,
+              marginBottom: 64,
+            }}
+          >
+            {verificationFaqs.map((faq, i) => (
+              <div
+                key={i}
+                style={{
+                  borderTop: "1px solid #FFC700",
+                  paddingTop: 24,
+                }}
+              >
+                <h3
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: 22,
+                    color: "#FFC700",
+                    marginBottom: 12,
+                    lineHeight: 1.2,
+                    textTransform: "uppercase",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {faq.q}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 16,
+                    color: "#fff",
+                    lineHeight: 1.7,
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Three-question walkthrough */}
+          <div
+            style={{
+              border: "1px solid #FFC700",
+              padding: "32px",
+              maxWidth: 880,
+            }}
+          >
+            <span
+              style={{
+                display: "block",
+                fontSize: 11,
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                color: "#FFC700",
+                fontFamily: "var(--font-body)",
+                fontWeight: 700,
+                marginBottom: 20,
+              }}
+            >
+              Three-Question Walkthrough
+            </span>
+            <ol
+              style={{
+                listStyle: "decimal",
+                paddingLeft: 24,
+                color: "#fff",
+                fontFamily: "var(--font-body)",
+                fontSize: 16,
+                lineHeight: 1.7,
+                margin: 0,
+              }}
+            >
+              <li style={{ marginBottom: 16 }}>
+                <strong style={{ color: "#FFC700" }}>
+                  Do you have a photo ID with your affected address, or a lease /
+                  deed for the affected property?
+                </strong>
+                <br />
+                Yes → We verify the address against fire zone maps. If it’s in the
+                burn or evacuation zone, you’re verified.
+              </li>
+              <li style={{ marginBottom: 16 }}>
+                <strong style={{ color: "#FFC700" }}>
+                  Do you have a photo ID at a different address plus proof of the
+                  affected property?
+                </strong>
+                <br />
+                Yes → We verify the affected address online and confirm
+                displacement.
+              </li>
+              <li>
+                <strong style={{ color: "#FFC700" }}>
+                  Do you have a FEMA registration number plus one other document?
+                </strong>
+                <br />
+                Yes → We verify with additional proof of impact. If not, you may
+                receive one-time emergency access — please bring documentation
+                next time.
+              </li>
+            </ol>
           </div>
         </section>
 

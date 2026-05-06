@@ -192,7 +192,7 @@ This is the IBTU model: show up in crisis, build infrastructure that stays, and 
       'Seniors and individuals with disabilities navigating complex recovery systems',
       'Community members seeking culturally responsive support in their first language',
       'Community members who lost employment, housing, or critical documents in the fires',
-      'Anyone impacted by crisis in Los Angeles — no ID required, no barriers to entry',
+      'Fire-impacted community members navigating recovery — verification is dignified, never an interrogation',
     ],
     schedule: 'Hub open weekly — walk-in or appointment',
     partners: '',

@@ -70,7 +70,7 @@ const jsonLd = {
   email: "info@itsbiggerthanusla.org",
   sameAs: [
     "https://instagram.com/itsbiggerthanus_",
-    "https://facebook.com/itsbiggerthanus",
+    "https://www.facebook.com/itsbiggerthanusla/",
     "https://tiktok.com/@itsbiggerthanus",
     "https://linkedin.com/company/its-bigger-than-us",
     "https://youtube.com/@itsbiggerthanus",
