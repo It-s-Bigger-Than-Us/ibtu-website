@@ -2,7 +2,65 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import Footer from "@/components/layout/Footer";
+import ProgramStoryTabs from "@/components/sections/ProgramStoryTabs";
 import { PROGRAM_VIDEOS } from "@/lib/data/video-urls";
+
+const FIRE_RELIEF_STORY_TABS = [
+  {
+    label: "The Story",
+    heading: "Crisis to Permanent Infrastructure",
+    body: [
+      "When the Palisades and Eaton fires displaced thousands of families in January 2025, IBTU transformed from a community programming organization into a fully operational disaster response hub.",
+      "Over three phases — emergency relief, service linkage, and permanent infrastructure — IBTU has stabilized 5,000+ families, delivered 7,581 assistance instances to 324 active clients, and built a Relief Resource Hub that fire-impacted community members return to an average of 23.4 times. This is not temporary aid. This is community infrastructure, designed with dignity and built to last.",
+    ],
+  },
+  {
+    label: "72 Hours",
+    heading: "Seventy-Two Hours Changed Everything",
+    body: [
+      "On January 7, 2025, the fires started. By January 10, IBTU had activated 1,800+ volunteers, opened supply staging at Baldwin Hills Crenshaw Plaza, and begun delivering essential goods to displaced families across Los Angeles. In those first 14 days, volunteers delivered 10,560 meals to first responders, processed 1,728 individual in-kind donations, and made 147 deliveries to 85 unique locations.",
+      "This was not a campaign. This was a community that already had the relationships, the logistics, and the trust to move — because IBTU had spent five years building that infrastructure in Los Angeles schools, food distributions, and neighborhood events.",
+    ],
+  },
+  {
+    label: "The Hub",
+    heading: "Permanent, Not Pop-Up",
+    body: [
+      "Phase 2 transformed emergency response into permanent infrastructure. The IBTU Relief Resource Hub at Baldwin Hills Crenshaw Plaza (Suite 224-226, 3650 W Martin Luther King Jr Blvd, Los Angeles, CA 90008) now operates as a full-service community center with 15+ rotating partner services.",
+      "Hub services include case management, dental care, vision screenings, mental health support with no waitlist, housing navigation, legal aid, food distribution, and financial counseling. Walk-in and appointment access. Fire-impacted community members receive services at no cost. The verification process is dignified — every person is treated with respect from the first interaction.",
+    ],
+  },
+  {
+    label: "By the Numbers",
+    heading: "Data Proves What Trust Built",
+    body: [
+      "The Hub serves 324 active clients who return an average of 23.4 times each — proof that this is not transactional relief but a trusted resource. Of those assessed, 79% are permanently displaced. 62% report significant mental health impact. 37% are unemployed. These are not abstract statistics. They represent families rebuilding their lives, and they keep coming back because the Hub delivers.",
+      "Referral sources tell the story of organic trust: 37% find the Hub through word of mouth, 14% through social media, and 10% through other organizations. IBTU serves families from 90+ zip codes across Los Angeles — because crisis does not respect district lines.",
+    ],
+  },
+  {
+    label: "Phase 3",
+    heading: "From Response to Renewal",
+    body: [
+      "The Hub is transitioning into Phase 3 — a permanent all-crisis community center that will serve fire survivors and any community member navigating systemic barriers.",
+      "This is the IBTU model: show up in crisis, build infrastructure that stays, and expand that infrastructure to meet the next need. 300+ partners activated. $4.5M+ in in-kind resources moved at an $18:$1 leverage ratio. Community is the infrastructure.",
+    ],
+  },
+  {
+    label: "Who We Serve",
+    heading: "Who Walks Through The Doors",
+    body: [
+      "The Hub is open to anyone navigating recovery. Verification is dignified, never an interrogation.",
+    ],
+    bullets: [
+      "Families displaced by the Palisades and Eaton fires rebuilding their lives",
+      "Seniors and individuals with disabilities navigating complex recovery systems",
+      "Community members seeking culturally responsive support in their first language",
+      "Community members who lost employment, housing, or critical documents in the fires",
+      "Fire-impacted community members navigating recovery — verification is dignified, never an interrogation",
+    ],
+  },
+];
 
 export const metadata: Metadata = {
   title: "Fire Relief & The Hub | IBTU",
@@ -637,6 +695,13 @@ export default function FireReliefPage() {
             </div>
           </div>
         </section>
+
+        {/* ── STORY TABS (consolidated from /our-programs/fire-relief) ── */}
+        <ProgramStoryTabs
+          eyebrow="The Full Story"
+          title="From Day One to The Hub"
+          tabs={FIRE_RELIEF_STORY_TABS}
+        />
 
         {/* ── WHAT MAKES IBTU DIFFERENT ── */}
         <section style={{ padding: "clamp(80px, 10vw, 120px) clamp(24px, 5vw, 80px)", borderTop: "1px solid #000" }}>

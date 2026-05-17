@@ -1,6 +1,56 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Footer from "@/components/layout/Footer"
+import ProgramStoryTabs from "@/components/sections/ProgramStoryTabs"
+
+const STORY_TABS = [
+  {
+    label: "The Story",
+    heading: "Six years. 18,550+ backpacks.",
+    body: [
+      "Every August, IBTU transforms community spaces into school-readiness hubs where thousands of families access backpacks, school supplies, uniforms, health screenings, haircuts, food, and partner resources.",
+      "The Back 2 School Festival has grown from a single site to a multi-city operation across Los Angeles, now in its seventh year. In 2025, the festival expanded to three locations — Baldwin Hills Crenshaw Plaza, Venice Beach, and Crenshaw High School — distributing thousands of backpacks plus 100 laptops. This is not a handout. This is the first day of a year-long relationship.",
+    ],
+  },
+  {
+    label: "Day One",
+    heading: "Readiness Starts Before the Bell Rings",
+    body: [
+      "The Back 2 School Festival is not a one-day event — it is the entry point for families into IBTU's year-round programming. Every child who walks through receives a fully loaded backpack with grade-appropriate supplies. But backpacks are only the beginning. On-site partners provide free health screenings, dental checks, vision exams, and haircuts. Enrollment counselors connect families to resources they did not know existed.",
+      "In 2025, the Crenshaw High School Court Dedication distributed 1,000 backpacks and 100 laptops, with 139 families completing on-site service applications. The estimated value of that single event: $174,567.",
+    ],
+  },
+  {
+    label: "Three Locations",
+    heading: "Three Locations, One Standard",
+    body: [
+      "In 2025, IBTU expanded the Back 2 School Festival to three simultaneous locations across Los Angeles. Baldwin Hills Crenshaw Plaza served 2,500+ attendees with 60+ partner organizations and 150+ volunteers. Venice Beach reached 5,000+ community members. Crenshaw High School hosted the Court Dedication.",
+      "Every site operates at the same standard. The same quality of resources, the same partner services, the same dignified experience — regardless of zip code. IBTU does not do pop-ups. We build platforms.",
+    ],
+  },
+  {
+    label: "Partners",
+    heading: "190+ Organizations. One Standard.",
+    body: [
+      "Over six years, 190+ organizations have partnered with the Back 2 School Festival. These are not logo placements. Partner organizations send staff, donate supplies, and run service stations alongside IBTU volunteers. Corporate teams work shoulder-to-shoulder with community members.",
+      "17,500+ attendees, 90+ schools, 123+ zip codes. The Back 2 School Festival has become one of the largest community-driven school readiness events in Los Angeles. The work speaks for itself — and the community keeps showing up because IBTU does.",
+    ],
+  },
+  {
+    label: "Who We Serve",
+    heading: "Who Walks Through The Doors",
+    body: [
+      "Back 2 School is open to every family who shows up — no registration, no ID, no proof of need.",
+    ],
+    bullets: [
+      "Families preparing children for the school year who need supplies, uniforms, and resources",
+      "Parents and caregivers seeking free health screenings and enrollment support for their kids",
+      "Students from 90+ schools and 123+ zip codes across Los Angeles",
+      "Fire-impacted families rebuilding stability through back-to-school readiness",
+      "Community members looking to connect with year-round IBTU programming",
+    ],
+  },
+]
 
 export const metadata: Metadata = {
   title: "Back 2 School Festival 2026 | IBTU — 7th Annual",
@@ -249,6 +299,13 @@ export default function Back2SchoolPage() {
           </div>
         </div>
       </section>
+
+      {/* ── STORY TABS (consolidated from /our-programs/back-2-school) ── */}
+      <ProgramStoryTabs
+        eyebrow="The Full Story"
+        title="Seven Years of B2S"
+        tabs={STORY_TABS}
+      />
 
       {/* ── SPONSOR ── */}
       <section id="sponsor" style={{ scrollMarginTop: 80, background: "#000", padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)" }}>

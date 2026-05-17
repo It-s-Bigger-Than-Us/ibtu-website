@@ -12,9 +12,31 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Consolidated program pages — old /our-programs/* URLs now redirect to standalone pages
       {
         source: '/our-programs/back-to-school',
-        destination: '/our-programs/back-2-school',
+        destination: '/back2school',
+        permanent: true,
+      },
+      {
+        source: '/our-programs/back-2-school',
+        destination: '/back2school',
+        permanent: true,
+      },
+      {
+        source: '/our-programs/fire-relief',
+        destination: '/fire-relief',
+        permanent: true,
+      },
+      // Short URLs
+      {
+        source: '/b2s',
+        destination: '/back2school',
+        permanent: true,
+      },
+      {
+        source: '/hub',
+        destination: '/fire-relief',
         permanent: true,
       },
       {

@@ -16,6 +16,12 @@ gsap.registerPlugin(ScrollTrigger)
    Scroll entrance with slight rotate
 ═══════════════════════════════════════ */
 
+// Programs with dedicated standalone pages — bypass the /our-programs/[slug] route
+const PROGRAM_HREF_OVERRIDES: Record<string, string> = {
+  'back-2-school': '/back2school',
+  'fire-relief': '/fire-relief',
+}
+
 // Icons removed per Molly
 
 interface Program {
@@ -84,7 +90,7 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
           {programs.map((program, index) => (
             <Link
               key={program.slug}
-              href={`/our-programs/${program.slug}`}
+              href={PROGRAM_HREF_OVERRIDES[program.slug] ?? `/our-programs/${program.slug}`}
               className="program-card-v2 gsap-reveal"
               style={{
                 textDecoration: 'none',

@@ -138,7 +138,7 @@ export default async function AboutPage() {
         {/* Three Pillars */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 2, padding: 2 }}>
           {[
-            { tag: "Pillar 01", title: "Crisis & Disaster Stabilization", desc: "When crisis hits, IBTU is already there. We stabilize families through rapid response, trusted relief, and long-term recovery.", href: "/our-programs/fire-relief" },
+            { tag: "Pillar 01", title: "Crisis & Disaster Stabilization", desc: "When crisis hits, IBTU is already there. We stabilize families through rapid response, trusted relief, and long-term recovery.", href: "/fire-relief" },
             { tag: "Pillar 02", title: "School & Youth Stability", desc: "When families face instability, students feel it first. IBTU works inside schools to protect attendance, engagement, and opportunity.", href: "/our-programs/youth-programming" },
             { tag: "Pillar 03", title: "Community Health & Resource Access", desc: "From food distributions and dental screenings to mental health sessions — IBTU removes barriers to health and essentials.", href: "/our-programs/community-health" },
           ].map((p) => (

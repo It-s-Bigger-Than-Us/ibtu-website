@@ -16,19 +16,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/awards`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/get-involved`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/fire-relief`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/back2school`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     /* /services removed — no page exists */
     { url: `${baseUrl}/jobs`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.5 },
   ];
 
-  // Dynamic program routes
+  // Dynamic program routes — skip slugs that have dedicated standalone pages
+  const REDIRECTED_SLUGS = new Set(["back-2-school", "fire-relief"]);
   const programs = await getPrograms();
-  const programRoutes: MetadataRoute.Sitemap = programs.map((p: { slug: string }) => ({
-    url: `${baseUrl}/our-programs/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
+  const programRoutes: MetadataRoute.Sitemap = programs
+    .filter((p: { slug: string }) => !REDIRECTED_SLUGS.has(p.slug))
+    .map((p: { slug: string }) => ({
+      url: `${baseUrl}/our-programs/${p.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
 
   return [...staticRoutes, ...programRoutes];
 }
