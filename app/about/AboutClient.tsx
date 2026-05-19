@@ -902,22 +902,22 @@ function BoardCard({ member, selected }: { member: Member; selected: boolean }) 
                 }}
               >
                 <div
+                  className="board-bio-scroll"
                   style={{
                     flex: 1,
-                    overflow: 'hidden',
+                    overflowY: 'auto',
+                    overflowX: 'hidden',
                     fontFamily: 'Poppins,sans-serif',
-                    fontSize: 13,
-                    lineHeight: 1.3,
+                    fontSize: 'clamp(10px, 1vw, 12px)',
+                    lineHeight: 1.35,
                     color: '#000',
                     fontWeight: 600,
                     textAlign: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
+                    paddingRight: 4,
                   }}
                 >
                   {member.bio.map((p, i) => (
-                    <p key={i} style={{ margin: i === 0 ? 0 : '4px 0 0' }}>
+                    <p key={i} style={{ margin: i === 0 ? 0 : '6px 0 0' }}>
                       {p}
                     </p>
                   ))}
