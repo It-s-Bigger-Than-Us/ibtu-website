@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Contact | IBTU",
   description:
     "Reach It's Bigger Than Us — general inquiries, volunteer coordination, partnerships, and media. Based at Baldwin Hills Crenshaw Plaza, Los Angeles.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

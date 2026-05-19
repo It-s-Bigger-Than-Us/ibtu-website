@@ -4,6 +4,8 @@ import Script from "next/script";
 import "./globals.css";
 import TopNav from "@/components/layout/TopNav";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import PageTransition from "@/components/ui/PageTransition";
+import NewsletterMount from "@/components/sections/NewsletterMount";
 
 
 const poppins = Poppins({
@@ -39,7 +41,8 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"],
   },
   alternates: {
-    canonical: "https://ibtu.la",
+    // Root canonical — leaf pages override via their own metadata.alternates.canonical
+    canonical: "/",
   },
   robots: {
     index: true,
@@ -108,10 +111,13 @@ export default function RootLayout({
         </a>
         <SmoothScroll>
           <TopNav />
-          <div id="main-content">
-            {children}
-          </div>
+          <PageTransition>
+            <div id="main-content">
+              {children}
+            </div>
+          </PageTransition>
         </SmoothScroll>
+        <NewsletterMount />
         <Script
           src="https://api.bloomerang.co/v1/WebsiteVisit?ApiKey=pub_a73727e3-a04d-11ee-96cb-0a3287177f03"
           strategy="lazyOnload"

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "School Program | IBTU — Bring IBTU to Your Campus",
   description:
     "IBTU operates on 34 school sites across Los Angeles — lunchtime activations, parent empowerment, resource fairs, staff wellness, and youth leadership. 62,475+ students served since 2020.",
+  alternates: { canonical: "/school-program" },
 }
 
 const PROGRAMS = [

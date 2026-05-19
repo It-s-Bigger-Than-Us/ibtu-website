@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "About Us | IBTU — It's Bigger Than Us",
   description:
     "Since 2020, IBTU has grown from a pandemic-era response team into permanent community infrastructure serving Los Angeles and beyond.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Jobs & Careers | IBTU",
   description:
     "Community infrastructure needs Community Builders. Join the IBTU team — paid positions, volunteer pathways, and workforce development.",
+  alternates: { canonical: "/jobs" },
 };
 
 export default function JobsPage() {

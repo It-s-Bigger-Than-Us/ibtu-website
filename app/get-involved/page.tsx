@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Get Involved | IBTU — It's Bigger Than Us",
   description:
     "Volunteer, donate, sponsor, or partner with IBTU. $18:$1 leverage ratio. 62,475+ students served, 875,500+ lbs food distributed. Community is the infrastructure.",
+  alternates: { canonical: "/get-involved" },
 }
 
 // Sponsorship tiers removed — donations handled through Bloomerang/QGIV

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Impact | IBTU",
   description:
     "The numbers behind IBTU's community impact — 62,475+ students, 875,500+ lbs of food, 300+ partners, and six consecutive years of service across Los Angeles.",
+  alternates: { canonical: "/impact" },
 };
 
 export default async function ImpactPage() {

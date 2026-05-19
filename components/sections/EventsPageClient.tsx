@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -47,6 +48,7 @@ export default function EventsPageClient({
   programs,
   allByProgram,
 }: EventsPageClientProps) {
+  const router = useRouter();
   const headerRef = useRef<HTMLDivElement>(null);
   const upcomingHeadlineRef = useRef<HTMLHeadingElement>(null);
   const upcomingCardsRef = useRef<HTMLDivElement>(null);
@@ -262,22 +264,29 @@ export default function EventsPageClient({
               );
               return (
                 <div key={i} style={{ opacity: 0 }}>
-                  <Link
-                    href={`/our-programs/${ev.programSlug}`}
-                    style={{ textDecoration: "none" }}
+                  <div
+                    role="link"
+                    tabIndex={0}
+                    onClick={() => router.push(`/our-programs/${ev.programSlug}`)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        router.push(`/our-programs/${ev.programSlug}`);
+                      }
+                    }}
+                    style={{
+                      cursor: "pointer",
+                      background: "#000",
+                      border: "1px solid #FFC700",
+                      padding: "28px 32px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                      gap: 24,
+                      transition: "border-color 0.2s",
+                      textDecoration: "none",
+                    }}
                   >
-                    <div
-                      style={{
-                        background: "#000",
-                        border: "1px solid #FFC700",
-                        padding: "28px 32px",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "flex-start",
-                        gap: 24,
-                        transition: "border-color 0.2s",
-                      }}
-                    >
                       <div style={{ flex: 1 }}>
                         <span
                           style={{
@@ -341,8 +350,7 @@ export default function EventsPageClient({
                           {"VOLUNTEER \u2192"}
                         </a>
                       </div>
-                    </div>
-                  </Link>
+                  </div>
                 </div>
               );
             })}

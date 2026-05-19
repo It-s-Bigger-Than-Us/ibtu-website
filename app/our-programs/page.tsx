@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Our Programs | IBTU — It's Bigger Than Us",
   description:
     "7 community programs across Crisis & Disaster Stabilization, School & Youth Stability, and Community Health & Resource Access. Built for Los Angeles.",
+  alternates: { canonical: "/our-programs" },
 };
 
 const HIDDEN_PROGRAMS = ['gala', 'community-builder-linkups', 'incubation-academy']

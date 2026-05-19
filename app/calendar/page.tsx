@@ -10,7 +10,10 @@ export const metadata: Metadata = {
   title: "Event Calendar | IBTU — It's Bigger Than Us",
   description:
     "See what's happening at IBTU — upcoming events, volunteer opportunities, and community activations across Los Angeles.",
+  alternates: { canonical: "/calendar" },
 };
+
+const HIDDEN_PROGRAM_SLUGS = ['gala', 'community-builder-linkups', 'incubation-academy'];
 
 const PILLAR_COLORS: Record<string, string> = {
   "Crisis & Disaster Stabilization": "#fff",
@@ -63,7 +66,7 @@ export default async function CalendarPage() {
               {upcoming.map((ev: any, i: number) => (
                 <Link
                   key={i}
-                  href={ev.programSlug ? `/our-programs/${ev.programSlug}` : "/events"}
+                  href={ev.programSlug && !HIDDEN_PROGRAM_SLUGS.includes(ev.programSlug) ? `/our-programs/${ev.programSlug}` : "/events"}
                   style={{ textDecoration: "none" }}
                 >
                   <div
@@ -136,7 +139,7 @@ export default async function CalendarPage() {
                 {yearEvents.map((ev: any, i: number) => (
                   <Link
                     key={i}
-                    href={ev.programSlug ? `/our-programs/${ev.programSlug}` : "/events"}
+                    href={ev.programSlug && !HIDDEN_PROGRAM_SLUGS.includes(ev.programSlug) ? `/our-programs/${ev.programSlug}` : "/events"}
                     style={{ textDecoration: "none" }}
                   >
                     <div

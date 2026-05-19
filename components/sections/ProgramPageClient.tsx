@@ -813,7 +813,7 @@ export default function ProgramPageClient({
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={src}
-                  alt=""
+                  alt={`${program.slug.replace(/-/g, ' ')} — IBTU community photograph`}
                   loading="lazy"
                   style={{
                     width: '100%',

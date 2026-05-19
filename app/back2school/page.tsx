@@ -56,6 +56,7 @@ export const metadata: Metadata = {
   title: "Back 2 School Festival 2026 | IBTU — 7th Annual",
   description:
     "Aug 1, 2026 at Baldwin Hills Crenshaw Plaza. Free backpacks, school supplies, haircuts, health screenings, food, and community resources. No registration. Just show up. 18,550+ backpacks distributed across 6 years.",
+  alternates: { canonical: "/back2school" },
 }
 
 const STATS = [
@@ -79,10 +80,6 @@ const WHAT_HAPPENS = [
   {
     title: "Health Screenings",
     desc: "Partner-led basic health checks: vision, dental, blood pressure. Resources to follow up at no cost.",
-  },
-  {
-    title: "Food + Hydration",
-    desc: "Hot meals, snacks, and water for the whole family. Nobody leaves hungry.",
   },
   {
     title: "Resource Tables",
@@ -142,27 +139,6 @@ const COMMUNITY_SPONSORS = [
     price: "$1,000",
     booth: "10'×10'",
     desc: "Listed on materials. Tier 3 website. Group social post. Listed in story + email.",
-  },
-]
-
-const VENDOR_TIERS = [
-  {
-    name: "Tabling",
-    price: "$150",
-    booth: "6ft table + 2 chairs",
-    desc: "Table, chairs, assigned area. Basic listing on event materials.",
-  },
-  {
-    name: "Standard Booth",
-    price: "$250",
-    booth: "10'×10'",
-    desc: "Booth space, event map listing, group social mention.",
-  },
-  {
-    name: "Large Booth",
-    price: "$350",
-    booth: "10'×20'",
-    desc: "Double booth space, event map listing, group social mention, priority placement.",
   },
 ]
 
@@ -443,19 +419,6 @@ export default function Back2SchoolPage() {
           <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-lg)", color: "#000", lineHeight: 1.7, fontWeight: 500, maxWidth: 720, marginBottom: "clamp(40px, 5vw, 64px)" }}>
             Local businesses, food vendors, health providers, and community organizations — your booth puts you face-to-face with thousands of families. Direct access to your community, not a trade show. Nonprofit and community-org vendors: booth fee waived. Just note it on the application.
           </p>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(16px, 2vw, 24px)", marginBottom: "clamp(40px, 5vw, 64px)" }}>
-            {VENDOR_TIERS.map((v) => (
-              <div key={v.name} style={{ background: "#000", borderRadius: 16, padding: "clamp(24px, 3vw, 36px)" }}>
-                <h4 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(22px, 2.4vw, 32px)", textTransform: "uppercase", color: "#FFC700", letterSpacing: "-0.01em", lineHeight: 1, marginBottom: 8 }}>
-                  {v.name}
-                </h4>
-                <span style={{ fontFamily: "var(--font-body)", fontSize: "clamp(20px, 2vw, 28px)", fontWeight: 900, color: "#FFC700", display: "block", marginBottom: 4 }}>{v.price}</span>
-                <span style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#FFF", display: "block", marginBottom: 16 }}>{v.booth}</span>
-                <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-sm)", color: "#FFF", lineHeight: 1.6, fontWeight: 500 }}>{v.desc}</p>
-              </div>
-            ))}
-          </div>
 
           <div style={{ textAlign: "center" }}>
             <a href={B2S_VENDOR_FORM} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "20px 56px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 14, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>

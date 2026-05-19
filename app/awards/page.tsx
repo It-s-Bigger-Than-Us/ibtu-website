@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Awards & Recognition | IBTU",
   description:
     "23 awards and recognitions from the U.S. Congress, California Legislature, City of Los Angeles, and community institutions — honoring IBTU's impact since 2020.",
+  alternates: { canonical: "/awards" },
 };
 
 // Media placements data — from Obsidian ibtu-partnerships-media.md

@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${program.title} | IBTU`,
     description: program.tagline,
+    alternates: { canonical: `/our-programs/${slug}` },
   }
 }
 

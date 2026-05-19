@@ -12,14 +12,19 @@ export const metadata: Metadata = {
   title: "Events | IBTU — It's Bigger Than Us",
   description:
     "54 events across 7 programs — from annual festivals and monthly beach clean-ups to ongoing fire relief and weekly food distributions.",
+  alternates: { canonical: "/events" },
 };
 
+const HIDDEN_PROGRAM_SLUGS = ['gala', 'community-builder-linkups', 'incubation-academy'];
+
 export default async function EventsPage() {
-  const [events, upcoming, programs] = await Promise.all([
+  const [events, upcoming, programsRaw] = await Promise.all([
     getAllEvents(),
     getUpcomingEvents(),
     getPrograms(),
   ]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const programs = programsRaw.filter((p: any) => !HIDDEN_PROGRAM_SLUGS.includes(p.slug));
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const allByProgram = programs.map((p: any) => ({
     program: p,

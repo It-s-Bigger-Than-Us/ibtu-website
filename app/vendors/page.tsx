@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Become a Vendor | IBTU — It's Bigger Than Us",
   description:
     "Vendor booth opportunities at IBTU community events in Los Angeles. Back 2 School Festival, Coastal Care, wellness activations, food distributions, and more. 8,000+ attendees. 75+ media placements. Apply now.",
+  alternates: { canonical: "/vendors" },
 };
 
 const VENDOR_TIERS = [
