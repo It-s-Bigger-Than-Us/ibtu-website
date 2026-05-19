@@ -747,7 +747,7 @@
   transition: transform .7s cubic-bezier(.7,0,.3,1);
   transform: rotateY(0deg) scale(1);
 }
-.about-v2 .tl-card.is-flipped { transform: rotateY(180deg) scale(1.4); }
+.about-v2 .tl-card.is-flipped { transform: rotateY(180deg); }
 .about-v2 .tl-face {
   position: absolute;
   inset: 0;
@@ -820,19 +820,19 @@
 }
 .about-v2 .tl-title-back {
   font-family: "LOT", "Bebas Neue", sans-serif;
-  font-size: clamp(14px, 1.5vw, 18px);
-  line-height: 0.98;
+  font-size: clamp(18px, 1.9vw, 22px);
+  line-height: 1.0;
   letter-spacing: -0.005em;
   text-transform: uppercase;
   color: #000;
-  margin: 0 0 2px;
+  margin: 0 0 6px;
   text-align: center;
   text-wrap: balance;
   flex-shrink: 0;
 }
 .about-v2 .tl-body {
   font-family: "Poppins", sans-serif;
-  font-size: clamp(8px, 0.78vw, 9.5px);
+  font-size: clamp(11px, 1.1vw, 13px);
   line-height: 1.45;
   font-weight: 500;
   color: #000;
@@ -842,19 +842,20 @@
   flex: 1 1 auto;
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-width: none;
 }
 .about-v2 .tl-body::-webkit-scrollbar { width: 0; height: 0; }
 .about-v2 .board-bio-scroll::-webkit-scrollbar { width: 0; height: 0; }
 .about-v2 .board-bio-scroll { scrollbar-width: none; }
 .about-v2 .tl-stat {
-  margin-top: 4px;
+  margin-top: 6px;
   font-family: "Poppins", sans-serif;
   font-weight: 900;
-  font-size: 7px;
+  font-size: 9px;
   letter-spacing: 0.12em;
   color: #000;
   background: #FFC700;
-  padding: 3px 7px;
+  padding: 4px 9px;
   border-radius: 100px;
   text-transform: uppercase;
   line-height: 1.2;

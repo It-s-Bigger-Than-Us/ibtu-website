@@ -29,6 +29,17 @@ export default function TopNav() {
   const pathname = usePathname()
   const isStudio = pathname?.startsWith('/studio') ?? false
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // track viewport size — switch to dropdown panel below ~900px
+  useEffect(() => {
+    if (isStudio) return
+    const mq = window.matchMedia('(max-width: 900px)')
+    const sync = () => setIsMobile(mq.matches)
+    sync()
+    mq.addEventListener('change', sync)
+    return () => mq.removeEventListener('change', sync)
+  }, [isStudio])
 
   // auto-collapse on scroll past 80px while open
   useEffect(() => {
@@ -78,7 +89,7 @@ export default function TopNav() {
     marginLeft: 6,
   }
   const linksWrap: React.CSSProperties = {
-    display: 'flex',
+    display: isMobile ? 'none' : 'flex',
     alignItems: 'center',
     gap: 2,
     paddingLeft: menuOpen ? 8 : 0,
@@ -88,6 +99,39 @@ export default function TopNav() {
     overflow: 'hidden',
     transition:
       'max-width .55s cubic-bezier(.16,1,.3,1), opacity .35s ease, padding .4s ease',
+  }
+  const mobilePanel: React.CSSProperties = {
+    position: 'absolute',
+    top: 'calc(100% + 8px)',
+    left: '50%',
+    transform: `translate(-50%, ${menuOpen ? '0' : '-8px'})`,
+    minWidth: 220,
+    background: '#FFC700',
+    border: '1.5px solid #000',
+    borderRadius: 20,
+    padding: 14,
+    boxShadow: '0 18px 40px -14px rgba(0,0,0,.55)',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+    opacity: menuOpen ? 1 : 0,
+    pointerEvents: menuOpen ? 'auto' : 'none',
+    transition: 'opacity .25s ease, transform .3s cubic-bezier(.16,1,.3,1)',
+    zIndex: 101,
+  }
+  const mobileLink: React.CSSProperties = {
+    color: '#000',
+    textDecoration: 'none',
+    fontFamily: 'var(--font-body), Poppins, sans-serif',
+    fontWeight: 800,
+    fontSize: 11,
+    letterSpacing: '.22em',
+    textTransform: 'uppercase',
+    padding: '12px 18px',
+    borderRadius: 12,
+    transition: 'background .2s ease',
+    whiteSpace: 'nowrap',
+    textAlign: 'center',
   }
   const link: React.CSSProperties = {
     color: '#000',
@@ -166,8 +210,46 @@ export default function TopNav() {
           background-size: 220% 220%;
           background-position: 30% 50%;
         }
+        .tn-mobile-link:hover, .tn-mobile-link:focus {
+          background: #000;
+          color: #FFC700;
+          outline: none;
+        }
       `}</style>
-      <nav style={pill} aria-label="Primary">
+      <nav style={{ ...pill, position: 'relative' }} aria-label="Primary">
+        {/* Mobile dropdown panel — appears below the pill */}
+        {isMobile && (
+          <div style={mobilePanel} aria-hidden={!menuOpen}>
+            {NAV_LINKS.map(({ l, href, external }) =>
+              external ? (
+                <a
+                  key={l}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tn-mobile-link"
+                  style={mobileLink}
+                  tabIndex={menuOpen ? 0 : -1}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {l}
+                </a>
+              ) : (
+                <Link
+                  key={l}
+                  href={href}
+                  className="tn-mobile-link"
+                  style={mobileLink}
+                  tabIndex={menuOpen ? 0 : -1}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {l}
+                </Link>
+              )
+            )}
+          </div>
+        )}
+
         <Link href="/" style={logoTile} aria-label="IBTU home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -231,7 +313,7 @@ export default function TopNav() {
           href="https://secure.qgiv.com/for/ibt/"
           target="_blank"
           rel="noopener noreferrer"
-          style={donate}
+          style={{ ...donate, padding: isMobile ? '10px 14px 10px 16px' : '11px 18px 11px 20px', fontSize: isMobile ? 10 : 11 }}
         >
           Donate <span style={donateArrow}>→</span>
         </a>
