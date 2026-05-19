@@ -1108,3 +1108,202 @@ button[style*="border-radius:16px"]:hover {
     animation: none !important;
   }
 }
+
+/* ═══════════════════════════════════════
+   NEWSLETTER PROMPT — popup modal
+   Iridescent outer frame, yellow inner card.
+   Brand-locked: gold/black/white only.
+═══════════════════════════════════════ */
+.ibtu-newsletter-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: ibtu-newsletter-fade 0.3s ease forwards;
+}
+@keyframes ibtu-newsletter-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.ibtu-newsletter-frame {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  border-radius: 28px;
+  padding: 24px;
+  background: var(--holo-gradient);
+  background-size: 400% 400%;
+  animation: ibtu-newsletter-pop 0.45s var(--ease-out-back) forwards,
+             holo-shift 18s ease infinite;
+  border: 2px solid #000;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.45),
+    0 0 0 4px #FFF inset;
+  outline: none;
+}
+@keyframes ibtu-newsletter-pop {
+  from { transform: scale(0.92) translateY(8px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+.ibtu-newsletter-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  background: #000;
+  color: var(--gold);
+  border: 2px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.ibtu-newsletter-close:hover {
+  background: #FFF;
+  color: #000;
+  transform: rotate(90deg);
+}
+.ibtu-newsletter-card {
+  background: var(--gold);
+  border-radius: 18px;
+  padding: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px);
+  border: 2px solid #000;
+  position: relative;
+}
+.ibtu-newsletter-eyebrow {
+  font-family: var(--font-lot);
+  font-size: 14px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 6px 14px;
+  border: 2px solid #000;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+.ibtu-newsletter-headline {
+  font-family: var(--font-lot);
+  font-weight: 900;
+  font-size: clamp(22px, 3.5vw, 42px);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+  color: #000;
+}
+.ibtu-newsletter-body {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.5;
+  max-width: 540px;
+  margin: 0 0 28px;
+  color: #000;
+}
+.ibtu-newsletter-form {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  max-width: 560px;
+}
+.ibtu-newsletter-input {
+  flex: 1 1 260px;
+  min-width: 0;
+  background: #FFF;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 100px;
+  padding: 16px 24px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  outline: none;
+  transition: box-shadow 0.18s ease;
+}
+.ibtu-newsletter-input::placeholder {
+  color: #000;
+  opacity: 0.55;
+}
+.ibtu-newsletter-input:focus {
+  box-shadow: 0 0 0 4px #000;
+}
+.ibtu-newsletter-submit {
+  background: #000;
+  color: var(--gold);
+  border: 2px solid #000;
+  border-radius: 100px;
+  padding: 16px 32px;
+  font-family: var(--font-lot);
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+.ibtu-newsletter-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #FFF;
+  color: #000;
+}
+.ibtu-newsletter-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.ibtu-newsletter-message {
+  margin-top: 20px;
+  min-height: 24px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+.ibtu-newsletter-message[data-state="error"] {
+  color: #000;
+  text-decoration: underline;
+}
+.ibtu-newsletter-message[data-state="success"] {
+  color: #000;
+}
+.ibtu-newsletter-decline {
+  margin-top: 14px;
+  background: transparent;
+  border: none;
+  padding: 4px 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #000;
+  opacity: 0.6;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.ibtu-newsletter-decline:hover { opacity: 1; }
+@media (max-width: 600px) {
+  .ibtu-newsletter-form { flex-direction: column; align-items: stretch; }
+  .ibtu-newsletter-input {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 52px;
+    padding: 0 22px;
+    font-size: 16px;
+  }
+  .ibtu-newsletter-submit {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 52px;
+    padding: 0 28px;
+  }
+  .ibtu-newsletter-frame { padding: 16px; }
+  .ibtu-newsletter-card { padding: 32px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ibtu-newsletter-backdrop,
+  .ibtu-newsletter-frame { animation: none; }
+}
