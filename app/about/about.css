@@ -444,12 +444,15 @@
   border-radius: 16px;
   padding: 60px 64px;
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   gap: 50px;
   align-items: center;
   position: relative;
   overflow: hidden;
 }
+.about-v2 .mission-card .mc-right { min-width: 0; }
+.about-v2 .mission-card .mc-stat-strip { min-width: 0; }
+.about-v2 .mission-card .mc-stat { white-space: nowrap; }
 .about-v2 .mission-card .mc-inner::before {
   content: "IBTU";
   position: absolute;
@@ -467,7 +470,7 @@
 .about-v2 .mission-card .mc-stat { background: var(--black); color: var(--gold); border-radius: 100px; padding: 8px 16px; font-family: "Poppins"; font-weight: 800; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; }
 @media (max-width: 800px) {
   .about-v2 .mission-card { aspect-ratio: auto; }
-  .about-v2 .mission-card .mc-inner { grid-template-columns: 1fr; padding: 36px; }
+  .about-v2 .mission-card .mc-inner { grid-template-columns: minmax(0, 1fr); padding: 36px; }
 }
 
 /* ============================================================
@@ -835,6 +838,9 @@
   .about-v2 .pillars h2,
   .about-v2 .board h2,
   .about-v2 .godeeper h2 { font-size: clamp(34px, 11vw, 64px); }
+
+  .about-v2 .eyebrow { font-size: 10.5px; letter-spacing: .2em; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .about-v2 .eyebrow .dash { width: 22px; }
 
   .about-v2 .partnership h2.mega { font-size: clamp(34px, 12vw, 72px); }
   .about-v2 .partnership .body-block { font-size: 15px; }

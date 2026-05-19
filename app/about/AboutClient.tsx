@@ -114,7 +114,8 @@ function HeroSection() {
             style={{ display: 'block', width: 'min(560px, 70vw)', height: 'auto', margin: '0 auto 24px' }}
           />
           <div className="eyebrow">
-            <span className="dash" />Founded 2020 — Los Angeles —
+            <span className="dash" />
+            <span style={{ whiteSpace: 'nowrap' }}>Founded 2020 — Los Angeles</span>
           </div>
           <WordHeadline
             lines={['WE LISTEN.', 'WE BUILD.', 'WE STAY.']}
@@ -315,7 +316,7 @@ function GoDeeperSection() {
         <div className="mc-inner">
           <div
             className="mc-left"
-            style={{ width: 480, maxWidth: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ width: '100%', maxWidth: 480, minWidth: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
