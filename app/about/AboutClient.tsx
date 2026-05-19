@@ -1229,6 +1229,7 @@ function TimelineStep({ step, index }: { step: JourneyStep; index: number }) {
         <div className={`tl-card ${flipped ? 'is-flipped' : ''}`}>
           <article className="tl-face tl-face--front">
             <h3 className="tl-title-front lot">{step.frontTitle || step.title}</h3>
+            <span className="tl-tap-hint">Tap to learn more</span>
           </article>
           <article className="tl-face tl-face--back">
             <div className="tl-back-inner">
@@ -1297,12 +1298,11 @@ function ClosingSection() {
       />
       <div className="foil-bg-shimmer" />
       <div className="inner">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/about/community-is-infrastructure.png"
-          alt="Community is the infrastructure."
-          style={{ display: 'block', width: 'min(960px, 90%)', height: 'auto', margin: '0 auto' }}
-        />
+        <h2 className="closing-title lot foil-text" aria-label="Community is the infrastructure.">
+          <span>COMMUNITY</span>
+          <span>IS THE</span>
+          <span>INFRASTRUCTURE.</span>
+        </h2>
         <p className="sub">Six years in. Still listening. Still building.</p>
         <div className="ctas">
           <a className="btn" href="#partnership">
