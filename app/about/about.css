@@ -1,0 +1,814 @@
+/* ============================================================
+   IBTU /about — Brand-Wide 26 design system
+   Asset paths rewritten from assets/ → /about/
+   LOT @font-face is already declared globally in app/globals.css
+============================================================ */
+
+.about-v2 {
+  --gold: #FFC700;
+  --black: #000000;
+  --white: #FFFFFF;
+  --sky: #6FC8E8;
+  --sky-deep: #2A6FBC;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --foil: url("/about/iridescent-richer.png");
+  background: var(--gold);
+  color: var(--black);
+  font-family: "Poppins", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+.about-v2 *, .about-v2 *::before, .about-v2 *::after { box-sizing: border-box; }
+.about-v2 a { color: inherit; text-decoration: none; }
+.about-v2 img, .about-v2 svg { display: block; max-width: 100%; }
+
+/* ---------- typography ---------- */
+.about-v2 .lot {
+  font-family: "LOT", "Bebas Neue", Impact, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.about-v2 .eyebrow {
+  font-family: "Poppins";
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.about-v2 .eyebrow .dash {
+  width: 32px; height: 1.5px;
+  background: currentColor;
+}
+
+/* ---------- coin/foil utility surfaces ---------- */
+.about-v2 .foil-bg {
+  background-image: var(--foil);
+  background-size: 240% 240%;
+  background-position: 30% 50%;
+  animation: aboutFoilPan 18s ease-in-out infinite;
+}
+@keyframes aboutFoilPan {
+  0% { background-position: 20% 30%; }
+  50% { background-position: 80% 70%; }
+  100% { background-position: 20% 30%; }
+}
+.about-v2 .foil-strip {
+  height: 4px;
+  background-image: var(--foil);
+  background-size: cover;
+  background-position: 30% 50%;
+}
+
+/* ============================================================
+   HERO — yellow, word-by-word reveal
+============================================================ */
+.about-v2 .hero {
+  min-height: 100vh;
+  background: var(--gold);
+  color: var(--black);
+  display: flex; align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 65px clamp(24px, 5vw, 80px) 100px clamp(24px, 5vw, 80px);
+}
+.about-v2 .hero .foil-strip-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 5px;
+  background-image: var(--foil);
+  background-size: cover; background-position: 30% 50%;
+  z-index: 4;
+}
+.about-v2 .hero .hero-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vh;
+  height: 100vw;
+  max-width: none;
+  object-fit: cover;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transform-origin: center center;
+  z-index: 0;
+  pointer-events: none;
+}
+.about-v2 .hero .foil-bg-shimmer {
+  position: absolute; inset: 0;
+  background-image: var(--foil);
+  background-size: 360% 360%;
+  background-position: 30% 50%;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  animation: aboutFoilPan 24s ease-in-out infinite;
+  z-index: 1;
+}
+.about-v2 .hero .hero-grid {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+  justify-items: center;
+  gap: 60px;
+  width: 100%;
+  align-items: center;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .about-v2 .hero .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+}
+.about-v2 .hero h1 {
+  font-size: clamp(72px, 12vw, 200px);
+  line-height: 0.88;
+  margin-top: 24px;
+}
+.about-v2 .hero h1 .line { display: block; overflow: hidden; padding-bottom: 0.02em; }
+.about-v2 .hero h1 .word {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1.05s var(--ease);
+  padding-right: 0.22em;
+  text-align: center;
+}
+.about-v2 .hero h1 .word.in { transform: translateY(0); }
+.about-v2 .hero .subhead {
+  font-size: clamp(17px, 1.3vw, 20px);
+  font-weight: 500;
+  max-width: 560px;
+  margin: 36px auto 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s var(--ease) .8s, transform .8s var(--ease) .8s;
+}
+.about-v2 .hero .subhead.in { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   GOLD RIBBON between sections — foil tick separators
+============================================================ */
+.about-v2 .ribbon {
+  background: var(--gold);
+  color: var(--black);
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding: 22px 0;
+  overflow: hidden;
+  position: relative;
+}
+.about-v2 .ribbon .track {
+  display: flex; gap: 60px; white-space: nowrap;
+  animation: about-rib-slide 42s linear infinite;
+  width: max-content;
+}
+.about-v2 .ribbon .item {
+  font-family: "LOT", sans-serif;
+  font-size: clamp(22px, 2.6vw, 36px);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 60px;
+}
+.about-v2 .ribbon .tick {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background-image: var(--foil);
+  background-size: 200% 200%;
+  background-position: center;
+  display: inline-block;
+  border: 1.5px solid var(--gold);
+}
+@keyframes about-rib-slide { to { transform: translateX(-50%); } }
+
+/* ============================================================
+   PILLARS — coins on blue sky
+============================================================ */
+.about-v2 .pillars {
+  position: relative;
+  padding: clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px);
+  overflow: hidden;
+  background-image: url("/about/sky-saturated.jpg");
+  background-size: cover;
+  background-position: center;
+  color: var(--black);
+}
+.about-v2 .pillars::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(111,200,232,0.0) 0%, rgba(111,200,232,0.35) 100%);
+  z-index: 1;
+}
+.about-v2 .pillars > * { position: relative; z-index: 2; }
+.about-v2 .pillars .head {
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1.5px solid var(--black);
+  padding-bottom: 24px; margin-bottom: 70px;
+  flex-wrap: wrap; gap: 16px;
+  text-align: center;
+}
+.about-v2 .pillars .head h2 { width: 100%; text-align: center; }
+.about-v2 .pillars h2 { font-size: clamp(56px, 9vw, 150px); }
+.about-v2 .pillars .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .about-v2 .pillars .grid { grid-template-columns: 1fr; gap: 70px; }
+}
+.about-v2 .pillar-coin {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  perspective: 1400px;
+  cursor: pointer;
+}
+.about-v2 .pillar-coin .pflip {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .85s cubic-bezier(.7,0,.3,1);
+}
+.about-v2 .pillar-coin:hover .pflip { transform: rotateY(180deg); }
+.about-v2 .pillar-coin .pface {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 50%;
+}
+.about-v2 .pillar-coin .pface.front {
+  display: grid; place-items: center;
+  filter: drop-shadow(0 22px 40px rgba(0,0,0,.35));
+}
+.about-v2 .pillar-coin .pface.front img { width: 100%; height: 100%; object-fit: contain; }
+.about-v2 .pillar-coin .pface.back {
+  transform: rotateY(180deg);
+  background: transparent;
+  border: none;
+  padding: 0;
+  overflow: hidden;
+}
+.about-v2 .pillar-coin .pface.back > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+.about-v2 .pillar-coin .pface.back::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: rgba(255,255,255,0.28);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+/* pillar overlay */
+.about-v2 .pillar-overlay {
+  position: fixed; inset: 0;
+  z-index: 95;
+  background: var(--gold);
+  transform: translateX(101%);
+  transition: transform .55s var(--ease);
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  overflow: hidden;
+}
+.about-v2 .pillar-overlay.open { transform: translateX(0); }
+.about-v2 .pillar-overlay .ovl-left {
+  background: var(--black); color: var(--gold);
+  padding: 80px 60px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative;
+}
+.about-v2 .pillar-overlay .ovl-left .sticker-big {
+  width: 80%; align-self: center;
+}
+.about-v2 .pillar-overlay .ovl-right {
+  padding: 80px 60px;
+  background: var(--gold); color: var(--black);
+  overflow-y: auto;
+}
+.about-v2 .pillar-overlay .ovl-right h3 { font-size: clamp(50px, 6vw, 100px); margin: 12px 0 24px; line-height: 0.95; }
+.about-v2 .pillar-overlay .ovl-right .stats {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 32px 0;
+}
+.about-v2 .pillar-overlay .ovl-right .stat-tile {
+  padding: 22px; background: var(--black); color: var(--gold);
+  border-radius: 14px;
+}
+.about-v2 .pillar-overlay .ovl-right .stat-tile .n { font-family: "LOT"; font-size: 48px; line-height: 1; }
+.about-v2 .pillar-overlay .ovl-right .stat-tile .l { margin-top: 6px; font-size: 10.5px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; }
+.about-v2 .pillar-overlay .close {
+  position: absolute; top: 28px; right: 28px;
+  width: 52px; height: 52px;
+  background: var(--gold); color: var(--black);
+  border: 2px solid var(--black); border-radius: 50%;
+  cursor: pointer; font-size: 22px;
+  z-index: 5;
+}
+@media (max-width: 900px) {
+  .about-v2 .pillar-overlay { grid-template-columns: 1fr; overflow-y: auto; }
+}
+
+/* ============================================================
+   PARTNERSHIP
+============================================================ */
+.about-v2 .partnership {
+  background: var(--gold);
+  color: var(--black);
+  padding: clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px);
+}
+.about-v2 .partnership .head { margin-bottom: 60px; text-align: center; }
+.about-v2 .partnership h2.mega {
+  font-size: clamp(56px, 8vw, 140px);
+  line-height: 0.92;
+  text-align: center;
+  letter-spacing: -0.025em;
+}
+.about-v2 .partnership .mega .word { display: inline-block; overflow: hidden; }
+.about-v2 .partnership .mega .word > span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.9s var(--ease);
+}
+.about-v2 .partnership .mega.in .word > span { transform: translateY(0); }
+.about-v2 .partnership .body-block {
+  max-width: 760px;
+  margin: 40px auto;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.75;
+}
+.about-v2 .partnership .body-block p + p { margin-top: 18px; }
+.about-v2 .sector-row {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin: 36px auto;
+  justify-content: center;
+}
+.about-v2 .sector-chip {
+  background: var(--black); color: var(--gold);
+  padding: 14px 22px; border-radius: 100px;
+  font-family: "Poppins"; font-weight: 800; font-size: 11px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+}
+
+/* ============================================================
+   BOARD
+============================================================ */
+.about-v2 .board {
+  background: var(--black);
+  color: var(--gold);
+  padding: clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px) clamp(120px, 14vh, 180px);
+  position: relative;
+  overflow: hidden;
+}
+.about-v2 .board::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background-image: var(--foil);
+  background-size: cover;
+}
+.about-v2 .board .head {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  border-bottom: 1.5px solid var(--gold);
+  padding-bottom: 24px; margin-bottom: 30px;
+  gap: 16px;
+}
+.about-v2 .board h2 { color: var(--gold); font-size: clamp(56px, 9vw, 140px); text-align: center; }
+.about-v2 .board .sub { max-width: 640px; font-size: 16px; line-height: 1.7; color: var(--white); margin: 0 auto 70px; text-align: center; }
+.about-v2 .board .grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: clamp(56px, 4vw, 80px) clamp(20px, 2.4vw, 32px);
+}
+.about-v2 .board .grid > * {
+  flex: 0 0 calc((100% - 3 * clamp(20px, 2.4vw, 32px)) / 4);
+  max-width: calc((100% - 3 * clamp(20px, 2.4vw, 32px)) / 4);
+}
+@media (max-width: 1180px) {
+  .about-v2 .board .grid > * {
+    flex-basis: calc((100% - 2 * clamp(20px, 2.4vw, 32px)) / 3);
+    max-width: calc((100% - 2 * clamp(20px, 2.4vw, 32px)) / 3);
+  }
+}
+@media (max-width: 800px) {
+  .about-v2 .board .grid { gap: 60px 20px; }
+  .about-v2 .board .grid > * {
+    flex-basis: calc((100% - 20px) / 2);
+    max-width: calc((100% - 20px) / 2);
+  }
+}
+@media (max-width: 540px) {
+  .about-v2 .board .grid { gap: 80px 0; padding: 0 12vw; }
+  .about-v2 .board .grid > * { flex-basis: 100%; max-width: 100%; }
+}
+
+/* ============================================================
+   GO DEEPER — Mission as Holographic Trading Card
+============================================================ */
+.about-v2 .godeeper {
+  background: var(--gold); color: var(--black);
+  padding: clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px);
+}
+.about-v2 .godeeper .head {
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1.5px solid var(--black);
+  padding-bottom: 24px; margin-bottom: 70px;
+  flex-wrap: wrap; gap: 16px;
+  text-align: center;
+}
+.about-v2 .godeeper .head h2 { width: 100%; text-align: center; }
+.about-v2 .godeeper h2 { font-size: clamp(56px, 9vw, 140px); }
+
+.about-v2 .mission-card {
+  position: relative;
+  aspect-ratio: 16/10;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: 26px;
+  overflow: hidden;
+  background-image: var(--foil);
+  background-size: 240% 240%;
+  background-position: 30% 50%;
+  animation: aboutFoilPan 16s ease-in-out infinite;
+  border: 4px solid var(--black);
+  box-shadow: 0 40px 80px rgba(0,0,0,.18);
+  padding: 12px;
+}
+.about-v2 .mission-card .mc-inner {
+  width: 100%; height: 100%;
+  background: var(--gold);
+  border-radius: 16px;
+  padding: 60px 64px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 50px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.about-v2 .mission-card .mc-inner::before {
+  content: "IBTU";
+  position: absolute;
+  top: 22px; right: 28px;
+  font-family: "LOT"; font-size: 18px;
+  letter-spacing: 0.18em;
+}
+.about-v2 .mission-card .mc-left { display: grid; place-items: center; }
+.about-v2 .mission-card .mc-coin { width: auto; }
+.about-v2 .mission-card .mc-right h4 {
+  font-family: "LOT"; font-size: clamp(28px, 2.8vw, 44px); margin-bottom: 8px; line-height: 1;
+}
+.about-v2 .mission-card .mc-right p { font-size: 14.5px; line-height: 1.7; margin-bottom: 20px; }
+.about-v2 .mission-card .mc-stat-strip { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+.about-v2 .mission-card .mc-stat { background: var(--black); color: var(--gold); border-radius: 100px; padding: 8px 16px; font-family: "Poppins"; font-weight: 800; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; }
+@media (max-width: 800px) {
+  .about-v2 .mission-card { aspect-ratio: auto; }
+  .about-v2 .mission-card .mc-inner { grid-template-columns: 1fr; padding: 36px; }
+}
+
+/* ============================================================
+   CLOSING
+============================================================ */
+.about-v2 .closing {
+  min-height: 80vh;
+  background: var(--gold);
+  color: var(--black);
+  display: grid; place-items: center;
+  text-align: center;
+  padding: clamp(80px, 12vh, 160px) clamp(24px, 5vw, 80px) clamp(40px, 6vh, 80px);
+  position: relative;
+  overflow: hidden;
+}
+.about-v2 .closing .closing-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+.about-v2 .closing .foil-bg-shimmer {
+  position: absolute; inset: 0;
+  background-image: var(--foil);
+  background-size: 320% 320%;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  animation: aboutFoilPan 22s ease-in-out infinite;
+}
+.about-v2 .closing .inner { position: relative; z-index: 2; max-width: 1240px; }
+.about-v2 .closing .sub { margin: 28px auto 42px; font-size: 20px; font-weight: 600; max-width: 620px; }
+.about-v2 .closing .ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.about-v2 .btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 18px 32px; border-radius: 100px;
+  font-family: "Poppins"; font-weight: 800; font-size: 12px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  background: var(--black); color: var(--gold);
+  border: 1.5px solid var(--black);
+  cursor: pointer;
+  transition: transform .25s var(--ease);
+}
+.about-v2 .btn:hover { transform: translateY(-2px); }
+.about-v2 .btn--foil {
+  background-image: var(--foil);
+  background-size: 240% 240%; background-position: 30% 50%;
+  color: var(--black);
+  border: 1.5px solid var(--black);
+}
+
+/* ============================================================
+   HOW WE WORK — accordion (yellow → black-on-open)
+============================================================ */
+.about-v2 .howwework {
+  position: relative;
+  isolation: isolate;
+  padding: 120px clamp(24px, 5vw, 80px);
+  background: var(--gold);
+  overflow: hidden;
+}
+.about-v2 .howwework .hww-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+.about-v2 .howwework .hww-container { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; }
+.about-v2 .hww-head {
+  margin: 0 auto 64px;
+  text-align: center;
+}
+.about-v2 .hww-lede {
+  font-family: "Poppins";
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.65;
+  font-weight: 500;
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--black);
+}
+@media (max-width: 1100px) {
+  .about-v2 .howwework { padding: 96px clamp(20px, 5vw, 40px); }
+}
+
+/* ============================================================
+   OUR JOURNEY — vertical timeline
+============================================================ */
+.about-v2 .our-journey {
+  position: relative;
+  isolation: isolate;
+  color: #000;
+  padding: clamp(72px, 11vh, 140px) 0 clamp(72px, 11vh, 140px);
+  overflow: hidden;
+}
+.about-v2 .our-journey .oj-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("/about/sky-saturated.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.about-v2 .our-journey .oj-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px);
+}
+.about-v2 .oj-head {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto clamp(40px, 6vh, 72px);
+}
+.about-v2 .oj-title {
+  font-family: "LOT", "Bebas Neue", sans-serif;
+  font-size: clamp(48px, 8vw, 116px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 18px;
+  text-align: center;
+}
+.about-v2 .oj-title .word {
+  display: inline-block;
+  overflow: hidden;
+  padding-top: 0.15em;
+  line-height: 1;
+}
+.about-v2 .oj-title .word > span {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1s cubic-bezier(.16,1,.3,1);
+}
+.about-v2 .oj-title.in .word > span { transform: translateY(0); }
+.about-v2 .oj-lede {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(14.5px, 1.1vw, 17px);
+  line-height: 1.6;
+  font-weight: 500;
+  color: #0b1a30;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+.about-v2 .oj-spine-wrap { position: relative; padding: clamp(12px, 2vh, 24px) 0; }
+.about-v2 .oj-spine {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: #000;
+  z-index: 1;
+  pointer-events: none;
+}
+.about-v2 .oj-rows {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3.5vh, 40px);
+}
+.about-v2 .tl-year {
+  display: flex;
+  justify-content: center;
+  margin: clamp(10px, 2vh, 22px) 0 clamp(2px, 1vh, 10px);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.about-v2 .tl-year.in { opacity: 1; transform: translateY(0); }
+.about-v2 .tl-year-num {
+  display: inline-block;
+  font-family: "LOT", "Bebas Neue", sans-serif;
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: #FFC700;
+  background: #000;
+  padding: 8px 16px 6px;
+  border-radius: 100px;
+  position: relative;
+  z-index: 2;
+}
+.about-v2 .tl-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(28px, 4vw, 56px);
+  align-items: stretch;
+}
+.about-v2 .tl-row--left .tl-holder { grid-column: 1; justify-self: end; }
+.about-v2 .tl-row--right .tl-holder { grid-column: 2; justify-self: start; }
+.about-v2 .tl-dot {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #000;
+  transform: translateX(-50%);
+  z-index: 3;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.85);
+}
+.about-v2 .tl-holder {
+  perspective: 1600px;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 0.72 / 1;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+  cursor: pointer;
+  z-index: 1;
+}
+.about-v2 .tl-holder.in { opacity: 1; transform: translateY(0); }
+.about-v2 .tl-holder:has(.tl-card.is-flipped) { z-index: 5; }
+.about-v2 .tl-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.7,0,.3,1);
+  transform: rotateY(0deg) scale(1);
+}
+.about-v2 .tl-card.is-flipped { transform: rotateY(180deg) scale(1.5); }
+.about-v2 .tl-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 12px 28px -14px rgba(0,0,0,.55);
+  border: 1.5px solid #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+.about-v2 .tl-face--front { background: #FFC700; }
+.about-v2 .tl-title-front {
+  font-family: "LOT", "Bebas Neue", sans-serif;
+  font-size: clamp(30px, 2.85vw, 39px);
+  line-height: 0.98;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+  text-align: center;
+  text-wrap: balance;
+}
+.about-v2 .tl-face--back {
+  transform: rotateY(180deg);
+  background-image: url("/about/card-back.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  box-shadow: 0 22px 44px -18px rgba(0,0,0,.55);
+  align-items: stretch;
+  padding: 0;
+}
+.about-v2 .tl-back-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 9%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+}
+.about-v2 .tl-title-back {
+  font-family: "LOT", "Bebas Neue", sans-serif;
+  font-size: 28.5px;
+  line-height: 1.0;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+  text-align: center;
+  text-wrap: balance;
+}
+.about-v2 .tl-body {
+  font-family: "Poppins", sans-serif;
+  font-size: 11.25px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+  text-align: center;
+  max-width: 100%;
+}
+.about-v2 .tl-stat {
+  margin-top: 2px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: #000;
+  background: #FFC700;
+  padding: 4px 8px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+  border: 1px solid #000;
+}
+@media (max-width: 760px) {
+  .about-v2 .oj-spine { left: 18px; transform: none; }
+  .about-v2 .tl-row { grid-template-columns: 1fr; padding-left: 44px; }
+  .about-v2 .tl-row--left .tl-holder,
+  .about-v2 .tl-row--right .tl-holder {
+    grid-column: 1;
+    justify-self: start;
+  }
+  .about-v2 .tl-holder { width: 100%; max-width: 360px; }
+  .about-v2 .tl-dot { left: 18px; transform: translateX(-50%); }
+  .about-v2 .tl-year { justify-content: flex-start; padding-left: 44px; }
+  .about-v2 .tl-year-num { font-size: 22px; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .about-v2 *, .about-v2 *::before, .about-v2 *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

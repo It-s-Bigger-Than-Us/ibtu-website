@@ -1,193 +1,241 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import MenuDropdown from './MenuDropdown'
+import { usePathname } from 'next/navigation'
 
 /* ═══════════════════════════════════════
-   TOP NAV — Editorial, compact, animated
-   Single row: Logo | Hamburger | Donate
-   All left-aligned. Iridescent stroke → fill.
-   NO dynamic CTA text.
-   FIX: Balanced spacing (top = left = 24px)
-   FIX: Body scroll lock when menu open
+   TOP NAV — yellow floating pill
+   Default state: only logo + hamburger + DONATE visible.
+   Click hamburger → nav links expand horizontally between
+   logo and hamburger. All ink is black. Donate stays iridescent.
 ═══════════════════════════════════════ */
 
+const NAV_LINKS = [
+  { l: 'About', href: '/about', external: false },
+  { l: 'Programs', href: '/our-programs', external: false },
+  { l: 'Impact', href: '/impact', external: false },
+  { l: 'Events', href: '/events', external: false },
+  {
+    l: 'Volunteer',
+    href: 'https://volunteer.bloomerang.co/volunteer/#/join-party?k=u9uiz8g1753qfr',
+    external: true,
+  },
+  { l: 'Get Involved', href: '/get-involved', external: false },
+  { l: 'Contact', href: '/contact', external: false },
+] as const
+
 export default function TopNav() {
+  const pathname = usePathname()
+  const isStudio = pathname?.startsWith('/studio') ?? false
   const [menuOpen, setMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const [donateHovered, setDonateHovered] = useState(false)
 
+  // auto-collapse on scroll past 80px while open
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80)
+    if (!menuOpen || isStudio) return
+    let lastY = window.scrollY
+    const onScroll = () => {
+      if (Math.abs(window.scrollY - lastY) > 80) setMenuOpen(false)
     }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [menuOpen, isStudio])
 
-  // Lock body scroll when menu is open
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = 'hidden'
-      // Also pause Lenis if available
-      const lenis = (window as unknown as Record<string, { stop?: () => void; start?: () => void }>).__lenis
-      lenis?.stop?.()
-    } else {
-      document.body.style.overflow = ''
-      const lenis = (window as unknown as Record<string, { stop?: () => void; start?: () => void }>).__lenis
-      lenis?.start?.()
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [menuOpen])
+  if (isStudio) return null
 
-  const coinSize = scrolled ? 48 : 56
-  const iconSize = scrolled ? 32 : 38
-  // Balanced spacing: top matches left
-  const edgeOffset = 24
+  const stage: React.CSSProperties = {
+    position: 'fixed',
+    top: 22,
+    left: 0,
+    right: 0,
+    zIndex: 100,
+    display: 'flex',
+    justifyContent: 'center',
+    pointerEvents: 'none',
+  }
+  const pill: React.CSSProperties = {
+    pointerEvents: 'auto',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 6,
+    padding: 6,
+    borderRadius: 100,
+    background: '#FFC700',
+    border: '1.5px solid #000',
+    boxShadow: '0 12px 40px -14px rgba(0,0,0,.55)',
+    transition: 'padding .4s cubic-bezier(.16,1,.3,1)',
+  }
+  const logoTile: React.CSSProperties = {
+    width: 40,
+    height: 40,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    background: 'transparent',
+    border: 'none',
+    padding: 0,
+    marginLeft: 6,
+  }
+  const linksWrap: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
+    paddingLeft: menuOpen ? 8 : 0,
+    paddingRight: menuOpen ? 8 : 0,
+    maxWidth: menuOpen ? 720 : 0,
+    opacity: menuOpen ? 1 : 0,
+    overflow: 'hidden',
+    transition:
+      'max-width .55s cubic-bezier(.16,1,.3,1), opacity .35s ease, padding .4s ease',
+  }
+  const link: React.CSSProperties = {
+    color: '#000',
+    textDecoration: 'none',
+    fontFamily: 'var(--font-body), Poppins, sans-serif',
+    fontWeight: 800,
+    fontSize: 10.5,
+    letterSpacing: '.22em',
+    textTransform: 'uppercase',
+    padding: '10px 14px',
+    borderRadius: 100,
+    transition: 'background .2s ease, color .2s ease',
+    whiteSpace: 'nowrap',
+  }
+  const ham: React.CSSProperties = {
+    width: 40,
+    height: 40,
+    background: 'transparent',
+    border: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    gap: 5,
+    cursor: 'pointer',
+    padding: 0,
+    flexShrink: 0,
+  }
+  const hamBar: React.CSSProperties = {
+    width: 18,
+    height: 2,
+    background: '#000',
+    display: 'block',
+    transition: 'all .3s',
+  }
+  const donate: React.CSSProperties = {
+    position: 'relative',
+    overflow: 'hidden',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 8,
+    padding: '11px 18px 11px 20px',
+    borderRadius: 100,
+    color: '#000',
+    fontFamily: 'var(--font-body), Poppins, sans-serif',
+    fontSize: 11,
+    fontWeight: 800,
+    letterSpacing: '.22em',
+    textTransform: 'uppercase',
+    textDecoration: 'none',
+    backgroundImage: "url('/about/iridescent-richer.png')",
+    backgroundSize: '240% 240%',
+    backgroundPosition: '30% 50%',
+    boxShadow:
+      'inset 0 1px 0 rgba(255,255,255,.6), inset 0 -1px 0 rgba(0,0,0,.3), 0 6px 18px -6px rgba(0,0,0,.4)',
+    flexShrink: 0,
+    animation: 'tnDonatePan 9s ease-in-out infinite',
+    border: '1.5px solid #000',
+  }
+  const donateArrow: React.CSSProperties = {
+    fontFamily: "'LOT','Bebas Neue',sans-serif",
+    fontSize: 15,
+    lineHeight: 1,
+  }
 
   return (
-    <>
-      <div
-        style={{
-          position: 'fixed',
-          top: `${scrolled ? 12 : edgeOffset}px`,
-          left: `${edgeOffset}px`,
-          zIndex: 100,
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '8px',
-          background: 'var(--ibtu-black)',
-          padding: '8px',
-          borderRadius: '20px',
-          transition: 'top 0.3s var(--ease-out-expo)',
-        }}
-      >
-        {/* Logo coin — iridescent border on hover */}
-          <Link
-            href="/"
-            aria-label="IBTU Home"
-            className="iridescent-border"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: `${coinSize}px`,
-              height: `${coinSize}px`,
-              background: 'var(--holo-gradient)',
-              backgroundSize: '400% 400%',
-              borderRadius: '12px',
-              transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
-              flexShrink: 0,
-            }}
-          >
-            <div
-              style={{
-                width: `${iconSize}px`,
-                height: `${iconSize}px`,
-                transition: 'width 0.3s, height 0.3s',
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/ibtu-logo.svg"
-                alt="IBTU"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  filter: 'brightness(0)',
-                }}
-              />
-            </div>
-          </Link>
+    <div style={stage}>
+      <style>{`
+        @keyframes tnDonatePan {
+          0%   { background-position: 20% 40%; }
+          50%  { background-position: 70% 60%; }
+          100% { background-position: 20% 40%; }
+        }
+        .tn-link:hover {
+          background-image: url('/about/iridescent-richer.png');
+          background-size: 220% 220%;
+          background-position: 30% 50%;
+        }
+      `}</style>
+      <nav style={pill} aria-label="Primary">
+        <Link href="/" style={logoTile} aria-label="IBTU home">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/ibtu-logo.svg"
+            alt="IBTU"
+            style={{ width: '100%', height: '100%', filter: 'brightness(0)' }}
+          />
+        </Link>
 
-          {/* Hamburger — between logo and donate */}
-          <button
-            onClick={() => setMenuOpen(prev => !prev)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            className="iridescent-border"
-            style={{
-              background: 'var(--ibtu-black)',
-              border: 'none',
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '4px',
-              padding: '12px',
-              borderRadius: '12px',
-              zIndex: 101,
-              width: `${coinSize}px`,
-              height: `${coinSize}px`,
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo)',
-            }}
-          >
-            <span style={{
-              width: '20px',
-              height: '2px',
-              background: 'var(--ibtu-gold)',
-              transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
-              transform: menuOpen ? 'translateY(6px) rotate(45deg)' : 'none',
-            }} />
-            <span style={{
-              width: '20px',
-              height: '2px',
-              background: 'var(--ibtu-gold)',
-              transition: 'opacity 0.3s',
-              opacity: menuOpen ? 0 : 1,
-            }} />
-            <span style={{
-              width: '20px',
-              height: '2px',
-              background: 'var(--ibtu-gold)',
-              transition: 'transform 0.3s var(--ease-out-expo), opacity 0.3s',
-              transform: menuOpen ? 'translateY(-6px) rotate(-45deg)' : 'none',
-            }} />
-          </button>
+        <div style={linksWrap} aria-hidden={!menuOpen}>
+          {NAV_LINKS.map(({ l, href, external }) =>
+            external ? (
+              <a
+                key={l}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tn-link"
+                style={link}
+                tabIndex={menuOpen ? 0 : -1}
+              >
+                {l}
+              </a>
+            ) : (
+              <Link
+                key={l}
+                href={href}
+                className="tn-link"
+                style={link}
+                tabIndex={menuOpen ? 0 : -1}
+              >
+                {l}
+              </Link>
+            )
+          )}
+        </div>
 
-          {/* Donate button — after hamburger */}
-          <a
-            href="https://secure.qgiv.com/for/ibt/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="iridescent-border"
-            onMouseEnter={() => setDonateHovered(true)}
-            onMouseLeave={() => setDonateHovered(false)}
+        <button
+          type="button"
+          style={ham}
+          onClick={() => setMenuOpen((m) => !m)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+        >
+          <span
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: `${coinSize}px`,
-              padding: '0 16px',
-              background: 'var(--holo-gradient)',
-              backgroundSize: '400% 400%',
-              borderRadius: '12px',
-              textDecoration: 'none',
-              transition: 'background 0.4s, height 0.3s var(--ease-out-expo)',
-              cursor: 'pointer',
+              ...hamBar,
+              transform: menuOpen ? 'translateY(6.5px) rotate(45deg)' : 'none',
             }}
-          >
-            <span style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '10px',
-              fontWeight: 700,
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              color: donateHovered ? '#FFF' : 'var(--ibtu-black)',
-              transition: 'color 0.3s',
-              whiteSpace: 'nowrap',
-            }}>
-              Donate
-            </span>
-          </a>
-      </div>
+          />
+          <span style={{ ...hamBar, opacity: menuOpen ? 0 : 1 }} />
+          <span
+            style={{
+              ...hamBar,
+              transform: menuOpen ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
+            }}
+          />
+        </button>
 
-      <MenuDropdown open={menuOpen} onClose={() => setMenuOpen(false)} />
-    </>
+        <a
+          href="https://secure.qgiv.com/for/ibt/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={donate}
+        >
+          Donate <span style={donateArrow}>→</span>
+        </a>
+      </nav>
+    </div>
   )
 }
