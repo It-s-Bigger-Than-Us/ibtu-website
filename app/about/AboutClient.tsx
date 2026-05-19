@@ -425,8 +425,8 @@ function HowWeWorkAccordionItem({
       display: 'grid',
       gridTemplateColumns: 'auto 1fr auto',
       alignItems: 'center',
-      gap: 'clamp(20px, 3vw, 48px)',
-      padding: 'clamp(24px, 3.4vw, 44px) clamp(28px, 4vw, 56px)',
+      gap: 'clamp(12px, 3vw, 48px)',
+      padding: 'clamp(20px, 3.4vw, 44px) clamp(18px, 4vw, 56px)',
       color: isOpen ? '#FFC700' : '#000',
     },
     num: {
@@ -440,17 +440,19 @@ function HowWeWorkAccordionItem({
     },
     name: {
       fontFamily: "'LOT','Bebas Neue', sans-serif",
-      fontSize: 'clamp(40px, 5.4vw, 84px)',
+      fontSize: 'clamp(28px, 6.5vw, 84px)',
       lineHeight: 0.95,
       letterSpacing: '-.01em',
       textTransform: 'uppercase',
       color: isOpen ? '#FFC700' : '#000',
       margin: 0,
       textWrap: 'balance',
+      wordBreak: 'keep-all',
+      overflowWrap: 'anywhere',
     },
     toggle: {
-      width: 56,
-      height: 56,
+      width: 'clamp(40px, 8vw, 56px)',
+      height: 'clamp(40px, 8vw, 56px)',
       borderRadius: '50%',
       background: isOpen ? '#FFC700' : '#000',
       color: isOpen ? '#000' : '#FFC700',
@@ -467,8 +469,7 @@ function HowWeWorkAccordionItem({
       transition: 'height .55s cubic-bezier(.22,1,.36,1)',
     },
     body: {
-      padding: '0 clamp(28px, 4vw, 56px) clamp(28px, 3.6vw, 48px) clamp(28px, 4vw, 56px)',
-      paddingLeft: 'calc(clamp(28px, 4vw, 56px) + 38px + clamp(20px, 3vw, 48px))',
+      padding: '0 clamp(18px, 4vw, 56px) clamp(24px, 3.6vw, 48px) clamp(18px, 4vw, 56px)',
       maxWidth: 1000,
     },
     bodyText: {
