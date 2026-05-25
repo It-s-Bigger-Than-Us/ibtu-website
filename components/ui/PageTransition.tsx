@@ -22,7 +22,7 @@ interface PageTransitionProps {
   disabled?: boolean
 }
 
-const DEFAULT_PATTERNS: RegExp[] = [/^\/$/, /^\/our-programs\/[^/]+$/]
+const DEFAULT_PATTERNS: RegExp[] = [/^\/our-programs\/[^/]+$/]
 
 // Routes that must never get the overlay (Sanity Studio runs its own UI).
 const NEVER_PATTERNS: RegExp[] = [/^\/studio/]
