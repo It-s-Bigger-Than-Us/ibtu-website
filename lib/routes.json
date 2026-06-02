@@ -207,8 +207,8 @@
     "path": "/partners",
     "canonicalUrl": "https://ibtu.la/partners",
     "pageName": "Partners",
-    "status": "Redirect",
+    "status": "Retired",
     "sourceFile": "app/sitemap.ts",
-    "note": "declared in sitemap.ts - no matching app/ route"
+    "note": "Retired 2026-06-01 — removed from sitemap.ts (no page existed). Guard will now flag any new link to /partners."
   }
 ]
