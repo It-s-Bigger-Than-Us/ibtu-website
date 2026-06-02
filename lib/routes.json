@@ -1,0 +1,143 @@
+[
+  {
+    "path": "/about",
+    "canonicalUrl": "https://ibtu.la/about",
+    "pageName": "About",
+    "status": "Live",
+    "sourceFile": "app/about/page.tsx"
+  },
+  {
+    "path": "/admin/media",
+    "canonicalUrl": "https://ibtu.la/admin/media",
+    "pageName": "Media",
+    "status": "Live",
+    "sourceFile": "app/admin/media/page.tsx"
+  },
+  {
+    "path": "/awards",
+    "canonicalUrl": "https://ibtu.la/awards",
+    "pageName": "Awards",
+    "status": "Live",
+    "sourceFile": "app/awards/page.tsx"
+  },
+  {
+    "path": "/back2school",
+    "canonicalUrl": "https://ibtu.la/back2school",
+    "pageName": "Back2school",
+    "status": "Live",
+    "sourceFile": "app/back2school/page.tsx"
+  },
+  {
+    "path": "/calendar",
+    "canonicalUrl": "https://ibtu.la/calendar",
+    "pageName": "Calendar",
+    "status": "Live",
+    "sourceFile": "app/calendar/page.tsx"
+  },
+  {
+    "path": "/contact",
+    "canonicalUrl": "https://ibtu.la/contact",
+    "pageName": "Contact",
+    "status": "Live",
+    "sourceFile": "app/contact/page.tsx"
+  },
+  {
+    "path": "/events",
+    "canonicalUrl": "https://ibtu.la/events",
+    "pageName": "Events",
+    "status": "Live",
+    "sourceFile": "app/events/page.tsx"
+  },
+  {
+    "path": "/fire-relief/hub",
+    "canonicalUrl": "https://ibtu.la/fire-relief/hub",
+    "pageName": "Hub",
+    "status": "Live",
+    "sourceFile": "app/fire-relief/hub/page.tsx"
+  },
+  {
+    "path": "/fire-relief",
+    "canonicalUrl": "https://ibtu.la/fire-relief",
+    "pageName": "Fire Relief",
+    "status": "Live",
+    "sourceFile": "app/fire-relief/page.tsx"
+  },
+  {
+    "path": "/get-involved",
+    "canonicalUrl": "https://ibtu.la/get-involved",
+    "pageName": "Get Involved",
+    "status": "Live",
+    "sourceFile": "app/get-involved/page.tsx"
+  },
+  {
+    "path": "/impact",
+    "canonicalUrl": "https://ibtu.la/impact",
+    "pageName": "Impact",
+    "status": "Live",
+    "sourceFile": "app/impact/page.tsx"
+  },
+  {
+    "path": "/jobs",
+    "canonicalUrl": "https://ibtu.la/jobs",
+    "pageName": "Jobs",
+    "status": "Live",
+    "sourceFile": "app/jobs/page.tsx"
+  },
+  {
+    "path": "/our-programs/[slug]",
+    "canonicalUrl": "https://ibtu.la/our-programs/[slug]",
+    "pageName": "[slug]",
+    "status": "Live",
+    "sourceFile": "app/our-programs/[slug]/page.tsx"
+  },
+  {
+    "path": "/our-programs",
+    "canonicalUrl": "https://ibtu.la/our-programs",
+    "pageName": "Our Programs",
+    "status": "Live",
+    "sourceFile": "app/our-programs/page.tsx"
+  },
+  {
+    "path": "/",
+    "canonicalUrl": "https://ibtu.la/",
+    "pageName": "Home",
+    "status": "Live",
+    "sourceFile": "app/page.tsx"
+  },
+  {
+    "path": "/school-program",
+    "canonicalUrl": "https://ibtu.la/school-program",
+    "pageName": "School Program",
+    "status": "Live",
+    "sourceFile": "app/school-program/page.tsx"
+  },
+  {
+    "path": "/studio/[[...tool]]",
+    "canonicalUrl": "https://ibtu.la/studio/[[...tool]]",
+    "pageName": "[[...tool]]",
+    "status": "Live",
+    "sourceFile": "app/studio/[[...tool]]/page.tsx"
+  },
+  {
+    "path": "/vendors",
+    "canonicalUrl": "https://ibtu.la/vendors",
+    "pageName": "Vendors",
+    "status": "Live",
+    "sourceFile": "app/vendors/page.tsx"
+  },
+  {
+    "path": "/volunteer",
+    "canonicalUrl": "https://ibtu.la/volunteer",
+    "pageName": "Volunteer",
+    "status": "Live",
+    "sourceFile": "app/volunteer/page.tsx"
+  },
+  {
+    "path": "/partners",
+    "canonicalUrl": "https://ibtu.la/partners",
+    "pageName": "Partners",
+    "status": "Redirect",
+    "sourceFile": "app/sitemap.ts",
+    "note": "declared in sitemap.ts - no matching app/ route"
+  }
+]
