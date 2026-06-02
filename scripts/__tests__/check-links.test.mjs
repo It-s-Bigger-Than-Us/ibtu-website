@@ -19,6 +19,8 @@ const SAMPLE_ROUTES = [
   { path: '/events', status: 'Live' },
   { path: '/partners', status: 'Redirect' },
   { path: '/services', status: 'Retired' },
+  { path: '/our-programs/[slug]', status: 'Live' },
+  { path: '/studio/[[...tool]]', status: 'Live' },
 ];
 
 describe('findBrokenLinks', () => {
@@ -86,5 +88,51 @@ describe('findBrokenLinks', () => {
     expect(result).toHaveLength(2);
     const reasons = result.map(function(r) { return r.reason; }).sort();
     expect(reasons).toEqual(['retired', 'unknown']);
+  });
+
+  // ── Dynamic-route + normalization cases (added after Codex QA gate) ──────────
+
+  it('does NOT flag a dynamic [slug] match', () => {
+    const links = [{ file: 'a.tsx', href: '/our-programs/back-2-school' }];
+    expect(findBrokenLinks(links, SAMPLE_ROUTES)).toHaveLength(0);
+  });
+
+  it('flags an unknown second segment under a static parent', () => {
+    // /our-programs/[slug] matches one segment; a deeper path is unknown
+    const links = [{ file: 'a.tsx', href: '/our-programs/back-2-school/extra' }];
+    const result = findBrokenLinks(links, SAMPLE_ROUTES);
+    expect(result).toHaveLength(1);
+    expect(result[0].reason).toBe('unknown');
+  });
+
+  it('does NOT flag the base of an optional catch-all [[...tool]]', () => {
+    const links = [{ file: 'a.tsx', href: '/studio' }];
+    expect(findBrokenLinks(links, SAMPLE_ROUTES)).toHaveLength(0);
+  });
+
+  it('does NOT flag a deep optional catch-all path', () => {
+    const links = [{ file: 'a.tsx', href: '/studio/structure/program' }];
+    expect(findBrokenLinks(links, SAMPLE_ROUTES)).toHaveLength(0);
+  });
+
+  it('normalizes a trailing slash', () => {
+    const links = [{ file: 'a.tsx', href: '/about/' }];
+    expect(findBrokenLinks(links, SAMPLE_ROUTES)).toHaveLength(0);
+  });
+
+  it('ignores query strings and hashes when matching', () => {
+    const links = [{ file: 'a.tsx', href: '/about?ref=nav#team' }];
+    expect(findBrokenLinks(links, SAMPLE_ROUTES)).toHaveLength(0);
+  });
+
+  it('ignores external links (returns no offenders)', () => {
+    const links = [{ file: 'a.tsx', href: 'https://volunteer.bloomerang.co/x' }];
+    expect(findBrokenLinks(links, SAMPLE_ROUTES)).toHaveLength(0);
+  });
+
+  it('matches "/" and deep paths for a root-level optional catch-all', () => {
+    const rootCatchAll = [{ path: '/[[...slug]]', status: 'Live' }];
+    expect(findBrokenLinks([{ file: 'a.tsx', href: '/' }], rootCatchAll)).toHaveLength(0);
+    expect(findBrokenLinks([{ file: 'a.tsx', href: '/a/b' }], rootCatchAll)).toHaveLength(0);
   });
 });

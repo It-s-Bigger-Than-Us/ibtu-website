@@ -1,5 +1,76 @@
 [
   {
+    "path": "/our-programs/back-2-school",
+    "canonicalUrl": "https://ibtu.la/our-programs/back-2-school",
+    "pageName": "Back 2 School Festival",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug"
+  },
+  {
+    "path": "/our-programs/coastal-care",
+    "canonicalUrl": "https://ibtu.la/our-programs/coastal-care",
+    "pageName": "Coastal Care",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug"
+  },
+  {
+    "path": "/our-programs/community-builder-linkups",
+    "canonicalUrl": "https://ibtu.la/our-programs/community-builder-linkups",
+    "pageName": "Community Builder Link-Ups",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug"
+  },
+  {
+    "path": "/our-programs/community-health",
+    "canonicalUrl": "https://ibtu.la/our-programs/community-health",
+    "pageName": "Community Health & Resource Access",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug"
+  },
+  {
+    "path": "/our-programs/fire-relief",
+    "canonicalUrl": "https://ibtu.la/our-programs/fire-relief",
+    "pageName": "Fire Relief & The Hub",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug"
+  },
+  {
+    "path": "/our-programs/gala",
+    "canonicalUrl": "https://ibtu.la/our-programs/gala",
+    "pageName": "A City United — Annual Gala",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug",
+    "note": "FLAG: website CLAUDE.md says 'no mention of the gala' — confirm whether this program should be public"
+  },
+  {
+    "path": "/our-programs/giving-season",
+    "canonicalUrl": "https://ibtu.la/our-programs/giving-season",
+    "pageName": "Giving Season",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug"
+  },
+  {
+    "path": "/our-programs/incubation-academy",
+    "canonicalUrl": "https://ibtu.la/our-programs/incubation-academy",
+    "pageName": "IBTU Incubation Academy",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug"
+  },
+  {
+    "path": "/our-programs/wellness",
+    "canonicalUrl": "https://ibtu.la/our-programs/wellness",
+    "pageName": "Wellness & Health Activations",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug"
+  },
+  {
+    "path": "/our-programs/youth-programming",
+    "canonicalUrl": "https://ibtu.la/our-programs/youth-programming",
+    "pageName": "Youth Programming",
+    "status": "Live",
+    "sourceFile": "Sanity: program slug"
+  },
+  {
     "path": "/about",
     "canonicalUrl": "https://ibtu.la/about",
     "pageName": "About",
