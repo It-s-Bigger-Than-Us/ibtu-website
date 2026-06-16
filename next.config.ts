@@ -12,43 +12,25 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Consolidated program pages — old /our-programs/* URLs now redirect to standalone pages
-      {
-        source: '/our-programs/back-to-school',
-        destination: '/back2school',
-        permanent: true,
-      },
-      {
-        source: '/our-programs/back-2-school',
-        destination: '/back2school',
-        permanent: true,
-      },
-      {
-        source: '/our-programs/fire-relief',
-        destination: '/fire-relief',
-        permanent: true,
-      },
-      // Short URLs
-      {
-        source: '/b2s',
-        destination: '/back2school',
-        permanent: true,
-      },
-      {
-        source: '/hub',
-        destination: '/fire-relief',
-        permanent: true,
-      },
-      {
-        source: '/gala',
-        destination: 'https://secure.qgiv.com/for/itsbiggerthanus/event/gala/',
-        permanent: false,
-      },
-      {
-        source: '/7years',
-        destination: 'https://secure.qgiv.com/for/ibt/',
-        permanent: false,
-      },
+      // ── Short canonical URLs (for flyers). Old paths 301 → new short canonical. ──
+      // Program pages (data-driven, /our-programs/<slug> → short)
+      { source: '/our-programs/coastal-care', destination: '/coastal', permanent: true },
+      { source: '/our-programs/wellness', destination: '/wellness', permanent: true },
+      { source: '/our-programs/community-health', destination: '/food', permanent: true },
+      // Program pages (bespoke — folder renamed to the short path)
+      { source: '/our-programs/back-to-school', destination: '/b2s', permanent: true },
+      { source: '/our-programs/back-2-school', destination: '/b2s', permanent: true },
+      { source: '/back2school', destination: '/b2s', permanent: true },
+      { source: '/our-programs/fire-relief', destination: '/fire', permanent: true },
+      { source: '/fire-relief', destination: '/fire', permanent: true },
+      { source: '/fire-relief/:path*', destination: '/fire/:path*', permanent: true },
+      { source: '/school-program', destination: '/school', permanent: true },
+      { source: '/hub', destination: '/fire', permanent: true },
+      // Calendar consolidated into /events
+      { source: '/calendar', destination: '/events', permanent: true },
+      // External giving (kept temporary, off-site)
+      { source: '/gala', destination: 'https://secure.qgiv.com/for/itsbiggerthanus/event/gala/', permanent: false },
+      { source: '/7years', destination: 'https://secure.qgiv.com/for/ibt/', permanent: false },
     ]
   },
   async headers() {

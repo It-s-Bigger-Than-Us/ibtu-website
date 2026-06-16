@@ -15,16 +15,20 @@ export const programBySlugQuery = `*[_type == "program" && slug.current == $slug
   icon, keyPartners, notableParticipants
 }`;
 
-export const eventsByProgramQuery = `*[_type == "event" && program->slug.current == $slug && displayOnWebsite == true] | order(year desc) {
+export const eventsByProgramQuery = `*[_type == "event" && program->slug.current == $slug && displayOnWebsite == true] | order(dateStart asc) {
   _id, title, "slug": slug.current, jobNumber, year, dateStart, dateEnd, location,
-  description, proofStats, status, category, featured,
-  rsvpUrl, eventbriteId, eventbriteWidgetHeight, eventbriteBrandColor
+  description, shortDescription, proofStats, status, category, featured, flyer,
+  rsvpUrl, eventbriteId, eventbriteWidgetHeight, eventbriteBrandColor,
+  vendorSignupOpen, volunteerSignupOpen, publicAttendance, signupFilters,
+  vendorSignupDeadline, volunteerSignupDeadline, waysToGetInvolved,
+  "volunteerUrl": program->volunteerUrl
 }`;
 
 export const allEventsQuery = `*[_type == "event" && displayOnWebsite == true] | order(year desc, dateStart desc) {
   _id, title, "slug": slug.current, jobNumber, year, dateStart, dateEnd, location,
   proofStats, status, featured,
   rsvpUrl, eventbriteId, eventbriteWidgetHeight, eventbriteBrandColor,
+  vendorSignupOpen, volunteerSignupOpen, publicAttendance,
   "programTitle": program->title,
   "programSlug": program->slug.current
 }`;
@@ -33,21 +37,10 @@ export const upcomingEventsQuery = `*[_type == "event" && (status == "Upcoming" 
   _id, title, "slug": slug.current, jobNumber, year, dateStart, dateEnd, location,
   proofStats, status, featured,
   rsvpUrl, eventbriteId, eventbriteWidgetHeight, eventbriteBrandColor,
+  vendorSignupOpen, volunteerSignupOpen, publicAttendance,
   "programTitle": program->title,
   "programSlug": program->slug.current
 }`;
-
-export const eventBySlugQuery = `*[_type == "event" && slug.current == $slug][0] {
-  _id, title, "slug": slug.current, jobNumber, year, dateStart, dateEnd, location,
-  description, shortDescription, proofStats, status, category, featured, pillar,
-  rsvpUrl, eventbriteId, eventbriteWidgetHeight, eventbriteBrandColor,
-  waysToGetInvolved, galleryImages,
-  "programTitle": program->title,
-  "programSlug": program->slug.current,
-  "volunteerUrl": program->volunteerUrl
-}`;
-
-export const allEventSlugsQuery = `*[_type == "event" && defined(slug.current) && displayOnWebsite == true]{ "slug": slug.current }`;
 
 export const allAwardsQuery = `*[_type == "award"] | order(year desc, title asc) {
   _id, title, presentedBy, year, date, context, notes, level

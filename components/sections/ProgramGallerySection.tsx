@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { programHref } from '@/lib/data/program-routes'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProgramRingGallery from './ProgramRingGallery'
@@ -230,7 +231,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                       {formatTitle(prog.title)}
                     </h2>
                   ) : (
-                    <Link href={`/our-programs/${prog.slug}`} style={{ textDecoration: 'none' }}>
+                    <Link href={programHref(prog.slug)} style={{ textDecoration: 'none' }}>
                       <h2 style={{
                         fontFamily: 'var(--font-display)',
                         fontSize: 'clamp(28px, 4vw, 56px)',
@@ -315,7 +316,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                     </span>
                   ) : (
                     <Link
-                      href={`/our-programs/${prog.slug}`}
+                      href={programHref(prog.slug)}
                       style={{
                         display: 'inline-block',
                         background: btnBg,

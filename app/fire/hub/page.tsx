@@ -244,7 +244,7 @@ export default function HubPage() {
             <a href="https://secure.qgiv.com/for/firerelief" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', border: '2px solid #FFC700', color: '#FFC700', padding: '16px 40px', borderRadius: '16px', fontFamily: 'var(--font-body)', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none' }}>
               Support the Hub
             </a>
-            <Link href="/fire-relief" style={{ display: 'inline-block', border: '2px solid #FFC700', color: '#FFC700', padding: '16px 40px', borderRadius: '16px', fontFamily: 'var(--font-body)', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none' }}>
+            <Link href="/fire" style={{ display: 'inline-block', border: '2px solid #FFC700', color: '#FFC700', padding: '16px 40px', borderRadius: '16px', fontFamily: 'var(--font-body)', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none' }}>
               Full Fire Relief Story
             </Link>
           </div>

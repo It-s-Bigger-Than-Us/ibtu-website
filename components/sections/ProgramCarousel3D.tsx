@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
+import { programHref } from '@/lib/data/program-routes'
 
 /* ════════════���══════════════════════════
    PROGRAM CARDS — 3D Gradient Carousel
@@ -27,6 +28,9 @@ interface Program {
 const CARD_W = 340
 const CARD_H = 440
 const GAP = 20
+
+// Every card links to its program's canonical short URL (single source of truth).
+const hrefFor = (slug: string) => programHref(slug)
 
 function useIsMobile(breakpoint = 768) {
   const [isMobile, setIsMobile] = useState(false)
@@ -158,7 +162,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
           {programs.map((prog) => (
             <Link
               key={prog.slug}
-              href={`/our-programs/${prog.slug}`}
+              href={hrefFor(prog.slug)}
               style={{
                 flex: '0 0 280px',
                 scrollSnapAlign: 'center',
@@ -265,7 +269,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
             return (
               <Link
                 key={`${copy}-${prog.slug}`}
-                href={`/our-programs/${prog.slug}`}
+                href={hrefFor(prog.slug)}
                 style={{
                   position: 'absolute',
                   left: 0,

@@ -6,6 +6,9 @@ import TopNav from "@/components/layout/TopNav";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import PageTransition from "@/components/ui/PageTransition";
 import NewsletterMount from "@/components/sections/NewsletterMount";
+import Trackers from "@/components/analytics/Trackers";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 
 const poppins = Poppins({
@@ -122,6 +125,10 @@ export default function RootLayout({
           src="https://api.bloomerang.co/v1/WebsiteVisit?ApiKey=pub_a73727e3-a04d-11ee-96cb-0a3287177f03"
           strategy="lazyOnload"
         />
+        {/* Zero-config Vercel telemetry (no IDs needed) + env-gated marketing trackers */}
+        <Analytics />
+        <SpeedInsights />
+        <Trackers />
       </body>
     </html>
   );

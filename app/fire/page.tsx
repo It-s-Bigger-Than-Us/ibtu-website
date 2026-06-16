@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   title: "Fire Relief & The Hub | IBTU",
   description:
     "When the fires hit, IBTU was already here. From 72-hour emergency response to the permanent Relief Resource Hub — the full fire relief story.",
-  alternates: { canonical: "/fire-relief" },
+  alternates: { canonical: "/fire" },
 };
 
 export default function FireReliefPage() {

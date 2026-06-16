@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Footer from "@/components/layout/Footer"
 import ProgramStoryTabs from "@/components/sections/ProgramStoryTabs"
+import UpcomingEvents from "@/components/events/UpcomingEvents"
+import { getEventsByProgram } from "@/sanity/lib/fetch"
 
 const STORY_TABS = [
   {
@@ -56,7 +58,7 @@ export const metadata: Metadata = {
   title: "Back 2 School Festival 2026 | IBTU — 7th Annual",
   description:
     "Aug 1, 2026 at Baldwin Hills Crenshaw Plaza. Free backpacks, school supplies, haircuts, health screenings, food, and community resources. No registration. Just show up. 18,550+ backpacks distributed across 6 years.",
-  alternates: { canonical: "/back2school" },
+  alternates: { canonical: "/b2s" },
 }
 
 const STATS = [
@@ -148,7 +150,8 @@ const B2S_VOLUNTEER = "https://volunteer.bloomerang.co/volunteer/#/join-party?k=
 const B2S_VENDOR_FORM = "https://forms.gle/Q8i4g2wXXo6ZP7A3A"
 const B2S_SPONSOR_URL = "https://secure.qgiv.com/for/ibt/event/b2s26/"
 
-export default function Back2SchoolPage() {
+export default async function Back2SchoolPage() {
+  const events = await getEventsByProgram("back-2-school")
   return (
     <main style={{ background: "#000", minHeight: "100vh" }}>
 
@@ -196,6 +199,9 @@ export default function Back2SchoolPage() {
           ))}
         </div>
       </section>
+
+      {/* ── UPCOMING EVENTS — consistent across all program pages (all 2026 B2S stops + embeds) ── */}
+      <UpcomingEvents events={events} heading="The 2026 Tour" />
 
       {/* ── PICK YOUR LANE — 4-TILE CTA CHECKERBOARD ── */}
       <section style={{ background: "#FFC700", padding: "clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px)", borderTop: "2px solid #000", borderBottom: "2px solid #000" }}>
