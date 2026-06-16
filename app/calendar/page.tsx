@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/calendar" },
 };
 
-const HIDDEN_PROGRAM_SLUGS = ['gala', 'community-builder-linkups', 'incubation-academy'];
+const HIDDEN_PROGRAM_SLUGS = ['community-builder-linkups', 'incubation-academy'];
 
 const PILLAR_COLORS: Record<string, string> = {
   "Crisis & Disaster Stabilization": "#fff",
@@ -26,14 +26,6 @@ export default async function CalendarPage() {
     getUpcomingEvents(),
     getAllEvents(),
   ]);
-
-  // Group upcoming by month
-  const months: Record<string, any[]> = {};
-  for (const ev of upcoming) {
-    const monthKey = ev.dateStart?.split(",")[0]?.split(" ").slice(0, 2).join(" ") || ev.dateStart || "TBD";
-    if (!months[monthKey]) months[monthKey] = [];
-    months[monthKey].push(ev);
-  }
 
   return (
     <>

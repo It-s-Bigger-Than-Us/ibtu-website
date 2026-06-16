@@ -10,6 +10,12 @@ export async function getProgramBySlug(slug: string) {
 export async function getEventsByProgram(slug: string) {
   return client.fetch(q.eventsByProgramQuery, { slug });
 }
+export async function getEventBySlug(slug: string) {
+  return client.fetch(q.eventBySlugQuery, { slug });
+}
+export async function getAllEventSlugs() {
+  return client.fetch(q.allEventSlugsQuery);
+}
 export async function getAllEvents() {
   return client.fetch(q.allEventsQuery);
 }

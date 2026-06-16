@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/events" },
 };
 
-const HIDDEN_PROGRAM_SLUGS = ['gala', 'community-builder-linkups', 'incubation-academy'];
+const HIDDEN_PROGRAM_SLUGS = ['community-builder-linkups', 'incubation-academy'];
 
 export default async function EventsPage() {
   const [events, upcoming, programsRaw] = await Promise.all([
