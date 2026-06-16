@@ -1,8 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import Link from 'next/link'
-import { programHref } from '@/lib/data/program-routes'
+import EventModal from '@/components/events/EventModal'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Ev = any
@@ -47,11 +46,6 @@ function eventTypes(ev: Ev): EventType[] {
   return types
 }
 
-function eventLink(ev: Ev): string | null {
-  if (!ev.programSlug) return null
-  const base = programHref(ev.programSlug)
-  return ev.slug ? `${base}#event-${ev.slug}` : base
-}
 
 /**
  * The /events calendar — month grid of upcoming/active events with filter chips by
@@ -68,6 +62,7 @@ export default function EventsCalendar({
 }) {
   const [program, setProgram] = useState<string>('all')
   const [types, setTypes] = useState<Set<EventType>>(new Set())
+  const [active, setActive] = useState<Ev | null>(null)
 
   const visible = useMemo(() => {
     return (events || []).filter((ev: Ev) => {
@@ -209,18 +204,17 @@ export default function EventsCalendar({
                         </span>
                       )}
                       {dayEvents?.map((ev: Ev, j: number) => {
-                        const href = eventLink(ev)
                         const label = ev.programTitle ? `${ev.programTitle}` : ev.title
-                        const chip = (
-                          <span style={{ display: 'block', background: 'var(--gold)', color: '#000', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 10, lineHeight: 1.2, padding: '4px 6px', borderRadius: 6, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        return (
+                          <button
+                            key={j}
+                            type="button"
+                            onClick={() => setActive(ev)}
+                            style={{ display: 'block', width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', background: 'var(--gold)', color: '#000', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 10, lineHeight: 1.2, padding: '4px 6px', borderRadius: 6, overflow: 'hidden' }}
+                          >
                             {ev.title}
                             <span style={{ display: 'block', fontWeight: 400, fontSize: 9 }}>{label}</span>
-                          </span>
-                        )
-                        return href ? (
-                          <Link key={j} href={href} style={{ textDecoration: 'none' }}>{chip}</Link>
-                        ) : (
-                          <div key={j}>{chip}</div>
+                          </button>
                         )
                       })}
                     </div>
@@ -238,26 +232,25 @@ export default function EventsCalendar({
               Ongoing &amp; Upcoming
             </h2>
             <div style={{ display: 'grid', gap: 1, background: 'var(--gold)', border: '1px solid var(--gold)' }}>
-              {months.undated.map((ev: Ev, i: number) => {
-                const href = eventLink(ev)
-                const row = (
-                  <div style={{ background: '#000', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, padding: '14px 16px' }}>
-                    <span style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: '#fff', fontWeight: 600 }}>{ev.title}</span>
-                    <span style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--gold)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', whiteSpace: 'nowrap' }}>
-                      {ev.programTitle || ev.dateStart || 'TBD'}
-                    </span>
-                  </div>
-                )
-                return href ? (
-                  <Link key={i} href={href} style={{ textDecoration: 'none' }}>{row}</Link>
-                ) : (
-                  <div key={i}>{row}</div>
-                )
-              })}
+              {months.undated.map((ev: Ev, i: number) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setActive(ev)}
+                  style={{ background: '#000', width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, padding: '14px 16px' }}
+                >
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: '#fff', fontWeight: 600 }}>{ev.title}</span>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--gold)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', whiteSpace: 'nowrap' }}>
+                    {ev.programTitle || ev.dateStart || 'TBD'}
+                  </span>
+                </button>
+              ))}
             </div>
           </div>
         )}
       </div>
+
+      <EventModal event={active} onClose={() => setActive(null)} />
     </main>
   )
 }

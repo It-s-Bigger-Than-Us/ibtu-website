@@ -37,16 +37,15 @@ export default async function ProgramPageView({ slug }: { slug: string }) {
 
   return (
     <main style={{ background: "#000", minHeight: "100vh" }}>
-      {/* ── Full program page — client component with GSAP ── */}
+      {/* ── Full program page — client component with GSAP.
+            Upcoming Events renders inside, right under the hero (above the fold). ── */}
       <ProgramPageClient
         program={programContent}
         heroImageUrl={heroImageUrl}
         heroVideoUrl={heroVideoUrl}
         pastEvents={pastEvents}
+        eventsSlot={<UpcomingEvents events={events} />}
       />
-
-      {/* ── Upcoming Events — consistent across all program pages ── */}
-      <UpcomingEvents events={events} />
 
       {/* ── QGIV SPONSOR WIDGETS — per-program ── */}
       {slug === "coastal-care" && (

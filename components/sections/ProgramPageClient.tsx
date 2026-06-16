@@ -19,6 +19,8 @@ interface ProgramPageClientProps {
   program: ProgramContent
   heroImageUrl: string | null
   heroVideoUrl?: string
+  /** Upcoming-events section, rendered right after the hero (above the fold). */
+  eventsSlot?: React.ReactNode
   pastEvents: Array<{
     _id: string
     title: string
@@ -106,6 +108,7 @@ export default function ProgramPageClient({
   program,
   heroImageUrl,
   heroVideoUrl,
+  eventsSlot,
   // pastEvents reserved for future event timeline section
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   pastEvents,
@@ -425,6 +428,9 @@ export default function ProgramPageClient({
           ) : null}
         </div>
       </section>
+
+      {/* ── UPCOMING EVENTS — directly under the hero (above the fold) ── */}
+      {eventsSlot}
 
       {/* ═══════════════════════════════════════
           2. OVERVIEW — 2-col: text left, image right
@@ -946,32 +952,46 @@ export default function ProgramPageClient({
           Inline styles for responsive + shimmer
       ═══════════════════════════════════════ */}
       <style>{`
-        /* ── Masonry gallery ── */
+        /* ── In-the-Field gallery — horizontal scroll ── */
         .pp-masonry {
-          columns: 4;
-          column-gap: 0;
+          display: flex;
+          gap: 12px;
+          overflow-x: auto;
+          overflow-y: hidden;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          padding: 0 clamp(32px, 5vw, 80px) 16px;
+          scrollbar-width: thin;
+          scrollbar-color: #FFC700 #000;
         }
         .pp-masonry-item {
-          break-inside: avoid;
+          flex: 0 0 auto;
+          width: clamp(260px, 32vw, 440px);
+          height: clamp(300px, 34vw, 440px);
           overflow: hidden;
           line-height: 0;
+          scroll-snap-align: start;
+          border-radius: 16px;
         }
         .pp-masonry-item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
           transition: transform 0.35s ease;
         }
         .pp-masonry-item:hover img {
           transform: scale(1.05);
         }
+        .pp-masonry::-webkit-scrollbar { height: 8px; }
+        .pp-masonry::-webkit-scrollbar-track { background: #000; }
+        .pp-masonry::-webkit-scrollbar-thumb { background: #FFC700; border-radius: 100px; }
 
         @keyframes highlightShimmer {
           0% { background-position: 0% 50%; }
           100% { background-position: 300% 50%; }
         }
-        @media (max-width: 1200px) {
-          .pp-masonry { columns: 3; }
-        }
         @media (max-width: 768px) {
-          .pp-masonry { columns: 2; }
+          .pp-masonry-item { width: 78vw; height: 70vw; }
           .pp-overview-grid,
           .pp-content-grid,
           .pp-serve-grid,

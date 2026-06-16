@@ -35,11 +35,12 @@ export const allEventsQuery = `*[_type == "event" && displayOnWebsite == true] |
 
 export const upcomingEventsQuery = `*[_type == "event" && (status == "Upcoming" || status == "Active") && displayOnWebsite == true] | order(year asc, dateStart asc) {
   _id, title, "slug": slug.current, jobNumber, year, dateStart, dateEnd, location,
-  proofStats, status, featured,
+  proofStats, status, featured, flyer, shortDescription, description,
   rsvpUrl, eventbriteId, eventbriteWidgetHeight, eventbriteBrandColor,
   vendorSignupOpen, volunteerSignupOpen, publicAttendance,
   "programTitle": program->title,
-  "programSlug": program->slug.current
+  "programSlug": program->slug.current,
+  "volunteerUrl": program->volunteerUrl
 }`;
 
 export const allAwardsQuery = `*[_type == "award"] | order(year desc, title asc) {

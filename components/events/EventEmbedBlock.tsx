@@ -148,8 +148,7 @@ export default function EventEmbedBlock({ event }: { event: EventLike }) {
         {showAttendee && event.eventbriteId ? (
           <EventbriteCheckout
             eventId={event.eventbriteId}
-            height={event.eventbriteWidgetHeight || 425}
-            brandColor={event.eventbriteBrandColor || "#ffc700"}
+            eventUrl={`https://www.eventbrite.com/e/${event.eventbriteId}`}
           />
         ) : showAttendee && event.rsvpUrl ? (
           <a href={event.rsvpUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary">RSVP / Get Tickets →</a>

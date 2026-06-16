@@ -156,18 +156,8 @@ export default async function Back2SchoolPage() {
     <main style={{ background: "#000", minHeight: "100vh" }}>
 
       {/* ── HERO ── */}
-      <section style={{ position: "relative", minHeight: "85vh", display: "flex", alignItems: "center", overflow: "hidden", background: "#FFC700" }}>
-        <div style={{ position: "absolute", inset: 0, zIndex: 0, overflow: "hidden", opacity: 0.15 }}>
-          <Image
-            src="/images/b2s/2V8A1776.jpg"
-            alt=""
-            fill
-            sizes="100vw"
-            priority
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-        <div style={{ position: "relative", zIndex: 1, padding: "clamp(120px, 15vh, 180px) clamp(32px, 5vw, 80px) clamp(80px, 10vh, 120px)", maxWidth: "var(--content-max)", margin: "0 auto", width: "100%" }}>
+      <section style={{ position: "relative", overflow: "hidden", background: "#FFC700" }}>
+        <div style={{ position: "relative", zIndex: 1, padding: "clamp(120px, 15vh, 180px) clamp(32px, 5vw, 80px) clamp(48px, 6vh, 80px)", maxWidth: "var(--content-max)", margin: "0 auto", width: "100%" }}>
           <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "4px", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: 20 }}>
             7th Annual · August 1, 2026 · Baldwin Hills Crenshaw Plaza
           </span>
@@ -185,6 +175,12 @@ export default async function Back2SchoolPage() {
               Donate $7
             </a>
           </div>
+        </div>
+        {/* Full-bleed highlight video — full color, 100% opacity, no overlay (brand) */}
+        <div style={{ position: "relative", width: "100%", aspectRatio: "21 / 9", overflow: "hidden", background: "#000" }}>
+          <video autoPlay muted loop playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}>
+            <source src="/videos/b2s-venice-highlight.mp4" type="video/mp4" />
+          </video>
         </div>
       </section>
 

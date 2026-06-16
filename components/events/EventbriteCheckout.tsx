@@ -14,47 +14,44 @@ const EB_SCRIPT_SRC = "https://www.eventbrite.com/static/widgets/eb_widgets.js";
 
 interface Props {
   eventId: string;
-  height?: number;
-  brandColor?: string;
+  /** Public Eventbrite URL for the noscript SEO fallback link. */
+  eventUrl?: string;
 }
 
 /**
- * Embedded Eventbrite checkout. Use on event DETAIL pages (one primary event,
- * room for the iframe). For list/grid views, link out with a button instead —
- * see the embedded-vs-button rule. SSR-safe: the widget is created in useEffect.
+ * Eventbrite checkout as a MODAL trigger (not an inline iframe): a compact "Register Now"
+ * button that opens the branded checkout in an overlay, plus a <noscript> link for SEO /
+ * no-JS. Theme is locked to brand — gold background, black text. Only one instance mounts
+ * at a time (inside EventModal), so there are never competing widgets on a page.
  */
-export default function EventbriteCheckout({
-  eventId,
-  height = 425,
-  brandColor = "#ffc700",
-}: Props) {
+export default function EventbriteCheckout({ eventId, eventUrl }: Props) {
+  const triggerId = `eventbrite-widget-modal-trigger-${eventId}`;
   const created = useRef(false);
 
   useEffect(() => {
-    if (!eventId || created.current) return;
-
-    const containerId = `eventbrite-widget-container-${eventId}`;
+    if (!eventId) return;
+    created.current = false;
+    let cancelled = false;
 
     const create = () => {
-      if (created.current || !window.EBWidgets) return;
+      if (cancelled || created.current || !window.EBWidgets) return;
+      if (!document.getElementById(triggerId)) return;
       window.EBWidgets.createWidget({
         widgetType: "checkout",
         eventId,
-        iframeContainerId: containerId,
-        iframeContainerHeight: height,
-        ...(brandColor ? { themeSettings: { brandColor } } : {}),
+        modal: true,
+        modalTriggerElementId: triggerId,
+        themeSettings: { brandColor: "#000000", fontColor: "#000000", background: "#ffc700" },
       });
       created.current = true;
     };
 
     if (window.EBWidgets) {
       create();
-      return;
+      return () => { cancelled = true; };
     }
 
-    let script = document.querySelector<HTMLScriptElement>(
-      `script[src="${EB_SCRIPT_SRC}"]`
-    );
+    let script = document.querySelector<HTMLScriptElement>(`script[src="${EB_SCRIPT_SRC}"]`);
     if (!script) {
       script = document.createElement("script");
       script.src = EB_SCRIPT_SRC;
@@ -62,15 +59,29 @@ export default function EventbriteCheckout({
       document.body.appendChild(script);
     }
     script.addEventListener("load", create);
-    return () => script?.removeEventListener("load", create);
-  }, [eventId, height, brandColor]);
+    return () => {
+      cancelled = true;
+      script?.removeEventListener("load", create);
+    };
+  }, [eventId, triggerId]);
 
   if (!eventId) return null;
 
   return (
-    <div
-      id={`eventbrite-widget-container-${eventId}`}
-      style={{ width: "100%", minHeight: height }}
-    />
+    <>
+      {/* Noscript content for added SEO / no-JS fallback */}
+      <noscript>
+        <a
+          href={eventUrl || `https://www.eventbrite.com/e/${eventId}`}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Buy Tickets on Eventbrite
+        </a>
+      </noscript>
+      <button id={triggerId} type="button" className="btn btn-primary" style={{ cursor: "pointer" }}>
+        Register Now →
+      </button>
+    </>
   );
 }
