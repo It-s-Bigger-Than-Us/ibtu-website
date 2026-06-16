@@ -28,7 +28,8 @@ interface ProgramData {
   galleryImages: string[]
 }
 
-const COMING_SOON_SLUGS = ['community-builder-linkups', 'community-health']
+// community-health now has a live page (/food) with events — no longer "Coming Soon".
+const COMING_SOON_SLUGS = ['community-builder-linkups']
 
 function formatTitle(title: string) {
   // Fire Relief & The Hub → two lines
