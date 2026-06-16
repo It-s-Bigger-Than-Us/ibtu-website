@@ -18,9 +18,9 @@ const FLIP_IMGS = [
 
 const VOL_OPTIONS = [
   { label: "Volunteer With Us", href: "/get-involved#volunteer" },
-  { label: "Become a Sponsor", href: "/get-involved#sponsor" },
+  { label: "Become a Sponsor", href: "/contact" },
   { label: "Donate Today", href: "https://secure.qgiv.com/for/ibt/" },
-  { label: "Partner With IBTU", href: "/get-involved#partner" },
+  { label: "Partner With IBTU", href: "/contact" },
 ];
 
 export default function GetInvolvedSection() {
