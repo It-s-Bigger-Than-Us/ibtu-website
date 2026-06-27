@@ -62,7 +62,6 @@ SSOT: `$IBTU_OPS_LIBRARY/stats/public-ssot.md`. Do NOT use unverified numbers. P
 ## Prohibited
 - **NO IMMIGRATION CONTENT ON PUBLIC SITE — CLIENT SAFETY RISK.** Never mention immigration work, immigrant families served, immigration assistance, or undocumented status on any public-facing page. This endangers clients.
 - No financial data (revenue, expenses) on website
-- No mention of the gala (it did not happen)
 - No unverified statistics
 - No stock photography
 - Volunteer public count: 7,500+ (not 10,000+)
