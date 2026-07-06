@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
       { source: '/hub', destination: '/fire', permanent: true },
       // Calendar consolidated into /events
       { source: '/calendar', destination: '/events', permanent: true },
+      // B2S 2026 flyer/QR short URLs → anchored event blocks on /b2s (no per-event pages)
+      { source: '/b2s/miami', destination: '/b2s#event-back-2-school-miami-2026', permanent: false },
+      { source: '/b2s/bhcp', destination: '/b2s#event-back-2-school-south-central-2026', permanent: false },
+      { source: '/b2s/expo', destination: '/b2s#event-back-2-school-alliance-2026', permanent: false },
+      { source: '/b2s/venice', destination: '/b2s#event-back-2-school-venice-2026', permanent: false },
       // External giving (kept temporary, off-site)
       { source: '/gala', destination: 'https://secure.qgiv.com/for/itsbiggerthanus/event/gala/', permanent: false },
       { source: '/7years', destination: 'https://secure.qgiv.com/for/ibt/', permanent: false },
