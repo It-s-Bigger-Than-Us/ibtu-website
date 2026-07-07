@@ -95,8 +95,30 @@ const EXCLUDED_ADDRESSES = [
  * You'll be prompted to enter the key.
  */
 function storeApiKey() {
-  const props = PropertiesService.getScriptProperties();
-  props.setProperty("BLOOMERANG_API_KEY", "baf5b550-35cc-e1b9-3f81-a4cfd8299ee5");
+  // Never hardcode the key here — this file lives in a public GitHub repo.
+  const ui = SpreadsheetApp.getUi
+    ? SpreadsheetApp.getUi()
+    : null;
+  if (!ui) {
+    Logger.log(
+      "No UI available. Set the key manually: Project Settings → Script Properties → " +
+        "add property BLOOMERANG_API_KEY with your key as the value."
+    );
+    return;
+  }
+  const resp = ui.prompt(
+    "Bloomerang API key",
+    "Paste your Bloomerang API key (stored only in Script Properties):",
+    ui.ButtonSet.OK_CANCEL
+  );
+  if (resp.getSelectedButton() !== ui.Button.OK || !resp.getResponseText()) {
+    Logger.log("Cancelled — no key stored.");
+    return;
+  }
+  PropertiesService.getScriptProperties().setProperty(
+    "BLOOMERANG_API_KEY",
+    resp.getResponseText().trim()
+  );
   Logger.log("API key stored successfully.");
   Logger.log("Now run forwardBatch to test.");
 }

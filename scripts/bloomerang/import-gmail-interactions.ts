@@ -14,7 +14,11 @@
  * Run: npx tsx scripts/bloomerang/import-gmail-interactions.ts
  */
 
-const API_KEY = "baf5b550-35cc-e1b9-3f81-a4cfd8299ee5";
+const API_KEY = process.env.BLOOMERANG_API_KEY ?? "";
+if (!API_KEY) {
+  console.error("BLOOMERANG_API_KEY env var not set — export it before running this script.");
+  process.exit(1);
+}
 const API_BASE = "https://api.bloomerang.co/v2";
 const HEADERS: Record<string, string> = { "X-API-KEY": API_KEY, "Content-Type": "application/json" };
 
