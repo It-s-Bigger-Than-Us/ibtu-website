@@ -1,0 +1,77 @@
+import type { AssetSchema } from "../types";
+import { GLOBAL_INHERITED_RULES } from "../brand-rules";
+
+export const awardCardSchema: AssetSchema = {
+  id: "award-card",
+  displayName: "Award Card",
+  category: "web",
+  fluid: true,
+  outputFormats: ["jsx"],
+  inheritedRules: GLOBAL_INHERITED_RULES,
+  fields: [
+    {
+      name: "title",
+      label: "Award title",
+      type: "text",
+      minChars: 6,
+      maxChars: 80,
+      required: true,
+      position: "title",
+      tokenRole: "display_small",
+    },
+    {
+      name: "year",
+      label: "Year",
+      type: "text",
+      minChars: 4,
+      maxChars: 4,
+      required: true,
+      position: "year",
+      tokenRole: "stat_number",
+    },
+    {
+      name: "organization",
+      label: "Granting organization",
+      type: "text",
+      minChars: 3,
+      maxChars: 80,
+      required: true,
+      position: "org",
+      tokenRole: "caption",
+    },
+    {
+      name: "description",
+      label: "Description (1-2 sentences)",
+      type: "richtext",
+      minChars: 30,
+      maxChars: 320,
+      required: true,
+      position: "body",
+      tokenRole: "body",
+    },
+    {
+      name: "external_url",
+      label: "External reference URL",
+      type: "url",
+      required: false,
+      position: "meta",
+    },
+  ],
+  imageSlots: [
+    {
+      name: "award_image",
+      role: "proof_photo",
+      aspectRatio: "4:3",
+      required: false,
+      approvedSource: "program_photo_pool",
+      notes: "Photo of award ceremony or recipient, not a medal graphic.",
+    },
+    {
+      name: "granting_logo",
+      role: "logo",
+      required: false,
+      approvedSource: "partner_logo_library",
+      notes: "Logo of the granting organization.",
+    },
+  ],
+};

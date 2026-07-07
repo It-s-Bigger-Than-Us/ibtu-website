@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
-import VendorApplicationForm from "@/components/sections/VendorApplicationForm";
+// Vendor applications live in the Airtable form (Molly 7/6) — this page links out
+// instead of hosting a form. Same URL the event-card CTAs deep-link to.
+const VENDOR_FORM_URL =
+  process.env.NEXT_PUBLIC_VENDOR_FORM_URL ||
+  "https://airtable.com/appxak9slpO0Okjwb/pagYRMjtQWQVupz98/form";
 
 export const revalidate = 60;
 
@@ -528,7 +532,25 @@ export default function VendorsPage() {
               are in, we are here to make sure your experience is everything
               you hoped for. Thank you for trusting us with your brand.
             </p>
-            <VendorApplicationForm />
+            <a
+              href={VENDOR_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                background: "#000",
+                color: "#FFC700",
+                fontFamily: "var(--font-body)",
+                fontWeight: 700,
+                fontSize: "clamp(16px, 2vw, 20px)",
+                textTransform: "uppercase",
+                letterSpacing: "0.04em",
+                textDecoration: "none",
+                padding: "clamp(18px, 2.5vw, 24px) clamp(36px, 5vw, 56px)",
+              }}
+            >
+              Apply Now →
+            </a>
           </div>
         </section>
 

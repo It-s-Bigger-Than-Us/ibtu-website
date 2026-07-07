@@ -1,0 +1,77 @@
+import type { AssetSchema } from "../types";
+import { GLOBAL_INHERITED_RULES } from "../brand-rules";
+
+export const boardMemberCardSchema: AssetSchema = {
+  id: "board-member-card",
+  displayName: "Board / Staff Leadership Card",
+  category: "web",
+  fluid: true,
+  outputFormats: ["jsx"],
+  inheritedRules: GLOBAL_INHERITED_RULES,
+  notes: "Used on /leadership for Board members and staff leadership (Molly + Ty).",
+  fields: [
+    {
+      name: "name",
+      label: "Name",
+      type: "text",
+      minChars: 3,
+      maxChars: 60,
+      required: true,
+      position: "name",
+      tokenRole: "display_small",
+    },
+    {
+      name: "role",
+      label: "Role / title",
+      type: "text",
+      minChars: 3,
+      maxChars: 80,
+      required: true,
+      position: "role",
+      tokenRole: "caption",
+    },
+    {
+      name: "type",
+      label: "Card type",
+      type: "enum",
+      required: true,
+      position: "meta",
+      enumValues: ["board", "staff_leadership", "staff"],
+    },
+    {
+      name: "bio",
+      label: "Short bio (1 paragraph)",
+      type: "richtext",
+      minChars: 80,
+      maxChars: 480,
+      required: true,
+      position: "bio",
+      tokenRole: "body",
+    },
+    {
+      name: "order",
+      label: "Sort order",
+      type: "number",
+      required: true,
+      position: "meta",
+    },
+    {
+      name: "linkedin_url",
+      label: "LinkedIn URL (optional)",
+      type: "url",
+      required: false,
+      position: "meta",
+    },
+  ],
+  imageSlots: [
+    {
+      name: "headshot",
+      role: "headshot",
+      widthPx: 600,
+      heightPx: 600,
+      required: true,
+      approvedSource: "leadership_headshots",
+      notes: "Square crop, centered.",
+    },
+  ],
+};

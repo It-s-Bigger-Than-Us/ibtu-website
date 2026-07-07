@@ -26,8 +26,10 @@ gsap.registerPlugin(ScrollTrigger)
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null)
   const pathname = usePathname()
+  const isStudio = pathname?.startsWith('/studio') ?? false
 
   useEffect(() => {
+    if (isStudio) return
     const lenis = new Lenis({
       lerp: 0.1,
       duration: 1.2,
@@ -60,10 +62,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       lenis.destroy()
       lenisRef.current = null
     }
-  }, [])
+  }, [isStudio])
 
   // Scroll to top on route change — fixes hero skip bug
   useEffect(() => {
+    if (isStudio) return
     const lenis = lenisRef.current
     if (!lenis) return
 

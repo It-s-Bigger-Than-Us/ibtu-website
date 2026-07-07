@@ -24,7 +24,9 @@ const BOOTH_SIZES = [
 ];
 
 const EVENTS = [
-  'Back 2 School Festival — August 1, 2026',
+  'Back 2 School — Baldwin Hills Crenshaw Plaza — August 1, 2026',
+  'Back 2 School — Exposition Park — August 8, 2026',
+  'Back 2 School — Venice Beach — August 15, 2026',
   'Coastal Care Beach Cleanup (monthly)',
   'Community Wellness / Yoga Series',
   'Food Distribution Events',
@@ -389,7 +391,7 @@ export default function VendorApplicationForm() {
         <span style={{ color: '#FFC700' }}>Your Documents</span>
       </h3>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: '#FFC700', margin: '-8px 0 8px', lineHeight: 1.6 }}>
-        Upload now if you have them — or skip this part and we will help you gather everything after you are approved. We want to make this as easy as possible for you. Accepted formats: PDF, JPG, PNG. Max 10MB per file.
+        Upload now if you have them — or skip this part and we will help you gather everything after you are approved. We want to make this as easy as possible for you. Accepted formats: PDF, JPG, PNG. Max 5MB per file.
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>

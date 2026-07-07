@@ -36,6 +36,7 @@ export default defineType({
     defineField({ name: "eventbriteId", title: "Eventbrite Event ID", type: "string", description: "Numeric ID from the Eventbrite checkout snippet (e.g. 1989189304758). Drives the embedded checkout widget on the event detail page." }),
     defineField({ name: "eventbriteWidgetHeight", title: "Eventbrite Widget Height (px)", type: "number", initialValue: 425, description: "From the snippet's iframeContainerHeight. Default 425; Coastal series uses 625." }),
     defineField({ name: "eventbriteBrandColor", title: "Eventbrite Brand Color", type: "string", description: "Optional themeSettings.brandColor hex (default gold #ffc700)" }),
+    defineField({ name: "flyer", title: "Event Flyer", type: "image", options: { hotspot: true }, description: "The event flyer (from Claude Design). Shown on the program page event block; falls back to a branded card when empty." }),
     defineField({ name: "waysToGetInvolved", title: "Ways to Get Involved", type: "string", options: { list: ["Volunteer", "Donate", "Sponsor", "Attend", "Lunchtime Takeover", "Resource Fair", "Parent Empowerment Workshop", "Parent Empowerment Series", "Professional Development", "Staff Appreciation", "Young Community Builder Program Series", "Building Community Builders Workshop & Retreat"] } }),
     // ── Public calendar + signup filters ──
     defineField({ name: "vendorSignupOpen", title: "Vendor Signup Open", type: "boolean", initialValue: false, description: "Exposes this event in the vendor portal event picker" }),

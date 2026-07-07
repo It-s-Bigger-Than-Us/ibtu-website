@@ -13,6 +13,9 @@ export default defineType({
     defineField({ name: "notes", title: "Notes", type: "text", rows: 2 }),
     defineField({ name: "level", title: "Government Level", type: "string", options: { list: ["Federal", "State Assembly", "State Senate", "County", "City", "Institutional", "Nonprofit Partnership", "Media"] } }),
     defineField({ name: "program", title: "Related Program", type: "reference", to: [{ type: "program" }] }),
+    defineField({ name: "description", title: "Description", type: "text", rows: 3, description: "1-2 sentences for the awards grid card" }),
+    defineField({ name: "image", title: "Award Image", type: "image", options: { hotspot: true }, description: "Photo from the ceremony or recipient moment (not a medal graphic)" }),
+    defineField({ name: "externalUrl", title: "External Reference URL", type: "url", description: "Announcement / citation / press coverage of the award" }),
   ],
   orderings: [
     { title: "Year (newest)", name: "yearDesc", by: [{ field: "year", direction: "desc" }] },

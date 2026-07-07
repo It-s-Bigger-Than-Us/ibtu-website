@@ -40,6 +40,32 @@ export default defineType({
     }),
     defineField({ name: "howItWorks", title: "How It Works", type: "text", rows: 6, description: "Operational detail for the program page" }),
     defineField({ name: "impactStory", title: "Impact Story", type: "text", rows: 6, description: "A narrative impact story for the program page" }),
+    defineField({ name: "contentLibraryUrl", title: "Content Library Doc URL", type: "url", description: "Link to BRAND & CREATIVE / Program Content Libraries / [Program].gdoc — grant writers + press pull from here" }),
+    defineField({
+      name: "heroAudienceBlocks",
+      title: "Audience Blocks (Partners / Sponsors / Donors / Volunteers / Attendees)",
+      type: "array",
+      of: [{
+        type: "object",
+        name: "audienceBlock",
+        fields: [
+          defineField({ name: "audience", title: "Audience", type: "string", options: { list: [
+            { title: "Partners", value: "partners" },
+            { title: "Sponsors", value: "sponsors" },
+            { title: "Donors", value: "donors" },
+            { title: "Volunteers", value: "volunteers" },
+            { title: "Attendees", value: "attendees" },
+          ] }, validation: (r) => r.required() }),
+          defineField({ name: "headline", title: "Block Headline", type: "string" }),
+          defineField({ name: "body", title: "Block Body", type: "text", rows: 3 }),
+          defineField({ name: "ctaLabel", title: "CTA Label", type: "string" }),
+          defineField({ name: "ctaUrl", title: "CTA URL", type: "url" }),
+          defineField({ name: "image", title: "Block Image", type: "image", options: { hotspot: true } }),
+        ],
+        preview: { select: { title: "headline", subtitle: "audience" } },
+      }],
+      description: "5 audience-specific sections on the program landing page (Partners, Sponsors, Donors, Volunteers, Attendees)",
+    }),
   ],
   orderings: [{ title: "Sort Order", name: "sortOrder", by: [{ field: "sortOrder", direction: "asc" }] }],
 });
