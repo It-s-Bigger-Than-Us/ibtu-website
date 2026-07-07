@@ -147,7 +147,10 @@ const COMMUNITY_SPONSORS = [
 // B2S 2026 SSOT participation URLs (reference_b2s_2026_urls.md, 2026-05-10)
 const B2S_RSVP = "https://www.eventbrite.com/e/1989189304758?aff=oddtdtcreator"
 const B2S_VOLUNTEER = "https://volunteer.bloomerang.co/volunteer/#/join-party?k=vyfna5f8jt5mkg"
-const B2S_VENDOR_FORM = "https://forms.gle/Q8i4g2wXXo6ZP7A3A"
+// Vendor applications: the Airtable form ONLY (Molly 7/6) — no Google Forms.
+const B2S_VENDOR_FORM =
+  process.env.NEXT_PUBLIC_VENDOR_FORM_URL ||
+  "https://airtable.com/appxak9slpO0Okjwb/pagYRMjtQWQVupz98/form"
 const B2S_SPONSOR_URL = "https://secure.qgiv.com/for/ibt/event/b2s26/"
 
 export default async function Back2SchoolPage() {
@@ -386,21 +389,7 @@ export default async function Back2SchoolPage() {
               B2S is purpose-driven — access, equity, joy. We're curating mission-aligned vendors and service partners: <strong style={{ fontWeight: 700 }}>healthcare, dental, civic services, electeds, resource providers, community orgs</strong> bringing high-impact activations for students and families.
             </p>
 
-            <div style={{ borderTop: "2px solid #000" }}>
-              {[
-                ["Booth fee", "$500 flat · nonprofits and community orgs may apply for a fee waiver (mission-fit review required — not automatic)"],
-                ["Included", "One table + two chairs per booth"],
-                ["Required", "Valid Certificate of Insurance (COI) — for IBTU + Baldwin Hills Crenshaw Plaza requirements"],
-                ["Selection", "Curated by alignment, impact & proposed activation"],
-              ].map(([label, value]) => (
-                <div key={label} className="b2s-spec-row" style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: "clamp(16px, 2vw, 32px)", padding: "16px 0", borderBottom: "1px solid #000" }}>
-                  <span style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#000" }}>{label}</span>
-                  <span style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-sm)", color: "#000", lineHeight: 1.55, fontWeight: 500 }}>{value}</span>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ marginTop: 40 }}>
+            <div>
               <a href={B2S_VENDOR_FORM} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "18px 44px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
                 Apply to vendor →
               </a>
@@ -419,16 +408,13 @@ export default async function Back2SchoolPage() {
             Set Up<br />Where People Are
           </h2>
           <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-lg)", color: "#000", lineHeight: 1.7, fontWeight: 500, maxWidth: 720, marginBottom: "clamp(40px, 5vw, 64px)" }}>
-            Local businesses, food vendors, health providers, and community organizations — your booth puts you face-to-face with thousands of families. Direct access to your community, not a trade show. Nonprofit and community-org vendors: booth fee waived. Just note it on the application.
+            Local businesses, food vendors, health providers, and community organizations — your booth puts you face-to-face with thousands of families. Direct access to your community, not a trade show.
           </p>
 
           <div style={{ textAlign: "center" }}>
             <a href={B2S_VENDOR_FORM} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "20px 56px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 14, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
               Apply for a Booth
             </a>
-            <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-sm)", color: "#000", marginTop: 16, fontWeight: 600 }}>
-              Vendor requirements: 2 Certificates of Insurance (COI) + signed liability waiver. Sent automatically after application.
-            </p>
           </div>
         </div>
       </section>
