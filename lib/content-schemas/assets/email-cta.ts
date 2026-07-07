@@ -1,0 +1,61 @@
+import type { AssetSchema } from "../types";
+import { GLOBAL_INHERITED_RULES } from "../brand-rules";
+
+export const emailCtaSchema: AssetSchema = {
+  id: "email-cta",
+  displayName: "Email CTA Block",
+  category: "email",
+  fluid: true,
+  outputFormats: ["html"],
+  inheritedRules: GLOBAL_INHERITED_RULES,
+  fields: [
+    {
+      name: "cta_kicker",
+      label: "Kicker above button",
+      type: "text",
+      minChars: 3,
+      maxChars: 40,
+      required: false,
+      position: "above_button",
+      tokenRole: "caption",
+    },
+    {
+      name: "cta_headline",
+      label: "CTA headline",
+      type: "text",
+      minChars: 5,
+      maxChars: 50,
+      required: true,
+      position: "cta_title",
+      tokenRole: "display_small",
+    },
+    {
+      name: "cta_body",
+      label: "CTA body (1 sentence)",
+      type: "text",
+      minChars: 0,
+      maxChars: 120,
+      required: false,
+      position: "cta_body",
+      tokenRole: "body",
+    },
+    {
+      name: "cta_label",
+      label: "Button label",
+      type: "text",
+      minChars: 3,
+      maxChars: 22,
+      required: true,
+      position: "button",
+      tokenRole: "label_chip",
+    },
+    {
+      name: "cta_url",
+      label: "Button URL",
+      type: "url",
+      required: true,
+      position: "button_meta",
+    },
+  ],
+  imageSlots: [],
+};
