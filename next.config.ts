@@ -12,6 +12,15 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // ── Vendors: ibtu.la/vendors IS the Airtable application form — nothing else
+      // lives at this path (Molly 7/6). Temporary redirect so the target can change.
+      {
+        source: '/vendors',
+        destination:
+          process.env.NEXT_PUBLIC_VENDOR_FORM_URL ||
+          'https://airtable.com/appxak9slpO0Okjwb/pagYRMjtQWQVupz98/form',
+        permanent: false,
+      },
       // ── Short canonical URLs (for flyers). Old paths 301 → new short canonical. ──
       // Program pages (data-driven, /our-programs/<slug> → short)
       { source: '/our-programs/coastal-care', destination: '/coastal', permanent: true },
