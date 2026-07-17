@@ -21,6 +21,14 @@ const nextConfig: NextConfig = {
           'https://airtable.com/appxak9slpO0Okjwb/pagYRMjtQWQVupz98/form',
         permanent: false,
       },
+      // ── Docs: ibtu.la/docs → Airtable form (Molly 7/16). Temporary so target can change.
+      {
+        source: '/docs',
+        destination:
+          process.env.NEXT_PUBLIC_DOCS_FORM_URL ||
+          'https://airtable.com/appxak9slpO0Okjwb/pagxoRnLtn7OMYnIA/form',
+        permanent: false,
+      },
       // ── Short canonical URLs (for flyers). Old paths 301 → new short canonical. ──
       // Program pages (data-driven, /our-programs/<slug> → short)
       { source: '/our-programs/coastal-care', destination: '/coastal', permanent: true },
