@@ -63,10 +63,10 @@ if [[ "$BRANCH" != "main" ]]; then
   exit 0
 fi
 
-# ── 4. On main: make sure a build actually starts. ────────────────────────────
-# The Vercel Git integration has silently stopped delivering pushes before
-# (2026-06-16 → 2026-08-19, three commits stranded). If a deploy hook URL is
-# configured we fire it as a fallback when the push alone produces nothing.
+# ── 4. On main: the push above is what deploys. ───────────────────────────────
+# Read the deploy hook only so we can OFFER it if the push produces nothing —
+# the Git integration has gone dark before (2026-06-16 → 2026-08-19, three
+# commits stranded merged-but-never-shipped).
 HOOK="${VERCEL_DEPLOY_HOOK_URL:-}"
 if [[ -z "$HOOK" && -f .env.local ]]; then
   # Tolerate values pasted as <url>, "url", or with trailing whitespace/CR.
@@ -78,23 +78,10 @@ serving_sha() {
     | sed -n 's/.*"sha": *"\([^"]*\)".*/\1/p' || true
 }
 
-if [[ -n "$HOOK" ]]; then
-  echo "▸ giving the Git integration 60s, then falling back to the deploy hook"
-  FIRED=0
-  for i in $(seq 1 12); do
-    [[ "$(serving_sha)" == "$SHA" ]] && FIRED=2 && break
-    sleep 5
-  done
-  if [[ $FIRED -eq 0 ]]; then
-    CODE="$(curl -s -o /tmp/ibtu-hook.out -w '%{http_code}' -X POST "$HOOK")"
-    if [[ "$CODE" == "20"* ]]; then
-      echo "  deploy hook fired ✓"
-    else
-      echo "⚠ deploy hook returned HTTP $CODE:" >&2
-      cat /tmp/ibtu-hook.out >&2; echo >&2
-    fi
-  fi
-fi
+# NOTE: do NOT auto-fire the hook alongside the push. Vercel auto-cancels
+# redundant deployments for the same branch, so a push-deploy and a hook-deploy
+# racing each other cancel BOTH and nothing ships. The hook is a manual fallback,
+# offered below only if the push produced nothing at all.
 
 # ── 5. Wait for ibtu.la to actually serve this commit. ────────────────────────
 echo "▸ waiting for ibtu.la to serve ${SHA:0:7} (up to 6 min)"
@@ -110,6 +97,13 @@ done
 
 echo
 echo "⚠ Still not serving ${SHA:0:7} after 6 min." >&2
-echo "  Pushed OK, so this is a build issue, not a push issue." >&2
+echo "  Pushed OK, so this is a build or delivery issue, not a push issue." >&2
 echo "  Check: https://vercel.com/it-s-bigger-than-us/ibtu-website" >&2
+if [[ -n "$HOOK" ]]; then
+  echo >&2
+  echo "  If Vercel never started a build, fire the deploy hook manually — ONE" >&2
+  echo "  trigger only, and not while another build is running (concurrent" >&2
+  echo "  deployments for the same branch auto-cancel each other):" >&2
+  echo "    curl -X POST \"\$(sed -n 's/^VERCEL_DEPLOY_HOOK_URL=//p' .env.local)\"" >&2
+fi
 exit 1
