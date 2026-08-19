@@ -63,12 +63,43 @@ if [[ "$BRANCH" != "main" ]]; then
   exit 0
 fi
 
-# ── 4. On main: wait for ibtu.la to actually serve this commit. ───────────────
+# ── 4. On main: make sure a build actually starts. ────────────────────────────
+# The Vercel Git integration has silently stopped delivering pushes before
+# (2026-06-16 → 2026-08-19, three commits stranded). If a deploy hook URL is
+# configured we fire it as a fallback when the push alone produces nothing.
+HOOK="${VERCEL_DEPLOY_HOOK_URL:-}"
+if [[ -z "$HOOK" && -f .env.local ]]; then
+  # Tolerate values pasted as <url>, "url", or with trailing whitespace/CR.
+  HOOK="$(sed -n 's/^VERCEL_DEPLOY_HOOK_URL=//p' .env.local | head -1 | tr -d '<>"'"'"' \r\t')"
+fi
+
+serving_sha() {
+  curl -fsS --max-time 10 "https://ibtu.la/version?t=$(date +%s)" 2>/dev/null \
+    | sed -n 's/.*"sha": *"\([^"]*\)".*/\1/p' || true
+}
+
+if [[ -n "$HOOK" ]]; then
+  echo "▸ giving the Git integration 60s, then falling back to the deploy hook"
+  FIRED=0
+  for i in $(seq 1 12); do
+    [[ "$(serving_sha)" == "$SHA" ]] && FIRED=2 && break
+    sleep 5
+  done
+  if [[ $FIRED -eq 0 ]]; then
+    CODE="$(curl -s -o /tmp/ibtu-hook.out -w '%{http_code}' -X POST "$HOOK")"
+    if [[ "$CODE" == "20"* ]]; then
+      echo "  deploy hook fired ✓"
+    else
+      echo "⚠ deploy hook returned HTTP $CODE:" >&2
+      cat /tmp/ibtu-hook.out >&2; echo >&2
+    fi
+  fi
+fi
+
+# ── 5. Wait for ibtu.la to actually serve this commit. ────────────────────────
 echo "▸ waiting for ibtu.la to serve ${SHA:0:7} (up to 6 min)"
 for i in $(seq 1 72); do
-  LIVE="$(curl -fsS --max-time 10 "https://ibtu.la/version?t=$(date +%s)" 2>/dev/null \
-          | sed -n 's/.*"sha": *"\([^"]*\)".*/\1/p' || true)"
-  if [[ "$LIVE" == "$SHA" ]]; then
+  if [[ "$(serving_sha)" == "$SHA" ]]; then
     echo
     echo "✓ LIVE on https://ibtu.la — serving ${SHA:0:7}"
     exit 0
