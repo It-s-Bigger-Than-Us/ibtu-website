@@ -31,6 +31,9 @@ const nextConfig: NextConfig = {
       // External giving (kept temporary, off-site)
       { source: '/gala', destination: 'https://secure.qgiv.com/for/itsbiggerthanus/event/gala/', permanent: false },
       { source: '/7years', destination: 'https://secure.qgiv.com/for/ibt/', permanent: false },
+      // Gear Up sign-up form (off-site Google Form)
+      { source: '/gearup', destination: 'https://docs.google.com/forms/d/e/1FAIpQLScY34hKJCWmPefbD6rlapUoxbqxFLguzBK7KAVfWXacU1mCBQ/viewform?usp=header', permanent: false },
+      { source: '/gear-up', destination: '/gearup', permanent: true },
     ]
   },
   async headers() {
