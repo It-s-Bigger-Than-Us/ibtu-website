@@ -1,7 +1,6 @@
 import 'server-only'
 
-import fs from 'node:fs'
-import path from 'node:path'
+import manifest from './media-manifest.json'
 
 type ProgramSlug =
   | 'fire-relief'
@@ -18,19 +17,16 @@ interface PillarVisual {
   images: string[]
 }
 
-const IMAGE_ROOT = path.join(process.cwd(), 'public', 'images')
-const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp'])
+const MEDIA_MANIFEST: Record<string, string[]> = manifest
 
 function readFolder(folder: string): string[] {
-  const dir = path.join(IMAGE_ROOT, folder)
-  const items = fs.readdirSync(dir, { withFileTypes: true })
-
-  return items
-    .filter((item) => item.isFile())
-    .map((item) => item.name)
-    .filter((file) => IMAGE_EXTENSIONS.has(path.extname(file).toLowerCase()))
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
-    .map((file) => `/images/${folder}/${file}`)
+  const files = MEDIA_MANIFEST[folder]
+  if (!files) {
+    throw new Error(
+      `[site-media] No manifest entry for folder "${folder}". Run "node scripts/generate-media-manifest.mjs" to regenerate lib/data/media-manifest.json.`
+    )
+  }
+  return files
 }
 
 function readAllContentImages(): string[] {
