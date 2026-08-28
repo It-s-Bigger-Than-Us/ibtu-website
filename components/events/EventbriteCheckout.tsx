@@ -67,21 +67,41 @@ export default function EventbriteCheckout({ eventId, eventUrl }: Props) {
 
   if (!eventId) return null;
 
+  const registerUrl = eventUrl || `https://www.eventbrite.com/e/${eventId}`;
+
+  // If the widget script never initialized (blocked, offline, failed), the trigger would
+  // otherwise be a dead button — send the visitor straight to Eventbrite instead.
+  const handleClick = () => {
+    if (!created.current) {
+      window.open(registerUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
-    <>
+    <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-start" }}>
       {/* Noscript content for added SEO / no-JS fallback */}
       <noscript>
-        <a
-          href={eventUrl || `https://www.eventbrite.com/e/${eventId}`}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
+        <a href={registerUrl} rel="noopener noreferrer" target="_blank">
           Buy Tickets on Eventbrite
         </a>
       </noscript>
-      <button id={triggerId} type="button" className="btn btn-primary" style={{ cursor: "pointer" }}>
+      <button
+        id={triggerId}
+        type="button"
+        className="btn btn-primary"
+        style={{ cursor: "pointer" }}
+        onClick={handleClick}
+      >
         Register Now →
       </button>
-    </>
+      <a
+        href={registerUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 600, color: "var(--gold)", textDecoration: "underline", textUnderlineOffset: 3 }}
+      >
+        or register on Eventbrite ↗
+      </a>
+    </div>
   );
 }
