@@ -126,7 +126,7 @@ export const events: Event[] = [
     title: "7th Annual Back 2 School — Venice Beach",
     programSlug: "back-2-school",
     year: 2026,
-    dateStart: "Aug 22, 2026",
+    dateStart: "Aug 15, 2026",
     location: "Venice Beach",
     status: "Upcoming",
   },
