@@ -23,7 +23,7 @@ function daysUntil(iso: string): number {
 export async function GET(req: Request) {
   const url = new URL(req.url)
   const to = /^\d{4}-\d{2}-\d{2}$/.test(url.searchParams.get('to') ?? '') ? (url.searchParams.get('to') as string) : '2026-12-01'
-  const label = (url.searchParams.get('label') ?? 'TO A CITY UNITED · DEC 1').slice(0, 48)
+  const label = (url.searchParams.get('label') ?? 'UNTIL A CITY UNITED · DEC 1').slice(0, 48)
   const n = daysUntil(to)
   const big = n === 0 ? 'TONIGHT' : `${n} ${n === 1 ? 'DAY' : 'DAYS'}`
 
