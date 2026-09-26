@@ -7,6 +7,7 @@ import EventModal from '@/components/events/EventModal'
 type Ev = any
 
 type EventType = 'attendee' | 'volunteer' | 'vendor'
+type View = 'list' | 'grid'
 
 const TYPE_LABELS: Record<EventType, string> = {
   attendee: 'Attend',
@@ -19,6 +20,7 @@ const MONTHS = [
   'July', 'August', 'September', 'October', 'November', 'December',
 ]
 const WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+const WEEKDAYS_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 /** Parse the MM/DD/YYYY dates stored in Sanity. Returns null for ranges / TBD / unparseable. */
 function parseEventDate(dateStart?: string): { y: number; m: number; d: number } | null {
@@ -46,12 +48,40 @@ function eventTypes(ev: Ev): EventType[] {
   return types
 }
 
+const pillStyle: React.CSSProperties = {
+  display: 'inline-block',
+  fontFamily: 'var(--font-body)',
+  fontWeight: 700,
+  fontSize: 'var(--text-sm)',
+  letterSpacing: '0.5px',
+  textTransform: 'uppercase',
+  padding: '3px 10px',
+  borderRadius: 'var(--radius-pill, 100px)',
+  border: '1px solid #000',
+  color: '#000',
+  background: 'transparent',
+}
+
+function TypePills({ ev }: { ev: Ev }) {
+  const evTypes = eventTypes(ev)
+  if (evTypes.length === 0) return null
+  return (
+    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 6 }}>
+      {evTypes.map((t) => (
+        <span key={t} style={pillStyle}>{TYPE_LABELS[t]}</span>
+      ))}
+    </div>
+  )
+}
 
 /**
  * The /events calendar — month grid of upcoming/active events with filter chips by
  * program and by involvement type. Clicking an event jumps to its block on the program
  * page (events live on program pages; this is the index). Brand-locked to gold/black/
  * white, so programs are distinguished by label, not hue.
+ *
+ * Default view is a monthly agenda list (decision d05, finding 06) with a grid view
+ * kept behind a toggle for anyone who prefers to scan a calendar layout.
  */
 export default function EventsCalendar({
   events,
@@ -63,6 +93,7 @@ export default function EventsCalendar({
   const [program, setProgram] = useState<string>('all')
   const [types, setTypes] = useState<Set<EventType>>(new Set())
   const [active, setActive] = useState<Ev | null>(null)
+  const [view, setView] = useState<View>('list')
 
   const visible = useMemo(() => {
     return (events || []).filter((ev: Ev) => {
@@ -90,7 +121,19 @@ export default function EventsCalendar({
       buckets.get(key)!.events.push({ ev, d: parsed.d })
     }
     const ordered = [...buckets.values()].sort((a, b) => a.y - b.y || a.m - b.m)
+    for (const bucket of ordered) bucket.events.sort((a, b) => a.d - b.d)
     return { ordered, undated }
+  }, [visible])
+
+  // Soonest three dated events, across all months, for the "Next up" strip.
+  const nextUp = useMemo(() => {
+    const dated: { ev: Ev; y: number; m: number; d: number }[] = []
+    for (const ev of visible) {
+      const parsed = parseEventDate(ev.dateStart)
+      if (parsed) dated.push({ ev, ...parsed })
+    }
+    dated.sort((a, b) => a.y - b.y || a.m - b.m || a.d - b.d)
+    return dated.slice(0, 3)
   }, [visible])
 
   const toggleType = (t: EventType) => {
@@ -117,6 +160,34 @@ export default function EventsCalendar({
     transition: 'background 0.15s, color 0.15s',
   }
   const chipActive: React.CSSProperties = { background: 'var(--gold)', color: '#000' }
+
+  const toggleBtnBase: React.CSSProperties = {
+    fontFamily: 'var(--font-body)',
+    fontWeight: 700,
+    fontSize: 'var(--text-sm)',
+    letterSpacing: '1px',
+    textTransform: 'uppercase',
+    padding: '10px 20px',
+    minHeight: 44,
+    cursor: 'pointer',
+    border: '1px solid var(--gold)',
+    background: '#000',
+    color: 'var(--gold)',
+  }
+
+  const eventCardStyle: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'flex-start',
+    gap: 'var(--space-3)',
+    width: '100%',
+    textAlign: 'left',
+    border: 'none',
+    cursor: 'pointer',
+    background: 'var(--gold)',
+    color: '#000',
+    borderRadius: 'var(--radius-md)',
+    padding: 'var(--space-2)',
+  }
 
   return (
     <main style={{ background: '#000', minHeight: '100vh' }}>
@@ -149,21 +220,67 @@ export default function EventsCalendar({
             ))}
           </div>
         </div>
-        <div>
-          <span style={{ display: 'block', fontSize: 'var(--text-label)', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 10 }}>
-            How to get involved
-          </span>
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-            {(Object.keys(TYPE_LABELS) as EventType[]).map((t) => (
-              <button key={t} onClick={() => toggleType(t)} style={{ ...chipBase, ...(types.has(t) ? chipActive : {}) }}>
-                {TYPE_LABELS[t]}
-              </button>
-            ))}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, justifyContent: 'space-between', alignItems: 'flex-end' }}>
+          <div>
+            <span style={{ display: 'block', fontSize: 'var(--text-label)', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 10 }}>
+              How to get involved
+            </span>
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+              {(Object.keys(TYPE_LABELS) as EventType[]).map((t) => (
+                <button key={t} onClick={() => toggleType(t)} style={{ ...chipBase, ...(types.has(t) ? chipActive : {}) }}>
+                  {TYPE_LABELS[t]}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div role="group" aria-label="Events layout" style={{ display: 'flex', border: '1px solid var(--gold)' }}>
+            <button
+              type="button"
+              aria-pressed={view === 'list'}
+              onClick={() => setView('list')}
+              style={{ ...toggleBtnBase, ...(view === 'list' ? chipActive : {}), border: 'none', borderRight: '1px solid var(--gold)' }}
+            >
+              List
+            </button>
+            <button
+              type="button"
+              aria-pressed={view === 'grid'}
+              onClick={() => setView('grid')}
+              style={{ ...toggleBtnBase, ...(view === 'grid' ? chipActive : {}), border: 'none' }}
+            >
+              Grid
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Month grids */}
+      {/* Next up */}
+      {nextUp.length > 0 && (
+        <div style={{ padding: 'clamp(28px,4vw,48px) clamp(24px,5vw,80px) 0' }}>
+          <span style={{ display: 'inline-block', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 'var(--text-label)', letterSpacing: '2px', textTransform: 'uppercase', color: '#000', background: 'var(--gold)', padding: '4px 12px', marginBottom: 10 }}>
+            Next up
+          </span>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 'var(--space-3)' }}>
+            {nextUp.map(({ ev, y, m, d }, i) => (
+              <button key={i} type="button" onClick={() => setActive(ev)} style={eventCardStyle}>
+                <div style={{ flex: '0 0 auto' }}>
+                  <span style={{ display: 'block', fontFamily: 'var(--font-body)', fontWeight: 900, fontSize: 'var(--text-lg)', lineHeight: 1 }}>{d}</span>
+                  <span style={{ display: 'block', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 600 }}>{WEEKDAYS_SHORT[new Date(y, m, d).getDay()]}</span>
+                </div>
+                <div style={{ minWidth: 0 }}>
+                  <span style={{ display: 'block', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-base)' }}>{ev.title}</span>
+                  {ev.programTitle && (
+                    <span style={{ display: 'block', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', marginTop: 2 }}>{ev.programTitle}</span>
+                  )}
+                  <TypePills ev={ev} />
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Events */}
       <div style={{ padding: 'clamp(28px,4vw,48px) clamp(24px,5vw,80px) 60px' }}>
         {months.ordered.length === 0 && months.undated.length === 0 && (
           <p style={{ fontFamily: 'var(--font-body)', color: 'var(--gold)', fontSize: 'var(--text-base)' }}>
@@ -171,7 +288,36 @@ export default function EventsCalendar({
           </p>
         )}
 
-        {months.ordered.map(({ y, m, events: monthEvents }) => {
+        {view === 'list' && months.ordered.map(({ y, m, events: monthEvents }) => {
+          if (monthEvents.length === 0) return null
+          return (
+            <div key={`${y}-${m}`} style={{ marginBottom: 20 }}>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,48px)', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: 8 }}>
+                {MONTHS[m]} {y}
+              </h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-1)' }}>
+                {monthEvents.map(({ ev, d }, i) => (
+                  <button key={i} type="button" onClick={() => setActive(ev)} style={eventCardStyle}>
+                    <div style={{ flex: '0 0 auto', minWidth: 48 }}>
+                      <span style={{ display: 'block', fontFamily: 'var(--font-body)', fontWeight: 900, fontSize: 'var(--text-lg)', lineHeight: 1 }}>{d}</span>
+                      <span style={{ display: 'block', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', fontWeight: 600 }}>{WEEKDAYS_SHORT[new Date(y, m, d).getDay()]}</span>
+                    </div>
+                    <div style={{ minWidth: 0 }}>
+                      <span style={{ display: 'block', fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: 'var(--text-base)' }}>{ev.title}</span>
+                      {ev.programTitle && (
+                        <span style={{ display: 'block', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', marginTop: 2 }}>{ev.programTitle}</span>
+                      )}
+                      <TypePills ev={ev} />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+
+        {view === 'grid' && months.ordered.map(({ y, m, events: monthEvents }) => {
+          if (monthEvents.length === 0) return null
           const firstWeekday = new Date(y, m, 1).getDay()
           const daysInMonth = new Date(y, m + 1, 0).getDate()
           const byDay = new Map<number, Ev[]>()
@@ -199,7 +345,7 @@ export default function EventsCalendar({
                   return (
                     <div key={`c-${i}`} style={{ background: '#000', minHeight: 96, padding: 6, display: 'flex', flexDirection: 'column', gap: 4 }}>
                       {day && (
-                        <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-label)', color: dayEvents ? 'var(--gold)' : '#fff', fontWeight: dayEvents ? 700 : 400 }}>
+                        <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: dayEvents ? 'var(--gold)' : '#fff', fontWeight: dayEvents ? 700 : 400 }}>
                           {day}
                         </span>
                       )}
@@ -210,10 +356,10 @@ export default function EventsCalendar({
                             key={j}
                             type="button"
                             onClick={() => setActive(ev)}
-                            style={{ display: 'block', width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', background: 'var(--gold)', color: '#000', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 'var(--text-label)', lineHeight: 1.2, padding: '4px 6px', borderRadius: 6, overflow: 'hidden' }}
+                            style={{ display: 'block', width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', background: 'var(--gold)', color: '#000', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 'var(--text-sm)', lineHeight: 1.2, padding: '4px 6px', borderRadius: 6, overflow: 'hidden' }}
                           >
                             {ev.title}
-                            <span style={{ display: 'block', fontWeight: 400, fontSize: 'var(--text-label)' }}>{label}</span>
+                            <span style={{ display: 'block', fontWeight: 400, fontSize: 'var(--text-sm)' }}>{label}</span>
                           </button>
                         )
                       })}
@@ -240,7 +386,7 @@ export default function EventsCalendar({
                   style={{ background: '#000', width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, padding: '14px 16px' }}
                 >
                   <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-base)', color: '#fff', fontWeight: 600 }}>{ev.title}</span>
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-label)', color: 'var(--gold)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', whiteSpace: 'nowrap' }}>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: 'var(--gold)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', whiteSpace: 'nowrap' }}>
                     {ev.programTitle || ev.dateStart || 'TBD'}
                   </span>
                 </button>
