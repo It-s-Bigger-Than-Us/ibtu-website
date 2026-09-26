@@ -91,6 +91,31 @@ export default function HeroReveal() {
       !splitRef.current
     ) return
 
+    // Reduced motion: skip the intro timeline entirely and jump straight to
+    // the resting frame (finding 09). Video stays paused on its first frame
+    // (not autoplayed), so the pause control reads "Play video."
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (prefersReducedMotion) {
+      gsap.set(textContainerRef.current, { opacity: 0, visibility: 'hidden' })
+      gsap.set(iridBgRef.current, { opacity: 0 })
+      iridBgRef.current.setAttribute('data-offscreen', 'true')
+      gsap.set(logoRef.current, { opacity: 0 })
+      gsap.set(videoLayerRef.current, { opacity: 1 })
+      gsap.set(splitRef.current, { opacity: 0 })
+      if (plateRef.current) gsap.set(plateRef.current, { opacity: 1 })
+      setPlateActive(true)
+      setPaused(true)
+      if (videoRef.current) {
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
+      }
+      document.documentElement.dataset.heroIntro = 'done'
+      return
+    }
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline()
 
@@ -169,6 +194,9 @@ export default function HeroReveal() {
       tl.call(() => {
         setVideoReady(true)
         document.documentElement.dataset.heroIntro = 'done'
+        // Iridescent field is invisible (opacity 0) from here on — stop its
+        // loop rather than let it run unseen (finding 09).
+        iridBgRef.current?.setAttribute('data-offscreen', 'true')
       })
 
       // Resting plate (headline + buttons) fades in at the same beat
@@ -264,6 +292,7 @@ export default function HeroReveal() {
       {/* ─── Iridescent background (behind logo) ─── */}
       <div
         ref={iridBgRef}
+        className="ibtu-ambient"
         style={{
           position: 'absolute',
           inset: 0,

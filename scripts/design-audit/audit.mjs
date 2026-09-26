@@ -121,6 +121,18 @@ const auditFn = () => {
   out.lowContrast = out.lowContrast.slice(0,25); out.smallText = out.smallText.slice(0,25); out.smallTargets=out.smallTargets.slice(0,25);
   out.pageHeight = document.body.scrollHeight;
   out.animated = document.getAnimations ? document.getAnimations().length : null;
+  // Running animations whose target (or, for a ::before/::after effect, the
+  // owning element) actually intersects the viewport right now — the number
+  // that matters for "is something visibly moving at rest" (finding 09).
+  out.animatedRunningInView = document.getAnimations
+    ? document.getAnimations().filter(a => {
+        if (a.playState !== 'running') return false;
+        const target = a.effect && a.effect.target;
+        if (!target) return false;
+        const r = target.getBoundingClientRect();
+        return r.bottom > 0 && r.right > 0 && r.top < innerHeight && r.left < innerWidth;
+      }).length
+    : null;
   out.hasSkipLink = !!document.querySelector('.skip-to-content, a[href="#main"], a[href="#content"]');
   out.landmarks = {main:document.querySelectorAll('main').length, nav:document.querySelectorAll('nav').length, footer:document.querySelectorAll('footer').length};
   return out;
@@ -157,7 +169,7 @@ await browser.close();
 results.summary = {};
 for (const [k, v] of Object.entries(results)) {
   if (!v || !v.counts) continue;
-  results.summary[k] = { smallText: v.counts.smallText, smallTargets: v.counts.smallTargets, lowContrast: v.counts.lowContrast, imageGroundSkipped: v.counts.imageGroundSkipped ?? 0, animated: v.animated, focusVisibleOf8: v.focusVisibleOf8 ?? null, pageHeight: v.pageHeight, imagesNoAlt: v.images?.noAlt ?? null };
+  results.summary[k] = { smallText: v.counts.smallText, smallTargets: v.counts.smallTargets, lowContrast: v.counts.lowContrast, imageGroundSkipped: v.counts.imageGroundSkipped ?? 0, animated: v.animated, animatedRunningInView: v.animatedRunningInView ?? null, focusVisibleOf8: v.focusVisibleOf8 ?? null, pageHeight: v.pageHeight, imagesNoAlt: v.images?.noAlt ?? null };
 }
 writeFileSync(`${SC}/audit.json`, JSON.stringify(results, null, 1));
 console.table(results.summary);

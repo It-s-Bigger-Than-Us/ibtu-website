@@ -27,6 +27,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
           fill
           sizes="100vw"
           priority
+          className="ibtu-ambient"
           style={{
             objectFit: 'cover',
             animation: 'skyPan 60s linear infinite',

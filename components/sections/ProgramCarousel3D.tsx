@@ -173,6 +173,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   if (isMobile) {
     return (
       <section
+        className="ibtu-ambient"
         style={{
           background: 'var(--holo-gradient)',
           backgroundSize: '600% 600%',
@@ -277,6 +278,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   return (
     <section
       ref={sectionRef}
+      className="ibtu-ambient"
       style={{
         background: 'var(--holo-gradient)',
         backgroundSize: '600% 600%',

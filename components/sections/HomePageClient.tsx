@@ -196,6 +196,7 @@ export default function HomePageClient({
             quality={60}
             priority={false}
             placeholder="empty"
+            className="ibtu-ambient"
             style={{
               objectFit: 'cover',
               objectPosition: 'center top',

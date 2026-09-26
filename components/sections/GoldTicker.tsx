@@ -147,6 +147,7 @@ export default function GoldTicker({
         {/* Iridescent border — shows when stuck AND below is yellow */}
         {isStuck && belowIsYellow && (
           <div
+            className="ibtu-ambient"
             style={{
               position: 'absolute',
               inset: 0,
@@ -165,6 +166,7 @@ export default function GoldTicker({
         )}
 
         <div
+          className="ibtu-ambient"
           style={{
             display: 'flex',
             width: 'max-content',

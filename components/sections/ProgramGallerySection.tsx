@@ -123,6 +123,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
           src="/images/blue-sky.jpg"
           alt=""
           aria-hidden="true"
+          className="ibtu-ambient"
           style={{
             position: 'absolute',
             inset: 0,
@@ -168,6 +169,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
           <div key={prog.slug}>
             {/* Iridescent transition strip between sections */}
             <div
+              className="ibtu-ambient"
               style={{
                 height: 'clamp(4px, 0.5vw, 8px)',
                 background: 'var(--holo-gradient)',

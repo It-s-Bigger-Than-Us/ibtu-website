@@ -76,6 +76,7 @@ export default function MissionCard() {
               ease: [0.16, 1, 0.3, 1],
               delay: highlightDelay,
             }}
+            className="ibtu-ambient"
             style={{
               position: 'absolute',
               left: 0,

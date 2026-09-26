@@ -330,6 +330,7 @@ export default function TopNav() {
           href="https://secure.qgiv.com/for/ibt/"
           target="_blank"
           rel="noopener noreferrer"
+          className="ibtu-ambient"
           style={{ ...donate, padding: isMobile ? '10px 14px 10px 16px' : '11px 18px 11px 20px', fontSize: 'var(--text-label)' }}
         >
           Donate <span style={donateArrow}>→</span>

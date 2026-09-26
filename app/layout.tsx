@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import TopNav from "@/components/layout/TopNav";
 import SmoothScroll from "@/components/providers/SmoothScroll";
+import AmbientPause from "@/components/providers/AmbientPause";
 import PageTransition from "@/components/ui/PageTransition";
 import NewsletterMount from "@/components/sections/NewsletterMount";
 import Trackers from "@/components/analytics/Trackers";
@@ -112,6 +113,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <AmbientPause />
         <SmoothScroll>
           <TopNav />
           <PageTransition>

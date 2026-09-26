@@ -1255,3 +1255,32 @@ button[style*="border-radius:16px"]:hover {
   .ibtu-newsletter-backdrop,
   .ibtu-newsletter-frame { animation: none; }
 }
+
+/* ═══════════════════════════════════════
+   AMBIENT LOOPS — reduced motion + offscreen pause (finding 09)
+   Every infinite decorative loop (holo-shift, sparkle-rotate,
+   iridescent-shift, skyPan, tickerScroll, highlightShimmer) either
+   carries the shared .ibtu-ambient class or one of the existing
+   liquid-glass classes below. Both groups are covered here.
+═══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .ibtu-ambient,
+  .iridescent-text,
+  .iridescent-border::after,
+  .pillar-cubes-backdrop,
+  .pillar-cube-label::after {
+    animation: none !important;
+  }
+}
+
+/* Offscreen pause: hooks/useAmbientPause.ts toggles data-offscreen on every
+   .ibtu-ambient / .holo-glass / .sparkle-stroke / .iridescent-text element
+   (plus the CSS-class-only loops below) when it leaves the viewport.
+   animation:none (not animation-play-state:paused) so the audit's
+   document.getAnimations() "animated" count actually drops — a paused
+   animation still counts. */
+[data-offscreen='true'],
+[data-offscreen='true']::before,
+[data-offscreen='true']::after {
+  animation: none !important;
+}
