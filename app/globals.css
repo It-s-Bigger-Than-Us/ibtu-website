@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
 /* ═══════════════════════════════════════
    LOT FONT — local system font
@@ -12,86 +13,15 @@
 }
 
 /* ═══════════════════════════════════════
-   IBTU DESIGN TOKENS — Tailwind v4 @theme
+   IBTU DESIGN TOKENS — see app/tokens.css
+   (primitive, semantic, component layers +
+   Tailwind v4 @theme bridge). Defined once,
+   imported above.
+   Brand colors are 100% opacity for fills,
+   text, borders, icons. Shadows and scrims
+   use the tokenized rgba black only. Opacity
+   fades are motion, not color. (decision d15)
 ═══════════════════════════════════════ */
-@theme {
-  --color-gold: #FFC700;
-  --color-ibtu-black: #000000;
-  --color-ibtu-white: #FFFFFF;
-  --color-warm-white: #FFFFFF;
-  --font-lot: 'LOT', 'Bebas Neue', sans-serif;
-  --font-poppins: 'Poppins', sans-serif;
-}
-
-/* ═══════════════════════════════════════
-   CSS CUSTOM PROPERTIES
-═══════════════════════════════════════ */
-:root {
-  /* Core palette — NO GREY, NO RGBA, NO OPACITY REDUCTIONS */
-  --gold: #FFC700;
-  --ibtu-gold: var(--gold);
-  --black: #000000;
-  --ibtu-black: var(--black);
-  --ibtu-white: #FFFFFF;
-  --warm-white: #FFFFFF;
-
-  /* Iridescent accent system — PEARLESCENT LIGHT
-     Predominantly white with soft yellow, mint, peach.
-     Like light on a pearl. No black. No dark tones.
-     Reference: Molly's iridescent image 4/2/2026. */
-  --holo-pink: #FFE4D6;
-  --holo-mint: #D4F5E8;
-  --holo-lavender: #E8E4FF;
-  --holo-yellow: #FFF4B8;
-  --holo-cyan: #D4F0F8;
-  --holo-peach: #FFE4D6;
-  --holo-gradient: linear-gradient(
-    135deg,
-    #FFF 0%,
-    #FFF4B8 12%,
-    #D4F5E8 24%,
-    #FFF 36%,
-    #FFE4D6 48%,
-    #FFF 60%,
-    #D4F0F8 72%,
-    #FFF4B8 84%,
-    #FFF 100%
-  );
-
-  /* Typography scale */
-  --font-display: 'LOT', 'Bebas Neue', sans-serif;
-  --font-body: 'Poppins', sans-serif;
-  --display-hero: clamp(80px, 14vw, 220px);
-  --display-section: clamp(60px, 10vw, 160px);
-  --display-card: clamp(28px, 4vw, 48px);
-  --body-lg: clamp(18px, 1.5vw, 22px);
-  --body-md: clamp(16px, 1.2vw, 18px);
-  --body-sm: clamp(13px, 1vw, 15px);
-
-  /* Legacy compat */
-  --hero-type: clamp(80px, 14vw, 220px);
-  --section-type: clamp(60px, 10vw, 160px);
-  --stat-type: clamp(48px, 10vw, 160px);
-  --pillar-type: clamp(28px, 5vw, 72px);
-
-  /* Spacing */
-  --section-pad: clamp(80px, 10vh, 160px);
-  --content-max: 1440px;
-  --grid-gap: clamp(16px, 2vw, 32px);
-
-  /* Animation curves */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
-  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  /* Z-index layers */
-  --z-base: 1;
-  --z-sticky: 10;
-  --z-nav: 100;
-  --z-overlay: 200;
-  --z-modal: 300;
-  --z-spline: 50;
-}
 
 /* ═══════════════════════════════════════
    @property for CSS Houdini animations
@@ -441,7 +371,7 @@ button[style*="border-radius:16px"]:hover {
 .btn-primary:hover {
   background: #FFC700;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px #FFC700;
+  box-shadow: var(--glow-gold);
 }
 .btn-outline {
   font-family: 'Poppins', sans-serif;
@@ -755,7 +685,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .card-lift:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 48px #000;
+  box-shadow: var(--shadow-lift);
 }
 
 /* --- Reveal line (gold underline draws on hover) --- */
