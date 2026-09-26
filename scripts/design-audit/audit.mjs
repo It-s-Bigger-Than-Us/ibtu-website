@@ -128,6 +128,8 @@ const auditFn = () => {
 for (const [name,url] of pages) {
   for (const [vp, opts] of [['desktop',{viewport:{width:1440,height:900}}],['mobile',{...devices['iPhone 13'], viewport:{width:390,height:844}}]]) {
     const ctx = await browser.newContext(opts); const page = await ctx.newPage();
+    // Suppress the newsletter dialog (it now opens on 60% scroll on Home) so the audit measures the page, not the dialog.
+    await page.addInitScript(() => { try { localStorage.setItem('ibtu_newsletter_prompt_v1', JSON.stringify({ status: 'dismissed', ts: Date.now() })); } catch {} });
     try {
       await page.goto(url,{waitUntil:'networkidle',timeout:45000});
       await page.waitForTimeout(1500);
