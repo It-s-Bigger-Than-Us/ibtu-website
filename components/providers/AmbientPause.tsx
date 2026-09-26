@@ -39,6 +39,15 @@ export default function AmbientPause() {
 
     const seen = new Set<Element>()
     const scan = () => {
+      // Release anything that has left the document (GoldTicker's border div
+      // mounts and unmounts on every sticky transition, for example) so the
+      // observer and the set do not grow for the life of the route.
+      for (const el of seen) {
+        if (!el.isConnected) {
+          observer.unobserve(el)
+          seen.delete(el)
+        }
+      }
       document.querySelectorAll(AMBIENT_SELECTOR).forEach((el) => {
         if (seen.has(el)) return
         seen.add(el)
