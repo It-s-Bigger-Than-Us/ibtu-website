@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useScroll, useMotionValueEvent } from 'framer-motion'
 
 /* ═══════════════════════════════════════
    GOLD TICKER — infinite scrolling ribbon
@@ -38,6 +39,7 @@ export default function GoldTicker({
   const [belowIsYellow, setBelowIsYellow] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const tickerHeight = useRef(0)
+  const { scrollY } = useScroll()
 
   useEffect(() => {
     const syncViewport = () => {
@@ -83,10 +85,37 @@ export default function GoldTicker({
       }
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true })
     onScroll() // initial check
-    return () => window.removeEventListener('scroll', onScroll)
   }, [isMobile])
+
+  useMotionValueEvent(scrollY, 'change', () => {
+    const wrapper = wrapperRef.current
+    const ticker = tickerRef.current
+    if (!wrapper || !ticker) return
+
+    const rect = wrapper.getBoundingClientRect()
+    const h = ticker.offsetHeight
+    tickerHeight.current = h
+
+    const shouldStick = rect.top <= 0
+    setIsStuck(shouldStick)
+
+    if (shouldStick) {
+      const sampleX = window.innerWidth / 2
+      const stickyOffset = isMobile ? 88 : 0
+      const sampleY = stickyOffset + h + 4
+      ticker.style.pointerEvents = 'none'
+      const el = document.elementFromPoint(sampleX, sampleY)
+      ticker.style.pointerEvents = ''
+      if (el) {
+        const bg = getComputedStyle(el).backgroundColor
+        const isYellow = bg.includes('255, 199, 0') || bg.includes('255,199,0')
+        setBelowIsYellow(isYellow)
+      }
+    } else {
+      setBelowIsYellow(false)
+    }
+  })
 
   // Build the ticker content with separators
   const content = phrases.flatMap((phrase, i) => [
@@ -111,7 +140,7 @@ export default function GoldTicker({
           left: 0,
           right: 0,
           zIndex: isStuck ? 90 : undefined,
-          transition: 'box-shadow 0.4s',
+          transition: 'box-shadow var(--dur-base)',
           boxShadow: isStuck ? '0 4px 24px rgba(0,0,0,0.15)' : 'none',
         }}
       >
@@ -128,7 +157,7 @@ export default function GoldTicker({
               backgroundImage: 'var(--holo-gradient)',
               backgroundSize: '400% 400%',
               backgroundClip: 'padding-box',
-              animation: 'holo-shift 24s ease infinite',
+              animation: 'holo-shift var(--dur-loop) ease infinite',
               WebkitMask: 'linear-gradient(transparent 0%, transparent calc(100% - 3px), #000 calc(100% - 3px))',
               mask: 'linear-gradient(transparent 0%, transparent calc(100% - 3px), #000 calc(100% - 3px))',
             }}

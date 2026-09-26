@@ -1,0 +1,632 @@
+{
+ "home-desktop": {
+  "fontSizes": {
+   "12": 6,
+   "14": 23,
+   "16": 7,
+   "17": 1,
+   "20": 1,
+   "22": 1,
+   "25": 10,
+   "38": 1,
+   "72": 6,
+   "86": 2,
+   "101": 3,
+   "115": 1,
+   "144": 7
+  },
+  "fontFamilies": {
+   "Poppins": 46,
+   "LOT": 23
+  },
+  "weights": {
+   "400": 23,
+   "500": 1,
+   "600": 19,
+   "700": 14,
+   "800": 6,
+   "900": 6
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 48,
+   "rgb(255, 199, 0)": 10,
+   "rgb(255, 255, 255)": 11
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: IT'S BIGGERTHAN US",
+   "H2: This Work Does Not Happen Without You.",
+   "H2: When Systems Fail, Communities Show Up.",
+   "H2: Our Impact Pillars",
+   "H2: By the Numbers",
+   "H2: Our Programs",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H2: ThisWorkDoesNotHappenWithoutYou"
+  ],
+  "images": {
+   "total": 34,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 2,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 2
+  },
+  "pageHeight": 7405,
+  "animated": 28,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 8
+ },
+ "home-mobile": {
+  "fontSizes": {
+   "12": 9,
+   "13": 6,
+   "14": 23,
+   "16": 13,
+   "24": 1,
+   "36": 1,
+   "39": 6,
+   "40": 3,
+   "47": 1,
+   "55": 8
+  },
+  "fontFamilies": {
+   "Poppins": 48,
+   "LOT": 23
+  },
+  "weights": {
+   "400": 23,
+   "500": 1,
+   "600": 19,
+   "700": 14,
+   "800": 8,
+   "900": 6
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 49,
+   "rgb(255, 199, 0)": 11,
+   "rgb(255, 255, 255)": 11
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: IT'S BIGGERTHAN US",
+   "H2: This Work Does Not Happen Without You.",
+   "H2: When Systems Fail, Communities Show Up.",
+   "H2: Our Impact Pillars",
+   "H2: By the Numbers",
+   "H2: Our Programs",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H2: ThisWorkDoesNotHappenWithoutYou"
+  ],
+  "images": {
+   "total": 22,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 2,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 2
+  },
+  "pageHeight": 6935,
+  "animated": 28,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "programs-desktop": {
+  "fontSizes": {
+   "12": 26,
+   "14": 18,
+   "56": 7,
+   "202": 1
+  },
+  "fontFamilies": {
+   "Poppins": 44,
+   "LOT": 8
+  },
+  "weights": {
+   "400": 8,
+   "500": 1,
+   "600": 11,
+   "700": 31,
+   "800": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 22,
+   "rgb(255, 199, 0)": 17,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: Our Programs",
+   "H2: Fire Relief& The Hub",
+   "H2: Back 2 School Festival",
+   "H2: Youth Programming",
+   "H2: Coastal Care",
+   "H2: Giving Season",
+   "H2: Wellness & Health Activations",
+   "H2: Community Health & Resource Access"
+  ],
+  "images": {
+   "total": 170,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 5593,
+  "animated": 16,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 8
+ },
+ "programs-mobile": {
+  "fontSizes": {
+   "12": 26,
+   "13": 7,
+   "14": 1,
+   "16": 10,
+   "28": 7,
+   "72": 1
+  },
+  "fontFamilies": {
+   "Poppins": 44,
+   "LOT": 8
+  },
+  "weights": {
+   "400": 8,
+   "500": 1,
+   "600": 11,
+   "700": 31,
+   "800": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 22,
+   "rgb(255, 199, 0)": 17,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: Our Programs",
+   "H2: Fire Relief& The Hub",
+   "H2: Back 2 School Festival",
+   "H2: Youth Programming",
+   "H2: Coastal Care",
+   "H2: Giving Season",
+   "H2: Wellness & Health Activations",
+   "H2: Community Health & Resource Access"
+  ],
+  "images": {
+   "total": 170,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 4150,
+  "animated": 16,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "get-involved-desktop": {
+  "fontSizes": {
+   "12": 5,
+   "14": 19,
+   "16": 1,
+   "17": 3,
+   "22": 1,
+   "32": 1,
+   "56": 6,
+   "72": 1,
+   "80": 2,
+   "140": 1
+  },
+  "fontFamilies": {
+   "Poppins": 36,
+   "LOT": 4
+  },
+  "weights": {
+   "400": 7,
+   "500": 1,
+   "600": 18,
+   "700": 6,
+   "800": 1,
+   "900": 7
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 20,
+   "rgb(255, 199, 0)": 7,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: There Is a Role for You Here",
+   "H2: The Numbers Don't Lie",
+   "H2: Show Up. Do the Work.",
+   "H3: Open shifts",
+   "H2: This Work Does Not Happen Without You"
+  ],
+  "images": {
+   "total": 14,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 4991,
+  "animated": 2,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 4
+ },
+ "get-involved-mobile": {
+  "fontSizes": {
+   "12": 5,
+   "13": 7,
+   "14": 3,
+   "16": 13,
+   "18": 1,
+   "24": 1,
+   "32": 7,
+   "36": 2,
+   "48": 1
+  },
+  "fontFamilies": {
+   "Poppins": 36,
+   "LOT": 4
+  },
+  "weights": {
+   "400": 7,
+   "500": 1,
+   "600": 18,
+   "700": 6,
+   "800": 1,
+   "900": 7
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 20,
+   "rgb(255, 199, 0)": 7,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: There Is a Role for You Here",
+   "H2: The Numbers Don't Lie",
+   "H2: Show Up. Do the Work.",
+   "H3: Open shifts",
+   "H2: This Work Does Not Happen Without You"
+  ],
+  "images": {
+   "total": 14,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 5300,
+  "animated": 2,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "events-desktop": {
+  "fontSizes": {
+   "12": 21,
+   "14": 78,
+   "17": 23,
+   "19": 1,
+   "22": 19,
+   "43": 7,
+   "72": 1,
+   "115": 1
+  },
+  "fontFamilies": {
+   "Poppins": 142,
+   "LOT": 9
+  },
+  "weights": {
+   "400": 33,
+   "500": 1,
+   "600": 57,
+   "700": 40,
+   "800": 1,
+   "900": 19
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 114,
+   "rgb(255, 199, 0)": 25,
+   "rgb(255, 255, 255)": 12
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: What's Happening",
+   "H2: June 2026",
+   "H2: July 2026",
+   "H2: August 2026",
+   "H2: September 2026",
+   "H2: October 2026",
+   "H2: November 2026",
+   "H2: December 2026",
+   "H2: HOW IBTU SHOWS UP"
+  ],
+  "images": {
+   "total": 19,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 6783,
+  "animated": 1,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 8
+ },
+ "events-mobile": {
+  "fontSizes": {
+   "12": 21,
+   "14": 68,
+   "15": 1,
+   "16": 33,
+   "18": 19,
+   "28": 7,
+   "36": 1,
+   "48": 1
+  },
+  "fontFamilies": {
+   "Poppins": 142,
+   "LOT": 9
+  },
+  "weights": {
+   "400": 33,
+   "500": 1,
+   "600": 57,
+   "700": 40,
+   "800": 1,
+   "900": 19
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 114,
+   "rgb(255, 199, 0)": 25,
+   "rgb(255, 255, 255)": 12
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: What's Happening",
+   "H2: June 2026",
+   "H2: July 2026",
+   "H2: August 2026",
+   "H2: September 2026",
+   "H2: October 2026",
+   "H2: November 2026",
+   "H2: December 2026",
+   "H2: HOW IBTU SHOWS UP"
+  ],
+  "images": {
+   "total": 19,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 7900,
+  "animated": 1,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "programsRedirect": {
+  "status": 200,
+  "finalUrl": "http://localhost:3111/our-programs"
+ },
+ "summary": {
+  "home-desktop": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 2,
+   "animated": 28,
+   "focusVisibleOf8": 8,
+   "pageHeight": 7405,
+   "imagesNoAlt": 0
+  },
+  "home-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 2,
+   "animated": 28,
+   "focusVisibleOf8": null,
+   "pageHeight": 6935,
+   "imagesNoAlt": 0
+  },
+  "programs-desktop": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 16,
+   "focusVisibleOf8": 8,
+   "pageHeight": 5593,
+   "imagesNoAlt": 0
+  },
+  "programs-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 16,
+   "focusVisibleOf8": null,
+   "pageHeight": 4150,
+   "imagesNoAlt": 0
+  },
+  "get-involved-desktop": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 2,
+   "focusVisibleOf8": 4,
+   "pageHeight": 4991,
+   "imagesNoAlt": 0
+  },
+  "get-involved-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 2,
+   "focusVisibleOf8": null,
+   "pageHeight": 5300,
+   "imagesNoAlt": 0
+  },
+  "events-desktop": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 1,
+   "focusVisibleOf8": 8,
+   "pageHeight": 6783,
+   "imagesNoAlt": 0
+  },
+  "events-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 1,
+   "focusVisibleOf8": null,
+   "pageHeight": 7900,
+   "imagesNoAlt": 0
+  }
+ }
+}

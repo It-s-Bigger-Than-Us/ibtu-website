@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useScroll, useMotionValueEvent } from 'framer-motion'
 
 /* ═══════════════════════════════════════
    TOP NAV — yellow floating pill
@@ -30,6 +31,8 @@ export default function TopNav() {
   const isStudio = pathname?.startsWith('/studio') ?? false
   const [menuOpen, setMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const lastYRef = useRef(0)
+  const { scrollY } = useScroll()
 
   // track viewport size — switch to dropdown panel below ~900px
   useEffect(() => {
@@ -43,14 +46,13 @@ export default function TopNav() {
 
   // auto-collapse on scroll past 80px while open
   useEffect(() => {
-    if (!menuOpen || isStudio) return
-    let lastY = window.scrollY
-    const onScroll = () => {
-      if (Math.abs(window.scrollY - lastY) > 80) setMenuOpen(false)
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    if (menuOpen && !isStudio) lastYRef.current = window.scrollY
   }, [menuOpen, isStudio])
+
+  useMotionValueEvent(scrollY, 'change', (y) => {
+    if (!menuOpen || isStudio) return
+    if (Math.abs(y - lastYRef.current) > 80) setMenuOpen(false)
+  })
 
   if (isStudio) return null
 
@@ -74,7 +76,7 @@ export default function TopNav() {
     background: '#FFC700',
     border: '1.5px solid #000',
     boxShadow: '0 12px 40px -14px rgba(0,0,0,.55)',
-    transition: 'padding .4s cubic-bezier(.16,1,.3,1)',
+    transition: 'padding var(--dur-base) cubic-bezier(.16,1,.3,1)',
   }
   const logoTile: React.CSSProperties = {
     width: 40,
@@ -97,8 +99,10 @@ export default function TopNav() {
     maxWidth: menuOpen ? 720 : 0,
     opacity: menuOpen ? 1 : 0,
     overflow: 'hidden',
-    transition:
-      'max-width .55s cubic-bezier(.16,1,.3,1), opacity .35s ease, padding .4s ease',
+    // Exit (menu closing) runs at 65% of the enter duration (finding 09).
+    transition: menuOpen
+      ? 'max-width var(--dur-slow) cubic-bezier(.16,1,.3,1), opacity var(--dur-base) ease, padding var(--dur-base) ease'
+      : 'max-width calc(var(--dur-slow) * 0.65) cubic-bezier(.16,1,.3,1), opacity calc(var(--dur-base) * 0.65) ease, padding calc(var(--dur-base) * 0.65) ease',
   }
   const mobilePanel: React.CSSProperties = {
     position: 'absolute',
@@ -116,7 +120,10 @@ export default function TopNav() {
     gap: 8,
     opacity: menuOpen ? 1 : 0,
     pointerEvents: menuOpen ? 'auto' : 'none',
-    transition: 'opacity .25s ease, transform .3s cubic-bezier(.16,1,.3,1)',
+    // Exit (menu closing) runs at 65% of the enter duration (finding 09).
+    transition: menuOpen
+      ? 'opacity var(--dur-base) ease, transform var(--dur-base) cubic-bezier(.16,1,.3,1)'
+      : 'opacity calc(var(--dur-base) * 0.65) ease, transform calc(var(--dur-base) * 0.65) cubic-bezier(.16,1,.3,1)',
     zIndex: 101,
   }
   const mobileLink: React.CSSProperties = {
@@ -133,7 +140,7 @@ export default function TopNav() {
     textTransform: 'uppercase',
     paddingInline: 18,
     borderRadius: 12,
-    transition: 'background .2s ease',
+    transition: 'background var(--dur-fast) ease',
     whiteSpace: 'nowrap',
     textAlign: 'center',
   }
@@ -151,7 +158,7 @@ export default function TopNav() {
     textTransform: 'uppercase',
     paddingInline: 12,
     borderRadius: 100,
-    transition: 'background .2s ease, color .2s ease',
+    transition: 'background var(--dur-fast) ease, color var(--dur-fast) ease',
     whiteSpace: 'nowrap',
   }
   const ham: React.CSSProperties = {
@@ -173,7 +180,7 @@ export default function TopNav() {
     height: 2,
     background: '#000',
     display: 'block',
-    transition: 'all .3s',
+    transition: 'all var(--dur-base)',
   }
   const donate: React.CSSProperties = {
     position: 'relative',

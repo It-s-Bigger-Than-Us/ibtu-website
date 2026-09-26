@@ -14,6 +14,10 @@ const SESSION_KEY = 'ibtu_newsletter_session_v1'
 const SUPPRESS_DAYS = 14
 const SCROLL_TRIGGER = 0.6
 const HERO_WAIT_MS = 10_000
+// Exit is 65 percent of the enter duration (finding 09). Both the backdrop
+// fade and the frame pop-in animate on --dur-base (300ms), so their reversed
+// exit keyframes (see globals.css [data-closing]) both finish at 195ms.
+const CLOSE_ANIM_MS = 195
 
 function shouldSuppress(): boolean {
   if (typeof window === 'undefined') return true
@@ -101,6 +105,7 @@ function waitForHeroReady(cb: () => void, isCancelled: () => boolean) {
 
 export default function NewsletterSignup() {
   const [open, setOpen] = useState(false)
+  const [closing, setClosing] = useState(false)
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState('')
@@ -175,7 +180,11 @@ export default function NewsletterSignup() {
     closedManually.current = true
     if (reason === 'success') persist('subscribed')
     else persist('dismissed')
-    setOpen(false)
+    setClosing(true)
+    setTimeout(() => {
+      setOpen(false)
+      setClosing(false)
+    }, CLOSE_ANIM_MS)
   }
 
   function fireConfetti() {
@@ -241,6 +250,7 @@ export default function NewsletterSignup() {
   return (
     <div
       className="ibtu-newsletter-backdrop"
+      data-closing={closing ? 'true' : undefined}
       role="dialog"
       aria-modal="true"
       aria-labelledby="newsletter-heading"

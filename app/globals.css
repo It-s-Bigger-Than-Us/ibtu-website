@@ -63,7 +63,7 @@ a, button, [role="button"], input[type="submit"] {
   padding: 0.5px;
   background: var(--holo-gradient);
   background-size: 600% 600%;
-  animation: holo-shift 20s ease infinite;
+  animation: holo-shift var(--dur-loop) ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -104,7 +104,7 @@ a, button, [role="button"], input[type="submit"] {
     #FFF4B8,
     #FFF
   );
-  animation: sparkle-rotate 16s linear infinite;
+  animation: sparkle-rotate var(--dur-loop) linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -135,7 +135,7 @@ a, button, [role="button"], input[type="submit"] {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: iridescent-shift 16s linear infinite;
+  animation: iridescent-shift var(--dur-loop) linear infinite;
 }
 @keyframes iridescent-shift {
   0% { background-position: 0% 50%; }
@@ -159,13 +159,13 @@ a, button, [role="button"], input[type="submit"] {
   padding: 0.5px;
   background: var(--holo-gradient);
   background-size: 600% 600%;
-  animation: holo-shift 20s ease infinite;
+  animation: holo-shift var(--dur-loop) ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.6s var(--ease-out-expo);
+  transition: opacity var(--dur-slow) var(--ease-out-expo);
 }
 .iridescent-border:hover::after,
 .iridescent-active::after {
@@ -177,7 +177,7 @@ a, button, [role="button"], input[type="submit"] {
     0 0 8px 1px rgba(255,244,184,0.15),
     0 0 16px 2px rgba(212,240,248,0.15),
     0 0 24px 3px rgba(212,245,232,0.15);
-  transition: box-shadow 0.6s var(--ease-out-expo);
+  transition: box-shadow var(--dur-slow) var(--ease-out-expo);
 }
 
 /* ═══════════════════════════════════════
@@ -196,7 +196,7 @@ a, button, [role="button"], input[type="submit"] {
   font-weight: 700;
   border-radius: 0 0 8px 8px;
   text-decoration: none;
-  transition: top 0.2s;
+  transition: top var(--dur-fast);
 }
 .skip-to-content:focus {
   top: 0;
@@ -340,7 +340,7 @@ a[style*="border-radius: 16px"],
 a[style*="border-radius:16px"],
 button[style*="border-radius: 16px"],
 button[style*="border-radius:16px"] {
-  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s;
+  transition: transform var(--dur-fast) var(--ease-out-expo), box-shadow var(--dur-fast);
 }
 a[style*="border-radius: 16px"]:hover,
 a[style*="border-radius:16px"]:hover,
@@ -370,7 +370,7 @@ button[style*="border-radius:16px"]:hover {
   padding: 14px 36px;
   border-radius: 100px; border: 2px solid var(--gold);
   text-decoration: none; display: inline-block;
-  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  transition: background var(--dur-base), transform var(--dur-fast), box-shadow var(--dur-base);
   cursor: pointer;
 }
 .btn-primary:hover {
@@ -385,7 +385,7 @@ button[style*="border-radius:16px"]:hover {
   padding: 14px 36px;
   border-radius: 100px; border: 2px solid #fff;
   text-decoration: none; display: inline-block;
-  transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
+  transition: background var(--dur-base), border-color var(--dur-base), color var(--dur-base), transform var(--dur-fast);
   cursor: pointer;
 }
 .btn-outline:hover {
@@ -421,8 +421,8 @@ button[style*="border-radius:16px"]:hover {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ═══════════════════════════════════════
@@ -481,7 +481,7 @@ button[style*="border-radius:16px"]:hover {
   color: #FFF;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s;
+  transition: color var(--dur-fast);
   letter-spacing: 0.5px;
 }
 .ibtu-footer-link:hover { color: var(--ibtu-gold); }
@@ -515,7 +515,7 @@ button[style*="border-radius:16px"]:hover {
   border-radius: 50%;
   border: 2px solid var(--ibtu-gold);
   color: var(--ibtu-gold);
-  transition: background 0.2s, color 0.2s;
+  transition: background var(--dur-fast), color var(--dur-fast);
 }
 .ibtu-footer-social-icon:hover {
   background: var(--ibtu-gold);
@@ -553,7 +553,7 @@ button[style*="border-radius:16px"]:hover {
   letter-spacing: -0.01em;
   padding: 4px 0;
   opacity: 0;
-  transition: color 0.2s;
+  transition: color var(--dur-fast);
 }
 .menu-link:hover { color: var(--ibtu-white); }
 
@@ -617,15 +617,15 @@ button[style*="border-radius:16px"]:hover {
 .stagger-in.visible > * {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .stagger-in.visible > *:nth-child(1) { transition-delay: 0s; }
 .stagger-in.visible > *:nth-child(2) { transition-delay: 0.08s; }
 .stagger-in.visible > *:nth-child(3) { transition-delay: 0.16s; }
 .stagger-in.visible > *:nth-child(4) { transition-delay: 0.24s; }
 .stagger-in.visible > *:nth-child(5) { transition-delay: 0.32s; }
-.stagger-in.visible > *:nth-child(6) { transition-delay: 0.4s; }
+.stagger-in.visible > *:nth-child(6) { transition-delay: var(--dur-base); }
 .stagger-in.visible > *:nth-child(7) { transition-delay: 0.48s; }
 .stagger-in.visible > *:nth-child(8) { transition-delay: 0.56s; }
 
@@ -638,8 +638,8 @@ button[style*="border-radius:16px"]:hover {
 .slide-left.visible {
   opacity: 1;
   transform: translateX(0);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- Scale entrance (for hero stats, counters) --- */
@@ -651,8 +651,8 @@ button[style*="border-radius:16px"]:hover {
 .scale-in.visible {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- Clip reveal (for editorial text blocks) --- */
@@ -662,7 +662,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .clip-reveal.visible {
   clip-path: inset(0 0 0 0);
-  transition: clip-path 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: clip-path var(--dur-slow) cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 /* ═══════════════════════════════════════
@@ -676,8 +676,8 @@ button[style*="border-radius:16px"]:hover {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s ease;
+  transition: max-height var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              opacity var(--dur-base) ease;
 }
 .fold-trigger:hover .fold-content,
 .fold-trigger:focus-within .fold-content,
@@ -688,8 +688,8 @@ button[style*="border-radius:16px"]:hover {
 
 /* --- Card lift on hover --- */
 .card-lift {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s ease;
+  transition: transform var(--dur-base) cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow var(--dur-base) ease;
 }
 .card-lift:hover {
   transform: translateY(-8px);
@@ -703,7 +703,7 @@ button[style*="border-radius:16px"]:hover {
   bottom: 0; left: 0;
   width: 0; height: 2px;
   background: var(--gold);
-  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width var(--dur-base) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-line:hover::after { width: 100%; }
 
@@ -756,7 +756,7 @@ button[style*="border-radius:16px"]:hover {
   width: 100%; height: 100%;
   object-fit: cover;
   filter: saturate(1.15);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .gallery-card:hover img,
 .gallery-card:hover video {
@@ -770,7 +770,7 @@ button[style*="border-radius:16px"]:hover {
   padding: 16px 24px;
   background: var(--gold);
   transform: translateY(100%);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .gallery-card:hover .gallery-card-overlay {
   transform: translateY(0);
@@ -861,14 +861,14 @@ button[style*="border-radius:16px"]:hover {
   width: 100%; height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity var(--dur-slow) ease;
 }
 .video-card:hover video { opacity: 1; }
 .video-card img {
   width: 100%; height: 100%;
   object-fit: cover;
   position: absolute; inset: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity var(--dur-slow) ease;
 }
 .video-card:hover img { opacity: 0; }
 
@@ -932,7 +932,7 @@ button[style*="border-radius:16px"]:hover {
   border-radius: 16px;
   background: #000;
   border: 1px solid #FFC700;
-  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color var(--dur-base), transform var(--dur-base) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .event-card:hover {
   border-color: #FFC700;
@@ -1061,7 +1061,11 @@ button[style*="border-radius:16px"]:hover {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  animation: ibtu-newsletter-fade 0.3s ease forwards;
+  animation: ibtu-newsletter-fade var(--dur-base) ease forwards;
+}
+/* Exit: same keyframe reversed, at 65 percent of the enter duration (finding 09) */
+.ibtu-newsletter-backdrop[data-closing='true'] {
+  animation: ibtu-newsletter-fade calc(var(--dur-base) * 0.65) ease reverse forwards;
 }
 @keyframes ibtu-newsletter-fade {
   from { opacity: 0; }
@@ -1075,13 +1079,18 @@ button[style*="border-radius:16px"]:hover {
   padding: 24px;
   background: var(--holo-gradient);
   background-size: 400% 400%;
-  animation: ibtu-newsletter-pop 0.45s var(--ease-out-back) forwards,
-             holo-shift 18s ease infinite;
+  animation: ibtu-newsletter-pop var(--dur-base) var(--ease-out-back) forwards,
+             holo-shift var(--dur-loop) ease infinite;
   border: 2px solid #000;
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.45),
     0 0 0 4px #FFF inset;
   outline: none;
+}
+/* Exit: same keyframe reversed, at 65 percent of the enter duration (finding 09) */
+.ibtu-newsletter-backdrop[data-closing='true'] .ibtu-newsletter-frame {
+  animation: ibtu-newsletter-pop calc(var(--dur-base) * 0.65) var(--ease-out-back) reverse forwards,
+             holo-shift var(--dur-loop) ease infinite;
 }
 @keyframes ibtu-newsletter-pop {
   from { transform: scale(0.92) translateY(8px); opacity: 0; }
@@ -1102,7 +1111,7 @@ button[style*="border-radius:16px"]:hover {
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  transition: transform var(--dur-fast) ease, background var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 .ibtu-newsletter-close:hover {
   background: #FFF;
@@ -1163,7 +1172,7 @@ button[style*="border-radius:16px"]:hover {
   font-family: 'Poppins', sans-serif;
   font-size: var(--text-base);
   outline: none;
-  transition: box-shadow 0.18s ease;
+  transition: box-shadow var(--dur-fast) ease;
 }
 .ibtu-newsletter-input::placeholder {
   color: #000;
@@ -1183,7 +1192,7 @@ button[style*="border-radius:16px"]:hover {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  transition: transform var(--dur-fast) ease, background var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 .ibtu-newsletter-submit:hover:not(:disabled) {
   transform: translateY(-2px);

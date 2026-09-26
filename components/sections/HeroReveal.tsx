@@ -43,9 +43,10 @@ export default function HeroReveal() {
   const hideRestingPlate = useCallback((tl: gsap.core.Timeline, position?: string) => {
     if (!plateRef.current) return
     tl.call(() => setPlateActive(false))
+    // Exit is 65% of the plate's 0.7s enter duration (finding 09).
     tl.to(
       plateRef.current,
-      { opacity: 0, duration: 0.4, ease: 'power2.inOut' },
+      { opacity: 0, duration: 0.7 * 0.65, ease: 'power2.inOut' },
       position,
     )
   }, [])
