@@ -1,13 +1,19 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useScroll, useMotionValueEvent } from 'framer-motion'
 import confetti from 'canvas-confetti'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
 const STORAGE_KEY = 'ibtu_newsletter_prompt_v1'
-const SHOW_DELAY_MS = 12_000
+// Shared with NewsletterMount.tsx — bump both together if the shape changes.
+const PAGEVIEW_KEY = 'ibtu_newsletter_pageviews_v1'
+// Set the moment the dialog opens; once present, never open again this tab session.
+const SESSION_KEY = 'ibtu_newsletter_session_v1'
 const SUPPRESS_DAYS = 14
+const SCROLL_TRIGGER = 0.6
+const HERO_WAIT_MS = 10_000
 
 function shouldSuppress(): boolean {
   if (typeof window === 'undefined') return true
@@ -37,6 +43,62 @@ function persist(status: 'subscribed' | 'dismissed') {
   }
 }
 
+function hasOpenedThisSession(): boolean {
+  if (typeof window === 'undefined') return true
+  try {
+    return window.sessionStorage.getItem(SESSION_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
+function markOpenedThisSession() {
+  try {
+    window.sessionStorage.setItem(SESSION_KEY, '1')
+  } catch {
+    /* ignore */
+  }
+}
+
+function getPageviewCount(): number {
+  if (typeof window === 'undefined') return 0
+  try {
+    const raw = window.sessionStorage.getItem(PAGEVIEW_KEY)
+    return raw ? parseInt(raw, 10) || 0 : 0
+  } catch {
+    return 0
+  }
+}
+
+function heroIntroDone(): boolean {
+  if (typeof document === 'undefined') return true
+  const flag = document.documentElement.dataset.heroIntro
+  // No hero on this render (or it hasn't set the flag yet) — treated as done
+  // once the wait cap below elapses, so we never block forever on a page
+  // that has no hero at all.
+  return flag === 'done'
+}
+
+// Waits for the hero intro timeline to finish (data-hero-intro="done" on
+// <html>) before firing cb, capped at HERO_WAIT_MS so a page with no hero
+// (or a stalled one) never blocks the dialog forever.
+function waitForHeroReady(cb: () => void, isCancelled: () => boolean) {
+  if (heroIntroDone()) {
+    cb()
+    return
+  }
+  const startedAt = Date.now()
+  const check = () => {
+    if (isCancelled()) return
+    if (heroIntroDone() || Date.now() - startedAt > HERO_WAIT_MS) {
+      cb()
+      return
+    }
+    requestAnimationFrame(check)
+  }
+  requestAnimationFrame(check)
+}
+
 export default function NewsletterSignup() {
   const [open, setOpen] = useState(false)
   const [email, setEmail] = useState('')
@@ -45,40 +107,53 @@ export default function NewsletterSignup() {
   const buttonRef = useRef<HTMLButtonElement | null>(null)
   const dialogRef = useRef<HTMLDivElement | null>(null)
   const closedManually = useRef(false)
+  const revealedRef = useRef(false)
+  const cancelledRef = useRef(false)
+  const { scrollYProgress } = useScroll()
 
+  const attemptRevealRef = useRef<() => void>(() => {})
+  attemptRevealRef.current = () => {
+    if (cancelledRef.current || closedManually.current || revealedRef.current) return
+    if (shouldSuppress() || hasOpenedThisSession()) return
+    revealedRef.current = true
+    markOpenedThisSession()
+    setOpen(true)
+  }
+
+  // Trigger A: second page view reached while on Home.
+  // Trigger B: exit intent (mouse leaves toward the browser chrome), Home only.
+  // Both wait for the hero intro to finish before opening.
   useEffect(() => {
-    if (shouldSuppress()) return
-    let scrolled = false
-    let timer: ReturnType<typeof setTimeout> | null = null
-
-    const reveal = () => {
-      if (closedManually.current) return
-      setOpen(true)
-    }
-
-    const onScroll = () => {
-      if (scrolled) return
-      const triggerY = window.innerHeight * 0.6
-      if (window.scrollY > triggerY) {
-        scrolled = true
-        reveal()
+    cancelledRef.current = false
+    if (shouldSuppress() || hasOpenedThisSession()) {
+      return () => {
+        cancelledRef.current = true
       }
     }
 
-    const onMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) reveal()
+    if (getPageviewCount() >= 2) {
+      waitForHeroReady(() => attemptRevealRef.current(), () => cancelledRef.current)
     }
 
-    timer = setTimeout(reveal, SHOW_DELAY_MS)
-    window.addEventListener('scroll', onScroll, { passive: true })
+    const onMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) {
+        waitForHeroReady(() => attemptRevealRef.current(), () => cancelledRef.current)
+      }
+    }
     document.addEventListener('mouseleave', onMouseLeave)
 
     return () => {
-      if (timer) clearTimeout(timer)
-      window.removeEventListener('scroll', onScroll)
+      cancelledRef.current = true
       document.removeEventListener('mouseleave', onMouseLeave)
     }
   }, [])
+
+  // Trigger C: 60% scroll depth of the document, Home only (this component
+  // is mounted on the Home route only — see NewsletterMount.tsx).
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    if (latest < SCROLL_TRIGGER) return
+    waitForHeroReady(() => attemptRevealRef.current(), () => cancelledRef.current)
+  })
 
   useEffect(() => {
     if (!open) return

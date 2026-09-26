@@ -129,6 +129,7 @@ export default function HeroReveal() {
       // Start video playback once animation reveals it
       tl.call(() => {
         setVideoReady(true)
+        document.documentElement.dataset.heroIntro = 'done'
       })
 
       // Fade out the text container and yellow bg
