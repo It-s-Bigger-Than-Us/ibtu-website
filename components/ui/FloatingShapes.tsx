@@ -75,7 +75,7 @@ function CubeShape({ size, color }: { size: number; color: string }) {
         width: size,
         height: size,
         transformStyle: 'preserve-3d',
-        animation: `cubeRotate 20s linear infinite`,
+        animation: `cubeRotate var(--dur-loop) linear infinite`,
       }}
     >
       {/* Front face */}

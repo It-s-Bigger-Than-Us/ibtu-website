@@ -977,7 +977,7 @@ export default function ProgramPageClient({
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.35s ease;
+          transition: transform var(--dur-base) ease;
         }
         .pp-masonry-item:hover img {
           transform: scale(1.05);
