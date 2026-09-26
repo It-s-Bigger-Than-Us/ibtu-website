@@ -142,7 +142,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
             fontSize: 'clamp(72px, 14vw, 240px)',
             lineHeight: 0.88,
             textTransform: 'uppercase',
-            color: '#FFC700',
+            color: '#000',
             letterSpacing: '-0.03em',
             position: 'relative',
             zIndex: 1,

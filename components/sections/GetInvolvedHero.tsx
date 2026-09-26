@@ -48,7 +48,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
           lineHeight: 1.05,
           letterSpacing: '-0.02em',
           textTransform: 'uppercase',
-          color: '#FFC700',
+          color: '#000',
           textShadow: '0 2px 20px rgba(0,0,0,0.15)',
         }}>
           There Is a Role for You Here
@@ -59,7 +59,7 @@ export default function GetInvolvedHero({ images }: GetInvolvedHeroProps) {
           lineHeight: 1.5,
           textTransform: 'uppercase',
           letterSpacing: '1px',
-          color: '#FFC700',
+          color: '#000',
           maxWidth: 480,
           margin: '24px auto 0',
           fontWeight: 700,

@@ -90,10 +90,10 @@ export default function HubPage() {
           />
         </div>
         <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(120px, 15vh, 180px) clamp(32px, 5vw, 80px) clamp(80px, 10vh, 120px)', maxWidth: 'var(--content-max)', margin: '0 auto', width: '100%' }}>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-label)', letterSpacing: '4px', textTransform: 'uppercase', color: '#FFC700', fontWeight: 700, display: 'block', marginBottom: 20 }}>
+          <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-label)', letterSpacing: '4px', textTransform: 'uppercase', color: '#000', fontWeight: 700, display: 'block', marginBottom: 20 }}>
             Crisis &amp; Disaster Stabilization
           </span>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px, 10vw, 160px)', lineHeight: 0.9, textTransform: 'uppercase', color: '#FFC700', letterSpacing: '-0.02em', marginBottom: 24, textShadow: '0 2px 30px rgba(0,0,0,0.3)' }}>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px, 10vw, 160px)', lineHeight: 0.9, textTransform: 'uppercase', color: '#000', letterSpacing: '-0.02em', marginBottom: 24, textShadow: '0 2px 30px rgba(0,0,0,0.3)' }}>
             The Relief<br />Resource Hub
           </h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(16px, 1.4vw, 22px)', color: '#FFF', lineHeight: 1.7, fontWeight: 700, maxWidth: 640 }}>

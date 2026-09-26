@@ -1126,6 +1126,7 @@ button[style*="border-radius:16px"]:hover {
   border: 2px solid #000;
   border-radius: 100px;
   margin-bottom: 28px;
+  color: #000;
 }
 .ibtu-newsletter-headline {
   font-family: var(--font-lot);
