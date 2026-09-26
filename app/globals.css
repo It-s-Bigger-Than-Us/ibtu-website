@@ -33,6 +33,14 @@
 }
 
 /* ═══════════════════════════════════════
+   TAP TARGETS — no double-tap-zoom delay
+   on any interactive element (finding 05)
+═══════════════════════════════════════ */
+a, button, [role="button"], input[type="submit"] {
+  touch-action: manipulation;
+}
+
+/* ═══════════════════════════════════════
    HOLOGRAPHIC GLASS EFFECT
    Pearlescent glow — soft outer shadow + gradient stroke.
    16px corners. Glowing shadow on all containers.
@@ -465,6 +473,9 @@ button[style*="border-radius:16px"]:hover {
   gap: 12px 16px;
 }
 .ibtu-footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min, 44px);
   font-family: var(--font-body);
   font-size: var(--text-sm);
   color: #FFF;

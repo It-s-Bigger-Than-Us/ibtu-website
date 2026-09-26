@@ -91,7 +91,7 @@ export default function TopNav() {
   const linksWrap: React.CSSProperties = {
     display: isMobile ? 'none' : 'flex',
     alignItems: 'center',
-    gap: 2,
+    gap: 8,
     paddingLeft: menuOpen ? 8 : 0,
     paddingRight: menuOpen ? 8 : 0,
     maxWidth: menuOpen ? 720 : 0,
@@ -113,13 +113,17 @@ export default function TopNav() {
     boxShadow: '0 18px 40px -14px rgba(0,0,0,.55)',
     display: 'flex',
     flexDirection: 'column',
-    gap: 2,
+    gap: 8,
     opacity: menuOpen ? 1 : 0,
     pointerEvents: menuOpen ? 'auto' : 'none',
     transition: 'opacity .25s ease, transform .3s cubic-bezier(.16,1,.3,1)',
     zIndex: 101,
   }
   const mobileLink: React.CSSProperties = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 'var(--nav-link-min-height)',
     color: '#000',
     textDecoration: 'none',
     fontFamily: 'var(--font-body), Poppins, sans-serif',
@@ -127,13 +131,17 @@ export default function TopNav() {
     fontSize: 'var(--text-label)',
     letterSpacing: '.22em',
     textTransform: 'uppercase',
-    padding: '12px 18px',
+    paddingInline: 18,
     borderRadius: 12,
     transition: 'background .2s ease',
     whiteSpace: 'nowrap',
     textAlign: 'center',
   }
   const link: React.CSSProperties = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    minHeight: 'var(--nav-link-min-height)',
+    marginBlock: '-6px',
     color: '#000',
     textDecoration: 'none',
     fontFamily: 'var(--font-body), Poppins, sans-serif',
@@ -141,14 +149,14 @@ export default function TopNav() {
     fontSize: 'var(--text-label)',
     letterSpacing: '.22em',
     textTransform: 'uppercase',
-    padding: '10px 14px',
+    paddingInline: 12,
     borderRadius: 100,
     transition: 'background .2s ease, color .2s ease',
     whiteSpace: 'nowrap',
   }
   const ham: React.CSSProperties = {
-    width: 40,
-    height: 40,
+    width: 44,
+    height: 44,
     background: 'transparent',
     border: 'none',
     display: 'flex',
@@ -172,6 +180,7 @@ export default function TopNav() {
     overflow: 'hidden',
     display: 'inline-flex',
     alignItems: 'center',
+    minHeight: 'var(--nav-link-min-height)',
     gap: 8,
     padding: '11px 18px 11px 20px',
     borderRadius: 100,
@@ -219,7 +228,7 @@ export default function TopNav() {
       <nav style={{ ...pill, position: 'relative' }} aria-label="Primary">
         {/* Mobile dropdown panel — appears below the pill */}
         {isMobile && (
-          <div style={mobilePanel} aria-hidden={!menuOpen}>
+          <div id="tn-mobile-panel" style={mobilePanel} aria-hidden={!menuOpen}>
             {NAV_LINKS.map(({ l, href, external }) =>
               external ? (
                 <a
@@ -259,7 +268,7 @@ export default function TopNav() {
           />
         </Link>
 
-        <div style={linksWrap} aria-hidden={!menuOpen}>
+        <div id="tn-desktop-links" style={linksWrap} aria-hidden={!menuOpen}>
           {NAV_LINKS.map(({ l, href, external }) =>
             external ? (
               <a
@@ -293,6 +302,7 @@ export default function TopNav() {
           onClick={() => setMenuOpen((m) => !m)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
+          aria-controls={isMobile ? 'tn-mobile-panel' : 'tn-desktop-links'}
         >
           <span
             style={{
