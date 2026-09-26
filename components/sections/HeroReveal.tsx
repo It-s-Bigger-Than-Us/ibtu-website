@@ -23,7 +23,45 @@ export default function HeroReveal() {
   const videoLayerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const splitRef = useRef<HTMLDivElement>(null)
+  const plateRef = useRef<HTMLDivElement>(null)
   const [videoReady, setVideoReady] = useState(false)
+  const [plateActive, setPlateActive] = useState(false)
+  const [paused, setPaused] = useState(false)
+
+  // Resting plate: single place that shows/hides the plate so a future
+  // reduced-motion pass can jump straight to it instead of the timelines.
+  const showRestingPlate = useCallback((tl: gsap.core.Timeline) => {
+    if (!plateRef.current) return
+    tl.call(() => setPlateActive(true))
+    tl.to(plateRef.current, {
+      opacity: 1,
+      duration: 0.7,
+      ease: 'power2.out',
+    })
+  }, [])
+
+  const hideRestingPlate = useCallback((tl: gsap.core.Timeline, position?: string) => {
+    if (!plateRef.current) return
+    tl.call(() => setPlateActive(false))
+    // Exit is 65% of the plate's 0.7s enter duration (finding 09).
+    tl.to(
+      plateRef.current,
+      { opacity: 0, duration: 0.7 * 0.65, ease: 'power2.inOut' },
+      position,
+    )
+  }, [])
+
+  const togglePause = useCallback(() => {
+    const video = videoRef.current
+    if (!video) return
+    if (video.paused) {
+      video.play()
+      setPaused(false)
+    } else {
+      video.pause()
+      setPaused(true)
+    }
+  }, [])
 
   const handleVideoEnd = useCallback(() => {
     if (!videoLayerRef.current || !splitRef.current) return
@@ -34,14 +72,19 @@ export default function HeroReveal() {
       duration: 1.2,
       ease: 'power2.inOut',
     })
+    hideRestingPlate(tl, '-=1.2')
     tl.to(
       splitRef.current,
       { opacity: 1, duration: 0.8, ease: 'power2.out' },
       '-=0.6',
     )
-  }, [])
+  }, [hideRestingPlate])
 
   useEffect(() => {
+    // Mark the intro as running before anything else so the newsletter gate
+    // (NewsletterSignup.heroIntroDone) never reads a stale 'done' from an
+    // earlier visit to Home in the same session.
+    document.documentElement.dataset.heroIntro = 'running'
     if (
       !leftTextRef.current ||
       !rightTextRef.current ||
@@ -50,7 +93,37 @@ export default function HeroReveal() {
       !iridBgRef.current ||
       !videoLayerRef.current ||
       !splitRef.current
-    ) return
+    ) {
+      document.documentElement.dataset.heroIntro = 'done'
+      return
+    }
+
+    // Reduced motion: skip the intro timeline entirely and jump straight to
+    // the resting frame (finding 09). Video stays paused on its first frame
+    // (not autoplayed), so the pause control reads "Play video."
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (prefersReducedMotion) {
+      gsap.set(textContainerRef.current, { opacity: 0, visibility: 'hidden' })
+      gsap.set(iridBgRef.current, { opacity: 0 })
+      iridBgRef.current.style.animation = 'none'
+      gsap.set(logoRef.current, { opacity: 0 })
+      gsap.set(videoLayerRef.current, { opacity: 1 })
+      gsap.set(splitRef.current, { opacity: 0 })
+      if (plateRef.current) gsap.set(plateRef.current, { opacity: 1 })
+      setPlateActive(true)
+      setPaused(true)
+      if (videoRef.current) {
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
+      }
+      document.documentElement.dataset.heroIntro = 'done'
+      return () => {
+        delete document.documentElement.dataset.heroIntro
+      }
+    }
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline()
@@ -129,17 +202,28 @@ export default function HeroReveal() {
       // Start video playback once animation reveals it
       tl.call(() => {
         setVideoReady(true)
+        document.documentElement.dataset.heroIntro = 'done'
+        // Iridescent field is invisible (opacity 0) from here on. Stop its
+        // loop inline (finding 09); AmbientPause owns data-offscreen and would
+        // otherwise restart the loop when the hero scrolls back into view.
+        if (iridBgRef.current) iridBgRef.current.style.animation = 'none'
       })
 
-      // Fade out the text container and yellow bg
-      tl.to(textContainerRef.current!, {
-        display: 'none',
-        duration: 0,
+      // Resting plate (headline + buttons) fades in at the same beat
+      showRestingPlate(tl)
+
+      // Intro title is decorative motion by this point; hand off to the
+      // plate's h1 (the only h1 left in the document) and hide it for real
+      tl.set(textContainerRef.current!, {
+        visibility: 'hidden',
       })
     })
 
-    return () => ctx.revert()
-  }, [])
+    return () => {
+      ctx.revert()
+      delete document.documentElement.dataset.heroIntro
+    }
+  }, [showRestingPlate])
 
   // Play video when ready
   useEffect(() => {
@@ -161,9 +245,13 @@ export default function HeroReveal() {
         overflow: 'hidden',
       }}
     >
-      {/* ─── Phase 1: Text wipe (yellow bg shows through) ─── */}
+      {/* ─── Phase 1: Text wipe (yellow bg shows through) ───
+          Decorative motion only — the real, single h1 lives in the
+          resting plate below. This block is presentational and hidden
+          from assistive tech. ─── */}
       <div
         ref={textContainerRef}
+        aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
@@ -174,7 +262,8 @@ export default function HeroReveal() {
           overflow: 'hidden',
         }}
       >
-        <h1
+        <div
+          role="presentation"
           style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(48px, 12vw, 200px)',
@@ -210,12 +299,13 @@ export default function HeroReveal() {
           >
             THAN US
           </span>
-        </h1>
+        </div>
       </div>
 
       {/* ─── Iridescent background (behind logo) ─── */}
       <div
         ref={iridBgRef}
+        className="ibtu-ambient"
         style={{
           position: 'absolute',
           inset: 0,
@@ -243,6 +333,7 @@ export default function HeroReveal() {
           clipPath: 'circle(0% at 50% 50%)',
           transformOrigin: 'center center',
           willChange: 'transform, clip-path, opacity',
+          pointerEvents: 'none',
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -282,6 +373,132 @@ export default function HeroReveal() {
         </video>
       </div>
 
+      {/* ─── Resting plate: headline + actions over the video ───
+          Bottom-left anchored, solid plate, appears once the video
+          is revealed and hides again when the split section takes over. ─── */}
+      <div
+        ref={plateRef}
+        data-hero-plate=""
+        style={{
+          position: 'absolute',
+          zIndex: 6,
+          left: 'var(--space-8)',
+          bottom: 'var(--space-8)',
+          maxWidth: '720px',
+          opacity: 0,
+          pointerEvents: 'none',
+        }}
+      >
+        <div
+          style={{
+            background: '#000',
+            borderRadius: 'var(--radius-md)',
+            padding: 'var(--space-6) var(--space-8)',
+            pointerEvents: plateActive ? 'auto' : 'none',
+          }}
+        >
+          <h1
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(40px, 6vw, 96px)',
+              lineHeight: 0.9,
+              textTransform: 'uppercase',
+              color: '#FFC700',
+              letterSpacing: '-0.02em',
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <span style={{ display: 'block' }}>IT&apos;S BIGGER</span>
+            <span style={{ display: 'block' }}>THAN US</span>
+          </h1>
+
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: 'var(--space-4)',
+              marginTop: 'var(--space-6)',
+            }}
+          >
+            <a
+              href="https://secure.qgiv.com/for/ibt/"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: 'var(--target-min)',
+                padding: '0 28px',
+                borderRadius: 'var(--radius-pill)',
+                background: '#FFC700',
+                color: '#000',
+                fontFamily: 'var(--font-body)',
+                fontWeight: 700,
+                fontSize: 'var(--text-sm)',
+                textTransform: 'uppercase',
+                letterSpacing: '1.5px',
+                textDecoration: 'none',
+              }}
+            >
+              Donate
+            </a>
+            <a
+              href="/get-involved"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                minHeight: 'var(--target-min)',
+                padding: '0 28px',
+                borderRadius: 'var(--radius-pill)',
+                background: '#000',
+                color: '#FFC700',
+                border: '2px solid #FFC700',
+                fontFamily: 'var(--font-body)',
+                fontWeight: 700,
+                fontSize: 'var(--text-sm)',
+                textTransform: 'uppercase',
+                letterSpacing: '1.5px',
+                textDecoration: 'none',
+              }}
+            >
+              Get Involved
+            </a>
+            <button
+              type="button"
+              onClick={togglePause}
+              aria-label={paused ? 'Play video' : 'Pause video'}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 'var(--target-min)',
+                height: 'var(--target-min)',
+                minWidth: 'var(--target-min)',
+                borderRadius: 'var(--radius-pill)',
+                background: '#FFC700',
+                color: '#000',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              {paused ? (
+                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                  <path d="M3 1.5L14 8L3 14.5V1.5Z" fill="#000" />
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                  <rect x="3" y="1.5" width="4" height="13" fill="#000" />
+                  <rect x="9" y="1.5" width="4" height="13" fill="#000" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* ─── Phase 4: Volunteer section (revealed when video ends) ─── */}
       <div
         ref={splitRef}
@@ -308,7 +525,7 @@ export default function HeroReveal() {
           <span
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '10px',
+              fontSize: 'var(--text-label)',
               textTransform: 'uppercase',
               letterSpacing: '4px',
               color: '#000',
@@ -359,7 +576,7 @@ export default function HeroReveal() {
               padding: '16px 40px',
               borderRadius: '16px',
               fontFamily: 'var(--font-body)',
-              fontSize: '13px',
+              fontSize: 'var(--text-sm)',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               fontWeight: 700,
@@ -408,6 +625,12 @@ export default function HeroReveal() {
           }
           [data-hero-split] > div:last-child {
             min-height: 45vh;
+          }
+          [data-hero-plate] {
+            left: var(--space-4) !important;
+            right: var(--space-4) !important;
+            bottom: var(--space-6) !important;
+            max-width: none !important;
           }
         }
       `}</style>

@@ -137,7 +137,7 @@ export default function CTASection({
             style={{
               display: 'inline-block',
               fontFamily: 'var(--font-body)',
-              fontSize: '14px',
+              fontSize: 'var(--text-sm)',
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
@@ -168,7 +168,7 @@ export default function CTASection({
             style={{
               display: 'inline-block',
               fontFamily: 'var(--font-body)',
-              fontSize: '14px',
+              fontSize: 'var(--text-sm)',
               fontWeight: 700,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
@@ -207,7 +207,7 @@ export default function CTASection({
           }
 
           .cta-section-body {
-            font-size: 16px !important;
+            font-size: var(--text-base) !important;
             line-height: 1.65 !important;
             max-width: 30ch !important;
             margin-bottom: 28px !important;

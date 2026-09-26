@@ -71,7 +71,7 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
       }}
     >
       <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
-        <SectionLabel label="OUR PROGRAMS" count={programs.length} color="gold" />
+        <SectionLabel label="OUR PROGRAMS" color="gold" />
 
         <div
           className="programs-grid"
@@ -182,7 +182,7 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
                 <span
                   style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '9px',
+                    fontSize: 'var(--text-label)',
                     letterSpacing: '3px',
                     textTransform: 'uppercase',
                     color: 'var(--ibtu-black)',
@@ -238,7 +238,7 @@ export default function ProgramsGrid({ programs }: ProgramsGridProps) {
                   <span
                     style={{
                       fontFamily: 'var(--font-body)',
-                      fontSize: '12px',
+                      fontSize: 'var(--text-label)',
                       fontWeight: 700,
                       color: 'var(--ibtu-black)',
                       marginTop: '8px',

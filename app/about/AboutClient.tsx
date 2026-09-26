@@ -257,7 +257,7 @@ function PillarsSection() {
               <button className="close" onClick={() => setOpen(null)} aria-label="Close">
                 ✕
               </button>
-              <div style={{ fontFamily: 'LOT', fontSize: 26, letterSpacing: '0.12em' }}>
+              <div style={{ fontFamily: 'LOT', fontSize: 'var(--text-xl)', letterSpacing: '0.12em' }}>
                 IMPACT PILLAR {pillar.num}
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -266,7 +266,7 @@ function PillarsSection() {
                 style={{
                   fontFamily: 'Poppins',
                   fontWeight: 800,
-                  fontSize: 11,
+                  fontSize: 'var(--text-label)',
                   letterSpacing: '0.22em',
                   textTransform: 'uppercase',
                 }}
@@ -279,7 +279,7 @@ function PillarsSection() {
                 <span className="dash" />Pillar {pillar.num}
               </div>
               <h3 className="lot">{pillar.name}</h3>
-              <p style={{ fontSize: 17, lineHeight: 1.7, maxWidth: 560 }}>{pillar.body}</p>
+              <p style={{ fontSize: 'var(--text-base)', lineHeight: 1.7, maxWidth: 560 }}>{pillar.body}</p>
               <div className="stats">
                 {pillar.stats.map((s, i) => (
                   <div className="stat-tile" key={i}>
@@ -595,7 +595,7 @@ function PartnershipSection() {
           clinical providers a fourth, brands a fifth, faith communities a sixth, families and individual donors
           a seventh. The lanes rarely cross. The walls between them are exactly where families fall through.
         </p>
-        <p style={{ fontSize: 22, fontWeight: 800, margin: '24px 0' }}>
+        <p style={{ fontSize: 'var(--text-lg)', fontWeight: 800, margin: '24px 0' }}>
           We don&apos;t operate in lanes. We bridge them.
         </p>
         <p>
@@ -956,7 +956,7 @@ function BoardCard({ member, selected }: { member: Member; selected: boolean }) 
               <p
                 style={{
                   fontFamily: 'Poppins,sans-serif',
-                  fontSize: 7.5,
+                  fontSize: 'var(--text-label)',
                   fontWeight: 800,
                   letterSpacing: '.13em',
                   textTransform: 'uppercase',

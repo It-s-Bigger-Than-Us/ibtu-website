@@ -31,7 +31,7 @@ export default function ProgramStoryTabs({ eyebrow, title, tabs }: Props) {
         <span
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 11,
+            fontSize: 'var(--text-label)',
             letterSpacing: '4px',
             textTransform: 'uppercase',
             color: '#000',
@@ -80,7 +80,7 @@ export default function ProgramStoryTabs({ eyebrow, title, tabs }: Props) {
                   borderRadius: 999,
                   padding: '12px 24px',
                   fontFamily: 'var(--font-body)',
-                  fontSize: 12,
+                  fontSize: 'var(--text-label)',
                   fontWeight: 800,
                   letterSpacing: '2px',
                   textTransform: 'uppercase',

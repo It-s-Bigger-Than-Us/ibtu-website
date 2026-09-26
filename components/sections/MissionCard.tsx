@@ -56,7 +56,7 @@ export default function MissionCard() {
           <span
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '10px',
+              fontSize: 'var(--text-label)',
               letterSpacing: '4px',
               textTransform: 'uppercase',
               fontWeight: 700,
@@ -76,6 +76,7 @@ export default function MissionCard() {
               ease: [0.16, 1, 0.3, 1],
               delay: highlightDelay,
             }}
+            className="ibtu-ambient"
             style={{
               position: 'absolute',
               left: 0,

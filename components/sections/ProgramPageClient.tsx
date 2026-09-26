@@ -352,10 +352,10 @@ export default function ProgramPageClient({
             className="pp-hero-pillar"
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: '4px',
               textTransform: 'uppercase',
-              color: '#FFC700',
+              color: '#000',
               fontWeight: 700,
               marginBottom: 24,
               textShadow: '0 1px 8px rgba(0,0,0,0.15)',
@@ -369,7 +369,7 @@ export default function ProgramPageClient({
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(48px, 10vw, 160px)',
               lineHeight: 0.95,
-              color: '#FFC700',
+              color: '#000',
               textTransform: 'uppercase',
               margin: '0 0 24px',
               textShadow: '0 2px 20px rgba(0,0,0,0.15)',
@@ -382,7 +382,7 @@ export default function ProgramPageClient({
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'var(--body-lg)',
-              color: '#FFC700',
+              color: '#000',
               fontWeight: 700,
               maxWidth: 700,
               margin: '0 auto',
@@ -461,7 +461,7 @@ export default function ProgramPageClient({
             <div
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: '4px',
                 textTransform: 'uppercase',
                 color: '#FFC700',
@@ -522,7 +522,7 @@ export default function ProgramPageClient({
             <div
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: '4px',
                 textTransform: 'uppercase',
                 color: '#FFC700',
@@ -713,7 +713,7 @@ export default function ProgramPageClient({
               <div
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: 11,
+                  fontSize: 'var(--text-label)',
                   letterSpacing: '4px',
                   textTransform: 'uppercase',
                   color: '#FFC700',
@@ -802,7 +802,7 @@ export default function ProgramPageClient({
           }}>
             <span style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: '4px',
               textTransform: 'uppercase',
               color: '#FFC700',
@@ -913,7 +913,7 @@ export default function ProgramPageClient({
                   padding: '16px 40px',
                   borderRadius: 16,
                   fontFamily: 'var(--font-body)',
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   fontWeight: 700,
@@ -935,7 +935,7 @@ export default function ProgramPageClient({
                 padding: '16px 40px',
                 borderRadius: 16,
                 fontFamily: 'var(--font-body)',
-                fontSize: 13,
+                fontSize: 'var(--text-sm)',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
                 fontWeight: 700,
@@ -977,7 +977,7 @@ export default function ProgramPageClient({
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.35s ease;
+          transition: transform var(--dur-base) ease;
         }
         .pp-masonry-item:hover img {
           transform: scale(1.05);

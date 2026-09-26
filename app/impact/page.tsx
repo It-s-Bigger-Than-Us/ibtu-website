@@ -39,7 +39,7 @@ export default async function ImpactPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
@@ -85,7 +85,7 @@ export default async function ImpactPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
@@ -119,7 +119,7 @@ export default async function ImpactPage() {
                 </span>
                 <span
                   style={{
-                    fontSize: 13,
+                    fontSize: 'var(--text-sm)',
                     color: "#000",
                     fontWeight: 600,
                   }}
@@ -136,7 +136,7 @@ export default async function ImpactPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
@@ -170,7 +170,7 @@ export default async function ImpactPage() {
                 </span>
                 <span
                   style={{
-                    fontSize: 13,
+                    fontSize: 'var(--text-sm)',
                     color: "#fff",
                     fontWeight: 600,
                   }}
@@ -187,7 +187,7 @@ export default async function ImpactPage() {
             <span
               style={{
                 display: "block",
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "var(--gold)",
@@ -231,7 +231,7 @@ export default async function ImpactPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
@@ -266,7 +266,7 @@ export default async function ImpactPage() {
                 </span>
                 <span
                   style={{
-                    fontSize: 11,
+                    fontSize: 'var(--text-label)',
                     letterSpacing: "1px",
                     textTransform: "uppercase",
                     color: "#000",
@@ -280,7 +280,7 @@ export default async function ImpactPage() {
           </div>
           <p
             style={{
-              fontSize: 12,
+              fontSize: 'var(--text-label)',
               color: "var(--gold)",
               marginTop: 24,
               textAlign: "center",
@@ -305,7 +305,7 @@ export default async function ImpactPage() {
           </h2>
           <p
             style={{
-              fontSize: 16,
+              fontSize: 'var(--text-base)',
               color: "#000",
               maxWidth: 580,
               margin: "0 auto 40px",
@@ -323,7 +323,7 @@ export default async function ImpactPage() {
               color: "var(--gold)",
               padding: "18px 48px",
               fontFamily: 'var(--font-body)',
-              fontSize: 13,
+              fontSize: 'var(--text-sm)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               fontWeight: 700,

@@ -122,12 +122,12 @@ export default function UpcomingEvents({
         .ue-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .ue-card-fallback { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 16px; }
         .ue-card-fallback span { font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 30px); line-height: 0.95; text-transform: uppercase; color: #000; }
-        .ue-date { position: absolute; top: 12px; left: 12px; background: #000; color: var(--gold); font-weight: 700; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 10px; border-radius: 100px; }
+        .ue-date { position: absolute; top: 12px; left: 12px; background: #000; color: var(--gold); font-weight: 700; font-size: var(--text-label); letter-spacing: 1px; text-transform: uppercase; padding: 6px 10px; border-radius: 100px; }
         .ue-card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 12px; }
         .ue-card-body h3 { font-family: var(--font-display); font-size: clamp(18px, 1.6vw, 24px); line-height: 1.04; text-transform: uppercase; color: #fff; margin: 0; }
-        .ue-loc { font-size: 13px; color: var(--gold); font-weight: 600; margin: 0; line-height: 1.4; }
+        .ue-loc { font-size: var(--text-sm); color: var(--gold); font-weight: 600; margin: 0; line-height: 1.4; }
         .ue-secondary { display: flex; flex-wrap: wrap; gap: 14px; }
-        .ue-secondary a { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); text-decoration: none; }
+        .ue-secondary a { font-size: var(--text-label); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); text-decoration: none; }
       `}</style>
     </section>
   )

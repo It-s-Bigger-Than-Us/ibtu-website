@@ -38,7 +38,7 @@ export default function ContactPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
@@ -88,7 +88,7 @@ export default function ContactPage() {
             <span
               style={{
                 display: "block",
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "var(--gold)",
@@ -105,7 +105,7 @@ export default function ContactPage() {
                   <span
                     style={{
                       display: "block",
-                      fontSize: 11,
+                      fontSize: 'var(--text-label)',
                       letterSpacing: "2px",
                       textTransform: "uppercase",
                       color: "var(--gold)",
@@ -121,7 +121,7 @@ export default function ContactPage() {
                       target={item.href.startsWith("http") ? "_blank" : undefined}
                       rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       style={{
-                        fontSize: 16,
+                        fontSize: 'var(--text-base)',
                         color: "#fff",
                         textDecoration: "none",
                         fontFamily: 'var(--font-body)',
@@ -133,7 +133,7 @@ export default function ContactPage() {
                   ) : (
                     <p
                       style={{
-                        fontSize: 16,
+                        fontSize: 'var(--text-base)',
                         color: "#fff",
                         fontFamily: 'var(--font-body)',
                         lineHeight: 1.5,
@@ -153,7 +153,7 @@ export default function ContactPage() {
             <span
               style={{
                 display: "block",
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "var(--gold)",
@@ -172,7 +172,7 @@ export default function ContactPage() {
                   htmlFor="name"
                   style={{
                     display: "block",
-                    fontSize: 11,
+                    fontSize: 'var(--text-label)',
                     letterSpacing: "2px",
                     textTransform: "uppercase",
                     color: "var(--gold)",
@@ -193,7 +193,7 @@ export default function ContactPage() {
                     background: "#000",
                     border: "1px solid var(--gold)",
                     color: "#fff",
-                    fontSize: 15,
+                    fontSize: 'var(--text-base)',
                     fontFamily: 'var(--font-body)',
                     outline: "none",
                   }}
@@ -204,7 +204,7 @@ export default function ContactPage() {
                   htmlFor="email"
                   style={{
                     display: "block",
-                    fontSize: 11,
+                    fontSize: 'var(--text-label)',
                     letterSpacing: "2px",
                     textTransform: "uppercase",
                     color: "var(--gold)",
@@ -225,7 +225,7 @@ export default function ContactPage() {
                     background: "#000",
                     border: "1px solid var(--gold)",
                     color: "#fff",
-                    fontSize: 15,
+                    fontSize: 'var(--text-base)',
                     fontFamily: 'var(--font-body)',
                     outline: "none",
                   }}
@@ -236,7 +236,7 @@ export default function ContactPage() {
                   htmlFor="subject"
                   style={{
                     display: "block",
-                    fontSize: 11,
+                    fontSize: 'var(--text-label)',
                     letterSpacing: "2px",
                     textTransform: "uppercase",
                     color: "var(--gold)",
@@ -256,7 +256,7 @@ export default function ContactPage() {
                     background: "#000",
                     border: "1px solid var(--gold)",
                     color: "#fff",
-                    fontSize: 15,
+                    fontSize: 'var(--text-base)',
                     fontFamily: 'var(--font-body)',
                     outline: "none",
                     appearance: "none",
@@ -277,7 +277,7 @@ export default function ContactPage() {
                   htmlFor="message"
                   style={{
                     display: "block",
-                    fontSize: 11,
+                    fontSize: 'var(--text-label)',
                     letterSpacing: "2px",
                     textTransform: "uppercase",
                     color: "var(--gold)",
@@ -298,7 +298,7 @@ export default function ContactPage() {
                     background: "#000",
                     border: "1px solid var(--gold)",
                     color: "#fff",
-                    fontSize: 15,
+                    fontSize: 'var(--text-base)',
                     fontFamily: 'var(--font-body)',
                     outline: "none",
                     resize: "vertical",
@@ -313,7 +313,7 @@ export default function ContactPage() {
                   color: "#000",
                   padding: "18px 48px",
                   fontFamily: 'var(--font-body)',
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
@@ -337,7 +337,7 @@ export default function ContactPage() {
         >
           <p
             style={{
-              fontSize: 12,
+              fontSize: 'var(--text-label)',
               color: "var(--gold)",
               letterSpacing: "1px",
               fontFamily: 'var(--font-body)',

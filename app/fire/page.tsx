@@ -227,7 +227,7 @@ export default function FireReliefPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
@@ -304,7 +304,7 @@ export default function FireReliefPage() {
                   style={{
                     fontFamily: "var(--font-body)",
                     fontWeight: 700,
-                    fontSize: 12,
+                    fontSize: 'var(--text-label)',
                     letterSpacing: "3px",
                     color: "#000",
                     display: "block",
@@ -328,7 +328,7 @@ export default function FireReliefPage() {
                 <span
                   style={{
                     display: "block",
-                    fontSize: 13,
+                    fontSize: 'var(--text-sm)',
                     color: "#000",
                     fontWeight: 600,
                     letterSpacing: "1px",
@@ -355,7 +355,7 @@ export default function FireReliefPage() {
                 </h3>
                 <p
                   style={{
-                    fontSize: 16,
+                    fontSize: 'var(--text-base)',
                     color: "#000",
                     lineHeight: 1.8,
                     maxWidth: 640,
@@ -389,7 +389,7 @@ export default function FireReliefPage() {
                       </span>
                       <span
                         style={{
-                          fontSize: 12,
+                          fontSize: 'var(--text-label)',
                           color: "#000",
                           fontWeight: 600,
                           letterSpacing: "1px",
@@ -418,7 +418,7 @@ export default function FireReliefPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
@@ -484,7 +484,7 @@ export default function FireReliefPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
@@ -510,7 +510,7 @@ export default function FireReliefPage() {
           </h2>
           <p
             style={{
-              fontSize: 16,
+              fontSize: 'var(--text-base)',
               color: "#000",
               lineHeight: 1.7,
               maxWidth: 720,
@@ -544,7 +544,7 @@ export default function FireReliefPage() {
                 <h3
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: 28,
+                    fontSize: 'var(--text-xl)',
                     color: "#000",
                     marginBottom: 12,
                     lineHeight: 1.1,
@@ -556,7 +556,7 @@ export default function FireReliefPage() {
                 </h3>
                 <p
                   style={{
-                    fontSize: 14,
+                    fontSize: 'var(--text-sm)',
                     color: "#000",
                     lineHeight: 1.7,
                     fontFamily: "var(--font-body)",
@@ -583,7 +583,7 @@ export default function FireReliefPage() {
               <span
                 style={{
                   display: "block",
-                  fontSize: 12,
+                  fontSize: 'var(--text-label)',
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   color: "#000",
@@ -596,7 +596,7 @@ export default function FireReliefPage() {
               </span>
               <p
                 style={{
-                  fontSize: 18,
+                  fontSize: 'var(--text-lg)',
                   color: "#000",
                   lineHeight: 1.6,
                   fontFamily: "var(--font-body)",
@@ -617,7 +617,7 @@ export default function FireReliefPage() {
               <span
                 style={{
                   display: "block",
-                  fontSize: 12,
+                  fontSize: 'var(--text-label)',
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   color: "#000",
@@ -638,7 +638,7 @@ export default function FireReliefPage() {
                   color: "#FFC700",
                   padding: "16px 40px",
                   fontFamily: "var(--font-body)",
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
@@ -659,7 +659,7 @@ export default function FireReliefPage() {
                   color: "#000",
                   padding: "16px 40px",
                   fontFamily: "var(--font-body)",
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
@@ -681,7 +681,7 @@ export default function FireReliefPage() {
                   color: "#000",
                   padding: "16px 40px",
                   fontFamily: "var(--font-body)",
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
@@ -709,7 +709,7 @@ export default function FireReliefPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
@@ -752,7 +752,7 @@ export default function FireReliefPage() {
                 <h3
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: 28,
+                    fontSize: 'var(--text-xl)',
                     color: "#000",
                     marginBottom: 12,
                     lineHeight: 1.1,
@@ -764,7 +764,7 @@ export default function FireReliefPage() {
                 </h3>
                 <p
                   style={{
-                    fontSize: 14,
+                    fontSize: 'var(--text-sm)',
                     color: "#000",
                     lineHeight: 1.7,
                     fontFamily: "var(--font-body)",
@@ -782,7 +782,7 @@ export default function FireReliefPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#000",
@@ -808,7 +808,7 @@ export default function FireReliefPage() {
           </h2>
           <p
             style={{
-              fontSize: 16,
+              fontSize: 'var(--text-base)',
               color: "#000",
               lineHeight: 1.7,
               maxWidth: 720,
@@ -842,7 +842,7 @@ export default function FireReliefPage() {
                 <h3
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: 22,
+                    fontSize: 'var(--text-lg)',
                     color: "#000",
                     marginBottom: 12,
                     lineHeight: 1.2,
@@ -854,7 +854,7 @@ export default function FireReliefPage() {
                 </h3>
                 <p
                   style={{
-                    fontSize: 16,
+                    fontSize: 'var(--text-base)',
                     color: "#000",
                     lineHeight: 1.7,
                     fontFamily: "var(--font-body)",
@@ -877,7 +877,7 @@ export default function FireReliefPage() {
             <span
               style={{
                 display: "block",
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "#000",
@@ -894,7 +894,7 @@ export default function FireReliefPage() {
                 paddingLeft: 24,
                 color: "#000",
                 fontFamily: "var(--font-body)",
-                fontSize: 16,
+                fontSize: 'var(--text-base)',
                 lineHeight: 1.7,
                 margin: 0,
               }}
@@ -935,7 +935,7 @@ export default function FireReliefPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#FFC700",
@@ -969,7 +969,7 @@ export default function FireReliefPage() {
                 </span>
                 <span
                   style={{
-                    fontSize: 11,
+                    fontSize: 'var(--text-label)',
                     letterSpacing: "1px",
                     textTransform: "uppercase",
                     color: "#fff",
@@ -1009,7 +1009,7 @@ export default function FireReliefPage() {
             </h2>
             <p
               style={{
-                fontSize: 16,
+                fontSize: 'var(--text-base)',
                 color: "#fff",
                 maxWidth: 560,
                 margin: "0 auto 48px",
@@ -1038,7 +1038,7 @@ export default function FireReliefPage() {
                   color: "#000",
                   padding: "18px 48px",
                   fontFamily: "var(--font-body)",
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
@@ -1058,7 +1058,7 @@ export default function FireReliefPage() {
                   color: "#FFC700",
                   padding: "18px 48px",
                   fontFamily: "var(--font-body)",
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,
@@ -1079,7 +1079,7 @@ export default function FireReliefPage() {
                   color: "#FFC700",
                   padding: "18px 48px",
                   fontFamily: "var(--font-body)",
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: "3px",
                   textTransform: "uppercase",
                   fontWeight: 700,

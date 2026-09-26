@@ -1,0 +1,972 @@
+{
+ "home-desktop": {
+  "fontSizes": {
+   "12": 14,
+   "14": 24,
+   "16": 22,
+   "17": 16,
+   "20": 1,
+   "22": 1,
+   "25": 30,
+   "38": 1,
+   "42": 1,
+   "64": 1,
+   "72": 6,
+   "101": 3,
+   "115": 1,
+   "144": 7
+  },
+  "fontFamilies": {
+   "Poppins": 83,
+   "LOT": 45
+  },
+  "weights": {
+   "400": 47,
+   "500": 1,
+   "600": 19,
+   "700": 27,
+   "800": 27,
+   "900": 7
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 105,
+   "rgb(255, 199, 0)": 10,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [
+   {
+    "txt": "Our Impact Pillars",
+    "fs": 101,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Crisis & Disaster Stabilization",
+    "fs": 16,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "School & Youth Stability",
+    "fs": 16,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 16,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "IBTU’s crisis response infrastructure wa",
+    "fs": 17,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Our Programs",
+    "fs": 101,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Stay Close",
+    "fs": 14,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   },
+   {
+    "txt": "Email address",
+    "fs": 16,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   }
+  ],
+  "smallText": [],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 46,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 54,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 95,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 50,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 61,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 55,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 21
+   }
+  ],
+  "headings": [
+   "H1: IT'S BIGGERTHAN US",
+   "H2: This Work Does Not Happen Without You.",
+   "H2: When Systems Fail, Communities Show Up.",
+   "H2: Our Impact Pillars",
+   "H2: By the Numbers",
+   "H2: Our Programs",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H2: ThisWorkDoesNotHappenWithoutYou",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 34,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 8
+  },
+  "pageHeight": 7291,
+  "animated": 31,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 7
+ },
+ "home-mobile": {
+  "fontSizes": {
+   "12": 29,
+   "13": 6,
+   "14": 45,
+   "15": 1,
+   "16": 15,
+   "22": 1,
+   "24": 1,
+   "32": 1,
+   "36": 1,
+   "39": 6,
+   "40": 1,
+   "47": 1,
+   "55": 8
+  },
+  "fontFamilies": {
+   "Poppins": 71,
+   "LOT": 45
+  },
+  "weights": {
+   "400": 47,
+   "500": 1,
+   "600": 19,
+   "700": 27,
+   "800": 15,
+   "900": 7
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 92,
+   "rgb(255, 199, 0)": 11,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [
+   {
+    "txt": "Our Impact Pillars",
+    "fs": 47,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "School & Youth Stability",
+    "fs": 12,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 12,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "IBTU’s crisis response infrastructure wa",
+    "fs": 16,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Our Programs",
+    "fs": 36,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Stay Close",
+    "fs": 14,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   },
+   {
+    "txt": "Email address",
+    "fs": 16,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   }
+  ],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: IT'S BIGGERTHAN US",
+   "H2: This Work Does Not Happen Without You.",
+   "H2: When Systems Fail, Communities Show Up.",
+   "H2: Our Impact Pillars",
+   "H2: By the Numbers",
+   "H2: Our Programs",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H2: ThisWorkDoesNotHappenWithoutYou",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 22,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 7
+  },
+  "pageHeight": 6643,
+  "animated": 31,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "programs-desktop": {
+  "fontSizes": {
+   "12": 33,
+   "14": 18,
+   "56": 7,
+   "202": 1
+  },
+  "fontFamilies": {
+   "Poppins": 51,
+   "LOT": 8
+  },
+  "weights": {
+   "400": 8,
+   "500": 1,
+   "600": 11,
+   "700": 31,
+   "800": 8
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 28,
+   "rgb(255, 199, 0)": 18,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [
+   {
+    "txt": "Our Programs",
+    "fs": 202,
+    "fg": "rgb(255, 199, 0)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1
+   }
+  ],
+  "smallText": [],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 46,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 54,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 95,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 50,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 61,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 55,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 21
+   }
+  ],
+  "headings": [
+   "H1: Our Programs",
+   "H2: Fire Relief& The Hub",
+   "H2: Back 2 School Festival",
+   "H2: Youth Programming",
+   "H2: Coastal Care",
+   "H2: Giving Season",
+   "H2: Wellness & Health Activations",
+   "H2: Community Health & Resource Access"
+  ],
+  "images": {
+   "total": 170,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 1
+  },
+  "pageHeight": 5547,
+  "animated": 16,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 8
+ },
+ "programs-mobile": {
+  "fontSizes": {
+   "12": 33,
+   "13": 7,
+   "14": 1,
+   "16": 10,
+   "28": 7,
+   "72": 1
+  },
+  "fontFamilies": {
+   "Poppins": 51,
+   "LOT": 8
+  },
+  "weights": {
+   "400": 8,
+   "500": 1,
+   "600": 11,
+   "700": 31,
+   "800": 8
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 28,
+   "rgb(255, 199, 0)": 18,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [
+   {
+    "txt": "Our Programs",
+    "fs": 72,
+    "fg": "rgb(255, 199, 0)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1
+   }
+  ],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: Our Programs",
+   "H2: Fire Relief& The Hub",
+   "H2: Back 2 School Festival",
+   "H2: Youth Programming",
+   "H2: Coastal Care",
+   "H2: Giving Season",
+   "H2: Wellness & Health Activations",
+   "H2: Community Health & Resource Access"
+  ],
+  "images": {
+   "total": 170,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 1
+  },
+  "pageHeight": 4030,
+  "animated": 16,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "get-involved-desktop": {
+  "fontSizes": {
+   "12": 12,
+   "14": 19,
+   "16": 1,
+   "17": 3,
+   "22": 1,
+   "56": 6,
+   "72": 1,
+   "80": 2,
+   "140": 1
+  },
+  "fontFamilies": {
+   "Poppins": 42,
+   "LOT": 4
+  },
+  "weights": {
+   "400": 7,
+   "500": 1,
+   "600": 18,
+   "700": 6,
+   "800": 8,
+   "900": 6
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 24,
+   "rgb(255, 199, 0)": 9,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 46,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 54,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 95,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 50,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 61,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 55,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 21
+   }
+  ],
+  "headings": [
+   "H1: There Is a Role for You Here",
+   "H2: The Numbers Don't Lie",
+   "H2: Show Up. Do the Work.",
+   "H2: This Work Does Not Happen Without You"
+  ],
+  "images": {
+   "total": 14,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0
+  },
+  "pageHeight": 4829,
+  "animated": 2,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 4
+ },
+ "get-involved-mobile": {
+  "fontSizes": {
+   "12": 12,
+   "13": 7,
+   "14": 3,
+   "16": 13,
+   "18": 1,
+   "32": 7,
+   "36": 2,
+   "48": 1
+  },
+  "fontFamilies": {
+   "Poppins": 42,
+   "LOT": 4
+  },
+  "weights": {
+   "400": 7,
+   "500": 1,
+   "600": 18,
+   "700": 6,
+   "800": 8,
+   "900": 6
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 24,
+   "rgb(255, 199, 0)": 9,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: There Is a Role for You Here",
+   "H2: The Numbers Don't Lie",
+   "H2: Show Up. Do the Work.",
+   "H2: This Work Does Not Happen Without You"
+  ],
+  "images": {
+   "total": 14,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0
+  },
+  "pageHeight": 5076,
+  "animated": 2,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "events-desktop": {
+  "fontSizes": {
+   "12": 218,
+   "14": 11,
+   "19": 1,
+   "43": 7,
+   "72": 1,
+   "115": 1
+  },
+  "fontFamilies": {
+   "Poppins": 230,
+   "LOT": 9
+  },
+  "weights": {
+   "400": 166,
+   "500": 1,
+   "600": 11,
+   "700": 53,
+   "800": 8
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 52,
+   "rgb(255, 199, 0)": 39,
+   "rgb(255, 255, 255)": 148
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 46,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 54,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 95,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 50,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 61,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 55,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 21
+   }
+  ],
+  "headings": [
+   "H1: What's Happening",
+   "H2: June 2026",
+   "H2: July 2026",
+   "H2: August 2026",
+   "H2: September 2026",
+   "H2: October 2026",
+   "H2: November 2026",
+   "H2: December 2026",
+   "H2: HOW IBTU SHOWS UP"
+  ],
+  "images": {
+   "total": 19,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0
+  },
+  "pageHeight": 9020,
+  "animated": 1,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 8
+ },
+ "events-mobile": {
+  "fontSizes": {
+   "12": 218,
+   "14": 1,
+   "15": 1,
+   "16": 10,
+   "28": 7,
+   "36": 1,
+   "48": 1
+  },
+  "fontFamilies": {
+   "Poppins": 230,
+   "LOT": 9
+  },
+  "weights": {
+   "400": 166,
+   "500": 1,
+   "600": 11,
+   "700": 53,
+   "800": 8
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 52,
+   "rgb(255, 199, 0)": 39,
+   "rgb(255, 255, 255)": 148
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: What's Happening",
+   "H2: June 2026",
+   "H2: July 2026",
+   "H2: August 2026",
+   "H2: September 2026",
+   "H2: October 2026",
+   "H2: November 2026",
+   "H2: December 2026",
+   "H2: HOW IBTU SHOWS UP"
+  ],
+  "images": {
+   "total": 19,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0
+  },
+  "pageHeight": 10267,
+  "animated": 1,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "programsRedirect": {
+  "status": 404,
+  "finalUrl": "http://localhost:3106/programs"
+ },
+ "summary": {
+  "home-desktop": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 8,
+   "animated": 31,
+   "focusVisibleOf8": 7,
+   "pageHeight": 7291,
+   "imagesNoAlt": 0
+  },
+  "home-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 7,
+   "animated": 31,
+   "focusVisibleOf8": null,
+   "pageHeight": 6643,
+   "imagesNoAlt": 0
+  },
+  "programs-desktop": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 1,
+   "animated": 16,
+   "focusVisibleOf8": 8,
+   "pageHeight": 5547,
+   "imagesNoAlt": 0
+  },
+  "programs-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 1,
+   "animated": 16,
+   "focusVisibleOf8": null,
+   "pageHeight": 4030,
+   "imagesNoAlt": 0
+  },
+  "get-involved-desktop": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "animated": 2,
+   "focusVisibleOf8": 4,
+   "pageHeight": 4829,
+   "imagesNoAlt": 0
+  },
+  "get-involved-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "animated": 2,
+   "focusVisibleOf8": null,
+   "pageHeight": 5076,
+   "imagesNoAlt": 0
+  },
+  "events-desktop": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "animated": 1,
+   "focusVisibleOf8": 8,
+   "pageHeight": 9020,
+   "imagesNoAlt": 0
+  },
+  "events-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "animated": 1,
+   "focusVisibleOf8": null,
+   "pageHeight": 10267,
+   "imagesNoAlt": 0
+  }
+ }
+}

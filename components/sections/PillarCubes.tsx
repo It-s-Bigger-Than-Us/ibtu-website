@@ -285,7 +285,7 @@ export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: P
           font-size: clamp(40px, 7vw, 110px);
           line-height: 0.92;
           text-transform: uppercase;
-          color: var(--ibtu-gold);
+          color: var(--ibtu-black);
           letter-spacing: -0.02em;
           text-align: center;
         }
@@ -293,7 +293,7 @@ export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: P
         .pillar-cubes-backdrop {
           background-image: var(--holo-gradient);
           background-size: 600% 600%;
-          animation: holo-shift 20s ease infinite;
+          animation: holo-shift var(--dur-loop) ease infinite;
           border-radius: 24px;
           padding: clamp(32px, 4vw, 56px) clamp(24px, 3vw, 48px);
         }
@@ -316,7 +316,7 @@ export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: P
         }
 
         .pillar-cube-wrapper {
-          transition: transform 0.4s var(--ease-out-expo);
+          transition: transform var(--dur-base) var(--ease-out-expo);
         }
         .pillar-cube-wrapper:hover {
           transform: translateY(-4px);
@@ -334,7 +334,7 @@ export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: P
           width: 100%;
           height: 100%;
           transform-style: preserve-3d;
-          transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .pillar-cube-face {
@@ -362,8 +362,8 @@ export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: P
           padding: clamp(12px, 1.5vw, 20px);
           transform: translateY(100%);
           opacity: 0;
-          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                      opacity 0.4s ease;
+          transition: transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+                      opacity var(--dur-base) ease;
           border-radius: 0 0 12px 12px;
         }
         .pillar-cube-label::after {
@@ -374,7 +374,7 @@ export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: P
           padding: 0.5px;
           background: var(--holo-gradient);
           background-size: 600% 600%;
-          animation: holo-shift 20s ease infinite;
+          animation: holo-shift var(--dur-loop) ease infinite;
           -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
           mask-composite: exclude;
@@ -406,7 +406,7 @@ export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: P
           border-radius: 16px;
           padding: clamp(20px, 2.5vw, 40px);
           cursor: pointer;
-          transition: background 0.4s var(--ease-out-expo);
+          transition: background var(--dur-base) var(--ease-out-expo);
           display: flex;
           flex-direction: column;
           justify-content: space-between;
@@ -426,7 +426,7 @@ export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: P
           font-size: clamp(36px, 5vw, 72px);
           line-height: 1;
           color: var(--ibtu-black);
-          transition: color 0.4s var(--ease-out-expo);
+          transition: color var(--dur-base) var(--ease-out-expo);
         }
 
         .stat-label {
@@ -437,7 +437,7 @@ export default function PillarCubes({ stats = [], pillars = DEFAULT_PILLARS }: P
           text-transform: uppercase;
           letter-spacing: 1px;
           margin-top: 8px;
-          transition: color 0.4s var(--ease-out-expo);
+          transition: color var(--dur-base) var(--ease-out-expo);
         }
 
         @media (max-width: 1024px) {

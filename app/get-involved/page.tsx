@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Footer from "@/components/layout/Footer"
 import GetInvolvedHero from "@/components/sections/GetInvolvedHero"
+import VolunteerEmbed from "@/components/sections/VolunteerEmbed"
 import { GET_INVOLVED_HERO_IMAGES } from "@/lib/data/site-media"
 
 export const revalidate = 60
@@ -145,24 +146,7 @@ export default function GetInvolvedPage() {
               7,500+ people are in IBTU&apos;s volunteer network. They sort relief supplies at the Hub, run Lunchtime Takeovers at schools, clean Venice Beach with Coastal Care crews, and distribute backpacks to thousands of students. Every shift is structured, purposeful, and designed so you see exactly what your time accomplished.
             </p>
 
-            <div
-              style={{
-                borderRadius: 16,
-                overflow: 'hidden',
-                background: '#000',
-                border: '2px solid #FFC700',
-              }}
-            >
-              <iframe
-                src="https://volunteer.bloomerang.co:443/volunteer/embed/cards.html?mode=event&org_id=3917&show_description=true&show_language=true&default_language=eng_can"
-                style={{
-                  border: 'none',
-                  width: '100%',
-                  height: '600px',
-                }}
-                title="IBTU Volunteer Opportunities"
-              />
-            </div>
+            <VolunteerEmbed />
           </div>
         </section>
 
@@ -206,7 +190,7 @@ export default function GetInvolvedPage() {
                   padding: '16px 40px',
                   borderRadius: '16px',
                   fontFamily: 'var(--font-body)',
-                  fontSize: '13px',
+                  fontSize: 'var(--text-sm)',
                   fontWeight: 700,
                   letterSpacing: '2px',
                   textTransform: 'uppercase',
@@ -226,7 +210,7 @@ export default function GetInvolvedPage() {
                   padding: '16px 40px',
                   borderRadius: '16px',
                   fontFamily: 'var(--font-body)',
-                  fontSize: '13px',
+                  fontSize: 'var(--text-sm)',
                   fontWeight: 700,
                   letterSpacing: '2px',
                   textTransform: 'uppercase',

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion'
 import Link from 'next/link'
 
 /* ═══════════════════════════════════════
@@ -18,15 +18,16 @@ const ACTIONS = [
 
 export default function DonateButton() {
   const [visible, setVisible] = useState(false)
+  const { scrollY } = useScroll()
 
   useEffect(() => {
-    const handleScroll = () => {
-      setVisible(window.scrollY > window.innerHeight * 0.5)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
+    setVisible(scrollY.get() > window.innerHeight * 0.5)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useMotionValueEvent(scrollY, 'change', (y) => {
+    setVisible(y > window.innerHeight * 0.5)
+  })
 
   return (
     <AnimatePresence>
@@ -34,8 +35,8 @@ export default function DonateButton() {
         <motion.div
           initial={{ x: '-100%', opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          exit={{ x: '-100%', opacity: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          exit={{ x: '-100%', opacity: 0, transition: { duration: 0.7 * 0.65, ease: [0.16, 1, 0.3, 1] } }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           style={{
             position: 'fixed',
             top: '100px',
@@ -54,7 +55,7 @@ export default function DonateButton() {
               style={{
                 display: 'block',
                 fontFamily: 'var(--font-body)',
-                fontSize: '11px',
+                fontSize: 'var(--text-label)',
                 fontWeight: 700,
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
@@ -64,7 +65,7 @@ export default function DonateButton() {
                 borderRadius: '16px',
                 padding: '10px 20px',
                 whiteSpace: 'nowrap',
-                transition: 'background 0.3s var(--ease-out-expo), color 0.3s',
+                transition: 'background var(--dur-base) var(--ease-out-expo), color var(--dur-base)',
                 textAlign: 'center',
               }}
               onMouseEnter={(e) => {

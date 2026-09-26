@@ -36,7 +36,7 @@ const EVENTS = [
 
 const labelStyle: React.CSSProperties = {
   display: 'block',
-  fontSize: 11,
+  fontSize: 'var(--text-label)',
   letterSpacing: '2px',
   textTransform: 'uppercase',
   color: '#FFC700',
@@ -51,7 +51,7 @@ const inputStyle: React.CSSProperties = {
   background: '#000',
   border: '1px solid #FFC700',
   color: '#FFF',
-  fontSize: 15,
+  fontSize: 'var(--text-base)',
   fontFamily: 'var(--font-body)',
   outline: 'none',
   borderRadius: 0,
@@ -68,14 +68,14 @@ const fileInputStyle: React.CSSProperties = {
   background: '#000',
   border: '1px dashed #FFC700',
   color: '#FFF',
-  fontSize: 14,
+  fontSize: 'var(--text-sm)',
   fontFamily: 'var(--font-body)',
   cursor: 'pointer',
 };
 
 const sectionHeadStyle: React.CSSProperties = {
   fontFamily: 'var(--font-body)',
-  fontSize: 13,
+  fontSize: 'var(--text-sm)',
   fontWeight: 700,
   color: '#000',
   letterSpacing: '2px',
@@ -199,7 +199,7 @@ export default function VendorApplicationForm() {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 18,
+            fontSize: 'var(--text-lg)',
             color: '#FFC700',
             lineHeight: 1.6,
             maxWidth: 500,
@@ -212,7 +212,7 @@ export default function VendorApplicationForm() {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 16,
+            fontSize: 'var(--text-base)',
             color: '#FFF',
             lineHeight: 1.8,
             maxWidth: 500,
@@ -229,7 +229,7 @@ export default function VendorApplicationForm() {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 16,
+            fontSize: 'var(--text-base)',
             color: '#FFF',
             lineHeight: 1.8,
             maxWidth: 500,
@@ -243,7 +243,7 @@ export default function VendorApplicationForm() {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: 14,
+            fontSize: 'var(--text-sm)',
             color: '#FFC700',
             marginTop: 24,
             fontWeight: 600,
@@ -350,7 +350,7 @@ export default function VendorApplicationForm() {
                 alignItems: 'center',
                 gap: 10,
                 fontFamily: 'var(--font-body)',
-                fontSize: 14,
+                fontSize: 'var(--text-sm)',
                 color: '#FFF',
                 cursor: 'pointer',
               }}
@@ -390,7 +390,7 @@ export default function VendorApplicationForm() {
       <h3 style={sectionHeadStyle}>
         <span style={{ color: '#FFC700' }}>Your Documents</span>
       </h3>
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: '#FFC700', margin: '-8px 0 8px', lineHeight: 1.6 }}>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: '#FFC700', margin: '-8px 0 8px', lineHeight: 1.6 }}>
         Upload now if you have them — or skip this part and we will help you gather everything after you are approved. We want to make this as easy as possible for you. Accepted formats: PDF, JPG, PNG. Max 5MB per file.
       </p>
 
@@ -430,7 +430,7 @@ export default function VendorApplicationForm() {
 
       {/* ── SUBMIT ── */}
       {error && (
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: '#FF4444', margin: 0 }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', color: '#FF4444', margin: 0 }}>
           {error}
         </p>
       )}
@@ -444,7 +444,7 @@ export default function VendorApplicationForm() {
           color: '#000',
           padding: '18px 48px',
           fontFamily: 'var(--font-body)',
-          fontSize: 13,
+          fontSize: 'var(--text-sm)',
           letterSpacing: '3px',
           textTransform: 'uppercase',
           fontWeight: 700,
@@ -458,7 +458,7 @@ export default function VendorApplicationForm() {
         {submitting ? 'Submitting...' : 'Submit Application \u2192'}
       </button>
 
-      <p style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: '#FFC700', margin: 0, lineHeight: 1.6 }}>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-label)', color: '#FFC700', margin: 0, lineHeight: 1.6 }}>
         By submitting, you agree to IBTU&apos;s vendor terms and conditions.
         All fees are non-refundable after approval. We review your application
         within 5 business days. Thank you for your time — we know you are busy,

@@ -29,6 +29,8 @@ const nextConfig: NextConfig = {
           'https://airtable.com/appxak9slpO0Okjwb/pagxoRnLtn7OMYnIA/form',
         permanent: false,
       },
+      // ── /programs → /our-programs (finding 11: bare plural 404'd) ──
+      { source: '/programs', destination: '/our-programs', permanent: true },
       // ── Short canonical URLs (for flyers). Old paths 301 → new short canonical. ──
       // Program pages (data-driven, /our-programs/<slug> → short)
       { source: '/our-programs/coastal-care', destination: '/coastal', permanent: true },

@@ -66,10 +66,10 @@ export default function SchoolProgramPage() {
           />
         </div>
         <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(120px, 15vh, 180px) clamp(32px, 5vw, 80px) clamp(80px, 10vh, 120px)', maxWidth: 'var(--content-max)', margin: '0 auto', width: '100%' }}>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: '10px', letterSpacing: '4px', textTransform: 'uppercase', color: '#FFC700', fontWeight: 700, display: 'block', marginBottom: 20 }}>
+          <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-label)', letterSpacing: '4px', textTransform: 'uppercase', color: '#000', fontWeight: 700, display: 'block', marginBottom: 20 }}>
             School &amp; Youth Stability
           </span>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px, 10vw, 160px)', lineHeight: 0.9, textTransform: 'uppercase', color: '#FFC700', letterSpacing: '-0.02em', marginBottom: 24, textShadow: '0 2px 30px rgba(0,0,0,0.3)' }}>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px, 10vw, 160px)', lineHeight: 0.9, textTransform: 'uppercase', color: '#000', letterSpacing: '-0.02em', marginBottom: 24, textShadow: '0 2px 30px rgba(0,0,0,0.3)' }}>
             Bring IBTU<br />to Your Campus
           </h1>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 'clamp(16px, 1.4vw, 22px)', color: '#FFF', lineHeight: 1.7, fontWeight: 700, maxWidth: 640 }}>
@@ -105,7 +105,7 @@ export default function SchoolProgramPage() {
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--body-sm)', color: '#000', lineHeight: 1.7, fontWeight: 600, marginBottom: 16 }}>
                   {prog.desc}
                 </p>
-                <span style={{ fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#000' }}>
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-label)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#000' }}>
                   {prog.stat}
                 </span>
               </div>
@@ -151,10 +151,10 @@ export default function SchoolProgramPage() {
             IBTU partners with schools at no cost to the campus. We bring the resources, the volunteers, and the infrastructure. Your community brings the trust.
           </p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="mailto:info@itsbiggerthanusla.org?subject=School%20Program%20Inquiry" style={{ display: 'inline-block', background: '#000', color: '#FFC700', padding: '16px 40px', borderRadius: '16px', fontFamily: 'var(--font-body)', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none' }}>
+            <a href="mailto:info@itsbiggerthanusla.org?subject=School%20Program%20Inquiry" style={{ display: 'inline-block', background: '#000', color: '#FFC700', padding: '16px 40px', borderRadius: '16px', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none' }}>
               Contact Us
             </a>
-            <a href="https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', border: '2px solid #000', color: '#000', padding: '16px 40px', borderRadius: '16px', fontFamily: 'var(--font-body)', fontSize: '13px', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none' }}>
+            <a href="https://volunteer.bloomerang.co/JE/9bxg8o3ix6z1ih" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', border: '2px solid #000', color: '#000', padding: '16px 40px', borderRadius: '16px', fontFamily: 'var(--font-body)', fontSize: 'var(--text-sm)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none' }}>
               Volunteer for Schools
             </a>
           </div>

@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Sticky flipbook — images stay pinned while user scrolls,
@@ -16,38 +20,42 @@ export default function StickyFlipbook({
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [flipDirection, setFlipDirection] = useState<"in" | "out" | "none">("none");
+  const activeIndexRef = useRef(0);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
 
-    const handleScroll = () => {
-      const container = containerRef.current;
-      if (!container) return;
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-      const rect = container.getBoundingClientRect();
-      const containerHeight = container.offsetHeight;
-      const viewportHeight = window.innerHeight;
+    // containerHeight - viewportHeight is exactly the pinned scroll range
+    // ScrollTrigger covers with start "top top" / end "bottom bottom", so
+    // self.progress reproduces the original -rect.top / range math.
+    const trigger = ScrollTrigger.create({
+      trigger: container,
+      start: "top top",
+      end: "bottom bottom",
+      onUpdate: (self) => {
+        const newIndex = Math.min(
+          images.length - 1,
+          Math.floor(self.progress * images.length)
+        );
 
-      // How far through the sticky scroll area are we?
-      const scrollProgress = Math.max(0, Math.min(1, -rect.top / (containerHeight - viewportHeight)));
-      const newIndex = Math.min(
-        images.length - 1,
-        Math.floor(scrollProgress * images.length)
-      );
+        if (newIndex !== activeIndexRef.current) {
+          setFlipDirection("out");
+          setTimeout(() => {
+            setActiveIndex(newIndex);
+            setFlipDirection("in");
+            setTimeout(() => setFlipDirection("none"), 0.4 * 1000);
+          }, 0.2 * 1000);
+        }
+      },
+    });
 
-      if (newIndex !== activeIndex) {
-        setFlipDirection("out");
-        setTimeout(() => {
-          setActiveIndex(newIndex);
-          setFlipDirection("in");
-          setTimeout(() => setFlipDirection("none"), 400);
-        }, 200);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [activeIndex, images.length]);
+    return () => trigger.kill();
+  }, [images.length]);
 
   if (!images || images.length === 0) return null;
 
@@ -95,7 +103,7 @@ export default function StickyFlipbook({
                   ? "rotateY(0deg)"
                   : "rotateY(0deg)",
               opacity: flipDirection === "out" ? 0 : 1,
-              transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s",
+              transition: "transform var(--dur-base) cubic-bezier(0.4, 0, 0.2, 1), opacity var(--dur-fast)",
               transformOrigin: "left center",
             }}
           >
@@ -127,7 +135,7 @@ export default function StickyFlipbook({
                 <p
                   style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: 13,
+                    fontSize: 'var(--text-sm)',
                     color: "#000",
                     fontWeight: 600,
                     maxWidth: 500,
@@ -159,7 +167,7 @@ export default function StickyFlipbook({
                   height: 4,
                   background: i === activeIndex ? "#FFC700" : "var(--gold)",
                   borderRadius: 2,
-                  transition: "all 0.3s",
+                  transition: "all var(--dur-base)",
                 }}
               />
             ))}
@@ -172,7 +180,7 @@ export default function StickyFlipbook({
               top: 32,
               right: 80,
               fontFamily: 'var(--font-body)',
-              fontSize: 13,
+              fontSize: 'var(--text-sm)',
               fontWeight: 700,
               color: "#FFC700",
               letterSpacing: "2px",

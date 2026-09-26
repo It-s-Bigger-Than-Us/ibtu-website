@@ -38,7 +38,7 @@ export default function LegalDoc({ eyebrow, title, effective, content }: LegalDo
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "var(--gold)",
@@ -63,7 +63,7 @@ export default function LegalDoc({ eyebrow, title, effective, content }: LegalDo
           </h1>
           <p
             style={{
-              fontSize: 13,
+              fontSize: 'var(--text-sm)',
               letterSpacing: "1px",
               color: "var(--gold)",
               fontFamily: "var(--font-poppins)",
@@ -110,7 +110,7 @@ export default function LegalDoc({ eyebrow, title, effective, content }: LegalDo
                         paddingLeft: 22,
                         color: "#fff",
                         fontFamily: "var(--font-poppins)",
-                        fontSize: 16,
+                        fontSize: 'var(--text-base)',
                         lineHeight: 1.7,
                       }}
                     >
@@ -124,7 +124,7 @@ export default function LegalDoc({ eyebrow, title, effective, content }: LegalDo
             return (
               <p
                 key={bi}
-                style={{ color: "#fff", fontFamily: "var(--font-poppins)", fontSize: 16, lineHeight: 1.8, margin: "0 0 16px" }}
+                style={{ color: "#fff", fontFamily: "var(--font-poppins)", fontSize: 'var(--text-base)', lineHeight: 1.8, margin: "0 0 16px" }}
               >
                 {renderInline(lines.join(" "), `p-${bi}`)}
               </p>
@@ -134,7 +134,7 @@ export default function LegalDoc({ eyebrow, title, effective, content }: LegalDo
 
         {/* Legal strip */}
         <div style={{ padding: "40px 80px", borderTop: "1px solid var(--gold)", textAlign: "center" }}>
-          <p style={{ fontSize: 12, color: "var(--gold)", letterSpacing: "1px", fontFamily: "var(--font-poppins)", margin: 0 }}>
+          <p style={{ fontSize: 'var(--text-label)', color: "var(--gold)", letterSpacing: "1px", fontFamily: "var(--font-poppins)", margin: 0 }}>
             501(c)(3) &nbsp;|&nbsp; EIN: 85-3136505 &nbsp;|&nbsp; Los Angeles, CA
           </p>
         </div>

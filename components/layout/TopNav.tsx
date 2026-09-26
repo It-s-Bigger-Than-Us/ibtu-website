@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useScroll, useMotionValueEvent } from 'framer-motion'
 
 /* ═══════════════════════════════════════
    TOP NAV — yellow floating pill
@@ -30,6 +31,8 @@ export default function TopNav() {
   const isStudio = pathname?.startsWith('/studio') ?? false
   const [menuOpen, setMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const lastYRef = useRef(0)
+  const { scrollY } = useScroll()
 
   // track viewport size — switch to dropdown panel below ~900px
   useEffect(() => {
@@ -43,14 +46,13 @@ export default function TopNav() {
 
   // auto-collapse on scroll past 80px while open
   useEffect(() => {
-    if (!menuOpen || isStudio) return
-    let lastY = window.scrollY
-    const onScroll = () => {
-      if (Math.abs(window.scrollY - lastY) > 80) setMenuOpen(false)
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    if (menuOpen && !isStudio) lastYRef.current = window.scrollY
   }, [menuOpen, isStudio])
+
+  useMotionValueEvent(scrollY, 'change', (y) => {
+    if (!menuOpen || isStudio) return
+    if (Math.abs(y - lastYRef.current) > 80) setMenuOpen(false)
+  })
 
   if (isStudio) return null
 
@@ -74,7 +76,7 @@ export default function TopNav() {
     background: '#FFC700',
     border: '1.5px solid #000',
     boxShadow: '0 12px 40px -14px rgba(0,0,0,.55)',
-    transition: 'padding .4s cubic-bezier(.16,1,.3,1)',
+    transition: 'padding var(--dur-base) cubic-bezier(.16,1,.3,1)',
   }
   const logoTile: React.CSSProperties = {
     width: 40,
@@ -91,14 +93,16 @@ export default function TopNav() {
   const linksWrap: React.CSSProperties = {
     display: isMobile ? 'none' : 'flex',
     alignItems: 'center',
-    gap: 2,
+    gap: 8,
     paddingLeft: menuOpen ? 8 : 0,
     paddingRight: menuOpen ? 8 : 0,
     maxWidth: menuOpen ? 720 : 0,
     opacity: menuOpen ? 1 : 0,
     overflow: 'hidden',
-    transition:
-      'max-width .55s cubic-bezier(.16,1,.3,1), opacity .35s ease, padding .4s ease',
+    // Exit (menu closing) runs at 65% of the enter duration (finding 09).
+    transition: menuOpen
+      ? 'max-width var(--dur-slow) cubic-bezier(.16,1,.3,1), opacity var(--dur-base) ease, padding var(--dur-base) ease'
+      : 'max-width calc(var(--dur-slow) * 0.65) cubic-bezier(.16,1,.3,1), opacity calc(var(--dur-base) * 0.65) ease, padding calc(var(--dur-base) * 0.65) ease',
   }
   const mobilePanel: React.CSSProperties = {
     position: 'absolute',
@@ -113,42 +117,53 @@ export default function TopNav() {
     boxShadow: '0 18px 40px -14px rgba(0,0,0,.55)',
     display: 'flex',
     flexDirection: 'column',
-    gap: 2,
+    gap: 8,
     opacity: menuOpen ? 1 : 0,
     pointerEvents: menuOpen ? 'auto' : 'none',
-    transition: 'opacity .25s ease, transform .3s cubic-bezier(.16,1,.3,1)',
+    // Exit (menu closing) runs at 65% of the enter duration (finding 09).
+    transition: menuOpen
+      ? 'opacity var(--dur-base) ease, transform var(--dur-base) cubic-bezier(.16,1,.3,1)'
+      : 'opacity calc(var(--dur-base) * 0.65) ease, transform calc(var(--dur-base) * 0.65) cubic-bezier(.16,1,.3,1)',
     zIndex: 101,
   }
   const mobileLink: React.CSSProperties = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 'var(--nav-link-min-height)',
     color: '#000',
     textDecoration: 'none',
     fontFamily: 'var(--font-body), Poppins, sans-serif',
     fontWeight: 800,
-    fontSize: 11,
+    fontSize: 'var(--text-label)',
     letterSpacing: '.22em',
     textTransform: 'uppercase',
-    padding: '12px 18px',
+    paddingInline: 18,
     borderRadius: 12,
-    transition: 'background .2s ease',
+    transition: 'background var(--dur-fast) ease',
     whiteSpace: 'nowrap',
     textAlign: 'center',
   }
   const link: React.CSSProperties = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    minHeight: 'var(--nav-link-min-height)',
+    marginBlock: '-6px',
     color: '#000',
     textDecoration: 'none',
     fontFamily: 'var(--font-body), Poppins, sans-serif',
     fontWeight: 800,
-    fontSize: 10.5,
+    fontSize: 'var(--text-label)',
     letterSpacing: '.22em',
     textTransform: 'uppercase',
-    padding: '10px 14px',
+    paddingInline: 12,
     borderRadius: 100,
-    transition: 'background .2s ease, color .2s ease',
+    transition: 'background var(--dur-fast) ease, color var(--dur-fast) ease',
     whiteSpace: 'nowrap',
   }
   const ham: React.CSSProperties = {
-    width: 40,
-    height: 40,
+    width: 44,
+    height: 44,
     background: 'transparent',
     border: 'none',
     display: 'flex',
@@ -165,19 +180,20 @@ export default function TopNav() {
     height: 2,
     background: '#000',
     display: 'block',
-    transition: 'all .3s',
+    transition: 'all var(--dur-base)',
   }
   const donate: React.CSSProperties = {
     position: 'relative',
     overflow: 'hidden',
     display: 'inline-flex',
     alignItems: 'center',
+    minHeight: 'var(--nav-link-min-height)',
     gap: 8,
     padding: '11px 18px 11px 20px',
     borderRadius: 100,
     color: '#000',
     fontFamily: 'var(--font-body), Poppins, sans-serif',
-    fontSize: 11,
+    fontSize: 'var(--text-label)',
     fontWeight: 800,
     letterSpacing: '.22em',
     textTransform: 'uppercase',
@@ -193,7 +209,7 @@ export default function TopNav() {
   }
   const donateArrow: React.CSSProperties = {
     fontFamily: "'LOT','Bebas Neue',sans-serif",
-    fontSize: 15,
+    fontSize: 'var(--text-base)',
     lineHeight: 1,
   }
 
@@ -219,7 +235,7 @@ export default function TopNav() {
       <nav style={{ ...pill, position: 'relative' }} aria-label="Primary">
         {/* Mobile dropdown panel — appears below the pill */}
         {isMobile && (
-          <div style={mobilePanel} aria-hidden={!menuOpen}>
+          <div id="tn-mobile-panel" style={mobilePanel} aria-hidden={!menuOpen}>
             {NAV_LINKS.map(({ l, href, external }) =>
               external ? (
                 <a
@@ -259,7 +275,7 @@ export default function TopNav() {
           />
         </Link>
 
-        <div style={linksWrap} aria-hidden={!menuOpen}>
+        <div id="tn-desktop-links" style={linksWrap} aria-hidden={!menuOpen}>
           {NAV_LINKS.map(({ l, href, external }) =>
             external ? (
               <a
@@ -293,6 +309,7 @@ export default function TopNav() {
           onClick={() => setMenuOpen((m) => !m)}
           aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={menuOpen}
+          aria-controls={isMobile ? 'tn-mobile-panel' : 'tn-desktop-links'}
         >
           <span
             style={{
@@ -313,7 +330,8 @@ export default function TopNav() {
           href="https://secure.qgiv.com/for/ibt/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ ...donate, padding: isMobile ? '10px 14px 10px 16px' : '11px 18px 11px 20px', fontSize: isMobile ? 10 : 11 }}
+          className="ibtu-ambient"
+          style={{ ...donate, padding: isMobile ? '10px 14px 10px 16px' : '11px 18px 11px 20px', fontSize: 'var(--text-label)' }}
         >
           Donate <span style={donateArrow}>→</span>
         </a>

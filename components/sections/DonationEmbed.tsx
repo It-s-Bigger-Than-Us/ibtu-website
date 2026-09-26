@@ -104,7 +104,7 @@ export default function DonationEmbed({
         style={{
           display: "inline-block",
           marginTop: 20,
-          fontSize: 13,
+          fontSize: 'var(--text-sm)',
           color: "var(--gold)",
           textDecoration: "none",
           fontFamily: 'var(--font-body)',

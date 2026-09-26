@@ -1,0 +1,2100 @@
+{
+ "home-desktop": {
+  "fontSizes": {
+   "10": 5,
+   "11": 9,
+   "13": 13,
+   "14": 9,
+   "16": 21,
+   "17": 14,
+   "20": 1,
+   "22": 1,
+   "25": 30,
+   "38": 1,
+   "64": 1,
+   "72": 6,
+   "101": 3,
+   "115": 1,
+   "144": 7
+  },
+  "fontFamilies": {
+   "Poppins": 80,
+   "LOT": 42
+  },
+  "weights": {
+   "400": 42,
+   "500": 1,
+   "600": 19,
+   "700": 27,
+   "800": 27,
+   "900": 6
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 102,
+   "rgb(255, 199, 0)": 9,
+   "rgb(255, 255, 255)": 11
+  },
+  "lowContrast": [
+   {
+    "txt": "Our Impact Pillars",
+    "fs": 101,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Crisis & Disaster Stabilization",
+    "fs": 16,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "School & Youth Stability",
+    "fs": 16,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 16,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "IBTU’s crisis response infrastructure wa",
+    "fs": 17,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Our Programs",
+    "fs": 101,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   }
+  ],
+  "smallText": [
+   {
+    "txt": "About",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Programs",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Impact",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Events",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Volunteer",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Get Involved",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Contact",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Donate",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Find Your Role",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Our Mission",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Community is the infrastructure.",
+    "fs": 10,
+    "cls": "ibtu-footer-mantra"
+   },
+   {
+    "txt": "Connect",
+    "fs": 10,
+    "cls": "ibtu-footer-label"
+   },
+   {
+    "txt": "© 2026 It's Bigger Than Us 501(c)(3). Al",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Baldwin Hills Crenshaw Plaza, Suite 224-",
+    "fs": 10,
+    "cls": "ibtu-footer-address"
+   }
+  ],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 43,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 51,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 89,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 46,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 57,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 51,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 20
+   }
+  ],
+  "headings": [
+   "H1: IT'S BIGGERTHAN US",
+   "H2: This Work Does Not Happen Without You.",
+   "H2: When Systems Fail, Communities Show Up.",
+   "H2: Our Impact Pillars",
+   "H2: By the Numbers",
+   "H2: Our Programs",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H2: ThisWorkDoesNotHappenWithoutYou"
+  ],
+  "images": {
+   "total": 34,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 14,
+   "smallTargets": 10,
+   "lowContrast": 6
+  },
+  "pageHeight": 7279,
+  "animated": 28,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 8
+ },
+ "home-mobile": {
+  "fontSizes": {
+   "9": 1,
+   "10": 6,
+   "11": 10,
+   "12": 12,
+   "13": 9,
+   "14": 40,
+   "15": 10,
+   "16": 3,
+   "24": 1,
+   "32": 1,
+   "36": 1,
+   "39": 6,
+   "40": 1,
+   "47": 1,
+   "55": 8
+  },
+  "fontFamilies": {
+   "Poppins": 68,
+   "LOT": 42
+  },
+  "weights": {
+   "400": 42,
+   "500": 1,
+   "600": 19,
+   "700": 27,
+   "800": 15,
+   "900": 6
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 89,
+   "rgb(255, 199, 0)": 10,
+   "rgb(255, 255, 255)": 11
+  },
+  "lowContrast": [
+   {
+    "txt": "Our Impact Pillars",
+    "fs": 47,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "School & Youth Stability",
+    "fs": 11,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 11,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "IBTU’s crisis response infrastructure wa",
+    "fs": 16,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Our Programs",
+    "fs": 36,
+    "fg": "rgb(0, 0, 0)",
+    "bg": "rgb(0,0,0)",
+    "ratio": 1
+   }
+  ],
+  "smallText": [
+   {
+    "txt": "About",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Programs",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Impact",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Events",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Volunteer",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Get Involved",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Contact",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Donate",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Find Your Role",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Our Mission",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Crisis & Disaster Stabilization",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "School & Youth Stability",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community is the infrastructure.",
+    "fs": 10,
+    "cls": "ibtu-footer-mantra"
+   },
+   {
+    "txt": "Connect",
+    "fs": 10,
+    "cls": "ibtu-footer-label"
+   },
+   {
+    "txt": "© 2026 It's Bigger Than Us 501(c)(3). Al",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Baldwin Hills Crenshaw Plaza, Suite 224-",
+    "fs": 9,
+    "cls": "ibtu-footer-address"
+   }
+  ],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 350,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 350,
+    "h": 23
+   }
+  ],
+  "headings": [
+   "H1: IT'S BIGGERTHAN US",
+   "H2: This Work Does Not Happen Without You.",
+   "H2: When Systems Fail, Communities Show Up.",
+   "H2: Our Impact Pillars",
+   "H2: By the Numbers",
+   "H2: Our Programs",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H2: ThisWorkDoesNotHappenWithoutYou"
+  ],
+  "images": {
+   "total": 22,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 17,
+   "smallTargets": 10,
+   "lowContrast": 5
+  },
+  "pageHeight": 6586,
+  "animated": 28,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "programs-desktop": {
+  "fontSizes": {
+   "10": 10,
+   "11": 16,
+   "12": 7,
+   "13": 11,
+   "14": 9,
+   "16": 2,
+   "17": 1,
+   "42": 1,
+   "56": 7,
+   "202": 1
+  },
+  "fontFamilies": {
+   "Poppins": 54,
+   "LOT": 11
+  },
+  "weights": {
+   "400": 13,
+   "500": 1,
+   "600": 11,
+   "700": 31,
+   "800": 8,
+   "900": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 31,
+   "rgb(255, 199, 0)": 19,
+   "rgb(255, 255, 255)": 15
+  },
+  "lowContrast": [
+   {
+    "txt": "Our Programs",
+    "fs": 202,
+    "fg": "rgb(255, 199, 0)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Stay Close",
+    "fs": 14,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   },
+   {
+    "txt": "Email address",
+    "fs": 16,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   }
+  ],
+  "smallText": [
+   {
+    "txt": "About",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Programs",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Impact",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Events",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Volunteer",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Get Involved",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Contact",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Donate",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Crisis & Disaster Stabilization",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "School & Youth Stability",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community is the infrastructure.",
+    "fs": 10,
+    "cls": "ibtu-footer-mantra"
+   },
+   {
+    "txt": "Connect",
+    "fs": 10,
+    "cls": "ibtu-footer-label"
+   },
+   {
+    "txt": "© 2026 It's Bigger Than Us 501(c)(3). Al",
+    "fs": 11,
+    "cls": ""
+   }
+  ],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 43,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 51,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 89,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 46,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 57,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 51,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 20
+   }
+  ],
+  "headings": [
+   "H1: Our Programs",
+   "H2: Fire Relief& The Hub",
+   "H2: Back 2 School Festival",
+   "H2: Youth Programming",
+   "H2: Coastal Care",
+   "H2: Giving Season",
+   "H2: Wellness & Health Activations",
+   "H2: Community Health & Resource Access",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 170,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 26,
+   "smallTargets": 10,
+   "lowContrast": 3
+  },
+  "pageHeight": 5478,
+  "animated": 19,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 7
+ },
+ "programs-mobile": {
+  "fontSizes": {
+   "9": 1,
+   "10": 11,
+   "11": 14,
+   "12": 7,
+   "13": 8,
+   "14": 2,
+   "15": 11,
+   "16": 2,
+   "22": 1,
+   "28": 7,
+   "72": 1
+  },
+  "fontFamilies": {
+   "Poppins": 54,
+   "LOT": 11
+  },
+  "weights": {
+   "400": 13,
+   "500": 1,
+   "600": 11,
+   "700": 31,
+   "800": 8,
+   "900": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 31,
+   "rgb(255, 199, 0)": 19,
+   "rgb(255, 255, 255)": 15
+  },
+  "lowContrast": [
+   {
+    "txt": "Our Programs",
+    "fs": 72,
+    "fg": "rgb(255, 199, 0)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1
+   },
+   {
+    "txt": "Stay Close",
+    "fs": 14,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   },
+   {
+    "txt": "Email address",
+    "fs": 16,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   }
+  ],
+  "smallText": [
+   {
+    "txt": "About",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Programs",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Impact",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Events",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Volunteer",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Get Involved",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Contact",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Donate",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Crisis & Disaster Stabilization",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "School & Youth Stability",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Health & Resource Access",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "See This Program →",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community is the infrastructure.",
+    "fs": 10,
+    "cls": "ibtu-footer-mantra"
+   },
+   {
+    "txt": "Connect",
+    "fs": 10,
+    "cls": "ibtu-footer-label"
+   },
+   {
+    "txt": "© 2026 It's Bigger Than Us 501(c)(3). Al",
+    "fs": 10,
+    "cls": ""
+   }
+  ],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 350,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 350,
+    "h": 23
+   }
+  ],
+  "headings": [
+   "H1: Our Programs",
+   "H2: Fire Relief& The Hub",
+   "H2: Back 2 School Festival",
+   "H2: Youth Programming",
+   "H2: Coastal Care",
+   "H2: Giving Season",
+   "H2: Wellness & Health Activations",
+   "H2: Community Health & Resource Access",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 170,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 26,
+   "smallTargets": 10,
+   "lowContrast": 3
+  },
+  "pageHeight": 3951,
+  "animated": 19,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "get-involved-desktop": {
+  "fontSizes": {
+   "10": 3,
+   "11": 9,
+   "13": 13,
+   "14": 8,
+   "16": 3,
+   "17": 4,
+   "22": 1,
+   "42": 1,
+   "56": 6,
+   "72": 1,
+   "80": 2,
+   "140": 1
+  },
+  "fontFamilies": {
+   "Poppins": 45,
+   "LOT": 7
+  },
+  "weights": {
+   "400": 12,
+   "500": 1,
+   "600": 18,
+   "700": 6,
+   "800": 8,
+   "900": 7
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 27,
+   "rgb(255, 199, 0)": 10,
+   "rgb(255, 255, 255)": 15
+  },
+  "lowContrast": [
+   {
+    "txt": "Stay Close",
+    "fs": 14,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   },
+   {
+    "txt": "Email address",
+    "fs": 16,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   }
+  ],
+  "smallText": [
+   {
+    "txt": "About",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Programs",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Impact",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Events",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Volunteer",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Get Involved",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Contact",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Donate",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community is the infrastructure.",
+    "fs": 10,
+    "cls": "ibtu-footer-mantra"
+   },
+   {
+    "txt": "Connect",
+    "fs": 10,
+    "cls": "ibtu-footer-label"
+   },
+   {
+    "txt": "© 2026 It's Bigger Than Us 501(c)(3). Al",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Baldwin Hills Crenshaw Plaza, Suite 224-",
+    "fs": 10,
+    "cls": "ibtu-footer-address"
+   }
+  ],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 43,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 51,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 89,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 46,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 57,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 51,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 20
+   }
+  ],
+  "headings": [
+   "H1: There Is a Role for You Here",
+   "H2: The Numbers Don't Lie",
+   "H2: Show Up. Do the Work.",
+   "H2: This Work Does Not Happen Without You",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 14,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 12,
+   "smallTargets": 10,
+   "lowContrast": 2
+  },
+  "pageHeight": 4817,
+  "animated": 5,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 7
+ },
+ "get-involved-mobile": {
+  "fontSizes": {
+   "9": 1,
+   "10": 4,
+   "11": 7,
+   "13": 10,
+   "14": 2,
+   "15": 11,
+   "16": 5,
+   "18": 1,
+   "22": 1,
+   "32": 7,
+   "36": 2,
+   "48": 1
+  },
+  "fontFamilies": {
+   "Poppins": 45,
+   "LOT": 7
+  },
+  "weights": {
+   "400": 12,
+   "500": 1,
+   "600": 18,
+   "700": 6,
+   "800": 8,
+   "900": 7
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 27,
+   "rgb(255, 199, 0)": 10,
+   "rgb(255, 255, 255)": 15
+  },
+  "lowContrast": [
+   {
+    "txt": "Stay Close",
+    "fs": 14,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   },
+   {
+    "txt": "Email address",
+    "fs": 16,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   }
+  ],
+  "smallText": [
+   {
+    "txt": "About",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Programs",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Impact",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Events",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Volunteer",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Get Involved",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Contact",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Donate",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Community is the infrastructure.",
+    "fs": 10,
+    "cls": "ibtu-footer-mantra"
+   },
+   {
+    "txt": "Connect",
+    "fs": 10,
+    "cls": "ibtu-footer-label"
+   },
+   {
+    "txt": "© 2026 It's Bigger Than Us 501(c)(3). Al",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Baldwin Hills Crenshaw Plaza, Suite 224-",
+    "fs": 9,
+    "cls": "ibtu-footer-address"
+   }
+  ],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 350,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 350,
+    "h": 23
+   }
+  ],
+  "headings": [
+   "H1: There Is a Role for You Here",
+   "H2: The Numbers Don't Lie",
+   "H2: Show Up. Do the Work.",
+   "H2: This Work Does Not Happen Without You",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 14,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 12,
+   "smallTargets": 10,
+   "lowContrast": 2
+  },
+  "pageHeight": 5020,
+  "animated": 5,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "events-desktop": {
+  "fontSizes": {
+   "9": 20,
+   "10": 25,
+   "11": 162,
+   "12": 11,
+   "13": 11,
+   "14": 2,
+   "16": 2,
+   "17": 1,
+   "19": 1,
+   "42": 1,
+   "43": 7,
+   "72": 1,
+   "115": 1
+  },
+  "fontFamilies": {
+   "Poppins": 233,
+   "LOT": 12
+  },
+  "weights": {
+   "400": 171,
+   "500": 1,
+   "600": 11,
+   "700": 53,
+   "800": 8,
+   "900": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 55,
+   "rgb(255, 199, 0)": 40,
+   "rgb(255, 255, 255)": 150
+  },
+  "lowContrast": [
+   {
+    "txt": "Stay Close",
+    "fs": 14,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   },
+   {
+    "txt": "Email address",
+    "fs": 16,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   }
+  ],
+  "smallText": [
+   {
+    "txt": "About",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Programs",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Impact",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Events",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Volunteer",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Get Involved",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Contact",
+    "fs": 11,
+    "cls": "tn-link"
+   },
+   {
+    "txt": "Donate",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Community Calendar · Los Angeles",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Program",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "How to get involved",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "10",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "11",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "12",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "13",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "14",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "15",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "16",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "17",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "18",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "19",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "20",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "21",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "22",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "23",
+    "fs": 11,
+    "cls": ""
+   }
+  ],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 43,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 51,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 69,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 89,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 46,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 57,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 51,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 20
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 20
+   }
+  ],
+  "headings": [
+   "H1: What's Happening",
+   "H2: June 2026",
+   "H2: July 2026",
+   "H2: August 2026",
+   "H2: September 2026",
+   "H2: October 2026",
+   "H2: November 2026",
+   "H2: December 2026",
+   "H2: HOW IBTU SHOWS UP",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 19,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 207,
+   "smallTargets": 10,
+   "lowContrast": 2
+  },
+  "pageHeight": 8860,
+  "animated": 4,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 7
+ },
+ "events-mobile": {
+  "fontSizes": {
+   "9": 21,
+   "10": 26,
+   "11": 160,
+   "12": 11,
+   "13": 1,
+   "14": 2,
+   "15": 12,
+   "16": 2,
+   "22": 1,
+   "28": 7,
+   "36": 1,
+   "48": 1
+  },
+  "fontFamilies": {
+   "Poppins": 233,
+   "LOT": 12
+  },
+  "weights": {
+   "400": 171,
+   "500": 1,
+   "600": 11,
+   "700": 53,
+   "800": 8,
+   "900": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 55,
+   "rgb(255, 199, 0)": 40,
+   "rgb(255, 255, 255)": 150
+  },
+  "lowContrast": [
+   {
+    "txt": "Stay Close",
+    "fs": 14,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   },
+   {
+    "txt": "Email address",
+    "fs": 16,
+    "fg": "rgb(255, 255, 255)",
+    "bg": "rgb(255,199,0)",
+    "ratio": 1.56
+   }
+  ],
+  "smallText": [
+   {
+    "txt": "About",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Programs",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Impact",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Events",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Volunteer",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Get Involved",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Contact",
+    "fs": 11,
+    "cls": "tn-mobile-link"
+   },
+   {
+    "txt": "Donate",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "Community Calendar · Los Angeles",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "Program",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "How to get involved",
+    "fs": 10,
+    "cls": ""
+   },
+   {
+    "txt": "10",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "11",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "12",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "13",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "14",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "15",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "16",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "17",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "18",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "19",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "20",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "21",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "22",
+    "fs": 11,
+    "cls": ""
+   },
+   {
+    "txt": "23",
+    "fs": 11,
+    "cls": ""
+   }
+  ],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 101,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 79,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 350,
+    "h": 23
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 350,
+    "h": 23
+   }
+  ],
+  "headings": [
+   "H1: What's Happening",
+   "H2: June 2026",
+   "H2: July 2026",
+   "H2: August 2026",
+   "H2: September 2026",
+   "H2: October 2026",
+   "H2: November 2026",
+   "H2: December 2026",
+   "H2: HOW IBTU SHOWS UP",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 19,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "h1count": 1,
+  "counts": {
+   "smallText": 207,
+   "smallTargets": 10,
+   "lowContrast": 2
+  },
+  "pageHeight": 9716,
+  "animated": 4,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "programsRedirect": {
+  "status": 404,
+  "finalUrl": "http://localhost:3101/programs"
+ },
+ "summary": {
+  "home-desktop": {
+   "smallText": 14,
+   "smallTargets": 10,
+   "lowContrast": 6,
+   "animated": 28,
+   "focusVisibleOf8": 8,
+   "pageHeight": 7279,
+   "imagesNoAlt": 0
+  },
+  "home-mobile": {
+   "smallText": 17,
+   "smallTargets": 10,
+   "lowContrast": 5,
+   "animated": 28,
+   "focusVisibleOf8": null,
+   "pageHeight": 6586,
+   "imagesNoAlt": 0
+  },
+  "programs-desktop": {
+   "smallText": 26,
+   "smallTargets": 10,
+   "lowContrast": 3,
+   "animated": 19,
+   "focusVisibleOf8": 7,
+   "pageHeight": 5478,
+   "imagesNoAlt": 0
+  },
+  "programs-mobile": {
+   "smallText": 26,
+   "smallTargets": 10,
+   "lowContrast": 3,
+   "animated": 19,
+   "focusVisibleOf8": null,
+   "pageHeight": 3951,
+   "imagesNoAlt": 0
+  },
+  "get-involved-desktop": {
+   "smallText": 12,
+   "smallTargets": 10,
+   "lowContrast": 2,
+   "animated": 5,
+   "focusVisibleOf8": 7,
+   "pageHeight": 4817,
+   "imagesNoAlt": 0
+  },
+  "get-involved-mobile": {
+   "smallText": 12,
+   "smallTargets": 10,
+   "lowContrast": 2,
+   "animated": 5,
+   "focusVisibleOf8": null,
+   "pageHeight": 5020,
+   "imagesNoAlt": 0
+  },
+  "events-desktop": {
+   "smallText": 207,
+   "smallTargets": 10,
+   "lowContrast": 2,
+   "animated": 4,
+   "focusVisibleOf8": 7,
+   "pageHeight": 8860,
+   "imagesNoAlt": 0
+  },
+  "events-mobile": {
+   "smallText": 207,
+   "smallTargets": 10,
+   "lowContrast": 2,
+   "animated": 4,
+   "focusVisibleOf8": null,
+   "pageHeight": 9716,
+   "imagesNoAlt": 0
+  }
+ }
+}

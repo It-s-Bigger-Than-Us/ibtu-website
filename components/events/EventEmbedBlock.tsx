@@ -129,18 +129,18 @@ export default function EventEmbedBlock({ event }: { event: EventLike }) {
       <div style={{ padding: "32px clamp(24px, 3vw, 40px)", display: "flex", flexDirection: "column", gap: 16 }}>
         <div>
           {event.status && (
-            <span style={{ background: "var(--gold)", color: "#000", fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", padding: "3px 10px", borderRadius: "var(--radius-pill, 100px)" }}>
+            <span style={{ background: "var(--gold)", color: "#000", fontFamily: "var(--font-body)", fontWeight: 700, fontSize: 'var(--text-label)', letterSpacing: "2px", textTransform: "uppercase", padding: "3px 10px", borderRadius: "var(--radius-pill, 100px)" }}>
               {event.status}
             </span>
           )}
           <h3 style={{ fontFamily: "var(--font-display)", fontSize: "var(--display-card, clamp(24px,3vw,40px))", lineHeight: 1.02, textTransform: "uppercase", color: "#fff", margin: "12px 0 8px" }}>
             {event.title}
           </h3>
-          <div style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "var(--gold)", fontWeight: 600, lineHeight: 1.5 }}>
+          <div style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', color: "var(--gold)", fontWeight: 600, lineHeight: 1.5 }}>
             {event.dateStart}{event.dateEnd && ` – ${event.dateEnd}`}{event.location && <> · {event.location}</>}
           </div>
           {(event.shortDescription || event.description) && (
-            <p className="p" style={{ marginTop: 10, fontSize: 15 }}>{event.shortDescription || event.description}</p>
+            <p className="p" style={{ marginTop: 10, fontSize: 'var(--text-base)' }}>{event.shortDescription || event.description}</p>
           )}
         </div>
 

@@ -81,13 +81,12 @@ export default function PillarTabs() {
         <div style={{ position: 'relative', marginBottom: 'clamp(32px, 4vw, 48px)' }}>
           <div style={{
             display: 'flex',
+            flexWrap: isMobile ? 'wrap' : 'nowrap',
             justifyContent: isMobile ? 'flex-start' : 'center',
-            gap: isMobile ? '12px' : 'clamp(16px, 3vw, 40px)',
+            gap: isMobile ? 'var(--space-2)' : 'clamp(16px, 3vw, 40px)',
             paddingBottom: 12,
             position: 'relative',
-            overflowX: isMobile ? 'auto' : 'visible',
-            WebkitOverflowScrolling: isMobile ? 'touch' : undefined,
-            scrollbarWidth: isMobile ? 'none' : undefined,
+            overflowX: 'visible',
           }}>
             {PILLARS.map((pillar, i) => (
               <button
@@ -96,19 +95,23 @@ export default function PillarTabs() {
                 onClick={() => setActive(i)}
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: isMobile ? '11px' : 'clamp(12px, 1.3vw, 16px)',
+                  fontSize: isMobile ? 'var(--text-label)' : 'clamp(12px, 1.3vw, 16px)',
                   fontWeight: active === i ? 800 : 600,
                   textTransform: 'uppercase',
                   letterSpacing: '1.5px',
                   color: isMobile && active === i ? '#FFC700' : '#000',
                   background: isMobile && active === i ? '#000' : 'none',
-                  border: isMobile ? `1px solid ${active === i ? '#000' : 'transparent'}` : 'none',
-                  borderRadius: isMobile ? '999px' : 0,
+                  border: isMobile ? `1px solid #000` : 'none',
+                  borderRadius: isMobile ? 'var(--radius-pill)' : 0,
+                  minHeight: isMobile ? 'var(--target-min)' : undefined,
                   cursor: 'pointer',
                   padding: isMobile ? '10px 16px' : '8px 0',
                   transition: 'font-weight 0.2s',
-                  whiteSpace: 'nowrap',
-                  flexShrink: 0,
+                  whiteSpace: isMobile ? 'normal' : 'nowrap',
+                  textAlign: isMobile ? 'center' : undefined,
+                  flexShrink: isMobile ? undefined : 0,
+                  flex: isMobile ? '1 1 auto' : undefined,
+                  maxWidth: isMobile ? 'calc(50% - 4px)' : undefined,
                 }}
               >
                 {pillar.label}

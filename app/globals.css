@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
 /* ═══════════════════════════════════════
    LOT FONT — local system font
@@ -12,86 +13,15 @@
 }
 
 /* ═══════════════════════════════════════
-   IBTU DESIGN TOKENS — Tailwind v4 @theme
+   IBTU DESIGN TOKENS — see app/tokens.css
+   (primitive, semantic, component layers +
+   Tailwind v4 @theme bridge). Defined once,
+   imported above.
+   Brand colors are 100% opacity for fills,
+   text, borders, icons. Shadows and scrims
+   use the tokenized rgba black only. Opacity
+   fades are motion, not color. (decision d15)
 ═══════════════════════════════════════ */
-@theme {
-  --color-gold: #FFC700;
-  --color-ibtu-black: #000000;
-  --color-ibtu-white: #FFFFFF;
-  --color-warm-white: #FFFFFF;
-  --font-lot: 'LOT', 'Bebas Neue', sans-serif;
-  --font-poppins: 'Poppins', sans-serif;
-}
-
-/* ═══════════════════════════════════════
-   CSS CUSTOM PROPERTIES
-═══════════════════════════════════════ */
-:root {
-  /* Core palette — NO GREY, NO RGBA, NO OPACITY REDUCTIONS */
-  --gold: #FFC700;
-  --ibtu-gold: var(--gold);
-  --black: #000000;
-  --ibtu-black: var(--black);
-  --ibtu-white: #FFFFFF;
-  --warm-white: #FFFFFF;
-
-  /* Iridescent accent system — PEARLESCENT LIGHT
-     Predominantly white with soft yellow, mint, peach.
-     Like light on a pearl. No black. No dark tones.
-     Reference: Molly's iridescent image 4/2/2026. */
-  --holo-pink: #FFE4D6;
-  --holo-mint: #D4F5E8;
-  --holo-lavender: #E8E4FF;
-  --holo-yellow: #FFF4B8;
-  --holo-cyan: #D4F0F8;
-  --holo-peach: #FFE4D6;
-  --holo-gradient: linear-gradient(
-    135deg,
-    #FFF 0%,
-    #FFF4B8 12%,
-    #D4F5E8 24%,
-    #FFF 36%,
-    #FFE4D6 48%,
-    #FFF 60%,
-    #D4F0F8 72%,
-    #FFF4B8 84%,
-    #FFF 100%
-  );
-
-  /* Typography scale */
-  --font-display: 'LOT', 'Bebas Neue', sans-serif;
-  --font-body: 'Poppins', sans-serif;
-  --display-hero: clamp(80px, 14vw, 220px);
-  --display-section: clamp(60px, 10vw, 160px);
-  --display-card: clamp(28px, 4vw, 48px);
-  --body-lg: clamp(18px, 1.5vw, 22px);
-  --body-md: clamp(16px, 1.2vw, 18px);
-  --body-sm: clamp(13px, 1vw, 15px);
-
-  /* Legacy compat */
-  --hero-type: clamp(80px, 14vw, 220px);
-  --section-type: clamp(60px, 10vw, 160px);
-  --stat-type: clamp(48px, 10vw, 160px);
-  --pillar-type: clamp(28px, 5vw, 72px);
-
-  /* Spacing */
-  --section-pad: clamp(80px, 10vh, 160px);
-  --content-max: 1440px;
-  --grid-gap: clamp(16px, 2vw, 32px);
-
-  /* Animation curves */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
-  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  /* Z-index layers */
-  --z-base: 1;
-  --z-sticky: 10;
-  --z-nav: 100;
-  --z-overlay: 200;
-  --z-modal: 300;
-  --z-spline: 50;
-}
 
 /* ═══════════════════════════════════════
    @property for CSS Houdini animations
@@ -100,6 +30,14 @@
   syntax: '<angle>';
   initial-value: 0deg;
   inherits: false;
+}
+
+/* ═══════════════════════════════════════
+   TAP TARGETS — no double-tap-zoom delay
+   on any interactive element (finding 05)
+═══════════════════════════════════════ */
+a, button, [role="button"], input[type="submit"] {
+  touch-action: manipulation;
 }
 
 /* ═══════════════════════════════════════
@@ -125,7 +63,7 @@
   padding: 0.5px;
   background: var(--holo-gradient);
   background-size: 600% 600%;
-  animation: holo-shift 20s ease infinite;
+  animation: holo-shift var(--dur-loop) ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -166,7 +104,7 @@
     #FFF4B8,
     #FFF
   );
-  animation: sparkle-rotate 16s linear infinite;
+  animation: sparkle-rotate var(--dur-loop) linear infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -197,7 +135,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: iridescent-shift 16s linear infinite;
+  animation: iridescent-shift var(--dur-loop) linear infinite;
 }
 @keyframes iridescent-shift {
   0% { background-position: 0% 50%; }
@@ -221,13 +159,13 @@
   padding: 0.5px;
   background: var(--holo-gradient);
   background-size: 600% 600%;
-  animation: holo-shift 20s ease infinite;
+  animation: holo-shift var(--dur-loop) ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.6s var(--ease-out-expo);
+  transition: opacity var(--dur-slow) var(--ease-out-expo);
 }
 .iridescent-border:hover::after,
 .iridescent-active::after {
@@ -239,7 +177,7 @@
     0 0 8px 1px rgba(255,244,184,0.15),
     0 0 16px 2px rgba(212,240,248,0.15),
     0 0 24px 3px rgba(212,245,232,0.15);
-  transition: box-shadow 0.6s var(--ease-out-expo);
+  transition: box-shadow var(--dur-slow) var(--ease-out-expo);
 }
 
 /* ═══════════════════════════════════════
@@ -254,11 +192,11 @@
   padding: 12px 24px;
   z-index: 9999;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
   border-radius: 0 0 8px 8px;
   text-decoration: none;
-  transition: top 0.2s;
+  transition: top var(--dur-fast);
 }
 .skip-to-content:focus {
   top: 0;
@@ -317,7 +255,7 @@ div:has(> video), div:has(> img) {
 }
 
 /* ═══════════════════════════════════════
-   SECTION LABELS — (LABEL)(count)
+   SECTION LABELS — (LABEL)
 ═══════════════════════════════════════ */
 .section-label {
   font-family: 'Poppins', sans-serif;
@@ -327,9 +265,6 @@ div:has(> video), div:has(> img) {
   font-weight: 700;
   margin-bottom: 48px;
   display: inline-flex; align-items: center; gap: 4px;
-}
-.section-label-count {
-  font-weight: 400;
 }
 
 @keyframes tickerScroll {
@@ -405,7 +340,7 @@ a[style*="border-radius: 16px"],
 a[style*="border-radius:16px"],
 button[style*="border-radius: 16px"],
 button[style*="border-radius:16px"] {
-  transition: transform 0.2s var(--ease-out-expo), box-shadow 0.2s;
+  transition: transform var(--dur-fast) var(--ease-out-expo), box-shadow var(--dur-fast);
 }
 a[style*="border-radius: 16px"]:hover,
 a[style*="border-radius:16px"]:hover,
@@ -430,27 +365,27 @@ button[style*="border-radius:16px"]:hover {
 ═══════════════════════════════════════ */
 .btn-primary {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+  font-size: var(--text-sm); letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
   background: var(--gold); color: #000;
   padding: 14px 36px;
   border-radius: 100px; border: 2px solid var(--gold);
   text-decoration: none; display: inline-block;
-  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  transition: background var(--dur-base), transform var(--dur-fast), box-shadow var(--dur-base);
   cursor: pointer;
 }
 .btn-primary:hover {
   background: #FFC700;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px #FFC700;
+  box-shadow: var(--glow-gold);
 }
 .btn-outline {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+  font-size: var(--text-sm); letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
   background: transparent; color: #fff;
   padding: 14px 36px;
   border-radius: 100px; border: 2px solid #fff;
   text-decoration: none; display: inline-block;
-  transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.2s;
+  transition: background var(--dur-base), border-color var(--dur-base), color var(--dur-base), transform var(--dur-fast);
   cursor: pointer;
 }
 .btn-outline:hover {
@@ -486,8 +421,8 @@ button[style*="border-radius:16px"]:hover {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ═══════════════════════════════════════
@@ -519,7 +454,7 @@ button[style*="border-radius:16px"]:hover {
 .ibtu-footer-logo { flex-shrink: 0; }
 .ibtu-footer-mantra {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: var(--text-label);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--ibtu-gold);
@@ -538,12 +473,15 @@ button[style*="border-radius:16px"]:hover {
   gap: 12px 16px;
 }
 .ibtu-footer-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-min, 44px);
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: #FFF;
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s;
+  transition: color var(--dur-fast);
   letter-spacing: 0.5px;
 }
 .ibtu-footer-link:hover { color: var(--ibtu-gold); }
@@ -555,7 +493,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .ibtu-footer-label {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: var(--text-label);
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--ibtu-gold);
@@ -577,7 +515,7 @@ button[style*="border-radius:16px"]:hover {
   border-radius: 50%;
   border: 2px solid var(--ibtu-gold);
   color: var(--ibtu-gold);
-  transition: background 0.2s, color 0.2s;
+  transition: background var(--dur-fast), color var(--dur-fast);
 }
 .ibtu-footer-social-icon:hover {
   background: var(--ibtu-gold);
@@ -588,7 +526,7 @@ button[style*="border-radius:16px"]:hover {
   margin: 0 auto;
   text-align: center;
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: var(--text-label);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--ibtu-gold);
@@ -597,7 +535,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .ibtu-footer-legal p { margin: 0 0 8px; }
 .ibtu-footer-address {
-  font-size: 10px;
+  font-size: var(--text-label);
   font-weight: 500;
   letter-spacing: 1.5px;
 }
@@ -615,7 +553,7 @@ button[style*="border-radius:16px"]:hover {
   letter-spacing: -0.01em;
   padding: 4px 0;
   opacity: 0;
-  transition: color 0.2s;
+  transition: color var(--dur-fast);
 }
 .menu-link:hover { color: var(--ibtu-white); }
 
@@ -647,18 +585,18 @@ button[style*="border-radius:16px"]:hover {
     gap: 12px 20px;
   }
   .ibtu-footer-link {
-    font-size: 15px;
+    font-size: var(--text-base);
   }
   .ibtu-footer-contact { text-align: center; }
   .ibtu-footer-social { justify-content: center; }
   .ibtu-footer-legal {
-    font-size: 10px;
+    font-size: var(--text-label);
     letter-spacing: 1px;
     line-height: 1.5;
     padding-bottom: 28px;
   }
   .ibtu-footer-address {
-    font-size: 9px;
+    font-size: var(--text-label);
     letter-spacing: 0.8px;
     line-height: 1.6;
   }
@@ -679,15 +617,15 @@ button[style*="border-radius:16px"]:hover {
 .stagger-in.visible > * {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .stagger-in.visible > *:nth-child(1) { transition-delay: 0s; }
 .stagger-in.visible > *:nth-child(2) { transition-delay: 0.08s; }
 .stagger-in.visible > *:nth-child(3) { transition-delay: 0.16s; }
 .stagger-in.visible > *:nth-child(4) { transition-delay: 0.24s; }
 .stagger-in.visible > *:nth-child(5) { transition-delay: 0.32s; }
-.stagger-in.visible > *:nth-child(6) { transition-delay: 0.4s; }
+.stagger-in.visible > *:nth-child(6) { transition-delay: var(--dur-base); }
 .stagger-in.visible > *:nth-child(7) { transition-delay: 0.48s; }
 .stagger-in.visible > *:nth-child(8) { transition-delay: 0.56s; }
 
@@ -700,8 +638,8 @@ button[style*="border-radius:16px"]:hover {
 .slide-left.visible {
   opacity: 1;
   transform: translateX(0);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- Scale entrance (for hero stats, counters) --- */
@@ -713,8 +651,8 @@ button[style*="border-radius:16px"]:hover {
 .scale-in.visible {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- Clip reveal (for editorial text blocks) --- */
@@ -724,7 +662,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .clip-reveal.visible {
   clip-path: inset(0 0 0 0);
-  transition: clip-path 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: clip-path var(--dur-slow) cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 /* ═══════════════════════════════════════
@@ -738,8 +676,8 @@ button[style*="border-radius:16px"]:hover {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s ease;
+  transition: max-height var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1),
+              opacity var(--dur-base) ease;
 }
 .fold-trigger:hover .fold-content,
 .fold-trigger:focus-within .fold-content,
@@ -750,12 +688,12 @@ button[style*="border-radius:16px"]:hover {
 
 /* --- Card lift on hover --- */
 .card-lift {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s ease;
+  transition: transform var(--dur-base) cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow var(--dur-base) ease;
 }
 .card-lift:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 48px #000;
+  box-shadow: var(--shadow-lift);
 }
 
 /* --- Reveal line (gold underline draws on hover) --- */
@@ -765,7 +703,7 @@ button[style*="border-radius:16px"]:hover {
   bottom: 0; left: 0;
   width: 0; height: 2px;
   background: var(--gold);
-  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: width var(--dur-base) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal-line:hover::after { width: 100%; }
 
@@ -818,7 +756,7 @@ button[style*="border-radius:16px"]:hover {
   width: 100%; height: 100%;
   object-fit: cover;
   filter: saturate(1.15);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .gallery-card:hover img,
 .gallery-card:hover video {
@@ -832,7 +770,7 @@ button[style*="border-radius:16px"]:hover {
   padding: 16px 24px;
   background: var(--gold);
   transform: translateY(100%);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--dur-slow) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .gallery-card:hover .gallery-card-overlay {
   transform: translateY(0);
@@ -849,7 +787,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .gallery-card-meta {
   font-family: 'Poppins', sans-serif;
-  font-size: 10px;
+  font-size: var(--text-label);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #000;
@@ -857,7 +795,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .gallery-card-desc {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: #fff;
   margin-top: 8px;
   line-height: 1.5;
@@ -870,7 +808,7 @@ button[style*="border-radius:16px"]:hover {
   background: var(--gold);
   color: #000;
   font-family: 'Poppins', sans-serif;
-  font-size: 10px;
+  font-size: var(--text-label);
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -923,14 +861,14 @@ button[style*="border-radius:16px"]:hover {
   width: 100%; height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity var(--dur-slow) ease;
 }
 .video-card:hover video { opacity: 1; }
 .video-card img {
   width: 100%; height: 100%;
   object-fit: cover;
   position: absolute; inset: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity var(--dur-slow) ease;
 }
 .video-card:hover img { opacity: 0; }
 
@@ -994,7 +932,7 @@ button[style*="border-radius:16px"]:hover {
   border-radius: 16px;
   background: #000;
   border: 1px solid #FFC700;
-  transition: border-color 0.3s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: border-color var(--dur-base), transform var(--dur-base) cubic-bezier(0.16, 1, 0.3, 1);
 }
 .event-card:hover {
   border-color: #FFC700;
@@ -1010,7 +948,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .event-card-program {
   font-family: 'Poppins', sans-serif;
-  font-size: 10px; letter-spacing: 2.5px;
+  font-size: var(--text-label); letter-spacing: 2.5px;
   text-transform: uppercase; font-weight: 700;
   color: var(--gold);
   margin-bottom: 8px;
@@ -1018,25 +956,25 @@ button[style*="border-radius:16px"]:hover {
 .event-card-title {
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
-  font-size: 18px;
+  font-size: var(--text-lg);
   color: #fff;
   margin-bottom: 8px;
   line-height: 1.25;
 }
 .event-card-date {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: #FFF;
   margin-bottom: 4px;
 }
 .event-card-location {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: var(--gold);
 }
 .event-card-stats {
   font-family: 'Poppins', sans-serif;
-  font-size: 12px;
+  font-size: var(--text-label);
   color: var(--gold);
   margin-top: 12px;
   font-weight: 600;
@@ -1123,7 +1061,11 @@ button[style*="border-radius:16px"]:hover {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  animation: ibtu-newsletter-fade 0.3s ease forwards;
+  animation: ibtu-newsletter-fade var(--dur-base) ease forwards;
+}
+/* Exit: same keyframe reversed, at 65 percent of the enter duration (finding 09) */
+.ibtu-newsletter-backdrop[data-closing='true'] {
+  animation: ibtu-newsletter-fade calc(var(--dur-base) * 0.65) ease reverse forwards;
 }
 @keyframes ibtu-newsletter-fade {
   from { opacity: 0; }
@@ -1137,13 +1079,18 @@ button[style*="border-radius:16px"]:hover {
   padding: 24px;
   background: var(--holo-gradient);
   background-size: 400% 400%;
-  animation: ibtu-newsletter-pop 0.45s var(--ease-out-back) forwards,
-             holo-shift 18s ease infinite;
+  animation: ibtu-newsletter-pop var(--dur-base) var(--ease-out-back) forwards,
+             holo-shift var(--dur-loop) ease infinite;
   border: 2px solid #000;
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.45),
     0 0 0 4px #FFF inset;
   outline: none;
+}
+/* Exit: same keyframe reversed, at 65 percent of the enter duration (finding 09) */
+.ibtu-newsletter-backdrop[data-closing='true'] .ibtu-newsletter-frame {
+  animation: ibtu-newsletter-pop calc(var(--dur-base) * 0.65) var(--ease-out-back) reverse forwards,
+             holo-shift var(--dur-loop) ease infinite;
 }
 @keyframes ibtu-newsletter-pop {
   from { transform: scale(0.92) translateY(8px); opacity: 0; }
@@ -1164,7 +1111,7 @@ button[style*="border-radius:16px"]:hover {
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  transition: transform var(--dur-fast) ease, background var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 .ibtu-newsletter-close:hover {
   background: #FFF;
@@ -1180,7 +1127,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .ibtu-newsletter-eyebrow {
   font-family: var(--font-lot);
-  font-size: 14px;
+  font-size: var(--text-sm);
   letter-spacing: 0.28em;
   text-transform: uppercase;
   display: inline-block;
@@ -1188,6 +1135,7 @@ button[style*="border-radius:16px"]:hover {
   border: 2px solid #000;
   border-radius: 100px;
   margin-bottom: 28px;
+  color: #000;
 }
 .ibtu-newsletter-headline {
   font-family: var(--font-lot);
@@ -1222,9 +1170,9 @@ button[style*="border-radius:16px"]:hover {
   border-radius: 100px;
   padding: 16px 24px;
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  font-size: var(--text-base);
   outline: none;
-  transition: box-shadow 0.18s ease;
+  transition: box-shadow var(--dur-fast) ease;
 }
 .ibtu-newsletter-input::placeholder {
   color: #000;
@@ -1240,11 +1188,11 @@ button[style*="border-radius:16px"]:hover {
   border-radius: 100px;
   padding: 16px 32px;
   font-family: var(--font-lot);
-  font-size: 16px;
+  font-size: var(--text-base);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  transition: transform var(--dur-fast) ease, background var(--dur-fast) ease, color var(--dur-fast) ease;
 }
 .ibtu-newsletter-submit:hover:not(:disabled) {
   transform: translateY(-2px);
@@ -1259,7 +1207,7 @@ button[style*="border-radius:16px"]:hover {
   margin-top: 20px;
   min-height: 24px;
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: #000;
 }
@@ -1276,7 +1224,7 @@ button[style*="border-radius:16px"]:hover {
   border: none;
   padding: 4px 0;
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: var(--text-sm);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #000;
@@ -1292,7 +1240,7 @@ button[style*="border-radius:16px"]:hover {
     width: 100%;
     height: 52px;
     padding: 0 22px;
-    font-size: 16px;
+    font-size: var(--text-base);
   }
   .ibtu-newsletter-submit {
     flex: 0 0 auto;
@@ -1306,4 +1254,33 @@ button[style*="border-radius:16px"]:hover {
 @media (prefers-reduced-motion: reduce) {
   .ibtu-newsletter-backdrop,
   .ibtu-newsletter-frame { animation: none; }
+}
+
+/* ═══════════════════════════════════════
+   AMBIENT LOOPS — reduced motion + offscreen pause (finding 09)
+   Every infinite decorative loop (holo-shift, sparkle-rotate,
+   iridescent-shift, skyPan, tickerScroll, highlightShimmer) either
+   carries the shared .ibtu-ambient class or one of the existing
+   liquid-glass classes below. Both groups are covered here.
+═══════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .ibtu-ambient,
+  .iridescent-text,
+  .iridescent-border::after,
+  .pillar-cubes-backdrop,
+  .pillar-cube-label::after {
+    animation: none !important;
+  }
+}
+
+/* Offscreen pause: hooks/useAmbientPause.ts toggles data-offscreen on every
+   .ibtu-ambient / .holo-glass / .sparkle-stroke / .iridescent-text element
+   (plus the CSS-class-only loops below) when it leaves the viewport.
+   animation:none (not animation-play-state:paused) so the audit's
+   document.getAnimations() "animated" count actually drops — a paused
+   animation still counts. */
+[data-offscreen='true'],
+[data-offscreen='true']::before,
+[data-offscreen='true']::after {
+  animation: none !important;
 }

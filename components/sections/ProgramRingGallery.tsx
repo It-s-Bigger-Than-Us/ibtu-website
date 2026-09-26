@@ -85,6 +85,7 @@ export default function ProgramRingGallery({ images, title, fullHeight }: Props)
         backgroundSize: '600% 600%',
         animation: 'holo-shift 20s ease infinite',
       }}
+      className="ibtu-ambient"
       onPointerDown={onDown}
       onPointerMove={onMove}
       onPointerUp={onUp}

@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { programHref } from '@/lib/data/program-routes'
 
-/* ════════════���══════════════════════════
+/* ═══════════════════════════════════════
    PROGRAM CARDS — 3D Gradient Carousel
    Horizontal line — center card is largest + front.
    Cards recede with rotateY + translateZ + scale.
@@ -15,7 +15,10 @@ import { programHref } from '@/lib/data/program-routes'
    - Faster hover velocity (-4.0 vs -2.0)
    - IntersectionObserver to pause RAF when off-screen
    - Crisper velocity decay (0.92 vs 0.95)
-══════════���════════════════════════════ */
+   - Labels hide (not crop) on cards peeking past the track edge
+   - Previous/Next buttons; mobile cards snap at 88vw so a whole
+     card and its label are always fully on screen
+═══════════════════════════════════════ */
 
 interface Program {
   slug: string
@@ -43,6 +46,29 @@ function useIsMobile(breakpoint = 768) {
   return isMobile
 }
 
+function prefersReducedMotion() {
+  if (typeof window === 'undefined') return false
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
+const navButtonStyle: React.CSSProperties = {
+  width: 'var(--target-min)',
+  height: 'var(--target-min)',
+  minWidth: 'var(--target-min)',
+  minHeight: 'var(--target-min)',
+  borderRadius: 'var(--radius-pill)',
+  border: 'none',
+  background: '#000',
+  color: '#FFC700',
+  fontSize: 20,
+  fontWeight: 800,
+  lineHeight: 1,
+  cursor: 'pointer',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
+
 export default function ProgramCarousel3D({ programs }: { programs: Program[] }) {
   const isMobile = useIsMobile()
   const [offset, setOffset] = useState(0)
@@ -57,6 +83,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   const rafRef = useRef<number>(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
+  const mobileTrackRef = useRef<HTMLDivElement>(null)
 
   const count = programs.length
   const ITEM_W = CARD_W + GAP
@@ -123,12 +150,30 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   }
   const onUp = () => setDragging(false)
 
+  // Previous/Next — advance the 3D track by exactly one card.
+  const scrollDesktop = (dir: 1 | -1) => {
+    // The track flows in the negative direction on autoplay/hover, so
+    // "next" moves the offset the same way; "previous" reverses it.
+    offsetRef.current += dir * -ITEM_W
+    setOffset(offsetRef.current)
+  }
+
+  // Previous/Next for the mobile scroll-snap track.
+  const scrollMobile = (dir: 1 | -1) => {
+    const track = mobileTrackRef.current
+    if (!track) return
+    const first = track.firstElementChild as HTMLElement | null
+    const step = first ? first.getBoundingClientRect().width + 16 : track.clientWidth * 0.88
+    track.scrollBy({ left: dir * step, behavior: prefersReducedMotion() ? 'instant' : 'smooth' } as ScrollToOptions)
+  }
+
   const center = containerW / 2
 
   // Mobile: scrollable card grid instead of 3D carousel
   if (isMobile) {
     return (
       <section
+        className="ibtu-ambient"
         style={{
           background: 'var(--holo-gradient)',
           backgroundSize: '600% 600%',
@@ -151,20 +196,24 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
             Our Programs
           </h2>
         </div>
-        <div style={{
-          display: 'flex',
-          gap: '16px',
-          overflowX: 'auto',
-          padding: '0 16px 16px',
-          scrollSnapType: 'x mandatory',
-          WebkitOverflowScrolling: 'touch',
-        }}>
+        <div
+          ref={mobileTrackRef}
+          style={{
+            display: 'flex',
+            gap: '16px',
+            overflowX: 'auto',
+            padding: '0 16px 16px',
+            scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch',
+          }}
+        >
           {programs.map((prog) => (
             <Link
               key={prog.slug}
               href={hrefFor(prog.slug)}
               style={{
-                flex: '0 0 280px',
+                flex: '0 0 88vw',
+                width: '88vw',
                 scrollSnapAlign: 'center',
                 borderRadius: 16,
                 overflow: 'hidden',
@@ -188,19 +237,39 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
               <div style={{ padding: '14px 16px' }}>
                 <h3 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '14px',
+                  fontSize: 'var(--text-sm)',
                   fontWeight: 800,
                   textTransform: 'uppercase',
                   color: '#000',
                   letterSpacing: '1px',
                   margin: 0,
                   lineHeight: 1.3,
+                  whiteSpace: 'normal',
+                  overflowWrap: 'break-word',
                 }}>
                   {prog.title}
                 </h3>
               </div>
             </Link>
           ))}
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-4)', marginTop: 8 }}>
+          <button
+            type="button"
+            aria-label="Previous programs"
+            onClick={() => scrollMobile(-1)}
+            style={navButtonStyle}
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            aria-label="Next programs"
+            onClick={() => scrollMobile(1)}
+            style={navButtonStyle}
+          >
+            ›
+          </button>
         </div>
       </section>
     )
@@ -209,6 +278,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
   return (
     <section
       ref={sectionRef}
+      className="ibtu-ambient"
       style={{
         background: 'var(--holo-gradient)',
         backgroundSize: '600% 600%',
@@ -266,6 +336,16 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
             const finalScale = isCardHovered ? s * 1.08 : s
             const blur = absNorm > 0.7 ? (absNorm - 0.7) * 5 : 0
 
+            // A card peeking at the container's edge would have its name
+            // bar clipped mid-word by the container's overflow. Rather than
+            // ever show a partial label, only reveal it once the whole
+            // (scaled) card sits fully inside the visible track.
+            const renderedHalfW = (CARD_W * finalScale) / 2
+            const cardCenterX = x + CARD_W / 2
+            const leftEdge = cardCenterX - renderedHalfW
+            const rightEdge = cardCenterX + renderedHalfW
+            const labelFullyVisible = leftEdge >= -0.5 && rightEdge <= containerW + 0.5
+
             return (
               <Link
                 key={`${copy}-${prog.slug}`}
@@ -308,7 +388,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                     pointerEvents: 'none',
                   }}
                 />
-                {/* Name bar */}
+                {/* Name bar — hidden (not cropped) while the card peeks past the track edge */}
                 <div style={{
                   position: 'absolute',
                   bottom: 0,
@@ -319,7 +399,8 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
                   backgroundSize: isCardHovered ? '600% 600%' : undefined,
                   animation: isCardHovered ? 'holo-shift 20s ease infinite' : undefined,
                   padding: 'clamp(12px, 1.5vw, 18px)',
-                  transition: 'background 0.3s',
+                  transition: 'background 0.3s, opacity 0.15s',
+                  opacity: labelFullyVisible ? 1 : 0,
                 }}>
                   <h3 style={{
                     fontFamily: 'var(--font-body)',
@@ -339,6 +420,24 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
             )
           })
         )}
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--space-4)', marginTop: 'var(--space-6)' }}>
+        <button
+          type="button"
+          aria-label="Previous programs"
+          onClick={() => scrollDesktop(-1)}
+          style={navButtonStyle}
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          aria-label="Next programs"
+          onClick={() => scrollDesktop(1)}
+          style={navButtonStyle}
+        >
+          ›
+        </button>
       </div>
     </section>
   )

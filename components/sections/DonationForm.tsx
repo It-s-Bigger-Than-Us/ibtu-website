@@ -107,7 +107,7 @@ export default function DonationForm({
             borderRadius: 4,
           }}
         >
-          <p style={{ fontSize: 14, color: "#FFC700", fontFamily: 'var(--font-body)', fontWeight: 600, margin: 0 }}>
+          <p style={{ fontSize: 'var(--text-sm)', color: "#FFC700", fontFamily: 'var(--font-body)', fontWeight: 600, margin: 0 }}>
             Complete your ${finalAmount.toLocaleString()} {frequency === "monthly" ? "monthly " : ""}gift to {programTitle} below.
           </p>
         </div>
@@ -132,7 +132,7 @@ export default function DonationForm({
           style={{
             display: "inline-block",
             marginTop: 16,
-            fontSize: 13,
+            fontSize: 'var(--text-sm)',
             color: "var(--gold)",
             textDecoration: "none",
             fontFamily: 'var(--font-body)',
@@ -147,7 +147,7 @@ export default function DonationForm({
           style={{
             display: "block",
             marginTop: 12,
-            fontSize: 12,
+            fontSize: 'var(--text-label)',
             color: "var(--gold)",
             background: "none",
             border: "none",
@@ -162,7 +162,7 @@ export default function DonationForm({
         {/* Security note */}
         <p
           style={{
-            fontSize: 11,
+            fontSize: 'var(--text-label)',
             color: "var(--gold)",
             textAlign: "center",
             marginTop: 16,
@@ -191,7 +191,7 @@ export default function DonationForm({
               color: frequency === f ? "#000" : "var(--gold)",
               border: `1px solid ${frequency === f ? "#FFC700" : "#FFC700"}`,
               fontFamily: 'var(--font-body)',
-              fontSize: 13,
+              fontSize: 'var(--text-sm)',
               fontWeight: 700,
               letterSpacing: "2px",
               textTransform: "uppercase",
@@ -206,7 +206,7 @@ export default function DonationForm({
 
       {/* Sponsor tier label if packages exist */}
       {sponsorPackages && sponsorPackages.length > 0 && (
-        <p style={{ fontSize: 11, letterSpacing: "2px", textTransform: "uppercase", color: "var(--gold)", fontFamily: 'var(--font-body)', fontWeight: 600, marginBottom: 12 }}>
+        <p style={{ fontSize: 'var(--text-label)', letterSpacing: "2px", textTransform: "uppercase", color: "var(--gold)", fontFamily: 'var(--font-body)', fontWeight: 600, marginBottom: 12 }}>
           Choose an amount or match a sponsor tier
         </p>
       )}
@@ -236,7 +236,7 @@ export default function DonationForm({
                 color: amount === a ? "#000" : "#fff",
                 border: `1px solid ${amount === a ? "#FFC700" : "#FFC700"}`,
                 fontFamily: 'var(--font-body)',
-                fontSize: matchingTier ? 14 : 18,
+                fontSize: matchingTier ? 'var(--text-sm)' : 'var(--text-lg)',
                 fontWeight: 900,
                 cursor: "pointer",
                 transition: "all 0.15s",
@@ -249,7 +249,7 @@ export default function DonationForm({
                 <span
                   style={{
                     display: "block",
-                    fontSize: 9,
+                    fontSize: 'var(--text-label)',
                     fontWeight: 600,
                     letterSpacing: "1px",
                     textTransform: "uppercase",
@@ -274,7 +274,7 @@ export default function DonationForm({
             top: "50%",
             transform: "translateY(-50%)",
             color: "var(--gold)",
-            fontSize: 18,
+            fontSize: 'var(--text-lg)',
             fontWeight: 700,
           }}
         >
@@ -295,7 +295,7 @@ export default function DonationForm({
             border: "1px solid #FFC700",
             color: "#fff",
             fontFamily: 'var(--font-body)',
-            fontSize: 18,
+            fontSize: 'var(--text-lg)',
             fontWeight: 700,
             outline: "none",
             borderRadius: 4,
@@ -315,7 +315,7 @@ export default function DonationForm({
           color: "#000",
           border: "none",
           fontFamily: 'var(--font-body)',
-          fontSize: 14,
+          fontSize: 'var(--text-sm)',
           fontWeight: 700,
           letterSpacing: "3px",
           textTransform: "uppercase",
@@ -332,7 +332,7 @@ export default function DonationForm({
       {/* Security note */}
       <p
         style={{
-          fontSize: 11,
+          fontSize: 'var(--text-label)',
           color: "var(--gold)",
           textAlign: "center",
           marginTop: 16,

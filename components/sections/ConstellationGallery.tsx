@@ -177,7 +177,7 @@ export default function ConstellationGallery({
               }}>
                 <span style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '11px',
+                  fontSize: 'var(--text-label)',
                   fontWeight: 700,
                   letterSpacing: '1px',
                   textTransform: 'uppercase',

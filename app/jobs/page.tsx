@@ -28,7 +28,7 @@ export default function JobsPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#FFC700",
@@ -72,7 +72,7 @@ export default function JobsPage() {
           <span
             style={{
               display: "block",
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               color: "#FFC700",
@@ -129,7 +129,7 @@ export default function JobsPage() {
           </h2>
           <p
             style={{
-              fontSize: 16,
+              fontSize: 'var(--text-base)',
               color: "#000",
               maxWidth: 560,
               margin: "0 auto 48px",
@@ -148,7 +148,7 @@ export default function JobsPage() {
               color: "#FFC700",
               padding: "18px 48px",
               fontFamily: 'var(--font-body)',
-              fontSize: 13,
+              fontSize: 'var(--text-sm)',
               letterSpacing: "3px",
               textTransform: "uppercase",
               fontWeight: 700,

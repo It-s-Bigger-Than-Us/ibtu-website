@@ -25,18 +25,9 @@ export const Gold: Story = {
   },
 }
 
-export const GoldWithCount: Story = {
-  args: {
-    label: 'Programs',
-    count: 7,
-    color: 'gold',
-  },
-}
-
 export const White: Story = {
   args: {
     label: 'Impact',
-    count: 2,
     color: 'white',
   },
 }
@@ -44,7 +35,6 @@ export const White: Story = {
 export const Black: Story = {
   args: {
     label: 'Events',
-    count: 54,
     color: 'black',
   },
   decorators: [

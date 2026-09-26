@@ -64,7 +64,7 @@ export default function EventModal({ event, onClose }: { event: Ev | null; onClo
             cursor: 'pointer',
             fontFamily: 'var(--font-body)',
             fontWeight: 800,
-            fontSize: 20,
+            fontSize: 'var(--text-lg)',
             lineHeight: 1,
           }}
         >

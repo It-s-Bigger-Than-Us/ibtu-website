@@ -1,0 +1,886 @@
+{
+ "home-desktop": {
+  "fontSizes": {
+   "12": 6,
+   "14": 21,
+   "16": 21,
+   "17": 1,
+   "20": 1,
+   "22": 1,
+   "25": 10,
+   "38": 1,
+   "72": 6,
+   "101": 3,
+   "115": 1,
+   "144": 7
+  },
+  "fontFamilies": {
+   "Poppins": 58,
+   "LOT": 21
+  },
+  "weights": {
+   "400": 21,
+   "500": 1,
+   "600": 19,
+   "700": 12,
+   "800": 20,
+   "900": 6
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 61,
+   "rgb(255, 199, 0)": 7,
+   "rgb(255, 255, 255)": 11
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 46,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 54,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 95,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 50,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 61,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 55,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 21
+   }
+  ],
+  "headings": [
+   "H1: IT'S BIGGERTHAN US",
+   "H2: This Work Does Not Happen Without You.",
+   "H2: When Systems Fail, Communities Show Up.",
+   "H2: Our Impact Pillars",
+   "H2: By the Numbers",
+   "H2: Our Programs",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H2: ThisWorkDoesNotHappenWithoutYou"
+  ],
+  "images": {
+   "total": 34,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 2,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "imageGroundSkipped": 2
+  },
+  "pageHeight": 7291,
+  "animated": 28,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 8
+ },
+ "home-mobile": {
+  "fontSizes": {
+   "12": 9,
+   "13": 6,
+   "14": 21,
+   "16": 13,
+   "24": 1,
+   "36": 1,
+   "39": 6,
+   "40": 1,
+   "47": 1,
+   "55": 8
+  },
+  "fontFamilies": {
+   "Poppins": 46,
+   "LOT": 21
+  },
+  "weights": {
+   "400": 21,
+   "500": 1,
+   "600": 19,
+   "700": 12,
+   "800": 8,
+   "900": 6
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 48,
+   "rgb(255, 199, 0)": 8,
+   "rgb(255, 255, 255)": 11
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: IT'S BIGGERTHAN US",
+   "H2: This Work Does Not Happen Without You.",
+   "H2: When Systems Fail, Communities Show Up.",
+   "H2: Our Impact Pillars",
+   "H2: By the Numbers",
+   "H2: Our Programs",
+   "H3: Fire Relief & The Hub",
+   "H3: Back 2 School Festival",
+   "H3: School Program",
+   "H3: Coastal Care",
+   "H3: Giving Season",
+   "H3: Wellness & Health Activations",
+   "H2: ThisWorkDoesNotHappenWithoutYou"
+  ],
+  "images": {
+   "total": 22,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 2,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 2
+  },
+  "pageHeight": 6643,
+  "animated": 28,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "programs-desktop": {
+  "fontSizes": {
+   "12": 26,
+   "14": 20,
+   "17": 2,
+   "42": 1,
+   "56": 7,
+   "202": 1
+  },
+  "fontFamilies": {
+   "Poppins": 46,
+   "LOT": 11
+  },
+  "weights": {
+   "400": 12,
+   "500": 1,
+   "600": 11,
+   "700": 31,
+   "800": 1,
+   "900": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 26,
+   "rgb(255, 199, 0)": 18,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 46,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 54,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 95,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 50,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 61,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 55,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 21
+   }
+  ],
+  "headings": [
+   "H1: Our Programs",
+   "H2: Fire Relief& The Hub",
+   "H2: Back 2 School Festival",
+   "H2: Youth Programming",
+   "H2: Coastal Care",
+   "H2: Giving Season",
+   "H2: Wellness & Health Activations",
+   "H2: Community Health & Resource Access",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 170,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 5547,
+  "animated": 19,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 7
+ },
+ "programs-mobile": {
+  "fontSizes": {
+   "12": 26,
+   "13": 7,
+   "14": 3,
+   "15": 1,
+   "16": 11,
+   "22": 1,
+   "28": 7,
+   "72": 1
+  },
+  "fontFamilies": {
+   "Poppins": 46,
+   "LOT": 11
+  },
+  "weights": {
+   "400": 12,
+   "500": 1,
+   "600": 11,
+   "700": 31,
+   "800": 1,
+   "900": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 26,
+   "rgb(255, 199, 0)": 18,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: Our Programs",
+   "H2: Fire Relief& The Hub",
+   "H2: Back 2 School Festival",
+   "H2: Youth Programming",
+   "H2: Coastal Care",
+   "H2: Giving Season",
+   "H2: Wellness & Health Activations",
+   "H2: Community Health & Resource Access",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 170,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 4030,
+  "animated": 19,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "get-involved-desktop": {
+  "fontSizes": {
+   "12": 5,
+   "14": 21,
+   "16": 1,
+   "17": 5,
+   "22": 1,
+   "42": 1,
+   "56": 6,
+   "72": 1,
+   "80": 2,
+   "140": 1
+  },
+  "fontFamilies": {
+   "Poppins": 37,
+   "LOT": 7
+  },
+  "weights": {
+   "400": 11,
+   "500": 1,
+   "600": 18,
+   "700": 6,
+   "800": 1,
+   "900": 7
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 23,
+   "rgb(255, 199, 0)": 8,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 46,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 54,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 95,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 50,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 61,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 55,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 21
+   }
+  ],
+  "headings": [
+   "H1: There Is a Role for You Here",
+   "H2: The Numbers Don't Lie",
+   "H2: Show Up. Do the Work.",
+   "H2: This Work Does Not Happen Without You",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 14,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 4829,
+  "animated": 5,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 7
+ },
+ "get-involved-mobile": {
+  "fontSizes": {
+   "12": 5,
+   "13": 7,
+   "14": 5,
+   "15": 1,
+   "16": 14,
+   "18": 1,
+   "22": 1,
+   "32": 7,
+   "36": 2,
+   "48": 1
+  },
+  "fontFamilies": {
+   "Poppins": 37,
+   "LOT": 7
+  },
+  "weights": {
+   "400": 11,
+   "500": 1,
+   "600": 18,
+   "700": 6,
+   "800": 1,
+   "900": 7
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 23,
+   "rgb(255, 199, 0)": 8,
+   "rgb(255, 255, 255)": 13
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: There Is a Role for You Here",
+   "H2: The Numbers Don't Lie",
+   "H2: Show Up. Do the Work.",
+   "H2: This Work Does Not Happen Without You",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 14,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 5076,
+  "animated": 5,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "events-desktop": {
+  "fontSizes": {
+   "12": 211,
+   "14": 13,
+   "17": 2,
+   "19": 1,
+   "42": 1,
+   "43": 7,
+   "72": 1,
+   "115": 1
+  },
+  "fontFamilies": {
+   "Poppins": 225,
+   "LOT": 12
+  },
+  "weights": {
+   "400": 170,
+   "500": 1,
+   "600": 11,
+   "700": 53,
+   "800": 1,
+   "900": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 49,
+   "rgb(255, 199, 0)": 40,
+   "rgb(255, 255, 255)": 148
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [
+   {
+    "tag": "A",
+    "name": "About",
+    "w": 46,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Programs",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Impact",
+    "w": 54,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Volunteer",
+    "w": 74,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Get Involved",
+    "w": 95,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Events",
+    "w": 50,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Contact",
+    "w": 61,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "Donate",
+    "w": 55,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "info@itsbiggerthanusla.org",
+    "w": 400,
+    "h": 21
+   },
+   {
+    "tag": "A",
+    "name": "(323) 207-0221",
+    "w": 400,
+    "h": 21
+   }
+  ],
+  "headings": [
+   "H1: What's Happening",
+   "H2: June 2026",
+   "H2: July 2026",
+   "H2: August 2026",
+   "H2: September 2026",
+   "H2: October 2026",
+   "H2: November 2026",
+   "H2: December 2026",
+   "H2: HOW IBTU SHOWS UP",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 19,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 9020,
+  "animated": 4,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  },
+  "focusVisibleOf8": 7
+ },
+ "events-mobile": {
+  "fontSizes": {
+   "12": 211,
+   "14": 3,
+   "15": 2,
+   "16": 11,
+   "22": 1,
+   "28": 7,
+   "36": 1,
+   "48": 1
+  },
+  "fontFamilies": {
+   "Poppins": 225,
+   "LOT": 12
+  },
+  "weights": {
+   "400": 170,
+   "500": 1,
+   "600": 11,
+   "700": 53,
+   "800": 1,
+   "900": 1
+  },
+  "colors": {
+   "rgb(0, 0, 0)": 49,
+   "rgb(255, 199, 0)": 40,
+   "rgb(255, 255, 255)": 148
+  },
+  "lowContrast": [],
+  "smallText": [],
+  "smallTargets": [],
+  "headings": [
+   "H1: What's Happening",
+   "H2: June 2026",
+   "H2: July 2026",
+   "H2: August 2026",
+   "H2: September 2026",
+   "H2: October 2026",
+   "H2: November 2026",
+   "H2: December 2026",
+   "H2: HOW IBTU SHOWS UP",
+   "H2: Join theNewsletter"
+  ],
+  "images": {
+   "total": 19,
+   "noAlt": 0
+  },
+  "buttonsNoName": 0,
+  "focusVisibleMissing": 0,
+  "ticker": 0,
+  "imageGroundSkipped": 1,
+  "h1count": 1,
+  "counts": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1
+  },
+  "pageHeight": 10267,
+  "animated": 4,
+  "hasSkipLink": true,
+  "landmarks": {
+   "main": 1,
+   "nav": 1,
+   "footer": 1
+  }
+ },
+ "programsRedirect": {
+  "status": 404,
+  "finalUrl": "http://localhost:3104/programs"
+ },
+ "summary": {
+  "home-desktop": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "imageGroundSkipped": 2,
+   "animated": 28,
+   "focusVisibleOf8": 8,
+   "pageHeight": 7291,
+   "imagesNoAlt": 0
+  },
+  "home-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 2,
+   "animated": 28,
+   "focusVisibleOf8": null,
+   "pageHeight": 6643,
+   "imagesNoAlt": 0
+  },
+  "programs-desktop": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 19,
+   "focusVisibleOf8": 7,
+   "pageHeight": 5547,
+   "imagesNoAlt": 0
+  },
+  "programs-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 19,
+   "focusVisibleOf8": null,
+   "pageHeight": 4030,
+   "imagesNoAlt": 0
+  },
+  "get-involved-desktop": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 5,
+   "focusVisibleOf8": 7,
+   "pageHeight": 4829,
+   "imagesNoAlt": 0
+  },
+  "get-involved-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 5,
+   "focusVisibleOf8": null,
+   "pageHeight": 5076,
+   "imagesNoAlt": 0
+  },
+  "events-desktop": {
+   "smallText": 0,
+   "smallTargets": 10,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 4,
+   "focusVisibleOf8": 7,
+   "pageHeight": 9020,
+   "imagesNoAlt": 0
+  },
+  "events-mobile": {
+   "smallText": 0,
+   "smallTargets": 0,
+   "lowContrast": 0,
+   "imageGroundSkipped": 1,
+   "animated": 4,
+   "focusVisibleOf8": null,
+   "pageHeight": 10267,
+   "imagesNoAlt": 0
+  }
+ }
+}
