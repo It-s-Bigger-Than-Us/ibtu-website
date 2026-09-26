@@ -124,7 +124,7 @@ export default function TopNav() {
     textDecoration: 'none',
     fontFamily: 'var(--font-body), Poppins, sans-serif',
     fontWeight: 800,
-    fontSize: 11,
+    fontSize: 'var(--text-label)',
     letterSpacing: '.22em',
     textTransform: 'uppercase',
     padding: '12px 18px',
@@ -138,7 +138,7 @@ export default function TopNav() {
     textDecoration: 'none',
     fontFamily: 'var(--font-body), Poppins, sans-serif',
     fontWeight: 800,
-    fontSize: 10.5,
+    fontSize: 'var(--text-label)',
     letterSpacing: '.22em',
     textTransform: 'uppercase',
     padding: '10px 14px',
@@ -177,7 +177,7 @@ export default function TopNav() {
     borderRadius: 100,
     color: '#000',
     fontFamily: 'var(--font-body), Poppins, sans-serif',
-    fontSize: 11,
+    fontSize: 'var(--text-label)',
     fontWeight: 800,
     letterSpacing: '.22em',
     textTransform: 'uppercase',
@@ -193,7 +193,7 @@ export default function TopNav() {
   }
   const donateArrow: React.CSSProperties = {
     fontFamily: "'LOT','Bebas Neue',sans-serif",
-    fontSize: 15,
+    fontSize: 'var(--text-base)',
     lineHeight: 1,
   }
 
@@ -313,7 +313,7 @@ export default function TopNav() {
           href="https://secure.qgiv.com/for/ibt/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ ...donate, padding: isMobile ? '10px 14px 10px 16px' : '11px 18px 11px 20px', fontSize: isMobile ? 10 : 11 }}
+          style={{ ...donate, padding: isMobile ? '10px 14px 10px 16px' : '11px 18px 11px 20px', fontSize: 'var(--text-label)' }}
         >
           Donate <span style={donateArrow}>→</span>
         </a>

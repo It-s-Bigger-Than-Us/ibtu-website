@@ -188,7 +188,7 @@ export default function ProgramCarousel3D({ programs }: { programs: Program[] })
               <div style={{ padding: '14px 16px' }}>
                 <h3 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '14px',
+                  fontSize: 'var(--text-sm)',
                   fontWeight: 800,
                   textTransform: 'uppercase',
                   color: '#000',

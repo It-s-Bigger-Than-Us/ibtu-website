@@ -31,7 +31,7 @@ export default async function EventsPage() {
       <EventsCalendar events={upcoming} programs={programs} />
       <section style={{ background: "#FFC700", padding: "clamp(60px, 8vw, 100px) clamp(24px, 5vw, 80px)" }}>
         <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
-          <span style={{ display: "block", fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 20 }}>
+          <span style={{ display: "block", fontSize: 'var(--text-label)', letterSpacing: "3px", textTransform: "uppercase", color: "#000", fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 20 }}>
             Event Archive
           </span>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: "clamp(36px, 5vw, 72px)", lineHeight: 0.95, color: "#000", marginBottom: 28 }}>

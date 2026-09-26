@@ -105,7 +105,7 @@ export default function EventsCalendar({
   const chipBase: React.CSSProperties = {
     fontFamily: 'var(--font-body)',
     fontWeight: 700,
-    fontSize: 12,
+    fontSize: 'var(--text-label)',
     letterSpacing: '1.5px',
     textTransform: 'uppercase',
     padding: '8px 16px',
@@ -122,7 +122,7 @@ export default function EventsCalendar({
     <main style={{ background: '#000', minHeight: '100vh' }}>
       {/* Hero */}
       <div style={{ padding: '140px clamp(24px,5vw,80px) 48px', borderBottom: '1px solid var(--gold)' }}>
-        <span style={{ display: 'block', fontSize: 11, letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 18, fontFamily: 'var(--font-body)', fontWeight: 700 }}>
+        <span style={{ display: 'block', fontSize: 'var(--text-label)', letterSpacing: '3px', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 18, fontFamily: 'var(--font-body)', fontWeight: 700 }}>
           Community Calendar · Los Angeles
         </span>
         <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(48px, 8vw, 120px)', lineHeight: 0.9, color: '#fff', marginBottom: 24, textTransform: 'uppercase' }}>
@@ -137,7 +137,7 @@ export default function EventsCalendar({
       {/* Filters */}
       <div style={{ padding: 'clamp(28px,4vw,48px) clamp(24px,5vw,80px) 8px' }}>
         <div style={{ marginBottom: 20 }}>
-          <span style={{ display: 'block', fontSize: 10, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 10 }}>
+          <span style={{ display: 'block', fontSize: 'var(--text-label)', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 10 }}>
             Program
           </span>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
@@ -150,7 +150,7 @@ export default function EventsCalendar({
           </div>
         </div>
         <div>
-          <span style={{ display: 'block', fontSize: 10, letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 10 }}>
+          <span style={{ display: 'block', fontSize: 'var(--text-label)', letterSpacing: '2px', textTransform: 'uppercase', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontWeight: 700, marginBottom: 10 }}>
             How to get involved
           </span>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
@@ -166,7 +166,7 @@ export default function EventsCalendar({
       {/* Month grids */}
       <div style={{ padding: 'clamp(28px,4vw,48px) clamp(24px,5vw,80px) 60px' }}>
         {months.ordered.length === 0 && months.undated.length === 0 && (
-          <p style={{ fontFamily: 'var(--font-body)', color: 'var(--gold)', fontSize: 16 }}>
+          <p style={{ fontFamily: 'var(--font-body)', color: 'var(--gold)', fontSize: 'var(--text-base)' }}>
             No events match these filters yet — try clearing a filter.
           </p>
         )}
@@ -190,7 +190,7 @@ export default function EventsCalendar({
               </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 1, background: 'var(--gold)', border: '1px solid var(--gold)' }}>
                 {WEEKDAYS.map((w, i) => (
-                  <div key={`wd-${i}`} style={{ background: '#000', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 11, letterSpacing: '1px', textAlign: 'center', padding: '8px 0' }}>
+                  <div key={`wd-${i}`} style={{ background: '#000', color: 'var(--gold)', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 'var(--text-label)', letterSpacing: '1px', textAlign: 'center', padding: '8px 0' }}>
                     {w}
                   </div>
                 ))}
@@ -199,7 +199,7 @@ export default function EventsCalendar({
                   return (
                     <div key={`c-${i}`} style={{ background: '#000', minHeight: 96, padding: 6, display: 'flex', flexDirection: 'column', gap: 4 }}>
                       {day && (
-                        <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, color: dayEvents ? 'var(--gold)' : '#fff', fontWeight: dayEvents ? 700 : 400 }}>
+                        <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-label)', color: dayEvents ? 'var(--gold)' : '#fff', fontWeight: dayEvents ? 700 : 400 }}>
                           {day}
                         </span>
                       )}
@@ -210,10 +210,10 @@ export default function EventsCalendar({
                             key={j}
                             type="button"
                             onClick={() => setActive(ev)}
-                            style={{ display: 'block', width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', background: 'var(--gold)', color: '#000', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 10, lineHeight: 1.2, padding: '4px 6px', borderRadius: 6, overflow: 'hidden' }}
+                            style={{ display: 'block', width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', background: 'var(--gold)', color: '#000', fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: 'var(--text-label)', lineHeight: 1.2, padding: '4px 6px', borderRadius: 6, overflow: 'hidden' }}
                           >
                             {ev.title}
-                            <span style={{ display: 'block', fontWeight: 400, fontSize: 9 }}>{label}</span>
+                            <span style={{ display: 'block', fontWeight: 400, fontSize: 'var(--text-label)' }}>{label}</span>
                           </button>
                         )
                       })}
@@ -239,8 +239,8 @@ export default function EventsCalendar({
                   onClick={() => setActive(ev)}
                   style={{ background: '#000', width: '100%', textAlign: 'left', border: 'none', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, padding: '14px 16px' }}
                 >
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: '#fff', fontWeight: 600 }}>{ev.title}</span>
-                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--gold)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', whiteSpace: 'nowrap' }}>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-base)', color: '#fff', fontWeight: 600 }}>{ev.title}</span>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--text-label)', color: 'var(--gold)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', whiteSpace: 'nowrap' }}>
                     {ev.programTitle || ev.dateStart || 'TBD'}
                   </span>
                 </button>

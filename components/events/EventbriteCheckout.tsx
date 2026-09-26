@@ -98,7 +98,7 @@ export default function EventbriteCheckout({ eventId, eventUrl }: Props) {
         href={registerUrl}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 600, color: "var(--gold)", textDecoration: "underline", textUnderlineOffset: 3 }}
+        style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', fontWeight: 600, color: "var(--gold)", textDecoration: "underline", textUnderlineOffset: 3 }}
       >
         or register on Eventbrite ↗
       </a>

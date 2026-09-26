@@ -54,7 +54,7 @@ export default function DonateButton() {
               style={{
                 display: 'block',
                 fontFamily: 'var(--font-body)',
-                fontSize: '11px',
+                fontSize: 'var(--text-label)',
                 fontWeight: 700,
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',

@@ -184,7 +184,7 @@
   padding: 12px 24px;
   z-index: 9999;
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 700;
   border-radius: 0 0 8px 8px;
   text-decoration: none;
@@ -247,7 +247,7 @@ div:has(> video), div:has(> img) {
 }
 
 /* ═══════════════════════════════════════
-   SECTION LABELS — (LABEL)(count)
+   SECTION LABELS — (LABEL)
 ═══════════════════════════════════════ */
 .section-label {
   font-family: 'Poppins', sans-serif;
@@ -257,9 +257,6 @@ div:has(> video), div:has(> img) {
   font-weight: 700;
   margin-bottom: 48px;
   display: inline-flex; align-items: center; gap: 4px;
-}
-.section-label-count {
-  font-weight: 400;
 }
 
 @keyframes tickerScroll {
@@ -360,7 +357,7 @@ button[style*="border-radius:16px"]:hover {
 ═══════════════════════════════════════ */
 .btn-primary {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+  font-size: var(--text-sm); letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
   background: var(--gold); color: #000;
   padding: 14px 36px;
   border-radius: 100px; border: 2px solid var(--gold);
@@ -375,7 +372,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .btn-outline {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+  font-size: var(--text-sm); letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
   background: transparent; color: #fff;
   padding: 14px 36px;
   border-radius: 100px; border: 2px solid #fff;
@@ -449,7 +446,7 @@ button[style*="border-radius:16px"]:hover {
 .ibtu-footer-logo { flex-shrink: 0; }
 .ibtu-footer-mantra {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: var(--text-label);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--ibtu-gold);
@@ -469,7 +466,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .ibtu-footer-link {
   font-family: var(--font-body);
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: #FFF;
   text-decoration: none;
   font-weight: 600;
@@ -485,7 +482,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .ibtu-footer-label {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: var(--text-label);
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--ibtu-gold);
@@ -518,7 +515,7 @@ button[style*="border-radius:16px"]:hover {
   margin: 0 auto;
   text-align: center;
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: var(--text-label);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--ibtu-gold);
@@ -527,7 +524,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .ibtu-footer-legal p { margin: 0 0 8px; }
 .ibtu-footer-address {
-  font-size: 10px;
+  font-size: var(--text-label);
   font-weight: 500;
   letter-spacing: 1.5px;
 }
@@ -577,18 +574,18 @@ button[style*="border-radius:16px"]:hover {
     gap: 12px 20px;
   }
   .ibtu-footer-link {
-    font-size: 15px;
+    font-size: var(--text-base);
   }
   .ibtu-footer-contact { text-align: center; }
   .ibtu-footer-social { justify-content: center; }
   .ibtu-footer-legal {
-    font-size: 10px;
+    font-size: var(--text-label);
     letter-spacing: 1px;
     line-height: 1.5;
     padding-bottom: 28px;
   }
   .ibtu-footer-address {
-    font-size: 9px;
+    font-size: var(--text-label);
     letter-spacing: 0.8px;
     line-height: 1.6;
   }
@@ -779,7 +776,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .gallery-card-meta {
   font-family: 'Poppins', sans-serif;
-  font-size: 10px;
+  font-size: var(--text-label);
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #000;
@@ -787,7 +784,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .gallery-card-desc {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: #fff;
   margin-top: 8px;
   line-height: 1.5;
@@ -800,7 +797,7 @@ button[style*="border-radius:16px"]:hover {
   background: var(--gold);
   color: #000;
   font-family: 'Poppins', sans-serif;
-  font-size: 10px;
+  font-size: var(--text-label);
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -940,7 +937,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .event-card-program {
   font-family: 'Poppins', sans-serif;
-  font-size: 10px; letter-spacing: 2.5px;
+  font-size: var(--text-label); letter-spacing: 2.5px;
   text-transform: uppercase; font-weight: 700;
   color: var(--gold);
   margin-bottom: 8px;
@@ -948,25 +945,25 @@ button[style*="border-radius:16px"]:hover {
 .event-card-title {
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
-  font-size: 18px;
+  font-size: var(--text-lg);
   color: #fff;
   margin-bottom: 8px;
   line-height: 1.25;
 }
 .event-card-date {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: #FFF;
   margin-bottom: 4px;
 }
 .event-card-location {
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: var(--text-sm);
   color: var(--gold);
 }
 .event-card-stats {
   font-family: 'Poppins', sans-serif;
-  font-size: 12px;
+  font-size: var(--text-label);
   color: var(--gold);
   margin-top: 12px;
   font-weight: 600;
@@ -1110,7 +1107,7 @@ button[style*="border-radius:16px"]:hover {
 }
 .ibtu-newsletter-eyebrow {
   font-family: var(--font-lot);
-  font-size: 14px;
+  font-size: var(--text-sm);
   letter-spacing: 0.28em;
   text-transform: uppercase;
   display: inline-block;
@@ -1152,7 +1149,7 @@ button[style*="border-radius:16px"]:hover {
   border-radius: 100px;
   padding: 16px 24px;
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  font-size: var(--text-base);
   outline: none;
   transition: box-shadow 0.18s ease;
 }
@@ -1170,7 +1167,7 @@ button[style*="border-radius:16px"]:hover {
   border-radius: 100px;
   padding: 16px 32px;
   font-family: var(--font-lot);
-  font-size: 16px;
+  font-size: var(--text-base);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
@@ -1189,7 +1186,7 @@ button[style*="border-radius:16px"]:hover {
   margin-top: 20px;
   min-height: 24px;
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 600;
   color: #000;
 }
@@ -1206,7 +1203,7 @@ button[style*="border-radius:16px"]:hover {
   border: none;
   padding: 4px 0;
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: var(--text-sm);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #000;
@@ -1222,7 +1219,7 @@ button[style*="border-radius:16px"]:hover {
     width: 100%;
     height: 52px;
     padding: 0 22px;
-    font-size: 16px;
+    font-size: var(--text-base);
   }
   .ibtu-newsletter-submit {
     flex: 0 0 auto;

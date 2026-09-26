@@ -114,7 +114,7 @@ export default function StickyStorySection({ slides, sectionLabel }: StickyStory
           left: 'clamp(32px, 5vw, 80px)',
           zIndex: 10,
           fontFamily: "var(--font-body)",
-          fontSize: '10px',
+          fontSize: 'var(--text-label)',
           letterSpacing: '3px',
           textTransform: 'uppercase',
           fontWeight: 700,
@@ -189,7 +189,7 @@ export default function StickyStorySection({ slides, sectionLabel }: StickyStory
             {slide.label && (
               <span style={{
                 fontFamily: "var(--font-body)",
-                fontSize: '10px',
+                fontSize: 'var(--text-label)',
                 letterSpacing: '3px',
                 textTransform: 'uppercase',
                 fontWeight: 700,

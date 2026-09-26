@@ -206,7 +206,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                 }}>
                   <span style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '10px',
+                    fontSize: 'var(--text-label)',
                     letterSpacing: '3px',
                     textTransform: 'uppercase',
                     fontWeight: 700,
@@ -252,7 +252,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                     <span style={{
                       display: 'inline-block',
                       fontFamily: 'var(--font-body)',
-                      fontSize: '10px',
+                      fontSize: 'var(--text-label)',
                       fontWeight: 700,
                       letterSpacing: '3px',
                       textTransform: 'uppercase',
@@ -283,7 +283,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                   {prog.cardStat && (
                     <span style={{
                       fontFamily: 'var(--font-body)',
-                      fontSize: '12px',
+                      fontSize: 'var(--text-label)',
                       fontWeight: 700,
                       color: textColor,
                       letterSpacing: '1px',
@@ -306,7 +306,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                         borderRadius: '16px',
                         border: `1px solid ${textColor}`,
                         fontFamily: 'var(--font-body)',
-                        fontSize: '11px',
+                        fontSize: 'var(--text-label)',
                         fontWeight: 700,
                         letterSpacing: '2px',
                         textTransform: 'uppercase',
@@ -325,7 +325,7 @@ export default function ProgramGallerySection({ programs }: { programs: ProgramD
                         padding: '12px 28px',
                         borderRadius: '16px',
                         fontFamily: 'var(--font-body)',
-                        fontSize: '11px',
+                        fontSize: 'var(--text-label)',
                         fontWeight: 700,
                         letterSpacing: '2px',
                         textTransform: 'uppercase',

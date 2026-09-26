@@ -84,7 +84,7 @@ export default function ProgramDetailClient({
           <div style={{ maxWidth: 'var(--content-max)', margin: '0 auto' }}>
             <div style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: '4px',
               textTransform: 'uppercase',
               color: '#FFC700',

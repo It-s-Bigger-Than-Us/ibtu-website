@@ -127,7 +127,7 @@ export default function StickyFlipbook({
                 <p
                   style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: 13,
+                    fontSize: 'var(--text-sm)',
                     color: "#000",
                     fontWeight: 600,
                     maxWidth: 500,
@@ -172,7 +172,7 @@ export default function StickyFlipbook({
               top: 32,
               right: 80,
               fontFamily: 'var(--font-body)',
-              fontSize: 13,
+              fontSize: 'var(--text-sm)',
               fontWeight: 700,
               color: "#FFC700",
               letterSpacing: "2px",

@@ -308,7 +308,7 @@ export default function HeroReveal() {
           <span
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '10px',
+              fontSize: 'var(--text-label)',
               textTransform: 'uppercase',
               letterSpacing: '4px',
               color: '#000',
@@ -359,7 +359,7 @@ export default function HeroReveal() {
               padding: '16px 40px',
               borderRadius: '16px',
               fontFamily: 'var(--font-body)',
-              fontSize: '13px',
+              fontSize: 'var(--text-sm)',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               fontWeight: 700,

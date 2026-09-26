@@ -125,7 +125,7 @@ export default function MissionSplit({
             <span
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '10px',
+                fontSize: 'var(--text-label)',
                 letterSpacing: '3px',
                 textTransform: 'uppercase',
                 fontWeight: 700,

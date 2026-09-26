@@ -70,7 +70,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 <span
                   style={{
                     display: "inline-block",
-                    fontSize: 10,
+                    fontSize: 'var(--text-label)',
                     letterSpacing: "2px",
                     textTransform: "uppercase",
                     color: "#FFC700",
@@ -93,7 +93,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                   {ev.title}
                 </div>
                 {ev.proofStats && (
-                  <div style={{ fontSize: 13, color: "#fff", lineHeight: 1.5 }}>
+                  <div style={{ fontSize: 'var(--text-sm)', color: "#fff", lineHeight: 1.5 }}>
                     {ev.proofStats}
                   </div>
                 )}
@@ -101,7 +101,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
               <span
                 style={{
                   marginTop: 16,
-                  fontSize: 10,
+                  fontSize: 'var(--text-label)',
                   letterSpacing: "2px",
                   textTransform: "uppercase",
                   color: "var(--gold)",
@@ -156,7 +156,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 background: "none",
                 border: "none",
                 color: "var(--gold)",
-                fontSize: 24,
+                fontSize: 'var(--text-xl)',
                 cursor: "pointer",
                 fontFamily: 'var(--font-body)',
               }}
@@ -168,7 +168,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
             <span
               style={{
                 display: "block",
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: "3px",
                 textTransform: "uppercase",
                 color: "var(--gold)",
@@ -191,12 +191,12 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
               {selectedEvent.title.toUpperCase()}
             </h3>
             {selectedEvent.location && (
-              <div style={{ fontSize: 15, color: "#fff", marginBottom: 20 }}>
+              <div style={{ fontSize: 'var(--text-base)', color: "#fff", marginBottom: 20 }}>
                 {selectedEvent.location}
               </div>
             )}
             {selectedEvent.shortDescription && (
-              <p style={{ fontSize: 16, color: "#fff", lineHeight: 1.7, marginBottom: 24 }}>
+              <p style={{ fontSize: 'var(--text-base)', color: "#fff", lineHeight: 1.7, marginBottom: 24 }}>
                 {selectedEvent.shortDescription}
               </p>
             )}
@@ -210,7 +210,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
               >
                 <span
                   style={{
-                    fontSize: 11,
+                    fontSize: 'var(--text-label)',
                     letterSpacing: "2px",
                     textTransform: "uppercase",
                     color: "#000",
@@ -222,7 +222,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
                 >
                   Impact
                 </span>
-                <div style={{ fontSize: 15, color: "#000", fontWeight: 600, lineHeight: 1.6 }}>
+                <div style={{ fontSize: 'var(--text-base)', color: "#000", fontWeight: 600, lineHeight: 1.6 }}>
                   {selectedEvent.proofStats}
                 </div>
               </div>
@@ -230,7 +230,7 @@ export default function EventGallery({ events }: { events: GalleryEvent[] }) {
 
             {/* Gallery images placeholder — will show when images are uploaded to Sanity */}
             {selectedEvent.galleryImages && selectedEvent.galleryImages.length > 0 && (
-              <div style={{ fontSize: 13, color: "var(--gold)", fontStyle: "italic" }}>
+              <div style={{ fontSize: 'var(--text-sm)', color: "var(--gold)", fontStyle: "italic" }}>
                 {selectedEvent.galleryImages.length} photos available
               </div>
             )}

@@ -80,13 +80,13 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
       </div>
 
       {ev.location && (
-        <div style={{ fontSize: 12, color: "#fff", marginBottom: 6 }}>
+        <div style={{ fontSize: 'var(--text-label)', color: "#fff", marginBottom: 6 }}>
           {ev.location}
         </div>
       )}
 
       {ev.dateStart && (
-        <div style={{ fontSize: 12, color: "#FFC700" }}>
+        <div style={{ fontSize: 'var(--text-label)', color: "#FFC700" }}>
           {ev.dateStart}
         </div>
       )}
@@ -94,7 +94,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
       {ev.proofStats && (
         <div
           style={{
-            fontSize: 11,
+            fontSize: 'var(--text-label)',
             color: "var(--gold)",
             marginTop: 10,
             lineHeight: 1.5,
@@ -127,7 +127,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
           >
             PAST EVENTS
           </h2>
-          <p style={{ fontSize: 14, color: "var(--gold)", marginBottom: 40, fontFamily: 'var(--font-body)' }}>
+          <p style={{ fontSize: 'var(--text-sm)', color: "var(--gold)", marginBottom: 40, fontFamily: 'var(--font-body)' }}>
             Click any card to view details
           </p>
         </div>
@@ -193,7 +193,7 @@ export default function EventGallery3D({ events }: { events: GalleryEvent[] }) {
         >
           PAST EVENTS
         </h2>
-        <p style={{ fontSize: 14, color: "var(--gold)", marginBottom: 40, fontFamily: 'var(--font-body)' }}>
+        <p style={{ fontSize: 'var(--text-sm)', color: "var(--gold)", marginBottom: 40, fontFamily: 'var(--font-body)' }}>
           Click any card to view details
         </p>
       </div>
@@ -366,7 +366,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
             background: "none",
             border: "none",
             color: "var(--gold)",
-            fontSize: 24,
+            fontSize: 'var(--text-xl)',
             cursor: "pointer",
             fontFamily: 'var(--font-body)',
           }}
@@ -377,7 +377,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
         <span
           style={{
             display: "block",
-            fontSize: 11,
+            fontSize: 'var(--text-label)',
             letterSpacing: "3px",
             textTransform: "uppercase",
             color: "#FFC700",
@@ -400,12 +400,12 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
           {event.title.toUpperCase()}
         </h3>
         {event.location && (
-          <div style={{ fontSize: 15, color: "#fff", marginBottom: 20 }}>
+          <div style={{ fontSize: 'var(--text-base)', color: "#fff", marginBottom: 20 }}>
             {event.location}
           </div>
         )}
         {event.shortDescription && (
-          <p style={{ fontSize: 16, color: "#fff", lineHeight: 1.7, marginBottom: 24 }}>
+          <p style={{ fontSize: 'var(--text-base)', color: "#fff", lineHeight: 1.7, marginBottom: 24 }}>
             {event.shortDescription}
           </p>
         )}
@@ -419,7 +419,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
           >
             <span
               style={{
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 color: "#000",
@@ -431,7 +431,7 @@ function renderModal(event: { _id: string; title: string; year: number; dateStar
             >
               Impact
             </span>
-            <div style={{ fontSize: 15, color: "#000", fontWeight: 600, lineHeight: 1.6 }}>
+            <div style={{ fontSize: 'var(--text-base)', color: "#000", fontWeight: 600, lineHeight: 1.6 }}>
               {event.proofStats}
             </div>
           </div>

@@ -146,7 +146,7 @@ export default function StickyGridScroll({
               padding: '14px 32px',
               borderRadius: '16px',
               fontFamily: 'var(--font-body)',
-              fontSize: '12px',
+              fontSize: 'var(--text-label)',
               fontWeight: 700,
               letterSpacing: '2px',
               textTransform: 'uppercase',

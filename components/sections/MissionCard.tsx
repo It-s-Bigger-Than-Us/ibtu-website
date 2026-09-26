@@ -56,7 +56,7 @@ export default function MissionCard() {
           <span
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '10px',
+              fontSize: 'var(--text-label)',
               letterSpacing: '4px',
               textTransform: 'uppercase',
               fontWeight: 700,

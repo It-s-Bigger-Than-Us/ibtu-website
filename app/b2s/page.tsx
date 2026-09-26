@@ -161,7 +161,7 @@ export default async function Back2SchoolPage() {
       {/* ── HERO ── */}
       <section style={{ position: "relative", overflow: "hidden", background: "#FFC700" }}>
         <div style={{ position: "relative", zIndex: 1, padding: "clamp(120px, 15vh, 180px) clamp(32px, 5vw, 80px) clamp(48px, 6vh, 80px)", maxWidth: "var(--content-max)", margin: "0 auto", width: "100%" }}>
-          <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "4px", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: 20 }}>
+          <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', letterSpacing: "4px", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: 20 }}>
             7th Annual · August 1, 2026 · Baldwin Hills Crenshaw Plaza
           </span>
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(56px, 12vw, 180px)", lineHeight: 0.88, textTransform: "uppercase", color: "#000", letterSpacing: "-0.025em", marginBottom: 24 }}>
@@ -171,10 +171,10 @@ export default async function Back2SchoolPage() {
             Free backpacks, school supplies, haircuts, health screenings, food, and community resources. No registration. No ID. Just show up.
           </p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-            <a href="#sponsor" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "16px 40px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
+            <a href="#sponsor" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "16px 40px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
               Become a Sponsor
             </a>
-            <a href={B2S_SPONSOR_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", border: "2px solid #000", color: "#000", padding: "14px 38px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
+            <a href={B2S_SPONSOR_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", border: "2px solid #000", color: "#000", padding: "14px 38px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
               Donate $7
             </a>
           </div>
@@ -205,7 +205,7 @@ export default async function Back2SchoolPage() {
       {/* ── PICK YOUR LANE — 4-TILE CTA CHECKERBOARD ── */}
       <section style={{ background: "#FFC700", padding: "clamp(60px, 8vw, 100px) clamp(32px, 5vw, 80px)", borderTop: "2px solid #000", borderBottom: "2px solid #000" }}>
         <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
-          <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "4px", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: 16 }}>
+          <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', letterSpacing: "4px", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: 16 }}>
             Pick Your Lane
           </span>
           <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(40px, 7vw, 96px)", lineHeight: 0.9, textTransform: "uppercase", color: "#000", letterSpacing: "-0.02em", marginBottom: "clamp(40px, 5vw, 64px)" }}>
@@ -218,17 +218,17 @@ export default async function Back2SchoolPage() {
                 <Image src="/email/b2s-2026-launch/gallery-stage.jpg" alt="Back 2 School drumline performing on the main stage." fill sizes="(max-width: 768px) 50vw, 25vw" style={{ objectFit: "cover" }} />
               </div>
               <div style={{ background: "#000", padding: "32px 20px", textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", aspectRatio: "1 / 1" }}>
-                <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "2.5px", textTransform: "uppercase", color: "#FFC700", fontWeight: 700, marginBottom: 10 }}>Open to all</span>
+                <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', letterSpacing: "2.5px", textTransform: "uppercase", color: "#FFC700", fontWeight: 700, marginBottom: 10 }}>Open to all</span>
                 <h3 style={{ fontFamily: "var(--font-body)", fontWeight: 900, fontSize: "clamp(22px, 2.4vw, 32px)", color: "#FFC700", textTransform: "uppercase", letterSpacing: "0.02em", marginBottom: 24, lineHeight: 1 }}>Attend</h3>
-                <span style={{ display: "inline-block", background: "#FFC700", color: "#000", borderRadius: 999, padding: "12px 22px", fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase" }}>RSVP now →</span>
+                <span style={{ display: "inline-block", background: "#FFC700", color: "#000", borderRadius: 999, padding: "12px 22px", fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase" }}>RSVP now →</span>
               </div>
             </a>
             {/* TILE 2 — VOLUNTEER: yellow card top, image bottom */}
             <a href={B2S_VOLUNTEER} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none", border: "2px solid #000" }}>
               <div style={{ background: "#FFC700", padding: "32px 20px", textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", aspectRatio: "1 / 1" }}>
-                <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "2.5px", textTransform: "uppercase", color: "#000", fontWeight: 700, marginBottom: 10 }}>Join the crew</span>
+                <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', letterSpacing: "2.5px", textTransform: "uppercase", color: "#000", fontWeight: 700, marginBottom: 10 }}>Join the crew</span>
                 <h3 style={{ fontFamily: "var(--font-body)", fontWeight: 900, fontSize: "clamp(22px, 2.4vw, 32px)", color: "#000", textTransform: "uppercase", letterSpacing: "0.02em", marginBottom: 24, lineHeight: 1 }}>Volunteer</h3>
-                <span style={{ display: "inline-block", background: "#000", color: "#FFC700", borderRadius: 999, padding: "12px 22px", fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase" }}>Sign up →</span>
+                <span style={{ display: "inline-block", background: "#000", color: "#FFC700", borderRadius: 999, padding: "12px 22px", fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase" }}>Sign up →</span>
               </div>
               <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1", overflow: "hidden", background: "#000" }}>
                 <Image src="/email/b2s-2026-launch/gallery-resources.jpg" alt="Volunteers staffing the resource station." fill sizes="(max-width: 768px) 50vw, 25vw" style={{ objectFit: "cover" }} />
@@ -240,17 +240,17 @@ export default async function Back2SchoolPage() {
                 <Image src="/email/b2s-2026-launch/lead-b2s-tents.jpg" alt="Vendor tent row at Back 2 School." fill sizes="(max-width: 768px) 50vw, 25vw" style={{ objectFit: "cover" }} />
               </div>
               <div style={{ background: "#000", padding: "32px 20px", textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", aspectRatio: "1 / 1" }}>
-                <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "2.5px", textTransform: "uppercase", color: "#FFC700", fontWeight: 700, marginBottom: 10 }}>Bring a table</span>
+                <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', letterSpacing: "2.5px", textTransform: "uppercase", color: "#FFC700", fontWeight: 700, marginBottom: 10 }}>Bring a table</span>
                 <h3 style={{ fontFamily: "var(--font-body)", fontWeight: 900, fontSize: "clamp(22px, 2.4vw, 32px)", color: "#FFC700", textTransform: "uppercase", letterSpacing: "0.02em", marginBottom: 24, lineHeight: 1 }}>Vendor</h3>
-                <span style={{ display: "inline-block", background: "#FFC700", color: "#000", borderRadius: 999, padding: "12px 22px", fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase" }}>Apply today →</span>
+                <span style={{ display: "inline-block", background: "#FFC700", color: "#000", borderRadius: 999, padding: "12px 22px", fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase" }}>Apply today →</span>
               </div>
             </a>
             {/* TILE 4 — SPONSOR: yellow card top, image bottom */}
             <a href={B2S_SPONSOR_URL} target="_blank" rel="noopener noreferrer" style={{ display: "flex", flexDirection: "column", textDecoration: "none", border: "2px solid #000" }}>
               <div style={{ background: "#FFC700", padding: "32px 20px", textAlign: "center", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", aspectRatio: "1 / 1" }}>
-                <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "2.5px", textTransform: "uppercase", color: "#000", fontWeight: 700, marginBottom: 10 }}>Fuel the day</span>
+                <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', letterSpacing: "2.5px", textTransform: "uppercase", color: "#000", fontWeight: 700, marginBottom: 10 }}>Fuel the day</span>
                 <h3 style={{ fontFamily: "var(--font-body)", fontWeight: 900, fontSize: "clamp(22px, 2.4vw, 32px)", color: "#000", textTransform: "uppercase", letterSpacing: "0.02em", marginBottom: 24, lineHeight: 1 }}>Sponsor</h3>
-                <span style={{ display: "inline-block", background: "#000", color: "#FFC700", borderRadius: 999, padding: "12px 22px", fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase" }}>Back us →</span>
+                <span style={{ display: "inline-block", background: "#000", color: "#FFC700", borderRadius: 999, padding: "12px 22px", fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase" }}>Back us →</span>
               </div>
               <div style={{ position: "relative", width: "100%", aspectRatio: "1 / 1", overflow: "hidden", background: "#000" }}>
                 <Image src="/email/b2s-2026-launch/gallery-drummers.jpg" alt="Drumline at Back 2 School." fill sizes="(max-width: 768px) 50vw, 25vw" style={{ objectFit: "cover" }} />
@@ -291,7 +291,7 @@ export default async function Back2SchoolPage() {
       {/* ── SPONSOR ── */}
       <section id="sponsor" style={{ scrollMarginTop: 80, background: "#000", padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)" }}>
         <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
-          <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "4px", textTransform: "uppercase", color: "#FFC700", fontWeight: 700, display: "block", marginBottom: 16 }}>
+          <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', letterSpacing: "4px", textTransform: "uppercase", color: "#FFC700", fontWeight: 700, display: "block", marginBottom: 16 }}>
             Sponsor the 7th Annual
           </span>
           <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(40px, 7vw, 96px)", lineHeight: 0.9, textTransform: "uppercase", color: "#FFC700", letterSpacing: "-0.02em", marginBottom: 24 }}>
@@ -303,7 +303,7 @@ export default async function Back2SchoolPage() {
 
           {/* TIER 1 */}
           <div style={{ marginBottom: "clamp(48px, 6vw, 80px)" }}>
-            <h3 style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", marginBottom: 12 }}>
+            <h3 style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", marginBottom: 12 }}>
               Tier 1 — Title Partners
             </h3>
             <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-md)", color: "#FFF", lineHeight: 1.7, fontWeight: 500, marginBottom: 32, maxWidth: 720 }}>
@@ -316,7 +316,7 @@ export default async function Back2SchoolPage() {
                     {t.name}
                   </h4>
                   <span style={{ fontFamily: "var(--font-body)", fontSize: "clamp(20px, 2vw, 28px)", fontWeight: 900, color: "#000", display: "block", marginBottom: 4 }}>{t.price}</span>
-                  <span style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#000", display: "block", marginBottom: 16 }}>{t.booth}</span>
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#000", display: "block", marginBottom: 16 }}>{t.booth}</span>
                   <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-sm)", color: "#000", lineHeight: 1.6, fontWeight: 500 }}>{t.desc}</p>
                 </div>
               ))}
@@ -325,7 +325,7 @@ export default async function Back2SchoolPage() {
 
           {/* TIER 2 */}
           <div style={{ marginBottom: "clamp(48px, 6vw, 80px)" }}>
-            <h3 style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", marginBottom: 12 }}>
+            <h3 style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", marginBottom: 12 }}>
               Tier 2 — Impact Sponsors
             </h3>
             <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-md)", color: "#FFF", lineHeight: 1.7, fontWeight: 500, marginBottom: 32, maxWidth: 720 }}>
@@ -338,7 +338,7 @@ export default async function Back2SchoolPage() {
                     {t.name}
                   </h4>
                   <span style={{ fontFamily: "var(--font-body)", fontSize: "clamp(20px, 2vw, 28px)", fontWeight: 900, color: "#000", display: "block", marginBottom: 4 }}>{t.price}</span>
-                  <span style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#000", display: "block", marginBottom: 16 }}>{t.booth}</span>
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#000", display: "block", marginBottom: 16 }}>{t.booth}</span>
                   <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-sm)", color: "#000", lineHeight: 1.6, fontWeight: 500 }}>{t.desc}</p>
                 </div>
               ))}
@@ -347,7 +347,7 @@ export default async function Back2SchoolPage() {
 
           {/* TIER 3 */}
           <div style={{ marginBottom: "clamp(48px, 6vw, 80px)" }}>
-            <h3 style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", marginBottom: 12 }}>
+            <h3 style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "#FFC700", marginBottom: 12 }}>
               Tier 3 — Community Sponsors
             </h3>
             <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-md)", color: "#FFF", lineHeight: 1.7, fontWeight: 500, marginBottom: 32, maxWidth: 720 }}>
@@ -360,7 +360,7 @@ export default async function Back2SchoolPage() {
                     {t.name}
                   </h4>
                   <span style={{ fontFamily: "var(--font-body)", fontSize: "clamp(18px, 1.8vw, 24px)", fontWeight: 900, color: "#000", display: "block", marginBottom: 4 }}>{t.price}</span>
-                  <span style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#000", display: "block", marginBottom: 16 }}>{t.booth}</span>
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "#000", display: "block", marginBottom: 16 }}>{t.booth}</span>
                   <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-sm)", color: "#000", lineHeight: 1.6, fontWeight: 500 }}>{t.desc}</p>
                 </div>
               ))}
@@ -368,7 +368,7 @@ export default async function Back2SchoolPage() {
           </div>
 
           <div style={{ textAlign: "center", marginTop: "clamp(40px, 5vw, 64px)" }}>
-            <a href={B2S_SPONSOR_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#FFC700", color: "#000", padding: "20px 56px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 14, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
+            <a href={B2S_SPONSOR_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#FFC700", color: "#000", padding: "20px 56px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
               Lock in a Tier
             </a>
           </div>
@@ -379,7 +379,7 @@ export default async function Back2SchoolPage() {
       <section style={{ background: "#FFC700", padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)", borderTop: "2px solid #000" }}>
         <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
           <div style={{ border: "2px solid #000", background: "#FFC700", padding: "clamp(40px, 5vw, 72px) clamp(28px, 4vw, 56px)" }}>
-            <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "4px", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: 24 }}>
+            <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', letterSpacing: "4px", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: 24 }}>
               Vendor Portal Now Open
             </span>
             <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(40px, 7vw, 96px)", lineHeight: 0.9, textTransform: "uppercase", color: "#000", letterSpacing: "-0.02em", marginBottom: 32 }}>
@@ -390,7 +390,7 @@ export default async function Back2SchoolPage() {
             </p>
 
             <div>
-              <a href={B2S_VENDOR_FORM} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "18px 44px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
+              <a href={B2S_VENDOR_FORM} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "18px 44px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
                 Apply to vendor →
               </a>
             </div>
@@ -401,7 +401,7 @@ export default async function Back2SchoolPage() {
       {/* ── VENDORS ── */}
       <section id="vendors" style={{ scrollMarginTop: 80, background: "#FFC700", padding: "clamp(80px, 10vw, 140px) clamp(32px, 5vw, 80px)" }}>
         <div style={{ maxWidth: "var(--content-max)", margin: "0 auto" }}>
-          <span style={{ fontFamily: "var(--font-body)", fontSize: 11, letterSpacing: "4px", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: 16 }}>
+          <span style={{ fontFamily: "var(--font-body)", fontSize: 'var(--text-label)', letterSpacing: "4px", textTransform: "uppercase", color: "#000", fontWeight: 700, display: "block", marginBottom: 16 }}>
             Vendor Booths — Limited Availability
           </span>
           <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(36px, 6vw, 80px)", lineHeight: 0.92, textTransform: "uppercase", color: "#000", letterSpacing: "-0.02em", marginBottom: 24 }}>
@@ -412,7 +412,7 @@ export default async function Back2SchoolPage() {
           </p>
 
           <div style={{ textAlign: "center" }}>
-            <a href={B2S_VENDOR_FORM} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "20px 56px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 14, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
+            <a href={B2S_VENDOR_FORM} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "20px 56px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
               Apply for a Booth
             </a>
           </div>
@@ -430,7 +430,7 @@ export default async function Back2SchoolPage() {
               <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-md)", color: "#000", lineHeight: 1.7, fontWeight: 500, marginBottom: 24 }}>
                 Pick a shift — load-in, service station, or guest flow. Bring a team if you can. We'll build a station around you.
               </p>
-              <a href={B2S_VOLUNTEER} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "16px 40px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
+              <a href={B2S_VOLUNTEER} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "16px 40px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
                 Pick a Shift →
               </a>
             </div>
@@ -441,7 +441,7 @@ export default async function Back2SchoolPage() {
               <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--body-md)", color: "#000", lineHeight: 1.7, fontWeight: 500, marginBottom: 24 }}>
                 The math is simple. 5,000 of us at $7 each. Send the link to seven friends. Watch what we build.
               </p>
-              <a href={B2S_SPONSOR_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "16px 40px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 13, letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
+              <a href={B2S_SPONSOR_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "#000", color: "#FFC700", padding: "16px 40px", borderRadius: 999, fontFamily: "var(--font-body)", fontSize: 'var(--text-sm)', letterSpacing: "0.18em", textTransform: "uppercase", fontWeight: 800, textDecoration: "none" }}>
                 Give $7 →
               </a>
             </div>

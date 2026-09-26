@@ -152,7 +152,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                         background: LEVEL_COLORS[award.level || 'Institutional'] || 'var(--gold)',
                         color: '#000',
                         fontFamily: "var(--font-body)",
-                        fontSize: '11px',
+                        fontSize: 'var(--text-label)',
                         fontWeight: 700,
                         padding: '5px 10px',
                         letterSpacing: '1px',
@@ -176,7 +176,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                         {award.title}
                       </h3>
                       <p style={{
-                        fontSize: '14px',
+                        fontSize: 'var(--text-sm)',
                         color: '#fff',
                         lineHeight: 1.5,
                         marginBottom: '4px',
@@ -184,7 +184,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                         {award.presentedBy}
                       </p>
                       <span style={{
-                        fontSize: '12px',
+                        fontSize: 'var(--text-label)',
                         color: 'var(--gold)',
                         fontWeight: 600,
                         letterSpacing: '1px',
@@ -196,7 +196,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                       {award.notes && (
                         <div className="fold-content" style={{
                           marginTop: '10px',
-                          fontSize: '13px',
+                          fontSize: 'var(--text-sm)',
                           color: '#fff',
                           lineHeight: 1.6,
                         }}>
@@ -276,7 +276,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                 marginBottom: '12px',
               }}>
                 <span style={{
-                  fontSize: '10px',
+                  fontSize: 'var(--text-label)',
                   letterSpacing: '2px',
                   textTransform: 'uppercase',
                   color: 'var(--gold)',
@@ -286,7 +286,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                   {item.type}
                 </span>
                 <span style={{
-                  fontSize: '12px',
+                  fontSize: 'var(--text-label)',
                   color: 'var(--gold)',
                   fontFamily: "var(--font-body)",
                 }}>
@@ -295,7 +295,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
               </div>
               <h4 style={{
                 fontFamily: "var(--font-body)",
-                fontSize: '18px',
+                fontSize: 'var(--text-lg)',
                 fontWeight: 800,
                 color: '#fff',
                 marginBottom: '8px',
@@ -305,7 +305,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                 {item.outlet}
               </h4>
               <p style={{
-                fontSize: '13px',
+                fontSize: 'var(--text-sm)',
                 color: '#fff',
                 lineHeight: 1.6,
               }}>
@@ -333,7 +333,7 @@ export default function AwardsClient({ awards, media }: AwardsClientProps) {
                 {stat.value}
               </div>
               <div style={{
-                fontSize: '11px',
+                fontSize: 'var(--text-label)',
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
                 color: 'var(--gold)',

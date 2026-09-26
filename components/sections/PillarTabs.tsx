@@ -96,7 +96,7 @@ export default function PillarTabs() {
                 onClick={() => setActive(i)}
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: isMobile ? '11px' : 'clamp(12px, 1.3vw, 16px)',
+                  fontSize: isMobile ? 'var(--text-label)' : 'clamp(12px, 1.3vw, 16px)',
                   fontWeight: active === i ? 800 : 600,
                   textTransform: 'uppercase',
                   letterSpacing: '1.5px',

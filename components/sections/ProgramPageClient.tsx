@@ -352,7 +352,7 @@ export default function ProgramPageClient({
             className="pp-hero-pillar"
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: '4px',
               textTransform: 'uppercase',
               color: '#FFC700',
@@ -461,7 +461,7 @@ export default function ProgramPageClient({
             <div
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: '4px',
                 textTransform: 'uppercase',
                 color: '#FFC700',
@@ -522,7 +522,7 @@ export default function ProgramPageClient({
             <div
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: 11,
+                fontSize: 'var(--text-label)',
                 letterSpacing: '4px',
                 textTransform: 'uppercase',
                 color: '#FFC700',
@@ -713,7 +713,7 @@ export default function ProgramPageClient({
               <div
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: 11,
+                  fontSize: 'var(--text-label)',
                   letterSpacing: '4px',
                   textTransform: 'uppercase',
                   color: '#FFC700',
@@ -802,7 +802,7 @@ export default function ProgramPageClient({
           }}>
             <span style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 11,
+              fontSize: 'var(--text-label)',
               letterSpacing: '4px',
               textTransform: 'uppercase',
               color: '#FFC700',
@@ -913,7 +913,7 @@ export default function ProgramPageClient({
                   padding: '16px 40px',
                   borderRadius: 16,
                   fontFamily: 'var(--font-body)',
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   fontWeight: 700,
@@ -935,7 +935,7 @@ export default function ProgramPageClient({
                 padding: '16px 40px',
                 borderRadius: 16,
                 fontFamily: 'var(--font-body)',
-                fontSize: 13,
+                fontSize: 'var(--text-sm)',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
                 fontWeight: 700,

@@ -140,7 +140,7 @@ export default function MixedMediaFeatureBand({
               <div
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: 11,
+                  fontSize: 'var(--text-label)',
                   letterSpacing: '4px',
                   textTransform: 'uppercase',
                   color: textColor,
@@ -184,7 +184,7 @@ export default function MixedMediaFeatureBand({
               <div
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: 12,
+                  fontSize: 'var(--text-label)',
                   letterSpacing: '1px',
                   textTransform: 'uppercase',
                   color: textColor,
@@ -207,7 +207,7 @@ export default function MixedMediaFeatureBand({
                   padding: '16px 28px',
                   borderRadius: 16,
                   fontFamily: 'var(--font-body)',
-                  fontSize: 13,
+                  fontSize: 'var(--text-sm)',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   fontWeight: 700,

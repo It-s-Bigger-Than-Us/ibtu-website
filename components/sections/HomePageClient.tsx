@@ -127,7 +127,7 @@ export default function HomePageClient({
               padding: '16px 40px',
               borderRadius: '16px',
               fontFamily: 'var(--font-body)',
-              fontSize: 13,
+              fontSize: 'var(--text-sm)',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               fontWeight: 700,
@@ -143,7 +143,7 @@ export default function HomePageClient({
               borderRadius: '16px',
               overflow: 'hidden',
               fontFamily: 'var(--font-body)',
-              fontSize: 13,
+              fontSize: 'var(--text-sm)',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               fontWeight: 700,
@@ -241,7 +241,7 @@ export default function HomePageClient({
           }
 
           .home-statement-body {
-            font-size: 16px !important;
+            font-size: var(--text-base) !important;
             line-height: 1.65 !important;
             max-width: 30ch !important;
             margin-bottom: 28px !important;
