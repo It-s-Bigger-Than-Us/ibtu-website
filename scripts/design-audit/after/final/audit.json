@@ -78,8 +78,8 @@
    "imageGroundSkipped": 2
   },
   "pageHeight": 7405,
-  "animated": 2,
-  "animatedRunningInView": 2,
+  "animated": 1,
+  "animatedRunningInView": 1,
   "hasSkipLink": true,
   "landmarks": {
    "main": 1,
@@ -152,8 +152,8 @@
    "imageGroundSkipped": 2
   },
   "pageHeight": 6935,
-  "animated": 2,
-  "animatedRunningInView": 2,
+  "animated": 1,
+  "animatedRunningInView": 1,
   "hasSkipLink": true,
   "landmarks": {
    "main": 1,
@@ -561,8 +561,8 @@
    "smallTargets": 0,
    "lowContrast": 0,
    "imageGroundSkipped": 2,
-   "animated": 2,
-   "animatedRunningInView": 2,
+   "animated": 1,
+   "animatedRunningInView": 1,
    "focusVisibleOf8": 8,
    "pageHeight": 7405,
    "imagesNoAlt": 0
@@ -572,8 +572,8 @@
    "smallTargets": 0,
    "lowContrast": 0,
    "imageGroundSkipped": 2,
-   "animated": 2,
-   "animatedRunningInView": 2,
+   "animated": 1,
+   "animatedRunningInView": 1,
    "focusVisibleOf8": null,
    "pageHeight": 6935,
    "imagesNoAlt": 0

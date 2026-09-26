@@ -20,7 +20,7 @@ Organization: It's Bigger Than Us (IBTU), 501(c)(3), Los Angeles.
 - Nothing in this stack is mobile-first.
 
 ## Brand Rules — Non-Negotiable
-- Colors: Gold `#FFC700` / Black `#000000` / White `#FFFFFF` — ONLY these three. No grey, no opacity reductions.
+- Colors: Gold `#FFC700` / Black `#000000` / White `#FFFFFF` — ONLY these three, at 100% for fills, text, borders, icons. No grey, no tints. Shadows and scrims are not brand colors: they use the tokenized rgba black in `app/tokens.css` only (`--shadow-card`, `--shadow-lift`, `--scrim`, `--glow-gold`; decision d15, 2026-09-26). Opacity fades are motion, not color.
 - NEVER gold text on white background (fails contrast, off-brand)
 - Fonts: LOT (headlines) + Poppins (body)
 - Sacred phrases (verbatim): "Community is the infrastructure." / "Designed with dignity." / "We listen, we build, we stay." / "Trust compounds."

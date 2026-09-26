@@ -95,6 +95,8 @@ export default function VolunteerEmbed() {
               height="600"
               onLoad={handleLoad}
               onError={handleError}
+              tabIndex={status === 'loaded' ? undefined : -1}
+              aria-hidden={status !== 'loaded'}
               className="ibtu-volunteer-iframe"
               style={{
                 border: 'none',

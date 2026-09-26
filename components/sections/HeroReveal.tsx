@@ -81,6 +81,10 @@ export default function HeroReveal() {
   }, [hideRestingPlate])
 
   useEffect(() => {
+    // Mark the intro as running before anything else so the newsletter gate
+    // (NewsletterSignup.heroIntroDone) never reads a stale 'done' from an
+    // earlier visit to Home in the same session.
+    document.documentElement.dataset.heroIntro = 'running'
     if (
       !leftTextRef.current ||
       !rightTextRef.current ||
@@ -89,7 +93,10 @@ export default function HeroReveal() {
       !iridBgRef.current ||
       !videoLayerRef.current ||
       !splitRef.current
-    ) return
+    ) {
+      document.documentElement.dataset.heroIntro = 'done'
+      return
+    }
 
     // Reduced motion: skip the intro timeline entirely and jump straight to
     // the resting frame (finding 09). Video stays paused on its first frame
@@ -101,7 +108,7 @@ export default function HeroReveal() {
     if (prefersReducedMotion) {
       gsap.set(textContainerRef.current, { opacity: 0, visibility: 'hidden' })
       gsap.set(iridBgRef.current, { opacity: 0 })
-      iridBgRef.current.setAttribute('data-offscreen', 'true')
+      iridBgRef.current.style.animation = 'none'
       gsap.set(logoRef.current, { opacity: 0 })
       gsap.set(videoLayerRef.current, { opacity: 1 })
       gsap.set(splitRef.current, { opacity: 0 })
@@ -113,7 +120,9 @@ export default function HeroReveal() {
         videoRef.current.currentTime = 0
       }
       document.documentElement.dataset.heroIntro = 'done'
-      return
+      return () => {
+        delete document.documentElement.dataset.heroIntro
+      }
     }
 
     const ctx = gsap.context(() => {
@@ -194,9 +203,10 @@ export default function HeroReveal() {
       tl.call(() => {
         setVideoReady(true)
         document.documentElement.dataset.heroIntro = 'done'
-        // Iridescent field is invisible (opacity 0) from here on — stop its
-        // loop rather than let it run unseen (finding 09).
-        iridBgRef.current?.setAttribute('data-offscreen', 'true')
+        // Iridescent field is invisible (opacity 0) from here on. Stop its
+        // loop inline (finding 09); AmbientPause owns data-offscreen and would
+        // otherwise restart the loop when the hero scrolls back into view.
+        if (iridBgRef.current) iridBgRef.current.style.animation = 'none'
       })
 
       // Resting plate (headline + buttons) fades in at the same beat
@@ -209,7 +219,10 @@ export default function HeroReveal() {
       })
     })
 
-    return () => ctx.revert()
+    return () => {
+      ctx.revert()
+      delete document.documentElement.dataset.heroIntro
+    }
   }, [showRestingPlate])
 
   // Play video when ready

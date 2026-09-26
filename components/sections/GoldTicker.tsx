@@ -51,44 +51,11 @@ export default function GoldTicker({
     return () => window.removeEventListener('resize', syncViewport)
   }, [])
 
-  // Sticky logic: stick when ticker top reaches viewport top
-  useEffect(() => {
-    const wrapper = wrapperRef.current
-    const ticker = tickerRef.current
-    if (!wrapper || !ticker) return
-
-    const onScroll = () => {
-      const rect = wrapper.getBoundingClientRect()
-      const h = ticker.offsetHeight
-      tickerHeight.current = h
-
-      // Stick when the wrapper's top edge scrolls above viewport
-      const shouldStick = rect.top <= 0
-      setIsStuck(shouldStick)
-
-      // Check what's below the ticker
-      if (shouldStick) {
-        const sampleX = window.innerWidth / 2
-        const stickyOffset = isMobile ? 88 : 0
-        const sampleY = stickyOffset + h + 4
-        // Temporarily hide ticker to sample element behind it
-        ticker.style.pointerEvents = 'none'
-        const el = document.elementFromPoint(sampleX, sampleY)
-        ticker.style.pointerEvents = ''
-        if (el) {
-          const bg = getComputedStyle(el).backgroundColor
-          const isYellow = bg.includes('255, 199, 0') || bg.includes('255,199,0')
-          setBelowIsYellow(isYellow)
-        }
-      } else {
-        setBelowIsYellow(false)
-      }
-    }
-
-    onScroll() // initial check
-  }, [isMobile])
-
-  useMotionValueEvent(scrollY, 'change', () => {
+  // Sticky logic: stick when the wrapper's top edge scrolls above the
+  // viewport, then sample what sits below the ticker so the iridescent
+  // border only shows over yellow. One function, called on mount and on
+  // every scroll change.
+  const syncStuck = () => {
     const wrapper = wrapperRef.current
     const ticker = tickerRef.current
     if (!wrapper || !ticker) return
@@ -104,6 +71,7 @@ export default function GoldTicker({
       const sampleX = window.innerWidth / 2
       const stickyOffset = isMobile ? 88 : 0
       const sampleY = stickyOffset + h + 4
+      // Temporarily hide ticker to sample element behind it
       ticker.style.pointerEvents = 'none'
       const el = document.elementFromPoint(sampleX, sampleY)
       ticker.style.pointerEvents = ''
@@ -115,7 +83,15 @@ export default function GoldTicker({
     } else {
       setBelowIsYellow(false)
     }
-  })
+  }
+  const syncStuckRef = useRef(syncStuck)
+  syncStuckRef.current = syncStuck
+
+  useEffect(() => {
+    syncStuckRef.current() // initial check, and again when the breakpoint flips
+  }, [isMobile])
+
+  useMotionValueEvent(scrollY, 'change', () => syncStuckRef.current())
 
   // Build the ticker content with separators
   const content = phrases.flatMap((phrase, i) => [

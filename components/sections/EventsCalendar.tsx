@@ -106,7 +106,9 @@ export default function EventsCalendar({
     })
   }, [events, program, types])
 
-  // Group the parseable events by month, sorted chronologically.
+  // Group the parseable events by month, sorted chronologically. A month
+  // bucket only exists once an event lands in it, so empty months are never
+  // rendered in either view.
   const months = useMemo(() => {
     const buckets = new Map<string, { y: number; m: number; events: { ev: Ev; d: number }[] }>()
     const undated: Ev[] = []
@@ -289,7 +291,6 @@ export default function EventsCalendar({
         )}
 
         {view === 'list' && months.ordered.map(({ y, m, events: monthEvents }) => {
-          if (monthEvents.length === 0) return null
           return (
             <div key={`${y}-${m}`} style={{ marginBottom: 20 }}>
               <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3vw,48px)', color: 'var(--gold)', textTransform: 'uppercase', marginBottom: 8 }}>
@@ -317,7 +318,6 @@ export default function EventsCalendar({
         })}
 
         {view === 'grid' && months.ordered.map(({ y, m, events: monthEvents }) => {
-          if (monthEvents.length === 0) return null
           const firstWeekday = new Date(y, m, 1).getDay()
           const daysInMonth = new Date(y, m + 1, 0).getDate()
           const byDay = new Map<number, Ev[]>()

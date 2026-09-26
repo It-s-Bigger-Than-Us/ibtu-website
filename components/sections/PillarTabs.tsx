@@ -86,7 +86,7 @@ export default function PillarTabs() {
             gap: isMobile ? 'var(--space-2)' : 'clamp(16px, 3vw, 40px)',
             paddingBottom: 12,
             position: 'relative',
-            overflowX: isMobile ? 'visible' : 'visible',
+            overflowX: 'visible',
           }}>
             {PILLARS.map((pillar, i) => (
               <button

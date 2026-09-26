@@ -114,6 +114,9 @@ export default function NewsletterSignup() {
   const closedManually = useRef(false)
   const revealedRef = useRef(false)
   const cancelledRef = useRef(false)
+  // At most one hero-ready wait in flight; scroll events past the trigger
+  // fire many times per second and must not each start a polling loop.
+  const waitingRef = useRef(false)
   const { scrollYProgress } = useScroll()
 
   const attemptRevealRef = useRef<() => void>(() => {})
@@ -124,6 +127,20 @@ export default function NewsletterSignup() {
     markOpenedThisSession()
     setOpen(true)
   }
+
+  const requestReveal = () => {
+    if (waitingRef.current || revealedRef.current) return
+    waitingRef.current = true
+    waitForHeroReady(
+      () => {
+        waitingRef.current = false
+        attemptRevealRef.current()
+      },
+      () => cancelledRef.current,
+    )
+  }
+  const requestRevealRef = useRef(requestReveal)
+  requestRevealRef.current = requestReveal
 
   // Trigger A: second page view reached while on Home.
   // Trigger B: exit intent (mouse leaves toward the browser chrome), Home only.
@@ -136,14 +153,10 @@ export default function NewsletterSignup() {
       }
     }
 
-    if (getPageviewCount() >= 2) {
-      waitForHeroReady(() => attemptRevealRef.current(), () => cancelledRef.current)
-    }
+    if (getPageviewCount() >= 2) requestRevealRef.current()
 
     const onMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        waitForHeroReady(() => attemptRevealRef.current(), () => cancelledRef.current)
-      }
+      if (e.clientY <= 0) requestRevealRef.current()
     }
     document.addEventListener('mouseleave', onMouseLeave)
 
@@ -157,7 +170,7 @@ export default function NewsletterSignup() {
   // is mounted on the Home route only — see NewsletterMount.tsx).
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     if (latest < SCROLL_TRIGGER) return
-    waitForHeroReady(() => attemptRevealRef.current(), () => cancelledRef.current)
+    requestRevealRef.current()
   })
 
   useEffect(() => {
